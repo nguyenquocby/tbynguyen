@@ -8,199 +8,482 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTTXrwOE5V1EGp5nJtldYzOjwpyOPp5QgHg1rZ1K+nD7+N43bsGrdcZqzK9/E5G70uU60MwZhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script defer src="appbike.js"></script>
   <style>
-    /* Reset và cơ bản */
+   /* ====== Variables ====== */
+:root {
+  --primary-color: #e41700;
+  --primary-dark: #a01000;
+  --text-light: #ffffff;
+  --text-dark: #333333;
+  --bg-dark: #1a1a1a;
+  --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  --transition-fast: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* ====== Base Styles ====== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
+  font-family: 'Montserrat', 'Arial', sans-serif;
+  overflow-x: hidden;
 }
 
-/* Hero Section */
+/* ====== Hero Section ====== */
 .hero-section {
   position: relative;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
 }
 
-.hero-bg {
+.hero-bg-parallax {
   position: absolute;
   width: 100%;
   height: 100%;
+  will-change: transform;
+}
+
+.hero-bg {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  z-index: 0;
+  object-position: center;
+  transform: scale(1.1);
+  transition: transform 8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hero-section:hover .hero-bg {
+  transform: scale(1);
 }
 
 .hero-overlay {
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
 }
 
-/* Navbar */
+/* ====== Navigation ====== */
 .nav-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  padding: 30px 5%;
   z-index: 10;
 }
 
-.logo img {
-  width: 80px;
+.logo-img {
+  height: 50px;
+  width: auto;
+  transform: translateY(0);
+  transition: var(--transition-fast);
 }
-.logo1 img {
-  width: 500px;
+
+.logo-img:hover {
+  transform: translateY(-3px);
 }
+
+/* ====== Hamburger Menu ====== */
 .menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
-  width: 30px;
-  height: 22px;
+  z-index: 100;
+}
+
+.hamburger-box {
+  width: 24px;
+  height: 16px;
+  position: relative;
+}
+
+.hamburger-inner {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-light);
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: var(--transition-fast);
+}
+
+.hamburger-inner::before,
+.hamburger-inner::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-light);
+  left: 0;
+  transition: var(--transition);
+}
+
+.hamburger-inner::before {
+  top: -6px;
+}
+
+.hamburger-inner::after {
+  top: 6px;
+}
+
+.menu-toggle.active .hamburger-inner {
+  background-color: transparent;
+}
+
+.menu-toggle.active .hamburger-inner::before {
+  transform: translateY(6px) rotate(45deg);
+  background-color: var(--text-dark);
+}
+
+.menu-toggle.active .hamburger-inner::after {
+  transform: translateY(-6px) rotate(-45deg);
+  background-color: var(--text-dark);
+}
+
+/* ====== Side Menu ====== */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  z-index: 90;
+  transition: right 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.side-menu.active {
+  right: 0;
+}
+
+.menu-close-area {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(100% - 400px);
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.side-menu.active .menu-close-area {
+  opacity: 1;
+}
+
+.menu-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  background-color: white;
+  padding: 100px 40px;
+  overflow-y: auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.close-line {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-dark);
+  left: 0;
+  top: 50%;
+  transition: var(--transition-fast);
+}
+
+.close-line:first-child {
+  transform: rotate(45deg);
+}
+
+.close-line:last-child {
+  transform: rotate(-45deg);
+}
+
+.close-btn:hover .close-line {
+  background-color: var(--primary-color);
+}
+
+.menu-list {
+  list-style: none;
+}
+
+.menu-item {
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.menu-link {
+  display: inline-block;
+  position: relative;
+  color: var(--text-dark);
+  font-size: 2rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 5px 0;
+  transition: var(--transition);
+}
+
+.menu-link span {
+  display: inline-block;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.side-menu.active .menu-link span {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: calc(0.1s * var(--i));
+}
+
+.menu-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: var(--transition);
+}
+
+.menu-link:hover::after {
+  width: 100%;
+}
+
+.menu-link:hover {
+  color: var(--primary-color);
+}
+
+/* ====== Hero Content ====== */
+.hero-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-}
-
-.menu-toggle span {
-  display: block;
-  height: 4px;
-  background: white;
-  border-radius: 2px;
-  transition: 0.3s;
-}
-
-/* Hero content */
-.hero-content {
+  justify-content: center;
+  align-items: center;
+  padding: 0 10%;
   text-align: center;
-  margin-top: auto;
-  margin-bottom: 80px;
-  color: white;
-  animation: fadeInUp 1.2s ease;
+  color: var(--text-light);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: var(--transition);
 }
 
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
+.hero-section.loaded .hero-content {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.hero-content p {
+.logo-main {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 40px;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+  transform: scale(0.9);
+  transition: var(--transition);
+}
+
+.hero-section.loaded .logo-main {
+  transform: scale(1);
+}
+
+.hero-description {
+  margin-bottom: 40px;
   font-size: 1.2rem;
-  margin-bottom: 20px;
+  line-height: 1.8;
+  max-width: 700px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition);
+  transition-delay: 0.2s;
 }
 
-.hero-content button {
-  padding: 12px 28px;
-  font-size: 1rem;
-  background: #e60012;
+.hero-section.loaded .hero-description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ====== CTA Button ====== */
+.cta-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 40px;
+  background-color: var(--primary-color);
+  color: var(--text-light);
   border: none;
-  border-radius: 30px;
-  color: white;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  overflow: hidden;
+  transition: var(--transition);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition);
+  transition-delay: 0.4s;
 }
 
-.hero-content button:hover {
-  background: #c4000f;
+.hero-section.loaded .cta-button {
+  opacity: 1;
+  transform: translateY(0);
 }
 
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.cta-button:hover::before {
+  left: 100%;
+}
+
+.cta-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.button-text {
+  display: inline-block;
+  transition: var(--transition-fast);
+}
+
+.button-icon {
+  margin-left: 10px;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: var(--transition-fast);
+}
+
+.cta-button:hover .button-text {
+  transform: translateX(-5px);
+}
+
+.cta-button:hover .button-icon {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ====== Animations ====== */
 @keyframes fadeInUp {
-  0% {
+  from {
     opacity: 0;
     transform: translateY(30px);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Side menu (trượt từ phải) */
-.side-menu {
-  position: fixed;
-  top: 0;
-  right: -300px; /* Ẩn ngoài màn hình */
-  width: 250px;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.95);
-  padding: 30px 20px;
-  transition: right 0.4s ease, opacity 0.4s ease;
-  opacity: 0;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.side-menu.active {
-  right: 0;
-  opacity: 1;
-}
-
-/* Close button */
-.close-btn {
-  background: none;
-  color: white;
-  font-size: 2rem;
-  border: none;
-  align-self: flex-end;
-  cursor: pointer;
-}
-
-/* Menu links */
-.side-menu ul {
-  list-style: none;
-  padding: 0;
-}
-
-.side-menu li {
-  margin: 15px 0;
-}
-
-.side-menu a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.side-menu a:hover {
-  color: #e60012;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .hero-content h1 {
-    font-size: 2.2rem;
+/* ====== Responsive ====== */
+@media (max-width: 992px) {
+  .hero-content {
+    padding: 0 5%;
   }
-
-  .hero-content p {
+  
+  .hero-description {
     font-size: 1rem;
   }
-
-  .logo img {
-    width: 70px;
+  
+  .menu-link {
+    font-size: 1.5rem;
   }
-  .logo1 img {
-    width: 500px;
 }
+
+@media (max-width: 768px) {
+  .nav-bar {
+    padding: 20px;
+  }
+  
+  .logo-img {
+    height: 40px;
+  }
+  
+  .side-menu {
+    max-width: 320px;
+  }
+  
+  .menu-container {
+    padding: 80px 30px;
+  }
+  
+  .menu-link {
+    font-size: 1.3rem;
+  }
+  
+  .cta-button {
+    padding: 12px 30px;
+    font-size: 0.9rem;
+  }
 }
-/* Product Info */
+
+@media (max-width: 576px) {
+  .hero-content {
+    padding: 0 20px;
+  }
+  
+  .logo-main {
+    margin-bottom: 30px;
+    max-width: 80%;
+  }
+  
+  .hero-description {
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+  }
+  
+  .side-menu {
+    max-width: 280px;
+  }
+  
+  .menu-container {
+    padding: 70px 20px;
+  }
+}
+/* Product Info----------------------------------------- */
 .container {
   padding: 20px;
   max-width: 1200px;
@@ -907,34 +1190,47 @@ body {
 </head>
 <body>
   <header class="hero-section">
-  <img src="/image/BANNERBIKE/SH350.jpg" alt="Honda SH350i" class="hero-bg" />
+  <div class="hero-bg-parallax">
+    <img src="/image/BANNERBIKE/SH350.jpg" alt="Honda SH350i" class="hero-bg" />
+  </div>
   <div class="hero-overlay">
     <div class="nav-bar">
       <div class="logo">
-        <img src="/image/logo/Logo_HEAD.png" alt="Logo" />
+        <img src="/image/logo/Logo_HEAD.png" alt="Logo" class="logo-img" />
       </div>
-      <div class="menu-toggle" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+      <div class="menu-toggle" id="menuToggle">
+        <div class="hamburger-box">
+          <div class="hamburger-inner"></div>
+        </div>
       </div>
     </div>
 
     <!-- Side Menu -->
     <nav class="side-menu" id="sideMenu">
-      <button class="close-btn" onclick="toggleMenu()">×</button>
-      <ul>
-        <li><a href="index.html">Trang chủ</a></li>
-        <li><a href="sanphamxemay.html">Sản phẩm</a></li>
-        <li><a href="khuyenmai.html">Khuyến mãi</a></li>
-        <li><a href="#">Tin Tức</a></li>
-      </ul>
+      <div class="menu-close-area" id="menuCloseArea"></div>
+      <div class="menu-container">
+        <button class="close-btn" id="closeBtn">
+          <span class="close-line"></span>
+          <span class="close-line"></span>
+        </button>
+        <ul class="menu-list">
+          <li class="menu-item"><a href="index.html" class="menu-link"><span>Trang chủ</span></a></li>
+          <li class="menu-item"><a href="sanphamxemay.html" class="menu-link"><span>Sản phẩm</span></a></li>
+          <li class="menu-item"><a href="khuyenmai.html" class="menu-link"><span>Khuyến mãi</span></a></li>
+          <li class="menu-item"><a href="#" class="menu-link"><span>Tin Tức</span></a></li>
+        </ul>
+      </div>
     </nav>
 
     <div class="hero-content">
-      <h1>Honda SH350i</h1>
-      <p>SH350i 2025 được tinh chỉnh với thiết kế thể thao, tối giản hơn nhưng vẫn mang dáng vẻ hiện đại, sang trọng. Được trang bị công nghệ tiên tiến, mẫu xe này không những phô diễn sức mạnh ấn tượng và khả năng vận hành vượt trội, mà còn tôn vinh sự tinh tế, lịch lãm của chủ sở hữu.</p>
-      <button onclick="document.getElementById('dat-mua').scrollIntoView({ behavior: 'smooth' })">Tìm hiểu ngay</button>
+      <div class="logo1">
+        <img src="/image/logo/SH350-2025.png" alt="Logo" class="logo-main" />
+      </div>
+      <p class="hero-description">SH350i 2025 được tinh chỉnh với thiết kế thể thao, tối giản hơn nhưng vẫn mang dáng vẻ hiện đại, sang trọng. Được trang bị công nghệ tiên tiến, mẫu xe này không những phô diễn sức mạnh ấn tượng và khả năng vận hành vượt trội, mà còn tôn vinh sự tinh tế, lịch lãm của chủ sở hữu.</p>
+      <button class="cta-button" id="ctaButton">
+        <span class="button-text">Tìm hiểu ngay</span>
+        <span class="button-icon">→</span>
+      </button>
     </div>
   </div>
 </header>
@@ -1197,53 +1493,70 @@ body {
   </div>
 </section>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    // Lấy các phần tử DOM
-    const specButton = document.getElementById('specButton');
-    const specModal = document.getElementById('specModal');
-    const closeButton = document.querySelector('.close-button');
-    
-    // Mở modal khi click nút
-    specButton.addEventListener('click', function() {
-        specModal.style.display = 'block';
-        setTimeout(() => {
-            specModal.style.opacity = '1';
-        }, 10);
-        document.body.style.overflow = 'hidden'; // Ngăn scroll khi modal mở
+document.addEventListener('DOMContentLoaded', function() {
+  // Mark hero as loaded for animations
+  setTimeout(() => {
+    document.querySelector('.hero-section').classList.add('loaded');
+  }, 100);
+  
+  // Menu toggle functionality
+  const menuToggle = document.getElementById('menuToggle');
+  const sideMenu = document.getElementById('sideMenu');
+  const closeBtn = document.getElementById('closeBtn');
+  const menuCloseArea = document.getElementById('menuCloseArea');
+  
+  function toggleMenu() {
+    menuToggle.classList.toggle('active');
+    sideMenu.classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
+  }
+  
+  menuToggle.addEventListener('click', toggleMenu);
+  closeBtn.addEventListener('click', toggleMenu);
+  menuCloseArea.addEventListener('click', toggleMenu);
+  
+  // Staggered menu item animation
+  const menuItems = document.querySelectorAll('.menu-item');
+  menuItems.forEach((item, index) => {
+    item.style.setProperty('--i', index);
+  });
+  
+  // Smooth scroll for CTA button
+  const ctaButton = document.getElementById('ctaButton');
+  ctaButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.getElementById('dat-mua');
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  });
+  
+  // Parallax effect for background
+  const heroBgParallax = document.querySelector('.hero-bg-parallax');
+  
+  if (heroBgParallax) {
+    window.addEventListener('scroll', function() {
+      const scrollPosition = window.pageYOffset;
+      heroBgParallax.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+    });
+  }
+  
+  // Button hover effect enhancement
+  const buttons = document.querySelectorAll('.cta-button');
+  buttons.forEach(button => {
+    button.addEventListener('mouseenter', function() {
+      this.querySelector('.button-icon').style.transitionDelay = '0.2s';
     });
     
-    // Đóng modal khi click nút đóng
-    closeButton.addEventListener('click', function() {
-        specModal.style.opacity = '0';
-        setTimeout(() => {
-            specModal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Cho phép scroll lại
-        }, 300);
+    button.addEventListener('mouseleave', function() {
+      this.querySelector('.button-icon').style.transitionDelay = '0s';
     });
-    
-    // Đóng modal khi click bên ngoài nội dung modal
-    specModal.addEventListener('click', function(e) {
-        if (e.target === specModal) {
-            specModal.style.opacity = '0';
-            setTimeout(() => {
-                specModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 300);
-        }
-    });
-    
-    // Đóng modal khi nhấn phím Esc
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && specModal.style.display === 'block') {
-            specModal.style.opacity = '0';
-            setTimeout(() => {
-                specModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 300);
-        }
-    });
+  });
 });
-    </script>
+</script>
   </main>
 
   <footer class="site-footer">
