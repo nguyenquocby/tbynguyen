@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Giới thiệu - HEAD Trung Hùng</title>
+  <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/54f0cb7e4a.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- AOS Animation -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, Helvetica, sans-serif; background-color: #f9f9f9; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    /* HEADER NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 60px;
+      background-color: transparent;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      z-index: 1000;
+      transition: background-color 0.4s ease, box-shadow 0.3s ease;
+    }
+
+    .navbar .logo { display: flex; align-items: center; gap: 0.5rem; }
+    .navbar .logo img { height: 40px; }
+
+    .hamburger {
+      width: 30px;
+      height: 22px;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 1001;
+    }
+    .hamburger span {
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+    /* Khi cuộn xuống: navbar màu đỏ + shadow */
+    .navbar.scrolled {
+      background-color: #dc2626;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    /* Hamburger chuyển sang nền sáng (đỏ đậm) khi scroll */
+    .hamburger span {
+      background: white;
+    }
+    /* Nav Menu Styles */
+.nav-menu {
+  background-color: #fff;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0 20px;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  position: relative;
+}
+
+/* Brand logo styles */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  z-index: 1002;
+  height: 40px; /* Cố định chiều cao để căn giữa với nút menu */
+}
+
+.logo-img {
+  height: 100%;
+  width: auto;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.brand-name {
+  color: #333;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}   
+
+
+/* Main navigation links */
+.main-menu {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.nav-links-container {
+  display: flex;
+  gap: 5px;
+}
+
+.nav-link {
+  position: relative;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 12px 18px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.nav-link span {
+  position: relative;
+  z-index: 1;
+}
+
+.nav-link:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ff0000;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover:before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-link:hover {
+  color: #ff0000;
+}
+
+/* Desktop buttons */
+.desktop-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 20px;
+}
+
+/* Mobile buttons - hidden on desktop */
+.mobile-buttons {
+  display: none;
+}
+
+/* Social buttons */
+.social-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Navigation buttons */
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+.contact-button {
+  background-color: #ff0000;
+  color: white;
+  border: 2px solid #ff0000;
+}
+
+.store-button {
+  background-color: transparent;
+  color: #333;
+  border: 2px solid #ddd;
+}
+
+.nav-button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.5s;
+}
+
+.nav-button:hover:before {
+  left: 100%;
+}
+
+.contact-button:hover {
+  background-color: #e60000;
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+.store-button:hover {
+  border-color: #ff0000;
+  color: #ff0000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Social buttons */
+.social-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: 0.5s;
+}
+
+.social-button:hover:before {
+  left: 100%;
+}
+
+.facebook {
+  background-color: #3b5998;
+}
+
+.instagram {
+  background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+}
+
+.youtube {
+  background-color: #ff0000;
+}
+
+.tiktok {
+  background-color: #000000;
+}
+
+.social-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== MOBILE MENU TOGGLE ===== */
+.mobile-menu-toggle {
+  display: none; /* Ẩn trên desktop */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+  height: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-menu-toggle .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 3px 0;
+  transition: all 0.3s ease;
+}
+ /* Hiệu ứng chuyển đổi nút menu thành dấu X */
+  .nav-menu.active .mobile-menu-toggle .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .nav-menu.active .mobile-menu-toggle .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-menu.active .mobile-menu-toggle .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+/* Active link style */
+.nav-link.active {
+  color: #ff0000;
+}
+
+.nav-link.active:before {
+  transform: scaleX(1);
+}
+
+/* Scrolled state */
+.nav-menu.scrolled {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  background-color: rgba(255, 255, 255, 0.98);
+  padding: 0 10px;
+}
+
+.nav-menu.scrolled .brand-logo {
+  padding: 5px 0;
+}
+
+.nav-menu.scrolled .logo-img {
+  height: 35px;
+}
+
+.nav-menu.scrolled .brand-name {
+  font-size: 1.1rem;
+}
+
+.nav-menu.scrolled .nav-link {
+  padding: 10px 15px;
+  font-size: 0.95rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  /* iPad và các thiết bị nhỏ hơn */
+  .nav-container {
+    padding: 10px 15px;
+    height: 60px; /* Chiều cao cố định cho thanh nav */
+  }
+  
+  .brand-logo {
+    height: 40px;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  /* Hiển thị nút menu 3 gạch */
+  .mobile-menu-toggle {
+    display: flex;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  /* Ẩn menu chính trên mobile */
+  .main-menu {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background-color: #fff;
+    flex-direction: column;
+    padding: 20px 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+  /* Hiệu ứng khi menu mở */
+  .nav-menu.active .main-menu {
+    transform: translateX(0);
+  }
+  /* Hiệu ứng chuyển đổi nút menu thành dấu X */
+  .nav-menu.active .mobile-menu-toggle .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .nav-menu.active .mobile-menu-toggle .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-menu.active .mobile-menu-toggle .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  /* Đảm bảo logo vẫn hiển thị khi menu mở */
+  .nav-menu.active .brand-logo {
+    position: relative;
+    z-index: 1002;
+  }
+  .nav-links-container {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .nav-link {
+    width: 100%;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f5f5f5;
+    text-align: left;
+  }
+  
+  .desktop-buttons {
+    display: none;
+  }
+  
+  .mobile-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    width: 100%;
+    border-top: 1px solid #eee;
+    margin-top: 15px;
+  }
+  
+  .social-buttons {
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    height: 56px; /* Chiều cao nhỏ hơn cho mobile */
+  }
+  
+  .brand-logo {
+    height: 36px;
+  }
+  
+  .logo-img {
+    height: 100%;
+  }
+  
+  .brand-name {
+    font-size: 1rem;
+  }
+  
+  .mobile-menu-toggle {
+    padding: 8px;
+  }
+  
+  .mobile-menu-toggle .bar {
+    width: 22px;
+    height: 2.5px;
+    margin: 2.5px 0;
+  }
+  
+  .main-menu {
+    top: 56px;
+    height: calc(100vh - 56px);
+  }
+}
+
+@media (max-width: 576px) {
+  .brand-name {
+    font-size: 1rem;
+  }
+  
+  .logo-img {
+    height: 30px;
+  }
+  
+  .mobile-buttons .nav-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Ripple Effect */
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Prevent scrolling when menu is open */
+.no-scroll {
+  overflow: hidden;
+}
+
+    /* SECTION 1: BANNER */
+    /* Banner Styles */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  max-height: 1080px;
+  background: linear-gradient(135deg, rgba(180, 0, 0, 0.7) 0%, rgba(214, 0, 7, 0.5) 100%);
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(230,30,37,0.5) 100%);
+  z-index: 1;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.banner.loaded .banner-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.banner h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  letter-spacing: 2px;
+}
+
+.banner p {
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+  text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+}
+
+/* Scroll indicator */
+.banner-scroll {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.banner-scroll span {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.scroll-icon {
+  width: 30px;
+  height: 50px;
+  border: 2px solid #fff;
+  border-radius: 15px;
+  position: relative;
+}
+
+.scroll-icon:before {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 10px;
+  background: #fff;
+  border-radius: 3px;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollAnimation 2s infinite;
+}
+
+@keyframes scrollAnimation {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .banner h1 {
+    font-size: 3.5rem;
+  }
+  
+  .banner p {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .banner {
+    min-height: 500px;
+  }
+  
+  .banner h1 {
+    font-size: 3rem;
+  }
+  
+  .banner p {
+    font-size: 1.2rem;
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .banner p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+  
+  .banner-scroll {
+    bottom: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .banner {
+    min-height: 400px;
+    height: 80vh;
+  }
+  
+  .banner h1 {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+  
+  .banner p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .scroll-icon {
+    width: 25px;
+    height: 40px;
+  }
+}
+
+    /* SECTION 2: TIMELINE */
+/* Global Styles */
+:root {
+  --primary-color: #e61e25;
+  --secondary-color: #2a2a2a;
+  --text-color: #333;
+  --light-gray: #f5f5f5;
+  --white: #ffffff;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-header .divider {
+  width: 80px;
+  height: 3px;
+  background: var(--primary-color);
+  margin: 0 auto 20px;
+}
+
+.section-header p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* History Section */
+.history-section {
+  padding: 100px 0;
+  background: var(--light-gray);
+}
+
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background: var(--primary-color);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  padding: 20px 40px;
+  position: relative;
+  width: 50%;
+  margin-bottom: 30px;
+}
+
+.timeline-item:nth-child(odd) {
+  left: 0;
+}
+
+.timeline-item:nth-child(even) {
+  left: 50%;
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--white);
+  border: 4px solid var(--primary-color);
+  border-radius: 50%;
+  top: 30px;
+  z-index: 1;
+}
+
+.timeline-item:nth-child(odd)::after {
+  right: -10px;
+}
+
+.timeline-item:nth-child(even)::after {
+  left: -10px;
+}
+
+.timeline-year {
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.timeline-content {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: var(--secondary-color);
+}
+
+/* Mission & Vision Section */
+.mission-vision {
+  padding: 100px 0;
+  background: var(--white);
+}
+
+.mv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.mv-card {
+  background: var(--white);
+  padding: 40px 30px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+}
+
+.mv-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.mv-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(230, 30, 37, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+  color: var(--primary-color);
+  font-size: 30px;
+  transition: var(--transition);
+}
+
+.mv-card:hover .mv-icon {
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+.mv-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--secondary-color);
+}
+
+/* Core Values Section */
+.core-values {
+  padding: 100px 0;
+  background: var(--light-gray);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.value-card {
+  background: var(--white);
+  padding: 40px 30px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.value-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--primary-color);
+}
+
+.value-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.value-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: rgba(230, 30, 37, 0.1);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  line-height: 1;
+}
+
+.value-card h3 {
+  font-size: 1.3rem;
+  margin: 15px 0;
+  color: var(--secondary-color);
+}
+
+/* Team Section */
+.team-section {
+  padding: 100px 0;
+  background: var(--white);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.team-card {
+  background: var(--white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+  position: relative;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.team-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.team-img img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.team-card:hover .team-img img {
+  transform: scale(1.1);
+}
+
+.team-social {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: rgba(230, 30, 37, 0.8);
+  padding: 15px 0;
+  transition: var(--transition);
+}
+
+.team-card:hover .team-social {
+  bottom: 0;
+}
+
+.team-social a {
+  color: var(--white);
+  margin: 0 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  transition: var(--transition);
+}
+
+.team-social a:hover {
+  background: var(--white);
+  color: var(--primary-color);
+}
+
+.team-info {
+  padding: 20px;
+  text-align: center;
+}
+
+.team-info h3 {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+  color: var(--secondary-color);
+}
+
+.team-info p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Services Section */
+.services-section {
+  padding: 100px 0;
+  background: var(--light-gray);
+}
+
+.services-tabs {
+  background: var(--white);
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+}
+
+.tab-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #eee;
+}
+
+.tab-btn {
+  flex: 1;
+  min-width: 150px;
+  padding: 15px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: #666;
+  text-align: center;
+  transition: var(--transition);
+  position: relative;
+}
+
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--primary-color);
+  transform: scaleX(0);
+  transition: var(--transition);
+}
+
+.tab-btn.active {
+  color: var(--primary-color);
+}
+
+.tab-btn.active::after {
+  transform: scaleX(1);
+}
+
+.tab-btn:hover {
+  color: var(--primary-color);
+  background: rgba(230, 30, 37, 0.05);
+}
+
+.tab-contents {
+  padding: 0;
+}
+
+.tab-content {
+  display: none;
+  padding: 40px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.tab-content-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.tab-img img {
+  width: 100%;
+  border-radius: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tab-text h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--secondary-color);
+}
+
+.tab-text p {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.tab-text ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.tab-text ul li {
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 25px;
+}
+
+.tab-text ul li i {
+  color: var(--primary-color);
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .section-header h2 {
+    font-size: 2.2rem;
+  }
+  
+  .tab-content-inner {
+    grid-template-columns: 1fr;
+  }
+  
+  .tab-img {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 30px;
+  }
+  
+  .timeline-item {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 0;
+  }
+  
+  .timeline-item:nth-child(even) {
+    left: 0;
+  }
+  
+  .timeline-item::after {
+    left: 20px !important;
+  }
+  
+  .section-header h2 {
+    font-size: 2rem;
+  }
+  
+  .mv-card, .value-card {
+    padding: 30px 20px;
+  }
+  
+  .tab-content {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .section-header .divider {
+    width: 60px;
+  }
+  
+  .tab-buttons {
+    flex-direction: column;
+  }
+  
+  .tab-btn {
+    min-width: 100%;
+    padding: 12px 15px;
+    text-align: left;
+  }
+  
+  .team-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+    /* SECTION 3: BUTTON LINKS */
+    .link-section {
+      background: #f3f3f3;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .link-section h2 {
+      color: #333;
+      margin-bottom: 2rem;
+    }
+
+    .link-section .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .link-section .buttons a {
+      background: #dc2626;
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .link-section .buttons a:hover {
+      background: #b91c1c;
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 768px) {
+      .banner h1 {
+        font-size: 2rem;
+      }
+
+      .banner p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+  <div class="logo">
+    <img src="image/logo/Logo_HEAD.png" alt="Logo">
+    <span>HEAD Trung Hùng</span>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<nav class="nav-menu" id="navMenu">
+  <div class="nav-container">
+    <!-- Logo thương hiệu -->
+    <a href="trangchu.html" class="brand-logo">
+      <img src="image/logo/Logo_HEAD.png" alt="Logo Thương Hiệu" class="logo-img">
+      <span class="brand-name"></span>
+    </a>
+
+    <div class="main-menu" id="mainMenu">
+      <a href="trangchu.html" class="nav-link"><span>Trang chủ</span></a>
+      <a href="gioithieu.html" class="nav-link"><span>Giới thiệu</span></a>
+      <a href="sanphamxemay.html" class="nav-link"><span>Sản phẩm</span></a>
+      <a href="dichvu.html" class="nav-link"><span>Dịch Vụ</span></a>
+      <a href="khuyenmai.html" class="nav-link"><span>Khuyến Mãi</span></a>
+      <a href="tintuc.html" class="nav-link"><span>Tin Tức</span></a>
+      
+      <!-- Các nút hiển thị trên mobile -->
+      <div class="mobile-buttons">
+        <a href="lienhe.html" class="nav-button contact-button">
+          <i class="fas fa-phone-alt"></i> 
+          <span>Liên hệ</span>
+        </a>
+        <a href="cuahang.html" class="nav-button store-button">
+          <i class="fas fa-map-marker-alt"></i> 
+          <span>Cửa hàng</span>
+        </a>
+        
+        <div class="social-buttons">
+          <a href="#" class="social-button facebook" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-button instagram" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="social-button youtube" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="#" class="social-button tiktok" aria-label="TikTok">
+            <i class="fab fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Các nút hiển thị trên desktop -->
+    <div class="desktop-buttons">
+      <a href="lienhe.html" class="nav-button contact-button">
+        <i class="fas fa-phone-alt"></i> 
+        <span>Liên hệ</span>
+      </a>
+      <a href="cuahang.html" class="nav-button store-button">
+        <i class="fas fa-map-marker-alt"></i> 
+        <span>Cửa hàng</span>
+      </a>
+      
+      <div class="social-buttons">
+        <a href="#" class="social-button facebook" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="social-button instagram" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="social-button youtube" aria-label="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="#" class="social-button tiktok" aria-label="TikTok">
+          <i class="fab fa-tiktok"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mobile menu button -->
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+</nav>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+   <!-- Banner Section -->
+  <section class="banner">
+    <div class="banner-overlay"></div>
+    <div class="banner-content">
+      <h1 data-aos="fade-down" data-aos-duration="800">GIỚI THIỆU CÔNG TY</h1>
+      <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">Công ty TNHH Thương Mại và Dịch Vụ Hùng Mạnh được thành lập 17/03/2006, với hơn 20 năm kinh nghiệm trong lĩnh vực phân phối và dịch vụ xe máy Honda. Từ những ngày đầu tiên, chúng tôi đã không ngừng nỗ lực để mang đến cho khách hàng những sản phẩm chất lượng cao và dịch vụ chuyên nghiệp nhất. Trải qua nhiều thăng trầm, chúng tôi tự hào là một trong những đơn vị phân phối xe máy Honda tại Việt Nam</p>
+      <div class="banner-scroll" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+        <span>Cuộn xuống</span>
+        <div class="scroll-icon"></div>
+      </div>
+    </div>
+  </section>
+
+ <!-- Lịch Sử Hình Thành -->
+  <section class="history-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Lịch Sử Hình Thành</h2>
+        <div class="divider"></div>
+        <p>Hành trình phát triển của chúng tôi</p>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item" data-aos="fade-right">
+          <div class="timeline-year">2006</div>
+          <div class="timeline-content">
+            <h3>Thành lập công ty</h3>
+            <p>Công ty TNHH Thương Mại Và Dịch Vụ Hùng Mạnh tại Sơn La.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-aos="fade-left">
+          <div class="timeline-year">2006 - 2013</div>
+          <div class="timeline-content">
+            <h3>Mở rộng hệ thống</h3>
+            <p>Mở rộng hệ thống lên 6 chi nhánh cửa hàng xe máy Honda tại tỉnh Sơn La</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-aos="fade-right">
+          <div class="timeline-year">2015</div>
+          <div class="timeline-content">
+            <h3>Mở rộng hệ thống</h3>
+            <p>Ra mắt cửa hàng xe máy <strong>HEAD Hùng Mạnh 7</strong> tại Hà Nội</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-aos="fade-left">
+          <div class="timeline-year">2018</div>
+          <div class="timeline-content">
+            <h3>Mở rộng hệ thống</h3>
+            <p>Mở rộng hệ thống lên 4 chi nhánh cửa hàng xe máy <strong>Hệ Thống HEAD Trung Hùng</strong> tại tỉnh Bình Định</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sứ Mệnh & Tầm Nhìn -->
+  <section class="mission-vision">
+    <div class="container">
+      <div class="mv-grid">
+        <div class="mv-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="mv-icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h3>Sứ Mệnh</h3>
+          <p>Mang đến cho khách hàng những sản phẩm chất lượng cao với dịch vụ hoàn hảo, góp phần nâng cao chất lượng cuộc sống người Việt.</p>
+        </div>
+        
+        <div class="mv-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="mv-icon">
+            <i class="fas fa-eye"></i>
+          </div>
+          <h3>Tầm Nhìn</h3>
+          <p>Trở thành hệ thống phân phối xe máy hàng đầu Việt Nam</p>
+        </div>
+        
+        <div class="mv-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="mv-icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <h3>Cam Kết</h3>
+          <p>Luôn đặt chữ tín lên hàng đầu, đảm bảo chất lượng sản phẩm và dịch vụ tốt nhất cho mọi khách hàng.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Giá Trị Cốt Lõi -->
+  <section class="core-values">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Giá Trị Cốt Lõi</h2>
+        <div class="divider"></div>
+        <p>Những nguyên tắc không thay đổi của chúng tôi</p>
+      </div>
+      
+      <div class="values-grid">
+        <div class="value-card" data-aos="flip-left" data-aos-delay="200">
+          <div class="value-number">01</div>
+          <h3>Chất Lượng</h3>
+          <p>Sản phẩm chính hãng 100%, đảm bảo tiêu chuẩn chất lượng cao nhất.</p>
+        </div>
+        
+        <div class="value-card" data-aos="flip-left" data-aos-delay="400">
+          <div class="value-number">02</div>
+          <h3>Chuyên Nghiệp</h3>
+          <p>Đội ngũ nhân viên được đào tạo bài bản, tư vấn tận tâm.</p>
+        </div>
+        
+        <div class="value-card" data-aos="flip-left" data-aos-delay="600">
+          <div class="value-number">03</div>
+          <h3>Đổi Mới</h3>
+          <p>Không ngừng cải tiến dịch vụ, áp dụng công nghệ mới.</p>
+        </div>
+        
+        <div class="value-card" data-aos="flip-left" data-aos-delay="800">
+          <div class="value-number">04</div>
+          <h3>Bền Vững</h3>
+          <p>Phát triển bền vững, thân thiện với môi trường.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Đội Ngũ -->
+  <section class="team-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Đội Ngũ Của Chúng Tôi</h2>
+        <div class="divider"></div>
+        <p>Những con người tạo nên sự khác biệt</p>
+      </div>
+      
+      <div class="team-grid">
+        <div class="team-card" data-aos="zoom-in" data-aos-delay="200">
+          <div class="team-img">
+            <img src="https://via.placeholder.com/300x300?text=CEO" alt="CEO">
+            <div class="team-social">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          <div class="team-info">
+            <h3>Nguyễn Văn A</h3>
+            <p>Giám Đốc Điều Hành</p>
+          </div>
+        </div>
+        
+        <div class="team-card" data-aos="zoom-in" data-aos-delay="400">
+          <div class="team-img">
+            <img src="https://via.placeholder.com/300x300?text=Marketing" alt="Marketing">
+            <div class="team-social">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          <div class="team-info">
+            <h3>Trần Thị B</h3>
+            <p>Trưởng Phòng Marketing</p>
+          </div>
+        </div>
+        
+        <div class="team-card" data-aos="zoom-in" data-aos-delay="600">
+          <div class="team-img">
+            <img src="https://via.placeholder.com/300x300?text=Sales" alt="Sales">
+            <div class="team-social">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          <div class="team-info">
+            <h3>Lê Văn C</h3>
+            <p>Trưởng Phòng Kinh Doanh</p>
+          </div>
+        </div>
+        
+        <div class="team-card" data-aos="zoom-in" data-aos-delay="800">
+          <div class="team-img">
+            <img src="https://via.placeholder.com/300x300?text=Service" alt="Service">
+            <div class="team-social">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          <div class="team-info">
+            <h3>Phạm Thị D</h3>
+            <p>Trưởng Phòng Dịch Vụ</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dịch Vụ -->
+  <section class="services-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Dịch Vụ Của Chúng Tôi</h2>
+        <div class="divider"></div>
+        <p>Những gì chúng tôi mang đến cho bạn</p>
+      </div>
+      
+      <div class="services-tabs">
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-tab="tab1">Bán Hàng</button>
+          <button class="tab-btn" data-tab="tab2">Bảo Hành</button>
+          <button class="tab-btn" data-tab="tab3">Dịch Vụ Sau Bán</button>
+          <button class="tab-btn" data-tab="tab4">Tư Vấn</button>
+        </div>
+        
+        <div class="tab-contents">
+          <div class="tab-content active" id="tab1" data-aos="fade-up">
+            <div class="tab-content-inner">
+              <div class="tab-img">
+                <img src="image/GIOITHIEU/image/BH.JPG" alt="Bán Hàng">
+              </div>
+              <div class="tab-text">
+                <h3>Bán Hàng Chính Hãng</h3>
+                <p>Chúng tôi cung cấp đa dạng các dòng xe máy từ phân khối nhỏ đến phân khối lớn của các hãng nổi tiếng thế giới. Tất cả sản phẩm đều là hàng chính hãng 100%, đầy đủ giấy tờ CO/CQ.</p>
+                <ul>
+                  <li><i class="fas fa-check"></i> Đa dạng mẫu mã, màu sắc</li>
+                  <li><i class="fas fa-check"></i> Giá cả cạnh tranh nhất thị trường</li>
+                  <li><i class="fas fa-check"></i> Hỗ trợ trả góp lãi suất 0%</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-content" id="tab2" data-aos="fade-up">
+            <div class="tab-content-inner">
+              <div class="tab-img">
+                <img src="image/GIOITHIEU/image/BAOHANH.JPG" alt="Bảo Hành">
+              </div>
+              <div class="tab-text">
+                <h3>Bảo Hành Chính Hãng</h3>
+                <p>Hệ thống bảo hành toàn quốc với hơn 50 trung tâm bảo hành ủy quyền. Thời gian bảo hành lên đến 3 năm hoặc 30,000km tùy theo hãng xe.</p>
+                <ul>
+                  <li><i class="fas fa-check"></i> Bảo hành điện tử, tra cứu online</li>
+                  <li><i class="fas fa-check"></i> Hỗ trợ bảo hành tại nhà</li>
+                  <li><i class="fas fa-check"></i> Thay thế phụ tùng chính hãng</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-content" id="tab3" data-aos="fade-up">
+            <div class="tab-content-inner">
+              <div class="tab-img">
+                <img src="image/GIOITHIEU/image/SAUBANHANG.JPG" alt="Dịch Vụ">
+              </div>
+              <div class="tab-text">
+                <h3>Dịch Vụ Sau Bán Hàng</h3>
+                <p>Đội ngũ kỹ thuật viên lành nghề với trang thiết bị hiện đại sẵn sàng phục vụ mọi nhu cầu bảo dưỡng, sửa chữa xe máy của khách hàng.</p>
+                <ul>
+                  <li><i class="fas fa-check"></i> Bảo dưỡng định kỳ</li>
+                  <li><i class="fas fa-check"></i> Sửa chữa chuyên sâu</li>
+                  <li><i class="fas fa-check"></i> Vệ sinh, làm đẹp xe</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-content" id="tab4" data-aos="fade-up">
+            <div class="tab-content-inner">
+              <div class="tab-img">
+                <img src="image/GIOITHIEU/image/CR.jpg" alt="Tư Vấn">
+              </div>
+              <div class="tab-text">
+                <h3>Tư Vấn Chuyên Nghiệp</h3>
+                <p>Đội ngũ tư vấn viên giàu kinh nghiệm luôn sẵn sàng hỗ trợ khách hàng 24/7 qua nhiều kênh khác nhau.</p>
+                <ul>
+                  <li><i class="fas fa-check"></i> Tư vấn chọn xe phù hợp</li>
+                  <li><i class="fas fa-check"></i> Hỗ trợ thủ tục đăng ký</li>
+                  <li><i class="fas fa-check"></i> Tư vấn bảo hiểm xe máy</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section 3: Buttons -->
+  <section class="link-section" data-aos="fade-up">
+    <h2>Khám phá thêm</h2>
+    <div class="buttons">
+      <a href="sanphamxemay.html">Xem sản phẩm</a>
+      <a href="dichvu.html">Dịch vụ</a>
+      <a href="lienhe.html">Liên hệ</a>
+    </div>
+  </section>
+  <!--------------------------hiệu ứng cuộn xuống hiển thị menu đỏ-->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const navMenu = document.getElementById('navMenu');
+  const mobileToggle = document.getElementById('mobileMenuToggle');
+  const mainMenu = document.getElementById('mainMenu');
+  
+  // Mobile menu toggle
+  mobileToggle.addEventListener('click', function() {
+    navMenu.classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
+  });
+  
+  // Close menu when clicking on a link
+  mainMenu.addEventListener('click', function(e) {
+    if (e.target.closest('a')) {
+      navMenu.classList.remove('active');
+      document.body.classList.remove('no-scroll');
+    }
+  });
+  
+  // Add active class to current page link
+  const currentPage = window.location.pathname.split('/').pop();
+  const navLinks = document.querySelectorAll('.nav-link');
+  
+  navLinks.forEach(link => {
+    const linkHref = link.getAttribute('href');
+    if (linkHref === currentPage) {
+      link.classList.add('active');
+    }
+  });
+  
+  // Sticky menu on scroll
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) {
+      navMenu.classList.add('scrolled');
+    } else {
+      navMenu.classList.remove('scrolled');
+    }
+  });
+  
+  // Add ripple effect to buttons
+  const buttons = document.querySelectorAll('.nav-button, .social-button');
+  
+  buttons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      const x = e.clientX - e.target.getBoundingClientRect().left;
+      const y = e.clientY - e.target.getBoundingClientRect().top;
+      
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple-effect');
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      
+      this.appendChild(ripple);
+      
+      setTimeout(() => {
+        ripple.remove();
+      }, 1000);
+    });
+  });
+});
+</script>
+  <!-- Scripts banner top -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Khởi tạo AOS (Animate On Scroll)
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true,
+    mirror: false
+  });
+  
+  // Hiệu ứng load banner
+  const banner = document.querySelector('.banner');
+  setTimeout(() => {
+    banner.classList.add('loaded');
+  }, 300);
+  
+  // Hiệu ứng cuộn xuống
+  const scrollDown = document.querySelector('.banner-scroll');
+  if (scrollDown) {
+    scrollDown.addEventListener('click', function() {
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: 'smooth'
+      });
+    });
+  }
+  
+  // Hiệu ứng parallax cho banner (tuỳ chọn)
+  window.addEventListener('scroll', function() {
+    const scrollPosition = window.pageYOffset;
+    const banner = document.querySelector('.banner');
+    if (banner) {
+      banner.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+    }
+  });
+  
+  // Preload hình ảnh banner
+  const bannerImage = new Image();
+  bannerImage.src = 'https://via.placeholder.com/1920x1080?text=Banner+Background';
+  bannerImage.onload = function() {
+    document.querySelector('.banner').style.backgroundImage = 'url(' + bannerImage.src + ')';
+  };
+});
+</script>
+  <!------timeline--------------->
+  <script>
+    // Khởi tạo AOS Animation
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+
+    // Hiệu ứng load banner
+    const banner = document.querySelector('.banner');
+    setTimeout(() => {
+      banner.classList.add('loaded');
+    }, 300);
+
+    // Hiệu ứng cuộn xuống
+    const scrollDown = document.querySelector('.banner-scroll');
+    if (scrollDown) {
+      scrollDown.addEventListener('click', function() {
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    // Hiệu ứng parallax cho banner
+    window.addEventListener('scroll', function() {
+      const scrollPosition = window.pageYOffset;
+      const banner = document.querySelector('.banner');
+      if (banner) {
+        banner.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+      }
+    });
+
+    // Tab dịch vụ
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Xóa active khỏi tất cả các nút và nội dung
+        tabBtns.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // Thêm active vào nút và nội dung được click
+        btn.classList.add('active');
+        const tabId = btn.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // Back to top button
+    const backToTopButton = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('show');
+      } else {
+        backToTopButton.classList.remove('show');
+      }
+    });
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Preload hình ảnh
+    const images = [
+      'https://via.placeholder.com/1920x1080?text=Banner+Background',
+      'https://via.placeholder.com/500x300?text=Bán+Hàng',
+      'https://via.placeholder.com/500x300?text=Bảo+Hành',
+      'https://via.placeholder.com/500x300?text=Dịch+Vụ',
+      'https://via.placeholder.com/500x300?text=Tư+Vấn'
+    ];
+    
+    images.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  </script>
+</body>
+</html>

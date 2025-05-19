@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sản phẩm xe máy</title>
+  <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <script src="https://kit.fontawesome.com/54f0cb7e4a.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <style>
+   * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, Helvetica, sans-serif; background-color: #f9f9f9; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    /* HEADER NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 60px;
+      background-color: transparent;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      z-index: 1000;
+      transition: background-color 0.4s ease, box-shadow 0.3s ease;
+    }
+
+    .navbar .logo { display: flex; align-items: center; gap: 0.5rem; }
+    .navbar .logo img { height: 40px; }
+
+    .hamburger {
+      width: 30px;
+      height: 22px;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 1001;
+    }
+    .hamburger span {
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+    /* Khi cuộn xuống: navbar màu đỏ + shadow */
+    .navbar.scrolled {
+      background-color: #dc2626;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    /* Hamburger chuyển sang nền sáng (đỏ đậm) khi scroll */
+    .hamburger span {
+      background: white;
+    }
+    /* Nav Menu Styles */
+.nav-menu {
+  background-color: #fff;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0 20px;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  position: relative;
+}
+
+/* Brand logo styles */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  z-index: 1002;
+  height: 40px; /* Cố định chiều cao để căn giữa với nút menu */
+}
+
+.logo-img {
+  height: 100%;
+  width: auto;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.brand-name {
+  color: #333;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}   
+
+
+/* Main navigation links */
+.main-menu {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.nav-links-container {
+  display: flex;
+  gap: 5px;
+}
+
+.nav-link {
+  position: relative;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 12px 18px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.nav-link span {
+  position: relative;
+  z-index: 1;
+}
+
+.nav-link:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ff0000;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover:before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-link:hover {
+  color: #ff0000;
+}
+
+/* Desktop buttons */
+.desktop-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 20px;
+}
+
+/* Mobile buttons - hidden on desktop */
+.mobile-buttons {
+  display: none;
+}
+
+/* Social buttons */
+.social-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Navigation buttons */
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+.contact-button {
+  background-color: #ff0000;
+  color: white;
+  border: 2px solid #ff0000;
+}
+
+.store-button {
+  background-color: transparent;
+  color: #333;
+  border: 2px solid #ddd;
+}
+
+.nav-button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.5s;
+}
+
+.nav-button:hover:before {
+  left: 100%;
+}
+
+.contact-button:hover {
+  background-color: #e60000;
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+.store-button:hover {
+  border-color: #ff0000;
+  color: #ff0000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Social buttons */
+.social-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: 0.5s;
+}
+
+.social-button:hover:before {
+  left: 100%;
+}
+
+.facebook {
+  background-color: #3b5998;
+}
+
+.instagram {
+  background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+}
+
+.youtube {
+  background-color: #ff0000;
+}
+
+.tiktok {
+  background-color: #000000;
+}
+
+.social-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== MOBILE MENU TOGGLE ===== */
+.mobile-menu-toggle {
+  display: none; /* Ẩn trên desktop */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+  height: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-menu-toggle .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 3px 0;
+  transition: all 0.3s ease;
+}
+ /* Hiệu ứng chuyển đổi nút menu thành dấu X */
+  .nav-menu.active .mobile-menu-toggle .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .nav-menu.active .mobile-menu-toggle .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-menu.active .mobile-menu-toggle .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+/* Active link style */
+.nav-link.active {
+  color: #ff0000;
+}
+
+.nav-link.active:before {
+  transform: scaleX(1);
+}
+
+/* Scrolled state */
+.nav-menu.scrolled {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  background-color: rgba(255, 255, 255, 0.98);
+  padding: 0 10px;
+}
+
+.nav-menu.scrolled .brand-logo {
+  padding: 5px 0;
+}
+
+.nav-menu.scrolled .logo-img {
+  height: 35px;
+}
+
+.nav-menu.scrolled .brand-name {
+  font-size: 1.1rem;
+}
+
+.nav-menu.scrolled .nav-link {
+  padding: 10px 15px;
+  font-size: 0.95rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  /* iPad và các thiết bị nhỏ hơn */
+  .nav-container {
+    padding: 10px 15px;
+    height: 60px; /* Chiều cao cố định cho thanh nav */
+  }
+  
+  .brand-logo {
+    height: 40px;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  /* Hiển thị nút menu 3 gạch */
+  .mobile-menu-toggle {
+    display: flex;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  /* Ẩn menu chính trên mobile */
+  .main-menu {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background-color: #fff;
+    flex-direction: column;
+    padding: 20px 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+  /* Hiệu ứng khi menu mở */
+  .nav-menu.active .main-menu {
+    transform: translateX(0);
+  }
+  /* Hiệu ứng chuyển đổi nút menu thành dấu X */
+  .nav-menu.active .mobile-menu-toggle .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .nav-menu.active .mobile-menu-toggle .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-menu.active .mobile-menu-toggle .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  /* Đảm bảo logo vẫn hiển thị khi menu mở */
+  .nav-menu.active .brand-logo {
+    position: relative;
+    z-index: 1002;
+  }
+  .nav-links-container {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .nav-link {
+    width: 100%;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f5f5f5;
+    text-align: left;
+  }
+  
+  .desktop-buttons {
+    display: none;
+  }
+  
+  .mobile-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    width: 100%;
+    border-top: 1px solid #eee;
+    margin-top: 15px;
+  }
+  
+  .social-buttons {
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    height: 56px; /* Chiều cao nhỏ hơn cho mobile */
+  }
+  
+  .brand-logo {
+    height: 36px;
+  }
+  
+  .logo-img {
+    height: 100%;
+  }
+  
+  .brand-name {
+    font-size: 1rem;
+  }
+  
+  .mobile-menu-toggle {
+    padding: 8px;
+  }
+  
+  .mobile-menu-toggle .bar {
+    width: 22px;
+    height: 2.5px;
+    margin: 2.5px 0;
+  }
+  
+  .main-menu {
+    top: 56px;
+    height: calc(100vh - 56px);
+  }
+}
+
+@media (max-width: 576px) {
+  .brand-name {
+    font-size: 1rem;
+  }
+  
+  .logo-img {
+    height: 30px;
+  }
+  
+  .mobile-buttons .nav-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Ripple Effect */
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Prevent scrolling when menu is open */
+.no-scroll {
+  overflow: hidden;
+}
+
+/*----------------SECTION SẢN PHẨM------------------------*/    
+  /* Product Grid Styles */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.product-item {
+  position: relative;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.product-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.product-item:hover img {
+  transform: scale(1.05);
+}
+
+.product-item a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-title {
+  padding: 15px;
+  text-align: center;
+  font-weight: 600;
+  color: #333;
+  background: #f9f9f9;
+  margin-top: auto;
+  border-top: 1px solid #eee;
+}
+
+/* Filter Bar Styles */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  background: #f5f5f5;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.filter-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  background: white;
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-width: 120px;
+}
+
+.filter-btn:hover {
+  background: #e0e0e0;
+}
+
+.filter-btn.active {
+  background: #e61e25;
+  color: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-bar {
+    padding: 15px 10px;
+  gap: 8px;
+  }
+  
+  .filter-btn {
+    padding: 8px 15px;
+    min-width: 100px;
+    font-size: 14px;
+  }
+  
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 10px;
+  }
+  
+  .product-item img {
+    height: 160px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 10px 5px;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .filter-btn {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    min-width: auto;
+    font-size: 13px;
+  }
+  
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  
+  .product-item img {
+    height: 140px;
+    padding: 10px;
+  }
+  
+  .product-title {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+/*----------------css thẻ tiêu đề-----------------------*/
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.content h1 {
+  font-size: 2.5rem;
+  color: #e61e25; /* Màu đỏ chủ đạo */
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  position: relative;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.content h1:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #e61e25;
+}
+
+.content p {
+  font-size: 1.1rem;
+  color: #555;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive Adjustments for Content */
+@media (max-width: 768px) {
+  .content h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  
+  .content p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content h1 {
+    font-size: 1.6rem;
+    padding-bottom: 10px;
+  }
+  
+  .content h1:after {
+    width: 60px;
+    height: 2px;
+  }
+  
+  .content p {
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+  }
+} 
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+  <div class="logo">
+    <img src="image/logo/Logo_HEAD.png" alt="Logo">
+    <span>HEAD Trung Hùng</span>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<nav class="nav-menu" id="navMenu">
+  <div class="nav-container">
+    <!-- Logo thương hiệu -->
+    <a href="trangchu.html" class="brand-logo">
+      <img src="image/logo/Logo_HEAD.png" alt="Logo Thương Hiệu" class="logo-img">
+      <span class="brand-name"></span>
+    </a>
+
+    <div class="main-menu" id="mainMenu">
+      <a href="trangchu.html" class="nav-link"><span>Trang chủ</span></a>
+      <a href="gioithieu.html" class="nav-link"><span>Giới thiệu</span></a>
+      <a href="sanphamxemay.html" class="nav-link"><span>Sản phẩm</span></a>
+      <a href="dichvu.html" class="nav-link"><span>Dịch Vụ</span></a>
+      <a href="khuyenmai.html" class="nav-link"><span>Khuyến Mãi</span></a>
+      <a href="tintuc.html" class="nav-link"><span>Tin Tức</span></a>
+      
+      <!-- Các nút hiển thị trên mobile -->
+      <div class="mobile-buttons">
+        <a href="lienhe.html" class="nav-button contact-button">
+          <i class="fas fa-phone-alt"></i> 
+          <span>Liên hệ</span>
+        </a>
+        <a href="cuahang.html" class="nav-button store-button">
+          <i class="fas fa-map-marker-alt"></i> 
+          <span>Cửa hàng</span>
+        </a>
+        
+        <div class="social-buttons">
+          <a href="#" class="social-button facebook" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-button instagram" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="social-button youtube" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="#" class="social-button tiktok" aria-label="TikTok">
+            <i class="fab fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Các nút hiển thị trên desktop -->
+    <div class="desktop-buttons">
+      <a href="lienhe.html" class="nav-button contact-button">
+        <i class="fas fa-phone-alt"></i> 
+        <span>Liên hệ</span>
+      </a>
+      <a href="cuahang.html" class="nav-button store-button">
+        <i class="fas fa-map-marker-alt"></i> 
+        <span>Cửa hàng</span>
+      </a>
+      
+      <div class="social-buttons">
+        <a href="#" class="social-button facebook" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="social-button instagram" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="social-button youtube" aria-label="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="#" class="social-button tiktok" aria-label="TikTok">
+          <i class="fab fa-tiktok"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mobile menu button -->
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+</nav>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Section 1: SẢN PHẨM & BỘ LỌC-->
+  <main class="content" style="padding-top: 30px;">
+    
+    <h1>Sản Phẩm</h1>
+
+    <p>Khám phá các dòng xe: Xe ga, Xe số, Xe côn tay, Xe phân khối lớn, Xe máy điện.</p>
+
+    <div class="filter-bar">
+      <button class="filter-btn" data-filter="all">Tất Cả</button>
+      <button class="filter-btn" data-filter="xega">Xe Tay Ga</button>
+      <button class="filter-btn" data-filter="xeso">Xe Số</button>
+      <button class="filter-btn" data-filter="xecontay">Xe Côn Tay</button>
+      <button class="filter-btn" data-filter="pk">Phân Khối Lớn</button>
+      <button class="filter-btn" data-filter="xedien">Xe Máy Điện</button>
+    </div>
+
+    <div class="product-grid">
+      <!-- Xe ga: 8 sản phẩm -->
+      <div class="product-item xega" data-aos="fade-up"><a href="SH350.html"><img src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/6.png" alt="SH350i"><div class="product-title">SH350i</div></a></div>
+      <div class="product-item xega" data-aos="fade-up"><a href="SH160.html"><img src="image/FULL BIKE/Scooter/SH125/Phiên bản tiêu chuẩn - TRẮNG ĐEN/6.png" alt="SH"><div class="product-title">SH160/125i</div></a></div>
+      <div class="product-item xega" data-aos="fade-up"><a href="#"><img src="image/FULL BIKE/Scooter/Shmode/Phiên bản đặc biệt - BẠC ĐEN/6.png" alt="ShMode"><div class="product-title">Sh Mode</div></a></div>
+      <div class="product-item xega" data-aos="fade-up"><a href="#"><img src="image/FULL BIKE/Scooter/VARIO160/Phiên bản cao cấp - XANH ĐEN BẠC/6.png" alt="Vario160"><div class="product-title">Vario 160</div></a></div>
+      <div class="product-item xega" data-aos="fade-up"><a href="#"><img src="image/FULL BIKE/Scooter/VARIO125/Phiên bản đặc biệt - ĐỎ ĐEN/6.png" alt="Vario125"><div class="product-title">Vario 125</div></a></div>
+      <div class="product-item xega" data-aos="fade-up"><a href="#"><img src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - XANH ĐEN/6.png" alt="LEAD"><div class="product-title">LEAD</div></a></div>
+      <div class="product-item xega" data-aos="fade-up"><a href="#"><img src="image/FULL BIKE/Scooter/Air Blade/AB125 - phiên bản thể thao - XÁM ĐỎ ĐEN/6.png" alt="AB"><div class="product-title">Air Blade 160/125i</div></a></div>
+      <div class="product-item xega" data-aos="fade-up"><a href="Vision.html"><img src="image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/6.png" alt="Vision"><div class="product-title">Vision</div></a></div>
+
+      <!-- Xe số: 6 sản phẩm -->
+      <div class="product-item xeso" data-aos="fade-up"><a href="#"><img src="image/FULL BIKE/Cub/Super Cub/Phiên bản tiêu chuẩn - XANH DƯƠNG/6.png" alt="Super Cub C125"><div class="product-title">Super Cub C125</div></a></div>
+      <div class="product-item xeso" data-aos="fade-up"><a href="#"><img src="image/FULL BIKE/Cub/Future/Phiên bản đặc biệt - XANH ĐEN/6.png" alt="Future"><div class="product-title">Future</div></a></div>
+      <div class="product-item xeso" data-aos="fade-up"><a href="#"><img src="image/FULL BIKE/Cub/Wave Alpha - retro/Phiên bản cổ điển - XÁM TRẮNG/6.png" alt="Wave Alpha - Retro"><div class="product-title">Wave Alpha - retro</div></a></div>
+      <div class="product-item xeso" data-aos="fade-up"><a href="#"><img src="image/FULL BIKE/Cub/Wave RSX/Phiên bản thể thao - XANH ĐEN BẠC/6.png" alt="Wave RSX"><div class="product-title">Wave RSX</div></a></div>
+      <div class="product-item xeso" data-aos="fade-up"><a href="#"><img src="image/FULL BIKE/Cub/Wave Alpha/Phiên bản đặc biệt - ĐEN/6.png" alt="Wave Alpha"><div class="product-title">Wave Alpha</div></a></div>
+      <div class="product-item xeso" data-aos="fade-up"><a href="#"><img src="image/FULL BIKE/Cub/Blade/Phiên bản thể thao - ĐEN ĐỎ/6.png" alt="BLADE"><div class="product-title">BLADE</div></a></div>
+
+      <!-- Xe côn tay: 2 sản phẩm -->
+      <div class="product-item xecontay" data-aos="fade-up"><a href="#"><img src="image/FULL BIKE/Sport/Winner X/Phiên bản Thể Thao/6.png" alt="Winner X"><div class="product-title">Winner X</div></a></div>
+      <div class="product-item xecontay" data-aos="fade-up"><a href="#"><img src="image/FULL BIKE/Sport/CBR150R/6.png" alt="CB150R"><div class="product-title">CB150R</div></a></div>
+      <!-- Phân khối lớn: 1 sản phẩm -->
+      <div class="product-item pk" data-aos="fade-up"><a href="#"><img src="image/FULL BIKE/Big Bike/CB350Hness/ĐỎ ĐEN/6.png" alt="CB350Hness"><div class="product-title">CB350 Hness</div></a></div>
+      <!-- Xe máy điện: 1 sản phẩm -->
+      <div class="product-item xedien" data-aos="fade-up"><a href="#"><img src="image/FULL BIKE/EM/Phiên bản thể thao - XANH/6.png" alt="ICONE"><div class="product-title">ICON e:</div></a></div>
+    </div>
+  </main>
+
+  <!-- Section 3: Buttons -->
+  <section class="link-section" data-aos="fade-up">
+    <h2>Khám phá thêm</h2>
+    <div class="buttons">
+      <a href="sanpham.html">Xem sản phẩm</a>
+      <a href="dichvu.html">Dịch vụ</a>
+      <a href="lienhe.html">Liên hệ</a>
+    </div>
+  </section>
+  <!------------menu-top--------------------->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const navMenu = document.getElementById('navMenu');
+  const mobileToggle = document.getElementById('mobileMenuToggle');
+  const mainMenu = document.getElementById('mainMenu');
+  
+  // Mobile menu toggle
+  mobileToggle.addEventListener('click', function() {
+    navMenu.classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
+  });
+  
+  // Close menu when clicking on a link
+  mainMenu.addEventListener('click', function(e) {
+    if (e.target.closest('a')) {
+      navMenu.classList.remove('active');
+      document.body.classList.remove('no-scroll');
+    }
+  });
+  
+  // Add active class to current page link
+  const currentPage = window.location.pathname.split('/').pop();
+  const navLinks = document.querySelectorAll('.nav-link');
+  
+  navLinks.forEach(link => {
+    const linkHref = link.getAttribute('href');
+    if (linkHref === currentPage) {
+      link.classList.add('active');
+    }
+  });
+  
+  // Sticky menu on scroll
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) {
+      navMenu.classList.add('scrolled');
+    } else {
+      navMenu.classList.remove('scrolled');
+    }
+  });
+  
+  // Add ripple effect to buttons
+  const buttons = document.querySelectorAll('.nav-button, .social-button');
+  
+  buttons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      const x = e.clientX - e.target.getBoundingClientRect().left;
+      const y = e.clientY - e.target.getBoundingClientRect().top;
+      
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple-effect');
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      
+      this.appendChild(ripple);
+      
+      setTimeout(() => {
+        ripple.remove();
+      }, 1000);
+    });
+  });
+});
+</script>
+  <!-- Scripts -->
+  
+  <!----------bộ lọc--------------------->
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Filter functionality
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const productItems = document.querySelectorAll('.product-item');
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active class from all buttons
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      
+      // Add active class to clicked button
+      button.classList.add('active');
+      
+      const filterValue = button.getAttribute('data-filter');
+      
+      productItems.forEach(item => {
+        if (filterValue === 'all' || item.classList.contains(filterValue)) {
+          item.style.display = 'block';
+          
+          // Add animation class for filtered items
+          item.style.animation = 'fadeIn 0.5s ease forwards';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+  
+  // Initialize with "All" filter active
+  document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+  
+  // Intersection Observer for scroll animations
+  const animateOnScroll = function() {
+    const observerOptions = {
+      threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    productItems.forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(20px)';
+      item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(item);
+    });
+  };
+  
+  // Initialize scroll animations
+  animateOnScroll();
+  
+  // Re-run animations when filtering
+  document.querySelector('.filter-bar').addEventListener('click', () => {
+    setTimeout(animateOnScroll, 50);
+  });
+});
+</script>
+</body>
+</html>
