@@ -507,430 +507,360 @@
 .no-scroll {
   overflow: hidden;
 }
-/*------------------css tieu de lien he--------------*/
-/* Section Header với hiệu ứng nâng cao */
-.section-header {
-  text-align: center;
-  margin-bottom: 60px;
-  overflow: hidden;
-}
+/*------------------css lien he--------------*/
+:root {
+            --primary-color: #3498db;
+            --primary-light: #5dade2;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
 
-.section-header h2 {
-  font-size: 2.8rem;
-  color: #2a2a2a;
-  margin-bottom: 20px;
-  position: relative;
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 0.8s ease forwards 0.3s;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-.section-header .divider {
-  width: 80px;
-  height: 4px;
-  background: #e61e25;
-  margin: 0 auto 25px;
-  position: relative;
-  opacity: 0;
-  transform: scaleX(0);
-  animation: scaleIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards 0.6s;
-  transform-origin: left center;
-}
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
 
-.section-header p {
-  font-size: 1.2rem;
-  color: #666;
-  max-width: 700px;
-  margin: 0 auto;
-  line-height: 1.6;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s ease forwards 0.9s;
-}
-/* Keyframe animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+        .contact-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s var(--ease-in-out) forwards;
+        }
 
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-  to {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-}
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-/* Hiệu ứng hover */
-.section-header h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 3px;
-  background: #e61e25;
-  transition: all 0.4s ease;
-}
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
 
-.section-header:hover h2::after {
-  width: 120px;
-}
-/*------------------css lien he--------------------*/
-   /* Contact Section */
-.contact-section {
-  padding: 100px 0;
-  background: #f9f9f9;
-  position: relative;
-}
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.6s var(--ease-in-out) 0.2s forwards;
+        }
 
-.contact-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  margin-top: 50px;
-}
+        .section-title p {
+            color: #777;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.6s var(--ease-in-out) 0.4s forwards;
+        }
 
-.contact-image {
-  height: 100%;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 20px auto;
+            border-radius: 2px;
+            animation: expandLine 0.8s var(--ease-in-out) 0.6s forwards;
+        }
 
-.branch-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-.branch-image.active {
-  transform: scale(1.03);
-}
-.image-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-  color: white;
-  padding: 30px 20px 20px;
-  text-align: center;
-}
+        @keyframes expandLine {
+            to {
+                width: 80px;
+            }
+        }
 
-.image-caption h3 {
-  font-size: 1.5rem;
-  margin-bottom: 5px;
-}
+        .branches-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            perspective: 1000px;
+        }
 
-.image-caption p {
-  opacity: 0.9;
-  font-size: 0.9rem;
-}
-.contact-info {
-  background: #fff;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
+        .branch-card {
+            flex: 1 1 300px;
+            max-width: 350px;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            transform-style: preserve-3d;
+            opacity: 0;
+            transform: translateY(30px) rotateY(15deg);
+            animation: cardEntrance 0.8s var(--ease-in-out) forwards;
+        }
 
-.branch-tabs {
-  display: flex;
-  margin-bottom: 30px;
-  border-bottom: 2px solid #eee;
-}
+        .branch-card:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+        .branch-card:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        .branch-card:nth-child(3) {
+            animation-delay: 0.7s;
+        }
 
-.branch-tab {
-  padding: 12px 20px;
-  background: none;
-  border: none;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  color: #666;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.3s ease;
-}
+        @keyframes cardEntrance {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateY(0);
+            }
+        }
 
-.branch-tab:after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: #e61e25;
-  transform: scaleX(0);
-  transition: all 0.3s ease;
-}
+        .branch-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
 
-.branch-tab.active {
-  color: #e61e25;
-}
+        .branch-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
 
-.branch-tab.active:after {
-  transform: scaleX(1);
-}
+        .branch-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 1;
+            opacity: 0;
+            transition: var(--transition);
+        }
 
-.branch-tab:hover {
-  color: #e61e25;
-}
+        .branch-card:hover .branch-image::before {
+            opacity: 1;
+        }
 
-.branch-content {
-  display: none;
-  margin-bottom: 30px;
-  animation: fadeIn 0.5s ease;
-}
+        .branch-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            transform: scale(1);
+        }
 
-.branch-content.active {
-  display: block;
-}
+        .branch-card:hover .branch-image img {
+            transform: scale(1.1);
+        }
 
-.branch-content h3 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: #333;
-  display: flex;
-  align-items: center;
-}
+        .branch-location {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 2;
+            transform: translateX(20px);
+            opacity: 0;
+            transition: var(--transition);
+        }
 
-.branch-content h3 i {
-  margin-right: 10px;
-  color: #e61e25;
-}
+        .branch-card:hover .branch-location {
+            transform: translateX(0);
+            opacity: 1;
+        }
 
-.contact-detail p {
-  margin-bottom: 15px;
-  display: flex;
-  align-items: flex-start;
-}
+        .branch-info {
+            padding: 25px;
+            transform: translateY(0);
+            transition: var(--transition);
+        }
 
-.contact-detail i {
-  margin-right: 10px;
-  color: #e61e25;
-  min-width: 20px;
-  text-align: center;
-  margin-top: 3px;
-}
+        .branch-card:hover .branch-info {
+            transform: translateY(-5px);
+        }
 
-.contact-detail a {
-  color: #333;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
+        .branch-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
 
-.contact-detail a:hover {
-  color: #e61e25;
-}
+        .branch-info h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-color);
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
 
-.contact-social {
-  display: flex;
-  gap: 15px;
-  margin-top: 25px;
-}
+        .branch-card:hover .branch-info h3::after {
+            transform: scaleX(1);
+        }
 
-.social-btn {
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 20px;
-  background: #f5f5f5;
-  border-radius: 30px;
-  color: #333;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-weight: 500;
-}
+        .branch-info p {
+            color: #666;
+            margin-bottom: 20px;
+            transition: var(--transition);
+            transform: translateY(0);
+        }
 
-.social-btn i {
-  margin-right: 8px;
-  font-size: 16px;
-}
+        .branch-card:hover .branch-info p {
+            transform: translateY(-3px);
+        }
 
-.social-btn:hover {
-  background: #e61e25;
-  color: #fff;
-  transform: translateY(-3px);
-}
+        .contact-details {
+            margin-top: 20px;
+        }
 
-.contact-form h3 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: #333;
-  display: flex;
-  align-items: center;
-}
+        .contact-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+            transition: var(--transition);
+            transform: translateX(0);
+        }
 
-.contact-form h3 i {
-  margin-right: 10px;
-  color: #e61e25;
-}
+        .branch-card:hover .contact-item:nth-child(1) {
+            transition-delay: 0.1s;
+            transform: translateX(5px);
+        }
+        .branch-card:hover .contact-item:nth-child(2) {
+            transition-delay: 0.2s;
+            transform: translateX(10px);
+        }
+        .branch-card:hover .contact-item:nth-child(3) {
+            transition-delay: 0.3s;
+            transform: translateX(15px);
+        }
 
-.form-group {
-  margin-bottom: 20px;
-}
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 15px;
-  transition: all 0.3s ease;
-}
+        .contact-item:hover .contact-icon {
+            background: var(--primary-color);
+            color: white;
+            transform: rotate(10deg) scale(1.1);
+        }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: #e61e25;
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(230, 30, 37, 0.1);
-}
+        .contact-text h4 {
+            font-size: 1rem;
+            color: var(--dark-color);
+            margin-bottom: 3px;
+            transition: var(--transition);
+        }
 
-.form-group select {
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 15px;
-}
+        .contact-item:hover .contact-text h4 {
+            color: var(--primary-color);
+        }
 
-.submit-btn {
-  background: #e61e25;
-  color: #fff;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 30px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-}
+        .contact-text p, .contact-text a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
 
-.submit-btn i {
-  margin-left: 8px;
-  transition: all 0.3s ease;
-}
+        .contact-text a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
 
-.submit-btn:hover {
-  background: #c4171d;
-  transform: translateY(-3px);
-}
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .branches-container {
+                gap: 20px;
+            }
+            
+            .branch-card {
+                flex: 1 1 calc(50% - 20px);
+            }
+        }
 
-.submit-btn:hover i {
-  transform: translateX(5px);
-}
+        @media (max-width: 768px) {
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title p {
+                font-size: 1rem;
+            }
+            
+            .branches-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .branch-card {
+                flex: 1 1 100%;
+                max-width: 100%;
+                animation: mobileCardEntrance 0.8s var(--ease-in-out) forwards;
+            }
 
-/* Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+            @keyframes mobileCardEntrance {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
 
-/* Responsive Styles */
-@media (max-width: 1200px) {
-  .contact-container {
-    gap: 30px;
-  }
-}
-
-@media (max-width: 992px) {
-  .section-header h2 {
-    font-size: 2.4rem;
-  }
-  
-  .section-header p {
-    font-size: 1.1rem;
-  }
-  .contact-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .contact-image {
-    height: 400px;
-  }
-}
-
-@media (max-width: 768px) {
-  .section-header h2 {
-    font-size: 2rem;
-    margin-bottom: 15px;
-  }
-  
-  .section-header .divider {
-    height: 3px;
-    margin-bottom: 20px;
-  }
-  
-  .section-header p {
-    font-size: 1rem;
-  }
-  .contact-section {
-    padding: 80px 0;
-  }
-  
-  .branch-tabs {
-    flex-wrap: wrap;
-  }
-  
-  .branch-tab {
-    flex: 1 0 33.33%;
-    text-align: center;
-    padding: 10px 5px;
-    font-size: 14px;
-  }
-}
-
-
-@media (max-width: 576px) {
-  .section-header h2 {
-    font-size: 1.8rem;
-    letter-spacing: 0.5px;
-  }
-  
-  .section-header .divider {
-    width: 60px;
-  }
-  .contact-section {
-    padding: 60px 0;
-  }
-  .image-caption h3 {
-    font-size: 1.3rem;
-  }
-  
-  .branch-content h3,
-  .contact-form h3 {
-    font-size: 1.3rem;
-  }
-  
-  .contact-detail p {
-    font-size: 14px;
-  }
-}
+        @media (max-width: 480px) {
+            .contact-section {
+                padding: 50px 15px;
+            }
+            
+            .section-title {
+                margin-bottom: 40px;
+            }
+            
+            .branch-info {
+                padding: 20px;
+            }
+        }
   </style>
 </head>
 <body>
@@ -947,13 +877,13 @@
 <nav class="nav-menu" id="navMenu">
   <div class="nav-container">
     <!-- Logo thương hiệu -->
-    <a href="trangchu.html" class="brand-logo">
+    <a href="index.html" class="brand-logo">
       <img src="image/logo/Logo_HEAD.png" alt="Logo Thương Hiệu" class="logo-img">
       <span class="brand-name"></span>
     </a>
 
     <div class="main-menu" id="mainMenu">
-      <a href="trangchu.html" class="nav-link"><span>Trang chủ</span></a>
+      <a href="index.html" class="nav-link"><span>Trang chủ</span></a>
       <a href="gioithieu.html" class="nav-link"><span>Giới thiệu</span></a>
       <a href="sanphamxemay.html" class="nav-link"><span>Sản phẩm</span></a>
       <a href="dichvu.html" class="nav-link"><span>Dịch Vụ</span></a>
@@ -1026,100 +956,128 @@
 
   <div class="overlay" id="overlay"></div>
   <!-- Section Liên Hệ -->
-<section class="contact-section" id="lien-he">
-  <div class="container">
-    <div class="section-header" data-aos="fade-up">
-      <h2 data-aos="fade-up" data-aos-delay="300">Liên Hệ Với Chúng Tôi</h2>
-      <div class="divider" data-aos="fade-up" data-aos-delay="600"></div>
-      <p data-aos="fade-up" data-aos-delay="900">Luôn sẵn sàng hỗ trợ và tư vấn cho bạn</p>
-    </div>
-    
-    <div class="contact-container">
-      <!-- Phần hình ảnh thay thế bản đồ -->
-      <div class="contact-image" data-aos="fade-right">
-        <img src="image/chi-nhanh-binh-dinh.jpg" alt="Chi nhánh Bình Định" class="branch-image active" id="branch-image">
-        <div class="image-caption">
-          <h3 id="image-title">Chi Nhánh Bình Định</h3>
-          <p id="image-address">123 Trần Hưng Đạo, TP. Quy Nhơn</p>
-        </div>
-      </div>
-      
-      <!-- Thông tin liên hệ -->
-      <div class="contact-info" data-aos="fade-left">    
-        <!-- Nội dung chi nhánh -->
-        <div class="branch-content active" id="binh-dinh">
-          <h3><i class="fas fa-map-marker-alt"></i> Chi Nhánh Bình Định</h3>
-          <div class="contact-detail">
-            <p><i class="fas fa-address-card"></i> <strong>Địa chỉ:</strong> 288-290-292 Lê Hồng Phong, P. Thị Nại, TP. Quy Nhơn, Bình Định</p>
-            <p><i class="fas fa-phone-alt"></i> <strong>Điện thoại:</strong> <a href="tel:02563879999">1900 636 712</a></p>
-            <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:binhdinh@example.com">binhdinh@example.com</a></p>
-            <p><i class="fas fa-clock"></i> <strong>Giờ làm việc:</strong> 7:30 - 17:30 (T2 - CN)</p>
-          </div>
-          <div class="contact-social">
-            <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i> Facebook</a>
-            <a href="#" class="social-btn"><i class="fab fa-zalo"></i> Zalo</a>
-          </div>
+  <section class="contact-section">
+        <div class="section-title">
+            <h2>Liên Hệ Với Chúng Tôi</h2>
+            <p>Chúng tôi luôn sẵn sàng hỗ trợ và giải đáp mọi thắc mắc của quý khách tại các chi nhánh Hà Nội, Bình Định, Sơn La</p>
         </div>
         
-        <div class="branch-content" id="son-la">
-          <h3><i class="fas fa-map-marker-alt"></i> Chi Nhánh Sơn La</h3>
-          <div class="contact-detail">
-            <p><i class="fas fa-address-card"></i> <strong>Địa chỉ:</strong> 456 Trường Chinh, TP. Sơn La</p>
-            <p><i class="fas fa-phone-alt"></i> <strong>Điện thoại:</strong> <a href="tel:02123879999">0212.387.9999</a></p>
-            <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:sonla@example.com">sonla@example.com</a></p>
-            <p><i class="fas fa-clock"></i> <strong>Giờ làm việc:</strong> 7:30 - 17:30 (T2 - T7)</p>
-          </div>
-          <div class="contact-social">
-            <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i> Facebook</a>
-            <a href="#" class="social-btn"><i class="fab fa-zalo"></i> Zalo</a>
-          </div>
+        <div class="branches-container">
+            <!-- Chi nhánh Sơn La -->
+            <div class="branch-card">
+                <div class="branch-image">
+                    <img src="image/lienhe/SONLA.jpg" alt="Sơn La">
+                    <div class="branch-location">Sơn La</div>
+                </div>
+                <div class="branch-info">
+                    <h3>Trụ sở chính</h3>
+                    <p>Chi nhánh tại miền Bắc với không gian hiện đại, là trụ sở chính của công ty chúng tôi.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-text">
+                                <h4>Địa chỉ</h4>
+                                <p>135 Đường Chu Văn Thịnh, Tổ 1, P. Tô Hiệu,TP. Sơn La, Sơn La</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-text">
+                                <h4>Điện thoại</h4>
+                                <p><a href="tel:+1900636712">1900 636 712</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chi nhánh Hà Nội -->
+            <div class="branch-card">
+                <div class="branch-image">
+                    <img src="image/lienhe/HANOI.jpg" alt="Hà Nội">
+                    <div class="branch-location">Hà Nội</div>
+                </div>
+                <div class="branch-info">
+                    <h3>Chi nhánh miền Bắc</h3>
+                    <p>Chi nhánh tại thủ đô Hà Nội với đội ngũ chuyên nghiệp, phục vụ khách hàng khu vực phía Bắc.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-text">
+                                <h4>Địa chỉ</h4>
+                                <p>319 Nguyễn Văn Cừ, P. Ngọc Lâm, Q. Long Biên, Hà Nội</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-text">
+                                <h4>Điện thoại</h4>
+                                <p><a href="tel:+1900636712">1900 636 712</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chi nhánh Bình Định-->
+            <div class="branch-card">
+                <div class="branch-image">
+                    <img src="image/lienhe/BINHDINH.jpg" alt="Bình Định">
+                    <div class="branch-location">Bình Định</div>
+                </div>
+                <div class="branch-info">
+                    <h3>Chi nhánh Miền Trung</h3>
+                    <p>Chi nhánh tại miền trung thuộc thành phố biển Quy Nhơn, mang đến dịch vụ chất lượng cho khu vực miền trung.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-text">
+                                <h4>Địa chỉ</h4>
+                                <p>Số 288-290-292 Lê Hồng Phong, P. Thị Nại, TP. Quy Nhơn, Bình Định</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-text">
+                                <h4>Điện thoại</h4>
+                                <p><a href="tel:+1900636712">1900 636 712</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p><a href="mailto:cr_mt@hungmanh.com.vn">cr_mt@hungmanh.com.vn</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="branch-content" id="ha-noi">
-          <h3><i class="fas fa-map-marker-alt"></i> Chi Nhánh Hà Nội</h3>
-          <div class="contact-detail">
-            <p><i class="fas fa-address-card"></i> <strong>Địa chỉ:</strong> 789 Giải Phóng, Q. Hoàng Mai, Hà Nội</p>
-            <p><i class="fas fa-phone-alt"></i> <strong>Điện thoại:</strong> <a href="tel:0243879999">024.387.9999</a></p>
-            <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:hanoi@example.com">hanoi@example.com</a></p>
-            <p><i class="fas fa-clock"></i> <strong>Giờ làm việc:</strong> 8:00 - 18:00 (T2 - CN)</p>
-          </div>
-          <div class="contact-social">
-            <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i> Facebook</a>
-            <a href="#" class="social-btn"><i class="fab fa-zalo"></i> Zalo</a>
-          </div>
-        </div>
-        
-        <!-- Form liên hệ -->
-        <div class="contact-form">
-          <h3><i class="fas fa-paper-plane"></i> Gửi thông tin liên hệ</h3>
-          <form id="contactForm">
-            <div class="form-group">
-              <input type="text" id="name" placeholder="Họ và tên" required>
-            </div>
-            <div class="form-group">
-              <input type="tel" id="phone" placeholder="Số điện thoại" required>
-            </div>
-            <div class="form-group">
-              <input type="email" id="email" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <select id="branch" required>
-                <option value="">Chọn chi nhánh</option>
-                <option value="binh-dinh">Bình Định</option>
-                <option value="son-la">Sơn La</option>
-                <option value="ha-noi">Hà Nội</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <textarea id="message" rows="4" placeholder="Nội dung liên hệ"></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Gửi thông tin <i class="fas fa-arrow-right"></i></button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
   <!---------menutop----------------->
   <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -1184,79 +1142,7 @@
 });
 </script>
 <!------------------script lien he-------------------------->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Dữ liệu hình ảnh cho các chi nhánh
-  const branchImages = {
-    'binh-dinh': {
-      image: 'image/chi-nhanh-binh-dinh.jpg',
-      title: 'Chi Nhánh Bình Định',
-      address: '123 Trần Hưng Đạo, TP. Quy Nhơn'
-    },
-    'son-la': {
-      image: 'image/chi-nhanh-son-la.jpg',
-      title: 'Chi Nhánh Sơn La',
-      address: '456 Trường Chinh, TP. Sơn La'
-    },
-    'ha-noi': {
-      image: 'image/chi-nhanh-ha-noi.jpg',
-      title: 'Chi Nhánh Hà Nội',
-      address: '789 Giải Phóng, Q. Hoàng Mai'
-    }
-  };
 
-  // Chuyển đổi giữa các chi nhánh
-  const branchTabs = document.querySelectorAll('.branch-tab');
-  const branchImage = document.getElementById('branch-image');
-  const imageTitle = document.getElementById('image-title');
-  const imageAddress = document.getElementById('image-address');
-  
-  branchTabs.forEach(tab => {
-    tab.addEventListener('click', function() {
-      // Xóa active khỏi tất cả các tab và nội dung
-      branchTabs.forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.branch-content').forEach(c => c.classList.remove('active'));
-      
-      // Thêm active vào tab được click
-      this.classList.add('active');
-      const branchId = this.getAttribute('data-branch');
-      document.getElementById(branchId).classList.add('active');
-      
-      // Cập nhật hình ảnh
-      updateBranchImage(branchId);
-    });
-  });
-  
-  // Hàm cập nhật hình ảnh chi nhánh
-  function updateBranchImage(branchId) {
-    const branchData = branchImages[branchId];
-    if (branchData) {
-      // Thêm hiệu ứng chuyển đổi
-      branchImage.classList.remove('active');
-      setTimeout(() => {
-        branchImage.src = branchData.image;
-        branchImage.alt = branchData.title;
-        imageTitle.textContent = branchData.title;
-        imageAddress.textContent = branchData.address;
-        branchImage.classList.add('active');
-      }, 300);
-    }
-  }
-  // Hiệu ứng khi scroll đến section liên hệ
-  const contactSection = document.querySelector('.contact-section');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animated');
-      }
-    });
-  }, { threshold: 0.1 });
-  
-  if (contactSection) {
-    observer.observe(contactSection);
-  }
-});
-</script>
 <!-- Scripts menu -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
