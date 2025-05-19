@@ -61,6 +61,8 @@ body {
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
 }
 
 /* ====== Navigation ====== */
@@ -484,12 +486,12 @@ body {
   margin-bottom: 30px;
 }
 .product-info h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-bottom: 10px;
 }
 .product-info p {
-  font-size: 1.5rem;
-  color: green;
+  font-size: 1rem;
+  color: rgb(82, 82, 82);
 }
 
 /* Gallery & Sliders */
@@ -540,7 +542,7 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: crimson;
+  background-color: rgb(220, 20, 20);
   color: white;
   border: none;
   font-size: 1.5rem;
@@ -581,9 +583,9 @@ body {
 
 .control-btn.active,
 .control-btn:hover {
-  background-color: crimson;
+  background-color: rgb(220, 20, 20);
   color: #fff;
-  border-color: crimson;
+  border-color: rgb(220, 20, 20);
 }
 
 .color-circle {
@@ -657,7 +659,7 @@ body {
 }
 
 .banner-text h3:first-child {
-  color: #00ad42;
+  color: #1f6dff;
   margin-bottom: 5px;
   font-size: 1.2rem;
 }
