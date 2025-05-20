@@ -6,13 +6,13 @@
     <title>Hệ Thống HEAD Trung Hùng</title>
     <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css" />
     <script src="https://kit.fontawesome.com/54f0cb7e4a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styletop.css">
-    <link rel="stylesheet" href="style.css">
     <style>
       * { box-sizing: border-box; margin: 0; padding: 0; }
-      body { font-family: Arial, Helvetica, sans-serif; background-color: #f9f9f9; overflow-x: hidden; }
+      body { font-family: Arial, Helvetica, sans-serif; background-color: #1b1717; overflow-x: hidden; }
       a { text-decoration: none; color: inherit; }
       /* HEADER NAVBAR */
       .navbar {
@@ -697,157 +697,396 @@
       }
       /*-------------section 2----------------------*/
       /* GALLERY */
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-    padding: 40px 20px;
-    background: #fff;
-  }
-
-  .gallery-item {
-    background: #fff;
-    border-radius: 25px;
-    overflow: hidden;
-    text-align: center;
-    transform: translateY(20px);
-    opacity: 0;
-    animation: fadeInUp 0.7s forwards;
-  }
-
-  .gallery-item img {
-    width: 100%;
-    height: 160px;
-    border-radius: 25px;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
-
-  .gallery-item:hover img {
-    transform: scale(1.05);
-  }
-
-  .gallery-item a {
-    display: block;
-    padding: 12px;
-    font-weight: 600;
-    color: #333;
-    text-decoration: none;
-  }
+  /* Container chính */
+        .tech-gallery {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .section-title-1 {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            color: rgb(112, 112, 112);
+        }
+        
+        .section-title-1 h2 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #9b9b9b, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .section-title-1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #fe0000, #fe4f4f);
+            margin: 15px auto 0;
+        }
+        
+        /* Grid layout */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            justify-content: center;
+        }
+        
+        /* Gallery item */
+        .gallery-item {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            aspect-ratio: 16/9;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(254, 79, 79, 0.3);
+        }
+        
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 242, 254, 0.3), rgba(79, 172, 254, 0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .item-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            z-index: 2;
+        }
+        
+        .gallery-item:hover .item-content {
+            transform: translateY(0);
+        }
+        
+        .item-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #ffffff, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .item-content p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .item-link {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(90deg, #fe0000, #fe4f4f);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .item-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.5);
+        }
+        
+        /* Hiệu ứng ánh sáng */
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+            pointer-events: none;
+        }
+        
+        .gallery-item:hover::after {
+            transform: scale(1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .item-content h3 {
+                font-size: 1.1rem;
+            }
+            
+            .item-content p {
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
   /*--------------select item css------------------*/
-  .section-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 50px 20px;
-      }
-
-      .section-title {
-        text-align: center;
-        font-size: 2.5rem;
-        margin-bottom: 40px;
-      }
-
-      .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-      }
-
-      .card {
-        background: white;
-        border-radius: 25px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        overflow: hidden;
-        transform: translateY(40px);
-        opacity: 0;
-        transition: all 0.6s ease-in-out, box-shadow 0.3s ease;
-        cursor: pointer;
-        will-change: transform, box-shadow;
-      }
-
-  .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
-  }
-
-
-      .card.show {
-        transform: translateY(0);
-        opacity: 1;
-      }
-
-      .card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-
-  .card:hover img {
-    transform: scale(1.05);
-  }
-
-      .card-content {
-        padding: 20px;
-      }
-
-      .card-title {
-        font-size: 1.3rem;
-        margin-bottom: 10px;
-        font-weight: 600;
-      }
-
-      .card-text {
-        font-size: 1rem;
-        margin-bottom: 20px;
-        color: #555;
-      }
-
-      .card-btn {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        text-decoration: none;
-        border-radius: 25px;
-        transition: background-color 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-      .card-btn:hover {
-        background-color: #0056b3;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-      }
-
-      @media (max-width: 768px) {
-        .card img {
-          height: 160px;
+  /* Container chính */
+  .menu-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
         }
-      }
 
-      @media (max-width: 480px) {
-        .section-title {
-          font-size: 2rem;
+        .menu-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffffff;
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
         }
-      }
+
+        .menu-title::after {
+            content: '';
+            position: absolute;
+            width: 70%;
+            height: 3px;
+            background: linear-gradient(90deg, #ff0000, #ff6b6b);
+            bottom: -8px;
+            left: 15%;
+            border-radius: 2px;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            overflow: hidden;
+            padding: 0 40px;
+        }
+
+        .menu-slider {
+            display: flex;
+            gap: 15px;
+            transition: transform 0.5s ease;
+            padding-bottom: 15px;
+            touch-action: pan-y;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            min-width: 200px;
+            flex: 0 0 calc(33.333% - 10px);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+        }
+
+        .menu-item-header {
+            background: linear-gradient(135deg, #ff0000, #ff5252);
+            color: white;
+            padding: 12px 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0.3),
+                rgba(255, 255, 255, 0)
+            );
+            transform: rotate(30deg);
+            transition: all 0.5s ease;
+        }
+
+        .menu-item:hover .menu-item-header::before {
+            animation: shine 1.5s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -50%;
+            }
+            100% {
+                left: 150%;
+            }
+        }
+
+        .menu-item-title {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu-item-content {
+            padding: 15px;
+            color: #555;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .menu-item-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 12px;
+            background: linear-gradient(135deg, #ff0000, #ff5252);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(255, 0, 0, 0.3);
+        }
+
+        .menu-item-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(255, 0, 0, 0.4);
+            background: linear-gradient(135deg, #ff5252, #ff0000);
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border: none;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .slider-btn:hover {
+            background: #ff0000;
+            color: white;
+        }
+
+        .slider-btn.prev {
+            left: 0;
+        }
+
+        .slider-btn.next {
+            right: 0;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .menu-item {
+                flex: 0 0 calc(50% - 10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-title {
+                font-size: 1.6rem;
+            }
+            
+            .menu-item {
+                flex: 0 0 calc(100% - 10px);
+            }
+            
+            .menu-item-title {
+                font-size: 1rem;
+            }
+            
+            .menu-item-content {
+                padding: 12px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-title {
+                font-size: 1.4rem;
+            }
+            
+            .menu-item-header {
+                padding: 10px 12px;
+            }
+            
+            .menu-item-title {
+                font-size: 0.95rem;
+            }
+        }
       /*-------------footer------------------*/
-      /* Footer */
-  .site-footer {
-    background-color: #910000;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-    margin-top: 40px;
-  }
-  .footer-nav a {
-    color: #ddd;
-    margin: 0 10px;
-    text-decoration: none;
-  }
-  .footer-nav a:hover {
-    color: white;
-  }
     </style>
   </head>
   <body>
@@ -978,68 +1217,149 @@
     </div>
   </section>
     <!-----------section 2--------------->
-      <section class="gallery">
-      <div class="gallery-item"><a href="sanphamxemay.html"><img src="https://lh3.googleusercontent.com/d/1bjFkVRQiuSt1Q-OXmX-AQcr_0RNTODyl" alt="1">Xe Tay Ga</a></div>
-      <div class="gallery-item"><a href="sanphamxemay.html"><img src="https://lh3.googleusercontent.com/d/1sAR8bxk-d_fS26XkPWck_fj5gstq6Rdf" alt="2">Xe Số</a></div>
-      <div class="gallery-item"><a href="sanphamxemay.html"><img src="https://lh3.googleusercontent.com/d/1-G1TC3ZSWCFEvhmK9xKM6t4LgAYRI6dV" alt="3">Xe Côn Tay</a></div>
-      <div class="gallery-item"><a href="sanphamxemay.html"><img src="https://lh3.googleusercontent.com/d/1CAoZSam6cT-FayzFPCT2A-NtQKut6Yv-" alt="4">Phân Khối Lớn</a></div>
-      <div class="gallery-item"><a href="sanphamxemay.html"><img src="https://lh3.googleusercontent.com/d/1RTctEsZ9vNhoG6ayC2YpNxk5Kr31flwO" alt="5">Xe Máy Điện</a></div>
-      <div class="gallery-item"><a href="sanphamxemay.html"><img src="https://lh3.googleusercontent.com/d/1iMtKpnhIjofIWVkAGNePP2DlOCBzFp7u" alt="6">Tất Cả</a></div>
+      <section class="tech-gallery">
+        <div class="section-title-1">
+            <h2>CHỌN PHONG CÁCH RIÊNG CỦA BẠN</h2>
+        </div>
+        
+        <div class="gallery-grid">
+            <!-- Item 1 -->
+            <a href="sanphamxemay.html" class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/d/1bjFkVRQiuSt1Q-OXmX-AQcr_0RNTODyl" alt="Công nghệ AI">
+                <div class="item-content">
+                    <h3>Xe Tay Ga</h3>
+                    <p>Xe tay ga Honda nổi bật với thiết kế hiện đại, vận hành êm ái và tiết kiệm nhiên liệu, lý tưởng cho cuộc sống thành thị năng động.</p>
+                    <span class="item-link">Xem chi tiết</span>
+                </div>
+            </a>
+            
+            <!-- Item 2 -->
+            <a href="sanphamxemay.html" class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/d/1sAR8bxk-d_fS26XkPWck_fj5gstq6Rdf" alt="Blockchain">
+                <div class="item-content">
+                    <h3>Xe Số</h3>
+                    <p>Xe số Honda luôn được tin dùng nhờ độ bền cao, tiết kiệm xăng và chi phí bảo dưỡng thấp. Thích hợp cho học sinh, sinh viên, người đi làm.</p>
+                    <span class="item-link">Xem chi tiết</span>
+                </div>
+            </a>
+            
+            <!-- Item 3 -->
+            <a href="sanphamxemay.html" class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/d/1-G1TC3ZSWCFEvhmK9xKM6t4LgAYRI6dV" alt="Thực tế ảo">
+                <div class="item-content">
+                    <h3>Xe Côn Tay</h3>
+                    <p>Dành cho người yêu tốc độ và phong cách, xe côn tay Honda mang đến cảm giác lái thể thao, thiết kế đậm chất cá tính, động cơ mạnh mẽ trong từng cú vặn ga.</p>
+                    <span class="item-link">Xem chi tiết</span>
+                </div>
+            </a>
+            
+            <!-- Item 4 -->
+            <a href="sanphamphutung.html" class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/d/1CAoZSam6cT-FayzFPCT2A-NtQKut6Yv-" alt="Internet of Things">
+                <div class="item-content">
+                    <h3>Phân Khối Lớn</h3>
+                    <p>Thiết kế đầy uy lực, động cơ mạnh mẽ, công nghệ tiên tiến – dành cho những tay lái thực thụ.</p>
+                    <span class="item-link">Xem chi tiết</span>
+                </div>
+            </a>
+            
+            <!-- Item 5 -->
+            <a href="sanphamxemay.html" class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/d/1RTctEsZ9vNhoG6ayC2YpNxk5Kr31flwO" alt="Điện toán đám mây">
+                <div class="item-content">
+                    <h3>Xe Máy Điện</h3>
+                    <p>Mang đến giải pháp di chuyển bền vững: không xăng, không khói, dễ lái, sạc linh hoạt, phù hợp cho học sinh – sinh viên và người trẻ thành thị.</p>
+                    <span class="item-link">Xem chi tiết</span>
+                </div>
+            </a>
+            
+            <!-- Item 6 -->
+            <a href="sanphamxemay.html" class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/d/1iMtKpnhIjofIWVkAGNePP2DlOCBzFp7u" alt="An ninh mạng">
+                <div class="item-content">
+                    <h3>Tất cả</h3>
+                    <p>Các sản phẩm xe máy Honda: Xe tay ga, xe số, xe côn tay, phân khối lớn, xe máy điện</p>
+                    <span class="item-link">Xem chi tiết</span>
+                </div>
+            </a>
+        </div>
     </section>
     <!-----------section 3------------------------>
-    <section class="section-container">
-      <h2 class="section-title">Khám Phá Dịch Vụ</h2>
-      <div class="card-grid">
-        <div class="card">
-          <img src="image/GIOITHIEU/image/BH.JPG" alt="Item 1" />
-          <div class="card-content">
-            <h3 class="card-title">Sản Phẩm</h3>
-            <p class="card-text">Tham khảo các dòng xe Honda cửa hàng đang phân phối tại hệ thống</p>
-            <a href="sanphamxemay.html" class="card-btn">Tìm hiểu thêm</a>
-          </div>
+    <div class="menu-container">
+        <h1 class="menu-title">Dịch Vụ Nổi Bật</h1>
+        
+        <div class="slider-wrapper">
+            <button class="slider-btn prev">&#10094;</button>
+            <div class="menu-slider" id="slider">
+                <!-- Item 1 -->
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <h2 class="menu-item-title">Tin Tức</h2>
+                    </div>
+                    <div class="menu-item-content">
+                        <p>Luôn mang đến thông tin mới nhất về sản phẩm, công nghệ, thị trường và hoạt động của Honda – giúp bạn không bỏ lỡ điều gì quan trọng. </p>
+                        <a href="#" class="menu-item-link">Chi tiết</a>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <h2 class="menu-item-title">Phụ Tùng Chính Hãng</h2>
+                    </div>
+                    <div class="menu-item-content">
+                        <p>Cung cấp đầy đủ phụ tùng, linh kiện chính hãng Honda với chất lượng đảm bảo, lắp ráp chuẩn xác và độ bền vượt trội.</p>
+                        <a href="#" class="menu-item-link">Chi tiết</a>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <h2 class="menu-item-title">Dịch Vụ Sau Bán Hàng</h2>
+                    </div>
+                    <div class="menu-item-content">
+                        <p>Bảo dưỡng định kỳ, sửa chữa chuyên nghiệp, bảo hành chính hãng – đảm bảo xe luôn vận hành ổn định và bền bỉ.</p>
+                        <a href="#" class="menu-item-link">Chi tiết</a>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <h2 class="menu-item-title">Sự Kiện Cộng Đồng</h2>
+                    </div>
+                    <div class="menu-item-content">
+                        <p>Tổ chức các hoạt động sự kiện, tri ân khách hàng, chương trình đồng hành cùng người dân địa phương</p>
+                        <a href="#" class="menu-item-link">Chi tiết</a>
+                    </div>
+                </div>
+                
+                <!-- Item 5 -->
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <h2 class="menu-item-title">Hoạt Động Lái Xe An Toàn</h2>
+                    </div>
+                    <div class="menu-item-content">
+                        <p>Đào tạo kỹ năng lái xe an toàn cho mọi lứa tuổi – từ học sinh đến người đi làm – nâng cao ý thức và trách nhiệm khi tham gia giao thông.</p>
+                        <a href="#" class="menu-item-link">Chi tiết</a>
+                    </div>
+                </div>
+                
+                <!-- Item 6 -->
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <h2 class="menu-item-title">Khuyến mãi</h2>
+                    </div>
+                    <div class="menu-item-content">
+                        <p>Tận hưởng hàng loạt chương trình khuyến mãi, quà tặng, hỗ trợ trả góp – dành riêng cho khách hàng mua xe, sử dụng dịch vụ tại HEAD</p>
+                        <a href="#" class="menu-item-link">Chi tiết</a>
+                    </div>
+                </div>
+            </div>
+            <button class="slider-btn next">&#10095;</button>
         </div>
-        <div class="card">
-          <img src="image/GIOITHIEU/image/PHUTUNG.jpg" alt="Item 2" />
-          <div class="card-content">
-            <h3 class="card-title">Phụ Tùng</h3>
-            <p class="card-text">Phụ tùng chính hàng Honda đang được phân phối tại hệ thống</p>
-            <a href="sanphamphutung.html" class="card-btn">Tìm hiểu thêm</a>
-          </div>
-        </div>
-        <div class="card">
-          <img src="image/GIOITHIEU/image/SAUBANHANG.JPG" alt="Item 3" />
-          <div class="card-content">
-            <h3 class="card-title">Sau Bán Hàng</h3>
-            <p class="card-text">Dịch vụ bảo hành, bảo dưỡng xe máy Honda</p>
-            <a href="#" class="card-btn">Tìm hiểu thêm</a>
-          </div>
-        </div>
-        <div class="card">
-          <img src="image/menutab/BH-04.jpg" alt="Item 4" />
-          <div class="card-content">
-            <h3 class="card-title">Khuyến Mãi</h3>
-            <p class="card-text">Cập nhật các chương trình khuyến mãi cực hot đang diễn ra</p>
-            <a href="#" class="card-btn">Tìm hiểu thêm</a>
-          </div>
-        </div>
-        <div class="card">
-          <img src="image/menutab/BH-05.jpg" alt="Item 5" />
-          <div class="card-content">
-            <h3 class="card-title">Tin Tức</h3>
-            <p class="card-text">Tin tức về xe máy mới ra mắt, sự kiện đã và đang sắp diễn ra</p>
-            <a href="#" class="card-btn">Tìm hiểu thêm</a>
-          </div>
-        </div>
-        <div class="card">
-          <img src="image/menutab/BH-06.jpg" alt="Item 5" />
-          <div class="card-content">
-            <h3 class="card-title">Cửa Hàng</h3>
-            <p class="card-text">Hệ thống cửa hàng xe máy tại Bình Định, Hà Nội, Sơn La</p>
-            <a href="#" class="card-btn">Tìm hiểu thêm</a>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
     <!--------------------------hiệu ứng cuộn xuống hiển thị menu đỏ-->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -1194,27 +1514,146 @@
   </script>
     <!---------------js select item----------------------->
     <script>
-      // Hiệu ứng hiện item khi scroll tới
-      const cards = document.querySelectorAll('.card');
-
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-          }
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('slider');
+            const prevBtn = document.querySelector('.prev');
+            const nextBtn = document.querySelector('.next');
+            const items = document.querySelectorAll('.menu-item');
+            const sliderWrapper = document.querySelector('.slider-wrapper');
+            
+            let currentIndex = 0;
+            let itemWidth = items[0].offsetWidth + 15; // width + gap
+            let visibleItems = Math.floor(sliderWrapper.offsetWidth / itemWidth);
+            let maxIndex = items.length - visibleItems;
+            
+            // Khởi tạo slider
+            updateSlider();
+            
+            // Xử lý nút previous
+            prevBtn.addEventListener('click', function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlider();
+                }
+            });
+            
+            // Xử lý nút next
+            nextBtn.addEventListener('click', function() {
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateSlider();
+                }
+            });
+            
+            // Cập nhật vị trí slider và trạng thái nút
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+                
+                // Cập nhật trạng thái nút
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex >= maxIndex;
+            }
+            
+            // Xử lý vuốt cảm ứng
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            slider.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+            
+            slider.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50 && currentIndex < maxIndex) {
+                    // Vuốt sang trái
+                    currentIndex++;
+                } else if (touchEndX > touchStartX + 50 && currentIndex > 0) {
+                    // Vuốt sang phải
+                    currentIndex--;
+                }
+                updateSlider();
+            }
+            
+            // Xử lý responsive khi thay đổi kích thước màn hình
+            function handleResize() {
+                itemWidth = items[0].offsetWidth + 15;
+                visibleItems = Math.floor(sliderWrapper.offsetWidth / itemWidth);
+                maxIndex = Math.max(items.length - visibleItems, 0);
+                
+                // Đảm bảo currentIndex không vượt quá maxIndex mới
+                if (currentIndex > maxIndex) {
+                    currentIndex = maxIndex;
+                }
+                
+                updateSlider();
+            }
+            
+            // Thêm debounce để tránh gọi liên tục khi resize
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(handleResize, 250);
+            });
+            
+            // Khởi tạo lần đầu
+            handleResize();
         });
-      }, {
-        threshold: 0.1
-      });
-
-      cards.forEach(card => {
-        observer.observe(card);
-      });
     </script>
     <!---------------------------------------->
     
   </body>
   <footer class="site-footer">
-    
+    <footer class="modern-footer">
+        <div class="footer-wave"></div>
+        <div class="footer-bg-pattern"></div>
+        
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="footer-logo">CÔNG TY TNHH TM&DV HÙNG MẠNH</div>
+                <p>Đổi mới sáng tạo - Phát triển bền vững</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-heading">Trụ sở chính</h3>
+                <div class="footer-info">
+                    <span class="footer-icon">🏢</span>
+                    <p>135 Chu Văn Thịnh, Tổ 1, P. Tô Hiệu, TP. Sơn La, Sơn La</p>
+                </div>
+                <div class="footer-info">
+                    <span class="footer-icon">🏢</span>
+                    <p>CN Hà Nội: 319 Nguyễn Văn Cừ, P. Ngọc Lâm, Q. Long Biên, TP. Hà Nội</p>
+                </div>
+                <div class="footer-info">
+                    <span class="footer-icon">🏢</span>
+                    <p>CN Bình Định: 290-292 Lê Hồng Phong, P. Thị Nại, TP. Quy Nhơn, Bình Định </p>
+                </div>
+            </div>
+            
+            
+            <div class="footer-section">
+                <h3 class="footer-heading">Liên hệ</h3>
+                <div class="footer-info">
+                    <span class="footer-icon">📞</span>
+                    <a href="tel:+1900636712" class="footer-link">1900 636 712</a>
+                </div>
+                <div class="footer-info">
+                    <span class="footer-icon">✉️</span>
+                    <a href="mailto:cr@hungmanh.com.vn" class="footer-link">cr@hungmanh.com.vn</a>
+                </div>
+                <div class="footer-info">
+                    <span class="footer-icon">✉️</span>
+                    <a href="mailto:cr_mt@hungmanh.com.vn" class="footer-link">cr_mt@hungmanh.com.vn</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-copyright">
+            <p>© 2025 Công Ty TNHH TM&DV Hùng Mạnh. Bảo lưu mọi quyền.</p>
+        </div>
+    </footer>
   </footer>
   </html>
