@@ -1,7 +1,7 @@
-footer {
-            background: linear-gradient(135deg, #b40000, #5e3434);
-            color: #fff;
-            padding: 60px 0 30px;
+.modern-footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 40px 20px;
             position: relative;
             overflow: hidden;
         }
@@ -9,267 +9,134 @@ footer {
         .footer-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
-        }
-
-        .footer-column {
             position: relative;
             z-index: 2;
-        }
-
-        .footer-column h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 2px;
-            background: #3498db;
-            transition: width 0.3s ease;
-        }
-
-        .footer-column:hover h3::after {
-            width: 100px;
-        }
-
-        .footer-column p, .footer-column a {
-            color: #ecf0f1;
-            line-height: 1.6;
-            margin-bottom: 10px;
-            display: block;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-column a:hover {
-            color: #3498db;
-            padding-left: 5px;
         }
 
         .footer-logo {
             font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 15px;
-            color: #ffffff;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            display: inline-block;
         }
 
-        .footer-social {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
+        .footer-logo:hover {
+            transform: translateY(-3px);
         }
 
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .footer-social a:hover {
-            background: #3498db;
-            transform: translateY(-5px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .footer-heading {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
             position: relative;
-            z-index: 2;
+            display: inline-block;
         }
 
-        .footer-bubbles {
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .footer-heading:hover::after {
+            width: 100%;
+        }
+
+        .footer-info {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .footer-icon {
+            margin-right: 10px;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-info:hover .footer-icon {
+            transform: scale(1.2);
+        }
+
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-link:hover {
+            color: #ffeb3b;
+            transform: translateX(5px);
+        }
+
+        .footer-bg-pattern {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
-            overflow: hidden;
+            opacity: 0.05;
+            background-image: radial-gradient(circle, white 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: bgMove 100s linear infinite;
         }
 
-        .bubble {
-            position: absolute;
-            bottom: -100px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: rise 10s infinite ease-in;
-        }
-
-        .bubble:nth-child(1) {
-            width: 40px;
-            height: 40px;
-            left: 10%;
-            animation-duration: 8s;
-        }
-
-        .bubble:nth-child(2) {
-            width: 20px;
-            height: 20px;
-            left: 20%;
-            animation-duration: 5s;
-            animation-delay: 1s;
-        }
-
-        .bubble:nth-child(3) {
-            width: 50px;
-            height: 50px;
-            left: 35%;
-            animation-duration: 7s;
-            animation-delay: 2s;
-        }
-
-        .bubble:nth-child(4) {
-            width: 80px;
-            height: 80px;
-            left: 50%;
-            animation-duration: 11s;
-            animation-delay: 0s;
-        }
-
-        .bubble:nth-child(5) {
-            width: 35px;
-            height: 35px;
-            left: 55%;
-            animation-duration: 6s;
-            animation-delay: 1s;
-        }
-
-        .bubble:nth-child(6) {
-            width: 45px;
-            height: 45px;
-            left: 65%;
-            animation-duration: 8s;
-            animation-delay: 3s;
-        }
-
-        .bubble:nth-child(7) {
-            width: 25px;
-            height: 25px;
-            left: 75%;
-            animation-duration: 7s;
-            animation-delay: 2s;
-        }
-
-        .bubble:nth-child(8) {
-            width: 80px;
-            height: 80px;
-            left: 80%;
-            animation-duration: 6s;
-            animation-delay: 1s;
-        }
-
-        @keyframes rise {
+        @keyframes bgMove {
             0% {
-                bottom: -100px;
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(100px);
+                background-position: 0 0;
             }
             100% {
-                bottom: 1080px;
-                transform: translateX(-200px);
+                background-position: 1000px 1000px;
             }
         }
 
-        /* Listbox styles */
-        .listbox-container {
+        .footer-copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
-            margin-top: 15px;
+            z-index: 2;
         }
 
-        .listbox-toggle {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .listbox-toggle:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .listbox-toggle::after {
-            content: '▼';
-            font-size: 0.8rem;
-            transition: transform 0.3s ease;
-        }
-
-        .listbox-toggle.active::after {
-            transform: rotate(180deg);
-        }
-
-        .listbox-options {
+        /* Hiệu ứng sóng */
+        .footer-wave {
             position: absolute;
-            bottom: 100%;
+            top: -50px;
             left: 0;
             width: 100%;
-            background: #34495e;
-            border-radius: 5px;
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            z-index: 10;
+            height: 50px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' fill='%23ffffff'%3E%3C/path%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5' fill='%23ffffff'%3E%3C/path%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z' fill='%23ffffff'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            z-index: 1;
         }
 
-        .listbox-toggle.active + .listbox-options {
-            max-height: 300px;
-            margin-bottom: 10px;
-        }
-
-        .listbox-option {
-            padding: 10px 15px;
-            color: #ecf0f1;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .listbox-option:hover {
-            background: #3498db;
-            padding-left: 20px;
-        }
-
-        /* Responsive styles */
+        /* Responsive */
         @media (max-width: 768px) {
             .footer-container {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
             
-            .footer-column {
-                margin-bottom: 30px;
+            .footer-section {
+                margin-bottom: 20px;
             }
             
-            .footer-column h3::after {
-                width: 30px;
+            .footer-logo {
+                font-size: 1.5rem;
             }
             
-            .footer-column:hover h3::after {
-                width: 50px;
+            .footer-heading {
+                font-size: 1.1rem;
             }
         }
