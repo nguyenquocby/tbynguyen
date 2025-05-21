@@ -10,7 +10,7 @@
   <script src="https://kit.fontawesome.com/54f0cb7e4a.js" crossorigin="anonymous"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, Helvetica, sans-serif; background-color: #f9f9f9; overflow-x: hidden; }
+    body { font-family: Arial, Helvetica, sans-serif; background-color: #1b1717; overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
   /* HEADER NAVBAR */
     .navbar {
@@ -507,321 +507,318 @@
 .no-scroll {
   overflow: hidden;
 }
-/*------------------item--------------------*/
-    .promo-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
+/*------------------item dieu huong css--------------------*/
+  /* Section Container */
+        .gallery-section {
+            padding: 80px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-    .promo-card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      transform: translateY(50px);
-      opacity: 0;
-      transition: all 0.6s ease-in-out;
-    }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            color: #e2e2e2;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
-    .promo-card.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #db3434, #be0000);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
 
-    .promo-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
 
-    .promo-card:hover img {
-      transform: scale(1.05);
-    }
+        /* Gallery Item */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 25px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            aspect-ratio: 4/3;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
-    .promo-content {
-      padding: 20px;
-    }
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(65, 170, 255, 0.2);
+        }
 
-    .promo-title {
-      font-size: 1.4rem;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #e60012;
-    }
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
-    .promo-description {
-      font-size: 1rem;
-      margin-bottom: 20px;
-      color: #555;
-    }
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
 
-    .promo-button {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #e60012;
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
+        .gallery-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(to top, rgba(0, 67, 252, 0.8) 0%, rgba(0,0,0,0) 100%);
+            color: white;
+            transform: translateY(0);
+            transition: all 0.5s ease;
+        }
 
-    .promo-button:hover {
-      background-color: #b5000f;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
+        .gallery-item:hover .gallery-content {
+            padding-bottom: 30px;
+        }
 
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
+        .gallery-item-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
 
-      .promo-card img {
-        height: 150px;
-      }
-    }
+        .gallery-item-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: rgb(219, 0, 0);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
 
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.6rem;
-      }
+        .gallery-item-btn:hover {
+            background-color: #740000;
+            color: white;
+            transform: translateY(-2px);
+        }
 
-      .promo-content {
-        padding: 16px;
-      }
-    }
-    /*-------------------css dieu huong-----------------------------*/
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
 
-/* Section styles */
-.section-title {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 2.5rem;
-    color: #646464;
-    position: relative;
-    padding-bottom: 15px;
-}
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
 
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: #db3434;
-}
+        .modal-container {
+            background-color: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(50px);
+            transition: all 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
 
-/* Gallery grid */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-bottom: 50px;
-}
+        .modal-overlay.active .modal-container {
+            transform: translateY(0);
+        }
 
-.gallery-item {
-    position: relative;
-    border-radius: 25px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: #ff0000;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            border: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
 
-.gallery-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
+        .modal-close:hover {
+            background-color: #880e00;
+            transform: rotate(90deg);
+        }
 
-.image-wrapper {
-    position: relative;
-    width: 100%;
-    padding-top: 75%; /* 4:3 aspect ratio */
-    overflow: hidden;
-}
+        .modal-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
 
-.gallery-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
+        .modal-img-container {
+            position: relative;
+            min-height: 400px;
+        }
 
-.gallery-item:hover .gallery-image {
-    transform: scale(1.05);
-}
+        .modal-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px 0 0 12px;
+        }
 
-/* Overlay và button */
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
+        .modal-text {
+            padding: 40px 30px 40px 0;
+        }
 
-.gallery-item:hover .overlay {
-    opacity: 1;
-}
+        .modal-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
 
-.learn-more-btn {
-    padding: 12px 25px;
-    background: #db3434;
-    color: white;
-    border: none;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    transform: translateY(20px);
-    opacity: 0;
-}
+        .modal-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #db3434, #a00000);
+            border-radius: 2px;
+        }
 
-.gallery-item:hover .learn-more-btn {
-    transform: translateY(0);
-    opacity: 1;
-}
+        .modal-description {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
 
-.learn-more-btn:hover {
-    background: #9e0000;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                gap: 20px;
+            }
+            
+            .gallery-content {
+                padding: 20px;
+            }
+            
+            .gallery-item-title {
+                font-size: 1.3rem;
+            }
+        }
 
-/* Modal styles */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    overflow-y: auto;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            
+            .modal-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-img {
+                border-radius: 12px 12px 0 0;
+                max-height: 300px;
+                object-position: center;
+            }
+            
+            .modal-text {
+                padding: 30px;
+            }
+        }
 
-.modal.show {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 1;
-}
+        @media (max-width: 480px) {
+            .gallery-section {
+                padding: 60px 15px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .gallery-item-title {
+                font-size: 1.2rem;
+            }
+            
+            .gallery-item-btn {
+                padding: 6px 15px;
+                font-size: 0.8rem;
+            }
+            
+            .modal-title {
+                font-size: 1.5rem;
+            }
+        }
 
-.modal-content {
-    position: relative;
-    background: white;
-    width: 90%;
-    max-width: 900px;
-    border-radius: 25px;
-    padding: 30px;
-    margin: 30px auto;
-    animation: modalFadeIn 0.4s ease-out;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-@keyframes modalFadeIn {
-    from {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
+        .gallery-item {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
 
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 28px;
-    font-weight: bold;
-    color: #aaa;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
+        .gallery-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
 
-.close-btn:hover {
-    color: #333;
-}
+        .gallery-item:nth-child(2) {
+            animation-delay: 0.3s;
+        }
 
-.modal-title {
-    margin-bottom: 20px;
-    color: #2c3e50;
-    font-size: 2rem;
-}
-
-.modal-body {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.modal-image {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    border-radius: 5px;
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-    
-    .modal-content {
-        width: 95%;
-        padding: 20px;
-    }
-    
-    .modal-title {
-        font-size: 1.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .section-title {
-        font-size: 1.8rem;
-    }
-    
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .learn-more-btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-}
+        .gallery-item:nth-child(3) {
+            animation-delay: 0.5s;
+        }  
   </style>
 </head>
 <body>
@@ -838,13 +835,13 @@
 <nav class="nav-menu" id="navMenu">
   <div class="nav-container">
     <!-- Logo thương hiệu -->
-    <a href="trangchu.html" class="brand-logo">
+    <a href="index.html" class="brand-logo">
       <img src="image/logo/Logo_HEAD.png" alt="Logo Thương Hiệu" class="logo-img">
       <span class="brand-name"></span>
     </a>
 
     <div class="main-menu" id="mainMenu">
-      <a href="trangchu.html" class="nav-link"><span>Trang chủ</span></a>
+      <a href="index.html" class="nav-link"><span>Trang chủ</span></a>
       <a href="gioithieu.html" class="nav-link"><span>Giới thiệu</span></a>
       <a href="sanphamxemay.html" class="nav-link"><span>Sản phẩm</span></a>
       <a href="dichvu.html" class="nav-link"><span>Dịch Vụ</span></a>
@@ -917,79 +914,103 @@
 
   <div class="overlay" id="overlay"></div>
  <!-------------item dieu huong 800x600px------------------------->
- <section class="image-gallery">
-        <div class="container">
-            <h2 class="section-title">KHUYẾN MÃI ĐANG DIỄN RA</h2>
+ <section class="gallery-section">
+        <h2 class="section-title">KHUYẾN MÃI ĐANG DIỄN RA</h2>
+        
+        <div class="gallery-grid">
+            <!-- Item 1 -->
+            <div class="gallery-item">
+                <img src="image/Khuyenmai/head.jpg" alt="KMHEAD" class="gallery-img">
+                <div class="gallery-content">
+                    <h3 class="gallery-item-title"></h3>
+                    <button class="gallery-item-btn" data-modal="modal1">Xem chi tiết</button>
+                </div>
+            </div>
             
-            <div class="gallery-grid">
-                <!-- Item 1 -->
-                <div class="gallery-item">
-                    <div class="image-wrapper">
-                        <img src="image/Khuyenmai/head.jpg" alt="Dự án 1" class="gallery-image">
-                        <div class="overlay">
-                            <button class="learn-more-btn" data-modal="modal1">Tìm hiểu ngay</button>
-                        </div>
-                    </div>
+            <!-- Item 2 -->
+            <div class="gallery-item">
+                <img src="image/Khuyenmai/winner.jpg" alt="KMHVN" class="gallery-img">
+                <div class="gallery-content">
+                    <h3 class="gallery-item-title"></h3>
+                    <button class="gallery-item-btn" data-modal="modal2">Xem chi tiết</button>
                 </div>
-                
-                <!-- Item 2 -->
-                <div class="gallery-item">
-                    <div class="image-wrapper">
-                        <img src="image/Khuyenmai/winner.jpg" alt="Dự án 2" class="gallery-image">
-                        <div class="overlay">
-                            <button class="learn-more-btn" data-modal="modal2">Tìm hiểu ngay</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Item 3 -->
-                <div class="gallery-item">
-                    <div class="image-wrapper">
-                        <img src="image/Khuyenmai/icone.jpg" alt="Dự án 3" class="gallery-image">
-                        <div class="overlay">
-                            <button class="learn-more-btn" data-modal="modal3">Tìm hiểu ngay</button>
-                        </div>
-                    </div>
+            </div>
+            
+            <!-- Item 3 -->
+            <div class="gallery-item">
+                <img src="image/Khuyenmai/icone.jpg" alt="KMHVN" class="gallery-img">
+                <div class="gallery-content">
+                    <h3 class="gallery-item-title"></h3>
+                    <button class="gallery-item-btn" data-modal="modal3">Xem chi tiết</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Modal 1 - 800x500 -->
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h3 class="modal-title">Vượt Giới Hạn, Bùng Khí Chất</h3>
-            <div class="modal-body">
-                <img src="image/Khuyenmai/head.jpg" alt="Dự án 1" class="modal-image">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
-                <p>Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.</p>
+    <!-- Modal 1 -->
+    <div class="modal-overlay" id="modal1">
+        <div class="modal-container">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content">
+                <div class="modal-img-container">
+                    <img src="image/Khuyenmai/head.jpg" alt="KMHEAD" class="modal-img">
+                </div>
+                <div class="modal-text">
+                    <h3 class="modal-title">Vượt Giới Hạn, Bùng Khí Chất</h3>
+                    <p class="modal-description">
+                        <STRONG>Chương trình khuyến mại dành riêng cho xe Honda Winner X/ Honda Vario160/ Honda CBR150R</STRONG> </br>
+                        Từ ngày 01/04/2025 đến 31/05/2025 khách hàng mua xe sẽ nhận được:</br>
+                        • Tặng ngay 3.000.000đ khi mua xe Honda Vario160</br>
+                        • Tặng ngay 4.000.000đ khi mua xe Honda Winner X </br>
+                        • Tặng ngay 7.000.000đ khi mua xe Honda CBR150R </br>
+                      </p>
+                    </p>
+                    <button class="gallery-item-btn">Liên hệ ngay</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal 2 - 800x500-->
-    <div id="modal2" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h3 class="modal-title">Ưu Đãi Đỉnh, Định Chất X</h3>
-            <div class="modal-body">
-                <img src="image/Khuyenmai/winner.jpg" alt="Dự án 2" class="modal-image">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
-                <p>Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.</p>
+    <!-- Modal 2 -->
+    <div class="modal-overlay" id="modal2">
+        <div class="modal-container">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content">
+                <div class="modal-img-container">
+                    <img src="image/Khuyenmai/winner.jpg" alt="KMHVN" class="modal-img">
+                </div>
+                <div class="modal-text">
+                    <h3 class="modal-title">Ưu Đãi Đỉnh, Định Chất X</h3>
+                    <p class="modal-description">
+                        <STRONG>Chương trình khuyến mại dành riêng cho xe Honda Winner X</STRONG> </br>
+                        Từ ngày 01/04/2025 đến 31/05/2025 khách hàng mua xe Honda Winner X sẽ nhận được:</br>
+                        • Hỗ trợ lệ phí đăng ký 4.000.000đ</br>
+                        • Hỗ trợ trả góp 0% lãi suất
+                    </p>
+                    <button class="gallery-item-btn">Liên hệ ngay</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal 3 - 800x500--> 
-    <div id="modal3" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h3 class="modal-title">Xe Xịn Tem Xinh, Tự Tin Lướt Phố</h3>
-            <div class="modal-body">
-                <img src="image/Khuyenmai/icone.jpg" alt="Dự án 3" class="modal-image">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
-                <p>Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.</p>
+    <!-- Modal 3 -->
+    <div class="modal-overlay" id="modal3">
+        <div class="modal-container">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content">
+                <div class="modal-img-container">
+                    <img src="image/Khuyenmai/icone.jpg" alt="KMHVN" class="modal-img">
+                </div>
+                <div class="modal-text">
+                    <h3 class="modal-title">Xe Xịn Tem Xinh, Tự Tin Lướt Phố</h3>
+                    <p class="modal-description">
+                      <STRONG>Chương trình khuyến mại dành riêng cho xe Honda ICON e</STRONG> </br>
+                        Từ ngày 01/04/2025 đến 31/05/2025 100 khách hàng đầu tiên mua xe Honda ICON e sẽ nhận được:</br>
+                        • Mũ Bảo Hiểm</br>
+                        • Decal tem xe
+                    </p>
+                    <button class="gallery-item-btn">Liên hệ ngay</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1095,64 +1116,51 @@
       overlay.classList.remove('active');
     });
   </script>
-  <!---------------script dieu huong--------------------------->
+  <!---------------script khuyen mai--------------------------->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    // Lấy tất cả các button mở modal
-    const learnMoreBtns = document.querySelectorAll('.learn-more-btn');
-    
-    // Lấy tất cả các modal
-    const modals = document.querySelectorAll('.modal');
-    
-    // Lấy tất cả các nút đóng
-    const closeBtns = document.querySelectorAll('.close-btn');
-    
-    // Thêm sự kiện click cho mỗi button
-    learnMoreBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const modalId = this.getAttribute('data-modal');
-            const modal = document.getElementById(modalId);
-            
-            if (modal) {
-                modal.classList.add('show');
-                document.body.style.overflow = 'hidden'; // Ngăn scroll khi modal mở
-            }
-        });
-    });
-    
-    // Thêm sự kiện click cho nút đóng
-    closeBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const modal = this.closest('.modal');
-            if (modal) {
-                modal.classList.remove('show');
-                document.body.style.overflow = ''; // Cho phép scroll lại
-            }
-        });
-    });
-    
-    // Đóng modal khi click bên ngoài nội dung modal
-    modals.forEach(modal => {
-        modal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('show');
-                document.body.style.overflow = ''; // Cho phép scroll lại
-            }
-        });
-    });
-    
-    // Đóng modal khi nhấn phím Esc
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mở modal
+            const buttons = document.querySelectorAll('.gallery-item-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const modalId = this.getAttribute('data-modal');
+                    const modal = document.getElementById(modalId);
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Đóng modal
+            const closeButtons = document.querySelectorAll('.modal-close');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const modal = this.closest('.modal-overlay');
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+
+            // Đóng modal khi click bên ngoài
+            const modals = document.querySelectorAll('.modal-overlay');
             modals.forEach(modal => {
-                if (modal.classList.contains('show')) {
-                    modal.classList.remove('show');
-                    document.body.style.overflow = ''; // Cho phép scroll lại
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+
+            // Đóng modal bằng phím ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    modals.forEach(modal => {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    });
                 }
             });
-        }
-    });
-});
-  </script>
+        });
+    </script>
 </body>
 </html>
