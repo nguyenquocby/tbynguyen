@@ -1,1800 +1,2038 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
-  <title>HEAD Trung Hùng</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTTXrwOE5V1EGp5nJtldYzOjwpyOPp5QgHg1rZ1K+nD7+N43bsGrdcZqzK9/E5G70uU60MwZhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script defer src="appbike.js"></script>
-  <style>
-   :root {
-  --primary-color: #e41700;
-  --primary-dark: #a01000;
-  --text-light: #ffffff;
-  --text-dark: #333333;
-  --bg-dark: #1a1a1a;
-  --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-  --transition-fast: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-/* ====== Base Styles ====== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Montserrat', 'Arial', sans-serif;
-  overflow-x: hidden;
-  background-color: #cccccc;
-}
-
-/* ====== Hero Section ====== */
-.hero-section {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.hero-bg-parallax {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  will-change: transform;
-}
-
-.hero-bg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transform: scale(1.1);
-  transition: transform 8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.hero-section:hover .hero-bg {
-  transform: scale(1);
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
-}
-
-/* ====== Navigation ====== */
-.nav-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px 5%;
-  z-index: 10;
-}
-
-.logo-img {
-  height: 50px;
-  width: auto;
-  transform: translateY(0);
-  transition: var(--transition-fast);
-}
-
-.logo-img:hover {
-  transform: translateY(-3px);
-}
-
-/* ====== Hamburger Menu ====== */
-.menu-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  z-index: 100;
-}
-
-.hamburger-box {
-  width: 24px;
-  height: 16px;
-  position: relative;
-}
-
-.hamburger-inner {
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background-color: var(--text-light);
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: var(--transition-fast);
-}
-
-.hamburger-inner::before,
-.hamburger-inner::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background-color: var(--text-light);
-  left: 0;
-  transition: var(--transition);
-}
-
-.hamburger-inner::before {
-  top: -6px;
-}
-
-.hamburger-inner::after {
-  top: 6px;
-}
-
-.menu-toggle.active .hamburger-inner {
-  background-color: transparent;
-}
-
-.menu-toggle.active .hamburger-inner::before {
-  transform: translateY(6px) rotate(45deg);
-  background-color: var(--text-dark);
-}
-
-.menu-toggle.active .hamburger-inner::after {
-  transform: translateY(-6px) rotate(-45deg);
-  background-color: var(--text-dark);
-}
-
-/* ====== Side Menu ====== */
-.side-menu {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 100%;
-  max-width: 400px;
-  height: 100%;
-  z-index: 90;
-  transition: right 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-}
-
-.side-menu.active {
-  right: 0;
-}
-
-.menu-close-area {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: calc(100% - 400px);
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.side-menu.active .menu-close-area {
-  opacity: 1;
-}
-
-.menu-container {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-  max-width: 400px;
-  height: 100%;
-  background-color: white;
-  padding: 100px 40px;
-  overflow-y: auto;
-}
-
-.close-btn {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-.close-line {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background-color: var(--text-dark);
-  left: 0;
-  top: 50%;
-  transition: var(--transition-fast);
-}
-
-.close-line:first-child {
-  transform: rotate(45deg);
-}
-
-.close-line:last-child {
-  transform: rotate(-45deg);
-}
-
-.close-btn:hover .close-line {
-  background-color: var(--primary-color);
-}
-
-.menu-list {
-  list-style: none;
-  padding: 0;
-}
-
-.side-menu li {
-  margin: 15px 0;
-}
-
-.menu-link {
-  display: inline-block;
-  position: relative;
-  color: var(--text-dark);
-  font-size: 2rem;
-  font-weight: 700;
-  text-decoration: none;
-  padding: 5px 0;
-  transition: var(--transition);
-}
-
-.menu-link span {
-  display: inline-block;
-  transform: translateY(100%);
-  opacity: 0;
-  transition: var(--transition);
-}
-
-.side-menu.active .menu-link span {
-  transform: translateY(0);
-  opacity: 1;
-  transition-delay: calc(0.1s * var(--i));
-}
-
-.menu-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--primary-color);
-  transition: var(--transition);
-}
-
-.menu-link:hover::after {
-  width: 100%;
-}
-
-.menu-link:hover {
-  color: var(--primary-color);
-}
-
-/* ====== Hero Content ====== */
-.hero-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 10%;
-  text-align: center;
-  color: var(--text-light);
-  opacity: 0;
-  transform: translateY(30px);
-  transition: var(--transition);
-}
-
-.hero-section.loaded .hero-content {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.logo-main {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 40px;
-  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
-  transform: scale(0.9);
-  transition: var(--transition);
-}
-
-.hero-section.loaded .logo-main {
-  transform: scale(1);
-}
-
-.hero-description {
-  margin-bottom: 40px;
-  font-size: 1.2rem;
-  line-height: 1.8;
-  max-width: 700px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transform: translateY(20px);
-  transition: var(--transition);
-  transition-delay: 0.2s;
-}
-
-.hero-section.loaded .hero-description {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ====== CTA Button ====== */
-.cta-button {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px 40px;
-  background-color: var(--primary-color);
-  color: var(--text-light);
-  border: none;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  overflow: hidden;
-  transition: var(--transition);
-  opacity: 0;
-  transform: translateY(20px);
-  transition: var(--transition);
-  transition-delay: 0.4s;
-}
-
-.hero-section.loaded .cta-button {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.cta-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: 0.5s;
-}
-
-.cta-button:hover::before {
-  left: 100%;
-}
-
-.cta-button:hover {
-  background-color: var(--primary-dark);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-.button-text {
-  display: inline-block;
-  transition: var(--transition-fast);
-}
-
-.button-icon {
-  margin-left: 10px;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: var(--transition-fast);
-}
-
-.cta-button:hover .button-text {
-  transform: translateX(-5px);
-}
-
-.cta-button:hover .button-icon {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* ====== Animations ====== */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ====== Responsive ====== */
-@media (max-width: 992px) {
-  .hero-content {
-    padding: 0 5%;
-  }
-  
-  .hero-description {
-    font-size: 1rem;
-  }
-  
-  .menu-link {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-bar {
-    padding: 20px;
-  }
-  
-  .logo-img {
-    height: 40px;
-  }
-  
-  .side-menu {
-    max-width: 320px;
-  }
-  
-  .menu-container {
-    padding: 80px 30px;
-  }
-  
-  .menu-link {
-    font-size: 1.3rem;
-  }
-  
-  .cta-button {
-    padding: 12px 30px;
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .hero-content {
-    padding: 0 20px;
-  }
-  
-  .logo-main {
-    margin-bottom: 30px;
-    max-width: 80%;
-  }
-  
-  .hero-description {
-    font-size: 0.9rem;
-    margin-bottom: 30px;
-  }
-  
-  .side-menu {
-    max-width: 280px;
-  }
-  
-  .menu-container {
-    padding: 70px 20px;
-  }
-}
-/* Product Info----------------------------------------- */
-.container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: auto;
-}
-
-.product-info {
-  text-align: center;
-  margin-bottom: 30px;
-}
-.product-info h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-.product-info p {
-  font-size: 1rem;
-  color: rgb(82, 82, 82);
-}
-
-/* Gallery & Sliders */
-.product-gallery {
-  margin-bottom: 40px;
-}
-
-.sliders-wrapper {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-}
-
-.slider-container {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    border-radius: 15px;
-    display: none;
-    padding: 20px 0;
-    transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-    transform: translateY(20px);
-    opacity: 0;
-    height: 0;
-}
-
-.slider-container.active {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-    height: auto;
-    min-height: 300px;
-}
-
-.slider {
-    display: flex;
-    will-change: transform;
-}
-
-.slider img {
-    width: 100%;
-    height: auto;
-    flex-shrink: 0;
-    border-radius: 12px;
-    object-fit: cover;
-    transition: all 0.5s ease;
-    transform: scale(0.98);
-    filter: brightness(0.98);
-}
-
-.slider img:hover {
-    transform: scale(1.01);
-    filter: brightness(1.05);
-    z-index: 2;
-}
-
-.prev-btn,
-.next-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: linear-gradient(145deg, #dd0000, #b30000);
-    color: white;
-    border: none;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    border-radius: 50%;
-    font-size: 24px;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    z-index: 10;
-    box-shadow: 0 4px 15px rgba(221, 0, 0, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.9;
-}
-
-.prev-btn {
-    left: 25px;
-}
-
-.next-btn {
-    right: 25px;
-}
-.prev-btn:hover,
-.next-btn:hover {
-    background: linear-gradient(145deg, #ff0000, #dd0000);
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 6px 20px rgba(221, 0, 0, 0.6);
-    opacity: 1;
-}
-
-.prev-btn:active,
-.next-btn:active {
-    transform: translateY(-50%) scale(0.95);
-}
-.control-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 25px;
-    flex-wrap: wrap;
-    padding: 0 20px;
-}
-
-.control-btn {
-    padding: 12px 25px;
-    background: white;
-    border: 2px solid #e0e0e0;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-    position: relative;
-    overflow: hidden;
-}
-
-.control-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(221, 0, 0, 0.1) 0%, rgba(221, 0, 0, 0.05) 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.control-btn.active {
-    background: linear-gradient(135deg, #dd0000, #b30000);
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(221, 0, 0, 0.3);
-    border-color: #dd0000;
-}
-
-.control-btn.active::before {
-    opacity: 1;
-}
-
-.control-btn:hover {
-    background: #f8f8f8;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border-color: #dd0000;
-}
-
-.control-btn:hover::before {
-    opacity: 1;
-}
-.color-circle {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    display: inline-block;
-    border: 2px solid rgba(255, 255, 255, 0.7);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 1;
-}
-
-.control-btn.active .color-circle {
-    border-color: rgba(255, 255, 255, 0.9);
-    transform: scale(1.1);
-}
-
-/* Animation for slider change */
-@keyframes fadeInUp {
-    from {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Honda SH350i - Khẳng định đẳng cấp thời thượng</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      /* Reset & Base Styles */
+      :root {
+        --primary-color: #e11931; /* Honda Red */
+        --secondary-color: #004225; /* Honda Green */
+        --dark-color: #1a1a1a;
+        --light-color: #f8f9fa;
+        --gray-color: #6c757d;
+        --transition: all 0.3s ease;
+        --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        --border-radius: 8px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 62.5%; /* 1rem = 10px */
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        line-height: 1.6;
+        color: var(--dark-color);
+        overflow-x: hidden;
+        background-color: #fff;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 1.2rem 2.4rem;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 1.4rem;
+        text-align: center;
+        transition: var(--transition);
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background-color: #c01027;
+        transform: translateY(-3px);
+        box-shadow: var(--box-shadow);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--primary-color);
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .btn-lg {
+        padding: 1.5rem 3rem;
+        font-size: 1.6rem;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 6rem;
+      }
+
+      .section-title {
+        font-size: 3.6rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--dark-color);
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+      }
+
+      .section-subtitle {
+        font-size: 1.8rem;
+        color: var(--gray-color);
+        margin-bottom: 2rem;
+      }
+
+      .divider {
+        height: 1px;
+        background-color: #eee;
+        margin: 3rem auto;
+        width: 100px;
+      }
+
+      /* Preloader */
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+
+      .preloader.fade-out {
         opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+      }
 
-.slider-container.active {
-    animation: fadeInUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
+      .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+      }
 
-/* Responsive design */
-@media (max-width: 1024px) {
-    .sliders-wrapper {
-        border-radius: 15px;
-        padding: 15px;
-    }
-    
-    .control-buttons {
-        gap: 12px;
-    }
-    
-    .control-btn {
-        padding: 10px 20px;
-        font-size: 13px;
-    }
-}
+      .loader-square {
+        width: 16px;
+        height: 16px;
+        margin: 0 8px;
+        background-color: var(--primary-color);
+        animation: loaderAnimation 1.5s infinite ease-in-out;
+      }
 
-@media (max-width: 768px) {
-    .sliders-wrapper {
-        padding: 10px;
-        border-radius: 12px;
-    }
-    
-    .slider-container {
-        padding: 10px 0;
-    }
-    
-    .prev-btn,
-    .next-btn {
-        width: 40px;
+      .loader-square:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .loader-square:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .loader-square:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .loader-square:nth-child(4) {
+        animation-delay: 0.6s;
+      }
+      .loader-square:nth-child(5) {
+        animation-delay: 0.8s;
+      }
+      .loader-square:nth-child(6) {
+        animation-delay: 1s;
+      }
+      .loader-square:nth-child(7) {
+        animation-delay: 1.2s;
+      }
+
+      @keyframes loaderAnimation {
+        0%,
+        100% {
+          transform: scale(0.8);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+      }
+
+      /* Header */
+      .main-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 2rem 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .main-header.scrolled {
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem 0;
+      }
+
+      .main-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo img {
         height: 40px;
-        font-size: 18px;
-    }
-    
-    .control-buttons {
-        gap: 8px;
-        margin-top: 15px;
-    }
-    
-    .control-btn {
-        padding: 8px 15px;
-        font-size: 12px;
-    }
-    
-    .color-circle {
-        width: 12px;
-        height: 12px;
-    }
-}
+        transition: var(--transition);
+      }
 
-@media (max-width: 480px) {
-    .sliders-wrapper {
-        padding: 8px;
-        border-radius: 10px;
-    }
-    
-    .control-buttons {
-        gap: 6px;
-    }
-    
-    .control-btn {
-        padding: 6px 12px;
-        font-size: 11px;
-        border-radius: 20px;
-    }
-    
-    .prev-btn,
-    .next-btn {
-        width: 35px;
+      .main-header.scrolled .logo img {
         height: 35px;
-        font-size: 16px;
-    }
-    
-    .color-circle {
+      }
+
+      .main-nav ul {
+        display: flex;
+      }
+
+      .main-nav li {
+        margin-left: 3rem;
+      }
+
+      .main-nav a {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: white;
+        position: relative;
+        transition: var(--transition);
+      }
+
+      .main-nav a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: white;
+        transition: var(--transition);
+      }
+
+      .main-nav a:hover::after,
+      .main-nav a.active::after {
+        width: 100%;
+      }
+
+      .main-header.scrolled .main-nav a {
+        color: var(--dark-color);
+      }
+
+      .main-header.scrolled .main-nav a::after {
+        background-color: var(--primary-color);
+      }
+
+      .menu-toggle {
+        display: none;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: white;
+        transition: all 0.3s ease;
+      }
+
+      .main-header.scrolled .bar {
+        background-color: var(--dark-color);
+      }
+
+      /* Hero Section */
+      .hero-section {
+        position: relative;
+        height: 100vh;
+        min-height: 600px;
+        background: url("image/BANNERBIKE/SH350.jpg") no-repeat center
+          center/cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.7),
+          rgba(0, 0, 0, 0.3)
+        );
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        padding-top: 8rem;
+      }
+
+      .hero-title {
+        font-size: 6rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        letter-spacing: 2px;
+        animation: fadeInUp 1s ease;
+      }
+
+      .hero-subtitle {
+        font-size: 2.2rem;
+        margin-bottom: 3rem;
+        font-weight: 400;
+        animation: fadeInUp 1s ease 0.2s both;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Scroll Down Indicator */
+      .hero-scroll-down {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0) translateX(-50%);
+        }
+        40% {
+          transform: translateY(-20px) translateX(-50%);
+        }
+        60% {
+          transform: translateY(-10px) translateX(-50%);
+        }
+      }
+
+      .mouse {
+        width: 25px;
+        height: 40px;
+        border: 2px solid white;
+        border-radius: 25px;
+        display: flex;
+        margin: 0 auto 8px;
+      }
+
+      .wheel {
+        width: 4px;
+        height: 8px;
+        background-color: white;
+        border-radius: 2px;
+        margin: 6px auto;
+        animation: mouseWheel 2s infinite;
+      }
+
+      @keyframes mouseWheel {
+        0% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+      }
+
+      .arrows {
+        display: flex;
+        justify-content: center;
+      }
+
+      .arrow {
         width: 10px;
         height: 10px;
-    }
-}
+        border-right: 2px solid white;
+        border-bottom: 2px solid white;
+        transform: rotate(45deg);
+        margin: 0 3px;
+        animation: arrowBlink 2s infinite;
+        animation-delay: calc(0.2s * var(--i));
+      }
 
-/* Loading animation */
-@keyframes pulse {
-    0% { opacity: 0.6; }
-    50% { opacity: 1; }
-    100% { opacity: 0.6; }
-}
+      @keyframes arrowBlink {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
 
-.slider-container:not(.active) {
-    animation: pulse 1.5s infinite ease-in-out;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-}
+      /* Product Gallery Section */
+      .product-gallery-section {
+        padding: 8rem 0;
+        background-color: #f9f9f9;
+      }
 
-/* Footer */
-.site-footer {
-  background-color: #cf0000;
-  color: #fff;
-  padding: 20px 0;
-  text-align: center;
-  margin-top: 40px;
-}
-.footer-nav a {
-  color: #ddd;
-  margin: 0 10px;
-  text-decoration: none;
-}
-.footer-nav a:hover {
-  color: white;
-}
-/* Banner Slider Styles */
-.banner-slider {
-  position: relative;
-  width: 80%;
-  overflow: hidden;
-  margin: 0 auto;
-  border-radius: 25px;
-}
+      .color-selector {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-bottom: 4rem;
+      }
 
-.banner-wrapper {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  height: 100%;
-}
+      .color-btn {
+        padding: 1rem 2rem;
+        border: none;
+        background-color: white;
+        border-radius: 30px;
+        font-size: 1.4rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
 
-.banner {
-  position: relative;
-  min-width: 100%;
-  height: 100%;
-}
+      .color-btn.active {
+        background-color: var(--primary-color);
+        color: white;
+      }
 
-.banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+      .color-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
 
-.banner-text {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  color: white;
-  padding: 30px 20px;
-  text-align: left;
-}
+      .color-circle {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
 
-.banner-text h3 {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.3;
-}
+      .slider-container {
+        display: none;
+        position: relative;
+        max-width: 600px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
 
-.banner-text h3:first-child {
-  color: #ffd61f;
-  margin-bottom: 5px;
-  font-size: 1.2rem;
-}
+      .slider-container.active {
+        display: block;
+        animation: fadeIn 0.5s ease;
+      }
 
-.banner-text p {
-  margin: 10px 0 0;
-  font-size: 1rem;
-  line-height: 1.5;
-  max-width: 600px;
-}
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
 
-/* Navigation Dots */
-.slider-dots {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  z-index: 10;
-}
+      .slider {
+        display: flex;
 
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-}
+        width: 100%;
+      }
 
-.dot.active {
-  background-color: #ff0000;
-  transform: scale(1.2);
-}
+      .slide {
+        min-width: 100%;
+      }
 
-/* Navigation Arrows */
-.slider-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: background-color 0.3s;
-}
+      .slide img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+      }
 
-.slider-arrow:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
+      .slider-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 50px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border: none;
+        border-radius: 50%;
+        font-size: 1.8rem;
+        color: var(--dark-color);
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+      }
 
-.slider-arrow.prev {
-  left: 20px;
-}
+      .slider-nav:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
 
-.slider-arrow.next {
-  right: 20px;
-}
+      .prev-btn {
+        left: 20px;
+      }
 
-/* Responsive Styles */
-@media (max-width: 1024px) {
-  .banner-text {
-    padding: 25px 15px;
-  }
-  
-  .banner-text h3 {
-    font-size: 1.3rem;
-  }
-  
-  .banner-text h3:first-child {
-    font-size: 1.1rem;
-  }
-  
-  .banner-text p {
-    font-size: 0.9rem;
-  }
-}
+      .next-btn {
+        right: 20px;
+      }
 
-@media (max-width: 768px) {
-  .banner-text {
-    padding: 20px 15px;
-  }
-  
-  .banner-text h3 {
-    font-size: 1.1rem;
-  }
-  
-  .banner-text h3:first-child {
-    font-size: 1rem;
-  }
-  
-  .banner-text p {
-    font-size: 0.85rem;
-    max-width: 80%;
-  }
-  
-  .slider-arrow {
-    width: 35px;
-    height: 35px;
-    font-size: 0.9rem;
-  }
-}
+      /* Specifications Section */
+      .specs-section {
+        padding: 8rem 0;
+        background-color: white;
+      }
 
-@media (max-width: 480px) {
-  .banner-text {
-    padding: 15px 10px;
-  }
-  
-  .banner-text h3 {
-    font-size: 1rem;
-  }
-  
-  .banner-text h3:first-child {
-    font-size: 0.9rem;
-  }
-  
-  .banner-text p {
-    font-size: 0.8rem;
-    max-width: 90%;
-    margin-top: 5px;
-  }
-  
-  .slider-dots {
-    bottom: 10px;
-  }
-  
-  .dot {
-    width: 10px;
-    height: 10px;
-  }
-  
-  .slider-arrow {
-    width: 30px;
-    height: 30px;
-    font-size: 0.8rem;
-  }
-  
-  .slider-arrow.prev {
-    left: 10px;
-  }
-  
-  .slider-arrow.next {
-    right: 10px;
-  }
-}
-/*------------thongsokithuat-----------------*/
-/* Section style */
-.spec-section {
-    padding: 60px 0;
-    text-align: center;
-}
+      .specs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+      }
 
-/* Button style */
-.spec-button {
-    background: linear-gradient(135deg, #ff3e3e, #ff2d2d);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-}
+      .specs-card {
+        background-color: #f9f9f9;
+        border-radius: var(--border-radius);
+        padding: 3rem;
+        transition: var(--transition);
+        box-shadow: var(--box-shadow);
+      }
 
-.spec-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    background: linear-gradient(135deg, #9e0000, #ff0000);
-}
+      .specs-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
 
-.spec-button:active {
-    transform: translateY(1px);
-}
+      .specs-icon {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: 2rem;
+      }
 
-/* Modal style */
-.spec-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    overflow-y: auto;
-}
+      .specs-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        color: var(--dark-color);
+      }
 
-.modal-content {
-    background-color: white;
-    margin: 5% auto;
-    width: 90%;
-    max-width: 800px;
-    border-radius: 10px;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
-    transform: translateY(-50px);
-    transition: transform 0.3s ease;
-    position: relative;
-    padding: 30px;
-    animation: modalFadeIn 0.4s ease forwards;
-}
+      .specs-list {
+        font-size: 1.5rem;
+        color: var(--gray-color);
+      }
 
-@keyframes modalFadeIn {
-    to {
+      .specs-list li {
+        margin-bottom: 1rem;
+        position: relative;
+        padding-left: 2rem;
+      }
+
+      .specs-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.8rem;
+        width: 8px;
+        height: 8px;
+        background-color: var(--primary-color);
+        border-radius: 50%;
+      }
+
+      /* Features Section */
+      .features-section {
+        padding: 8rem 0;
+        background-color: #f9f9f9;
+      }
+
+      .features-tabs {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .tab-buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 4rem;
+      }
+
+      .tab-btn {
+        padding: 1.2rem 2.4rem;
+        border: none;
+        background-color: white;
+        border-radius: 30px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .tab-btn.active {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .tab-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .feature-content {
+        display: flex;
+        align-items: center;
+        gap: 5rem;
+      }
+
+      .feature-text {
+        flex: 1;
+      }
+
+      .feature-text h3 {
+        font-size: 2.4rem;
+        margin-bottom: 2rem;
+        color: var(--dark-color);
+      }
+
+      .feature-text p {
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+        color: var(--gray-color);
+      }
+
+      .feature-text ul {
+        font-size: 1.5rem;
+        color: var(--gray-color);
+        margin-bottom: 2rem;
+      }
+
+      .feature-text li {
+        margin-bottom: 1rem;
+        position: relative;
+        padding-left: 2rem;
+      }
+
+      .feature-text li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.8rem;
+        width: 8px;
+        height: 8px;
+        background-color: var(--primary-color);
+        border-radius: 50%;
+      }
+
+      .feature-image {
+        flex: 1;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .feature-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Contact Section */
+      .contact-section {
+        padding: 8rem 0;
+        background-color: white;
+      }
+
+      .contact-container {
+        display: flex;
+        gap: 5rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .contact-info {
+        flex: 1;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 4rem;
+        border-radius: var(--border-radius);
+      }
+
+      .contact-info h3 {
+        font-size: 2.4rem;
+        margin-bottom: 3rem;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      .contact-info h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background-color: white;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 2rem;
+      }
+
+      .info-item i {
+        font-size: 1.8rem;
+        margin-right: 1.5rem;
+        margin-top: 0.3rem;
+      }
+
+      .info-item p {
+        font-size: 1.5rem;
+      }
+
+      .contact-form {
+        flex: 1;
+        background-color: #f9f9f9;
+        padding: 4rem;
+        border-radius: var(--border-radius);
+      }
+
+      .form-group {
+        margin-bottom: 2rem;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 1.2rem 1.5rem;
+        border: 1px solid #ddd;
+        border-radius: var(--border-radius);
+        font-size: 1.5rem;
+        font-family: "Montserrat", sans-serif;
+        transition: var(--transition);
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(225, 25, 49, 0.1);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      /* Footer */
+      .main-footer {
+        background-color: var(--dark-color);
+        color: white;
+        padding: 6rem 0 0;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 4rem;
+        margin-bottom: 4rem;
+      }
+
+      .footer-logo img {
+        height: 40px;
+        margin-bottom: 2rem;
+      }
+
+      .footer-logo p {
+        font-size: 1.4rem;
+        color: #aaa;
+        margin-bottom: 2rem;
+      }
+
+      .footer-links h4 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      .footer-links h4::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-links ul li {
+        margin-bottom: 1rem;
+      }
+
+      .footer-links ul li a {
+        font-size: 1.4rem;
+        color: #aaa;
+        transition: var(--transition);
+      }
+
+      .footer-links ul li a:hover {
+        color: white;
+        padding-left: 5px;
+      }
+
+      .footer-social h4 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      .footer-social h4::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: white;
+        font-size: 1.6rem;
+        transition: var(--transition);
+      }
+
+      .social-icons a:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      .footer-social p {
+        font-size: 1.4rem;
+        color: #aaa;
+        margin-bottom: 1rem;
+      }
+
+      .newsletter-form {
+        display: flex;
+      }
+
+      .newsletter-form input {
+        flex: 1;
+        padding: 1rem 1.5rem;
+        border: none;
+        border-radius: 30px 0 0 30px;
+        font-size: 1.4rem;
+      }
+
+      .newsletter-form button {
+        width: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 0 30px 30px 0;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .newsletter-form button:hover {
+        background-color: #c01027;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-bottom p {
+        font-size: 1.3rem;
+        color: #aaa;
+      }
+
+      .legal-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .legal-links a {
+        font-size: 1.3rem;
+        color: #aaa;
+        transition: var(--transition);
+      }
+
+      .legal-links a:hover {
+        color: white;
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.8rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .back-to-top.active {
         opacity: 1;
-        transform: translateY(0);
-    }
-}
+        visibility: visible;
+      }
 
-.close-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 28px;
-    font-weight: bold;
-    color: #aaa;
-    cursor: pointer;
-    transition: color 0.3s;
-}
+      .back-to-top:hover {
+        background-color: #c01027;
+        transform: translateY(-5px);
+      }
 
-.close-button:hover {
-    color: #333;
-}
+      /* Responsive Styles */
+      @media (max-width: 992px) {
+        .hero-title {
+          font-size: 5rem;
+        }
 
-.modal-content h2 {
-    margin-bottom: 25px;
-    color: #2c3e50;
-    text-align: center;
-    font-size: 28px;
-}
+        .hero-subtitle {
+          font-size: 2rem;
+        }
 
-/* Table style */
-.spec-table-container {
-    overflow-x: auto;
-}
+        .feature-content {
+          flex-direction: column;
+        }
 
-.spec-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-}
+        .feature-image {
+          order: -1;
+        }
 
-.spec-table th, .spec-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #e0e0e0;
-}
+        .contact-container {
+          flex-direction: column;
+        }
+      }
 
-.spec-table th {
-    background-color: #f8f9fa;
-    color: #2c3e50;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-}
+      @media (max-width: 768px) {
+        html {
+          font-size: 56.25%; /* 1rem = 9px */
+        }
 
-.spec-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
+        .menu-toggle {
+          display: block;
+        }
 
-.spec-table tr:hover {
-    background-color: #f1f1f1;
-}
+        .menu-toggle.active .bar:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+        }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    .spec-button {
-        padding: 12px 25px;
-        font-size: 16px;
-    }
-    
-    .modal-content {
-        margin: 10% auto;
-        width: 95%;
-        padding: 20px;
-    }
-    
-    .spec-table th, .spec-table td {
-        padding: 10px 8px;
-        font-size: 14px;
-    }
-}
+        .menu-toggle.active .bar:nth-child(2) {
+          opacity: 0;
+        }
 
-@media (max-width: 480px) {
-    .spec-button {
-        padding: 10px 20px;
-        font-size: 15px;
-    }
-    
-    .modal-content h2 {
-        font-size: 22px;
-    }
-    
-    .spec-table th {
-        font-size: 12px;
-    }
-}
-/*---------------------PHOTO SLIDER------------------------*/
-/* Photo Gallery Slider Styles */
-.photo-gallery {
-  position: relative;
-}
+        .menu-toggle.active .bar:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
+        }
 
-.gallery-title {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #333;
-  font-size: 2rem;
-  position: relative;
-  padding-bottom: 15px;
-}
+        .main-nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 80%;
+          max-width: 300px;
+          height: 100vh;
+          background-color: white;
+          padding: 8rem 3rem;
+          transition: var(--transition);
+          z-index: 1000;
+        }
 
-.gallery-title:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background-color: #ffcc00;
-}
+        .main-nav.active {
+          right: 0;
+          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
 
-.gallery-container {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  overflow: hidden;
-}
+        .main-nav ul {
+          flex-direction: column;
+        }
 
-.gallery-slider {
-  display: flex;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  height: 100%;
-}
+        .main-nav li {
+          margin: 1.5rem 0;
+        }
 
-.gallery-slide {
-  min-width: 100%;
-  position: relative;
-  border-radius: 25px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
+        .main-nav a {
+          color: var(--dark-color);
+          font-size: 1.8rem;
+        }
 
-.gallery-image {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease;
-}
+        .hero-title {
+          font-size: 4rem;
+        }
 
-.gallery-slide:hover .gallery-image {
-  transform: scale(1.02);
-}
+        .hero-subtitle {
+          font-size: 1.8rem;
+        }
 
-.image-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  color: white;
-  padding: 20px;
-  text-align: center;
-  font-size: 1.2rem;
-}
+        .slide img {
+          height: 400px;
+        }
+      }
 
-/* Navigation Arrows */
-.gallery-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #333;
-  border: none;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+      @media (max-width: 576px) {
+        html {
+          font-size: 50%; /* 1rem = 8px */
+        }
 
-.gallery-arrow:hover {
-  background-color: #ffcc00;
-  color: #fff;
-}
+        .section-title {
+          font-size: 3rem;
+        }
 
-.gallery-prev {
-  left: 30px;
-}
+        .hero-title {
+          font-size: 3.5rem;
+        }
 
-.gallery-next {
-  right: 30px;
-}
+        .hero-subtitle {
+          font-size: 1.6rem;
+        }
 
-/* Navigation Dots */
-.gallery-dots {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  gap: 10px;
-}
+        .slide img {
+          height: 300px;
+        }
 
-.gallery-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #ccc;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+        .color-selector {
+          flex-direction: column;
+          align-items: center;
+        }
 
-.gallery-dot.active {
-  background-color: #ffcc00;
-  transform: scale(1.2);
-}
+        .color-btn {
+          width: 100%;
+          justify-content: center;
+        }
 
-/* Counter */
-.gallery-counter {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  z-index: 10;
-}
+        .tab-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
 
-/* Responsive Styles */
-@media (max-width: 1024px) {
-  .gallery-image {
-    height: 450px;
-  }
-  
-  .gallery-arrow {
-    width: 45px;
-    height: 45px;
-  }
-}
-
-@media (max-width: 768px) {
-  .gallery-image {
-    height: 400px;
-  }
-  
-  .gallery-arrow {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-  }
-  
-  .gallery-prev {
-    left: 15px;
-  }
-  
-  .gallery-next {
-    right: 15px;
-  }
-  
-  .image-caption {
-    font-size: 1rem;
-    padding: 15px;
-  }
-}
-
-@media (max-width: 576px) {
-  .gallery-image {
-    height: 300px;
-  }
-  
-  .gallery-arrow {
-    width: 35px;
-    height: 35px;
-    font-size: 1rem;
-  }
-  
-  .gallery-title {
-    font-size: 1.5rem;
-  }
-  
-  .image-caption {
-    font-size: 0.9rem;
-    padding: 10px;
-  }
-  
-  .gallery-counter {
-    bottom: 10px;
-    right: 10px;
-    font-size: 0.8rem;
-  }
-}
-  </style>
-</head>
-<body>
-  <header class="hero-section">
-  <div class="hero-bg-parallax">
-    <img src="image/BANNERBIKE/SH350.jpg" alt="Honda SH350i" class="hero-bg" />
-  </div>
-  <div class="hero-overlay">
-    <div class="nav-bar">
-      <div class="logo">
-        <img src="image/logo/Logo_HEAD.png" alt="Logo" class="logo-img" />
-      </div>
-      <div class="menu-toggle" id="menuToggle">
-        <div class="hamburger-box">
-          <div class="hamburger-inner"></div>
-        </div>
+        .tab-btn {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="loader">
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
       </div>
     </div>
 
-    <!-- Side Menu -->
-    <nav class="side-menu" id="sideMenu">
-      <div class="menu-close-area" id="menuCloseArea"></div>
-      <div class="menu-container">
-        <button class="close-btn" id="closeBtn">
-          <span class="close-line"></span>
-          <span class="close-line"></span>
-        </button>
-        <ul class="menu-list">
-          <li class="menu-item"><a href="index.html" class="menu-link"><span>Trang chủ</span></a></li>
-          <li class="menu-item"><a href="sanphamxemay.html" class="menu-link"><span>Sản phẩm</span></a></li>
-          <li class="menu-item"><a href="khuyenmai.html" class="menu-link"><span>Khuyến mãi</span></a></li>
-          <li class="menu-item"><a href="#" class="menu-link"><span>Tin Tức</span></a></li>
-        </ul>
-      </div>
-    </nav>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-overlay"></div>
 
-    <div class="hero-content">
-      <div class="logo1">
-        <img src="image/logo/SH350-2025.png" alt="Logo" class="logo-main" />
-      </div>
-      <p class="hero-description">SH350i 2025 được tinh chỉnh với thiết kế thể thao, tối giản hơn nhưng vẫn mang dáng vẻ hiện đại, sang trọng. Được trang bị công nghệ tiên tiến, mẫu xe này không những phô diễn sức mạnh ấn tượng và khả năng vận hành vượt trội, mà còn tôn vinh sự tinh tế, lịch lãm của chủ sở hữu.</p>
-      <button class="cta-button" id="ctaButton">
-        <span class="button-text">Tìm hiểu ngay</span>
-        <span class="button-icon">→</span>
-      </button>
-    </div>
-  </div>
-</header>
-
-
-  <main class="container">
-    <section id="dat-mua">
-    <section class="product-info">
-      <h2>Phiên Bản và Màu Sắc</h2>
-      <p>Giá bán: <strong>liên hệ trực tiếp</strong></p>
-    </section>
-    </section>
-    <!-------------------SECTION SẢN PHẨM----------------->
-    <section class="product-gallery">
-      <div class="sliders-wrapper">
-        <div class="slider-container active" data-slider="1">
-          <div class="slider">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/1.png" alt="Xanh Đen 1">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/8.png" alt="Xanh Đen 2">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/7.png" alt="Xanh Đen 3">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/6.png" alt="Xanh Đen 4">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/5.png" alt="Xanh Đen 5">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/4.png" alt="Xanh Đen 6">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/3.png" alt="Xanh Đen 7">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/2.png" alt="Xanh Đen 8">
-          </div>
-          <button class="prev-btn">&#10094;</button>
-          <button class="next-btn">&#10095;</button>
-        </div>
-        <div class="slider-container" data-slider="2">
-          <div class="slider">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/1.png" alt="Xám Đen 1">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/8.png" alt="Xám Đen 2">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/7.png" alt="Xám Đen 3">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/6.png" alt="Xám Đen 4">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/5.png" alt="Xám Đen 5">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/4.png" alt="Xám Đen 6">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/3.png" alt="Xám Đen 7">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/2.png" alt="Xám Đen 8">
-          </div>
-          <button class="prev-btn">&#10094;</button>
-          <button class="next-btn">&#10095;</button>
-        </div>
-        <div class="slider-container" data-slider="3">
-          <div class="slider">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/1.png" alt="Xám Đen 1">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/8.png" alt="Xám Đen 2">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/7.png" alt="Xám Đen 3">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/6.png" alt="Xám Đen 4">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/5.png" alt="Xám Đen 5">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/4.png" alt="Xám Đen 6">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/3.png" alt="Xám Đen 7">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/2.png" alt="Xám Đen 8">
-          </div>
-          <button class="prev-btn">&#10094;</button>
-          <button class="next-btn">&#10095;</button>
-        </div>
-        <div class="slider-container" data-slider="4">
-          <div class="slider">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/1.png" alt="Xám Đen 1">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/8.png" alt="Xám Đen 2">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/7.png" alt="Xám Đen 3">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/6.png" alt="Xám Đen 4">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/5.png" alt="Xám Đen 5">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/4.png" alt="Xám Đen 6">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/3.png" alt="Xám Đen 7">
-            <img src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/2.png" alt="Xám Đen 8">
-          </div>
-          <button class="prev-btn">&#10094;</button>
-          <button class="next-btn">&#10095;</button>
-        </div>
-      </div>
-      <div class="control-buttons">
-        <button class="control-btn active" data-slider="1">
-          <span class="color-circle" style="background-color: #004225;"></span> Xanh Đen - Thể Thao
-        </button>
-        <button class="control-btn" data-slider="2">
-          <span class="color-circle" style="background-color: #555;"></span> Xám Đen - Thể Thao
-        </button>
-        <button class="control-btn" data-slider="3">
-          <span class="color-circle" style="background-color: #1f1d1d;"></span> Xám Đen - Đặc Biệt
-        </button>
-        <button class="control-btn" data-slider="4">
-          <span class="color-circle" style="background-color: #ffffff;"></span> Trắng Đen - Cao Cấp
-        </button>
-      </div>
-    </section>
-    <section class="product-info">
-      <h2>Thông tin sản phẩm</h2> 
-    </section>
-    <!---------------------BANNER-SLIDER-INFORMATION---------------------------->
-      <section class="banner-slider">
-    <div class="banner-wrapper" id="bannerWrapper">
-      <div class="banner">
-        <img src="image/INFORMATION/SH350/TK1.jpg" alt="Ưu đãi mùa hè">
-        <div class="banner-text">
-          <h3>THIẾT KẾ</h3>
-          <h3>Màu sắc mới sang trọng và thời thượng</h3>
-        </div>
-      </div>
-      <div class="banner">
-        <img src="image/INFORMATION/SH350/TK2.jpg" alt="Ưu đãi 2">
-        <div class="banner-text">
-          <h3>THIẾT KẾ</h3>
-          <h3>Thiết kế phía sau sang trọng & cuốn hút</h3>
-        </div>
-      </div>
-      <div class="banner">
-        <img src="image/INFORMATION/SH350/TK3.jpg" alt="Ưu đãi 2">
-        <div class="banner-text">
-          <h3>THIẾT KẾ</h3>
-          <h3>Mặt đồng hồ LCD hiện đại cùng nhiều tính năng</h3>
-        </div>
-      </div>
-      <div class="banner">
-        <img src="image/INFORMATION/SH350/ĐC1.jpg" alt="Ưu đãi 2">
-        <div class="banner-text">
-          <h3>THIẾT KẾ</h3>
-          <h3>Mặt đồng hồ LCD hiện đại cùng nhiều tính năng</h3>
-        </div>
-      </div>
-    </div>
-  </section>
-    <!---------------THÔNG SỐ KỸ THUẬT-------------------->
-    <section class="spec-section">
+      <header class="main-header">
         <div class="container">
-            <button id="specButton" class="spec-button">
-                <i class="fas fa-cogs"></i> Xem Thông số Kỹ thuật
-            </button>
-            
-            <div id="specModal" class="spec-modal">
-                <div class="modal-content">
-                    <span class="close-button">&times;</span>
-                    <h2>Thông số Kỹ thuật</h2>
-                    <div class="spec-table-container">
-                        <table class="spec-table">
-                            <thead>
-                                <tr>
-                                    <td>Khối lượng bản thân</td>
-                                    <td>172 kg</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Dài x Rộng x Cao</td>
-                                    <td>2.160 mm x 743 mm x 1.162 mm</td>
-                                </tr>
-                                <tr>
-                                    <td>Khoảng cách trục bánh xe</td>
-                                    <td>1.450 mm</td>
-                                </tr>
-                                <tr>
-                                    <td>Độ cao yên</td>
-                                    <td>805 mm</td>
-                                </tr>
-                                <tr>
-                                    <td>Khoảng sáng gầm xe</td>
-                                    <td>132 mm</td>
-                                </tr>
-                                <tr>
-                                    <td>Dung tích bình xăng</td>
-                                    <td>9,3 lít</td>
-                                </tr>
-                                <tr>
-                                    <td>Kích cỡ lốp trước/sau</td>
-                                    <td>Lốp trước: 110/70-16 M/C 52S <br>
-                                        Lốp sau: 130/70R16 M/C 61S</td>
-                                </tr>
-                                <tr>
-                                    <td>Phuộc trước</td>
-                                    <td>Phuộc ống lồng giảm chấn thủy lực</td>
-                                </tr>
-                                <tr>
-                                    <td>Phuộc sau</td>
-                                    <td>Phuộc sau đôi, lò xo trụ, giảm chấn thủy lực</td>
-                                </tr>
-                                <tr>
-                                    <td>Loại động cơ</td>
-                                    <td>Xăng 4 kỳ, 1 xi lanh, làm mát chất lỏng</td>
-                                </tr>
-                                <tr>
-                                    <td>Công suất tối đa</td>
-                                    <td>21,5 kW/7.500 vòng/phút</td>
-                                </tr>
-                                <tr>
-                                    <td>Dung tích nhớt máy</td>
-                                    <td>Sau khi xả: 1,4 lít <br>
-                                    Sau khi xả và thay lưới lọc: 1,5 lít <br>
-                                    Sau khi rã máy: 1,85 lít</td>
-                                </tr>
-                                <tr>
-                                    <td>Mức tiêu thụ nhiên liệu</td>
-                                    <td>3.52 l/100km</td>
-                                </tr>
-                                <tr>
-                                    <td>Loại truyền động</td>
-                                    <td>Biến thiên vô cấp</td>
-                                </tr>
-                                <tr>
-                                    <td>Hệ thống khởi động</td>
-                                    <td>Điện</td>
-                                </tr>
-                                <tr>
-                                    <td>Moment cực đại</td>
-                                    <td>31,8 Nm/5.250 vòng/phút</td>
-                                </tr>
-                                <tr>
-                                    <td>Dung tích xy-lanh</td>
-                                    <td>330 cm3</td>
-                                </tr>
-                                <tr>
-                                    <td>Đường kính x Hành trình pít tông</td>
-                                    <td>77 mm x 70,77 mm</td>
-                                </tr>
-                                <tr>
-                                    <td>Tỷ số nén</td>
-                                    <td>10,5:1</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!----------------PHOTO SLIDER----------------------------->
-    <section class="photo-gallery">
-  <h2 class="gallery-title">BỘ SƯU TẬP HÌNH ẢNH</h2>
-  <div class="gallery-container">
-    <div class="gallery-slider" id="gallerySlider">
-      <div class="gallery-slide">
-        <img src="image/PHOTOBIKE/SH350/1.jpg" alt="Hình ảnh 1" class="gallery-image">
-      </div>
-      <div class="gallery-slide">
-        <img src="image/PHOTOBIKE/SH350/2.jpg" alt="Hình ảnh 2" class="gallery-image">
-      </div>
-      <div class="gallery-slide">
-        <img src="image/PHOTOBIKE/SH350/3.jpg" alt="Hình ảnh 3" class="gallery-image">
-      </div>
-      <div class="gallery-slide">
-        <img src="image/PHOTOBIKE/SH350/4.jpg" alt="Hình ảnh 4" class="gallery-image">
-      </div>
-      <div class="gallery-slide">
-        <img src="image/PHOTOBIKE/SH350/5.jpg" alt="Hình ảnh 5" class="gallery-image">
-      </div>
-    </div>
-    
-    <button class="gallery-arrow gallery-prev" aria-label="Previous image">❮</button>
-    <button class="gallery-arrow gallery-next" aria-label="Next image">❯</button>
-    
-    <div class="gallery-dots"></div>
-    
-    <div class="gallery-counter">
-      <span class="current-slide">1</span> / <span class="total-slides">5</span>
-    </div>
-  </div>
-</section>
-<!-------------script menu top----------------------->
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Mark hero as loaded for animations
-  setTimeout(() => {
-    document.querySelector('.hero-section').classList.add('loaded');
-  }, 100);
-  
-  // Menu toggle functionality
-  const menuToggle = document.getElementById('menuToggle');
-  const sideMenu = document.getElementById('sideMenu');
-  const closeBtn = document.getElementById('closeBtn');
-  const menuCloseArea = document.getElementById('menuCloseArea');
-  
-  function toggleMenu() {
-    menuToggle.classList.toggle('active');
-    sideMenu.classList.toggle('active');
-    document.body.classList.toggle('no-scroll');
-  }
-  
-  menuToggle.addEventListener('click', toggleMenu);
-  closeBtn.addEventListener('click', toggleMenu);
-  menuCloseArea.addEventListener('click', toggleMenu);
-  
-  // Staggered menu item animation
-  const menuItems = document.querySelectorAll('.menu-item');
-  menuItems.forEach((item, index) => {
-    item.style.setProperty('--i', index);
-  });
-  
-  // Smooth scroll for CTA button
-  const ctaButton = document.getElementById('ctaButton');
-  ctaButton.addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.getElementById('dat-mua');
-    if (target) {
-      window.scrollTo({
-        top: target.offsetTop,
-        behavior: 'smooth'
-      });
-    }
-  });
-  
-  // Parallax effect for background
-  const heroBgParallax = document.querySelector('.hero-bg-parallax');
-  
-  if (heroBgParallax) {
-    window.addEventListener('scroll', function() {
-      const scrollPosition = window.pageYOffset;
-      heroBgParallax.style.transform = `translateY(${scrollPosition * 0.5}px)`;
-    });
-  }
-  
-  // Button hover effect enhancement
-  const buttons = document.querySelectorAll('.cta-button');
-  buttons.forEach(button => {
-    button.addEventListener('mouseenter', function() {
-      this.querySelector('.button-icon').style.transitionDelay = '0.2s';
-    });
-    
-    button.addEventListener('mouseleave', function() {
-      this.querySelector('.button-icon').style.transitionDelay = '0s';
-    });
-  });
-});
-</script>
-<!---------------------script-thong so ki thuat-------------------------->
-<script>
-        document.addEventListener('DOMContentLoaded', function() {
-    // Lấy các phần tử DOM
-    const specButton = document.getElementById('specButton');
-    const specModal = document.getElementById('specModal');
-    const closeButton = document.querySelector('.close-button');
-    
-    // Mở modal khi click nút
-    specButton.addEventListener('click', function() {
-        specModal.style.display = 'block';
-        setTimeout(() => {
-            specModal.style.opacity = '1';
-        }, 10);
-        document.body.style.overflow = 'hidden'; // Ngăn scroll khi modal mở
-    });
-    
-    // Đóng modal khi click nút đóng
-    closeButton.addEventListener('click', function() {
-        specModal.style.opacity = '0';
-        setTimeout(() => {
-            specModal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Cho phép scroll lại
-        }, 300);
-    });
-    
-    // Đóng modal khi click bên ngoài nội dung modal
-    specModal.addEventListener('click', function(e) {
-        if (e.target === specModal) {
-            specModal.style.opacity = '0';
-            setTimeout(() => {
-                specModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 300);
-        }
-    });
-    
-    // Đóng modal khi nhấn phím Esc
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && specModal.style.display === 'block') {
-            specModal.style.opacity = '0';
-            setTimeout(() => {
-                specModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 300);
-        }
-    });
-});
-    </script>
-  </main>
+          <a href="#" class="logo">
+            <img src="image/logo/Logo_HEAD.png" alt="Honda Logo" />
+          </a>
 
-  <footer class="site-footer">
-    <div class="footer-content">
-      <p>&copy; Hệ Thống HEAD Trung Hùng • Đã đăng ký bản quyền.</p>
-      <nav class="footer-nav">
-        <a href="index.html">Trang chủ</a>
-        <a href="sanphamxemay.html">Sản phẩm</a>
-        <a href="khuyenmai.html">Khuyến mãi</a>
-        <a href="cuahang.html">Cửa Hàng</a>
-      </nav>
-    </div>
-  </footer>
-</body>
+          <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+
+          <nav class="main-nav">
+            <ul>
+              <li><a href="index.html" class="active">Trang chủ</a></li>
+              <li><a href="#gallery">Thư viện ảnh</a></li>
+              <li><a href="#specs">Thông số kỹ thuật</a></li>
+              <li><a href="#features">Tính năng</a></li>
+              <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <div class="hero-content">
+        <div class="container">
+          <h1 class="hero-title" data-aos="fade-up">Honda SH350i</h1>
+          <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Khẳng định đẳng cấp thời thượng
+          </p>
+          <div data-aos="fade-up" data-aos-delay="200">
+            <a href="#gallery" class="btn btn-primary btn-lg">
+              Khám phá ngay <i class="fas fa-arrow-down"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll-down">
+        <a href="#gallery" class="scroll-link">
+          <div class="mouse">
+            <div class="wheel"></div>
+          </div>
+          <div class="arrows">
+            <span class="arrow"></span>
+            <span class="arrow"></span>
+            <span class="arrow"></span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Product Gallery Section -->
+    <section id="gallery" class="product-gallery-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Bộ Sưu Tập Hình Ảnh</h2>
+          <p class="section-subtitle">
+            Khám phá Honda SH350i qua các phiên bản màu sắc
+          </p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="color-selector">
+          <button class="color-btn active" data-color="xanh-den">
+            <span class="color-circle" style="background-color: #004225"></span>
+            Xanh Đen - Thể Thao
+          </button>
+          <button class="color-btn" data-color="xam-den">
+            <span class="color-circle" style="background-color: #555555"></span>
+            Xám Đen - Thể Thao
+          </button>
+          <button class="color-btn" data-color="bac-den">
+            <span class="color-circle" style="background-color: #242424"></span>
+            Xám Đen - Đặc Biệt
+          </button>
+          <button class="color-btn" data-color="trang-den">
+            <span
+              class="color-circle"
+              style="background-color: #ffffff; border: 1px solid #ccc"
+            ></span>
+            Trắng Đen - Cao Cấp
+          </button>
+        </div>
+
+        <div class="slider-container active" data-color="xanh-den">
+          <div class="slider">
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/1.png"
+                alt="Honda SH350i Xanh Đen 1"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/2.png"
+                alt="Honda SH350i Xanh Đen 2"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/3.png"
+                alt="Honda SH350i Xanh Đen 3"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/4.png"
+                alt="Honda SH350i Xanh Đen 4"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/5.png"
+                alt="Honda SH350i Xanh Đen 5"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/6.png"
+                alt="Honda SH350i Xanh Đen 6"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/7.png"
+                alt="Honda SH350i Xanh Đen 7"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/8.png"
+                alt="Honda SH350i Xanh Đen 8"
+              />
+            </div>
+          </div>
+          <button class="slider-nav prev-btn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="slider-nav next-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="slider-container" data-color="xam-den">
+          <div class="slider">
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/1.png"
+                alt="Honda SH350i Xám Đen 1"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/2.png"
+                alt="Honda SH350i Xám Đen 2"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/3.png"
+                alt="Honda SH350i Xám Đen 3"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/4.png"
+                alt="Honda SH350i Xám Đen 4"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/5.png"
+                alt="Honda SH350i Xám Đen 5"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/6.png"
+                alt="Honda SH350i Xám Đen 6"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/7.png"
+                alt="Honda SH350i Xám Đen 7"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XÁM ĐEN/8.png"
+                alt="Honda SH350i Xám Đen 8"
+              />
+            </div>
+          </div>
+          <button class="slider-nav prev-btn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="slider-nav next-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="slider-container" data-color="bac-den">
+          <div class="slider">
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/1.png"
+                alt="Honda SH350i Xám Đen 1"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/2.png"
+                alt="Honda SH350i Xám Đen 2"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/3.png"
+                alt="Honda SH350i Xám Đen 3"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/4.png"
+                alt="Honda SH350i Xám Đen 4"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/5.png"
+                alt="Honda SH350i Xám Đen 5"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/6.png"
+                alt="Honda SH350i Xám Đen 6"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/7.png"
+                alt="Honda SH350i Xám Đen 7"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Đặc Biệt - XÁM ĐEN/8.png"
+                alt="Honda SH350i Xám Đen 8"
+              />
+            </div>
+          </div>
+          <button class="slider-nav prev-btn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="slider-nav next-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="slider-container" data-color="trang-den">
+          <div class="slider">
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/1.png"
+                alt="Honda SH350i Trắng Đen 1"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/2.png"
+                alt="Honda SH350i Trắng Đen 2"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/3.png"
+                alt="Honda SH350i Trắng Đen 3"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/4.png"
+                alt="Honda SH350i Trắng Đen 4"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/5.png"
+                alt="Honda SH350i Trắng Đen 5"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/6.png"
+                alt="Honda SH350i Trắng Đen 6"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/7.png"
+                alt="Honda SH350i Trắng Đen 7"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/SH350/Phiên bản Cao Cấp - TRẮNG ĐEN/8.png"
+                alt="Honda SH350i Trắng Đen 8"
+              />
+            </div>
+          </div>
+          <button class="slider-nav prev-btn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="slider-nav next-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Specifications Section -->
+    <section id="specs" class="specs-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Thông Số Kỹ Thuật</h2>
+          <p class="section-subtitle">
+            Công nghệ vượt trội, hiệu suất ấn tượng
+          </p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="specs-grid">
+          <div class="specs-card" data-aos="fade-up">
+            <div class="specs-icon">
+              <i class="fas fa-tachometer-alt"></i>
+            </div>
+            <h3 class="specs-title">Động Cơ</h3>
+            <ul class="specs-list">
+              <li>Loại động cơ: 4 thì, xy-lanh đơn, SOHC</li>
+              <li>Dung tích: 330cc</li>
+              <li>Công suất tối đa: 29.2 HP @ 7.500 rpm</li>
+              <li>Mô-men xoắn cực đại: 32.1 Nm @ 5.250 rpm</li>
+            </ul>
+          </div>
+
+          <div class="specs-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="specs-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <h3 class="specs-title">Hệ Thống Truyền Động</h3>
+            <ul class="specs-list">
+              <li>Hộp số: Vô cấp</li>
+              <li>Hệ thống truyền động: Dây curoa</li>
+              <li>Hệ thống khởi động: Điện</li>
+            </ul>
+          </div>
+
+          <div class="specs-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="specs-icon">
+              <i class="fas fa-ruler-combined"></i>
+            </div>
+            <h3 class="specs-title">Kích Thước & Trọng Lượng</h3>
+            <ul class="specs-list">
+              <li>Dài x Rộng x Cao: 2.145 x 740 x 1.180 mm</li>
+              <li>Chiều cao yên: 790 mm</li>
+              <li>Khoảng cách trục bánh xe: 1.520 mm</li>
+              <li>Trọng lượng bản thân: 168 kg</li>
+            </ul>
+          </div>
+
+          <div class="specs-card" data-aos="fade-up">
+            <div class="specs-icon">
+              <i class="fas fa-gas-pump"></i>
+            </div>
+            <h3 class="specs-title">Hệ Thống Nhiên Liệu</h3>
+            <ul class="specs-list">
+              <li>Dung tích bình xăng: 9.1 lít</li>
+              <li>Hệ thống phun xăng: PGM-FI</li>
+              <li>Mức tiêu thụ nhiên liệu: ~3.2 lít/100km</li>
+            </ul>
+          </div>
+
+          <div class="specs-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="specs-icon">
+              <i class="fas fa-braille"></i>
+            </div>
+            <h3 class="specs-title">Hệ Thống Phanh</h3>
+            <ul class="specs-list">
+              <li>Phanh trước: Đĩa đơn, ABS</li>
+              <li>Phanh sau: Đĩa đơn, ABS</li>
+              <li>Hệ thống chống bó cứng phanh: Có</li>
+            </ul>
+          </div>
+
+          <div class="specs-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="specs-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3 class="specs-title">Tiện Nghi</h3>
+            <ul class="specs-list">
+              <li>Hệ thống chiếu sáng: LED</li>
+              <li>Đồng hồ hiển thị: LCD đa thông tin</li>
+              <li>Hệ thống chống trộm: Smart Key</li>
+              <li>Hộc đựng đồ: Có</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Tính Năng Nổi Bật</h2>
+          <p class="section-subtitle">Trải nghiệm đẳng cấp cùng Honda SH350i</p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="features-tabs">
+          <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="design">Thiết Kế</button>
+            <button class="tab-btn" data-tab="performance">Vận Hành</button>
+            <button class="tab-btn" data-tab="technology">Công Nghệ</button>
+            <button class="tab-btn" data-tab="safety">An Toàn</button>
+          </div>
+
+          <div class="tab-content active" data-tab="design">
+            <div class="feature-content">
+              <div class="feature-text" data-aos="fade-right">
+                <h3>Thiết Kế Thời Thượng</h3>
+                <p>
+                  Honda SH350i sở hữu thiết kế thể thao nhưng không kém phần
+                  sang trọng với những đường nét mạnh mẽ, khỏe khoắn. Phiên bản
+                  mới được nâng cấp hệ thống đèn LED hiện đại cùng nhiều chi
+                  tiết cao cấp.
+                </p>
+                <ul>
+                  <li>Đèn pha LED thiết kế đa chiều</li>
+                  <li>Yên xe rộng rãi, êm ái</li>
+                  <li>Hệ thống gương chiếu hậu tích hợp đèn báo rẽ</li>
+                  <li>Bộ vành nan hoa 16-inch mạnh mẽ</li>
+                </ul>
+              </div>
+              <div class="feature-image" data-aos="fade-left">
+                <img
+                  src="image/INFORMATION/SH350/TK1.jpg"
+                  alt="Thiết kế Honda SH350i"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content" data-tab="performance">
+            <div class="feature-content">
+              <div class="feature-text" data-aos="fade-right">
+                <h3>Hiệu Suất Vượt Trội</h3>
+                <p>
+                  Động cơ 330cc mạnh mẽ mang đến trải nghiệm lái đầy phấn khích.
+                  Hệ thống truyền động tinh chỉnh giúp tăng tốc mượt mà và tiết
+                  kiệm nhiên liệu tối ưu.
+                </p>
+                <ul>
+                  <li>Công suất 29.2 HP @ 7.500 rpm</li>
+                  <li>Mô-men xoắn cực đại 32.1 Nm @ 5.250 rpm</li>
+                  <li>Hệ thống phun xăng điện tử PGM-FI</li>
+                  <li>Tiết kiệm nhiên liệu chỉ ~3.2 lít/100km</li>
+                </ul>
+              </div>
+              <div class="feature-image" data-aos="fade-left">
+                <img
+                  src="image/INFORMATION/SH350/ĐC1.jpg"
+                  alt="Hiệu suất Honda SH350i"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content" data-tab="technology">
+            <div class="feature-content">
+              <div class="feature-text" data-aos="fade-right">
+                <h3>Công Nghệ Tiên Tiến</h3>
+                <p>
+                  Honda SH350i được trang bị những công nghệ hiện đại nhất, mang
+                  đến trải nghiệm lái xe thông minh và an toàn vượt trội.
+                </p>
+                <ul>
+                  <li>Hệ thống khóa thông minh Smart Key</li>
+                  <li>Đồng hồ LCD đa thông tin</li>
+                  <li>Hệ thống đèn LED toàn diện</li>
+                  <li>Kết nối ứng dụng Honda trên smartphone</li>
+                </ul>
+              </div>
+              <div class="feature-image" data-aos="fade-left">
+                <img
+                  src="image/INFORMATION/SH350/CN3.jpg"
+                  alt="Công nghệ Honda SH350i"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content" data-tab="safety">
+            <div class="feature-content">
+              <div class="feature-text" data-aos="fade-right">
+                <h3>An Toàn Tối Ưu</h3>
+                <p>
+                  Honda luôn đặt yếu tố an toàn lên hàng đầu. SH350i được trang
+                  bị những công nghệ an toàn tiên tiến nhất để bảo vệ người lái
+                  trong mọi tình huống.
+                </p>
+                <ul>
+                  <li>Hệ thống phanh ABS tiêu chuẩn</li>
+                  <li>Hệ thống chống bó cứng phanh</li>
+                  <li>Khung xe chắc chắn, ổn định cao tốc</li>
+                  <li>Lốp xe thiết kế đặc biệt cho độ bám đường tốt</li>
+                </ul>
+              </div>
+              <div class="feature-image" data-aos="fade-left">
+                <img
+                  src="image/INFORMATION/SH350/CN1.jpg"
+                  alt="An toàn Honda SH350i"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Liên Hệ Tư Vấn</h2>
+          <p class="section-subtitle">Liên hệ trực tiếp với chúng tôi</p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="contact-container">
+          <div class="contact-info" data-aos="fade-right">
+            <h3>Thông Tin Liên Hệ</h3>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <p>
+                Trụ Sở Chính: 135 Chu Văn Thịnh, Tổ 1, P. Tô Hiệu, TP. Sơn La,
+                Sơn La
+              </p>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <p>
+                CN Hà Nội: 319 Nguyễn Văn Cừ, P. Ngọc Lâm, Q. Long Biên, TP. Hà
+                Nội
+              </p>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <p>
+                CN Bình Định: 290-292 Lê Hồng Phong, P. Thị Nại, TP. Quy Nhơn,
+                Bình Định
+              </p>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-phone-alt"></i>
+              <p>Hotline: 1900 636 712</p>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <p>Email: cr@hungmanh.com.vn</p>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <p>Email: cr_mt@hungmanh.com.vn</p>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-clock"></i>
+              <p>Giờ làm việc: 7:30 - 17:30 (Thứ 2 - Chủ Nhật)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="image/logo/SH350-2025.png" alt="Honda Logo" />
+            <p>Honda SH350i - Khẳng định đẳng cấp thời thượng</p>
+          </div>
+
+          <div class="footer-links">
+            <h4>Liên Kết Nhanh</h4>
+            <ul>
+              <li><a href="#home">Trang đầu</a></li>
+              <li><a href="#gallery">Thư viện ảnh</a></li>
+              <li><a href="#specs">Thông số kỹ thuật</a></li>
+              <li><a href="#features">Tính năng</a></li>
+              <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-social">
+            <h4>Theo Dõi Chúng Tôi</h4>
+            <div class="social-icons">
+              <a href="https://www.facebook.com/hethongheadtrunghung"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://www.instagram.com/hethongheadtrunghung"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 HEAD Trung Hung. All Rights Reserved.</p>
+          <div class="legal-links">
+            <a href="#"></a>
+            <a href="#"></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#home" class="back-to-top" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Preloader
+        const preloader = document.querySelector(".preloader");
+
+        window.addEventListener("load", function () {
+          setTimeout(function () {
+            preloader.classList.add("fade-out");
+            setTimeout(function () {
+              preloader.style.display = "none";
+            }, 500);
+          }, 1000);
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector(".menu-toggle");
+        const mainNav = document.querySelector(".main-nav");
+        const bars = document.querySelectorAll(".bar");
+
+        menuToggle.addEventListener("click", function () {
+          this.classList.toggle("active");
+          mainNav.classList.toggle("active");
+
+          // Change menu icon color when scrolled
+          if (window.scrollY > 100) {
+            bars.forEach((bar) => {
+              bar.style.backgroundColor = this.classList.contains("active")
+                ? "white"
+                : "var(--dark-color)";
+            });
+          }
+        });
+
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll(".main-nav a");
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            if (mainNav.classList.contains("active")) {
+              menuToggle.classList.remove("active");
+              mainNav.classList.remove("active");
+            }
+          });
+        });
+
+        // Header Scroll Effect
+        const header = document.querySelector(".main-header");
+
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 100) {
+            header.classList.add("scrolled");
+          } else {
+            header.classList.remove("scrolled");
+          }
+
+          // Back to Top Button
+          const backToTop = document.querySelector(".back-to-top");
+          if (window.scrollY > 300) {
+            backToTop.classList.add("active");
+          } else {
+            backToTop.classList.remove("active");
+          }
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              const headerHeight =
+                document.querySelector(".main-header").offsetHeight;
+              const targetPosition =
+                targetElement.getBoundingClientRect().top +
+                window.pageYOffset -
+                headerHeight;
+
+              window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // Product Gallery Sliders
+        function initSliders() {
+          const sliderContainers =
+            document.querySelectorAll(".slider-container");
+
+          sliderContainers.forEach((container) => {
+            const slider = container.querySelector(".slider");
+            const slides = container.querySelectorAll(".slide");
+            const slideCount = slides.length;
+            let currentIndex = 0;
+
+            // Set initial slide width
+            slides.forEach((slide) => {
+              slide.style.minWidth = "100%";
+            });
+
+            // Next button
+            container
+              .querySelector(".next-btn")
+              .addEventListener("click", () => {
+                currentIndex = (currentIndex + 1) % slideCount;
+                updateSlider();
+              });
+
+            // Prev button
+            container
+              .querySelector(".prev-btn")
+              .addEventListener("click", () => {
+                currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+                updateSlider();
+              });
+
+            function updateSlider() {
+              slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            // Touch events for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            slider.addEventListener(
+              "touchstart",
+              (e) => {
+                touchStartX = e.touches[0].clientX;
+              },
+              { passive: true }
+            );
+
+            slider.addEventListener(
+              "touchend",
+              (e) => {
+                touchEndX = e.changedTouches[0].clientX;
+                handleSwipe();
+              },
+              { passive: true }
+            );
+
+            function handleSwipe() {
+              const diff = touchStartX - touchEndX;
+              if (diff > 50) {
+                // Swipe left - next
+                currentIndex = (currentIndex + 1) % slideCount;
+              } else if (diff < -50) {
+                // Swipe right - prev
+                currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+              }
+              updateSlider();
+            }
+          });
+        }
+
+        // Color change functionality
+        function initColorChange() {
+          const colorButtons = document.querySelectorAll(".color-btn");
+
+          colorButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+              // Remove active class from all buttons
+              colorButtons.forEach((btn) => btn.classList.remove("active"));
+
+              // Add active class to clicked button
+              this.classList.add("active");
+
+              // Get the slider to show
+              const colorId = this.getAttribute("data-color");
+
+              // Hide all sliders
+              document
+                .querySelectorAll(".slider-container")
+                .forEach((container) => {
+                  container.classList.remove("active");
+                });
+
+              // Show selected slider
+              const targetSlider = document.querySelector(
+                `.slider-container[data-color="${colorId}"]`
+              );
+              targetSlider.classList.add("active");
+
+              // Reset slider position
+              const slider = targetSlider.querySelector(".slider");
+              slider.style.transform = "translateX(0)";
+            });
+          });
+        }
+
+        // Features Tabs
+        function initFeaturesTabs() {
+          const tabButtons = document.querySelectorAll(".tab-btn");
+          const tabContents = document.querySelectorAll(".tab-content");
+
+          tabButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+              // Remove active class from all buttons
+              tabButtons.forEach((btn) => btn.classList.remove("active"));
+
+              // Add active class to clicked button
+              this.classList.add("active");
+
+              // Get the tab to show
+              const tabId = this.getAttribute("data-tab");
+
+              // Hide all tabs
+              tabContents.forEach((content) => {
+                content.classList.remove("active");
+              });
+
+              // Show selected tab
+              document
+                .querySelector(`.tab-content[data-tab="${tabId}"]`)
+                .classList.add("active");
+            });
+          });
+        }
+
+        // Initialize when DOM is loaded
+        initSliders();
+        initColorChange();
+        initFeaturesTabs();
+
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+          duration: 800,
+          easing: "ease-in-out",
+          once: true,
+          offset: 100,
+        });
+      });
+    </script>
+  </body>
 </html>
