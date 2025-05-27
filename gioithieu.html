@@ -1,1850 +1,1432 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Giới thiệu - HEAD Trung Hùng</title>
-  <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/54f0cb7e4a.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- AOS Animation -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, Helvetica, sans-serif; background-color: #f9f9f9; overflow-x: hidden; }
-    a { text-decoration: none; color: inherit; }
-
-    /* HEADER NAVBAR */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      height: 60px;
-      background-color: transparent;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1.5rem;
-      z-index: 1000;
-      transition: background-color 0.4s ease, box-shadow 0.3s ease;
-    }
-
-    .navbar .logo { display: flex; align-items: center; gap: 0.5rem; }
-    .navbar .logo img { height: 40px; }
-
-    .hamburger {
-      width: 30px;
-      height: 22px;
-      position: relative;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      z-index: 1001;
-    }
-    .hamburger span {
-      height: 3px;
-      background: white;
-      border-radius: 2px;
-      transition: all 0.4s ease;
-    }
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(6px, 6px);
-    }
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
-    /* Khi cuộn xuống: navbar màu đỏ + shadow */
-    .navbar.scrolled {
-      background-color: #dc2626;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-    /* Hamburger chuyển sang nền sáng (đỏ đậm) khi scroll */
-    .hamburger span {
-      background: white;
-    }
-    /* Nav Menu Styles */
-.nav-menu {
-  background-color: #fff;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  padding: 0 20px;
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 0;
-  position: relative;
-}
-
-/* Brand logo styles */
-.brand-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  z-index: 1002;
-  height: 40px; /* Cố định chiều cao để căn giữa với nút menu */
-}
-
-.logo-img {
-  height: 100%;
-  width: auto;
-  margin-right: 10px;
-  transition: all 0.3s ease;
-}
-
-.brand-name {
-  color: #333;
-  font-weight: 700;
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
-}   
-
-
-/* Main navigation links */
-.main-menu {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.nav-links-container {
-  display: flex;
-  gap: 5px;
-}
-
-.nav-link {
-  position: relative;
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 12px 18px;
-  transition: all 0.3s ease;
-  overflow: hidden;
-  border-radius: 4px;
-  text-align: center;
-}
-
-.nav-link span {
-  position: relative;
-  z-index: 1;
-}
-
-.nav-link:before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #ff0000;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
-}
-
-.nav-link:hover:before {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-.nav-link:hover {
-  color: #ff0000;
-}
-
-/* Desktop buttons */
-.desktop-buttons {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-left: 20px;
-}
-
-/* Mobile buttons - hidden on desktop */
-.mobile-buttons {
-  display: none;
-}
-
-/* Social buttons */
-.social-buttons {
-  display: flex;
-  gap: 8px;
-}
-
-/* Navigation buttons */
-.nav-button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  font-size: 0.95rem;
-}
-
-.contact-button {
-  background-color: #ff0000;
-  color: white;
-  border: 2px solid #ff0000;
-}
-
-.store-button {
-  background-color: transparent;
-  color: #333;
-  border: 2px solid #ddd;
-}
-
-.nav-button:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: 0.5s;
-}
-
-.nav-button:hover:before {
-  left: 100%;
-}
-
-.contact-button:hover {
-  background-color: #e60000;
-  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
-}
-
-.store-button:hover {
-  border-color: #ff0000;
-  color: #ff0000;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Social buttons */
-.social-button {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.social-button:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  transition: 0.5s;
-}
-
-.social-button:hover:before {
-  left: 100%;
-}
-
-.facebook {
-  background-color: #3b5998;
-}
-
-.instagram {
-  background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-}
-
-.youtube {
-  background-color: #ff0000;
-}
-
-.tiktok {
-  background-color: #000000;
-}
-
-.social-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* ===== MOBILE MENU TOGGLE ===== */
-.mobile-menu-toggle {
-  display: none; /* Ẩn trên desktop */
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  z-index: 1001;
-  height: 40px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.mobile-menu-toggle .bar {
-  display: block;
-  width: 25px;
-  height: 3px;
-  background-color: #333;
-  margin: 3px 0;
-  transition: all 0.3s ease;
-}
- /* Hiệu ứng chuyển đổi nút menu thành dấu X */
-  .nav-menu.active .mobile-menu-toggle .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  .nav-menu.active .mobile-menu-toggle .bar:nth-child(2) {
-    opacity: 0;
-  }
-  .nav-menu.active .mobile-menu-toggle .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-/* Active link style */
-.nav-link.active {
-  color: #ff0000;
-}
-
-.nav-link.active:before {
-  transform: scaleX(1);
-}
-
-/* Scrolled state */
-.nav-menu.scrolled {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-  background-color: rgba(255, 255, 255, 0.98);
-  padding: 0 10px;
-}
-
-.nav-menu.scrolled .brand-logo {
-  padding: 5px 0;
-}
-
-.nav-menu.scrolled .logo-img {
-  height: 35px;
-}
-
-.nav-menu.scrolled .brand-name {
-  font-size: 1.1rem;
-}
-
-.nav-menu.scrolled .nav-link {
-  padding: 10px 15px;
-  font-size: 0.95rem;
-}
-
-/* Responsive Styles */
-@media (max-width: 1024px) {
-  /* iPad và các thiết bị nhỏ hơn */
-  .nav-container {
-    padding: 10px 15px;
-    height: 60px; /* Chiều cao cố định cho thanh nav */
-  }
-  
-  .brand-logo {
-    height: 40px;
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  /* Hiển thị nút menu 3 gạch */
-  .mobile-menu-toggle {
-    display: flex;
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  /* Ẩn menu chính trên mobile */
-  .main-menu {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 60px);
-    background-color: #fff;
-    flex-direction: column;
-    padding: 20px 0;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    z-index: 999;
-  }
-  /* Hiệu ứng khi menu mở */
-  .nav-menu.active .main-menu {
-    transform: translateX(0);
-  }
-  /* Hiệu ứng chuyển đổi nút menu thành dấu X */
-  .nav-menu.active .mobile-menu-toggle .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  .nav-menu.active .mobile-menu-toggle .bar:nth-child(2) {
-    opacity: 0;
-  }
-  .nav-menu.active .mobile-menu-toggle .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-  
-  /* Đảm bảo logo vẫn hiển thị khi menu mở */
-  .nav-menu.active .brand-logo {
-    position: relative;
-    z-index: 1002;
-  }
-  .nav-links-container {
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .nav-link {
-    width: 100%;
-    padding: 15px 20px;
-    border-bottom: 1px solid #f5f5f5;
-    text-align: left;
-  }
-  
-  .desktop-buttons {
-    display: none;
-  }
-  
-  .mobile-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-    width: 100%;
-    border-top: 1px solid #eee;
-    margin-top: 15px;
-  }
-  
-  .social-buttons {
-    justify-content: center;
-    margin-top: 10px;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-container {
-    height: 56px; /* Chiều cao nhỏ hơn cho mobile */
-  }
-  
-  .brand-logo {
-    height: 36px;
-  }
-  
-  .logo-img {
-    height: 100%;
-  }
-  
-  .brand-name {
-    font-size: 1rem;
-  }
-  
-  .mobile-menu-toggle {
-    padding: 8px;
-  }
-  
-  .mobile-menu-toggle .bar {
-    width: 22px;
-    height: 2.5px;
-    margin: 2.5px 0;
-  }
-  
-  .main-menu {
-    top: 56px;
-    height: calc(100vh - 56px);
-  }
-}
-
-@media (max-width: 576px) {
-  .brand-name {
-    font-size: 1rem;
-  }
-  
-  .logo-img {
-    height: 30px;
-  }
-  
-  .mobile-buttons .nav-button {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-/* Ripple Effect */
-.ripple-effect {
-  position: absolute;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.7);
-  transform: scale(0);
-  animation: ripple 0.6s linear;
-  pointer-events: none;
-}
-
-@keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-
-/* Prevent scrolling when menu is open */
-.no-scroll {
-  overflow: hidden;
-}
-
-    /* SECTION 1: BANNER */
-    /* Banner Styles */
-.banner {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  min-height: 600px;
-  max-height: 1080px;
-  background: linear-gradient(135deg, rgba(180, 0, 0, 0.7) 0%, rgba(214, 0, 7, 0.5) 100%);
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  color: #fff;
-  text-align: center;
-}
-
-.banner-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(230,30,37,0.5) 100%);
-  z-index: 1;
-}
-
-.banner-content {
-  position: relative;
-  z-index: 2;
-  padding: 0 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  transform: translateY(50px);
-  opacity: 0;
-  transition: all 1s ease;
-}
-
-.banner.loaded .banner-content {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.banner h1 {
-  font-size: 4rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-  letter-spacing: 2px;
-}
-
-.banner p {
-  font-size: 1.5rem;
-  max-width: 800px;
-  margin: 0 auto 40px;
-  line-height: 1.6;
-  text-shadow: 0 1px 5px rgba(0,0,0,0.3);
-}
-
-/* Scroll indicator */
-.banner-scroll {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-}
-
-.banner-scroll span {
-  font-size: 0.9rem;
-  margin-bottom: 10px;
-  opacity: 0.8;
-  transition: all 0.3s ease;
-}
-
-.scroll-icon {
-  width: 30px;
-  height: 50px;
-  border: 2px solid #fff;
-  border-radius: 15px;
-  position: relative;
-}
-
-.scroll-icon:before {
-  content: '';
-  position: absolute;
-  width: 6px;
-  height: 10px;
-  background: #fff;
-  border-radius: 3px;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: scrollAnimation 2s infinite;
-}
-
-@keyframes scrollAnimation {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, 20px);
-  }
-}
-
-/* Responsive Styles */
-@media (max-width: 1200px) {
-  .banner h1 {
-    font-size: 3.5rem;
-  }
-  
-  .banner p {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 992px) {
-  .banner {
-    min-height: 500px;
-  }
-  
-  .banner h1 {
-    font-size: 3rem;
-  }
-  
-  .banner p {
-    font-size: 1.2rem;
-    max-width: 700px;
-  }
-}
-
-@media (max-width: 768px) {
-  .banner h1 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-  }
-  
-  .banner p {
-    font-size: 1.1rem;
-    margin-bottom: 30px;
-  }
-  
-  .banner-scroll {
-    bottom: 30px;
-  }
-}
-
-@media (max-width: 576px) {
-  .banner {
-    min-height: 400px;
-    height: 80vh;
-  }
-  
-  .banner h1 {
-    font-size: 2rem;
-    letter-spacing: 1px;
-  }
-  
-  .banner p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-  }
-  
-  .scroll-icon {
-    width: 25px;
-    height: 40px;
-  }
-}
-
-    /* SECTION 2: TIMELINE */
-/* Global Styles */
-:root {
-  --primary-color: #e61e25;
-  --secondary-color: #2a2a2a;
-  --text-color: #333;
-  --light-gray: #f5f5f5;
-  --white: #ffffff;
-  --transition: all 0.3s ease;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  color: var(--text-color);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.section-header h2 {
-  font-size: 2.5rem;
-  color: var(--secondary-color);
-  margin-bottom: 15px;
-  position: relative;
-  display: inline-block;
-}
-
-.section-header .divider {
-  width: 80px;
-  height: 3px;
-  background: var(--primary-color);
-  margin: 0 auto 20px;
-}
-
-.section-header p {
-  font-size: 1.1rem;
-  color: #666;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-/* History Section */
-.history-section {
-  padding: 100px 0;
-  background: var(--light-gray);
-}
-
-.timeline {
-  position: relative;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 0;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  width: 2px;
-  background: var(--primary-color);
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.timeline-item {
-  padding: 20px 40px;
-  position: relative;
-  width: 50%;
-  margin-bottom: 30px;
-}
-
-.timeline-item:nth-child(odd) {
-  left: 0;
-}
-
-.timeline-item:nth-child(even) {
-  left: 50%;
-}
-
-.timeline-item::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: var(--white);
-  border: 4px solid var(--primary-color);
-  border-radius: 50%;
-  top: 30px;
-  z-index: 1;
-}
-
-.timeline-item:nth-child(odd)::after {
-  right: -10px;
-}
-
-.timeline-item:nth-child(even)::after {
-  left: -10px;
-}
-
-.timeline-year {
-  background: var(--primary-color);
-  color: var(--white);
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-weight: 600;
-  display: inline-block;
-  margin-bottom: 15px;
-}
-
-.timeline-content {
-  background: var(--white);
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.timeline-content h3 {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-  color: var(--secondary-color);
-}
-
-/* Mission & Vision Section */
-.mission-vision {
-  padding: 100px 0;
-  background: var(--white);
-}
-
-.mv-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-}
-
-.mv-card {
-  background: var(--white);
-  padding: 40px 30px;
-  text-align: center;
-  border-radius: 8px;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
-  transition: var(--transition);
-}
-
-.mv-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-.mv-icon {
-  width: 80px;
-  height: 80px;
-  background: rgba(230, 30, 37, 0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 25px;
-  color: var(--primary-color);
-  font-size: 30px;
-  transition: var(--transition);
-}
-
-.mv-card:hover .mv-icon {
-  background: var(--primary-color);
-  color: var(--white);
-}
-
-.mv-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: var(--secondary-color);
-}
-
-/* Core Values Section */
-.core-values {
-  padding: 100px 0;
-  background: var(--light-gray);
-}
-
-.values-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-}
-
-.value-card {
-  background: var(--white);
-  padding: 40px 30px;
-  text-align: center;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-
-.value-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background: var(--primary-color);
-}
-
-.value-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-.value-number {
-  font-size: 3rem;
-  font-weight: 700;
-  color: rgba(230, 30, 37, 0.1);
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  line-height: 1;
-}
-
-.value-card h3 {
-  font-size: 1.3rem;
-  margin: 15px 0;
-  color: var(--secondary-color);
-}
-
-/* Team Section */
-.team-section {
-  padding: 100px 0;
-  background: var(--white);
-}
-
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-}
-
-.team-card {
-  background: var(--white);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  transition: var(--transition);
-  position: relative;
-}
-
-.team-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-.team-img {
-  position: relative;
-  overflow: hidden;
-}
-
-.team-img img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  transition: var(--transition);
-}
-
-.team-card:hover .team-img img {
-  transform: scale(1.1);
-}
-
-.team-social {
-  position: absolute;
-  bottom: -50px;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  background: rgba(230, 30, 37, 0.8);
-  padding: 15px 0;
-  transition: var(--transition);
-}
-
-.team-card:hover .team-social {
-  bottom: 0;
-}
-
-.team-social a {
-  color: var(--white);
-  margin: 0 10px;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.2);
-  transition: var(--transition);
-}
-
-.team-social a:hover {
-  background: var(--white);
-  color: var(--primary-color);
-}
-
-.team-info {
-  padding: 20px;
-  text-align: center;
-}
-
-.team-info h3 {
-  font-size: 1.3rem;
-  margin-bottom: 5px;
-  color: var(--secondary-color);
-}
-
-.team-info p {
-  color: #666;
-  font-size: 0.9rem;
-}
-
-/* Services Section */
-.services-section {
-  padding: 100px 0;
-  background: var(--light-gray);
-}
-
-.services-tabs {
-  background: var(--white);
-  border-radius: 25px;
-  overflow: hidden;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
-}
-
-.tab-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  border-bottom: 1px solid #eee;
-}
-
-.tab-btn {
-  flex: 1;
-  min-width: 150px;
-  padding: 15px 20px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  color: #666;
-  text-align: center;
-  transition: var(--transition);
-  position: relative;
-}
-
-.tab-btn::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--primary-color);
-  transform: scaleX(0);
-  transition: var(--transition);
-}
-
-.tab-btn.active {
-  color: var(--primary-color);
-}
-
-.tab-btn.active::after {
-  transform: scaleX(1);
-}
-
-.tab-btn:hover {
-  color: var(--primary-color);
-  background: rgba(230, 30, 37, 0.05);
-}
-
-.tab-contents {
-  padding: 0;
-}
-
-.tab-content {
-  display: none;
-  padding: 40px;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-.tab-content-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
-}
-
-.tab-img img {
-  width: 100%;
-  border-radius: 25px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.tab-text h3 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  color: var(--secondary-color);
-}
-
-.tab-text p {
-  margin-bottom: 20px;
-  color: #666;
-}
-
-.tab-text ul {
-  list-style: none;
-  margin-bottom: 20px;
-}
-
-.tab-text ul li {
-  margin-bottom: 10px;
-  position: relative;
-  padding-left: 25px;
-}
-
-.tab-text ul li i {
-  color: var(--primary-color);
-  position: absolute;
-  left: 0;
-  top: 5px;
-}
-
-/* Responsive Styles */
-@media (max-width: 992px) {
-  .section-header h2 {
-    font-size: 2.2rem;
-  }
-  
-  .tab-content-inner {
-    grid-template-columns: 1fr;
-  }
-  
-  .tab-img {
-    order: -1;
-  }
-}
-
-@media (max-width: 768px) {
-  .timeline::before {
-    left: 30px;
-  }
-  
-  .timeline-item {
-    width: 100%;
-    padding-left: 70px;
-    padding-right: 0;
-  }
-  
-  .timeline-item:nth-child(even) {
-    left: 0;
-  }
-  
-  .timeline-item::after {
-    left: 20px !important;
-  }
-  
-  .section-header h2 {
-    font-size: 2rem;
-  }
-  
-  .mv-card, .value-card {
-    padding: 30px 20px;
-  }
-  
-  .tab-content {
-    padding: 30px 20px;
-  }
-}
-
-@media (max-width: 576px) {
-  .section-header h2 {
-    font-size: 1.8rem;
-  }
-  
-  .section-header .divider {
-    width: 60px;
-  }
-  
-  .tab-buttons {
-    flex-direction: column;
-  }
-  
-  .tab-btn {
-    min-width: 100%;
-    padding: 12px 15px;
-    text-align: left;
-  }
-  
-  .team-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-    /* SECTION 3: BUTTON LINKS */
-    .link-section {
-      background: #f3f3f3;
-      padding: 3rem 1rem;
-      text-align: center;
-    }
-
-    .link-section h2 {
-      color: #333;
-      margin-bottom: 2rem;
-    }
-
-    .link-section .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-    }
-
-    .link-section .buttons a {
-      background: #dc2626;
-      color: white;
-      padding: 0.8rem 1.8rem;
-      border-radius: 999px;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-
-    .link-section .buttons a:hover {
-      background: #b91c1c;
-      transform: translateY(-3px);
-    }
-
-    @media (max-width: 768px) {
-      .banner h1 {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giới Thiệu Công Ty</title>
+    <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Reset & Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-color: #e40521;
+        --secondary-color: #333;
+        --light-color: #f8f9fa;
+        --dark-color: #212529;
+        --gray-color: #6c757d;
+        --light-gray: #e9ecef;
+        --transition: all 0.3s ease;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        line-height: 1.6;
+        color: var(--secondary-color);
+        overflow-x: hidden;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 25px;
+        border-radius: 4px;
+        font-weight: 500;
+        text-align: center;
+        transition: var(--transition);
+        cursor: pointer;
+        border: 2px solid transparent;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      .btn-primary:hover {
+        background-color: #c0041d;
+        border-color: #c0041d;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: var(--dark-color);
+      }
+
+      .section-subtitle {
+        font-size: 1.1rem;
+        color: var(--gray-color);
+        margin-bottom: 20px;
+      }
+
+      .divider {
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+        margin: 0 auto;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      /* Header */
+      .main-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      .main-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 40px;
+      }
+
+      .main-nav ul {
+        display: flex;
+      }
+
+      .main-nav li {
+        margin-left: 30px;
+      }
+
+      .main-nav a {
+        font-weight: 500;
+        color: var(--dark-color);
+        position: relative;
+      }
+
+      .main-nav a:after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: var(--transition);
+      }
+
+      .main-nav a:hover:after,
+      .main-nav a.active:after {
+        width: 100%;
+      }
+
+      /* Hero Banner */
+      .hero-banner {
+        height: 60vh;
+        min-height: 400px;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("/image/lienhe/GIOITHIEU.jpg") no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        margin-top: 80px;
+        color: white;
+        text-align: center;
+      }
+
+      .hero-content {
+        width: 100%;
+      }
+
+      .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+      }
+
+      /* About Section */
+      .about-section {
+        padding: 80px 0;
+      }
+
+      .about-content {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .about-text {
+        flex: 1;
+      }
+
+      .about-image {
+        flex: 1;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Mission Vision Section */
+      .mv-section {
+        padding: 80px 0;
+        background-color: var(--light-color);
+      }
+
+      .mv-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .mv-card {
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .mv-card h3 {
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+      }
+
+      .mv-card i {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        display: block;
+      }
+
+      /* Core Values */
+      .values-section {
+        padding: 80px 0;
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .value-card {
+        text-align: center;
+        padding: 30px 20px;
+        border-radius: 8px;
+        background-color: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+      }
+
+      .value-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .value-icon {
+        width: 80px;
+        height: 80px;
+        background-color: var(--light-color);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 20px;
         font-size: 2rem;
+        color: var(--primary-color);
       }
 
-      .banner p {
-        font-size: 1rem;
+      .value-card h3 {
+        margin-bottom: 15px;
       }
-    }
-  </style>
-</head>
-<body>
 
-  <!-- Navbar -->
-  <header class="navbar">
-  <div class="logo">
-    <img src="image/logo/Logo_HEAD.png" alt="Logo">
-    <span>HEAD Trung Hùng</span>
-  </div>
-  <div class="hamburger" id="hamburger">
-    <span></span><span></span><span></span>
-  </div>
-</header>
+      /* Achievements */
+      .achievements-section {
+        padding: 80px 0;
+        background-color: var(--light-color);
+      }
 
-<nav class="nav-menu" id="navMenu">
-  <div class="nav-container">
-    <!-- Logo thương hiệu -->
-    <a href="index.html" class="brand-logo">
-      <img src="image/logo/Logo_HEAD.png" alt="Logo Thương Hiệu" class="logo-img">
-      <span class="brand-name"></span>
-    </a>
+      .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
 
-    <div class="main-menu" id="mainMenu">
-      <a href="index.html" class="nav-link"><span>Trang chủ</span></a>
-      <a href="gioithieu.html" class="nav-link"><span>Giới thiệu</span></a>
-      <a href="sanphamxemay.html" class="nav-link"><span>Sản phẩm</span></a>
-      <a href="dichvu.html" class="nav-link"><span>Dịch Vụ</span></a>
-      <a href="khuyenmai.html" class="nav-link"><span>Khuyến Mãi</span></a>
-      <a href="tintuc.html" class="nav-link"><span>Tin Tức</span></a>
-      
-      <!-- Các nút hiển thị trên mobile -->
-      <div class="mobile-buttons">
-        <a href="lienhe.html" class="nav-button contact-button">
-          <i class="fas fa-phone-alt"></i> 
-          <span>Liên hệ</span>
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 3px;
+        background-color: var(--primary-color);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -1.5px;
+      }
+
+      .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        width: 50%;
+        box-sizing: border-box;
+      }
+
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        border: 3px solid var(--primary-color);
+        border-radius: 50%;
+        top: 15px;
+        z-index: 1;
+      }
+
+      .left {
+        left: 0;
+        text-align: right;
+      }
+
+      .right {
+        left: 50%;
+        text-align: left;
+      }
+
+      .left::after {
+        right: -10px;
+      }
+
+      .right::after {
+        left: -10px;
+      }
+
+      .timeline-content {
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .timeline-content h3 {
+        color: var(--primary-color);
+        margin-bottom: 10px;
+      }
+
+      /* Services Section */
+      .services-section {
+        padding: 80px 0;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .service-card {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+      }
+
+      .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .service-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .service-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .service-card:hover .service-image img {
+        transform: scale(1.05);
+      }
+
+      .service-info {
+        padding: 20px;
+      }
+
+      .service-info h3 {
+        margin-bottom: 10px;
+        color: var(--primary-color);
+      }
+
+      /* Branches Section */
+      .branches-section {
+        padding: 80px 0;
+        background-color: var(--light-color);
+      }
+
+      .branch-tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .tab-btn {
+        padding: 10px 25px;
+        background-color: var(--light-gray);
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: var(--transition);
+        font-weight: 500;
+      }
+
+      .tab-btn.active {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      .store-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .store-card {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+      }
+
+      .store-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .store-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .store-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .store-card:hover .store-image img {
+        transform: scale(1.05);
+      }
+
+      .store-info {
+        padding: 20px;
+      }
+
+      .store-info h3 {
+        margin-bottom: 10px;
+        color: var(--primary-color);
+      }
+
+      .store-info p {
+        margin-bottom: 5px;
+        color: var(--gray-color);
+      }
+
+      .store-info i {
+        color: var(--primary-color);
+        margin-right: 8px;
+        width: 20px;
+        text-align: center;
+      }
+
+      /* Contact Section */
+      .contact-section {
+        padding: 80px 0;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .contact-card {
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        text-align: center;
+      }
+
+      .contact-icon {
+        width: 60px;
+        height: 60px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 20px;
+        font-size: 1.5rem;
+      }
+
+      /* Footer */
+      .main-footer {
+        background-color: var(--dark-color);
+        color: white;
+        padding: 60px 0 20px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .footer-col h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-col h3:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-logo {
+        margin-bottom: 20px;
+        display: block;
+        max-width: 150px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-links a {
+        width: 35px;
+        height: 35px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      .footer-col ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-col ul a {
+        color: #adb5bd;
+        transition: var(--transition);
+      }
+
+      .footer-col ul a:hover {
+        color: var(--primary-color);
+        padding-left: 5px;
+      }
+
+      .contact-info li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .contact-info i {
+        margin-right: 10px;
+        color: var(--primary-color);
+        width: 20px;
+        text-align: center;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px 0;
+        text-align: center;
+        color: #adb5bd;
+        font-size: 0.9rem;
+      }
+      /* Mobile Menu Toggle */
+      .menu-toggle {
+        display: none;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-toggle .bar {
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background-color: var(--dark-color);
+        transition: all 0.3s ease;
+        left: 0;
+      }
+
+      .menu-toggle .bar:nth-child(1) {
+        top: 0;
+      }
+
+      .menu-toggle .bar:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .menu-toggle .bar:nth-child(3) {
+        bottom: 0;
+      }
+
+      /* Khi menu active */
+      .menu-toggle.active .bar:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+      }
+
+      .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active .bar:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+      }
+      /* Responsive */
+      @media (max-width: 992px) {
+        .about-content {
+          flex-direction: column;
+        }
+
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .timeline::after {
+          left: 31px;
+        }
+
+        .timeline-item {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+        .timeline-item::after {
+          left: 21px;
+        }
+
+        .left,
+        .right {
+          left: 0;
+          text-align: left;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .menu-toggle {
+          display: block;
+        }
+        .main-nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 80%;
+          max-width: 300px;
+          height: 100vh;
+          background-color: white;
+          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+          transition: all 0.4s ease;
+          padding: 80px 20px 20px;
+          overflow-y: auto;
+          z-index: 1000;
+        }
+        .main-nav.active {
+          right: 0;
+        }
+
+        .main-nav ul {
+          flex-direction: column;
+        }
+
+        .main-nav li {
+          margin: 15px 0;
+        }
+
+        .main-nav a {
+          font-size: 1.1rem;
+          padding: 8px 0;
+          display: block;
+        }
+        /* Điều chỉnh header khi menu mở */
+        body.menu-open {
+          overflow: hidden;
+        }
+
+        .hero-banner {
+          margin-top: 70px;
+          min-height: 350px;
+        }
+
+        .store-list {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="image/logo/Logo_HEAD.png" alt="Honda Logo" />
         </a>
-        <a href="cuahang.html" class="nav-button store-button">
-          <i class="fas fa-map-marker-alt"></i> 
-          <span>Cửa hàng</span>
-        </a>
-        
-        <div class="social-buttons">
-          <a href="#" class="social-button facebook" aria-label="Facebook">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="social-button instagram" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="#" class="social-button youtube" aria-label="YouTube">
-            <i class="fab fa-youtube"></i>
-          </a>
-          <a href="#" class="social-button tiktok" aria-label="TikTok">
-            <i class="fab fa-tiktok"></i>
-          </a>
+
+        <!-- Thêm nút menu toggle này -->
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="gioithieu.html" class="active">Giới thiệu</a></li>
+            <li><a href="sanphamxemay.html">Sản phẩm</a></li>
+            <li><a href="#">Dịch vụ</a></li>
+            <li><a href="cuahang.html">Hệ thống đại lý</a></li>
+            <li><a href="lienhe.html">Liên hệ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="container">
+        <div class="hero-content">
+          <h1>GIỚI THIỆU CÔNG TY</h1>
+          <p>Chọn chúng tôi, chọn chất lượng bền lâu</p>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Các nút hiển thị trên desktop -->
-    <div class="desktop-buttons">
-      <a href="lienhe.html" class="nav-button contact-button">
-        <i class="fas fa-phone-alt"></i> 
-        <span>Liên hệ</span>
-      </a>
-      <a href="cuahang.html" class="nav-button store-button">
-        <i class="fas fa-map-marker-alt"></i> 
-        <span>Cửa hàng</span>
-      </a>
-      
-      <div class="social-buttons">
-        <a href="#" class="social-button facebook" aria-label="Facebook">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" class="social-button instagram" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="#" class="social-button youtube" aria-label="YouTube">
-          <i class="fab fa-youtube"></i>
-        </a>
-        <a href="#" class="social-button tiktok" aria-label="TikTok">
-          <i class="fab fa-tiktok"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Mobile menu button -->
-  <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </button>
-</nav>
+    <!-- About Section -->
+    <section class="about-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Lịch Sử Hình Thành</h2>
+          <div class="divider"></div>
+        </div>
 
-  <!-- Overlay -->
-  <div class="overlay" id="overlay"></div>
-
-   <!-- Banner Section -->
-  <section class="banner">
-    <div class="banner-overlay"></div>
-    <div class="banner-content">
-      <h1 data-aos="fade-down" data-aos-duration="800">GIỚI THIỆU CÔNG TY</h1>
-      <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">Công ty TNHH Thương Mại và Dịch Vụ Hùng Mạnh được thành lập 17/03/2006, với hơn 20 năm kinh nghiệm trong lĩnh vực phân phối và dịch vụ xe máy Honda. Từ những ngày đầu tiên, chúng tôi đã không ngừng nỗ lực để mang đến cho khách hàng những sản phẩm chất lượng cao và dịch vụ chuyên nghiệp nhất. Trải qua nhiều thăng trầm, chúng tôi tự hào là một trong những đơn vị phân phối xe máy Honda tại Việt Nam</p>
-      <div class="banner-scroll" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
-        <span>Cuộn xuống</span>
-        <div class="scroll-icon"></div>
-      </div>
-    </div>
-  </section>
-
- <!-- Lịch Sử Hình Thành -->
-  <section class="history-section">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <h2>Lịch Sử Hình Thành</h2>
-        <div class="divider"></div>
-        <p>Hành trình phát triển của chúng tôi</p>
-      </div>
-      
-      <div class="timeline">
-        <div class="timeline-item" data-aos="fade-right">
-          <div class="timeline-year">2006</div>
-          <div class="timeline-content">
-            <h3>Thành lập công ty</h3>
-            <p>Công ty TNHH Thương Mại Và Dịch Vụ Hùng Mạnh tại Sơn La.</p>
+        <div class="about-content">
+          <div class="about-text">
+            <p>
+              Công ty TNHH Hùng Mạnh được thành lập từ năm 2006, là đại lý ủy
+              quyền chính thức của Honda Việt Nam, chuyên kinh doanh trong các
+              lĩnh vực: <br />Phân phối xe máy chính hãng Honda Cung cấp phụ
+              tùng chính hiệu<br />
+              Dịch vụ bảo dưỡng, sửa chữa và chăm sóc xe toàn diện<br />
+              Với hơn 20 năm hình thành và phát triển, công ty luôn giữ vững
+              phương châm hoạt động: "Uy tín – Chất lượng – Khách hàng là trung
+              tâm".<br />
+              Chúng tôi không ngừng đầu tư cơ sở vật chất, đào tạo đội ngũ kỹ
+              thuật viên chuyên nghiệp theo tiêu chuẩn Honda, và áp dụng quy
+              trình dịch vụ hiện đại nhằm mang đến cho khách hàng sự an tâm và
+              hài lòng tuyệt đối.
+            </p>
+            <p>
+              Hiện nay, công ty đã trở thành một trong những địa chỉ tin cậy tại
+              khu vực trong lĩnh vực xe máy, phục vụ hàng ngàn lượt khách hàng
+              mỗi năm. Chúng tôi cam kết luôn đồng hành cùng khách hàng trên mọi
+              hành trình, cung cấp sản phẩm chính hãng, dịch vụ tận tâm và hậu
+              mãi chu đáo.
+            </p>
+          </div>
+          <div class="about-image">
+            <img src="image/lienhe/HEAD.JPG" alt="Lịch sử Honda Việt Nam" />
           </div>
         </div>
-        
-        <div class="timeline-item" data-aos="fade-left">
-          <div class="timeline-year">2006 - 2013</div>
-          <div class="timeline-content">
-            <h3>Mở rộng hệ thống</h3>
-            <p>Mở rộng hệ thống lên 6 chi nhánh cửa hàng xe máy Honda tại tỉnh Sơn La</p>
-          </div>
-        </div>
-        
-        <div class="timeline-item" data-aos="fade-right">
-          <div class="timeline-year">2015</div>
-          <div class="timeline-content">
-            <h3>Mở rộng hệ thống</h3>
-            <p>Ra mắt cửa hàng xe máy <strong>HEAD Hùng Mạnh 7</strong> tại Hà Nội</p>
-          </div>
-        </div>
-        
-        <div class="timeline-item" data-aos="fade-left">
-          <div class="timeline-year">2018</div>
-          <div class="timeline-content">
-            <h3>Mở rộng hệ thống</h3>
-            <p>Mở rộng hệ thống lên 4 chi nhánh cửa hàng xe máy <strong>Hệ Thống HEAD Trung Hùng</strong> tại tỉnh Bình Định</p>
-          </div>
-        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Sứ Mệnh & Tầm Nhìn -->
-  <section class="mission-vision">
-    <div class="container">
-      <div class="mv-grid">
-        <div class="mv-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="mv-icon">
+    <!-- Mission Vision Section -->
+    <section class="mv-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Sứ Mệnh & Tầm Nhìn</h2>
+          <div class="divider"></div>
+        </div>
+
+        <div class="mv-grid">
+          <div class="mv-card">
             <i class="fas fa-bullseye"></i>
+            <h3>Sứ Mệnh</h3>
+            <p>
+              "Mang lại niềm vui và sự hài lòng cho khách hàng thông qua các sản
+              phẩm và dịch vụ chất lượng cao, góp phần nâng cao chất lượng cuộc
+              sống và phát triển xã hội Việt Nam."
+            </p>
           </div>
-          <h3>Sứ Mệnh</h3>
-          <p>Mang đến cho khách hàng những sản phẩm chất lượng cao với dịch vụ hoàn hảo, góp phần nâng cao chất lượng cuộc sống người Việt.</p>
-        </div>
-        
-        <div class="mv-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="mv-icon">
+
+          <div class="mv-card">
             <i class="fas fa-eye"></i>
+            <h3>Tầm Nhìn</h3>
+            <p>
+              "Trở thành công ty được yêu thích nhất tại Việt Nam, tiên phong
+              trong lĩnh vực di chuyển cá nhân, luôn đổi mới sáng tạo vì một xã
+              hội di chuyển bền vững."
+            </p>
           </div>
-          <h3>Tầm Nhìn</h3>
-          <p>Trở thành hệ thống phân phối xe máy hàng đầu Việt Nam</p>
-        </div>
-        
-        <div class="mv-card" data-aos="fade-up" data-aos-delay="600">
-          <div class="mv-icon">
+
+          <div class="mv-card">
             <i class="fas fa-handshake"></i>
+            <h3>Cam Kết</h3>
+            <p>
+              "Cam kết mang đến cho khách hàng những sản phẩm an toàn, tiết kiệm
+              nhiên liệu với công nghệ tiên tiến nhất, cùng dịch vụ chăm sóc
+              khách hàng tận tâm, chuyên nghiệp."
+            </p>
           </div>
-          <h3>Cam Kết</h3>
-          <p>Luôn đặt chữ tín lên hàng đầu, đảm bảo chất lượng sản phẩm và dịch vụ tốt nhất cho mọi khách hàng.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Giá Trị Cốt Lõi -->
-  <section class="core-values">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <h2>Giá Trị Cốt Lõi</h2>
-        <div class="divider"></div>
-        <p>Những nguyên tắc không thay đổi của chúng tôi</p>
-      </div>
-      
-      <div class="values-grid">
-        <div class="value-card" data-aos="flip-left" data-aos-delay="200">
-          <div class="value-number">01</div>
-          <h3>Chất Lượng</h3>
-          <p>Sản phẩm chính hãng 100%, đảm bảo tiêu chuẩn chất lượng cao nhất.</p>
+    <!-- Core Values Section -->
+    <section class="values-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Giá Trị Cốt Lõi</h2>
+          <div class="divider"></div>
         </div>
-        
-        <div class="value-card" data-aos="flip-left" data-aos-delay="400">
-          <div class="value-number">02</div>
-          <h3>Chuyên Nghiệp</h3>
-          <p>Đội ngũ nhân viên được đào tạo bài bản, tư vấn tận tâm.</p>
-        </div>
-        
-        <div class="value-card" data-aos="flip-left" data-aos-delay="600">
-          <div class="value-number">03</div>
-          <h3>Đổi Mới</h3>
-          <p>Không ngừng cải tiến dịch vụ, áp dụng công nghệ mới.</p>
-        </div>
-        
-        <div class="value-card" data-aos="flip-left" data-aos-delay="800">
-          <div class="value-number">04</div>
-          <h3>Bền Vững</h3>
-          <p>Phát triển bền vững, thân thiện với môi trường.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Đội Ngũ -->
-  <section class="team-section">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <h2>Đội Ngũ Của Chúng Tôi</h2>
-        <div class="divider"></div>
-        <p>Những con người tạo nên sự khác biệt</p>
-      </div>
-      
-      <div class="team-grid">
-        <div class="team-card" data-aos="zoom-in" data-aos-delay="200">
-          <div class="team-img">
-            <img src="https://via.placeholder.com/300x300?text=CEO" alt="CEO">
-            <div class="team-social">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-users"></i>
             </div>
+            <h3>Khách Hàng Là Trung Tâm</h3>
+            <p>
+              Mọi hoạt động đều hướng đến mang lại giá trị tốt nhất cho khách
+              hàng
+            </p>
           </div>
-          <div class="team-info">
-            <h3>Nguyễn Văn A</h3>
-            <p>Giám Đốc Điều Hành</p>
-          </div>
-        </div>
-        
-        <div class="team-card" data-aos="zoom-in" data-aos-delay="400">
-          <div class="team-img">
-            <img src="https://via.placeholder.com/300x300?text=Marketing" alt="Marketing">
-            <div class="team-social">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
-          </div>
-          <div class="team-info">
-            <h3>Trần Thị B</h3>
-            <p>Trưởng Phòng Marketing</p>
-          </div>
-        </div>
-        
-        <div class="team-card" data-aos="zoom-in" data-aos-delay="600">
-          <div class="team-img">
-            <img src="https://via.placeholder.com/300x300?text=Sales" alt="Sales">
-            <div class="team-social">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
-          </div>
-          <div class="team-info">
-            <h3>Lê Văn C</h3>
-            <p>Trưởng Phòng Kinh Doanh</p>
-          </div>
-        </div>
-        
-        <div class="team-card" data-aos="zoom-in" data-aos-delay="800">
-          <div class="team-img">
-            <img src="https://via.placeholder.com/300x300?text=Service" alt="Service">
-            <div class="team-social">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
-          </div>
-          <div class="team-info">
-            <h3>Phạm Thị D</h3>
-            <p>Trưởng Phòng Dịch Vụ</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Dịch Vụ -->
-  <section class="services-section">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <h2>Dịch Vụ Của Chúng Tôi</h2>
-        <div class="divider"></div>
-        <p>Những gì chúng tôi mang đến cho bạn</p>
-      </div>
-      
-      <div class="services-tabs">
-        <div class="tab-buttons">
-          <button class="tab-btn active" data-tab="tab1">Bán Hàng</button>
-          <button class="tab-btn" data-tab="tab2">Bảo Hành</button>
-          <button class="tab-btn" data-tab="tab3">Dịch Vụ Sau Bán</button>
-          <button class="tab-btn" data-tab="tab4">Tư Vấn</button>
-        </div>
-        
-        <div class="tab-contents">
-          <div class="tab-content active" id="tab1" data-aos="fade-up">
-            <div class="tab-content-inner">
-              <div class="tab-img">
-                <img src="image/GIOITHIEU/image/BH.JPG" alt="Bán Hàng">
-              </div>
-              <div class="tab-text">
-                <h3>Bán Hàng Chính Hãng</h3>
-                <p>Chúng tôi cung cấp đa dạng các dòng xe máy từ phân khối nhỏ đến phân khối lớn của các hãng nổi tiếng thế giới. Tất cả sản phẩm đều là hàng chính hãng 100%, đầy đủ giấy tờ CO/CQ.</p>
-                <ul>
-                  <li><i class="fas fa-check"></i> Đa dạng mẫu mã, màu sắc</li>
-                  <li><i class="fas fa-check"></i> Giá cả cạnh tranh nhất thị trường</li>
-                  <li><i class="fas fa-check"></i> Hỗ trợ trả góp lãi suất 0%</li>
-                </ul>
-              </div>
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-lightbulb"></i>
             </div>
+            <h3>Đổi Mới Sáng Tạo</h3>
+            <p>Không ngừng cải tiến công nghệ, nâng cao chất lượng sản phẩm</p>
           </div>
-          
-          <div class="tab-content" id="tab2" data-aos="fade-up">
-            <div class="tab-content-inner">
-              <div class="tab-img">
-                <img src="image/GIOITHIEU/image/BAOHANH.JPG" alt="Bảo Hành">
-              </div>
-              <div class="tab-text">
-                <h3>Bảo Hành Chính Hãng</h3>
-                <p>Hệ thống bảo hành toàn quốc với hơn 50 trung tâm bảo hành ủy quyền. Thời gian bảo hành lên đến 3 năm hoặc 30,000km tùy theo hãng xe.</p>
-                <ul>
-                  <li><i class="fas fa-check"></i> Bảo hành điện tử, tra cứu online</li>
-                  <li><i class="fas fa-check"></i> Hỗ trợ bảo hành tại nhà</li>
-                  <li><i class="fas fa-check"></i> Thay thế phụ tùng chính hãng</li>
-                </ul>
-              </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-shield-alt"></i>
             </div>
+            <h3>An Toàn Tuyệt Đối</h3>
+            <p>Đặt an toàn của khách hàng lên hàng đầu trong mọi sản phẩm</p>
           </div>
-          
-          <div class="tab-content" id="tab3" data-aos="fade-up">
-            <div class="tab-content-inner">
-              <div class="tab-img">
-                <img src="image/GIOITHIEU/image/SAUBANHANG.JPG" alt="Dịch Vụ">
-              </div>
-              <div class="tab-text">
-                <h3>Dịch Vụ Sau Bán Hàng</h3>
-                <p>Đội ngũ kỹ thuật viên lành nghề với trang thiết bị hiện đại sẵn sàng phục vụ mọi nhu cầu bảo dưỡng, sửa chữa xe máy của khách hàng.</p>
-                <ul>
-                  <li><i class="fas fa-check"></i> Bảo dưỡng định kỳ</li>
-                  <li><i class="fas fa-check"></i> Sửa chữa chuyên sâu</li>
-                  <li><i class="fas fa-check"></i> Vệ sinh, làm đẹp xe</li>
-                </ul>
-              </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-leaf"></i>
             </div>
-          </div>
-          
-          <div class="tab-content" id="tab4" data-aos="fade-up">
-            <div class="tab-content-inner">
-              <div class="tab-img">
-                <img src="image/GIOITHIEU/image/CR.jpg" alt="Tư Vấn">
-              </div>
-              <div class="tab-text">
-                <h3>Tư Vấn Chuyên Nghiệp</h3>
-                <p>Đội ngũ tư vấn viên giàu kinh nghiệm luôn sẵn sàng hỗ trợ khách hàng 24/7 qua nhiều kênh khác nhau.</p>
-                <ul>
-                  <li><i class="fas fa-check"></i> Tư vấn chọn xe phù hợp</li>
-                  <li><i class="fas fa-check"></i> Hỗ trợ thủ tục đăng ký</li>
-                  <li><i class="fas fa-check"></i> Tư vấn bảo hiểm xe máy</li>
-                </ul>
-              </div>
-            </div>
+            <h3>Bền Vững Môi Trường</h3>
+            <p>Phát triển bền vững, thân thiện với môi trường</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- Section 3: Buttons -->
-  <section class="link-section" data-aos="fade-up">
-    <h2>Khám phá thêm</h2>
-    <div class="buttons">
-      <a href="sanphamxemay.html">Xem sản phẩm</a>
-      <a href="dichvu.html">Dịch vụ</a>
-      <a href="lienhe.html">Liên hệ</a>
-    </div>
-  </section>
-  <!--------------------------hiệu ứng cuộn xuống hiển thị menu đỏ-->
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-  const navMenu = document.getElementById('navMenu');
-  const mobileToggle = document.getElementById('mobileMenuToggle');
-  const mainMenu = document.getElementById('mainMenu');
-  
-  // Mobile menu toggle
-  mobileToggle.addEventListener('click', function() {
-    navMenu.classList.toggle('active');
-    document.body.classList.toggle('no-scroll');
-  });
-  
-  // Close menu when clicking on a link
-  mainMenu.addEventListener('click', function(e) {
-    if (e.target.closest('a')) {
-      navMenu.classList.remove('active');
-      document.body.classList.remove('no-scroll');
-    }
-  });
-  
-  // Add active class to current page link
-  const currentPage = window.location.pathname.split('/').pop();
-  const navLinks = document.querySelectorAll('.nav-link');
-  
-  navLinks.forEach(link => {
-    const linkHref = link.getAttribute('href');
-    if (linkHref === currentPage) {
-      link.classList.add('active');
-    }
-  });
-  
-  // Sticky menu on scroll
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 50) {
-      navMenu.classList.add('scrolled');
-    } else {
-      navMenu.classList.remove('scrolled');
-    }
-  });
-  
-  // Add ripple effect to buttons
-  const buttons = document.querySelectorAll('.nav-button, .social-button');
-  
-  buttons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      const x = e.clientX - e.target.getBoundingClientRect().left;
-      const y = e.clientY - e.target.getBoundingClientRect().top;
-      
-      const ripple = document.createElement('span');
-      ripple.classList.add('ripple-effect');
-      ripple.style.left = `${x}px`;
-      ripple.style.top = `${y}px`;
-      
-      this.appendChild(ripple);
-      
-      setTimeout(() => {
-        ripple.remove();
-      }, 1000);
-    });
-  });
-});
-</script>
-  <!-- Scripts banner top -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Khởi tạo AOS (Animate On Scroll)
-  AOS.init({
-    duration: 800,
-    easing: 'ease-in-out',
-    once: true,
-    mirror: false
-  });
-  
-  // Hiệu ứng load banner
-  const banner = document.querySelector('.banner');
-  setTimeout(() => {
-    banner.classList.add('loaded');
-  }, 300);
-  
-  // Hiệu ứng cuộn xuống
-  const scrollDown = document.querySelector('.banner-scroll');
-  if (scrollDown) {
-    scrollDown.addEventListener('click', function() {
-      window.scrollTo({
-        top: window.innerHeight,
-        behavior: 'smooth'
-      });
-    });
-  }
-  
-  // Hiệu ứng parallax cho banner (tuỳ chọn)
-  window.addEventListener('scroll', function() {
-    const scrollPosition = window.pageYOffset;
-    const banner = document.querySelector('.banner');
-    if (banner) {
-      banner.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
-    }
-  });
-  
-  // Preload hình ảnh banner
-  const bannerImage = new Image();
-  bannerImage.src = 'https://via.placeholder.com/1920x1080?text=Banner+Background';
-  bannerImage.onload = function() {
-    document.querySelector('.banner').style.backgroundImage = 'url(' + bannerImage.src + ')';
-  };
-});
-</script>
-  <!------timeline--------------->
-  <script>
-    // Khởi tạo AOS Animation
-    AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    });
+    </section>
 
-    // Hiệu ứng load banner
-    const banner = document.querySelector('.banner');
-    setTimeout(() => {
-      banner.classList.add('loaded');
-    }, 300);
+    <!-- Achievements Section -->
+    <section class="achievements-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Thành Tựu Đạt Được</h2>
+          <div class="divider"></div>
+        </div>
 
-    // Hiệu ứng cuộn xuống
-    const scrollDown = document.querySelector('.banner-scroll');
-    if (scrollDown) {
-      scrollDown.addEventListener('click', function() {
-        window.scrollTo({
-          top: window.innerHeight,
-          behavior: 'smooth'
+        <div class="timeline">
+          <div class="timeline-item left">
+            <div class="timeline-content">
+              <h3>2019</h3>
+              <p>
+                Đạt <strong>TOP 80 HEAD</strong> trên gần 800 HEAD hoạt động
+                xuất sắc toàn quốc
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item right">
+            <div class="timeline-content">
+              <h3>2019</h3>
+              <p></p>
+            </div>
+          </div>
+          <div class="timeline-item left">
+            <div class="timeline-content">
+              <h3>2020</h3>
+              <p></p>
+            </div>
+          </div>
+          <div class="timeline-item right">
+            <div class="timeline-content">
+              <h3>2021</h3>
+              <p></p>
+            </div>
+          </div>
+          <div class="timeline-item left">
+            <div class="timeline-content">
+              <h3>2022</h3>
+              <p></p>
+            </div>
+          </div>
+          <div class="timeline-item right">
+            <div class="timeline-content">
+              <h3>2023 - 2024</h3>
+              <p>
+                Đạt <strong>TOP 45</strong> Công Ty Hoạt Động Xuất Sắc do Honda
+                Việt Nam đánh giá trên toàn quốc
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item left">
+            <div class="timeline-content">
+              <h3>2024 - 2025</h3>
+              <p>
+                Đạt <strong>TOP 45</strong> Công Ty Hoạt Động Xuất Sắc do Honda
+                Việt Nam đánh giá trên toàn quốc
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Dịch Vụ Của Chúng Tôi</h2>
+          <div class="divider"></div>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-image">
+              <img src="image/GIOITHIEU/image/BH.JPG" alt="Dịch vụ bán hàng" />
+            </div>
+            <div class="service-info">
+              <h3>Bán Hàng</h3>
+              <p>
+                Đa dạng mẫu mã xe máy chính hãng Honda với các dòng xe tay ga,
+                xe số, xe côn tay, phân khối lớn, xe máy điện.
+              </p>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-image">
+              <img
+                src="image/GIOITHIEU/image/SAUBANHANG.JPG"
+                alt="Dịch vụ sau bán hàng"
+              />
+            </div>
+            <div class="service-info">
+              <h3>Dịch Vụ Sau Bán Hàng</h3>
+              <p>
+                Bảo dưỡng, sửa chữa chuyên nghiệp với đội ngũ kỹ thuật viên được
+                đào tạo bài bản, trang thiết bị hiện đại.
+              </p>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-image">
+              <img
+                src="image/GIOITHIEU/image/PHUTUNG.jpg"
+                alt="Phụ tùng chính hãng"
+              />
+            </div>
+            <div class="service-info">
+              <h3>Phụ Tùng Chính Hãng</h3>
+              <p>
+                Cung cấp đầy đủ phụ tùng, phụ kiện chính hãng Honda với chất
+                lượng đảm bảo, giá thành hợp lý.
+              </p>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-image">
+              <img
+                src="image/GIOITHIEU/image/LXAT.JPG"
+                alt="Đào tạo lái xe an toàn"
+              />
+            </div>
+            <div class="service-info">
+              <h3>Đào Tạo Lái Xe An Toàn</h3>
+              <p>
+                Các khóa học lái xe an toàn được tổ chức thường xuyên bởi hướng
+                dẫn viên của HEAD.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Branches Section -->
+    <section class="branches-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Hệ Thống Chi Nhánh</h2>
+          <p class="section-subtitle">Khám phá các đại lý Honda gần bạn nhất</p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="branch-tabs">
+          <button class="tab-btn active" data-tab="binh-dinh">
+            Bình Định (4)
+          </button>
+          <button class="tab-btn" data-tab="ha-noi">Hà Nội (1)</button>
+          <button class="tab-btn" data-tab="son-la">Sơn La (7)</button>
+        </div>
+
+        <div id="binh-dinh" class="tab-content active">
+          <div class="store-list">
+            <!-- Bình Định 1 -->
+            <div class="store-card">
+              <div class="store-image">
+                <img src="image/lienhe/HEAD.JPG" alt="Honda Bình Định 1" />
+              </div>
+              <div class="store-info">
+                <h3>HEAD Trung Hùng 1</h3>
+                <p>
+                  <i class="fas fa-map-marker-alt"></i> 290-292 Lê Hồng Phong,
+                  P. Thị Nại, TP. Quy Nhơn, Bình Định
+                </p>
+                <p><i class="fas fa-phone-alt"></i> 0256 3824 471</p>
+                <p><i class="fas fa-clock"></i> 7:30 - 17:30 (T2 - CN)</p>
+              </div>
+            </div>
+
+            <!-- Bình Định 2 -->
+            <div class="store-card">
+              <div class="store-image">
+                <img src="image/lienhe/HEAD.JPG" alt="Honda Bình Định 2" />
+              </div>
+              <div class="store-info">
+                <h3>HEAD Trung Hùng 2</h3>
+                <p>
+                  <i class="fas fa-map-marker-alt"></i> 2531 Quang Trung, P.
+                  Bồng Sơn, TX. Hoài Nhơn, Bình Định
+                </p>
+                <p><i class="fas fa-phone-alt"></i> 0256 3861 366</p>
+                <p><i class="fas fa-clock"></i> 7:30 - 17:30 (T2 - CN)</p>
+              </div>
+            </div>
+
+            <!-- Bình Định 3 -->
+            <div class="store-card">
+              <div class="store-image">
+                <img src="image/lienhe/HEAD.JPG" alt="Honda Bình Định 3" />
+              </div>
+              <div class="store-info">
+                <h3>HEAD Trung Hùng 3</h3>
+                <p>
+                  <i class="fas fa-map-marker-alt"></i> 236 Tây Sơn, P. Nguyễn
+                  Văn Cừ, TP. Quy Nhơn, Bình Định
+                </p>
+                <p><i class="fas fa-phone-alt"></i> 0256 3547 777</p>
+                <p><i class="fas fa-clock"></i> 7:30 - 17:30 (T2 - CN)</p>
+              </div>
+            </div>
+
+            <!-- Bình Định 4 -->
+            <div class="store-card">
+              <div class="store-image">
+                <img src="image/lienhe/HEAD.JPG" alt="Honda Bình Định 4" />
+              </div>
+              <div class="store-info">
+                <h3>HEAD Trung Hùng 4</h3>
+                <p>
+                  <i class="fas fa-map-marker-alt"></i> 3450 Quang Trung, P. Tam
+                  Quan, TX. Hoài Nhơn, Bình Định
+                </p>
+                <p><i class="fas fa-phone-alt"></i> 0256 3965 007</p>
+                <p><i class="fas fa-clock"></i> 7:30 - 17:30 (T2 - CN)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="ha-noi" class="tab-content">
+          <div class="store-list">
+            <!-- Hà Nội -->
+            <div class="store-card">
+              <div class="store-image">
+                <img src="image/lienhe/HEAD.JPG" alt="Honda Hà Nội" />
+              </div>
+              <div class="store-info">
+                <h3>HEAD Hùng Mạnh 7</h3>
+                <p>
+                  <i class="fas fa-map-marker-alt"></i> 319 Nguyễn Văn Cừ, P.
+                  Ngọc Lâm, Quận Long Biên, Hà Nội
+                </p>
+                <p><i class="fas fa-phone-alt"></i> 1900 636 712</p>
+                <p><i class="fas fa-clock"></i> 7:30 - 17:30 (T2 - CN)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="son-la" class="tab-content">
+          <div class="store-list">
+            <!-- Sơn La 1 -->
+            <div class="store-card">
+              <div class="store-image">
+                <img src="image/lienhe/HEAD.JPG" alt="Honda Sơn La 1" />
+              </div>
+              <div class="store-info">
+                <h3>HEAD Hùng Mạnh 1</h3>
+                <p>
+                  <i class="fas fa-map-marker-alt"></i> Số nhà 30, Tiểu khu 20,
+                  TT. Hát Lót, H. Mai Sơn, Sơn La La
+                </p>
+                <p><i class="fas fa-phone-alt"></i> 0212 3744 028</p>
+                <p><i class="fas fa-clock"></i> 7:30 - 17:30 (T2 - CN)</p>
+              </div>
+            </div>
+
+            <!-- Sơn La 2 -->
+            <div class="store-card">
+              <div class="store-image">
+                <img src="image/lienhe/HEAD.JPG" alt="Honda Sơn La 1" />
+              </div>
+              <div class="store-info">
+                <h3>HEAD Hùng Mạnh 2</h3>
+                <p>
+                  <i class="fas fa-map-marker-alt"></i> Số nhà 482A Tô Hiệu, P.
+                  Chiềng Lề, TP. Sơn La, Sơn La
+                </p>
+                <p><i class="fas fa-phone-alt"></i> 0212 3752 136</p>
+                <p><i class="fas fa-clock"></i> 7:30 - 17:30 (T2 - CN)</p>
+              </div>
+            </div>
+
+            <!-- Sơn La 3 -->
+            <div class="store-card">
+              <div class="store-image">
+                <img src="image/lienhe/HEAD.JPG" alt="Honda Sơn La 1" />
+              </div>
+              <div class="store-info">
+                <h3>HEAD Hùng Mạnh 3</h3>
+                <p>
+                  <i class="fas fa-map-marker-alt"></i> Số 135 Chu Văn Thịnh, P.
+                  Tô Hiệu, TP. Sơn La, Sơn La
+                </p>
+                <p><i class="fas fa-phone-alt"></i> 081 5712 001</p>
+                <p><i class="fas fa-clock"></i> 7:30 - 17:30 (T2 - CN)</p>
+              </div>
+            </div>
+
+            <!-- Sơn La 4 -->
+            <div class="store-card">
+              <div class="store-image">
+                <img src="image/lienhe/HEAD.JPG" alt="Honda Sơn La 1" />
+              </div>
+              <div class="store-info">
+                <h3>HEAD Hùng Mạnh 4</h3>
+                <p>
+                  <i class="fas fa-map-marker-alt"></i> Tiểu khu 4, TT. Mộc
+                  Châu, H. Mộc Châu, Sơn La
+                </p>
+                <p><i class="fas fa-phone-alt"></i> 0212 3868 338</p>
+                <p><i class="fas fa-clock"></i> 7:30 - 17:30 (T2 - CN)</p>
+              </div>
+            </div>
+
+            <!-- Sơn La 5 -->
+            <div class="store-card">
+              <div class="store-image">
+                <img src="image/lienhe/HEAD.JPG" alt="Honda Sơn La 1" />
+              </div>
+              <div class="store-info">
+                <h3>HEAD Hùng Mạnh 5</h3>
+                <p>
+                  <i class="fas fa-map-marker-alt"></i> Tiểu khu 3, TT. Ít Ong,
+                  H. Mường La, Sơn La
+                </p>
+                <p><i class="fas fa-phone-alt"></i> 0212 3831 666</p>
+                <p><i class="fas fa-clock"></i> 7:30 - 17:30 (T2 - CN)</p>
+              </div>
+            </div>
+
+            <!-- Sơn La 6 -->
+            <div class="store-card">
+              <div class="store-image">
+                <img src="image/lienhe/HEAD.JPG" alt="Honda Sơn La 1" />
+              </div>
+              <div class="store-info">
+                <h3>HEAD Hùng Mạnh 6</h3>
+                <p>
+                  <i class="fas fa-map-marker-alt"></i> Tiểu khu 10, TT. Thuận
+                  Châu, H. Thuận Châu, Sơn La
+                </p>
+                <p><i class="fas fa-phone-alt"></i> 0212 3748 888</p>
+                <p><i class="fas fa-clock"></i> 7:30 - 17:30 (T2 - CN)</p>
+              </div>
+            </div>
+
+            <!-- Sơn La 7 -->
+            <div class="store-card">
+              <div class="store-image">
+                <img src="image/lienhe/HEAD.JPG" alt="Honda Sơn La 1" />
+              </div>
+              <div class="store-info">
+                <h3>HEAD Hùng Mạnh 8</h3>
+                <p>
+                  <i class="fas fa-map-marker-alt"></i> SN 740, TK Cơ Quan, TTNT
+                  Mộc Châu, H. Mộc Châu, Sơn La
+                </p>
+                <p><i class="fas fa-phone-alt"></i> 0212 3566 777</p>
+                <p><i class="fas fa-clock"></i> 7:30 - 17:30 (T2 - CN)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Liên Hệ Với Chúng Tôi</h2>
+          <p class="section-subtitle">Mọi thắc mắc xin vui lòng liên hệ</p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3>Địa Chỉ</h3>
+            <p>Tại Bình Định, Hà Nội, Sơn La</p>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <h3>Điện Thoại</h3>
+            <p>1900 636 712</p>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h3>Email</h3>
+            <p>cr@hungmanh.com.vn</p>
+            <p>cr_mt@hungmanh.com.vn</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a href="index.html" class="footer-logo">
+              <img src="image/logo/Logo_HEAD.png" alt="Honda Logo" />
+            </a>
+            <p>Công ty TNHH TM&DV Hùng Mạnh</p>
+            <div class="social-links">
+              <a href="https://www.facebook.com/hethongheadtrunghung"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://www.instagram.com/hethongheadtrunghung"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3>Sản Phẩm</h3>
+            <ul>
+              <li><a href="sanphamphutung.html">Xe Ga</a></li>
+              <li><a href="sanphamphutung.html">Xe Số</a></li>
+              <li><a href="sanphamphutung.html">Xe Côn Tay</a></li>
+              <li><a href="sanphamphutung.html">Phân Khối Lớn</a></li>
+              <li><a href="sanphamphutung.html">Xe Điện</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Dịch Vụ</h3>
+            <ul>
+              <li><a href="#">Bảo dưỡng</a></li>
+              <li><a href="#">Sửa chữa</a></li>
+              <li><a href="#">Bảo hiểm</a></li>
+              <li><a href="#">Phụ tùng</a></li>
+              <li><a href="#">Đào tạo lái xe an toàn</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Hỗ Trợ</h3>
+            <ul>
+              <li><a href="#">Câu hỏi thường gặp</a></li>
+              <li><a href="#">Hướng dẫn mua hàng</a></li>
+              <li><a href="#">Chính sách bảo hành</a></li>
+              <li><a href="cuahang.html">Tìm đại lý gần nhất</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Liên Hệ</h3>
+            <ul class="contact-info">
+              <li><i class="fas fa-phone-alt"></i> 1900 636 712</li>
+              <li><i class="fas fa-envelope"></i> cr@hungmanh.com.vn</li>
+              <li><i class="fas fa-envelope"></i> cr_mt@hungmanh.com.vn</li>
+              <li><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Tab switching functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const tabBtns = document.querySelectorAll(".tab-btn");
+        const tabContents = document.querySelectorAll(".tab-content");
+
+        tabBtns.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            // Remove active class from all buttons and contents
+            tabBtns.forEach((btn) => btn.classList.remove("active"));
+            tabContents.forEach((content) =>
+              content.classList.remove("active")
+            );
+
+            // Add active class to clicked button and corresponding content
+            this.classList.add("active");
+            const tabId = this.getAttribute("data-tab");
+            document.getElementById(tabId).classList.add("active");
+          });
         });
+
+        // Mobile menu toggle (if needed)
+        const menuToggle = document.querySelector(".menu-toggle");
+        const mainNav = document.querySelector(".main-nav");
+
+        if (menuToggle) {
+          menuToggle.addEventListener("click", function () {
+            this.classList.toggle("active");
+            mainNav.classList.toggle("active");
+          });
+        }
       });
-    }
-
-    // Hiệu ứng parallax cho banner
-    window.addEventListener('scroll', function() {
-      const scrollPosition = window.pageYOffset;
-      const banner = document.querySelector('.banner');
-      if (banner) {
-        banner.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
-      }
-    });
-
-    // Tab dịch vụ
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Xóa active khỏi tất cả các nút và nội dung
-        tabBtns.forEach(btn => btn.classList.remove('active'));
-        tabContents.forEach(content => content.classList.remove('active'));
-        
-        // Thêm active vào nút và nội dung được click
-        btn.classList.add('active');
-        const tabId = btn.getAttribute('data-tab');
-        document.getElementById(tabId).classList.add('active');
-      });
-    });
-
-    // Back to top button
-    const backToTopButton = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        backToTopButton.classList.add('show');
-      } else {
-        backToTopButton.classList.remove('show');
-      }
-    });
-    backToTopButton.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-
-    // Preload hình ảnh
-    const images = [
-      'https://via.placeholder.com/1920x1080?text=Banner+Background',
-      'https://via.placeholder.com/500x300?text=Bán+Hàng',
-      'https://via.placeholder.com/500x300?text=Bảo+Hành',
-      'https://via.placeholder.com/500x300?text=Dịch+Vụ',
-      'https://via.placeholder.com/500x300?text=Tư+Vấn'
-    ];
-    
-    images.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>
