@@ -1,1168 +1,1140 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dịch Vụ</title>
-  <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-  <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css" />
-  <script src="https://kit.fontawesome.com/54f0cb7e4a.js" crossorigin="anonymous"></script>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, Helvetica, sans-serif; background-color: #f9f9f9; overflow-x: hidden; }
-    a { text-decoration: none; color: inherit; }
-  /* HEADER NAVBAR */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      height: 60px;
-      background-color: transparent;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1.5rem;
-      z-index: 1000;
-      transition: background-color 0.4s ease, box-shadow 0.3s ease;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liên Hệ</title>
+    <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Reset & Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    .navbar .logo { display: flex; align-items: center; gap: 0.5rem; }
-    .navbar .logo img { height: 40px; }
+      :root {
+        --primary-color: #e40521;
+        --secondary-color: #333;
+        --light-color: #f8f9fa;
+        --dark-color: #212529;
+        --gray-color: #6c757d;
+        --light-gray: #e9ecef;
+        --transition: all 0.3s ease;
+      }
 
-    .hamburger {
-      width: 30px;
-      height: 22px;
-      position: relative;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      z-index: 1001;
-    }
-    .hamburger span {
-      height: 3px;
-      background: white;
-      border-radius: 2px;
-      transition: all 0.4s ease;
-    }
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(6px, 6px);
-    }
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
-    /* Khi cuộn xuống: navbar màu đỏ + shadow */
-    .navbar.scrolled {
-      background-color: #dc2626;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-    /* Hamburger chuyển sang nền sáng (đỏ đậm) khi scroll */
-    .hamburger span {
-      background: white;
-    }
-    /* Nav Menu Styles */
-.nav-menu {
-  background-color: #fff;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  padding: 0 20px;
-}
+      body {
+        font-family: "Montserrat", sans-serif;
+        line-height: 1.6;
+        color: var(--secondary-color);
+        overflow-x: hidden;
+        background-color: #f5f5f5;
+      }
 
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 0;
-  position: relative;
-}
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
 
-/* Brand logo styles */
-.brand-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  z-index: 1002;
-  height: 40px; /* Cố định chiều cao để căn giữa với nút menu */
-}
+      img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
 
-.logo-img {
-  height: 100%;
-  width: auto;
-  margin-right: 10px;
-  transition: all 0.3s ease;
-}
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+      }
 
-.brand-name {
-  color: #333;
-  font-weight: 700;
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
-}   
+      ul {
+        list-style: none;
+      }
 
+      .btn {
+        display: inline-block;
+        padding: 10px 25px;
+        border-radius: 25px;
+        font-weight: 500;
+        text-align: center;
+        transition: var(--transition);
+        cursor: pointer;
+        border: 2px solid transparent;
+      }
 
-/* Main navigation links */
-.main-menu {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-}
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
 
-.nav-links-container {
-  display: flex;
-  gap: 5px;
-}
+      .btn-primary:hover {
+        background-color: #c0041d;
+        border-color: #c0041d;
+      }
 
-.nav-link {
-  position: relative;
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 12px 18px;
-  transition: all 0.3s ease;
-  overflow: hidden;
-  border-radius: 4px;
-  text-align: center;
-}
+      .btn-outline {
+        background-color: transparent;
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
 
-.nav-link span {
-  position: relative;
-  z-index: 1;
-}
+      .btn-outline:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
 
-.nav-link:before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #ff0000;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
-}
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
 
-.nav-link:hover:before {
-  transform: scaleX(1);
-  transform-origin: left;
-}
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: var(--dark-color);
+      }
 
-.nav-link:hover {
-  color: #ff0000;
-}
+      .section-subtitle {
+        font-size: 1.1rem;
+        color: var(--gray-color);
+        margin-bottom: 20px;
+      }
 
-/* Desktop buttons */
-.desktop-buttons {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-left: 20px;
-}
+      .divider {
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+        margin: 0 auto;
+      }
 
-/* Mobile buttons - hidden on desktop */
-.mobile-buttons {
-  display: none;
-}
+      /* Header */
+      .main-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        transition: var(--transition);
+      }
 
-/* Social buttons */
-.social-buttons {
-  display: flex;
-  gap: 8px;
-}
+      .main-header.scrolled {
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
 
-/* Navigation buttons */
-.nav-button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  font-size: 0.95rem;
-}
+      .main-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-.contact-button {
-  background-color: #ff0000;
-  color: white;
-  border: 2px solid #ff0000;
-}
+      .logo img {
+        height: 40px;
+      }
 
-.store-button {
-  background-color: transparent;
-  color: #333;
-  border: 2px solid #ddd;
-}
+      /* Mobile Menu Toggle */
+      .menu-toggle {
+        display: none;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        cursor: pointer;
+        z-index: 1001;
+      }
 
-.nav-button:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: 0.5s;
-}
+      .menu-toggle .bar {
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background-color: var(--dark-color);
+        transition: all 0.3s ease;
+        left: 0;
+      }
 
-.nav-button:hover:before {
-  left: 100%;
-}
+      .menu-toggle .bar:nth-child(1) {
+        top: 0;
+      }
 
-.contact-button:hover {
-  background-color: #e60000;
-  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
-}
+      .menu-toggle .bar:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
 
-.store-button:hover {
-  border-color: #ff0000;
-  color: #ff0000;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
+      .menu-toggle .bar:nth-child(3) {
+        bottom: 0;
+      }
 
-/* Social buttons */
-.social-button {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
+      .menu-toggle.active .bar:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        background-color: var(--primary-color);
+      }
 
-.social-button:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  transition: 0.5s;
-}
+      .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+      }
 
-.social-button:hover:before {
-  left: 100%;
-}
+      .menu-toggle.active .bar:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+        background-color: var(--primary-color);
+      }
 
-.facebook {
-  background-color: #3b5998;
-}
+      .main-nav ul {
+        display: flex;
+      }
 
-.instagram {
-  background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-}
+      .main-nav li {
+        margin-left: 30px;
+      }
 
-.youtube {
-  background-color: #ff0000;
-}
+      .main-nav a {
+        font-weight: 500;
+        color: var(--dark-color);
+        position: relative;
+      }
 
-.tiktok {
-  background-color: #000000;
-}
+      .main-nav a:after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: var(--transition);
+      }
 
-.social-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
+      .main-nav a:hover:after,
+      .main-nav a.active:after {
+        width: 100%;
+      }
 
-/* ===== MOBILE MENU TOGGLE ===== */
-.mobile-menu-toggle {
-  display: none; /* Ẩn trên desktop */
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  z-index: 1001;
-  height: 40px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+      .main-nav a.active {
+        color: var(--primary-color);
+        font-weight: 600;
+      }
 
-.mobile-menu-toggle .bar {
-  display: block;
-  width: 25px;
-  height: 3px;
-  background-color: #333;
-  margin: 3px 0;
-  transition: all 0.3s ease;
-}
- /* Hiệu ứng chuyển đổi nút menu thành dấu X */
-  .nav-menu.active .mobile-menu-toggle .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  .nav-menu.active .mobile-menu-toggle .bar:nth-child(2) {
-    opacity: 0;
-  }
-  .nav-menu.active .mobile-menu-toggle .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-/* Active link style */
-.nav-link.active {
-  color: #ff0000;
-}
+      /* Hero Banner */
+      .contact-hero {
+        height: 50vh;
+        min-height: 300px;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("image/lienhe/KETNOI.jpg") no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        margin-top: 80px;
+        color: white;
+        text-align: center;
+      }
 
-.nav-link.active:before {
-  transform: scaleX(1);
-}
+      .hero-content {
+        width: 100%;
+      }
 
-/* Scrolled state */
-.nav-menu.scrolled {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-  background-color: rgba(255, 255, 255, 0.98);
-  padding: 0 10px;
-}
+      .hero-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
 
-.nav-menu.scrolled .brand-logo {
-  padding: 5px 0;
-}
+      /* Contact Form */
+      .contact-section {
+        padding: 80px 0;
+        background-color: white;
+      }
 
-.nav-menu.scrolled .logo-img {
-  height: 35px;
-}
+      .contact-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 50px;
+      }
 
-.nav-menu.scrolled .brand-name {
-  font-size: 1.1rem;
-}
+      .contact-info {
+        margin-bottom: 30px;
+      }
 
-.nav-menu.scrolled .nav-link {
-  padding: 10px 15px;
-  font-size: 0.95rem;
-}
+      .contact-info h3 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+      }
 
-/* Responsive Styles */
-@media (max-width: 1024px) {
-  /* iPad và các thiết bị nhỏ hơn */
-  .nav-container {
-    padding: 10px 15px;
-    height: 60px; /* Chiều cao cố định cho thanh nav */
-  }
-  
-  .brand-logo {
-    height: 40px;
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  /* Hiển thị nút menu 3 gạch */
-  .mobile-menu-toggle {
-    display: flex;
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  /* Ẩn menu chính trên mobile */
-  .main-menu {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 60px);
-    background-color: #fff;
-    flex-direction: column;
-    padding: 20px 0;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    z-index: 999;
-  }
-  /* Hiệu ứng khi menu mở */
-  .nav-menu.active .main-menu {
-    transform: translateX(0);
-  }
-  /* Hiệu ứng chuyển đổi nút menu thành dấu X */
-  .nav-menu.active .mobile-menu-toggle .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  .nav-menu.active .mobile-menu-toggle .bar:nth-child(2) {
-    opacity: 0;
-  }
-  .nav-menu.active .mobile-menu-toggle .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-  
-  /* Đảm bảo logo vẫn hiển thị khi menu mở */
-  .nav-menu.active .brand-logo {
-    position: relative;
-    z-index: 1002;
-  }
-  .nav-links-container {
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .nav-link {
-    width: 100%;
-    padding: 15px 20px;
-    border-bottom: 1px solid #f5f5f5;
-    text-align: left;
-  }
-  
-  .desktop-buttons {
-    display: none;
-  }
-  
-  .mobile-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-    width: 100%;
-    border-top: 1px solid #eee;
-    margin-top: 15px;
-  }
-  
-  .social-buttons {
-    justify-content: center;
-    margin-top: 10px;
-  }
-}
+      .contact-details {
+        margin-bottom: 30px;
+      }
 
-@media (max-width: 768px) {
-  .nav-container {
-    height: 56px; /* Chiều cao nhỏ hơn cho mobile */
-  }
-  
-  .brand-logo {
-    height: 36px;
-  }
-  
-  .logo-img {
-    height: 100%;
-  }
-  
-  .brand-name {
-    font-size: 1rem;
-  }
-  
-  .mobile-menu-toggle {
-    padding: 8px;
-  }
-  
-  .mobile-menu-toggle .bar {
-    width: 22px;
-    height: 2.5px;
-    margin: 2.5px 0;
-  }
-  
-  .main-menu {
-    top: 56px;
-    height: calc(100vh - 56px);
-  }
-}
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 15px;
+      }
 
-@media (max-width: 576px) {
-  .brand-name {
-    font-size: 1rem;
-  }
-  
-  .logo-img {
-    height: 30px;
-  }
-  
-  .mobile-buttons .nav-button {
-    width: 100%;
-    justify-content: center;
-  }
-}
+      .contact-item i {
+        color: var(--primary-color);
+        margin-right: 15px;
+        margin-top: 3px;
+        font-size: 1.1rem;
+        width: 20px;
+        text-align: center;
+      }
 
-/* Ripple Effect */
-.ripple-effect {
-  position: absolute;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.7);
-  transform: scale(0);
-  animation: ripple 0.6s linear;
-  pointer-events: none;
-}
+      .social-links {
+        display: flex;
+        gap: 15px;
+      }
 
-@keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
+      .social-links a {
+        width: 40px;
+        height: 40px;
+        background-color: var(--light-color);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+      }
 
-/* Prevent scrolling when menu is open */
-.no-scroll {
-  overflow: hidden;
-}
-/*------------------css lien he--------------*/
-:root {
-            --primary-color: #3498db;
-            --primary-light: #5dade2;
-            --secondary-color: #2c3e50;
-            --accent-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+      .social-links a:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .contact-form {
+        background-color: var(--light-color);
+        padding: 30px;
+        border-radius: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--light-gray);
+        border-radius: 25px;
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .form-control:focus {
+        border-color: var(--primary-color);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(228, 5, 33, 0.1);
+      }
+
+      textarea.form-control {
+        min-height: 150px;
+        resize: vertical;
+      }
+
+      /* Branches Section */
+      .branches-section {
+        padding: 60px 0;
+        background-color: var(--light-color);
+      }
+
+      .branches-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .branch-card {
+        background-color: white;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+      }
+
+      .branch-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .branch-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .branch-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .branch-card:hover .branch-image img {
+        transform: scale(1.05);
+      }
+
+      .branch-content {
+        padding: 20px;
+      }
+
+      .branch-title {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        color: var(--dark-color);
+      }
+
+      .branch-address {
+        color: var(--gray-color);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .branch-address i {
+        margin-right: 10px;
+        color: var(--primary-color);
+      }
+
+      .branch-contact {
+        margin-bottom: 15px;
+      }
+
+      .branch-contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .branch-contact-item i {
+        margin-right: 10px;
+        color: var(--primary-color);
+        width: 20px;
+        text-align: center;
+      }
+
+      /* Map Section */
+      .map-section {
+        padding: 60px 0;
+        background-color: white;
+      }
+
+      .map-container {
+        height: 500px;
+        margin-top: 40px;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* Working Hours */
+      .hours-section {
+        padding: 60px 0;
+        background-color: var(--light-color);
+      }
+
+      .hours-table {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        border-collapse: collapse;
+      }
+
+      .hours-table th,
+      .hours-table td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid var(--light-gray);
+      }
+
+      .hours-table th {
+        background-color: var(--primary-color);
+        color: white;
+        font-weight: 500;
+      }
+
+      .hours-table tr:nth-child(even) {
+        background-color: white;
+      }
+
+      /* Footer */
+      .main-footer {
+        background-color: var(--dark-color);
+        color: white;
+        padding: 60px 0 20px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .footer-col h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-col h3:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-logo {
+        margin-bottom: 20px;
+        display: block;
+        max-width: 150px;
+      }
+
+      .footer-social-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .footer-social-links a {
+        width: 35px;
+        height: 35px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+      }
+
+      .footer-social-links a:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      .footer-col ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-col ul a {
+        color: #adb5bd;
+        transition: var(--transition);
+      }
+
+      .footer-col ul a:hover {
+        color: var(--primary-color);
+        padding-left: 5px;
+      }
+
+      .footer-contact-info li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .footer-contact-info i {
+        margin-right: 10px;
+        color: var(--primary-color);
+        width: 20px;
+        text-align: center;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px 0;
+        text-align: center;
+        color: #adb5bd;
+        font-size: 0.9rem;
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+      }
+
+      .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background-color: #c0041d;
+        transform: translateY(-5px);
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .section-title {
+          font-size: 2rem;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .hero-content h1 {
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .menu-toggle {
+          display: block;
         }
 
-        body {
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
+        .main-nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 80%;
+          max-width: 300px;
+          height: 100vh;
+          background-color: white;
+          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+          transition: var(--transition);
+          padding: 80px 20px 20px;
+          overflow-y: auto;
         }
 
-        .contact-section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s var(--ease-in-out) forwards;
+        .main-nav.active {
+          right: 0;
         }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .main-nav ul {
+          flex-direction: column;
+        }
+
+        .main-nav li {
+          margin: 15px 0;
+        }
+
+        .main-nav a {
+          font-size: 1.1rem;
+        }
+
+        .contact-container {
+          grid-template-columns: 1fr;
+        }
+
+        .map-container {
+          height: 350px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .contact-hero {
+          min-height: 250px;
+        }
+
+        .hero-content h1 {
+          font-size: 1.8rem;
         }
 
         .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-            overflow: hidden;
+          font-size: 1.8rem;
         }
 
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-            font-weight: 700;
-            transform: translateY(20px);
-            opacity: 0;
-            animation: fadeInUp 0.6s var(--ease-in-out) 0.2s forwards;
+        .contact-form {
+          padding: 20px;
         }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="image/logo/Logo_HEAD.png" alt="Honda Logo" />
+        </a>
 
-        .section-title p {
-            color: #777;
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto;
-            transform: translateY(20px);
-            opacity: 0;
-            animation: fadeInUp 0.6s var(--ease-in-out) 0.4s forwards;
-        }
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 4px;
-            background: var(--primary-color);
-            margin: 20px auto;
-            border-radius: 2px;
-            animation: expandLine 0.8s var(--ease-in-out) 0.6s forwards;
-        }
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="sanphamxemay.html">Sản phẩm</a></li>
+            <li><a href="dichvu.html">Dịch vụ</a></li>
+            <li><a href="tintuc.html">Tin tức</a></li>
+            <li><a href="lienhe.html" class="active">Liên hệ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-        @keyframes expandLine {
-            to {
-                width: 80px;
-            }
-        }
+    <!-- Hero Banner -->
+    <section class="contact-hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Liên Hệ Với Chúng Tôi</h1>
+          <p>Chúng tôi luôn sẵn sàng hỗ trợ và giải đáp mọi thắc mắc của bạn</p>
+        </div>
+      </div>
+    </section>
 
-        .branches-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            perspective: 1000px;
-        }
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Gửi Yêu Cầu</h2>
+          <p class="section-subtitle">
+            Điền thông tin để chúng tôi có thể hỗ trợ bạn tốt nhất
+          </p>
+          <div class="divider"></div>
+        </div>
 
-        .branch-card {
-            flex: 1 1 300px;
-            max-width: 350px;
-            background: white;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            transform-style: preserve-3d;
-            opacity: 0;
-            transform: translateY(30px) rotateY(15deg);
-            animation: cardEntrance 0.8s var(--ease-in-out) forwards;
-        }
+        <div class="contact-container">
+          <div class="contact-info">
+            <h3>Thông Tin Liên Hệ</h3>
 
-        .branch-card:nth-child(1) {
-            animation-delay: 0.3s;
-        }
-        .branch-card:nth-child(2) {
-            animation-delay: 0.5s;
-        }
-        .branch-card:nth-child(3) {
-            animation-delay: 0.7s;
-        }
+            <div class="contact-details">
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <h4>Trụ sở chính</h4>
+                  <p>135 Chu Văn Thịnh, Tổ 1, P. Tô Hiệu, TP. Sơn La, Sơn La</p>
+                </div>
+              </div>
 
-        @keyframes cardEntrance {
-            to {
-                opacity: 1;
-                transform: translateY(0) rotateY(0);
-            }
-        }
+              <div class="contact-item">
+                <i class="fas fa-phone-alt"></i>
+                <div>
+                  <h4>Điện thoại</h4>
+                  <p>1900 636 712</p>
+                </div>
+              </div>
 
-        .branch-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <h4>Email</h4>
+                  <p>cr@hungmanh.com.vn</p>
+                </div>
+              </div>
 
-        .branch-image {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
+              <div class="contact-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                  <h4>Giờ làm việc</h4>
+                  <p>Thứ 2 - CN: 7:30 - 17:30</p>
+                </div>
+              </div>
+            </div>
 
-        .branch-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
-            z-index: 1;
-            opacity: 0;
-            transition: var(--transition);
-        }
+            <h3 style="margin-top: 30px">Kết Nối Với Chúng Tôi</h3>
+            <div class="social-links">
+              <a href="https://www.facebook.com/hethongheadtrunghung"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://www.instagram.com/hethongheadtrunghung"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+          </div>
 
-        .branch-card:hover .branch-image::before {
-            opacity: 1;
-        }
+          <form class="contact-form">
+            <div class="form-group">
+              <label for="name" class="form-label">Họ và tên</label>
+              <input type="text" id="name" class="form-control" required />
+            </div>
 
-        .branch-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-            transform: scale(1);
-        }
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-control" required />
+            </div>
 
-        .branch-card:hover .branch-image img {
-            transform: scale(1.1);
-        }
+            <div class="form-group">
+              <label for="phone" class="form-label">Số điện thoại</label>
+              <input type="tel" id="phone" class="form-control" required />
+            </div>
 
-        .branch-location {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--primary-color);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            z-index: 2;
-            transform: translateX(20px);
-            opacity: 0;
-            transition: var(--transition);
-        }
+            <div class="form-group">
+              <label for="subject" class="form-label">Chủ đề</label>
+              <select id="subject" class="form-control" required>
+                <option value="">Chọn chủ đề</option>
+                <option value="product">Thông tin sản phẩm</option>
+                <option value="warranty">Bảo hành - Bảo dưỡng</option>
+                <option value="dealer">Đại lý - Nhà phân phối</option>
+                <option value="career">Tuyển dụng</option>
+                <option value="other">Khác</option>
+              </select>
+            </div>
 
-        .branch-card:hover .branch-location {
-            transform: translateX(0);
-            opacity: 1;
-        }
+            <div class="form-group">
+              <label for="message" class="form-label">Nội dung</label>
+              <textarea id="message" class="form-control" required></textarea>
+            </div>
 
-        .branch-info {
-            padding: 25px;
-            transform: translateY(0);
-            transition: var(--transition);
-        }
+            <button type="submit" class="btn btn-primary">Gửi yêu cầu</button>
+          </form>
+        </div>
+      </div>
+    </section>
 
-        .branch-card:hover .branch-info {
-            transform: translateY(-5px);
-        }
+    <!-- Branches Section -->
+    <section class="branches-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Hệ Thống Chi Nhánh</h2>
+          <p class="section-subtitle">
+            Mạng lưới đại lý và trung tâm dịch vụ trên toàn quốc
+          </p>
+          <div class="divider"></div>
+        </div>
 
-        .branch-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-            position: relative;
-            padding-bottom: 10px;
-        }
+        <div class="branches-grid">
+          <!-- Hanoi Branch -->
+          <div class="branch-card">
+            <div class="branch-image">
+              <img src="image/lienhe/HANOI.jpg" alt="Chi nhánh Hà Nội" />
+            </div>
+            <div class="branch-content">
+              <h3 class="branch-title">Chi Nhánh Hà Nội</h3>
+              <div class="branch-address">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>319 Nguyễn Văn Cừ, P. Ngọc Lâm, Q. Long Biên, TP. Hà Nội</p>
+              </div>
+              <div class="branch-contact">
+                <div class="branch-contact-item">
+                  <i class="fas fa-phone-alt"></i>
+                  <span>1900 636 712</span>
+                </div>
+                <div class="branch-contact-item">
+                  <i class="fas fa-envelope"></i>
+                  <span>cr@hungmanh.com.vn</span>
+                </div>
+                <div class="branch-contact-item">
+                  <i class="fas fa-clock"></i>
+                  <span>Thứ 2 - CN: 7:30 - 17:30</span>
+                </div>
+              </div>
+              <a
+                href="https://www.google.com/maps/place/Honda+H%C3%B9ng+M%E1%BA%A1nh+7/@21.0458397,105.8730269,720m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3135abd5fc29275f:0x62992c006999cd20!8m2!3d21.0458347!4d105.8756018!16s%2Fg%2F11gdqqqfsd?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+                class="btn btn-outline"
+                >Chỉ đường</a
+              >
+            </div>
+          </div>
 
-        .branch-info h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 2px;
-            background: var(--primary-color);
-            transform-origin: left;
-            transform: scaleX(0);
-            transition: var(--transition);
-        }
+          <!-- Binh Dinh Branch -->
+          <div class="branch-card">
+            <div class="branch-image">
+              <img src="image/lienhe/BINHDINH.jpg" alt="Chi nhánh Bình Định" />
+            </div>
+            <div class="branch-content">
+              <h3 class="branch-title">Chi Nhánh Bình Định</h3>
+              <div class="branch-address">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>
+                  290-292 Lê Hồng Phong, P. Thị Nại, TP. Quy Nhơn, Bình Định
+                </p>
+              </div>
+              <div class="branch-contact">
+                <div class="branch-contact-item">
+                  <i class="fas fa-phone-alt"></i>
+                  <span>0256 3824 471</span>
+                </div>
+                <div class="branch-contact-item">
+                  <i class="fas fa-envelope"></i>
+                  <span>cr_mt@hungmanh.com.vn</span>
+                </div>
+                <div class="branch-contact-item">
+                  <i class="fas fa-clock"></i>
+                  <span>Thứ 2 - CN: 7:30 - 17:30</span>
+                </div>
+              </div>
+              <a
+                href="https://www.google.com/maps/place/HONDA+TRUNG+H%C3%99NG+1/@13.7758146,109.2243526,750m/data=!3m2!1e3!4b1!4m6!3m5!1s0x316f6c85a6d6924d:0xa455acdefd4d31d7!8m2!3d13.7758094!4d109.2269275!16s%2Fg%2F11btrs8zjy?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+                class="btn btn-outline"
+                >Chỉ đường</a
+              >
+            </div>
+          </div>
 
-        .branch-card:hover .branch-info h3::after {
-            transform: scaleX(1);
-        }
+          <!-- Son La Branch -->
+          <div class="branch-card">
+            <div class="branch-image">
+              <img src="image/lienhe/SONLA.jpg" alt="Chi nhánh Sơn La" />
+            </div>
+            <div class="branch-content">
+              <h3 class="branch-title">Chi Nhánh Sơn La</h3>
+              <div class="branch-address">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>Số 135 Chu Văn Thịnh, P. Tô Hiệu, TP. Sơn La, Sơn La</p>
+              </div>
+              <div class="branch-contact">
+                <div class="branch-contact-item">
+                  <i class="fas fa-phone-alt"></i>
+                  <span>081 5712 001</span>
+                </div>
+                <div class="branch-contact-item">
+                  <i class="fas fa-envelope"></i>
+                  <span>cr@hungmanh.com.vn</span>
+                </div>
+                <div class="branch-contact-item">
+                  <i class="fas fa-clock"></i>
+                  <span>Thứ 2 - CN: 7:30 - 17:30</span>
+                </div>
+              </div>
+              <a
+                href="https://www.google.com/maps/place/Head+H%C3%B9ng+M%E1%BA%A1nh+3/@21.3312788,103.9098181,719m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31328b2d6f538d19:0xcba4b60a29410ff1!8m2!3d21.3312738!4d103.912393!16s%2Fg%2F11b67txg1z?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+                class="btn btn-outline"
+                >Chỉ đường</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        .branch-info p {
-            color: #666;
-            margin-bottom: 20px;
-            transition: var(--transition);
-            transform: translateY(0);
-        }
+    <!-- Map Section 
+    <section class="map-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Bản Đồ Chi Nhánh</h2>
+          <p class="section-subtitle">
+            Tìm đường đến các chi nhánh của Honda Việt Nam
+          </p>
+          <div class="divider"></div>
+        </div>
 
-        .branch-card:hover .branch-info p {
-            transform: translateY(-3px);
-        }
+        <div class="map-container">
+           In a real implementation, you would embed Google Maps here 
+          <div
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100%;
+              background-color: #eee;
+            "
+          >
+            <p style="font-size: 1.2rem; color: var(--gray-color)">
+              Bản đồ các chi nhánh Honda Việt Nam
+            </p>
+          </div>
+        </div>
+      </div>
+    </section> -->
 
-        .contact-details {
-            margin-top: 20px;
-        }
+    <!-- Working Hours Section
+    <section class="hours-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Giờ Làm Việc</h2>
+          <p class="section-subtitle">Thời gian phục vụ tại các chi nhánh</p>
+          <div class="divider"></div>
+        </div>
 
-        .contact-item {
-            display: flex;
-            margin-bottom: 15px;
-            align-items: flex-start;
-            transition: var(--transition);
-            transform: translateX(0);
-        }
+        <table class="hours-table">
+          <thead>
+            <tr>
+              <th>Chi nhánh</th>
+              <th>Ngày làm việc</th>
+              <th>Giờ làm việc</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hà Nội</td>
+              <td>Thứ 2 - Thứ 7</td>
+              <td>8:00 - 17:00</td>
+            </tr>
+            <tr>
+              <td>Bình Định</td>
+              <td>Thứ 2 - Thứ 7</td>
+              <td>8:00 - 17:00</td>
+            </tr>
+            <tr>
+              <td>Sơn La</td>
+              <td>Thứ 2 - Thứ 7</td>
+              <td>8:00 - 17:00</td>
+            </tr>
+            <tr>
+              <td>Dịch vụ khẩn cấp</td>
+              <td>Tất cả các ngày</td>
+              <td>24/7</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>  -->
 
-        .branch-card:hover .contact-item:nth-child(1) {
-            transition-delay: 0.1s;
-            transform: translateX(5px);
-        }
-        .branch-card:hover .contact-item:nth-child(2) {
-            transition-delay: 0.2s;
-            transform: translateX(10px);
-        }
-        .branch-card:hover .contact-item:nth-child(3) {
-            transition-delay: 0.3s;
-            transform: translateX(15px);
-        }
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <img
+              src="image/LOGO/Logo_HEAD.png"
+              alt="Honda Logo"
+              class="footer-logo"
+            />
+            <p>Công ty TNHH TM&DV Hùng Mạnh</p>
+            <div class="footer-social-links">
+              <a href="https://www.facebook.com/hethongheadtrunghung"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://www.instagram.com/hethongheadtrunghung"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+          </div>
 
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--light-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            flex-shrink: 0;
-            transition: var(--transition);
-        }
+          <div class="footer-col">
+            <h3>Liên kết nhanh</h3>
+            <ul>
+              <li><a href="index.html">Trang chủ</a></li>
+              <li><a href="sanphamxemay.html">Sản phẩm</a></li>
+              <li><a href="tintuc.html">Tin tức</a></li>
+              <li><a href="dichvu.html">Dịch vụ</a></li>
+              <li><a href="lienhe.html">Liên hệ</a></li>
+            </ul>
+          </div>
 
-        .contact-item:hover .contact-icon {
-            background: var(--primary-color);
-            color: white;
-            transform: rotate(10deg) scale(1.1);
-        }
+          <!--<div class="footer-col">
+            <h3>Chi nhánh</h3>
+            <ul class="footer-contact-info">
+              <li>
+                <i class="fas fa-map-marker-alt"></i> Hà Nội: Số 1 Phạm Hùng
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i> Bình Định: 123 Trần Hưng
+                Đạo
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i> Sơn La: 456 Chu Văn Thịnh
+              </li>
+            </ul>
+          </div>-->
 
-        .contact-text h4 {
-            font-size: 1rem;
-            color: var(--dark-color);
-            margin-bottom: 3px;
-            transition: var(--transition);
-        }
+          <div class="footer-col">
+            <h3>Liên hệ</h3>
+            <ul class="footer-contact-info">
+              <li><i class="fas fa-phone"></i> 1900 636 712</li>
+              <li><i class="fas fa-envelope"></i> cr@hungmanh.com.vn</li>
+              <li><i class="fas fa-envelope"></i> cr_mt@hungmanh.com.vn</li>
+              <li><i class="fas fa-clock"></i> Thứ 2 - CN: 7:30 - 17:30</li>
+            </ul>
+          </div>
+        </div>
 
-        .contact-item:hover .contact-text h4 {
-            color: var(--primary-color);
-        }
+        <div class="footer-bottom">
+          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        </div>
+      </div>
+    </footer>
 
-        .contact-text p, .contact-text a {
-            color: #666;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        .contact-text a:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
-
-        /* Responsive styles */
-        @media (max-width: 992px) {
-            .branches-container {
-                gap: 20px;
-            }
-            
-            .branch-card {
-                flex: 1 1 calc(50% - 20px);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .section-title p {
-                font-size: 1rem;
-            }
-            
-            .branches-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .branch-card {
-                flex: 1 1 100%;
-                max-width: 100%;
-                animation: mobileCardEntrance 0.8s var(--ease-in-out) forwards;
-            }
-
-            @keyframes mobileCardEntrance {
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-        }
-
-        @media (max-width: 480px) {
-            .contact-section {
-                padding: 50px 15px;
-            }
-            
-            .section-title {
-                margin-bottom: 40px;
-            }
-            
-            .branch-info {
-                padding: 20px;
-            }
-        }
-  </style>
-</head>
-<body>
-  <header class="navbar">
-  <div class="logo">
-    <img src="image/logo/Logo_HEAD.png" alt="Logo">
-    <span>HEAD Trung Hùng</span>
-  </div>
-  <div class="hamburger" id="hamburger">
-    <span></span><span></span><span></span>
-  </div>
-</header>
-
-<nav class="nav-menu" id="navMenu">
-  <div class="nav-container">
-    <!-- Logo thương hiệu -->
-    <a href="index.html" class="brand-logo">
-      <img src="image/logo/Logo_HEAD.png" alt="Logo Thương Hiệu" class="logo-img">
-      <span class="brand-name"></span>
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+      <i class="fas fa-arrow-up"></i>
     </a>
 
-    <div class="main-menu" id="mainMenu">
-      <a href="index.html" class="nav-link"><span>Trang chủ</span></a>
-      <a href="gioithieu.html" class="nav-link"><span>Giới thiệu</span></a>
-      <a href="sanphamxemay.html" class="nav-link"><span>Sản phẩm</span></a>
-      <a href="dichvu.html" class="nav-link"><span>Dịch Vụ</span></a>
-      <a href="khuyenmai.html" class="nav-link"><span>Khuyến Mãi</span></a>
-      <a href="tintuc.html" class="nav-link"><span>Tin Tức</span></a>
-      
-      <!-- Các nút hiển thị trên mobile -->
-      <div class="mobile-buttons">
-        <a href="lienhe.html" class="nav-button contact-button">
-          <i class="fas fa-phone-alt"></i> 
-          <span>Liên hệ</span>
-        </a>
-        <a href="cuahang.html" class="nav-button store-button">
-          <i class="fas fa-map-marker-alt"></i> 
-          <span>Cửa hàng</span>
-        </a>
-        
-        <div class="social-buttons">
-          <a href="#" class="social-button facebook" aria-label="Facebook">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="social-button instagram" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="#" class="social-button youtube" aria-label="YouTube">
-            <i class="fab fa-youtube"></i>
-          </a>
-          <a href="#" class="social-button tiktok" aria-label="TikTok">
-            <i class="fab fa-tiktok"></i>
-          </a>
-        </div>
-      </div>
-    </div>
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mainNav = document.querySelector(".main-nav");
 
-    <!-- Các nút hiển thị trên desktop -->
-    <div class="desktop-buttons">
-      <a href="lienhe.html" class="nav-button contact-button">
-        <i class="fas fa-phone-alt"></i> 
-        <span>Liên hệ</span>
-      </a>
-      <a href="cuahang.html" class="nav-button store-button">
-        <i class="fas fa-map-marker-alt"></i> 
-        <span>Cửa hàng</span>
-      </a>
-      
-      <div class="social-buttons">
-        <a href="#" class="social-button facebook" aria-label="Facebook">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" class="social-button instagram" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="#" class="social-button youtube" aria-label="YouTube">
-          <i class="fab fa-youtube"></i>
-        </a>
-        <a href="#" class="social-button tiktok" aria-label="TikTok">
-          <i class="fab fa-tiktok"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Mobile menu button -->
-  <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </button>
-</nav>
+      mobileMenu.addEventListener("click", function () {
+        this.classList.toggle("active");
+        mainNav.classList.toggle("active");
+      });
 
-  <div class="overlay" id="overlay"></div>
-  <!-- Section Liên Hệ -->
-  <section class="contact-section">
-        <div class="section-title">
-            <h2>Liên Hệ Với Chúng Tôi</h2>
-            <p>Chúng tôi luôn sẵn sàng hỗ trợ và giải đáp mọi thắc mắc của quý khách tại các chi nhánh Hà Nội, Bình Định, Sơn La</p>
-        </div>
-        
-        <div class="branches-container">
-            <!-- Chi nhánh Sơn La -->
-            <div class="branch-card">
-                <div class="branch-image">
-                    <img src="image/lienhe/SONLA.jpg" alt="Sơn La">
-                    <div class="branch-location">Sơn La</div>
-                </div>
-                <div class="branch-info">
-                    <h3>Trụ sở chính</h3>
-                    <p>Chi nhánh tại miền Bắc với không gian hiện đại, là trụ sở chính của công ty chúng tôi.</p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">📍</div>
-                            <div class="contact-text">
-                                <h4>Địa chỉ</h4>
-                                <p>135 Đường Chu Văn Thịnh, Tổ 1, P. Tô Hiệu,TP. Sơn La, Sơn La</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">📞</div>
-                            <div class="contact-text">
-                                <h4>Điện thoại</h4>
-                                <p><a href="tel:+1900636712">1900 636 712</a></p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">✉️</div>
-                            <div class="contact-text">
-                                <h4>Email</h4>
-                                <p><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Chi nhánh Hà Nội -->
-            <div class="branch-card">
-                <div class="branch-image">
-                    <img src="image/lienhe/HANOI.jpg" alt="Hà Nội">
-                    <div class="branch-location">Hà Nội</div>
-                </div>
-                <div class="branch-info">
-                    <h3>Chi nhánh miền Bắc</h3>
-                    <p>Chi nhánh tại thủ đô Hà Nội với đội ngũ chuyên nghiệp, phục vụ khách hàng khu vực phía Bắc.</p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">📍</div>
-                            <div class="contact-text">
-                                <h4>Địa chỉ</h4>
-                                <p>319 Nguyễn Văn Cừ, P. Ngọc Lâm, Q. Long Biên, Hà Nội</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">📞</div>
-                            <div class="contact-text">
-                                <h4>Điện thoại</h4>
-                                <p><a href="tel:+1900636712">1900 636 712</a></p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">✉️</div>
-                            <div class="contact-text">
-                                <h4>Email</h4>
-                                <p><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Chi nhánh Bình Định-->
-            <div class="branch-card">
-                <div class="branch-image">
-                    <img src="image/lienhe/BINHDINH.jpg" alt="Bình Định">
-                    <div class="branch-location">Bình Định</div>
-                </div>
-                <div class="branch-info">
-                    <h3>Chi nhánh Miền Trung</h3>
-                    <p>Chi nhánh tại miền trung thuộc thành phố biển Quy Nhơn, mang đến dịch vụ chất lượng cho khu vực miền trung.</p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">📍</div>
-                            <div class="contact-text">
-                                <h4>Địa chỉ</h4>
-                                <p>Số 288-290-292 Lê Hồng Phong, P. Thị Nại, TP. Quy Nhơn, Bình Định</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">📞</div>
-                            <div class="contact-text">
-                                <h4>Điện thoại</h4>
-                                <p><a href="tel:+1900636712">1900 636 712</a></p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">✉️</div>
-                            <div class="contact-text">
-                                <h4>Email</h4>
-                                <p><a href="mailto:cr_mt@hungmanh.com.vn">cr_mt@hungmanh.com.vn</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-  <!---------menutop----------------->
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-  const navMenu = document.getElementById('navMenu');
-  const mobileToggle = document.getElementById('mobileMenuToggle');
-  const mainMenu = document.getElementById('mainMenu');
-  
-  // Mobile menu toggle
-  mobileToggle.addEventListener('click', function() {
-    navMenu.classList.toggle('active');
-    document.body.classList.toggle('no-scroll');
-  });
-  
-  // Close menu when clicking on a link
-  mainMenu.addEventListener('click', function(e) {
-    if (e.target.closest('a')) {
-      navMenu.classList.remove('active');
-      document.body.classList.remove('no-scroll');
-    }
-  });
-  
-  // Add active class to current page link
-  const currentPage = window.location.pathname.split('/').pop();
-  const navLinks = document.querySelectorAll('.nav-link');
-  
-  navLinks.forEach(link => {
-    const linkHref = link.getAttribute('href');
-    if (linkHref === currentPage) {
-      link.classList.add('active');
-    }
-  });
-  
-  // Sticky menu on scroll
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 50) {
-      navMenu.classList.add('scrolled');
-    } else {
-      navMenu.classList.remove('scrolled');
-    }
-  });
-  
-  // Add ripple effect to buttons
-  const buttons = document.querySelectorAll('.nav-button, .social-button');
-  
-  buttons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      const x = e.clientX - e.target.getBoundingClientRect().left;
-      const y = e.clientY - e.target.getBoundingClientRect().top;
-      
-      const ripple = document.createElement('span');
-      ripple.classList.add('ripple-effect');
-      ripple.style.left = `${x}px`;
-      ripple.style.top = `${y}px`;
-      
-      this.appendChild(ripple);
-      
-      setTimeout(() => {
-        ripple.remove();
-      }, 1000);
-    });
-  });
-});
-</script>
-<!------------------script lien he-------------------------->
+      // Header Scroll Effect
+      const header = document.querySelector(".main-header");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 100) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
 
-<!-- Scripts menu -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1000 });
+      // Back to Top Button
+      const backToTop = document.getElementById("backToTop");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add("active");
+        } else {
+          backToTop.classList.remove("active");
+        }
+      });
 
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
-    const overlay = document.getElementById('overlay');
+      backToTop.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
 
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navMenu.classList.toggle('active');
-      overlay.classList.toggle('active');
-    });
-
-    overlay.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      navMenu.classList.remove('active');
-      overlay.classList.remove('active');
-    });
-  </script>
-</body>
+      // Contact Form Submission
+      const contactForm = document.querySelector(".contact-form");
+      if (contactForm) {
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          alert(
+            "Cảm ơn bạn đã gửi yêu cầu! Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất."
+          );
+          contactForm.reset();
+        });
+      }
+    </script>
+  </body>
 </html>
