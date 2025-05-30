@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hỗ Trợ Trả Góp</title>
+    <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Reset & Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-color: #e40521;
+        --secondary-color: #333;
+        --light-color: #f8f9fa;
+        --dark-color: #212529;
+        --gray-color: #6c757d;
+        --light-gray: #e9ecef;
+        --transition: all 0.3s ease;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        line-height: 1.6;
+        color: var(--secondary-color);
+        overflow-x: hidden;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 25px;
+        border-radius: 25px;
+        font-weight: 500;
+        text-align: center;
+        transition: var(--transition);
+        cursor: pointer;
+        border: 2px solid transparent;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      .btn-primary:hover {
+        background-color: #c0041d;
+        border-color: #c0041d;
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: var(--dark-color);
+      }
+
+      .section-subtitle {
+        font-size: 1.1rem;
+        color: var(--gray-color);
+        margin-bottom: 20px;
+      }
+
+      .divider {
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+        margin: 0 auto;
+      }
+
+      /* Header */
+      .main-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        transition: var(--transition);
+      }
+
+      .main-header.scrolled {
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .main-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 40px;
+      }
+
+      /* Mobile Menu Toggle */
+      .menu-toggle {
+        display: none;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-toggle .bar {
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background-color: var(--dark-color);
+        transition: all 0.3s ease;
+        left: 0;
+      }
+
+      .menu-toggle .bar:nth-child(1) {
+        top: 0;
+      }
+
+      .menu-toggle .bar:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .menu-toggle .bar:nth-child(3) {
+        bottom: 0;
+      }
+
+      .menu-toggle.active .bar:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        background-color: var(--primary-color);
+      }
+
+      .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active .bar:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+        background-color: var(--primary-color);
+      }
+
+      .main-nav ul {
+        list-style: none;
+        display: flex;
+      }
+
+      .main-nav li {
+        margin-left: 30px;
+      }
+
+      .main-nav a {
+        font-weight: 500;
+        color: var(--dark-color);
+        position: relative;
+      }
+
+      .main-nav a:after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: var(--transition);
+      }
+
+      .main-nav a:hover:after,
+      .main-nav a.active:after {
+        width: 100%;
+      }
+
+      .main-nav a.active {
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      /* Hero Banner */
+      .installment-hero {
+        height: 50vh;
+        min-height: 300px;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("image/BANNERBIKE/VISION.png") no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        margin-top: 80px;
+        color: white;
+        text-align: center;
+      }
+
+      .hero-content {
+        width: 100%;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      /* Installment Options */
+      .installment-section {
+        padding: 60px 0;
+        background-color: white;
+      }
+
+      .installment-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 50px;
+      }
+
+      .installment-card {
+        background-color: var(--light-color);
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+      }
+
+      .installment-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .installment-card-header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .installment-card-header h3 {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+      }
+
+      .installment-card-body {
+        padding: 25px;
+      }
+
+      .installment-feature {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .installment-feature i {
+        color: var(--primary-color);
+        margin-right: 10px;
+        font-size: 1.2rem;
+      }
+
+      .installment-cta {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      /* Calculator Section */
+      .calculator-section {
+        padding: 60px 0;
+        background-color: var(--light-color);
+      }
+
+      .calculator-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 25px;
+        padding: 40px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .calculator-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+
+      .calculator-result {
+        background-color: var(--light-color);
+        border-radius: 25px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .result-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--light-gray);
+      }
+
+      .result-total {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--primary-color);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--light-gray);
+        border-radius: 25px;
+        font-size: 1rem;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: var(--primary-color);
+      }
+
+      .range-slider {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .range-values {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5px;
+        font-size: 0.9rem;
+        color: var(--gray-color);
+      }
+
+      /* Bank Partners */
+      .bank-section {
+        padding: 60px 0;
+        background-color: white;
+      }
+
+      .bank-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+        align-items: center;
+      }
+
+      .bank-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        border-radius: 25px;
+        transition: var(--transition);
+      }
+
+      .bank-item:hover {
+        background-color: var(--light-color);
+      }
+
+      .bank-logo {
+        width: 100px;
+        height: 60px;
+        object-fit: contain;
+        margin-bottom: 15px;
+      }
+
+      /* Requirements Section */
+      .requirements-section {
+        padding: 60px 0;
+        background-color: var(--light-color);
+      }
+
+      .requirements-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .requirements-list {
+        background-color: white;
+        border-radius: 25px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .requirement-item {
+        display: flex;
+        margin-bottom: 20px;
+      }
+
+      .requirement-item i {
+        color: var(--primary-color);
+        margin-right: 15px;
+        font-size: 1.2rem;
+        margin-top: 3px;
+      }
+
+      /* FAQ Section */
+      .faq-section {
+        padding: 60px 0;
+        background-color: white;
+      }
+
+      .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        margin-bottom: 15px;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .faq-question {
+        padding: 20px;
+        background-color: var(--light-color);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        transition: var(--transition);
+      }
+
+      .faq-question:hover {
+        background-color: #f1f1f1;
+      }
+
+      .faq-question i {
+        transition: var(--transition);
+      }
+
+      .faq-answer {
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        background-color: white;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+      }
+
+      .faq-item.active .faq-question {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+      }
+
+      .faq-item.active .faq-answer {
+        padding: 20px;
+        max-height: 500px;
+        border-top: 1px solid var(--light-gray);
+      }
+
+      /* Contact CTA */
+      .contact-cta {
+        padding: 80px 0;
+        text-align: center;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("https://cdn.honda.com.vn/motorbike-news/October2021/9hP0Q1Z8KvXQYk8XhQ5k.jpg")
+            no-repeat center center/cover;
+        color: white;
+      }
+
+      .contact-cta h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .contact-cta p {
+        max-width: 600px;
+        margin: 0 auto 30px;
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      /* Footer */
+      .main-footer {
+        background-color: var(--dark-color);
+        color: white;
+        padding: 60px 0 20px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .footer-col h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-col h3:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-logo {
+        margin-bottom: 20px;
+        display: block;
+        max-width: 150px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-links a {
+        width: 35px;
+        height: 35px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      .footer-col ul li {
+        list-style: none;
+        margin-bottom: 10px;
+      }
+
+      .footer-col ul a {
+        color: #adb5bd;
+        transition: var(--transition);
+      }
+
+      .footer-col ul a:hover {
+        color: var(--primary-color);
+        padding-left: 5px;
+      }
+
+      .contact-info li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .contact-info i {
+        margin-right: 10px;
+        color: var(--primary-color);
+        width: 20px;
+        text-align: center;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px 0;
+        text-align: center;
+        color: #adb5bd;
+        font-size: 0.9rem;
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+      }
+
+      .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background-color: #c0041d;
+        transform: translateY(-5px);
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .hero-content h1 {
+          font-size: 2rem;
+        }
+
+        .calculator-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .menu-toggle {
+          display: block;
+        }
+
+        .main-nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 80%;
+          max-width: 300px;
+          height: 100vh;
+          background-color: white;
+          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+          transition: var(--transition);
+          padding: 80px 20px 20px;
+          overflow-y: auto;
+        }
+
+        .main-nav.active {
+          right: 0;
+        }
+
+        .main-nav ul {
+          flex-direction: column;
+        }
+
+        .main-nav li {
+          margin: 15px 0;
+        }
+
+        .main-nav a {
+          font-size: 1.1rem;
+        }
+
+        .installment-cards {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .installment-hero {
+          min-height: 250px;
+        }
+
+        .hero-content h1 {
+          font-size: 1.8rem;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .calculator-container {
+          padding: 25px;
+        }
+
+        .contact-cta h2 {
+          font-size: 1.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="image/logo/Logo_HEAD.png" alt="Honda Logo" />
+        </a>
+
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="sanphamxemay.html">Sản phẩm</a></li>
+            <li><a href="dichvu.html">Dịch vụ</a></li>
+            <li><a href="khuyenmai.html">Khuyến mãi</a></li>
+            <li><a href="tragop.html" class="active">Hỗ trợ trả góp</a></li>
+            <li><a href="lienhe.html">Liên hệ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="installment-hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Hỗ Trợ Trả Góp</h1>
+          <p>Giải pháp tài chính linh hoạt để sở hữu xe máy Honda mơ ước</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Installment Options -->
+    <section class="installment-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Chương Trình Trả Góp</h2>
+          <p class="section-subtitle">
+            Lựa chọn gói vay phù hợp với nhu cầu của bạn
+          </p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="installment-cards">
+          <!-- Option 1 -->
+          <div class="installment-card">
+            <div class="installment-card-header">
+              <h3>Gói Cơ Bản</h3>
+              <p>0% Lãi suất 6 tháng</p>
+            </div>
+            <div class="installment-card-body">
+              <div class="installment-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Lãi suất 0% trong 6 tháng đầu</span>
+              </div>
+              <div class="installment-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Trả trước chỉ từ 20%</span>
+              </div>
+              <div class="installment-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Thời hạn vay đến 36 tháng</span>
+              </div>
+              <div class="installment-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Hỗ trợ hồ sơ nhanh chóng</span>
+              </div>
+              <div class="installment-cta">
+                <a href="#calculator" class="btn btn-primary">Tính ngay</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Option 2 -->
+          <div class="installment-card">
+            <div class="installment-card-header">
+              <h3>Gói Ưu Đãi</h3>
+              <p>Lãi suất thấp 1.2%/tháng</p>
+            </div>
+            <div class="installment-card-body">
+              <div class="installment-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Lãi suất chỉ 1.2%/tháng (cố định)</span>
+              </div>
+              <div class="installment-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Trả trước chỉ từ 15%</span>
+              </div>
+              <div class="installment-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Thời hạn vay đến 48 tháng</span>
+              </div>
+              <div class="installment-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Miễn phí bảo hiểm khoản vay</span>
+              </div>
+              <div class="installment-cta">
+                <a href="#calculator" class="btn btn-primary">Tính ngay</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Option 3 -->
+          <div class="installment-card">
+            <div class="installment-card-header">
+              <h3>Gói Đặc Biệt</h3>
+              <p>0% Lãi suất 12 tháng</p>
+            </div>
+            <div class="installment-card-body">
+              <div class="installment-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Lãi suất 0% trong 12 tháng đầu</span>
+              </div>
+              <div class="installment-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Trả trước chỉ từ 30%</span>
+              </div>
+              <div class="installment-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Thời hạn vay đến 24 tháng</span>
+              </div>
+              <div class="installment-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Miễn phí bảo hiểm khoản vay</span>
+              </div>
+              <div class="installment-cta">
+                <a href="#calculator" class="btn btn-primary">Tính ngay</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section" id="calculator">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Tính Khoản Trả Góp</h2>
+          <p class="section-subtitle">
+            Bảng tính chỉ mang tính chất tham khảo tùy vào hồ sơ mỗi cá nhân
+            ngân hàng sẽ tính khoản vay phù hợp ưu đãi nhất
+          </p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="calculator-container">
+          <div class="calculator-grid">
+            <div class="calculator-form">
+              <div class="form-group">
+                <label for="bike-model">Chọn dòng xe</label>
+                <select id="bike-model">
+                  <option value="vision">Honda Vision</option>
+                  <option value="airblade">Honda Air Blade</option>
+                  <option value="sh">Honda SH</option>
+                  <option value="winner">Honda Winner X</option>
+                  <option value="wave">Honda Wave Alpha</option>
+                  <option value="icone">Honda ICON e</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="bike-price">Giá xe (VNĐ)</label>
+                <input type="number" id="bike-price" value="10000000" />
+              </div>
+
+              <div class="form-group">
+                <label for="down-payment">Trả trước (%)</label>
+                <input
+                  type="range"
+                  id="down-payment"
+                  min="10"
+                  max="50"
+                  value="20"
+                  class="range-slider"
+                />
+                <div class="range-values">
+                  <span>10%</span>
+                  <span id="down-payment-value">20%</span>
+                  <span>50%</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="loan-term">Thời hạn vay (tháng)</label>
+                <input
+                  type="range"
+                  id="loan-term"
+                  min="6"
+                  max="48"
+                  value="24"
+                  class="range-slider"
+                />
+                <div class="range-values">
+                  <span>6 tháng</span>
+                  <span id="loan-term-value">24 tháng</span>
+                  <span>48 tháng</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="interest-rate">Lãi suất (%/năm)</label>
+                <input
+                  type="range"
+                  id="interest-rate"
+                  min="0"
+                  max="20"
+                  value="8"
+                  class="range-slider"
+                />
+                <div class="range-values">
+                  <span>0%</span>
+                  <span id="interest-rate-value">8%</span>
+                  <span>20%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="calculator-result">
+              <h3 style="text-align: center; margin-bottom: 20px">
+                Kết quả tính toán
+              </h3>
+              <div class="result-item">
+                <span>Giá xe:</span>
+                <span id="result-price">45,000,000 VNĐ</span>
+              </div>
+              <div class="result-item">
+                <span>Trả trước:</span>
+                <span id="result-down-payment">9,000,000 VNĐ</span>
+              </div>
+              <div class="result-item">
+                <span>Số tiền vay:</span>
+                <span id="result-loan-amount">36,000,000 VNĐ</span>
+              </div>
+              <div class="result-item">
+                <span>Lãi suất:</span>
+                <span id="result-interest">8%/năm</span>
+              </div>
+              <div class="result-item">
+                <span>Thời hạn:</span>
+                <span id="result-term">24 tháng</span>
+              </div>
+              <div class="result-item result-total">
+                <span>Trả hàng tháng:</span>
+                <span id="result-monthly">1,742,000 VNĐ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bank Partners  -->
+    <section class="bank-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Ngân Hàng Hợp Tác</h2>
+          <p class="section-subtitle">
+            HEAD Trung Hùng hợp tác với các ngân hàng uy tín để mang đến giải
+            pháp tài chính tốt nhất
+          </p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="bank-grid">
+          <div class="bank-item">
+            <img
+              src="image/logo/HDSAISON.jpg"
+              alt="HDSaiSon"
+              class="bank-logo"
+            />
+            <span>HDSaiSon</span>
+          </div>
+          <div class="bank-item">
+            <img src="image/logo/JACCS.png" alt="Jaccs" class="bank-logo" />
+            <span>Jaccs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Requirements Section -->
+    <section class="requirements-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Điều Kiện Hồ Sơ</h2>
+          <p class="section-subtitle">
+            Những giấy tờ cần chuẩn bị để đăng ký trả góp
+          </p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="requirements-container">
+          <div class="requirements-list">
+            <div class="requirement-item">
+              <i class="fas fa-file-alt"></i>
+              <div>
+                <h4>Giấy tờ cá nhân</h4>
+                <p>Bản gốc CCCD & VNEID mức độ 2 (còn hiệu lực)</p>
+              </div>
+            </div>
+            <div class="requirement-item">
+              <i class="fas fa-money-bill-wave"></i>
+              <div>
+                <h4>Giấy tờ chứng minh thu nhập</h4>
+                <p>
+                  Hợp đồng lao động + sao kê lương 3 tháng gần nhất hoặc giấy
+                  xác nhận thu nhập
+                </p>
+              </div>
+            </div>
+            <div class="requirement-item">
+              <i class="fas fa-home"></i>
+              <div>
+                <h4>Giấy tờ chứng minh chỗ ở</h4>
+                <p>
+                  Hóa đơn điện/nước hoặc hợp đồng thuê nhà (nếu không có hộ khẩu
+                  tại địa phương)
+                </p>
+              </div>
+            </div>
+            <div class="requirement-item">
+              <i class="fas fa-motorcycle"></i>
+              <div>
+                <h4>Giấy tờ liên quan đến xe</h4>
+                <p>Hợp đồng mua bán xe và phiếu đăng ký trả góp từ cửa hàng</p>
+              </div>
+            </div>
+            <div class="requirement-item">
+              <i class="fas fa-user-tie"></i>
+              <div>
+                <h4>Điều kiện khác</h4>
+                <p>
+                  Độ tuổi từ 18-60, có thu nhập ổn định tối thiểu 5 triệu/tháng,
+                  không có nợ xấu
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Câu Hỏi Thường Gặp</h2>
+          <p class="section-subtitle">
+            Giải đáp mọi thắc mắc về chương trình trả góp
+          </p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="faq-container">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Tôi có thể trả góp xe Honda với lãi suất bao nhiêu?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Lãi suất trả góp xe Honda phụ thuộc vào:</p>
+              <ul>
+                <li>
+                  Chương trình ưu đãi hiện hành (có thể có 0% lãi suất trong
+                  thời gian đầu)
+                </li>
+                <li>
+                  Ngân hàng bạn chọn vay (mỗi ngân hàng có mức lãi suất khác
+                  nhau)
+                </li>
+                <li>Thời hạn vay (vay càng dài lãi suất càng cao)</li>
+                <li>
+                  Hồ sơ của bạn (khách hàng tốt có thể được ưu đãi lãi suất)
+                </li>
+                <li>
+                  Hiện tại lãi suất dao động từ 0% - 1.5%/tháng tùy chương trình
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Thủ tục trả góp có mất nhiều thời gian không?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Quy trình trả góp thường diễn ra như sau:</p>
+              <ul>
+                <li>Chuẩn bị hồ sơ: 1-2 ngày (tùy vào tốc độ của bạn)</li>
+                <li>Duyệt hồ sơ: 1-3 ngày làm việc (tùy ngân hàng)</li>
+                <li>Giải ngân: Ngay sau khi hồ sơ được duyệt</li>
+                <li>Tổng thời gian trung bình từ 3-5 ngày làm việc</li>
+                <li>Hồ sơ đầy đủ và đúng điều kiện sẽ được xử lý nhanh hơn</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Tôi có thể tất toán khoản vay trước hạn không?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Về việc tất toán trước hạn:</p>
+              <ul>
+                <li>Bạn hoàn toàn có thể tất toán trước hạn bất cứ lúc nào</li>
+                <li>
+                  Phí tất toán trước hạn thường từ 2-5% số tiền còn nợ (tùy ngân
+                  hàng)
+                </li>
+                <li>
+                  Liên hệ ngân hàng để được tính toán số tiền cần thanh toán
+                  chính xác
+                </li>
+                <li>
+                  Thủ tục tất toán đơn giản, thường hoàn thành trong 1-2 ngày
+                  làm việc
+                </li>
+                <li>
+                  Sau khi tất toán, nhớ nhận giấy xác nhận đã thanh lý hợp đồng
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Điều gì xảy ra nếu tôi không trả được nợ đúng hạn?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Khi không trả nợ đúng hạn:</p>
+              <ul>
+                <li>
+                  Bị tính phí trả chậm (thường 1.5-2% số tiền chậm trả/ngày)
+                </li>
+                <li>Ảnh hưởng đến điểm tín dụng cá nhân</li>
+                <li>Nhận thông báo nhắc nợ từ ngân hàng</li>
+                <li>Nếu quá 3 tháng không trả, ngân hàng có thể thu hồi xe</li>
+                <li>
+                  Nếu gặp khó khăn, nên liên hệ ngân hàng ngay để xin gia hạn
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Tôi có thể đăng ký trả góp online được không?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Hiện Honda hỗ trợ:</p>
+              <ul>
+                <li>Đăng ký tư vấn trả góp online qua website</li>
+                <li>Nhân viên sẽ liên hệ lại để hướng dẫn thủ tục</li>
+                <li>Có thể gửi scan hồ sơ qua email để sơ bộ đánh giá</li>
+                <li>
+                  Tuy nhiên, bạn vẫn cần đến đại lý/ngân hàng để hoàn tất thủ
+                  tục
+                </li>
+                <li>Ký hợp đồng và nhận xe vẫn cần thực hiện trực tiếp</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA 
+    <section class="contact-cta">
+      <div class="container">
+        <h2>Bạn cần tư vấn thêm về trả góp?</h2>
+        <p>Đội ngũ tư vấn tài chính của Honda luôn sẵn sàng hỗ trợ bạn 24/7</p>
+        <a href="lienhe.html" class="btn btn-primary">Yêu cầu tư vấn</a>
+      </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <img
+              src="image/logo/Logo_HEAD.png"
+              alt="Honda Logo"
+              class="footer-logo"
+            />
+            <p>Công Ty TNHH TM&DV Hùng Mạnh</p>
+            <div class="social-links">
+              <a href="https://www.facebook.com/hethongheadtrunghung"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://www.instagram.com/hethongheadtrunghung"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3>Dòng xe</h3>
+            <ul>
+              <li><a href="sanphamxemay.html">Xe tay ga</a></li>
+              <li><a href="sanphamxemay.html">Xe số</a></li>
+              <li><a href="sanphamxemay.html">Xe côn tay</a></li>
+              <li><a href="sanphamxemay.html">Xe phân khối lớn</a></li>
+              <li><a href="sanphamxemay.html">Xe điện</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Hỗ trợ</h3>
+            <ul>
+              <li><a href="baohanh.html">Bảo hành xe máy</a></li>
+              <li><a href="baoduong.html">Bảo dưỡng và sửa chữa</a></li>
+              <li><a href="sanphamphutung.html">Phụ tùng chính hãng</a></li>
+              <li><a href="huongdanmuahang.html">Hướng dẫn mua hàng</a></li>
+              <li><a href="question.html">Câu hỏi thường gặp</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Liên hệ</h3>
+            <ul class="contact-info">
+              <li>
+                <i class="fas fa-phone-alt"></i>
+                <span>1900 636 712</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>cr@hungmanh.com.vn</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>cr_mt@hungmanh.com.vn</span>
+              </li>
+              <li>
+                <i class="fas fa-clock"></i>
+                <span>7:30 - 17:30 (Thứ 2 - CN)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById("mobile-menu");
+      const mainNav = document.querySelector(".main-nav");
+
+      menuToggle.addEventListener("click", function () {
+        this.classList.toggle("active");
+        mainNav.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking on a link
+      const navLinks = document.querySelectorAll(".main-nav a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          menuToggle.classList.remove("active");
+          mainNav.classList.remove("active");
+        });
+      });
+
+      // Header scroll effect
+      const header = document.querySelector(".main-header");
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 100) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // Back to Top button - SMOOTH SCROLL
+      const backToTop = document.querySelector(".back-to-top");
+      backToTop.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 300) {
+          backToTop.classList.add("active");
+        } else {
+          backToTop.classList.remove("active");
+        }
+      });
+
+      // Installment Calculator
+      const bikePriceInput = document.getElementById("bike-price");
+      const downPaymentSlider = document.getElementById("down-payment");
+      const downPaymentValue = document.getElementById("down-payment-value");
+      const loanTermSlider = document.getElementById("loan-term");
+      const loanTermValue = document.getElementById("loan-term-value");
+      const interestRateSlider = document.getElementById("interest-rate");
+      const interestRateValue = document.getElementById("interest-rate-value");
+
+      // Result elements
+      const resultPrice = document.getElementById("result-price");
+      const resultDownPayment = document.getElementById("result-down-payment");
+      const resultLoanAmount = document.getElementById("result-loan-amount");
+      const resultInterest = document.getElementById("result-interest");
+      const resultTerm = document.getElementById("result-term");
+      const resultMonthly = document.getElementById("result-monthly");
+
+      // Update slider values
+      downPaymentSlider.addEventListener("input", function () {
+        downPaymentValue.textContent = this.value + "%";
+        calculateInstallment();
+      });
+
+      loanTermSlider.addEventListener("input", function () {
+        loanTermValue.textContent = this.value + " tháng";
+        calculateInstallment();
+      });
+
+      interestRateSlider.addEventListener("input", function () {
+        interestRateValue.textContent = this.value + "%";
+        calculateInstallment();
+      });
+
+      bikePriceInput.addEventListener("input", calculateInstallment);
+
+      // Calculate installment function
+      function calculateInstallment() {
+        const price = parseFloat(bikePriceInput.value) || 0;
+        const downPaymentPercent = parseFloat(downPaymentSlider.value) || 20;
+        const term = parseFloat(loanTermSlider.value) || 24;
+        const annualRate = parseFloat(interestRateSlider.value) || 8;
+
+        // Calculate values
+        const downPaymentAmount = (price * downPaymentPercent) / 100;
+        const loanAmount = price - downPaymentAmount;
+        const monthlyRate = annualRate / 100 / 12;
+
+        // Calculate monthly payment
+        let monthlyPayment;
+        if (monthlyRate === 0) {
+          monthlyPayment = loanAmount / term;
+        } else {
+          monthlyPayment =
+            (loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, term))) /
+            (Math.pow(1 + monthlyRate, term) - 1);
+        }
+
+        // Update results
+        resultPrice.textContent = formatCurrency(price) + " VNĐ";
+        resultDownPayment.textContent =
+          formatCurrency(downPaymentAmount) + " VNĐ";
+        resultLoanAmount.textContent = formatCurrency(loanAmount) + " VNĐ";
+        resultInterest.textContent = annualRate + "%/năm";
+        resultTerm.textContent = term + " tháng";
+        resultMonthly.textContent =
+          formatCurrency(Math.round(monthlyPayment)) + " VNĐ";
+      }
+
+      // Format currency
+      function formatCurrency(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+      }
+
+      // Initial calculation
+      calculateInstallment();
+
+      // FAQ Accordion
+      const faqItems = document.querySelectorAll(".faq-item");
+      faqItems.forEach((item) => {
+        const question = item.querySelector(".faq-question");
+        question.addEventListener("click", () => {
+          // Close all other items
+          faqItems.forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.classList.remove("active");
+            }
+          });
+          // Toggle current item
+          item.classList.toggle("active");
+        });
+      });
+
+      // Smooth scroll for all links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 100,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
