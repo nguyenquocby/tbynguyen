@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Honda - Thử Thách Kiến Thức Xe Máy</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Reset & Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-color: #e40521;
+        --secondary-color: #333;
+        --light-color: #f8f9fa;
+        --dark-color: #212529;
+        --gray-color: #6c757d;
+        --light-gray: #e9ecef;
+        --transition: all 0.3s ease;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        line-height: 1.6;
+        color: var(--secondary-color);
+        overflow-x: hidden;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 25px;
+        border-radius: 25px;
+        font-weight: 500;
+        text-align: center;
+        transition: var(--transition);
+        cursor: pointer;
+        border: 2px solid transparent;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      .btn-primary:hover {
+        background-color: #c0041d;
+        border-color: #c0041d;
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: var(--dark-color);
+      }
+
+      .section-subtitle {
+        font-size: 1.1rem;
+        color: var(--gray-color);
+        margin-bottom: 20px;
+      }
+
+      .divider {
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+        margin: 0 auto;
+      }
+
+      /* Header */
+      .main-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        transition: var(--transition);
+      }
+
+      .main-header.scrolled {
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .main-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 40px;
+      }
+
+      /* Mobile Menu Toggle */
+      .menu-toggle {
+        display: none;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-toggle .bar {
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background-color: var(--dark-color);
+        transition: all 0.3s ease;
+        left: 0;
+      }
+
+      .menu-toggle .bar:nth-child(1) {
+        top: 0;
+      }
+
+      .menu-toggle .bar:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .menu-toggle .bar:nth-child(3) {
+        bottom: 0;
+      }
+
+      .menu-toggle.active .bar:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        background-color: var(--primary-color);
+      }
+
+      .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active .bar:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+        background-color: var(--primary-color);
+      }
+
+      .main-nav ul {
+        list-style: none;
+        display: flex;
+      }
+
+      .main-nav li {
+        margin-left: 30px;
+      }
+
+      .main-nav a {
+        font-weight: 500;
+        color: var(--dark-color);
+        position: relative;
+      }
+
+      .main-nav a:after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: var(--transition);
+      }
+
+      .main-nav a:hover:after,
+      .main-nav a.active:after {
+        width: 100%;
+      }
+
+      .main-nav a.active {
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      /* Hero Banner */
+      .game-hero {
+        height: 60vh;
+        min-height: 400px;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://cdn.honda.com.vn/motorbikes/November2021/9hP0Q1Z8KvXQYk8XhQ5k.jpg")
+            no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        margin-top: 80px;
+        color: white;
+        text-align: center;
+      }
+
+      .hero-content {
+        width: 100%;
+      }
+
+      .hero-content h1 {
+        font-size: 2.8rem;
+        margin-bottom: 20px;
+      }
+
+      /* Game Section */
+      .game-section {
+        padding: 80px 0;
+        background-color: white;
+      }
+
+      .game-tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+        border-bottom: 1px solid var(--light-gray);
+      }
+
+      .game-tab {
+        padding: 15px 30px;
+        cursor: pointer;
+        font-weight: 500;
+        position: relative;
+        transition: var(--transition);
+      }
+
+      .game-tab:after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background-color: var(--primary-color);
+        transition: var(--transition);
+      }
+
+      .game-tab:hover,
+      .game-tab.active {
+        color: var(--primary-color);
+      }
+
+      .game-tab.active:after {
+        width: 100%;
+      }
+
+      .game-content {
+        display: none;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .game-content.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Quiz Game */
+      .quiz-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: var(--light-color);
+        border-radius: 10px;
+        padding: 40px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .quiz-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .quiz-header h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .quiz-progress {
+        height: 10px;
+        background-color: #e9ecef;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        overflow: hidden;
+      }
+
+      .quiz-progress-bar {
+        height: 100%;
+        background-color: var(--primary-color);
+        width: 0;
+        transition: width 0.3s ease;
+      }
+
+      .quiz-question {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+
+      .quiz-options {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 30px;
+      }
+
+      .quiz-option {
+        padding: 15px;
+        background-color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: var(--transition);
+        border: 1px solid var(--light-gray);
+      }
+
+      .quiz-option:hover {
+        border-color: var(--primary-color);
+      }
+
+      .quiz-option.selected {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      .quiz-option.correct {
+        background-color: #28a745;
+        color: white;
+        border-color: #28a745;
+      }
+
+      .quiz-option.wrong {
+        background-color: #dc3545;
+        color: white;
+        border-color: #dc3545;
+      }
+
+      .quiz-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .quiz-score {
+        font-weight: 500;
+      }
+
+      /* Memory Game */
+      .memory-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .memory-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+      }
+
+      .memory-card {
+        height: 120px;
+        perspective: 1000px;
+        cursor: pointer;
+      }
+
+      .memory-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+      }
+
+      .memory-card.flipped .memory-card-inner {
+        transform: rotateY(180deg);
+      }
+
+      .memory-card-front,
+      .memory-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .memory-card-front {
+        background-color: var(--primary-color);
+        color: white;
+        font-size: 2rem;
+      }
+
+      .memory-card-back {
+        background-color: white;
+        transform: rotateY(180deg);
+      }
+
+      .memory-card-back img {
+        width: 90%;
+        height: 90%;
+        object-fit: contain;
+      }
+
+      .memory-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+      }
+
+      /* Drag & Drop Game */
+      .dragdrop-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .dragdrop-area {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+
+      .dragdrop-items {
+        background-color: var(--light-color);
+        border-radius: 10px;
+        padding: 20px;
+        min-height: 300px;
+      }
+
+      .dragdrop-target {
+        background-color: var(--light-color);
+        border-radius: 10px;
+        padding: 20px;
+        min-height: 300px;
+      }
+
+      .dragdrop-item {
+        background-color: white;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        cursor: move;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+      }
+
+      .dragdrop-item:hover {
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      .dragdrop-item img {
+        width: 100%;
+        height: 80px;
+        object-fit: contain;
+        margin-bottom: 10px;
+      }
+
+      .dragdrop-item p {
+        text-align: center;
+        font-weight: 500;
+      }
+
+      .dragdrop-success {
+        color: #28a745;
+        font-weight: 500;
+        text-align: center;
+        margin-top: 20px;
+        display: none;
+      }
+
+      /* Game Result */
+      .game-result {
+        text-align: center;
+        padding: 40px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        max-width: 500px;
+        margin: 0 auto;
+        display: none;
+      }
+
+      .game-result h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+
+      .game-result-score {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin: 20px 0;
+      }
+
+      /* Footer */
+      .main-footer {
+        background-color: var(--dark-color);
+        color: white;
+        padding: 60px 0 20px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .footer-col h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-col h3:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-logo {
+        margin-bottom: 20px;
+        display: block;
+        max-width: 150px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-links a {
+        width: 35px;
+        height: 35px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      .footer-col ul li {
+        list-style: none;
+        margin-bottom: 10px;
+      }
+
+      .footer-col ul a {
+        color: #adb5bd;
+        transition: var(--transition);
+      }
+
+      .footer-col ul a:hover {
+        color: var(--primary-color);
+        padding-left: 5px;
+      }
+
+      .contact-info li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .contact-info i {
+        margin-right: 10px;
+        color: var(--primary-color);
+        width: 20px;
+        text-align: center;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px 0;
+        text-align: center;
+        color: #adb5bd;
+        font-size: 0.9rem;
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+      }
+
+      .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background-color: #c0041d;
+        transform: translateY(-5px);
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .hero-content h1 {
+          font-size: 2.2rem;
+        }
+
+        .memory-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .menu-toggle {
+          display: block;
+        }
+
+        .main-nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 80%;
+          max-width: 300px;
+          height: 100vh;
+          background-color: white;
+          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+          transition: var(--transition);
+          padding: 80px 20px 20px;
+          overflow-y: auto;
+        }
+
+        .main-nav.active {
+          right: 0;
+        }
+
+        .main-nav ul {
+          flex-direction: column;
+        }
+
+        .main-nav li {
+          margin: 15px 0;
+        }
+
+        .main-nav a {
+          font-size: 1.1rem;
+        }
+
+        .game-tabs {
+          flex-wrap: wrap;
+        }
+
+        .game-tab {
+          padding: 10px 15px;
+        }
+
+        .quiz-container {
+          padding: 25px;
+        }
+
+        .memory-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .dragdrop-area {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .game-hero {
+          min-height: 350px;
+        }
+
+        .hero-content h1 {
+          font-size: 1.8rem;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .memory-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .memory-card {
+          height: 100px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="image/logo/Logo_HEAD.png" alt="Honda Logo" />
+        </a>
+
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="sanphamxemay.html">Sản phẩm</a></li>
+            <li><a href="dichvu.html">Dịch vụ</a></li>
+            <li><a href="giaitri.html" class="active">Giải trí</a></li>
+            <li><a href="lienhe.html">Liên hệ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="game-hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Game Honda - Thử Thách Kiến Thức</h1>
+          <p>Khám phá thế giới xe máy Honda qua các trò chơi thú vị</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Game Section -->
+    <section class="game-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Trò Chơi Honda</h2>
+          <p class="section-subtitle">
+            Chọn trò chơi yêu thích và thử thách kiến thức của bạn
+          </p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="game-tabs">
+          <div class="game-tab active" data-tab="quiz">Đố Vui Honda</div>
+          <div class="game-tab" data-tab="memory">Ghép Hình</div>
+          <div class="game-tab" data-tab="dragdrop">Phân Loại Xe</div>
+        </div>
+
+        <!-- Quiz Game -->
+        <div class="game-content active" id="quiz">
+          <div class="quiz-container">
+            <div class="quiz-header">
+              <h3>Đố Vui Về Xe Máy Honda</h3>
+              <p>Trả lời các câu hỏi để kiểm tra kiến thức của bạn</p>
+            </div>
+
+            <div class="quiz-progress">
+              <div class="quiz-progress-bar" id="quizProgress"></div>
+            </div>
+
+            <div class="quiz-question" id="quizQuestion">
+              Câu hỏi sẽ hiển thị ở đây
+            </div>
+
+            <div class="quiz-options" id="quizOptions">
+              <!-- Options will be inserted here by JavaScript -->
+            </div>
+
+            <div class="quiz-footer">
+              <div class="quiz-score" id="quizScore">Điểm: 0/0</div>
+              <button class="btn btn-primary" id="quizNext">Tiếp theo</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Memory Game -->
+        <div class="game-content" id="memory">
+          <div class="memory-container">
+            <div class="memory-grid" id="memoryGrid">
+              <!-- Cards will be inserted here by JavaScript -->
+            </div>
+
+            <div class="memory-controls">
+              <div id="memoryMoves">Lượt: 0</div>
+              <button class="btn btn-primary" id="memoryReset">Chơi lại</button>
+              <div id="memoryMatches">Đã ghép: 0/8</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Drag & Drop Game -->
+        <div class="game-content" id="dragdrop">
+          <div class="dragdrop-container">
+            <div class="dragdrop-area">
+              <div class="dragdrop-items" id="dragItems">
+                <div class="dragdrop-item" draggable="true" data-type="scooter">
+                  <img
+                    src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - XANH ĐEN/6.png"
+                    alt="Honda Vision"
+                  />
+                  <p>Honda Vision</p>
+                </div>
+                <div class="dragdrop-item" draggable="true" data-type="sport">
+                  <img
+                    src="image/FULL BIKE/Sport/Winner X/Phiên bản Đặc Biệt - Bạc Đen/6.png"
+                    alt="Honda Winner X"
+                  />
+                  <p>Honda Winner X</p>
+                </div>
+                <div class="dragdrop-item" draggable="true" data-type="scooter">
+                  <img
+                    src="image/FULL BIKE/Scooter/SH125/Phiên bản cao cấp - ĐỎ ĐEN/6.png"
+                    alt="Honda SH"
+                  />
+                  <p>Honda SH</p>
+                </div>
+                <div
+                  class="dragdrop-item"
+                  draggable="true"
+                  data-type="underbone"
+                >
+                  <img
+                    src="image/FULL BIKE/Cub/Wave Alpha - retro/Phiên bản cổ điển - XANH/6.png"
+                    alt="Honda Wave Alpha"
+                  />
+                  <p>Honda Wave Alpha</p>
+                </div>
+              </div>
+              <div class="dragdrop-target" id="dragTarget">
+                <h4 style="text-align: center; margin-bottom: 15px">
+                  Kéo xe vào đúng loại
+                </h4>
+                <div class="dragdrop-category" data-type="scooter">
+                  <h5>Xe tay ga</h5>
+                  <div class="dragdrop-dropzone"></div>
+                </div>
+                <div class="dragdrop-category" data-type="sport">
+                  <h5>Xe côn tay</h5>
+                  <div class="dragdrop-dropzone"></div>
+                </div>
+                <div class="dragdrop-category" data-type="underbone">
+                  <h5>Xe số</h5>
+                  <div class="dragdrop-dropzone"></div>
+                </div>
+              </div>
+            </div>
+            <div class="dragdrop-success" id="dragSuccess">
+              Chúc mừng! Bạn đã phân loại đúng tất cả các xe.
+            </div>
+          </div>
+        </div>
+
+        <!-- Game Result -->
+        <div class="game-result" id="gameResult">
+          <h3>Kết Quả</h3>
+          <div class="game-result-score" id="finalScore">0/0</div>
+          <p id="resultMessage">Bạn đã hoàn thành trò chơi!</p>
+          <button class="btn btn-primary" id="playAgain">Chơi lại</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <img
+              src="image/logo/Logo_HEAD.png"
+              alt="Honda Logo"
+              class="footer-logo"
+            />
+            <p>Công Ty TNHH TM&DV Hùng Mạnh</p>
+            <div class="social-links">
+              <a href="https://www.facebook.com/hethongheadtrunghung"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://www.instagram.com/hethongheadtrunghung"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3>Dòng xe</h3>
+            <ul>
+              <li><a href="sanphamxemay.html">Xe tay ga</a></li>
+              <li><a href="sanphamxemay.html">Xe số</a></li>
+              <li><a href="sanphamxemay.html">Xe côn tay</a></li>
+              <li><a href="sanphamxemay.html">Xe phân khối lớn</a></li>
+              <li><a href="sanphamxemay.html">Xe điện</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Trò chơi</h3>
+            <ul>
+              <li><a href="#quiz">Đố vui Honda</a></li>
+              <li><a href="#memory">Ghép hình</a></li>
+              <li><a href="#dragdrop">Phân loại xe</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Liên hệ</h3>
+            <ul class="contact-info">
+              <li>
+                <i class="fas fa-phone-alt"></i>
+                <span>1900 636 712</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>cr@hungmanh.com.vn</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>cr_mt@hungmanh.com.vn</span>
+              </li>
+              <li>
+                <i class="fas fa-clock"></i>
+                <span>7:30 - 17:30 (Thứ 2 - CN)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById("mobile-menu");
+      const mainNav = document.querySelector(".main-nav");
+
+      menuToggle.addEventListener("click", function () {
+        this.classList.toggle("active");
+        mainNav.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking on a link
+      const navLinks = document.querySelectorAll(".main-nav a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          menuToggle.classList.remove("active");
+          mainNav.classList.remove("active");
+        });
+      });
+
+      // Header scroll effect
+      const header = document.querySelector(".main-header");
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 100) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // Back to Top button - SMOOTH SCROLL
+      const backToTop = document.querySelector(".back-to-top");
+      backToTop.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 300) {
+          backToTop.classList.add("active");
+        } else {
+          backToTop.classList.remove("active");
+        }
+      });
+
+      // Game Tabs
+      const gameTabs = document.querySelectorAll(".game-tab");
+      const gameContents = document.querySelectorAll(".game-content");
+
+      gameTabs.forEach((tab) => {
+        tab.addEventListener("click", function () {
+          const tabId = this.getAttribute("data-tab");
+
+          // Update active tab
+          gameTabs.forEach((t) => t.classList.remove("active"));
+          this.classList.add("active");
+
+          // Show corresponding content
+          gameContents.forEach((content) => {
+            content.classList.remove("active");
+            if (content.id === tabId) {
+              content.classList.add("active");
+            }
+          });
+        });
+      });
+
+      // Quiz Game
+      const quizQuestions = [
+        {
+          question: "Mẫu xe nào sau đây là xe tay ga của Honda?",
+          options: ["Wave Alpha", "Vision", "Winner X", "Blade"],
+          answer: 1,
+        },
+        {
+          question: "Dòng xe SH thuộc phân khúc nào?",
+          options: ["Phổ thông", "Cao cấp", "Thể thao", "Phân khối lớn"],
+          answer: 1,
+        },
+        {
+          question: "Honda Winner X sử dụng loại động cơ nào?",
+          options: ["110cc", "125cc", "150cc", "175cc"],
+          answer: 2,
+        },
+        {
+          question: "Màu nào không phải là màu phổ biến của Honda Vision?",
+          options: ["Đỏ", "Xanh dương", "Đen", "Vàng"],
+          answer: 3,
+        },
+        {
+          question: "Honda Việt Nam thành lập năm nào?",
+          options: ["1996", "1998", "2000", "2002"],
+          answer: 1,
+        },
+      ];
+
+      let currentQuestion = 0;
+      let score = 0;
+      let selectedOption = null;
+      const quizQuestion = document.getElementById("quizQuestion");
+      const quizOptions = document.getElementById("quizOptions");
+      const quizScore = document.getElementById("quizScore");
+      const quizNext = document.getElementById("quizNext");
+      const quizProgress = document.getElementById("quizProgress");
+
+      function loadQuestion() {
+        const question = quizQuestions[currentQuestion];
+        quizQuestion.textContent = question.question;
+
+        quizOptions.innerHTML = "";
+        question.options.forEach((option, index) => {
+          const optionElement = document.createElement("div");
+          optionElement.classList.add("quiz-option");
+          optionElement.textContent = option;
+          optionElement.addEventListener("click", () => selectOption(index));
+          quizOptions.appendChild(optionElement);
+        });
+
+        quizScore.textContent = `Điểm: ${score}/${currentQuestion}`;
+        quizProgress.style.width = `${
+          (currentQuestion / quizQuestions.length) * 100
+        }%`;
+        quizNext.disabled = true;
+        selectedOption = null;
+      }
+
+      function selectOption(index) {
+        const options = document.querySelectorAll(".quiz-option");
+        options.forEach((option) => option.classList.remove("selected"));
+        options[index].classList.add("selected");
+        selectedOption = index;
+        quizNext.disabled = false;
+      }
+
+      function checkAnswer() {
+        const question = quizQuestions[currentQuestion];
+        const options = document.querySelectorAll(".quiz-option");
+
+        options.forEach((option) => {
+          option.classList.remove("correct", "wrong");
+          option.style.pointerEvents = "none";
+        });
+
+        if (selectedOption === question.answer) {
+          options[selectedOption].classList.add("correct");
+          score++;
+        } else {
+          options[selectedOption].classList.add("wrong");
+          options[question.answer].classList.add("correct");
+        }
+
+        quizScore.textContent = `Điểm: ${score}/${currentQuestion + 1}`;
+        quizNext.textContent =
+          currentQuestion < quizQuestions.length - 1
+            ? "Tiếp theo"
+            : "Xem kết quả";
+      }
+
+      quizNext.addEventListener("click", function () {
+        if (selectedOption === null) return;
+
+        if (this.textContent === "Xem kết quả") {
+          checkAnswer();
+          showResult();
+        } else {
+          checkAnswer();
+          currentQuestion++;
+          loadQuestion();
+        }
+      });
+
+      function showResult() {
+        // Thay vì ẩn toàn bộ #quiz, chúng ta chỉ cần ẩn nút "Tiếp theo/Xem kết quả"
+        quizNext.style.display = "none";
+
+        // Hiển thị kết quả
+        document.getElementById("gameResult").style.display = "block";
+        document.getElementById(
+          "finalScore"
+        ).textContent = `${score}/${quizQuestions.length}`;
+
+        let message;
+        const percentage = (score / quizQuestions.length) * 100;
+
+        if (percentage >= 80) {
+          message = "Xuất sắc! Bạn thực sự hiểu biết về xe Honda.";
+        } else if (percentage >= 50) {
+          message = "Khá tốt! Bạn có kiến thức cơ bản về xe Honda.";
+        } else {
+          message = "Cần cải thiện! Hãy tìm hiểu thêm về các dòng xe Honda.";
+        }
+
+        document.getElementById("resultMessage").textContent = message;
+      }
+
+      document
+        .getElementById("playAgain")
+        .addEventListener("click", function () {
+          currentQuestion = 0;
+          score = 0;
+          document.getElementById("gameResult").style.display = "none";
+          document.getElementById("quiz").style.display = "block";
+          loadQuestion();
+        });
+
+      // Initialize quiz
+      loadQuestion();
+
+      // Memory Game
+      const memoryCards = [
+        {
+          id: 1,
+          img: "image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/6.png",
+          name: "Honda Vision",
+        },
+        {
+          id: 2,
+          img: "image/FULL BIKE/Scooter/SH350/Phiên bản Thể Thao - XANH ĐEN/6.png",
+          name: "Honda SH",
+        },
+        {
+          id: 3,
+          img: "image/FULL BIKE/Sport/Winner X/Phiên bản Thể Thao/6.png",
+          name: "Honda Winner X",
+        },
+        {
+          id: 4,
+          img: "image/FULL BIKE/Cub/Wave Alpha/Phiên bản đặc biệt - ĐEN/6.png",
+          name: "Honda Wave Alpha",
+        },
+        {
+          id: 5,
+          img: "image/FULL BIKE/Scooter/Air Blade/AB125 - phiên bản thể thao - XÁM ĐỎ ĐEN/6.png",
+          name: "Honda Air Blade",
+        },
+        {
+          id: 6,
+          img: "image/FULL BIKE/EM/Phiên bản thể thao - XANH/6.png",
+          name: "Honda ICON e",
+        },
+        {
+          id: 7,
+          img: "image/FULL BIKE/Big Bike/CB350Hness/ĐỎ ĐEN/6.png",
+          name: "Honda CB350",
+        },
+        {
+          id: 8,
+          img: "image/FULL BIKE/Cub/Blade/Phiên bản thể thao - ĐEN XANH/6.png",
+          name: "Honda Blade",
+        },
+      ];
+
+      let memoryGame = {
+        cards: [],
+        flippedCards: [],
+        matchedPairs: 0,
+        moves: 0,
+        lockBoard: false,
+      };
+
+      const memoryGrid = document.getElementById("memoryGrid");
+      const memoryMoves = document.getElementById("memoryMoves");
+      const memoryMatches = document.getElementById("memoryMatches");
+      const memoryReset = document.getElementById("memoryReset");
+
+      function initializeMemoryGame() {
+        memoryGame.cards = [...memoryCards, ...memoryCards]
+          .sort(() => 0.5 - Math.random())
+          .map((card, index) => ({ ...card, index }));
+
+        memoryGame.flippedCards = [];
+        memoryGame.matchedPairs = 0;
+        memoryGame.moves = 0;
+        memoryGame.lockBoard = false;
+
+        renderMemoryCards();
+        updateMemoryStats();
+      }
+
+      function renderMemoryCards() {
+        memoryGrid.innerHTML = "";
+
+        memoryGame.cards.forEach((card) => {
+          const cardElement = document.createElement("div");
+          cardElement.classList.add("memory-card");
+          cardElement.dataset.index = card.index;
+
+          const cardInner = document.createElement("div");
+          cardInner.classList.add("memory-card-inner");
+
+          const cardFront = document.createElement("div");
+          cardFront.classList.add("memory-card-front");
+          cardFront.innerHTML = '<i class="fas fa-motorcycle"></i>';
+
+          const cardBack = document.createElement("div");
+          cardBack.classList.add("memory-card-back");
+          cardBack.innerHTML = `<img src="${card.img}" alt="${card.name}"><p>${card.name}</p>`;
+
+          cardInner.appendChild(cardFront);
+          cardInner.appendChild(cardBack);
+          cardElement.appendChild(cardInner);
+
+          cardElement.addEventListener("click", flipCard);
+          memoryGrid.appendChild(cardElement);
+        });
+      }
+
+      function flipCard() {
+        if (memoryGame.lockBoard) return;
+
+        const cardIndex = this.dataset.index;
+        const cardInfo = memoryGame.cards.find(
+          (card) => card.index == cardIndex
+        );
+
+        // Don't allow flipping already matched cards
+        if (
+          this.classList.contains("flipped") ||
+          memoryGame.flippedCards.some((card) => card.index == cardIndex)
+        ) {
+          return;
+        }
+
+        this.classList.add("flipped");
+        memoryGame.flippedCards.push(cardInfo);
+
+        if (memoryGame.flippedCards.length === 2) {
+          memoryGame.moves++;
+          updateMemoryStats();
+          checkForMatch();
+        }
+      }
+
+      function checkForMatch() {
+        memoryGame.lockBoard = true;
+
+        const [firstCard, secondCard] = memoryGame.flippedCards;
+        const isMatch = firstCard.id === secondCard.id;
+
+        if (isMatch) {
+          memoryGame.matchedPairs++;
+          updateMemoryStats();
+          memoryGame.flippedCards = [];
+          memoryGame.lockBoard = false;
+
+          if (memoryGame.matchedPairs === memoryCards.length) {
+            setTimeout(() => {
+              showMemoryResult();
+            }, 1000);
+          }
+        } else {
+          setTimeout(() => {
+            const cardElements = document.querySelectorAll(".memory-card");
+            cardElements.forEach((card) => {
+              const cardIndex = card.dataset.index;
+              if (
+                cardIndex == firstCard.index ||
+                cardIndex == secondCard.index
+              ) {
+                card.classList.remove("flipped");
+              }
+            });
+
+            memoryGame.flippedCards = [];
+            memoryGame.lockBoard = false;
+          }, 1000);
+        }
+      }
+
+      function updateMemoryStats() {
+        memoryMoves.textContent = `Lượt: ${memoryGame.moves}`;
+        memoryMatches.textContent = `Đã ghép: ${memoryGame.matchedPairs}/${memoryCards.length}`;
+      }
+
+      function showMemoryResult() {
+        document.getElementById("memory").style.display = "none";
+        document.getElementById("gameResult").style.display = "block";
+        document.getElementById(
+          "finalScore"
+        ).textContent = `${memoryGame.matchedPairs}/${memoryCards.length}`;
+
+        let message;
+        if (memoryGame.moves <= 16) {
+          message = "Xuất sắc! Bạn có trí nhớ tuyệt vời về các dòng xe Honda.";
+        } else if (memoryGame.moves <= 24) {
+          message = "Tốt! Bạn nhớ khá nhiều mẫu xe Honda.";
+        } else {
+          message =
+            "Cố gắng hơn! Hãy làm quen với các dòng xe Honda nhiều hơn.";
+        }
+
+        document.getElementById("resultMessage").textContent = message;
+      }
+
+      memoryReset.addEventListener("click", initializeMemoryGame);
+      document
+        .getElementById("playAgain")
+        .addEventListener("click", function () {
+          document.getElementById("gameResult").style.display = "none";
+          document.getElementById("memory").style.display = "block";
+          initializeMemoryGame();
+        });
+
+      // Initialize memory game
+      initializeMemoryGame();
+
+      // Drag & Drop Game
+      const dragItems = document.getElementById("dragItems");
+      const dragTarget = document.getElementById("dragTarget");
+      const dragDropZones = document.querySelectorAll(".dragdrop-dropzone");
+      const dragSuccess = document.getElementById("dragSuccess");
+
+      let draggedItem = null;
+
+      // Add event listeners for drag items
+      document.querySelectorAll(".dragdrop-item").forEach((item) => {
+        item.addEventListener("dragstart", function () {
+          draggedItem = this;
+          setTimeout(() => {
+            this.style.opacity = "0.4";
+          }, 0);
+        });
+
+        item.addEventListener("dragend", function () {
+          this.style.opacity = "1";
+        });
+      });
+
+      // Add event listeners for drop zones
+      dragDropZones.forEach((zone) => {
+        zone.addEventListener("dragover", function (e) {
+          e.preventDefault();
+          this.style.backgroundColor = "rgba(228, 5, 33, 0.1)";
+        });
+
+        zone.addEventListener("dragleave", function () {
+          this.style.backgroundColor = "";
+        });
+
+        zone.addEventListener("drop", function (e) {
+          e.preventDefault();
+          this.style.backgroundColor = "";
+
+          if (
+            draggedItem &&
+            this.parentElement.dataset.type === draggedItem.dataset.type
+          ) {
+            this.appendChild(draggedItem);
+            checkCompletion();
+          }
+        });
+      });
+
+      function checkCompletion() {
+        const allItems = document.querySelectorAll(".dragdrop-item");
+        const correctlyPlaced = Array.from(allItems).every((item) => {
+          return (
+            item.parentElement.classList.contains("dragdrop-dropzone") &&
+            item.parentElement.parentElement.dataset.type === item.dataset.type
+          );
+        });
+
+        if (correctlyPlaced) {
+          dragSuccess.style.display = "block";
+        }
+      }
+
+      document
+        .getElementById("playAgain")
+        .addEventListener("click", function () {
+          currentQuestion = 0;
+          score = 0;
+          document.getElementById("gameResult").style.display = "none";
+          quizNext.style.display = "inline-block"; // Hiển thị lại nút
+          loadQuestion();
+        });
+    </script>
+  </body>
+</html>
