@@ -151,11 +151,11 @@
       }
 
       .loader-square {
-        width: 20px;
+        width: 22px;
         height: 20px;
         border-radius: 50%;
         background-color: var(--primary-color);
-        animation: loaderAnimation 1.2s infinite ease-in-out;
+        animation: loaderAnimation 1.5s infinite ease-in-out;
       }
 
       .loader-square:nth-child(1) {
@@ -490,7 +490,9 @@
       .quick-link-card:hover img {
         transform: scale(1.05);
       }
-
+      .quick-link-card:hover span {
+        color: #b80018;
+      }
       .quick-link-card span {
         position: absolute;
         bottom: 0;
@@ -514,7 +516,7 @@
         height: 100%;
         background-color: rgba(5, 146, 228, 0.3);
         opacity: 0;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.5s ease;
       }
 
       .quick-link-card:hover::after {
@@ -631,7 +633,7 @@
 
       .news-card {
         background-color: white;
-        border-radius: 8px;
+        border-radius: 25px;
         overflow: hidden;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         transition: var(--transition);
@@ -667,7 +669,7 @@
         color: white;
         text-align: center;
         padding: 10px;
-        border-radius: 4px;
+        border-radius: 25px;
         line-height: 1;
       }
 
@@ -725,7 +727,7 @@
 
       .service-card {
         background-color: white;
-        border-radius: 8px;
+        border-radius: 25px;
         padding: 30px;
         text-align: center;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
