@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game Honda - Thử Thách Kiến Thức Xe Máy</title>
+    <title>Giải trí - Thử Thách Kiến Thức Xe Máy</title>
+    <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -36,6 +37,8 @@
         color: var(--secondary-color);
         overflow-x: hidden;
         background-color: #f5f5f5;
+        overflow-y: scroll; /* Luôn hiển thị thanh cuộn */
+        -webkit-overflow-scrolling: touch; /* Cuộn mượt trên mobile */
       }
 
       .container {
@@ -232,8 +235,7 @@
         height: 60vh;
         min-height: 400px;
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-          url("https://cdn.honda.com.vn/motorbikes/November2021/9hP0Q1Z8KvXQYk8XhQ5k.jpg")
-            no-repeat center center/cover;
+          url("image/BANNERBIKE/GAME.jpg") no-repeat center center/cover;
         display: flex;
         align-items: center;
         margin-top: 80px;
@@ -292,12 +294,16 @@
       }
 
       .game-content {
-        display: none;
-        animation: fadeIn 0.5s ease;
+        transition: opacity 0.3s ease;
       }
-
+      .game-content:not(.active) {
+        display: none;
+        opacity: 0;
+      }
       .game-content.active {
         display: block;
+        opacity: 1;
+        animation: fadeIn 0.5s ease;
       }
 
       @keyframes fadeIn {
@@ -471,6 +477,7 @@
       .dragdrop-container {
         max-width: 800px;
         margin: 0 auto;
+        touch-action: pan-y; /* Cho phép cuộn dọc trên mobile */
       }
 
       .dragdrop-area {
@@ -500,9 +507,59 @@
         border-radius: 8px;
         cursor: move;
         box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-        transition: var(--transition);
+        transition: all 0.3s ease;
+        cursor: move;
+      }
+      .dragdrop-dropzone {
+        min-height: 100px;
+        border: 2px dashed #ccc;
+        border-radius: 8px;
+        margin: 10px 0;
+        padding: 10px;
+        transition: all 0.3s ease;
       }
 
+      .dragdrop-dropzone.highlight {
+        border-color: #e40521;
+        background-color: rgba(228, 5, 33, 0.05);
+      }
+
+      .dragdrop-success {
+        display: none;
+        background-color: none;
+        color: rgb(0, 0, 0);
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 20px;
+        animation: fadeIn 0.5s ease;
+      }
+      /* Nút chơi lại */
+      #playAgain {
+        display: none;
+        margin: 20px auto;
+        padding: 10px 25px;
+        background-color: #e40521;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      #playAgain:hover {
+        background-color: #c0041d;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
       .dragdrop-item:hover {
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
       }
@@ -529,6 +586,7 @@
 
       /* Game Result */
       .game-result {
+        display: none;
         text-align: center;
         padding: 40px;
         background-color: white;
@@ -735,6 +793,7 @@
 
         .quiz-container {
           padding: 25px;
+          transition: all 0.3s ease;
         }
 
         .memory-grid {
@@ -923,6 +982,7 @@
             <div class="dragdrop-success" id="dragSuccess">
               Chúc mừng! Bạn đã phân loại đúng tất cả các xe.
             </div>
+            <button class="btn btn-primary" id="playAgain">Chơi lại</button>
           </div>
         </div>
 
@@ -1175,28 +1235,33 @@
       }
 
       quizNext.addEventListener("click", function () {
+        // Nếu chưa chọn đáp án thì không làm gì
         if (selectedOption === null) return;
 
-        if (this.textContent === "Xem kết quả") {
-          checkAnswer();
+        // Kiểm tra đáp án
+        checkAnswer();
+
+        // Nếu là câu hỏi cuối cùng
+        if (currentQuestion >= quizQuestions.length - 1) {
           showResult();
         } else {
-          checkAnswer();
+          // Chuyển sang câu hỏi tiếp theo
           currentQuestion++;
           loadQuestion();
         }
       });
 
       function showResult() {
-        // Thay vì ẩn toàn bộ #quiz, chúng ta chỉ cần ẩn nút "Tiếp theo/Xem kết quả"
-        quizNext.style.display = "none";
-
-        // Hiển thị kết quả
+        // Ẩn phần câu hỏi và hiển thị kết quả
+        document.querySelector(".quiz-container").style.display = "none";
         document.getElementById("gameResult").style.display = "block";
+
+        // Hiển thị điểm số
         document.getElementById(
           "finalScore"
         ).textContent = `${score}/${quizQuestions.length}`;
 
+        // Đánh giá kết quả
         let message;
         const percentage = (score / quizQuestions.length) * 100;
 
@@ -1214,11 +1279,14 @@
       document
         .getElementById("playAgain")
         .addEventListener("click", function () {
-          currentQuestion = 0;
-          score = 0;
+          // Ẩn kết quả
           document.getElementById("gameResult").style.display = "none";
-          document.getElementById("quiz").style.display = "block";
-          loadQuestion();
+
+          // Reset và hiển thị lại quiz
+          resetQuizGame();
+
+          // Đảm bảo tab quiz đang active
+          document.querySelector('.game-tab[data-tab="quiz"]').click();
         });
 
       // Initialize quiz
@@ -1423,16 +1491,176 @@
       initializeMemoryGame();
 
       // Drag & Drop Game
-      const dragItems = document.getElementById("dragItems");
-      const dragTarget = document.getElementById("dragTarget");
-      const dragDropZones = document.querySelectorAll(".dragdrop-dropzone");
-      const dragSuccess = document.getElementById("dragSuccess");
+      document.addEventListener("DOMContentLoaded", function () {
+        // Lấy các phần tử cần thiết
+        const dragItems = document.getElementById("dragItems");
+        const dragDropZones = document.querySelectorAll(".dragdrop-dropzone");
+        const dragSuccess = document.getElementById("dragSuccess");
 
-      let draggedItem = null;
+        let draggedItem = null;
 
-      // Add event listeners for drag items
+        // Thêm sự kiện cho các item có thể kéo
+        document.querySelectorAll(".dragdrop-item").forEach((item) => {
+          item.addEventListener("dragstart", function (e) {
+            draggedItem = this;
+            setTimeout(() => {
+              this.style.opacity = "0.4";
+            }, 0);
+          });
+
+          item.addEventListener("dragend", function () {
+            this.style.opacity = "1";
+          });
+        });
+
+        // Thêm sự kiện cho vùng thả
+        dragDropZones.forEach((zone) => {
+          zone.addEventListener("dragover", function (e) {
+            if (isDragging) {
+              e.preventDefault();
+              this.style.backgroundColor = "rgba(228, 5, 33, 0.1)";
+            }
+          });
+
+          zone.addEventListener("dragleave", function () {
+            this.style.backgroundColor = "";
+          });
+
+          zone.addEventListener("drop", function (e) {
+            e.preventDefault();
+            this.style.backgroundColor = "";
+
+            // Kiểm tra xem item được thả có đúng loại không
+            if (
+              draggedItem &&
+              this.parentElement.dataset.type === draggedItem.dataset.type
+            ) {
+              this.appendChild(draggedItem);
+              checkCompletion();
+            }
+          });
+        });
+        /// Xử lý cho màn hình cảm ứng
+        document.querySelectorAll(".dragdrop-item").forEach((item) => {
+          let touchStartY = 0;
+          let isTouchDragging = false;
+
+          item.addEventListener(
+            "touchstart",
+            function (e) {
+              touchStartY = e.touches[0].clientY;
+              isTouchDragging = true;
+            },
+            { passive: true }
+          );
+
+          item.addEventListener(
+            "touchmove",
+            function (e) {
+              if (!isTouchDragging) return;
+
+              const touchY = e.touches[0].clientY;
+              const deltaY = touchY - touchStartY;
+
+              // Nếu vuốt đủ mạnh theo chiều dọc -> cuộn trang
+              if (Math.abs(deltaY) > 10) {
+                window.scrollBy(0, -deltaY * 0.5);
+                touchStartY = touchY;
+              }
+            },
+            { passive: false }
+          );
+
+          item.addEventListener("touchend", function () {
+            isTouchDragging = false;
+          });
+        });
+        // Kiểm tra hoàn thành game
+        function checkCompletion() {
+          const allItems = document.querySelectorAll(".dragdrop-item");
+          const allDropZones = document.querySelectorAll(".dragdrop-dropzone");
+          let allCorrect = true;
+
+          // Kiểm tra từng item
+          allItems.forEach((item) => {
+            const parentZone = item.closest(".dragdrop-dropzone");
+            if (
+              !parentZone ||
+              parentZone.parentElement.dataset.type !== item.dataset.type
+            ) {
+              allCorrect = false;
+            }
+          });
+
+          // Kiểm tra tất cả zone đều có item
+          allDropZones.forEach((zone) => {
+            if (zone.children.length === 0) {
+              allCorrect = false;
+            }
+          });
+
+          if (allCorrect) {
+            // Hiển thị thông báo thành công
+            document.getElementById("dragSuccess").style.display = "block";
+
+            // Hiển thị nút chơi lại
+            document.getElementById("playAgain").style.display = "block";
+
+            // Vô hiệu hóa kéo thả sau khi hoàn thành
+            document.querySelectorAll(".dragdrop-item").forEach((item) => {
+              item.draggable = false;
+            });
+          }
+        }
+
+        // Nút chơi lại
+        document
+          .getElementById("playAgain")
+          .addEventListener("click", function () {
+            const dragItemsContainer = document.getElementById("dragItems");
+            const allItems = document.querySelectorAll(".dragdrop-item");
+
+            // Đưa tất cả items về vị trí ban đầu
+            allItems.forEach((item) => {
+              dragItemsContainer.appendChild(item);
+              item.draggable = true;
+              item.style.opacity = "1";
+            });
+
+            // Ẩn thông báo thành công
+            document.getElementById("dragSuccess").style.display = "none";
+
+            // Ẩn nút chơi lại
+            this.style.display = "none";
+
+            // Reset các vùng thả
+            document.querySelectorAll(".dragdrop-dropzone").forEach((zone) => {
+              zone.style.backgroundColor = "";
+            });
+          });
+      });
+
+      document
+        .getElementById("playAgain")
+        .addEventListener("click", function () {
+          // Reset trò chơi
+          currentQuestion = 0;
+          score = 0;
+
+          // Hiển thị lại phần quiz và ẩn kết quả
+          document.querySelector(".quiz-container").style.display = "block";
+          document.getElementById("gameResult").style.display = "none";
+
+          // Load lại câu hỏi đầu tiên
+          loadQuestion();
+        });
+      // Biến để theo dõi trạng thái kéo
+      let isDragging = false;
+
+      // Thêm vào sự kiện dragstart
       document.querySelectorAll(".dragdrop-item").forEach((item) => {
-        item.addEventListener("dragstart", function () {
+        item.addEventListener("dragstart", function (e) {
+          isDragging = true;
           draggedItem = this;
           setTimeout(() => {
             this.style.opacity = "0.4";
@@ -1440,58 +1668,78 @@
         });
 
         item.addEventListener("dragend", function () {
+          isDragging = false;
           this.style.opacity = "1";
         });
       });
 
-      // Add event listeners for drop zones
-      dragDropZones.forEach((zone) => {
-        zone.addEventListener("dragover", function (e) {
-          e.preventDefault();
-          this.style.backgroundColor = "rgba(228, 5, 33, 0.1)";
-        });
-
-        zone.addEventListener("dragleave", function () {
-          this.style.backgroundColor = "";
-        });
-
-        zone.addEventListener("drop", function (e) {
-          e.preventDefault();
-          this.style.backgroundColor = "";
-
-          if (
-            draggedItem &&
-            this.parentElement.dataset.type === draggedItem.dataset.type
-          ) {
-            this.appendChild(draggedItem);
-            checkCompletion();
+      // Cho phép cuộn trang khi đang kéo
+      document.addEventListener(
+        "touchmove",
+        function (e) {
+          if (isDragging) {
+            e.preventDefault(); // Chỉ ngăn chặn mặc định nếu cần
+            window.scrollBy(0, -e.touches[0].clientY * 0.1); // Điều chỉnh tốc độ cuộn
           }
+        },
+        { passive: false }
+      );
+
+      // Cho phép cuộn bằng chuột
+      document.addEventListener("mousemove", function (e) {
+        if (isDragging) {
+          // Cho phép cuộn trang bình thường
+          return true;
+        }
+      });
+      let isDraggingItem = false;
+      let dragStartY = 0;
+      const dragScrollThreshold = 10; // Ngưỡng kéo để bắt đầu cuộn trang
+
+      document.querySelectorAll(".dragdrop-item").forEach((item) => {
+        // Sự kiện khi bắt đầu kéo
+        item.addEventListener("mousedown", function (e) {
+          isDraggingItem = true;
+          dragStartY = e.clientY;
+          this.style.cursor = "grabbing";
+        });
+
+        // Sự kiện khi di chuyển chuột
+        item.addEventListener("mousemove", function (e) {
+          if (isDraggingItem) {
+            // Nếu kéo vượt ngưỡng theo chiều dọc -> cho phép cuộn trang
+            if (Math.abs(e.clientY - dragStartY) > dragScrollThreshold) {
+              // Tính toán hướng và tốc độ cuộn
+              const scrollAmount = (e.clientY - dragStartY) * 0.5;
+              window.scrollBy(0, -scrollAmount);
+            }
+          }
+        });
+
+        // Sự kiện khi thả chuột
+        item.addEventListener("mouseup", function () {
+          isDraggingItem = false;
+          this.style.cursor = "grab";
+        });
+
+        item.addEventListener("mouseleave", function () {
+          isDraggingItem = false;
+          this.style.cursor = "grab";
         });
       });
 
-      function checkCompletion() {
-        const allItems = document.querySelectorAll(".dragdrop-item");
-        const correctlyPlaced = Array.from(allItems).every((item) => {
-          return (
-            item.parentElement.classList.contains("dragdrop-dropzone") &&
-            item.parentElement.parentElement.dataset.type === item.dataset.type
-          );
+      // Vẫn giữ nguyên các sự kiện drag and drop gốc
+      document.querySelectorAll(".dragdrop-item").forEach((item) => {
+        item.addEventListener("dragstart", function (e) {
+          // Cho phép cả drag and drop và cuộn trang
+          e.dataTransfer.setData("text/plain", ""); // Cần thiết cho Firefox
+          this.style.opacity = "0.4";
         });
 
-        if (correctlyPlaced) {
-          dragSuccess.style.display = "block";
-        }
-      }
-
-      document
-        .getElementById("playAgain")
-        .addEventListener("click", function () {
-          currentQuestion = 0;
-          score = 0;
-          document.getElementById("gameResult").style.display = "none";
-          quizNext.style.display = "inline-block"; // Hiển thị lại nút
-          loadQuestion();
+        item.addEventListener("dragend", function () {
+          this.style.opacity = "1";
         });
+      });
     </script>
   </body>
 </html>
