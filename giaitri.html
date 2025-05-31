@@ -322,7 +322,7 @@
         max-width: 800px;
         margin: 0 auto;
         background-color: var(--light-color);
-        border-radius: 10px;
+        border-radius: 25px;
         padding: 40px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
       }
@@ -340,7 +340,7 @@
       .quiz-progress {
         height: 10px;
         background-color: #e9ecef;
-        border-radius: 5px;
+        border-radius: 25px;
         margin-bottom: 20px;
         overflow: hidden;
       }
@@ -368,7 +368,7 @@
       .quiz-option {
         padding: 15px;
         background-color: white;
-        border-radius: 8px;
+        border-radius: 25px;
         cursor: pointer;
         transition: var(--transition);
         border: 1px solid var(--light-gray);
@@ -442,7 +442,7 @@
         width: 100%;
         height: 100%;
         backface-visibility: hidden;
-        border-radius: 8px;
+        border-radius: 25px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -488,7 +488,7 @@
 
       .dragdrop-items {
         background-color: var(--light-color);
-        border-radius: 10px;
+        border-radius: 25px;
         padding: 20px;
         min-height: 300px;
       }
@@ -504,7 +504,7 @@
         background-color: white;
         padding: 15px;
         margin-bottom: 10px;
-        border-radius: 8px;
+        border-radius: 25px;
         cursor: move;
         box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
@@ -513,7 +513,7 @@
       .dragdrop-dropzone {
         min-height: 100px;
         border: 2px dashed #ccc;
-        border-radius: 8px;
+        border-radius: 25px;
         margin: 10px 0;
         padding: 10px;
         transition: all 0.3s ease;
@@ -529,7 +529,7 @@
         background-color: none;
         color: rgb(0, 0, 0);
         padding: 15px;
-        border-radius: 8px;
+        border-radius: 25px;
         text-align: center;
         margin-top: 20px;
         animation: fadeIn 0.5s ease;
@@ -590,7 +590,7 @@
         text-align: center;
         padding: 40px;
         background-color: white;
-        border-radius: 10px;
+        border-radius: 25px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         max-width: 500px;
         margin: 0 auto;
@@ -944,7 +944,7 @@
                 </div>
                 <div class="dragdrop-item" draggable="true" data-type="scooter">
                   <img
-                    src="image/FULL BIKE/Scooter/SH125/Phiên bản thể thao - XÁM ĐEN/6.png"
+                    src="image/FULL BIKE/Scooter/SH125/Phiên bản cao cấp - ĐỎ ĐEN/6.png"
                     alt="Honda SH"
                   />
                   <p>Honda SH</p>
@@ -1235,33 +1235,26 @@
       }
 
       quizNext.addEventListener("click", function () {
-        // Nếu chưa chọn đáp án thì không làm gì
         if (selectedOption === null) return;
 
-        // Kiểm tra đáp án
         checkAnswer();
 
-        // Nếu là câu hỏi cuối cùng
         if (currentQuestion >= quizQuestions.length - 1) {
           showResult();
         } else {
-          // Chuyển sang câu hỏi tiếp theo
           currentQuestion++;
           loadQuestion();
         }
       });
 
       function showResult() {
-        // Ẩn phần câu hỏi và hiển thị kết quả
         document.querySelector(".quiz-container").style.display = "none";
         document.getElementById("gameResult").style.display = "block";
 
-        // Hiển thị điểm số
         document.getElementById(
           "finalScore"
         ).textContent = `${score}/${quizQuestions.length}`;
 
-        // Đánh giá kết quả
         let message;
         const percentage = (score / quizQuestions.length) * 100;
 
@@ -1276,18 +1269,12 @@
         document.getElementById("resultMessage").textContent = message;
       }
 
-      document
-        .getElementById("playAgain")
-        .addEventListener("click", function () {
-          // Ẩn kết quả
-          document.getElementById("gameResult").style.display = "none";
-
-          // Reset và hiển thị lại quiz
-          resetQuizGame();
-
-          // Đảm bảo tab quiz đang active
-          document.querySelector('.game-tab[data-tab="quiz"]').click();
-        });
+      function resetQuizGame() {
+        currentQuestion = 0;
+        score = 0;
+        document.querySelector(".quiz-container").style.display = "block";
+        loadQuestion();
+      }
 
       // Initialize quiz
       loadQuestion();
@@ -1399,7 +1386,6 @@
           (card) => card.index == cardIndex
         );
 
-        // Don't allow flipping already matched cards
         if (
           this.classList.contains("flipped") ||
           memoryGame.flippedCards.some((card) => card.index == cardIndex)
@@ -1479,77 +1465,80 @@
       }
 
       memoryReset.addEventListener("click", initializeMemoryGame);
-      document
-        .getElementById("playAgain")
-        .addEventListener("click", function () {
-          document.getElementById("gameResult").style.display = "none";
-          document.getElementById("memory").style.display = "block";
-          initializeMemoryGame();
-        });
 
       // Initialize memory game
       initializeMemoryGame();
 
-      // Drag & Drop Game
+      // Drag & Drop Game - Optimized for touch devices
       document.addEventListener("DOMContentLoaded", function () {
-        // Lấy các phần tử cần thiết
         const dragItems = document.getElementById("dragItems");
-        const dragDropZones = document.querySelectorAll(".dragdrop-dropzone");
+        const dropZones = document.querySelectorAll(".dragdrop-dropzone");
         const dragSuccess = document.getElementById("dragSuccess");
+        const playAgainBtn = document.getElementById("playAgain");
 
         let draggedItem = null;
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let initialX = 0;
+        let initialY = 0;
+        let isDragging = false;
 
-        // Thêm sự kiện cho các item có thể kéo
+        // Prevent default touch behavior to stop page scrolling
+        document.body.addEventListener(
+          "touchmove",
+          function (e) {
+            if (isDragging) {
+              e.preventDefault();
+            }
+          },
+          { passive: false }
+        );
+
+        // Make items draggable for desktop
         document.querySelectorAll(".dragdrop-item").forEach((item) => {
+          item.draggable = true;
+
+          // Desktop drag events
           item.addEventListener("dragstart", function (e) {
             draggedItem = this;
             setTimeout(() => {
               this.style.opacity = "0.4";
             }, 0);
+            e.dataTransfer.setData("text/plain", this.dataset.type);
           });
 
           item.addEventListener("dragend", function () {
             this.style.opacity = "1";
-          });
-        });
-
-        // Thêm sự kiện cho vùng thả
-        dragDropZones.forEach((zone) => {
-          zone.addEventListener("dragover", function (e) {
-            if (isDragging) {
-              e.preventDefault();
-              this.style.backgroundColor = "rgba(228, 5, 33, 0.1)";
-            }
+            draggedItem = null;
           });
 
-          zone.addEventListener("dragleave", function () {
-            this.style.backgroundColor = "";
-          });
-
-          zone.addEventListener("drop", function (e) {
-            e.preventDefault();
-            this.style.backgroundColor = "";
-
-            // Kiểm tra xem item được thả có đúng loại không
-            if (
-              draggedItem &&
-              this.parentElement.dataset.type === draggedItem.dataset.type
-            ) {
-              this.appendChild(draggedItem);
-              checkCompletion();
-            }
-          });
-        });
-        /// Xử lý cho màn hình cảm ứng
-        document.querySelectorAll(".dragdrop-item").forEach((item) => {
-          let touchStartY = 0;
-          let isTouchDragging = false;
-
+          // Mobile touch events
           item.addEventListener(
             "touchstart",
             function (e) {
+              isDragging = true;
+              draggedItem = this;
+              touchStartX = e.touches[0].clientX;
               touchStartY = e.touches[0].clientY;
-              isTouchDragging = true;
+              initialX = this.getBoundingClientRect().left;
+              initialY = this.getBoundingClientRect().top;
+
+              // Create a clone for dragging visual
+              const clone = this.cloneNode(true);
+              clone.id = "draggingClone";
+              clone.style.position = "fixed";
+              clone.style.zIndex = "1000";
+              clone.style.width = `${this.offsetWidth}px`;
+              clone.style.height = `${this.offsetHeight}px`;
+              clone.style.left = `${initialX}px`;
+              clone.style.top = `${initialY}px`;
+              clone.style.pointerEvents = "none";
+              clone.style.transform = "scale(1.1)";
+              clone.style.transition = "none";
+              document.body.appendChild(clone);
+
+              // Hide original while dragging
+              this.style.visibility = "hidden";
             },
             { passive: true }
           );
@@ -1557,31 +1546,130 @@
           item.addEventListener(
             "touchmove",
             function (e) {
-              if (!isTouchDragging) return;
+              if (!isDragging || !draggedItem) return;
 
+              const touchX = e.touches[0].clientX;
               const touchY = e.touches[0].clientY;
+              const deltaX = touchX - touchStartX;
               const deltaY = touchY - touchStartY;
 
-              // Nếu vuốt đủ mạnh theo chiều dọc -> cuộn trang
-              if (Math.abs(deltaY) > 10) {
-                window.scrollBy(0, -deltaY * 0.5);
-                touchStartY = touchY;
+              const clone = document.getElementById("draggingClone");
+              if (clone) {
+                clone.style.left = `${initialX + deltaX}px`;
+                clone.style.top = `${initialY + deltaY}px`;
               }
+
+              // Highlight potential drop zones
+              dropZones.forEach((zone) => {
+                const zoneRect = zone.getBoundingClientRect();
+                if (
+                  touchX > zoneRect.left &&
+                  touchX < zoneRect.right &&
+                  touchY > zoneRect.top &&
+                  touchY < zoneRect.bottom &&
+                  draggedItem.dataset.type === zone.parentElement.dataset.type
+                ) {
+                  zone.style.backgroundColor = "rgba(228, 5, 33, 0.2)";
+                  zone.style.border = "2px dashed #e40521";
+                } else {
+                  zone.style.backgroundColor = "";
+                  zone.style.border = "";
+                }
+              });
             },
             { passive: false }
           );
 
-          item.addEventListener("touchend", function () {
-            isTouchDragging = false;
+          item.addEventListener(
+            "touchend",
+            function (e) {
+              if (!isDragging || !draggedItem) return;
+
+              const touchX = e.changedTouches[0].clientX;
+              const touchY = e.changedTouches[0].clientY;
+
+              // Find drop zone under touch point
+              let dropped = false;
+              dropZones.forEach((zone) => {
+                const zoneRect = zone.getBoundingClientRect();
+                if (
+                  touchX > zoneRect.left &&
+                  touchX < zoneRect.right &&
+                  touchY > zoneRect.top &&
+                  touchY < zoneRect.bottom &&
+                  draggedItem.dataset.type === zone.parentElement.dataset.type
+                ) {
+                  zone.appendChild(draggedItem);
+                  zone.style.backgroundColor = "";
+                  zone.style.border = "";
+                  dropped = true;
+                  checkCompletion();
+                }
+              });
+
+              // Remove clone and show original
+              const clone = document.getElementById("draggingClone");
+              if (clone) document.body.removeChild(clone);
+
+              draggedItem.style.visibility = "visible";
+              draggedItem.style.transform = "";
+
+              if (!dropped) {
+                // Return to original position if not dropped in zone
+                draggedItem.style.transition = "transform 0.3s ease";
+                draggedItem.style.transform = "translate(0, 0)";
+              }
+
+              // Reset
+              isDragging = false;
+              draggedItem = null;
+              dropZones.forEach((zone) => {
+                zone.style.backgroundColor = "";
+                zone.style.border = "";
+              });
+            },
+            { passive: true }
+          );
+        });
+
+        // Desktop drop zones
+        dropZones.forEach((zone) => {
+          zone.addEventListener("dragover", function (e) {
+            e.preventDefault();
+            if (
+              draggedItem &&
+              draggedItem.dataset.type === this.parentElement.dataset.type
+            ) {
+              this.style.backgroundColor = "rgba(228, 5, 33, 0.2)";
+              this.style.border = "2px dashed #e40521";
+            }
+          });
+
+          zone.addEventListener("dragleave", function () {
+            this.style.backgroundColor = "";
+            this.style.border = "";
+          });
+
+          zone.addEventListener("drop", function (e) {
+            e.preventDefault();
+            this.style.backgroundColor = "";
+            this.style.border = "";
+
+            if (
+              draggedItem &&
+              draggedItem.dataset.type === this.parentElement.dataset.type
+            ) {
+              this.appendChild(draggedItem);
+              checkCompletion();
+            }
           });
         });
-        // Kiểm tra hoàn thành game
+
+        // Check if all items are in correct zones
         function checkCompletion() {
           const allItems = document.querySelectorAll(".dragdrop-item");
-          const allDropZones = document.querySelectorAll(".dragdrop-dropzone");
           let allCorrect = true;
 
-          // Kiểm tra từng item
           allItems.forEach((item) => {
             const parentZone = item.closest(".dragdrop-dropzone");
             if (
@@ -1592,152 +1680,40 @@
             }
           });
 
-          // Kiểm tra tất cả zone đều có item
-          allDropZones.forEach((zone) => {
-            if (zone.children.length === 0) {
-              allCorrect = false;
-            }
-          });
-
           if (allCorrect) {
-            // Hiển thị thông báo thành công
-            document.getElementById("dragSuccess").style.display = "block";
+            dragSuccess.style.display = "block";
+            playAgainBtn.style.display = "block";
 
-            // Hiển thị nút chơi lại
-            document.getElementById("playAgain").style.display = "block";
-
-            // Vô hiệu hóa kéo thả sau khi hoàn thành
+            // Disable further dragging
             document.querySelectorAll(".dragdrop-item").forEach((item) => {
               item.draggable = false;
+              item.style.pointerEvents = "none";
             });
           }
         }
 
-        // Nút chơi lại
-        document
-          .getElementById("playAgain")
-          .addEventListener("click", function () {
-            const dragItemsContainer = document.getElementById("dragItems");
-            const allItems = document.querySelectorAll(".dragdrop-item");
-
-            // Đưa tất cả items về vị trí ban đầu
-            allItems.forEach((item) => {
-              dragItemsContainer.appendChild(item);
-              item.draggable = true;
-              item.style.opacity = "1";
-            });
-
-            // Ẩn thông báo thành công
-            document.getElementById("dragSuccess").style.display = "none";
-
-            // Ẩn nút chơi lại
-            this.style.display = "none";
-
-            // Reset các vùng thả
-            document.querySelectorAll(".dragdrop-dropzone").forEach((zone) => {
-              zone.style.backgroundColor = "";
-            });
+        // Reset game
+        playAgainBtn.addEventListener("click", function () {
+          // Move all items back to dragItems container
+          const allItems = document.querySelectorAll(".dragdrop-item");
+          allItems.forEach((item) => {
+            dragItems.appendChild(item);
+            item.draggable = true;
+            item.style.opacity = "1";
+            item.style.transform = "";
+            item.style.visibility = "visible";
+            item.style.pointerEvents = "auto";
           });
-      });
 
-      document
-        .getElementById("playAgain")
-        .addEventListener("click", function () {
-          // Reset trò chơi
-          currentQuestion = 0;
-          score = 0;
+          // Reset drop zones
+          dropZones.forEach((zone) => {
+            zone.style.backgroundColor = "";
+            zone.style.border = "";
+          });
 
-          // Hiển thị lại phần quiz và ẩn kết quả
-          document.querySelector(".quiz-container").style.display = "block";
-          document.getElementById("gameResult").style.display = "none";
-
-          // Load lại câu hỏi đầu tiên
-          loadQuestion();
-        });
-      // Biến để theo dõi trạng thái kéo
-      let isDragging = false;
-
-      // Thêm vào sự kiện dragstart
-      document.querySelectorAll(".dragdrop-item").forEach((item) => {
-        item.addEventListener("dragstart", function (e) {
-          isDragging = true;
-          draggedItem = this;
-          setTimeout(() => {
-            this.style.opacity = "0.4";
-          }, 0);
-        });
-
-        item.addEventListener("dragend", function () {
-          isDragging = false;
-          this.style.opacity = "1";
-        });
-      });
-
-      // Cho phép cuộn trang khi đang kéo
-      document.addEventListener(
-        "touchmove",
-        function (e) {
-          if (isDragging) {
-            e.preventDefault(); // Chỉ ngăn chặn mặc định nếu cần
-            window.scrollBy(0, -e.touches[0].clientY * 0.1); // Điều chỉnh tốc độ cuộn
-          }
-        },
-        { passive: false }
-      );
-
-      // Cho phép cuộn bằng chuột
-      document.addEventListener("mousemove", function (e) {
-        if (isDragging) {
-          // Cho phép cuộn trang bình thường
-          return true;
-        }
-      });
-      let isDraggingItem = false;
-      let dragStartY = 0;
-      const dragScrollThreshold = 10; // Ngưỡng kéo để bắt đầu cuộn trang
-
-      document.querySelectorAll(".dragdrop-item").forEach((item) => {
-        // Sự kiện khi bắt đầu kéo
-        item.addEventListener("mousedown", function (e) {
-          isDraggingItem = true;
-          dragStartY = e.clientY;
-          this.style.cursor = "grabbing";
-        });
-
-        // Sự kiện khi di chuyển chuột
-        item.addEventListener("mousemove", function (e) {
-          if (isDraggingItem) {
-            // Nếu kéo vượt ngưỡng theo chiều dọc -> cho phép cuộn trang
-            if (Math.abs(e.clientY - dragStartY) > dragScrollThreshold) {
-              // Tính toán hướng và tốc độ cuộn
-              const scrollAmount = (e.clientY - dragStartY) * 0.5;
-              window.scrollBy(0, -scrollAmount);
-            }
-          }
-        });
-
-        // Sự kiện khi thả chuột
-        item.addEventListener("mouseup", function () {
-          isDraggingItem = false;
-          this.style.cursor = "grab";
-        });
-
-        item.addEventListener("mouseleave", function () {
-          isDraggingItem = false;
-          this.style.cursor = "grab";
-        });
-      });
-
-      // Vẫn giữ nguyên các sự kiện drag and drop gốc
-      document.querySelectorAll(".dragdrop-item").forEach((item) => {
-        item.addEventListener("dragstart", function (e) {
-          // Cho phép cả drag and drop và cuộn trang
-          e.dataTransfer.setData("text/plain", ""); // Cần thiết cho Firefox
-          this.style.opacity = "0.4";
-        });
-
-        item.addEventListener("dragend", function () {
-          this.style.opacity = "1";
+          // Hide success message and button
+          dragSuccess.style.display = "none";
+          this.style.display = "none";
         });
       });
     </script>
