@@ -175,6 +175,7 @@
       .loader-square {
         width: 16px;
         height: 16px;
+        border-radius: 50%;
         margin: 0 8px;
         background-color: var(--primary-color);
         animation: loaderAnimation 1.5s infinite ease-in-out;
@@ -1150,7 +1151,6 @@
         <div class="loader-square"></div>
         <div class="loader-square"></div>
         <div class="loader-square"></div>
-        <div class="loader-square"></div>
       </div>
     </div>
 
@@ -1160,7 +1160,7 @@
 
       <header class="main-header">
         <div class="container">
-          <a href="#" class="logo">
+          <a href="index.html" class="logo">
             <img src="image/logo/Logo_HEAD.png" alt="Honda Logo" />
           </a>
 
@@ -1812,7 +1812,7 @@
           if (window.scrollY > 100) {
             bars.forEach((bar) => {
               bar.style.backgroundColor = this.classList.contains("active")
-                ? "white"
+                ? "black"
                 : "var(--dark-color)";
             });
           }
