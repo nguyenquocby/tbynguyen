@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đua Xe Honda</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: #f5f5f5;
+        overflow-x: hidden;
+      }
+
+      .game-container {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .road {
+        width: 100%;
+        height: 100%;
+        background-color: #333;
+        position: relative;
+        overflow: hidden;
+        background-image: linear-gradient(90deg, #555 1px, transparent 1px),
+          linear-gradient(#444 1px, transparent 1px);
+        background-size: 50px 50px;
+      }
+
+      .car {
+        width: 180px;
+        height: 250px;
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: left 0.2s ease;
+        z-index: 10;
+        transition: left 0.1s ease-out;
+        will-change: left; /* Tối ưu hiệu suất */
+      }
+
+      .car img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .obstacle {
+        position: absolute;
+        width: 180px;
+        height: 250px;
+        background-image: url("image/FULL BIKE/Scooter/VARIO125/Phiên bản thể thao - XANH ĐEN/8.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        z-index: 5;
+        border-radius: 10px;
+      }
+
+      .fuel {
+        width: 100px;
+        height: 160px;
+        background-image: url("image/logo/xu.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        border-radius: 5px;
+        z-index: 5;
+      }
+
+      .game-header {
+        background-color: #fff;
+        padding: 15px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 100;
+        text-align: center;
+      }
+
+      .game-info {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        font-weight: 600;
+        margin-top: 10px;
+      }
+
+      .game-menu {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        z-index: 200;
+        width: 90%;
+        max-width: 500px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #e40521;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin: 10px 5px;
+        width: 100%;
+        max-width: 200px;
+        touch-action: manipulation; /* Tối ưu cho mobile */
+        user-select: none; /* Ngăn chọn text khi chạm */
+        -webkit-tap-highlight-color: transparent; /* Bỏ highlight khi chạm */
+      }
+      /* Hiệu ứng khi nút được nhấn */
+      .btn:active,
+      .btn.active {
+        transform: translateY(1px) !important;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+      }
+
+      .btn:hover {
+        background-color: #c0041d;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .controls {
+        position: fixed;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        padding: 10px;
+        z-index: 50;
+      }
+
+      .controls .btn {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        margin: 0;
+      }
+
+      @media (max-width: 768px) {
+        .car {
+          width: 100px;
+          height: 220px;
+        }
+
+        .controls .btn {
+          width: 70px;
+          height: 70px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="game-container">
+      <div class="game-header">
+        <h1>Đua Xe Honda</h1>
+        <div class="game-info">
+          <div class="score">Điểm: <span id="scoreValue">0</span></div>
+          <div class="lives">Mạng: <span id="livesValue">3</span></div>
+          <div class="level">Cấp độ: <span id="levelValue">1</span></div>
+        </div>
+      </div>
+
+      <div class="road" id="gameRoad">
+        <div class="car" id="playerCar">
+          <img
+            src="image/FULL BIKE/EM/Phiên bản cao cấp - ĐỎ XÁM/4.png"
+            alt="Xe Honda"
+          />
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn left-btn" id="leftBtn">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <button class="btn right-btn" id="rightBtn">
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <div class="game-menu" id="gameMenu">
+        <h2>Đua Xe Honda</h2>
+        <button class="btn start-btn" id="startBtn">Bắt đầu</button>
+        <div class="leaderboard" id="leaderboard">
+          <h3>Bảng xếp hạng</h3>
+          <ol id="highScoresList"></ol>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Khai báo biến toàn cục
+      let gameSpeed = 3;
+      let obstacleFrequency = 2000;
+      let score = 0;
+      let lives = 3;
+      let level = 1;
+      let carPosition = 50;
+      let gameInterval;
+      let obstacleInterval;
+      let fuelInterval;
+      let isGameRunning = false;
+      let keysPressed = {};
+      let highScores =
+        JSON.parse(localStorage.getItem("hondaRacingHighScores")) || [];
+
+      // Hàm khởi tạo game
+      function initGame() {
+        console.log("Khởi tạo game...");
+
+        // Reset game state
+        score = 0;
+        lives = 3;
+        level = 1;
+        carPosition = 50;
+        gameSpeed = 3;
+        obstacleFrequency = 2000;
+        isGameRunning = true;
+
+        // Update UI
+        updateScore();
+        updateLives();
+        updateLevel();
+        document.getElementById("playerCar").style.left = `${carPosition}%`;
+
+        // Clear obstacles
+        document
+          .querySelectorAll(".obstacle, .fuel")
+          .forEach((el) => el.remove());
+
+        // Hide menu
+        document.getElementById("gameMenu").style.display = "none";
+
+        // Start game loops
+        startGameLoops();
+      }
+
+      // Hàm bắt đầu game loop
+      function startGameLoops() {
+        // Clear existing intervals
+        stopGameLoops();
+
+        // Main game loop
+        gameInterval = setInterval(updateGame, 20);
+
+        // Obstacle generation
+        obstacleInterval = setInterval(createObstacle, obstacleFrequency);
+
+        // Fuel generation
+        fuelInterval = setInterval(createFuel, 5000);
+      }
+
+      // Hàm dừng game loop
+      function stopGameLoops() {
+        clearInterval(gameInterval);
+        clearInterval(obstacleInterval);
+        clearInterval(fuelInterval);
+      }
+
+      // Hàm tạo chướng ngại vật
+      function createObstacle() {
+        if (!isGameRunning) return;
+
+        const obstacle = document.createElement("div");
+        obstacle.className = "obstacle";
+        obstacle.style.left = `${Math.random() * 80 + 10}%`;
+        obstacle.style.top = "-70px";
+        document.getElementById("gameRoad").appendChild(obstacle);
+      }
+
+      // Hàm tạo nhiên liệu
+      function createFuel() {
+        if (!isGameRunning) return;
+
+        const fuel = document.createElement("div");
+        fuel.className = "fuel";
+        fuel.style.left = `${Math.random() * 70 + 15}%`;
+        fuel.style.top = "-60px";
+        document.getElementById("gameRoad").appendChild(fuel);
+      }
+
+      // Hàm cập nhật game
+      function updateGame() {
+        moveObstacles();
+        moveFuels();
+        checkCollisions();
+        updateCarPosition();
+      }
+
+      // Hàm di chuyển chướng ngại vật
+      function moveObstacles() {
+        document.querySelectorAll(".obstacle").forEach((obstacle) => {
+          const top = parseFloat(obstacle.style.top) || 0;
+          const newTop = top + gameSpeed;
+
+          if (newTop > window.innerHeight) {
+            obstacle.remove();
+          } else {
+            obstacle.style.top = `${newTop}px`;
+          }
+        });
+      }
+
+      // Hàm di chuyển nhiên liệu
+      function moveFuels() {
+        document.querySelectorAll(".fuel").forEach((fuel) => {
+          const top = parseFloat(fuel.style.top) || 0;
+          const newTop = top + gameSpeed;
+
+          if (newTop > window.innerHeight) {
+            fuel.remove();
+          } else {
+            fuel.style.top = `${newTop}px`;
+          }
+        });
+      }
+
+      // Hàm kiểm tra va chạm
+      function checkCollisions() {
+        const carRect = document
+          .getElementById("playerCar")
+          .getBoundingClientRect();
+
+        // Check obstacles
+        document.querySelectorAll(".obstacle").forEach((obstacle) => {
+          const obsRect = obstacle.getBoundingClientRect();
+
+          if (isColliding(carRect, obsRect)) {
+            obstacle.remove();
+            lives--;
+            updateLives();
+
+            if (lives <= 0) {
+              endGame();
+            }
+          }
+        });
+
+        // Check fuels
+        document.querySelectorAll(".fuel").forEach((fuel) => {
+          const fuelRect = fuel.getBoundingClientRect();
+
+          if (isColliding(carRect, fuelRect)) {
+            fuel.remove();
+            score += 10;
+            updateScore();
+
+            if (score >= level * 100) {
+              levelUp();
+            }
+          }
+        });
+      }
+
+      // Hàm kiểm tra va chạm
+      function isColliding(rect1, rect2) {
+        return !(
+          rect1.right < rect2.left ||
+          rect1.left > rect2.right ||
+          rect1.bottom < rect2.top ||
+          rect1.top > rect2.bottom
+        );
+      }
+
+      // Hàm lên cấp
+      function levelUp() {
+        level++;
+        gameSpeed += 0.5;
+        obstacleFrequency = Math.max(1000, obstacleFrequency - 200);
+        updateLevel();
+
+        clearInterval(obstacleInterval);
+        obstacleInterval = setInterval(createObstacle, obstacleFrequency);
+      }
+
+      // Hàm kết thúc game
+      function endGame() {
+        isGameRunning = false;
+        stopGameLoops();
+
+        document.getElementById("gameMenu").style.display = "block";
+        updateHighScores();
+      }
+
+      // Hàm cập nhật điểm số
+      function updateScore() {
+        document.getElementById("scoreValue").textContent = score;
+      }
+
+      // Hàm cập nhật mạng
+      function updateLives() {
+        document.getElementById("livesValue").textContent = lives;
+      }
+
+      // Hàm cập nhật cấp độ
+      function updateLevel() {
+        document.getElementById("levelValue").textContent = level;
+      }
+
+      // Hàm cập nhật vị trí xe
+      function updateCarPosition() {
+        if (keysPressed["ArrowLeft"] || keysPressed["a"]) {
+          carPosition = Math.max(10, carPosition - 2);
+        }
+        if (keysPressed["ArrowRight"] || keysPressed["d"]) {
+          carPosition = Math.min(90, carPosition + 2);
+        }
+
+        document.getElementById("playerCar").style.left = `${carPosition}%`;
+      }
+
+      // Hàm cập nhật bảng xếp hạng
+      function updateHighScores() {
+        highScores.push({
+          name: "Người chơi",
+          score: score,
+          level: level,
+          date: new Date().toLocaleDateString(),
+        });
+
+        highScores.sort((a, b) => b.score - a.score);
+        highScores = highScores.slice(0, 5);
+
+        localStorage.setItem(
+          "hondaRacingHighScores",
+          JSON.stringify(highScores)
+        );
+        renderHighScores();
+      }
+
+      // Hàm hiển thị bảng xếp hạng
+      function renderHighScores() {
+        const list = document.getElementById("highScoresList");
+        list.innerHTML = highScores
+          .map(
+            (score, i) => `
+                <li>${i + 1}. ${score.name} - ${score.score} điểm (Cấp ${
+              score.level
+            })</li>
+            `
+          )
+          .join("");
+      }
+
+      // Sự kiện bàn phím
+      document.addEventListener("keydown", function (e) {
+        keysPressed[e.key] = true;
+      });
+
+      document.addEventListener("keyup", function (e) {
+        keysPressed[e.key] = false;
+      });
+
+      // Sự kiện nút điều khiển
+      document
+        .getElementById("leftBtn")
+        .addEventListener("touchstart", function () {
+          keysPressed["ArrowLeft"] = true;
+        });
+
+      document
+        .getElementById("leftBtn")
+        .addEventListener("touchend", function () {
+          keysPressed["ArrowLeft"] = false;
+        });
+
+      document
+        .getElementById("rightBtn")
+        .addEventListener("touchstart", function () {
+          keysPressed["ArrowRight"] = true;
+        });
+
+      document
+        .getElementById("rightBtn")
+        .addEventListener("touchend", function () {
+          keysPressed["ArrowRight"] = false;
+        });
+
+      // Sự kiện nút bắt đầu
+      document.getElementById("startBtn").addEventListener("click", initGame);
+
+      // Khởi tạo ban đầu
+      renderHighScores();
+      // Cập nhật phần điều khiển xe
+      const carSpeed = 5; // Tốc độ di chuyển xe
+      const carElement = document.getElementById("playerCar");
+
+      // Hàm cập nhật vị trí xe
+      function updateCarPosition() {
+        carElement.style.left = `${carPosition}%`;
+      }
+
+      // Xử lý sự kiện bàn phím
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft" || e.key === "a") {
+          carPosition = Math.max(10, carPosition - carSpeed);
+        } else if (e.key === "ArrowRight" || e.key === "d") {
+          carPosition = Math.min(90, carPosition + carSpeed);
+        }
+        updateCarPosition();
+      });
+
+      // Xử lý sự kiện nút bấm cho mobile
+      const leftBtn = document.getElementById("leftBtn");
+      const rightBtn = document.getElementById("rightBtn");
+
+      // Giữ nút
+      leftBtn.addEventListener("touchstart", () => moveCar("left"));
+      leftBtn.addEventListener("touchend", stopCar);
+      leftBtn.addEventListener("mouseleave", stopCar);
+
+      rightBtn.addEventListener("touchstart", () => moveCar("right"));
+      rightBtn.addEventListener("touchend", stopCar);
+      rightBtn.addEventListener("mouseleave", stopCar);
+
+      // Click cho desktop
+      leftBtn.addEventListener("mousedown", () => moveCar("left"));
+      leftBtn.addEventListener("mouseup", stopCar);
+
+      rightBtn.addEventListener("mousedown", () => moveCar("right"));
+      rightBtn.addEventListener("mouseup", stopCar);
+
+      let moveInterval;
+      function moveCar(direction) {
+        // Dừng di chuyển trước đó nếu có
+        if (moveInterval) clearInterval(moveInterval);
+
+        // Bắt đầu di chuyển
+        moveInterval = setInterval(() => {
+          if (direction === "left") {
+            carPosition = Math.max(10, carPosition - carSpeed);
+          } else {
+            carPosition = Math.min(90, carPosition + carSpeed);
+          }
+          updateCarPosition();
+        }, 16); // ~60fps
+      }
+
+      function stopCar() {
+        if (moveInterval) {
+          clearInterval(moveInterval);
+          moveInterval = null;
+        }
+      }
+    </script>
+  </body>
+</html>
