@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tin Tức - Honda Việt Nam</title>
+    <title>Tin Tức</title>
+    <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -235,8 +236,7 @@
         height: 40vh;
         min-height: 250px;
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-          url("https://images.unsplash.com/photo-1494412651409-8963ce7935a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1350&q=80")
-            no-repeat center center/cover;
+          url("image/Banner/VISION.jpg") no-repeat center center/cover;
         display: flex;
         align-items: center;
         margin-top: 80px;
@@ -724,7 +724,7 @@
             <ul>
               <li><a href="index.html">Trang chủ</a></li>
               <li><a href="sanphamxemay.html">Sản phẩm</a></li>
-              <li><a href="#">Tin tức</a></li>
+              <li><a href="tintuc.html">Tin tức</a></li>
               <li><a href="dichvu.html">Dịch vụ</a></li>
               <li><a href="lienhe.html">Liên hệ</a></li>
             </ul>
@@ -734,10 +734,10 @@
             <h3>Danh mục tin</h3>
             <ul>
               <li><a href="#">Sự kiện</a></li>
-              <li><a href="#">Khuyến mãi</a></li>
-              <li><a href="#">Sản phẩm mới</a></li>
-              <li><a href="#">Công nghệ</a></li>
-              <li><a href="#">Tin tức</a></li>
+              <li><a href="khuyenmai.html">Khuyến mãi</a></li>
+              <li><a href="sanphamxemay.html">Sản phẩm mới</a></li>
+              <li><a href="sanphamphutung.html">Phụ Tùng</a></li>
+              <li><a href="tintuc.html">Tin tức</a></li>
             </ul>
           </div>
 
@@ -754,7 +754,7 @@
         </div>
 
         <div class="footer-bottom">
-          <p>&copy; 2023 Honda Việt Nam. Bảo lưu mọi quyền.</p>
+          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
         </div>
       </div>
     </footer>
@@ -769,135 +769,72 @@
       const allNews = [
         {
           id: 1,
-          title: "Honda ra mắt dòng xe Vision 2023 với nhiều cải tiến đột phá",
+          title:
+            "Honda Việt Nam giới thiệu màu mới cho Vario 125 phiên bản 2025 - Chất ngông thành thị-",
           category: "Sản phẩm mới",
-          date: "15/06/2023",
+          date: "01/12/2024",
           excerpt:
-            "Honda vừa chính thức giới thiệu dòng xe Vision phiên bản 2023 với nhiều cải tiến về công nghệ và thiết kế...",
-          image:
-            "https://images.unsplash.com/photo-1494412651409-8963ce7935a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+            "Hà Nội, ngày 1 tháng 12 năm 2024, Công ty Honda Việt Nam (HVN) giới thiệu Vario 125 phiên bản 2025 bổ sung thêm màu đỏ nổi bật....",
+          image: "image/menutab/TTXM01.jpeg",
         },
         {
           id: 2,
           title:
-            "Chương trình khuyến mãi 'Hè rực rỡ' giảm giá đến 10 triệu đồng",
-          category: "Khuyến mãi",
-          date: "10/06/2023",
+            "Honda Việt Nam giới thiệu phiên bản mới mẫu xe Vision 2025 - Rực rỡ những đầu tiên",
+          category: "Sản phẩm mới",
+          date: "17/11/2024",
           excerpt:
-            "Nhân dịp hè 2023, Honda Việt Nam triển khai chương trình khuyến mãi đặc biệt với ưu đãi lên đến 10 triệu đồng...",
-          image:
-            "https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+            "Hà Nội, ngày 21 tháng 11 năm 2024, Công ty Honda Việt Nam (HVN) chính thức giới thiệu phiên bản Vision 2025 với bộ sưu tập màu sắc mới vô cùng hiện đại và phong cách....",
+          image: "image/menutab/TT01.jpeg",
         },
         {
           id: 3,
-          title: "Honda tổ chức Ngày hội an toàn giao thông 2023 tại Hà Nội",
-          category: "Sự kiện",
-          date: "05/06/2023",
+          title:
+            "Honda Việt Nam giới thiệu SH350i hoàn toàn mới -DẤU ẤN VƯỢT THỜI GIAN",
+          category: "Sản phẩm mới",
+          date: "05/11/2024",
           excerpt:
-            "Sự kiện thường niên về an toàn giao thông do Honda tổ chức sẽ diễn ra vào ngày 20/06 tại Hà Nội...",
-          image:
-            "https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+            "Ngày 5 tháng 11 năm 2024, Công ty Honda Việt Nam (HVN) giới thiệu mẫu xe SH350i 2025 hoàn toàn mới với những thay đổi ấn tượng về thiết kế, công nghệ và loạt trang bị tiện ích xứng tầm...",
+          image: "image/menutab/TT02.jpeg",
         },
         {
           id: 4,
-          title: "Honda giới thiệu công nghệ động cơ mới tiết kiệm nhiên liệu",
-          category: "Công nghệ",
-          date: "01/06/2023",
+          title:
+            "Honda Việt Nam giới thiệu LEAD 125cc hoàn toàn mới - Đẹp sống động, Lái khác biệt",
+          category: "Sản phẩm mới",
+          date: "07/09/2024",
           excerpt:
-            "Công nghệ động cơ mới eSP+ từ Honda giúp tiết kiệm thêm 10% nhiên liệu so với thế hệ trước...",
-          image:
-            "https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+            "Hà Nội, ngày 7 tháng 9 năm 2024, Công ty Honda Việt Nam (HVN) giới thiệu phiên bản hoàn toàn mới mẫu xe LEAD 125cc....",
+          image: "image/menutab/LEADABS.png",
         },
         {
           id: 5,
-          title: "Honda Việt Nam nhận giải thưởng 'Doanh nghiệp xuất sắc 2023'",
-          category: "Tin tức",
-          date: "28/05/2023",
+          title:
+            "Honda Việt Nam giới thiệu thiết kế mới dòng xe Wave Alpha phiên bản Cổ điển và màu mới mẫu xe Super Cub C125",
+          category: "Sản phẩm mới",
+          date: "11/07/2024",
           excerpt:
-            "Với những đóng góp tích cực cho nền kinh tế và xã hội, Honda Việt Nam vinh dự nhận giải thưởng...",
-          image:
-            "https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+            "Tại Việt Nam, xe máy từ lâu đã ăn sâu vào cuộc sống của người dân và xe số vẫn luôn là một trong những lựa chọn hàng đầu với lịch sử và truyền thống mạnh mẽ...",
+          image: "image/menutab/ALPHARETRO.jpg",
         },
         {
           id: 6,
-          title: "Honda khai trương đại lý 3S thứ 100 tại Việt Nam",
-          category: "Tin tức",
-          date: "25/05/2023",
+          title:
+            "Honda Việt Nam giới thiệu Air Blade 2025 mới “Khí chất bất biến – Cân mọi trải nghiệm”",
+          category: "Sản phẩm mới",
+          date: "01/06/2024",
           excerpt:
-            "Đại lý 3S thứ 100 của Honda chính thức đi vào hoạt động tại TP.HCM, đánh dấu cột mốc quan trọng...",
-          image:
-            "https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+            "Ngày 1 tháng 06 năm 2024, Công ty Honda Việt Nam (HVN) giới thiệu phiên bản mới Air Blade 160cc/125cc. Xứng danh mẫu xe tay ga thể thao hàng đầu trong suốt hơn một thập kỷ qua,...",
+          image: "image/menutab/AB.jpg",
         },
         {
           id: 7,
-          title: "Honda tổ chức khóa đào tạo kỹ thuật viên chuyên sâu",
-          category: "Sự kiện",
-          date: "20/05/2023",
-          excerpt:
-            "Chương trình đào tạo kỹ thuật viên đạt chuẩn quốc tế sẽ diễn ra trong 3 tháng, nhằm nâng cao chất lượng...",
-          image:
-            "https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        },
-        {
-          id: 8,
-          title: "Honda hợp tác với đối tác Nhật Bản phát triển xe điện",
-          category: "Tin tức",
-          date: "15/05/2023",
-          excerpt:
-            "Honda Việt Nam vừa ký kết hợp tác chiến lược với tập đoàn công nghệ Nhật Bản để cùng phát triển...",
-          image:
-            "https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        },
-        {
-          id: 9,
-          title: "Giải đua xe Honda Racing 2023 chính thức khởi tranh",
-          category: "Sự kiện",
-          date: "10/05/2023",
-          excerpt:
-            "Giải đua xe Honda Racing 2023 sẽ diễn ra tại trường đua Mỹ Đình với sự tham gia của hơn 100 vận động viên...",
-          image:
-            "https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        },
-        {
-          id: 10,
-          title: "Honda ra mắt dòng phụ tùng chính hãng thế hệ mới",
+          title: "Honda Việt Nam ra mắt mẫu xe CB350 Hness",
           category: "Sản phẩm mới",
-          date: "05/05/2023",
+          date: "24/01/2024",
           excerpt:
-            "Bộ phụ tùng mới được sản xuất trên dây chuyền công nghệ Nhật Bản, đảm bảo chất lượng và độ bền...",
-          image:
-            "https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        },
-        {
-          id: 11,
-          title: "Hội thảo 'Bảo dưỡng xe đúng cách' tại Hà Nội và TP.HCM",
-          category: "Sự kiện",
-          date: "30/04/2023",
-          excerpt:
-            "Honda tổ chức chuỗi hội thảo chia sẻ kiến thức bảo dưỡng xe đúng cách nhằm nâng cao tuổi thọ xe...",
-          image:
-            "https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        },
-        {
-          id: 12,
-          title:
-            "Honda tham gia triển lãm công nghệ giao thông thông minh 2023",
-          category: "Sự kiện",
-          date: "25/04/2023",
-          excerpt:
-            "Tại triển lãm, Honda sẽ giới thiệu những công nghệ mới nhất trong lĩnh vực giao thông thông minh...",
-          image:
-            "https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        },
-        {
-          id: 13,
-          title: "Honda công bố kết quả kinh doanh quý 1 năm 2023",
-          category: "Tin tức",
-          date: "20/04/2023",
-          excerpt:
-            "Honda Việt Nam công bố kết quả kinh doanh quý 1 với mức tăng trưởng ấn tượng 15% so với cùng kỳ...",
-          image:
-            "https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+            "Ngày 24 tháng 1 năm 2024, Công ty Honda Việt Nam (HVN) lần đầu tiên giới thiệu CB350 Hness và hệ thống Cửa hàng ủy nhiệm hoàn toàn mới...",
+          image: "image/menutab/CB350.jpg",
         },
       ];
 
@@ -921,19 +858,19 @@
           const newsItem = document.createElement("article");
           newsItem.className = "news-card";
           newsItem.innerHTML = `
-          <div class="news-image">
-            <img src="${news.image}" alt="${news.title}">
-          </div>
-          <div class="news-content">
-            <div class="news-meta">
-              <span class="news-category">${news.category}</span>
-              <span class="news-date"><i class="far fa-calendar-alt"></i> ${news.date}</span>
-            </div>
-            <h3 class="news-title">${news.title}</h3>
-            <p class="news-excerpt">${news.excerpt}</p>
-            <a href="#" class="read-more">Xem thêm <i class="fas fa-arrow-right"></i></a>
-          </div>
-        `;
+                <div class="news-image">
+                  <img src="${news.image}" alt="${news.title}">
+                </div>
+                <div class="news-content">
+                  <div class="news-meta">
+                    <span class="news-category">${news.category}</span>
+                    <span class="news-date"><i class="far fa-calendar-alt"></i> ${news.date}</span>
+                  </div>
+                  <h3 class="news-title">${news.title}</h3>
+                  <p class="news-excerpt">${news.excerpt}</p>
+                  <a href="#" class="read-more">Xem thêm <i class="fas fa-arrow-right"></i></a>
+                </div>
+              `;
           newsContainer.appendChild(newsItem);
         });
       }
