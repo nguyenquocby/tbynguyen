@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tin Tức Cửa Hàng</title>
+    <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Reset & Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-color: #e40521;
+        --secondary-color: #333;
+        --light-color: #f8f9fa;
+        --dark-color: #212529;
+        --gray-color: #6c757d;
+        --light-gray: #e9ecef;
+        --transition: all 0.3s ease;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        line-height: 1.6;
+        color: var(--secondary-color);
+        overflow-x: hidden;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 25px;
+        border-radius: 25px;
+        font-weight: 500;
+        text-align: center;
+        transition: var(--transition);
+        cursor: pointer;
+        border: 2px solid transparent;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      .btn-primary:hover {
+        background-color: #c0041d;
+        border-color: #c0041d;
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: var(--dark-color);
+      }
+
+      .section-subtitle {
+        font-size: 1.1rem;
+        color: var(--gray-color);
+        margin-bottom: 20px;
+      }
+
+      .divider {
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+        margin: 0 auto;
+      }
+
+      /* Header */
+      .main-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        transition: var(--transition);
+      }
+
+      .main-header.scrolled {
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .main-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 40px;
+      }
+
+      /* Mobile Menu Toggle */
+      .menu-toggle {
+        display: none;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-toggle .bar {
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background-color: var(--dark-color);
+        transition: all 0.3s ease;
+        left: 0;
+      }
+
+      .menu-toggle .bar:nth-child(1) {
+        top: 0;
+      }
+
+      .menu-toggle .bar:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .menu-toggle .bar:nth-child(3) {
+        bottom: 0;
+      }
+
+      .menu-toggle.active .bar:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        background-color: var(--primary-color);
+      }
+
+      .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active .bar:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+        background-color: var(--primary-color);
+      }
+
+      .main-nav ul {
+        display: flex;
+      }
+
+      .main-nav li {
+        margin-left: 30px;
+      }
+
+      .main-nav a {
+        font-weight: 500;
+        color: var(--dark-color);
+        position: relative;
+      }
+
+      .main-nav a:after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: var(--transition);
+      }
+
+      .main-nav a:hover:after,
+      .main-nav a.active:after {
+        width: 100%;
+      }
+
+      .main-nav a.active {
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      /* Hero Banner */
+      .news-hero {
+        height: 40vh;
+        min-height: 250px;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("image/lienhe/HEAD.JPG") no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        margin-top: 80px;
+        color: white;
+        text-align: center;
+      }
+
+      .hero-content {
+        width: 100%;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      /* News Grid */
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+        margin: 40px 0 50px;
+      }
+
+      .news-card {
+        background-color: white;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+      }
+
+      .news-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .news-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .news-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .news-card:hover .news-image img {
+        transform: scale(1.05);
+      }
+
+      .news-content {
+        padding: 20px;
+      }
+
+      .news-meta {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+        color: var(--gray-color);
+      }
+
+      .news-category {
+        display: inline-block;
+        padding: 3px 10px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 25px;
+        font-size: 0.8rem;
+        margin-right: 15px;
+      }
+
+      .news-date {
+        display: flex;
+        align-items: center;
+      }
+
+      .news-date i {
+        margin-right: 5px;
+      }
+
+      .news-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: var(--dark-color);
+      }
+
+      .news-excerpt {
+        color: var(--gray-color);
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .news-full-content {
+        display: none;
+        color: var(--gray-color);
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .read-more {
+        color: var(--primary-color);
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .read-more i {
+        margin-left: 5px;
+        transition: var(--transition);
+      }
+
+      .read-more:hover i {
+        transform: translateX(3px);
+      }
+
+      /* Pagination */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        margin: 50px 0;
+      }
+
+      .page-numbers {
+        display: flex;
+        gap: 10px;
+      }
+
+      .page-numbers a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 25px;
+        background-color: white;
+        color: var(--dark-color);
+        font-weight: 500;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+      }
+
+      .page-numbers a:hover,
+      .page-numbers a.active {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .page-numbers a i {
+        font-size: 0.8rem;
+      }
+
+      /* Newsletter */
+      .newsletter-section {
+        padding: 60px 0;
+        background-color: var(--primary-color);
+        color: white;
+        text-align: center;
+      }
+
+      .newsletter-form {
+        max-width: 600px;
+        margin: 0 auto;
+        display: flex;
+      }
+
+      .newsletter-form input {
+        flex: 1;
+        padding: 12px 15px;
+        border: none;
+        border-radius: 4px 0 0 4px;
+        font-size: 1rem;
+      }
+
+      .newsletter-form button {
+        border-radius: 0 4px 4px 0;
+        border: none;
+      }
+
+      /* Footer */
+      .main-footer {
+        background-color: var(--dark-color);
+        color: white;
+        padding: 60px 0 20px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .footer-col h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-col h3:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-logo {
+        margin-bottom: 20px;
+        display: block;
+        max-width: 150px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-links a {
+        width: 35px;
+        height: 35px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      .footer-col ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-col ul a {
+        color: #adb5bd;
+        transition: var(--transition);
+      }
+
+      .footer-col ul a:hover {
+        color: var(--primary-color);
+        padding-left: 5px;
+      }
+
+      .contact-info li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .contact-info i {
+        margin-right: 10px;
+        color: var(--primary-color);
+        width: 20px;
+        text-align: center;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px 0;
+        text-align: center;
+        color: #adb5bd;
+        font-size: 0.9rem;
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+      }
+
+      .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background-color: #c0041d;
+        transform: translateY(-5px);
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .hero-content h1 {
+          font-size: 2rem;
+        }
+
+        .news-grid {
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+      }
+
+      @media (max-width: 768px) {
+        .menu-toggle {
+          display: block;
+        }
+
+        .main-nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 80%;
+          max-width: 300px;
+          height: 100vh;
+          background-color: white;
+          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+          transition: var(--transition);
+          padding: 80px 20px 20px;
+          overflow-y: auto;
+        }
+
+        .main-nav.active {
+          right: 0;
+        }
+
+        .main-nav ul {
+          flex-direction: column;
+        }
+
+        .main-nav li {
+          margin: 15px 0;
+        }
+
+        .main-nav a {
+          font-size: 1.1rem;
+        }
+
+        .newsletter-form {
+          flex-direction: column;
+        }
+
+        .newsletter-form input,
+        .newsletter-form button {
+          width: 100%;
+          border-radius: 4px;
+        }
+
+        .newsletter-form button {
+          margin-top: 10px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .news-hero {
+          min-height: 200px;
+        }
+
+        .hero-content h1 {
+          font-size: 1.8rem;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .news-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="image/logo/Logo_HEAD.png" alt="Honda Logo" />
+        </a>
+
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="gioithieu.html">Giới thiệu</a></li>
+            <li><a href="sanphamxemay.html">Sản phẩm</a></li>
+            <li><a href="dichvu.html">Dịch Vụ</a></li>
+            <li><a href="tintuc.html" class="active">Tin tức</a></li>
+            <li><a href="cuahang.html">Hệ thống đại lý</a></li>
+            <li><a href="lienhe.html">Liên hệ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="news-hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Tin tức về hoạt động</h1>
+          <p>
+            Cập nhật những tin tức hoạt động mới nhất của hệ thống HEAD Trung
+            Hùng
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- News Grid -->
+    <section class="news-section">
+      <div class="container">
+        <div class="news-grid" id="newsContainer">
+          <!-- News items will be loaded here by JavaScript -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <div class="page-numbers" id="pagination">
+            <!-- Pagination will be loaded here by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <img
+              src="image/logo/Logo_HEAD.png"
+              alt="Honda Logo"
+              class="footer-logo"
+            />
+            <p>Công Ty TNHH TM&DV Hùng Mạnh</p>
+            <div class="social-links">
+              <a href="https://www.facebook.com/hethongheadtrunghung"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://www.instagram.com/hethongheadtrunghung"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3>Liên kết nhanh</h3>
+            <ul>
+              <li><a href="index.html">Trang chủ</a></li>
+              <li><a href="sanphamxemay.html">Sản phẩm xe máy</a></li>
+              <li><a href="tintuc.html">Tin tức</a></li>
+              <li><a href="dichvu.html">Dịch vụ</a></li>
+              <li><a href="lienhe.html">Liên hệ</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Danh mục tin</h3>
+            <ul>
+              <li><a href="tintuc.html">Tin Tức</a></li>
+              <li><a href="tintucxemay.html">Sản phẩm mới</a></li>
+              <li><a href="tintucLXAT.html">Hoạt động LXAT</a></li>
+              <li><a href="khuyenmai.html">Khuyến mãi</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Liên hệ</h3>
+            <ul class="contact-info">
+              <li></li>
+              <li><i class="fas fa-phone"></i> 1900 636 712</li>
+              <li><i class="fas fa-envelope"></i> cr@hungmanh.com.vn</li>
+              <li><i class="fas fa-envelope"></i> cr_mt@hungmanh.com.vn</li>
+              <li><i class="fas fa-clock"></i> Thứ 2 - CN: 7:30 - 17:30</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+      // Sample news data with full content added
+      const allNews = [
+        {
+          id: 1,
+          title: "TRẢI NGHIỆM KHÓ QUÊN CÙNG +84 Honda Bikers BÌNH ĐỊNH",
+          category: "Sự kiện cộng đồng",
+          date: "18/01/2025",
+          excerpt:
+            "Bạn đã bỏ lỡ sự kiện +84 Honda Bikers vào ngày 12/01/2025...",
+          fullContent:
+            "Bạn đã bỏ lỡ sự kiện +84 Honda Bikers vào ngày 12/01/2025? Đừng lo, video này sẽ đưa bạn đến với những trải nghiệm tuyệt vời mà anh em +84 Honda Bikers Bình Định đã cùng nhau tận hưởng trong Trạm Hội Ngộ vừa qua <br>🌟 Niềm tự hào mãnh liệt khi được cùng nhau diễu hành trên cung đường biển tuyệt vời ở Quy Nhơn<br>🌟 Trực tiếp chinh phục những mẫu xe côn tay mới nhất của nhà Honda Việt Nam như CB350, CBR150R và Winner X<br>🌟 Lắng nghe những chia sẻ tuyệt vời từ anh em Bikers giàu kinh nghiệm touring. <br>Hãy cùng xem và cảm nhận ngọn lửa đam mê cháy bỏng của anh em +84 Honda Bikers nhé",
+          image: "image/menutab/tintuccuahang/18012025.jpg",
+        },
+        {
+          id: 2,
+          title:
+            "Ông Koji Sugita - Tổng Giám đốc Honda Việt Nam - vừa có chuyến thăm đầy ý nghĩa tại HEAD",
+          category: "Tin tức hệ thống",
+          date: "04/08/2024",
+          excerpt:
+            "Ngày 04/08/2024, Tổng Giám đốc Công ty Honda Việt Nam – ông Koji Sugita...",
+          fullContent:
+            "Ngày 04/08/2024, Tổng Giám đốc Công ty Honda Việt Nam – ông Koji Sugita đã có chuyến thăm và làm việc tại một cửa hàng xe máy HEAD tại Việt Nam. Chuyến thăm thể hiện sự quan tâm sâu sắc của ban lãnh đạo HVN đến hoạt động bán lẻ và chăm sóc khách hàng. Tại đây, ông Koji Sugita đã trực tiếp khảo sát quy trình phục vụ, lắng nghe chia sẻ từ nhân viên và khách hàng, đồng thời đánh giá cao nỗ lực của HEAD trong việc duy trì chất lượng dịch vụ và góp phần nâng cao trải nghiệm người tiêu dùng Việt.",
+          image: "image/menutab/tintuccuahang/01082024.jpg",
+        },
+      ];
+
+      // Pagination variables
+      const itemsPerPage = 12;
+      let currentPage = 1;
+
+      // DOM elements
+      const newsContainer = document.getElementById("newsContainer");
+      const paginationElement = document.getElementById("pagination");
+
+      // Display news items for current page
+      function displayNewsItems(page) {
+        const startIndex = (page - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const paginatedItems = allNews.slice(startIndex, endIndex);
+
+        newsContainer.innerHTML = "";
+
+        paginatedItems.forEach((news) => {
+          const newsItem = document.createElement("article");
+          newsItem.className = "news-card";
+          newsItem.innerHTML = `
+                                                          <div class="news-image">
+                                                            <img src="${news.image}" alt="${news.title}">
+                                                          </div>
+                                                          <div class="news-content">
+                                                            <div class="news-meta">
+                                                              <span class="news-category">${news.category}</span>
+                                                              <span class="news-date"><i class="far fa-calendar-alt"></i> ${news.date}</span>
+                                                            </div>
+                                                            <h3 class="news-title">${news.title}</h3>
+                                                            <p class="news-excerpt">${news.excerpt}</p>
+                                                            <p class="news-full-content" style="display: none;">${news.fullContent}</p>
+                                                                              <span class="read-more" onclick="toggleReadMore(this)">Xem thêm <i class="fas fa-chevron-down"></i></span>
+                                                          </div>
+                                                        `;
+          newsContainer.appendChild(newsItem);
+        });
+      }
+
+      // Toggle read more/less
+      function toggleReadMore(button) {
+        const newsCard = button.closest(".news-card");
+        const excerpt = newsCard.querySelector(".news-excerpt");
+        const fullContent = newsCard.querySelector(".news-full-content");
+        const icon = button.querySelector("i");
+
+        if (fullContent.style.display === "none") {
+          excerpt.style.display = "none";
+          fullContent.style.display = "block";
+          button.innerHTML = 'Thu gọn <i class="fas fa-chevron-up"></i>';
+        } else {
+          excerpt.style.display = "block";
+          fullContent.style.display = "none";
+          button.innerHTML = 'Xem thêm <i class="fas fa-chevron-down"></i>';
+        }
+      }
+
+      // Setup pagination
+      function setupPagination() {
+        const pageCount = Math.ceil(allNews.length / itemsPerPage);
+        paginationElement.innerHTML = "";
+
+        // Previous button
+        if (currentPage > 1) {
+          const prevButton = document.createElement("a");
+          prevButton.href = "#";
+          prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+          prevButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            currentPage--;
+            displayNewsItems(currentPage);
+            setupPagination();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+          paginationElement.appendChild(prevButton);
+        }
+
+        // Page numbers
+        for (let i = 1; i <= pageCount; i++) {
+          const pageLink = document.createElement("a");
+          pageLink.href = "#";
+          pageLink.textContent = i;
+          if (i === currentPage) {
+            pageLink.classList.add("active");
+          }
+          pageLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            currentPage = i;
+            displayNewsItems(currentPage);
+            setupPagination();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+          paginationElement.appendChild(pageLink);
+        }
+
+        // Next button
+        if (currentPage < pageCount) {
+          const nextButton = document.createElement("a");
+          nextButton.href = "#";
+          nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+          nextButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            currentPage++;
+            displayNewsItems(currentPage);
+            setupPagination();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+          paginationElement.appendChild(nextButton);
+        }
+      }
+
+      // Initialize
+      displayNewsItems(currentPage);
+      setupPagination();
+
+      // Mobile menu toggle
+      const menuToggle = document.getElementById("mobile-menu");
+      const mainNav = document.querySelector(".main-nav");
+
+      menuToggle.addEventListener("click", () => {
+        menuToggle.classList.toggle("active");
+        mainNav.classList.toggle("active");
+      });
+
+      // Header scroll effect
+      const header = document.querySelector(".main-header");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // Back to top button
+      const backToTopButton = document.getElementById("backToTop");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopButton.classList.add("active");
+        } else {
+          backToTopButton.classList.remove("active");
+        }
+      });
+
+      backToTopButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // Close mobile menu when clicking on a link
+      const navLinks = document.querySelectorAll(".main-nav a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          if (mainNav.classList.contains("active")) {
+            menuToggle.classList.remove("active");
+            mainNav.classList.remove("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
