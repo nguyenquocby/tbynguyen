@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Honda LEAD</title>
+    <title>Honda LEAD ABS - Xe Tay Ga</title>
+
     <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
     <link
       rel="stylesheet"
@@ -15,18 +16,21 @@
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <style>
-      /* Reset & Base Styles */
+      /* CSS Variables */
       :root {
-        --primary-color: #e11931; /* Honda Red */
-        --secondary-color: #004225; /* Honda Green */
+        --primary-color: #e11931;
+        --secondary-color: #004225;
         --dark-color: #1a1a1a;
         --light-color: #f8f9fa;
         --gray-color: #6c757d;
         --transition: all 0.3s ease;
         --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        --border-radius: 8px;
+        --border-radius: 25px;
+        --header-height: 80px;
+        --header-shrink-height: 70px;
       }
 
+      /* Base Styles */
       * {
         margin: 0;
         padding: 0;
@@ -35,7 +39,7 @@
 
       html {
         scroll-behavior: smooth;
-        font-size: 62.5%; /* 1rem = 10px */
+        font-size: 62.5%;
       }
 
       body {
@@ -335,7 +339,7 @@
       .hero-content {
         position: relative;
         z-index: 1;
-        padding-top: 8rem;
+        padding-top: var(--header-height);
       }
 
       .hero-title {
@@ -453,52 +457,68 @@
         background-color: #f9f9f9;
       }
 
-      .color-selector {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        margin-bottom: 4rem;
-      }
-
-      .color-btn {
-        padding: 1rem 2rem;
-        border: none;
-        background-color: white;
-        border-radius: 30px;
-        font-size: 1.4rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: var(--transition);
+      /* Color Picker */
+      .color-picker {
+        position: relative;
+        max-width: 300px;
+        margin: 0 auto 30px;
         display: flex;
         align-items: center;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        gap: 10px;
       }
 
-      .color-btn.active {
-        background-color: var(--primary-color);
-        color: white;
+      .color-listbox {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 100%;
+        padding: 12px 40px 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        background-color: white;
+        font-size: 1.6rem;
+        color: #333;
+        cursor: pointer;
+        outline: none;
+        transition: var(--transition);
       }
 
-      .color-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      .color-picker::after {
+        content: "";
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #666;
+        font-size: 0.7rem;
       }
 
-      .color-circle {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
+      .selected-color-preview {
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
-        margin-right: 8px;
+        border: 1px solid #ddd;
+        flex-shrink: 0;
       }
 
+      .color-listbox:hover {
+        border-color: #999;
+      }
+
+      .color-listbox:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(225, 25, 49, 0.2);
+      }
+
+      /* Slider */
       .slider-container {
         display: none;
         position: relative;
-        max-width: 600px;
+        max-width: 800px;
         margin: 0 auto;
         overflow: hidden;
+        border-radius: var(--border-radius);
       }
 
       .slider-container.active {
@@ -528,7 +548,8 @@
       .slide img {
         width: 100%;
         height: 500px;
-        object-fit: cover;
+        object-fit: contain;
+        object-position: center;
       }
 
       .slider-nav {
@@ -537,7 +558,7 @@
         transform: translateY(-50%);
         width: 50px;
         height: 50px;
-        background-color: rgba(255, 255, 255, 0.8);
+        /*-background-color: rgba(255, 255, 255, 0.8);*/
         border: none;
         border-radius: 50%;
         font-size: 1.8rem;
@@ -547,7 +568,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        /*box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);*/
         z-index: 10;
       }
 
@@ -729,6 +750,11 @@
         width: 100%;
         height: auto;
         display: block;
+        transition: transform 0.5s ease;
+      }
+
+      .feature-image:hover img {
+        transform: scale(1.05);
       }
 
       /* Contact Section */
@@ -794,6 +820,13 @@
 
       .form-group {
         margin-bottom: 2rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 1.4rem;
+        font-weight: 500;
       }
 
       .form-group input,
@@ -1011,7 +1044,7 @@
       }
 
       /* Responsive Styles */
-      @media (max-width: 992px) {
+      @media (max-width: 1024px) {
         .hero-title {
           font-size: 5rem;
         }
@@ -1035,7 +1068,7 @@
 
       @media (max-width: 768px) {
         html {
-          font-size: 56.25%; /* 1rem = 9px */
+          font-size: 56.25%;
         }
 
         .menu-toggle {
@@ -1100,7 +1133,7 @@
 
       @media (max-width: 576px) {
         html {
-          font-size: 50%; /* 1rem = 8px */
+          font-size: 50%;
         }
 
         .section-title {
@@ -1117,16 +1150,6 @@
 
         .slide img {
           height: 300px;
-        }
-
-        .color-selector {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .color-btn {
-          width: 100%;
-          justify-content: center;
         }
 
         .tab-buttons {
@@ -1205,9 +1228,9 @@
             <div class="wheel"></div>
           </div>
           <div class="arrows">
-            <span class="arrow"></span>
-            <span class="arrow"></span>
-            <span class="arrow"></span>
+            <span class="arrow" style="--i: 1"></span>
+            <span class="arrow" style="--i: 2"></span>
+            <span class="arrow" style="--i: 3"></span>
           </div>
         </a>
       </div>
@@ -1219,89 +1242,95 @@
         <div class="section-header">
           <h2 class="section-title">Bộ Sưu Tập Hình Ảnh</h2>
           <p class="section-subtitle">
-            Khám phá Honda LEAD ABS qua các phiên bản màu sắc
+            Khám phá Honda LEAD qua các phiên bản màu sắc
           </p>
           <div class="divider"></div>
         </div>
 
-        <div class="color-selector">
-          <button class="color-btn active" data-color="xanh-den-db">
-            <span class="color-circle" style="background-color: #154747"></span>
-            Xanh Đen - Đặc Biệt
-          </button>
-          <button class="color-btn" data-color="den-mo-db">
-            <span class="color-circle" style="background-color: #000000"></span>
-            Đen Mờ - Đặc Biệt
-          </button>
-          <button class="color-btn" data-color="xanh-cc">
-            <span class="color-circle" style="background-color: #1200b6"></span>
-            Xanh - Cao Cấp
-          </button>
-          <button class="color-btn" data-color="do-cc">
-            <span class="color-circle" style="background-color: #c70000"></span>
-            Đỏ - Cao Cấp
-          </button>
-          <button class="color-btn" data-color="trang-tc">
-            <span class="color-circle" style="background-color: #ffffff"></span>
-            Trắng - Tiêu Chuẩn
-          </button>
+        <div class="color-picker">
+          <select class="color-listbox" aria-label="Chọn màu xe">
+            <option value="xanh-den-tt" data-color="#16596e" selected>
+              Xanh Đen - Đặc Biệt (ABS)
+            </option>
+            <option value="den-mo-db" data-color="#000000">
+              Đen Mờ - Đặc Biệt (ABS)
+            </option>
+            <option value="xanh-cc" data-color="#0400f2">Xanh - Cao Cấp</option>
+            <option value="do-cc" data-color="#b30000">Đỏ - Cao Cấp</option>
+            <option value="trang-tc" data-color="#fff">
+              Trắng - Tiêu Chuẩn
+            </option>
+          </select>
+          <div
+            class="selected-color-preview"
+            style="background-color: #16596e"
+          ></div>
         </div>
 
-        <div class="slider-container active" data-color="xanh-den-db">
+        <!-- Xám Đen - Thể Thao -->
+        <div class="slider-container active" data-color="xanh-den-tt">
           <div class="slider">
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - XANH ĐEN/1.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - XANH ĐEN/8.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - XANH ĐEN/7.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - XANH ĐEN/6.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - XANH ĐEN/5.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - XANH ĐEN/4.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - XANH ĐEN/3.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - XANH ĐEN/2.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
           </div>
-          <button class="slider-nav prev-btn">
+          <button class="slider-nav prev-btn" aria-label="Previous image">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="slider-nav next-btn">
+          <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
@@ -1312,55 +1341,63 @@
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - ĐEN MỜ/1.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - ĐEN MỜ/8.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - ĐEN MỜ/7.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - ĐEN MỜ/6.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - ĐEN MỜ/5.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - ĐEN MỜ/4.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - ĐEN MỜ/3.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Đặc Biệt - ĐEN MỜ/2.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
           </div>
-          <button class="slider-nav prev-btn">
+          <button class="slider-nav prev-btn" aria-label="Previous image">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="slider-nav next-btn">
+          <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
@@ -1370,55 +1407,63 @@
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - XANH/1.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - XANH/8.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - XANH/7.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - XANH/6.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - XANH/5.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - XANH/4.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - XANH/3.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - XANH/2.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
           </div>
-          <button class="slider-nav prev-btn">
+          <button class="slider-nav prev-btn" aria-label="Previous image">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="slider-nav next-btn">
+          <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
@@ -1428,55 +1473,63 @@
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - ĐỎ/1.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - ĐỎ/8.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - ĐỎ/7.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - ĐỎ/6.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - ĐỎ/5.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - ĐỎ/4.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - ĐỎ/3.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Cao Cấp - ĐỎ/2.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
           </div>
-          <button class="slider-nav prev-btn">
+          <button class="slider-nav prev-btn" aria-label="Previous image">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="slider-nav next-btn">
+          <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
@@ -1486,55 +1539,63 @@
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Tiêu Chuẩn - TRẮNG/1.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Tiêu Chuẩn - TRẮNG/8.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Tiêu Chuẩn - TRẮNG/7.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Tiêu Chuẩn - TRẮNG/6.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Tiêu Chuẩn - TRẮNG/5.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Tiêu Chuẩn - TRẮNG/4.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Tiêu Chuẩn - TRẮNG/3.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/LEAD/Phiên bản Tiêu Chuẩn - TRẮNG/2.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
           </div>
-          <button class="slider-nav prev-btn">
+          <button class="slider-nav prev-btn" aria-label="Previous image">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="slider-nav next-btn">
+          <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
@@ -1547,7 +1608,7 @@
         <div class="section-header">
           <h2 class="section-title">Thông Số Kỹ Thuật</h2>
           <p class="section-subtitle">
-            Khám phá thông số kỹ thuật của Honda LEAD ABS
+            Khám phá thông số kỹ thuật của Honda LEAD
           </p>
           <div class="divider"></div>
         </div>
@@ -1574,7 +1635,7 @@
             </div>
             <h3 class="specs-title">Hệ Thống Truyền Động</h3>
             <ul class="specs-list">
-              <li>Hộp số: Vô cấp</li>
+              <li>Loại truyền động: Vô cấp</li>
               <li>Hệ thống khởi động: Điện</li>
             </ul>
           </div>
@@ -1636,9 +1697,7 @@
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Tính Năng Nổi Bật</h2>
-          <p class="section-subtitle">
-            Trải nghiệm đẳng cấp cùng Honda LEAD ABS
-          </p>
+          <p class="section-subtitle">Trải nghiệm đẳng cấp cùng Honda LEAD</p>
           <div class="divider"></div>
         </div>
 
@@ -1668,7 +1727,11 @@
                 </p>
               </div>
               <div class="feature-image" data-aos="fade-left">
-                <img src="image/INFORMATION/LEAD/TK.png" alt="Thiết kế Honda" />
+                <img
+                  src="image/INFORMATION/LEAD/TK.png"
+                  alt="Thiết kế Honda"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -1688,7 +1751,8 @@
               <div class="feature-image" data-aos="fade-left">
                 <img
                   src="image/INFORMATION/LEAD/ĐC.png"
-                  alt="Hiệu suất Honda"
+                  alt="Động cơ Honda"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -1709,6 +1773,7 @@
                 <img
                   src="image/INFORMATION/LEAD/CN.png"
                   alt="Công nghệ Honda"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -1728,7 +1793,11 @@
                 </p>
               </div>
               <div class="feature-image" data-aos="fade-left">
-                <img src="image/INFORMATION/LEAD/AT.png" alt="An toàn Honda" />
+                <img
+                  src="image/INFORMATION/LEAD/AT.png"
+                  alt="An toàn Honda"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -1786,6 +1855,38 @@
               <p>Giờ làm việc: 7:30 - 17:30 (Thứ 2 - Chủ Nhật)</p>
             </div>
           </div>
+
+          <div class="contact-form" data-aos="fade-left">
+            <h3>Gửi Yêu Cầu Tư Vấn</h3>
+            <form id="consultationForm">
+              <div class="form-group">
+                <label for="name">Họ và tên</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Số điện thoại</label>
+                <input type="tel" id="phone" name="phone" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" />
+              </div>
+              <div class="form-group">
+                <label for="model">Mẫu xe quan tâm</label>
+                <select id="model" name="model">
+                  <option value="LEADABS">LEAD ABS</option>
+                  <option value="LEAD">LEAD</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Nội dung yêu cầu</label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg">
+                Gửi yêu cầu
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -1816,27 +1917,42 @@
           <div class="footer-social">
             <h4>Theo Dõi Chúng Tôi</h4>
             <div class="social-icons">
-              <a href="https://www.facebook.com/hethongheadtrunghung"
+              <a
+                href="https://www.facebook.com/hethongheadtrunghung"
+                aria-label="Facebook"
                 ><i class="fab fa-facebook-f"></i
               ></a>
-              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+              <a
+                href="https://www.youtube.com/@HethongHEADTrungHung"
+                aria-label="YouTube"
                 ><i class="fab fa-youtube"></i
               ></a>
-              <a href="https://www.instagram.com/hethongheadtrunghung"
+              <a
+                href="https://www.instagram.com/hethongheadtrunghung"
+                aria-label="Instagram"
                 ><i class="fab fa-instagram"></i
               ></a>
-              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+              <a
+                href="https://www.tiktok.com/@hethongheadtrunghung"
+                aria-label="TikTok"
                 ><i class="fab fa-tiktok"></i
               ></a>
             </div>
+            <p>Đăng ký nhận bản tin</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Nhập email của bạn" />
+              <button type="submit" aria-label="Subscribe">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
           </div>
         </div>
 
         <div class="footer-bottom">
           <p>&copy; 2025 HEAD Trung Hung. All Rights Reserved.</p>
           <div class="legal-links">
-            <a href="#"></a>
-            <a href="#"></a>
+            <a href="#">Chính sách bảo mật</a>
+            <a href="#">Điều khoản sử dụng</a>
           </div>
         </div>
       </div>
@@ -1847,6 +1963,7 @@
       <i class="fas fa-arrow-up"></i>
     </a>
 
+    <!-- JavaScript Libraries -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -2009,36 +2126,34 @@
 
         // Color change functionality
         function initColorChange() {
-          const colorButtons = document.querySelectorAll(".color-btn");
+          const colorListbox = document.querySelector(".color-listbox");
+          const colorPreview = document.querySelector(
+            ".selected-color-preview"
+          );
 
-          colorButtons.forEach((button) => {
-            button.addEventListener("click", function () {
-              // Remove active class from all buttons
-              colorButtons.forEach((btn) => btn.classList.remove("active"));
+          colorListbox.addEventListener("change", function () {
+            // Update color preview
+            const selectedOption = this.options[this.selectedIndex];
+            const colorCode = selectedOption.getAttribute("data-color");
+            colorPreview.style.backgroundColor = colorCode;
 
-              // Add active class to clicked button
-              this.classList.add("active");
+            // Get the slider to show
+            const colorValue = selectedOption.value;
 
-              // Get the slider to show
-              const colorId = this.getAttribute("data-color");
+            // Hide all sliders
+            document
+              .querySelectorAll(".slider-container")
+              .forEach((container) => {
+                container.classList.remove("active");
+              });
 
-              // Hide all sliders
-              document
-                .querySelectorAll(".slider-container")
-                .forEach((container) => {
-                  container.classList.remove("active");
-                });
-
-              // Show selected slider
-              const targetSlider = document.querySelector(
-                `.slider-container[data-color="${colorId}"]`
-              );
+            // Show selected slider
+            const targetSlider = document.querySelector(
+              `.slider-container[data-color="${colorValue}"]`
+            );
+            if (targetSlider) {
               targetSlider.classList.add("active");
-
-              // Reset slider position
-              const slider = targetSlider.querySelector(".slider");
-              slider.style.transform = "translateX(0)";
-            });
+            }
           });
         }
 
@@ -2071,10 +2186,42 @@
           });
         }
 
-        // Initialize when DOM is loaded
+        // Form submission
+        function initForm() {
+          const form = document.getElementById("consultationForm");
+
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Here you would typically send the form data to a server
+            alert(
+              "Cảm ơn bạn đã gửi yêu cầu tư vấn. Chúng tôi sẽ liên hệ với bạn sớm nhất!"
+            );
+            form.reset();
+          });
+        }
+
+        // Newsletter subscription
+        function initNewsletter() {
+          const newsletterForm = document.querySelector(".newsletter-form");
+
+          newsletterForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const emailInput = this.querySelector("input");
+
+            if (emailInput.value) {
+              alert("Cảm ơn bạn đã đăng ký nhận bản tin!");
+              emailInput.value = "";
+            }
+          });
+        }
+
+        // Initialize all components
         initSliders();
         initColorChange();
         initFeaturesTabs();
+        initForm();
+        initNewsletter();
 
         // Initialize AOS (Animate On Scroll)
         AOS.init({
