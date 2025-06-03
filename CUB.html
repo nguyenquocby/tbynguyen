@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Honda Super Cub C125</title>
+    <title>Honda Super Cub 125 - Xe Số</title>
+
     <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
     <link
       rel="stylesheet"
@@ -15,18 +16,21 @@
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <style>
-      /* Reset & Base Styles */
+      /* CSS Variables */
       :root {
-        --primary-color: #e11931; /* Honda Red */
-        --secondary-color: #004225; /* Honda Green */
+        --primary-color: #e11931;
+        --secondary-color: #004225;
         --dark-color: #1a1a1a;
         --light-color: #f8f9fa;
         --gray-color: #6c757d;
         --transition: all 0.3s ease;
         --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        --border-radius: 8px;
+        --border-radius: 25px;
+        --header-height: 80px;
+        --header-shrink-height: 70px;
       }
 
+      /* Base Styles */
       * {
         margin: 0;
         padding: 0;
@@ -35,7 +39,7 @@
 
       html {
         scroll-behavior: smooth;
-        font-size: 62.5%; /* 1rem = 10px */
+        font-size: 62.5%;
       }
 
       body {
@@ -335,7 +339,7 @@
       .hero-content {
         position: relative;
         z-index: 1;
-        padding-top: 8rem;
+        padding-top: var(--header-height);
       }
 
       .hero-title {
@@ -453,52 +457,68 @@
         background-color: #f9f9f9;
       }
 
-      .color-selector {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        margin-bottom: 4rem;
-      }
-
-      .color-btn {
-        padding: 1rem 2rem;
-        border: none;
-        background-color: white;
-        border-radius: 30px;
-        font-size: 1.4rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: var(--transition);
+      /* Color Picker */
+      .color-picker {
+        position: relative;
+        max-width: 300px;
+        margin: 0 auto 30px;
         display: flex;
         align-items: center;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        gap: 10px;
       }
 
-      .color-btn.active {
-        background-color: var(--primary-color);
-        color: white;
+      .color-listbox {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 100%;
+        padding: 12px 40px 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        background-color: white;
+        font-size: 1.6rem;
+        color: #333;
+        cursor: pointer;
+        outline: none;
+        transition: var(--transition);
       }
 
-      .color-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      .color-picker::after {
+        content: "";
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #666;
+        font-size: 0.7rem;
       }
 
-      .color-circle {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
+      .selected-color-preview {
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
-        margin-right: 8px;
+        border: 1px solid #ddd;
+        flex-shrink: 0;
       }
 
+      .color-listbox:hover {
+        border-color: #999;
+      }
+
+      .color-listbox:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(225, 25, 49, 0.2);
+      }
+
+      /* Slider */
       .slider-container {
         display: none;
         position: relative;
-        max-width: 600px;
+        max-width: 800px;
         margin: 0 auto;
         overflow: hidden;
+        border-radius: var(--border-radius);
       }
 
       .slider-container.active {
@@ -528,7 +548,8 @@
       .slide img {
         width: 100%;
         height: 500px;
-        object-fit: cover;
+        object-fit: contain;
+        object-position: center;
       }
 
       .slider-nav {
@@ -537,7 +558,7 @@
         transform: translateY(-50%);
         width: 50px;
         height: 50px;
-        background-color: rgba(255, 255, 255, 0.8);
+        /*-background-color: rgba(255, 255, 255, 0.8);*/
         border: none;
         border-radius: 50%;
         font-size: 1.8rem;
@@ -547,7 +568,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        /*box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);*/
         z-index: 10;
       }
 
@@ -729,6 +750,11 @@
         width: 100%;
         height: auto;
         display: block;
+        transition: transform 0.5s ease;
+      }
+
+      .feature-image:hover img {
+        transform: scale(1.05);
       }
 
       /* Contact Section */
@@ -794,6 +820,13 @@
 
       .form-group {
         margin-bottom: 2rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 1.4rem;
+        font-weight: 500;
       }
 
       .form-group input,
@@ -1011,7 +1044,7 @@
       }
 
       /* Responsive Styles */
-      @media (max-width: 992px) {
+      @media (max-width: 1024px) {
         .hero-title {
           font-size: 5rem;
         }
@@ -1035,7 +1068,7 @@
 
       @media (max-width: 768px) {
         html {
-          font-size: 56.25%; /* 1rem = 9px */
+          font-size: 56.25%;
         }
 
         .menu-toggle {
@@ -1100,7 +1133,7 @@
 
       @media (max-width: 576px) {
         html {
-          font-size: 50%; /* 1rem = 8px */
+          font-size: 50%;
         }
 
         .section-title {
@@ -1117,16 +1150,6 @@
 
         .slide img {
           height: 300px;
-        }
-
-        .color-selector {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .color-btn {
-          width: 100%;
-          justify-content: center;
         }
 
         .tab-buttons {
@@ -1151,7 +1174,6 @@
         <div class="loader-square"></div>
         <div class="loader-square"></div>
         <div class="loader-square"></div>
-        <div class="loader-square"></div>
       </div>
     </div>
 
@@ -1161,7 +1183,7 @@
 
       <header class="main-header">
         <div class="container">
-          <a href="#" class="logo">
+          <a href="index.html" class="logo">
             <img src="image/logo/Logo_HEAD.png" alt="Honda Logo" />
           </a>
 
@@ -1205,9 +1227,9 @@
             <div class="wheel"></div>
           </div>
           <div class="arrows">
-            <span class="arrow"></span>
-            <span class="arrow"></span>
-            <span class="arrow"></span>
+            <span class="arrow" style="--i: 1"></span>
+            <span class="arrow" style="--i: 2"></span>
+            <span class="arrow" style="--i: 3"></span>
           </div>
         </a>
       </div>
@@ -1224,34 +1246,39 @@
           <div class="divider"></div>
         </div>
 
-        <div class="color-selector">
-          <button class="color-btn active" data-color="den-db">
-            <span class="color-circle" style="background-color: #000000"></span>
-            Đen - Đặc Biệt
-          </button>
-          <button class="color-btn" data-color="xanh-duong-tc">
-            <span class="color-circle" style="background-color: #68edff"></span>
-            Xanh Dương - Tiêu Chuẩn
-          </button>
-          <button class="color-btn" data-color="xanh-xam-tc">
-            <span class="color-circle" style="background-color: #1c03ff"></span>
-            Xanh Xám - Tiêu Chuẩn
-          </button>
+        <div class="color-picker">
+          <select class="color-listbox" aria-label="Chọn màu xe">
+            <option value="den-db" data-color="#000" selected>
+              Đen - Đặc Biệt
+            </option>
+            <option value="xanh-duong-tc" data-color="#00c9b2">
+              Xanh Dương - Tiêu Chuân
+            </option>
+            <option value="xanh-xam-tc" data-color="#0400f2">
+              Xanh Xám - Tiêu Chuẩn
+            </option>
+          </select>
+          <div
+            class="selected-color-preview"
+            style="background-color: #000"
+          ></div>
         </div>
 
+        <!-- Xám Đen - Thể Thao -->
         <div class="slider-container active" data-color="den-db">
           <div class="slider">
             <div class="slide">
               <img
                 src="image/FULL BIKE/Cub/Super Cub/Phiên bản đặc biệt - ĐEN/1.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
           </div>
-          <button class="slider-nav prev-btn">
+          <button class="slider-nav prev-btn" aria-label="Previous image">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="slider-nav next-btn">
+          <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
@@ -1262,49 +1289,56 @@
               <img
                 src="image/FULL BIKE/Cub/Super Cub/Phiên bản tiêu chuẩn - XANH DƯƠNG/1.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Cub/Super Cub/Phiên bản tiêu chuẩn - XANH DƯƠNG/8.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Cub/Super Cub/Phiên bản tiêu chuẩn - XANH DƯƠNG/7.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Cub/Super Cub/Phiên bản tiêu chuẩn - XANH DƯƠNG/6.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Cub/Super Cub/Phiên bản tiêu chuẩn - XANH DƯƠNG/5.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Cub/Super Cub/Phiên bản tiêu chuẩn - XANH DƯƠNG/3.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Cub/Super Cub/Phiên bản tiêu chuẩn - XANH DƯƠNG/2.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
           </div>
-          <button class="slider-nav prev-btn">
+          <button class="slider-nav prev-btn" aria-label="Previous image">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="slider-nav next-btn">
+          <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
@@ -1314,13 +1348,14 @@
               <img
                 src="image/FULL BIKE/Cub/Super Cub/Phiên bản tiêu chuẩn - XANH XÁM/1.png"
                 alt="Honda"
+                loading="lazy"
               />
             </div>
           </div>
-          <button class="slider-nav prev-btn">
+          <button class="slider-nav prev-btn" aria-label="Previous image">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="slider-nav next-btn">
+          <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
@@ -1346,7 +1381,7 @@
             <h3 class="specs-title">Động Cơ</h3>
             <ul class="specs-list">
               <li>Loại động cơ: 4 kỳ, 1 xy-lanh, làm mát bằng không khí</li>
-              <li>Dung tích xy-lanh: 123.94 cm3</li>
+              <li>Dung tích xy-lanh: 123,94cm3</li>
               <li>Công suất tối đa: 6,87kW/7.500 vòng/phút</li>
               <li>Mô-men xoắn cực đại: 10,15Nm/5.000 vòng/phút</li>
             </ul>
@@ -1382,8 +1417,8 @@
             </div>
             <h3 class="specs-title">Hệ Thống Nhiên Liệu</h3>
             <ul class="specs-list">
-              <li>Dung tích bình xăng: 3.7 lít</li>
-              <li>Mức tiêu thụ nhiên liệu: 1,52l/100km</li>
+              <li>Dung tích bình xăng: 3,7 lít</li>
+              <li>Mức tiêu thụ nhiên liệu: 1,52 lít/100km</li>
             </ul>
           </div>
 
@@ -1394,7 +1429,7 @@
             <h3 class="specs-title">Hệ Thống Phanh</h3>
             <ul class="specs-list">
               <li>Phanh trước: phanh đĩa ABS</li>
-              <li>Phanh sau: phang tang trống</li>
+              <li>Phanh sau: phanh tang trống</li>
               <li>Hệ thống chống bó cứng phanh: Có</li>
             </ul>
           </div>
@@ -1408,7 +1443,7 @@
               <li>Hệ thống chiếu sáng: LED</li>
               <li>Đồng hồ hiển thị: LCD đa thông tin</li>
               <li>Hệ thống chống trộm: Smart Key</li>
-              <li>Hộc đựng đồ: có</li>
+              <li>Hộc đựng đồ: Có</li>
             </ul>
           </div>
         </div>
@@ -1432,7 +1467,7 @@
             <button class="tab-btn" data-tab="performance">Động Cơ</button>
             <button class="tab-btn" data-tab="technology">Công Nghệ</button>
             <button class="tab-btn" data-tab="safety">
-              Tiện Ích và Công Nghệ
+              Tiện Ích và An Toàn
             </button>
           </div>
 
@@ -1449,7 +1484,11 @@
                 </p>
               </div>
               <div class="feature-image" data-aos="fade-left">
-                <img src="image/INFORMATION/CUB/TK.png" alt="Thiết kế Honda" />
+                <img
+                  src="image/INFORMATION/CUB/TK.png"
+                  alt="Thiết kế Honda"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -1457,7 +1496,7 @@
           <div class="tab-content" data-tab="performance">
             <div class="feature-content">
               <div class="feature-text" data-aos="fade-right">
-                <h3>Động cơ</h3>
+                <h3>Động Cơ</h3>
                 <p>
                   Động cơ dung tích 125cc, SOHC, trang bị PGM-FI, đạt công suất
                   tối đa 6,87kW và mô men xoắn cực đại 10,15Nm mang lại khả năng
@@ -1465,7 +1504,11 @@
                 </p>
               </div>
               <div class="feature-image" data-aos="fade-left">
-                <img src="image/INFORMATION/CUB/ĐC.png" alt="Hiệu suất Honda" />
+                <img
+                  src="image/INFORMATION/CUB/ĐC.png"
+                  alt="Động cơ Honda"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -1484,7 +1527,11 @@
                 </p>
               </div>
               <div class="feature-image" data-aos="fade-left">
-                <img src="image/INFORMATION/CUB/CN.png" alt="Công nghệ Honda" />
+                <img
+                  src="image/INFORMATION/CUB/CN.png"
+                  alt="Công nghệ Honda"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -1499,7 +1546,11 @@
                 </p>
               </div>
               <div class="feature-image" data-aos="fade-left">
-                <img src="image/INFORMATION/CUB/AT.png" alt="An toàn Honda" />
+                <img
+                  src="image/INFORMATION/CUB/CN.png"
+                  alt="An toàn Honda"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -1557,6 +1608,37 @@
               <p>Giờ làm việc: 7:30 - 17:30 (Thứ 2 - Chủ Nhật)</p>
             </div>
           </div>
+
+          <div class="contact-form" data-aos="fade-left">
+            <h3>Gửi Yêu Cầu Tư Vấn</h3>
+            <form id="consultationForm">
+              <div class="form-group">
+                <label for="name">Họ và tên</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Số điện thoại</label>
+                <input type="tel" id="phone" name="phone" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" />
+              </div>
+              <div class="form-group">
+                <label for="model">Mẫu xe quan tâm</label>
+                <select id="model" name="model">
+                  <option value="SuperCub">Super Cub C125</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Nội dung yêu cầu</label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg">
+                Gửi yêu cầu
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -1587,27 +1669,42 @@
           <div class="footer-social">
             <h4>Theo Dõi Chúng Tôi</h4>
             <div class="social-icons">
-              <a href="https://www.facebook.com/hethongheadtrunghung"
+              <a
+                href="https://www.facebook.com/hethongheadtrunghung"
+                aria-label="Facebook"
                 ><i class="fab fa-facebook-f"></i
               ></a>
-              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+              <a
+                href="https://www.youtube.com/@HethongHEADTrungHung"
+                aria-label="YouTube"
                 ><i class="fab fa-youtube"></i
               ></a>
-              <a href="https://www.instagram.com/hethongheadtrunghung"
+              <a
+                href="https://www.instagram.com/hethongheadtrunghung"
+                aria-label="Instagram"
                 ><i class="fab fa-instagram"></i
               ></a>
-              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+              <a
+                href="https://www.tiktok.com/@hethongheadtrunghung"
+                aria-label="TikTok"
                 ><i class="fab fa-tiktok"></i
               ></a>
             </div>
+            <p>Đăng ký nhận bản tin</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Nhập email của bạn" />
+              <button type="submit" aria-label="Subscribe">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
           </div>
         </div>
 
         <div class="footer-bottom">
           <p>&copy; 2025 HEAD Trung Hung. All Rights Reserved.</p>
           <div class="legal-links">
-            <a href="#"></a>
-            <a href="#"></a>
+            <a href="#">Chính sách bảo mật</a>
+            <a href="#">Điều khoản sử dụng</a>
           </div>
         </div>
       </div>
@@ -1618,6 +1715,7 @@
       <i class="fas fa-arrow-up"></i>
     </a>
 
+    <!-- JavaScript Libraries -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -1780,36 +1878,34 @@
 
         // Color change functionality
         function initColorChange() {
-          const colorButtons = document.querySelectorAll(".color-btn");
+          const colorListbox = document.querySelector(".color-listbox");
+          const colorPreview = document.querySelector(
+            ".selected-color-preview"
+          );
 
-          colorButtons.forEach((button) => {
-            button.addEventListener("click", function () {
-              // Remove active class from all buttons
-              colorButtons.forEach((btn) => btn.classList.remove("active"));
+          colorListbox.addEventListener("change", function () {
+            // Update color preview
+            const selectedOption = this.options[this.selectedIndex];
+            const colorCode = selectedOption.getAttribute("data-color");
+            colorPreview.style.backgroundColor = colorCode;
 
-              // Add active class to clicked button
-              this.classList.add("active");
+            // Get the slider to show
+            const colorValue = selectedOption.value;
 
-              // Get the slider to show
-              const colorId = this.getAttribute("data-color");
+            // Hide all sliders
+            document
+              .querySelectorAll(".slider-container")
+              .forEach((container) => {
+                container.classList.remove("active");
+              });
 
-              // Hide all sliders
-              document
-                .querySelectorAll(".slider-container")
-                .forEach((container) => {
-                  container.classList.remove("active");
-                });
-
-              // Show selected slider
-              const targetSlider = document.querySelector(
-                `.slider-container[data-color="${colorId}"]`
-              );
+            // Show selected slider
+            const targetSlider = document.querySelector(
+              `.slider-container[data-color="${colorValue}"]`
+            );
+            if (targetSlider) {
               targetSlider.classList.add("active");
-
-              // Reset slider position
-              const slider = targetSlider.querySelector(".slider");
-              slider.style.transform = "translateX(0)";
-            });
+            }
           });
         }
 
@@ -1842,10 +1938,42 @@
           });
         }
 
-        // Initialize when DOM is loaded
+        // Form submission
+        function initForm() {
+          const form = document.getElementById("consultationForm");
+
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Here you would typically send the form data to a server
+            alert(
+              "Cảm ơn bạn đã gửi yêu cầu tư vấn. Chúng tôi sẽ liên hệ với bạn sớm nhất!"
+            );
+            form.reset();
+          });
+        }
+
+        // Newsletter subscription
+        function initNewsletter() {
+          const newsletterForm = document.querySelector(".newsletter-form");
+
+          newsletterForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const emailInput = this.querySelector("input");
+
+            if (emailInput.value) {
+              alert("Cảm ơn bạn đã đăng ký nhận bản tin!");
+              emailInput.value = "";
+            }
+          });
+        }
+
+        // Initialize all components
         initSliders();
         initColorChange();
         initFeaturesTabs();
+        initForm();
+        initNewsletter();
 
         // Initialize AOS (Animate On Scroll)
         AOS.init({
