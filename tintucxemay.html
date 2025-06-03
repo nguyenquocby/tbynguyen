@@ -760,6 +760,18 @@
         {
           id: 1,
           title:
+            "Xe gắn máy điện ICON e: - Icon sống xanh, lướt cùng phong cách",
+          category: "Sản phẩm mới",
+          date: "04/04/2025",
+          excerpt:
+            "ICON e: là mẫu xe gắn máy điện đầu tiên do Honda Việt Nam sản xuất,...",
+          fullContent:
+            "ICON e: là mẫu xe gắn máy điện đầu tiên do Honda Việt Nam sản xuất, hướng đến đối tượng học sinh từ 16 tuổi, góp phần bảo vệ môi trường và giảm phát thải carbon.<br> Nổi bật với: Chất lượng chuẩn Honda toàn cầu: Xuất xưởng ngày 27/3/2025 tại nhà máy Vĩnh Phúc, áp dụng quy trình sản xuất hiện đại, kiểm soát nghiêm ngặt, đảm bảo độ bền và an toàn vượt trội.,<br> Thiết kế trẻ trung, nhỏ gọn: Phù hợp với vóc dáng người Việt, đặc biệt là học sinh. Đèn sau, đèn xi nhan liền khối kết hợp logo tối giản tạo dấu ấn riêng.<br>Tiện ích và an toàn tiên tiến: Pin Lithium-ion chống nước IP67, có thể sạc trực tiếp hoặc tháo rời. Hệ thống phanh kết hợp CBS, đèn LED cao cấp. Cốp xe 26L, hai hộc trước có cổng sạc USB, màn hình LCD hiện đại.<br> Chính sách bán hàng ưu việt: Honda Việt Nam đầu tư vào hệ thống đại lý hiện đại, đội ngũ tư vấn chuyên nghiệp và chính sách hậu mãi hấp dẫn, giúp khách hàng dễ dàng tiếp cận và có trải nghiệm sử dụng trọn vẹn.",
+          image: "image/menutab/TT02.PNG",
+        },
+        {
+          id: 2,
+          title:
             "Honda Việt Nam giới thiệu màu mới cho Vario 125 phiên bản 2025 - Chất ngông thành thị",
           category: "Sản phẩm mới",
           date: "01/12/2024",
@@ -770,7 +782,7 @@
           image: "image/menutab/TTXM01.jpeg",
         },
         {
-          id: 2,
+          id: 3,
           title:
             "Honda Việt Nam giới thiệu phiên bản mới mẫu xe Vision 2025 - Rực rỡ những đầu tiên",
           category: "Sản phẩm mới",
@@ -782,7 +794,7 @@
           image: "image/menutab/TT01.jpeg",
         },
         {
-          id: 3,
+          id: 4,
           title:
             "Honda Việt Nam giới thiệu SH350i hoàn toàn mới - DẤU ẤN VƯỢT THỜI GIAN",
           category: "Sản phẩm mới",
@@ -794,7 +806,7 @@
           image: "image/menutab/TT02.jpeg",
         },
         {
-          id: 4,
+          id: 5,
           title:
             "Honda Việt Nam giới thiệu LEAD 125cc hoàn toàn mới - Đẹp sống động, Lái khác biệt",
           category: "Sản phẩm mới",
@@ -806,7 +818,7 @@
           image: "image/menutab/LEADABS.png",
         },
         {
-          id: 5,
+          id: 6,
           title:
             "Honda Việt Nam giới thiệu thiết kế mới dòng xe Wave Alpha phiên bản Cổ điển và màu mới mẫu xe Super Cub C125",
           category: "Sản phẩm mới",
@@ -818,7 +830,7 @@
           image: "image/menutab/ALPHARETRO.jpg",
         },
         {
-          id: 6,
+          id: 7,
           title:
             "Honda Việt Nam giới thiệu Air Blade 2025 mới 'Khí chất bất biến - Cân mọi trải nghiệm'",
           category: "Sản phẩm mới",
@@ -830,7 +842,7 @@
           image: "image/menutab/AB.jpg",
         },
         {
-          id: 7,
+          id: 8,
           title: "Honda Việt Nam ra mắt mẫu xe CB350 Hness",
           category: "Sản phẩm mới",
           date: "24/01/2024",
@@ -862,20 +874,20 @@
           const newsItem = document.createElement("article");
           newsItem.className = "news-card";
           newsItem.innerHTML = `
-                                                    <div class="news-image">
-                                                      <img src="${news.image}" alt="${news.title}">
-                                                    </div>
-                                                    <div class="news-content">
-                                                      <div class="news-meta">
-                                                        <span class="news-category">${news.category}</span>
-                                                        <span class="news-date"><i class="far fa-calendar-alt"></i> ${news.date}</span>
-                                                      </div>
-                                                      <h3 class="news-title">${news.title}</h3>
-                                                      <p class="news-excerpt">${news.excerpt}</p>
-                                                      <p class="news-full-content" style="display: none;">${news.fullContent}</p>
-                                                                        <span class="read-more" onclick="toggleReadMore(this)">Xem thêm <i class="fas fa-chevron-down"></i></span>
-                                                    </div>
-                                                  `;
+                                                          <div class="news-image">
+                                                            <img src="${news.image}" alt="${news.title}">
+                                                          </div>
+                                                          <div class="news-content">
+                                                            <div class="news-meta">
+                                                              <span class="news-category">${news.category}</span>
+                                                              <span class="news-date"><i class="far fa-calendar-alt"></i> ${news.date}</span>
+                                                            </div>
+                                                            <h3 class="news-title">${news.title}</h3>
+                                                            <p class="news-excerpt">${news.excerpt}</p>
+                                                            <p class="news-full-content" style="display: none;">${news.fullContent}</p>
+                                                                              <span class="read-more" onclick="toggleReadMore(this)">Xem thêm <i class="fas fa-chevron-down"></i></span>
+                                                          </div>
+                                                        `;
           newsContainer.appendChild(newsItem);
         });
       }
