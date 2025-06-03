@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Honda Vision</title>
+    <title>Honda Vision - Xe Tay Ga</title>
+
     <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
     <link
       rel="stylesheet"
@@ -15,18 +16,21 @@
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <style>
-      /* Reset & Base Styles */
+      /* CSS Variables */
       :root {
-        --primary-color: #e11931; /* Honda Red */
-        --secondary-color: #004225; /* Honda Green */
+        --primary-color: #e11931;
+        --secondary-color: #004225;
         --dark-color: #1a1a1a;
         --light-color: #f8f9fa;
         --gray-color: #6c757d;
         --transition: all 0.3s ease;
         --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        --border-radius: 8px;
+        --border-radius: 25px;
+        --header-height: 80px;
+        --header-shrink-height: 70px;
       }
 
+      /* Base Styles */
       * {
         margin: 0;
         padding: 0;
@@ -35,7 +39,7 @@
 
       html {
         scroll-behavior: smooth;
-        font-size: 62.5%; /* 1rem = 10px */
+        font-size: 62.5%;
       }
 
       body {
@@ -335,7 +339,7 @@
       .hero-content {
         position: relative;
         z-index: 1;
-        padding-top: 8rem;
+        padding-top: var(--header-height);
       }
 
       .hero-title {
@@ -453,52 +457,68 @@
         background-color: #f9f9f9;
       }
 
-      .color-selector {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        margin-bottom: 4rem;
-      }
-
-      .color-btn {
-        padding: 1rem 2rem;
-        border: none;
-        background-color: white;
-        border-radius: 30px;
-        font-size: 1.4rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: var(--transition);
+      /* Color Picker */
+      .color-picker {
+        position: relative;
+        max-width: 300px;
+        margin: 0 auto 30px;
         display: flex;
         align-items: center;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        gap: 10px;
       }
 
-      .color-btn.active {
-        background-color: var(--primary-color);
-        color: white;
+      .color-listbox {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 100%;
+        padding: 12px 40px 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        background-color: white;
+        font-size: 1.6rem;
+        color: #333;
+        cursor: pointer;
+        outline: none;
+        transition: var(--transition);
       }
 
-      .color-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      .color-picker::after {
+        content: "";
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #666;
+        font-size: 0.7rem;
       }
 
-      .color-circle {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
+      .selected-color-preview {
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
-        margin-right: 8px;
+        border: 1px solid #ddd;
+        flex-shrink: 0;
       }
 
+      .color-listbox:hover {
+        border-color: #999;
+      }
+
+      .color-listbox:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(225, 25, 49, 0.2);
+      }
+
+      /* Slider */
       .slider-container {
         display: none;
         position: relative;
-        max-width: 600px;
+        max-width: 800px;
         margin: 0 auto;
         overflow: hidden;
+        border-radius: var(--border-radius);
       }
 
       .slider-container.active {
@@ -528,7 +548,8 @@
       .slide img {
         width: 100%;
         height: 500px;
-        object-fit: cover;
+        object-fit: contain;
+        object-position: center;
       }
 
       .slider-nav {
@@ -537,7 +558,7 @@
         transform: translateY(-50%);
         width: 50px;
         height: 50px;
-        background-color: rgba(255, 255, 255, 0.8);
+        /*-background-color: rgba(255, 255, 255, 0.8);*/
         border: none;
         border-radius: 50%;
         font-size: 1.8rem;
@@ -547,7 +568,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        /*box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);*/
         z-index: 10;
       }
 
@@ -729,6 +750,11 @@
         width: 100%;
         height: auto;
         display: block;
+        transition: transform 0.5s ease;
+      }
+
+      .feature-image:hover img {
+        transform: scale(1.05);
       }
 
       /* Contact Section */
@@ -794,6 +820,13 @@
 
       .form-group {
         margin-bottom: 2rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 1.4rem;
+        font-weight: 500;
       }
 
       .form-group input,
@@ -1011,7 +1044,7 @@
       }
 
       /* Responsive Styles */
-      @media (max-width: 992px) {
+      @media (max-width: 1024px) {
         .hero-title {
           font-size: 5rem;
         }
@@ -1035,7 +1068,7 @@
 
       @media (max-width: 768px) {
         html {
-          font-size: 56.25%; /* 1rem = 9px */
+          font-size: 56.25%;
         }
 
         .menu-toggle {
@@ -1100,7 +1133,7 @@
 
       @media (max-width: 576px) {
         html {
-          font-size: 50%; /* 1rem = 8px */
+          font-size: 50%;
         }
 
         .section-title {
@@ -1117,16 +1150,6 @@
 
         .slide img {
           height: 300px;
-        }
-
-        .color-selector {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .color-btn {
-          width: 100%;
-          justify-content: center;
         }
 
         .tab-buttons {
@@ -1204,9 +1227,9 @@
             <div class="wheel"></div>
           </div>
           <div class="arrows">
-            <span class="arrow"></span>
-            <span class="arrow"></span>
-            <span class="arrow"></span>
+            <span class="arrow" style="--i: 1"></span>
+            <span class="arrow" style="--i: 2"></span>
+            <span class="arrow" style="--i: 3"></span>
           </div>
         </a>
       </div>
@@ -1223,379 +1246,426 @@
           <div class="divider"></div>
         </div>
 
-        <div class="color-selector">
-          <button class="color-btn active" data-color="xam-den">
-            <span class="color-circle" style="background-color: #2e2e2e"></span>
-            Xám Đen - Thể Thao
-          </button>
-          <button class="color-btn" data-color="den">
-            <span class="color-circle" style="background-color: #000000"></span>
-            Đen - Thể Thao
-          </button>
-          <button class="color-btn" data-color="nau-den">
-            <span class="color-circle" style="background-color: #77520e"></span>
-            Nâu Đen - Đặc Biệt
-          </button>
-          <button class="color-btn" data-color="xanh-den">
-            <span class="color-circle" style="background-color: #4500e7"></span>
-            Xanh Đen - Cao Cấp
-          </button>
-          <button class="color-btn" data-color="do-den">
-            <span class="color-circle" style="background-color: #e70000"></span>
-            Đỏ Đen - Cao Cấp
-          </button>
-          <button class="color-btn" data-color="trang-den">
-            <span class="color-circle" style="background-color: #f8f8f8"></span>
-            Trắng Đen - Tiêu Chuẩn
-          </button>
+        <div class="color-picker">
+          <select class="color-listbox" aria-label="Chọn màu xe">
+            <option value="xam-den-tt" data-color="#757474" selected>
+              Xám Đen - Thể Thao
+            </option>
+            <option value="den-tt" data-color="#000000">Đen - Thể Thao</option>
+            <option value="nau-den-db" data-color="#825200">
+              Nâu Đen - Đặc Biệt
+            </option>
+            <option value="xanh-den-cc" data-color="#0023a3">
+              Xanh Đen - Cao Cấp
+            </option>
+            <option value="do-den-cc" data-color="#b30000">
+              Đỏ Đen - Cao Cấp
+            </option>
+            <option value="trang-den-tc" data-color="#ffff">
+              Trắng Đen - Tiêu Chuẩn
+            </option>
+          </select>
+          <div
+            class="selected-color-preview"
+            style="background-color: #757474"
+          ></div>
         </div>
 
-        <div class="slider-container active" data-color="xam-den">
+        <!-- Xám Đen - Thể Thao -->
+        <div class="slider-container active" data-color="xam-den-tt">
           <div class="slider">
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - XÁM ĐEN/1.png"
                 alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - XÁM ĐEN/2.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - XÁM ĐEN/3.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - XÁM ĐEN/4.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - XÁM ĐEN/5.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - XÁM ĐEN/6.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - XÁM ĐEN/7.png"
-                alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - XÁM ĐEN/8.png"
                 alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - XÁM ĐEN/7.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - XÁM ĐEN/6.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - XÁM ĐEN/5.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - XÁM ĐEN/4.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - XÁM ĐEN/3.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - XÁM ĐEN/2.png"
+                alt="Honda"
+                loading="lazy"
               />
             </div>
           </div>
-          <button class="slider-nav prev-btn">
+          <button class="slider-nav prev-btn" aria-label="Previous image">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="slider-nav next-btn">
+          <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
 
-        <div class="slider-container" data-color="den">
+        <div class="slider-container" data-color="den-tt">
           <div class="slider">
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - ĐEN/1.png"
                 alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - ĐEN/2.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - ĐEN/3.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - ĐEN/4.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - ĐEN/5.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - ĐEN/6.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - ĐEN/7.png"
-                alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - ĐEN/8.png"
                 alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - ĐEN/7.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - ĐEN/6.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - ĐEN/5.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - ĐEN/4.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - ĐEN/3.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản thể thao - ĐEN/2.png"
+                alt="Honda"
+                loading="lazy"
               />
             </div>
           </div>
-          <button class="slider-nav prev-btn">
+          <button class="slider-nav prev-btn" aria-label="Previous image">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="slider-nav next-btn">
+          <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
-        <div class="slider-container" data-color="nau-den">
+        <div class="slider-container" data-color="nau-den-db">
           <div class="slider">
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/1.png"
                 alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/2.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/3.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/4.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/5.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/6.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/7.png"
-                alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/8.png"
                 alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/7.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/6.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/5.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/4.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/3.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản đặc biệt - NÂU ĐEN/2.png"
+                alt="Honda"
+                loading="lazy"
               />
             </div>
           </div>
-          <button class="slider-nav prev-btn">
+          <button class="slider-nav prev-btn" aria-label="Previous image">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="slider-nav next-btn">
+          <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
-        <div class="slider-container" data-color="xanh-den">
+        <div class="slider-container" data-color="xanh-den-cc">
           <div class="slider">
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - XANH ĐEN/1.png"
                 alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - XANH ĐEN/2.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - XANH ĐEN/3.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - XANH ĐEN/4.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - XANH ĐEN/5.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - XANH ĐEN/6.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - XANH ĐEN/7.png"
-                alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - XANH ĐEN/8.png"
                 alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - XANH ĐEN/7.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - XANH ĐEN/6.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - XANH ĐEN/5.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - XANH ĐEN/4.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - XANH ĐEN/3.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - XANH ĐEN/2.png"
+                alt="Honda"
+                loading="lazy"
               />
             </div>
           </div>
-          <button class="slider-nav prev-btn">
+          <button class="slider-nav prev-btn" aria-label="Previous image">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="slider-nav next-btn">
+          <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
-        <div class="slider-container" data-color="do-den">
+        <div class="slider-container" data-color="do-den-cc">
           <div class="slider">
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - ĐỎ ĐEN/1.png"
                 alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - ĐỎ ĐEN/2.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - ĐỎ ĐEN/3.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - ĐỎ ĐEN/4.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - ĐỎ ĐEN/5.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - ĐỎ ĐEN/6.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - ĐỎ ĐEN/7.png"
-                alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - ĐỎ ĐEN/8.png"
                 alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - ĐỎ ĐEN/7.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - ĐỎ ĐEN/6.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - ĐỎ ĐEN/5.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - ĐỎ ĐEN/4.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - ĐỎ ĐEN/3.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản cao cấp - ĐỎ ĐEN/2.png"
+                alt="Honda"
+                loading="lazy"
               />
             </div>
           </div>
-          <button class="slider-nav prev-btn">
+          <button class="slider-nav prev-btn" aria-label="Previous image">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="slider-nav next-btn">
+          <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
-        <div class="slider-container" data-color="trang-den">
+        <div class="slider-container" data-color="trang-den-tc">
           <div class="slider">
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/Vision/Phiên bản tiêu chuẩn - TRẮNG ĐEN/1.png"
                 alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản tiêu chuẩn - TRẮNG ĐEN/2.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản tiêu chuẩn - TRẮNG ĐEN/3.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản tiêu chuẩn - TRẮNG ĐEN/4.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản tiêu chuẩn - TRẮNG ĐEN/5.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản tiêu chuẩn - TRẮNG ĐEN/6.png"
-                alt="Honda"
-              />
-            </div>
-            <div class="slide">
-              <img
-                src="image/FULL BIKE/Scooter/Vision/Phiên bản tiêu chuẩn - TRẮNG ĐEN/7.png"
-                alt="Honda"
+                loading="lazy"
               />
             </div>
             <div class="slide">
               <img
                 src="image/FULL BIKE/Scooter/Vision/Phiên bản tiêu chuẩn - TRẮNG ĐEN/8.png"
                 alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản tiêu chuẩn - TRẮNG ĐEN/7.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản tiêu chuẩn - TRẮNG ĐEN/6.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản tiêu chuẩn - TRẮNG ĐEN/5.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản tiêu chuẩn - TRẮNG ĐEN/4.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản tiêu chuẩn - TRẮNG ĐEN/3.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="image/FULL BIKE/Scooter/Vision/Phiên bản tiêu chuẩn - TRẮNG ĐEN/2.png"
+                alt="Honda"
+                loading="lazy"
               />
             </div>
           </div>
-          <button class="slider-nav prev-btn">
+          <button class="slider-nav prev-btn" aria-label="Previous image">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="slider-nav next-btn">
+          <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
@@ -1608,7 +1678,7 @@
         <div class="section-header">
           <h2 class="section-title">Thông Số Kỹ Thuật</h2>
           <p class="section-subtitle">
-            Khám phá thông số kỹ thuật của Honda Vision
+            Khám phá thông số kỹ thuật của Honda Vario 125
           </p>
           <div class="divider"></div>
         </div>
@@ -1623,7 +1693,7 @@
               <li>
                 Loại động cơ: 4 kỳ , 1 xy-lanh đơn, làm mát bằng không khí
               </li>
-              <li>Dung tích: 109,5cm3</li>
+              <li>Dung tích xy-lanh: 109,5cm3</li>
               <li>Công suất tối đa: 6,59 kw/7500 vòng/phút</li>
               <li>Mô-men xoắn cực đại: 9,29 Nm/6000 vòng/phút</li>
             </ul>
@@ -1635,8 +1705,7 @@
             </div>
             <h3 class="specs-title">Hệ Thống Truyền Động</h3>
             <ul class="specs-list">
-              <li>Hộp số: Vô cấp</li>
-              <li>Hệ thống truyền động: Dây curoa</li>
+              <li>Loại truyền động: Vô cấp</li>
               <li>Hệ thống khởi động: Điện</li>
             </ul>
           </div>
@@ -1647,7 +1716,7 @@
             </div>
             <h3 class="specs-title">Kích Thước & Trọng Lượng</h3>
             <ul class="specs-list">
-              <li>Dài x Rộng x Cao: 1.925mm x 686mm x 1.126mm</li>
+              <li>Dài x Rộng x Cao: 1.925 mm x 686 mm x 1.126 mm</li>
               <li>Độ cao yên: 785 mm</li>
               <li>Khoảng sáng gầm xe: 175 mm</li>
               <li>Khối lượng bản thân: 97 kg</li>
@@ -1660,8 +1729,8 @@
             </div>
             <h3 class="specs-title">Hệ Thống Nhiên Liệu</h3>
             <ul class="specs-list">
-              <li>Dung tích bình xăng: 4.8 lít</li>
-              <li>Mức tiêu thụ nhiên liệu: 1,82L/100km</li>
+              <li>Dung tích bình xăng: 4,8 lít</li>
+              <li>Mức tiêu thụ nhiên liệu: 1,82 lít/100km</li>
             </ul>
           </div>
 
@@ -1671,8 +1740,9 @@
             </div>
             <h3 class="specs-title">Hệ Thống Phanh</h3>
             <ul class="specs-list">
-              <li>Phanh trước: Phanh Đĩa</li>
-              <li>Phanh sau: phanh tang trống</li>
+              <li>Phanh trước: Ống lồng, giảm chấn thủy lực</li>
+              <li>Phanh sau: Lò xo trụ đơn, giảm chấn thủy lực</li>
+              <li>Hệ thống chống bó cứng phanh: Không</li>
             </ul>
           </div>
 
@@ -1704,15 +1774,17 @@
         <div class="features-tabs">
           <div class="tab-buttons">
             <button class="tab-btn active" data-tab="design">Thiết Kế</button>
-            <button class="tab-btn" data-tab="performance">Vận Hành</button>
+            <button class="tab-btn" data-tab="performance">Động Cơ</button>
             <button class="tab-btn" data-tab="technology">Công Nghệ</button>
-            <button class="tab-btn" data-tab="safety">An Toàn</button>
+            <button class="tab-btn" data-tab="safety">
+              Tiện Ích và An Toàn
+            </button>
           </div>
 
           <div class="tab-content active" data-tab="design">
             <div class="feature-content">
               <div class="feature-text" data-aos="fade-right">
-                <h3>Thiết kế phía trước hiện đại và năng động</h3>
+                <h3>Thiết Kế</h3>
                 <p>
                   Thiết kế phía trước là sự kết hợp giữa đường nét thiết kế ba
                   chiều sắc sảo, kết hợp với đèn trang trí LED và hệ thống đèn
@@ -1720,17 +1792,12 @@
                   một thiết kế trẻ trung, hiện đại, năng động, không kém phần
                   sang trọng.
                 </p>
-                <ul>
-                  <li>Tem xe Sport mới</li>
-                  <li>Logo 3D năng động và ấn tượng</li>
-                  <li>Mặt đồng hồ hiện đại</li>
-                  <li>Bánh xe trước kích thước lớn 16-inch</li>
-                </ul>
               </div>
               <div class="feature-image" data-aos="fade-left">
                 <img
                   src="image/INFORMATION/VISION/TK1.jpg"
                   alt="Thiết kế Honda"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -1740,7 +1807,6 @@
             <div class="feature-content">
               <div class="feature-text" data-aos="fade-right">
                 <h3>Động Cơ</h3>
-                <p>Động cơ eSP thông minh thế hệ mới</p>
                 <p>
                   eSP - Động cơ thông minh với thiết kế nhỏ gọn, 110cc, 4 kỳ,
                   xy-lanh đơn, làm mát bằng không khí và tích hợp những công
@@ -1752,7 +1818,8 @@
               <div class="feature-image" data-aos="fade-left">
                 <img
                   src="image/INFORMATION/VISION/DONGCO.jpg"
-                  alt="Hiệu suất Honda"
+                  alt="Động cơ Honda"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -1767,15 +1834,12 @@
                   khởi động lại động cơ chỉ bằng thao tác vặn tay ga, giúp giảm
                   tiếng ồn, tiết kiệm nhiên liệu và bảo vệ môi trường.
                 </p>
-                <ul>
-                  <li>Hệ thống ngắt động cơ tạm thời</li>
-                  <li>Khung dập hàn laser thế hệ mới eSAF</li>
-                </ul>
               </div>
               <div class="feature-image" data-aos="fade-left">
                 <img
                   src="image/INFORMATION/VISION/CN1.jpg"
                   alt="Công nghệ Honda"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -1784,18 +1848,18 @@
           <div class="tab-content" data-tab="safety">
             <div class="feature-content">
               <div class="feature-text" data-aos="fade-right">
-                <h3>Tiện ích Và An Toàn</h3>
-                <ul>
-                  <li>Hộc đựng đồ phía trước với cổng sạc type C tiện lợi</li>
-                  <li>Hộc đựng đồ dưới yên rộng rãi</li>
-                  <li>Hệ thống khóa thông minh SMART Key</li>
-                  <li>Đèn chiếu sáng phía trước luôn sáng</li>
-                </ul>
+                <h3>Tiện ích và An toàn</h3>
+                <p>
+                  Hộc đựng đồ phía trước có nắp đậy, kích thước rộng rãi và có
+                  khả năng chứa nhiều vật dụng cá nhân và tích hợp cổng sạc USB
+                  loại C tiện dụng.
+                </p>
               </div>
               <div class="feature-image" data-aos="fade-left">
                 <img
                   src="image/INFORMATION/VISION/TI1.jpg"
-                  alt="An toàn Honda SH350i"
+                  alt="An toàn Honda"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -1854,6 +1918,37 @@
               <p>Giờ làm việc: 7:30 - 17:30 (Thứ 2 - Chủ Nhật)</p>
             </div>
           </div>
+
+          <div class="contact-form" data-aos="fade-left">
+            <h3>Gửi Yêu Cầu Tư Vấn</h3>
+            <form id="consultationForm">
+              <div class="form-group">
+                <label for="name">Họ và tên</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Số điện thoại</label>
+                <input type="tel" id="phone" name="phone" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" />
+              </div>
+              <div class="form-group">
+                <label for="model">Mẫu xe quan tâm</label>
+                <select id="model" name="model">
+                  <option value="Vision">Vision</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Nội dung yêu cầu</label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg">
+                Gửi yêu cầu
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -1881,27 +1976,42 @@
           <div class="footer-social">
             <h4>Theo Dõi Chúng Tôi</h4>
             <div class="social-icons">
-              <a href="https://www.facebook.com/hethongheadtrunghung"
+              <a
+                href="https://www.facebook.com/hethongheadtrunghung"
+                aria-label="Facebook"
                 ><i class="fab fa-facebook-f"></i
               ></a>
-              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+              <a
+                href="https://www.youtube.com/@HethongHEADTrungHung"
+                aria-label="YouTube"
                 ><i class="fab fa-youtube"></i
               ></a>
-              <a href="https://www.instagram.com/hethongheadtrunghung"
+              <a
+                href="https://www.instagram.com/hethongheadtrunghung"
+                aria-label="Instagram"
                 ><i class="fab fa-instagram"></i
               ></a>
-              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+              <a
+                href="https://www.tiktok.com/@hethongheadtrunghung"
+                aria-label="TikTok"
                 ><i class="fab fa-tiktok"></i
               ></a>
             </div>
+            <p>Đăng ký nhận bản tin</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Nhập email của bạn" />
+              <button type="submit" aria-label="Subscribe">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
           </div>
         </div>
 
         <div class="footer-bottom">
           <p>&copy; 2025 HEAD Trung Hung. All Rights Reserved.</p>
           <div class="legal-links">
-            <a href="#"></a>
-            <a href="#"></a>
+            <a href="#">Chính sách bảo mật</a>
+            <a href="#">Điều khoản sử dụng</a>
           </div>
         </div>
       </div>
@@ -1912,6 +2022,7 @@
       <i class="fas fa-arrow-up"></i>
     </a>
 
+    <!-- JavaScript Libraries -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -2074,36 +2185,34 @@
 
         // Color change functionality
         function initColorChange() {
-          const colorButtons = document.querySelectorAll(".color-btn");
+          const colorListbox = document.querySelector(".color-listbox");
+          const colorPreview = document.querySelector(
+            ".selected-color-preview"
+          );
 
-          colorButtons.forEach((button) => {
-            button.addEventListener("click", function () {
-              // Remove active class from all buttons
-              colorButtons.forEach((btn) => btn.classList.remove("active"));
+          colorListbox.addEventListener("change", function () {
+            // Update color preview
+            const selectedOption = this.options[this.selectedIndex];
+            const colorCode = selectedOption.getAttribute("data-color");
+            colorPreview.style.backgroundColor = colorCode;
 
-              // Add active class to clicked button
-              this.classList.add("active");
+            // Get the slider to show
+            const colorValue = selectedOption.value;
 
-              // Get the slider to show
-              const colorId = this.getAttribute("data-color");
+            // Hide all sliders
+            document
+              .querySelectorAll(".slider-container")
+              .forEach((container) => {
+                container.classList.remove("active");
+              });
 
-              // Hide all sliders
-              document
-                .querySelectorAll(".slider-container")
-                .forEach((container) => {
-                  container.classList.remove("active");
-                });
-
-              // Show selected slider
-              const targetSlider = document.querySelector(
-                `.slider-container[data-color="${colorId}"]`
-              );
+            // Show selected slider
+            const targetSlider = document.querySelector(
+              `.slider-container[data-color="${colorValue}"]`
+            );
+            if (targetSlider) {
               targetSlider.classList.add("active");
-
-              // Reset slider position
-              const slider = targetSlider.querySelector(".slider");
-              slider.style.transform = "translateX(0)";
-            });
+            }
           });
         }
 
@@ -2136,10 +2245,42 @@
           });
         }
 
-        // Initialize when DOM is loaded
+        // Form submission
+        function initForm() {
+          const form = document.getElementById("consultationForm");
+
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Here you would typically send the form data to a server
+            alert(
+              "Cảm ơn bạn đã gửi yêu cầu tư vấn. Chúng tôi sẽ liên hệ với bạn sớm nhất!"
+            );
+            form.reset();
+          });
+        }
+
+        // Newsletter subscription
+        function initNewsletter() {
+          const newsletterForm = document.querySelector(".newsletter-form");
+
+          newsletterForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const emailInput = this.querySelector("input");
+
+            if (emailInput.value) {
+              alert("Cảm ơn bạn đã đăng ký nhận bản tin!");
+              emailInput.value = "";
+            }
+          });
+        }
+
+        // Initialize all components
         initSliders();
         initColorChange();
         initFeaturesTabs();
+        initForm();
+        initNewsletter();
 
         // Initialize AOS (Animate On Scroll)
         AOS.init({
