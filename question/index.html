@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Câu Hỏi Thường Gặp</title>
+    <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Reset & Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-color: #e40521;
+        --secondary-color: #333;
+        --light-color: #f8f9fa;
+        --dark-color: #212529;
+        --gray-color: #6c757d;
+        --light-gray: #e9ecef;
+        --transition: all 0.3s ease;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        line-height: 1.6;
+        color: var(--secondary-color);
+        overflow-x: hidden;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 25px;
+        border-radius: 25px;
+        font-weight: 500;
+        text-align: center;
+        transition: var(--transition);
+        cursor: pointer;
+        border: 2px solid transparent;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      .btn-primary:hover {
+        background-color: #c0041d;
+        border-color: #c0041d;
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: var(--dark-color);
+      }
+
+      .section-subtitle {
+        font-size: 1.1rem;
+        color: var(--gray-color);
+        margin-bottom: 20px;
+      }
+
+      .divider {
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+        margin: 0 auto;
+      }
+
+      /* Header */
+      .main-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        transition: var(--transition);
+      }
+
+      .main-header.scrolled {
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .main-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 40px;
+      }
+
+      /* Mobile Menu Toggle */
+      .menu-toggle {
+        display: none;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-toggle .bar {
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background-color: var(--dark-color);
+        transition: all 0.3s ease;
+        left: 0;
+      }
+
+      .menu-toggle .bar:nth-child(1) {
+        top: 0;
+      }
+
+      .menu-toggle .bar:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .menu-toggle .bar:nth-child(3) {
+        bottom: 0;
+      }
+
+      .menu-toggle.active .bar:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        background-color: var(--primary-color);
+      }
+
+      .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active .bar:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+        background-color: var(--primary-color);
+      }
+
+      .main-nav ul {
+        list-style: none;
+        display: flex;
+      }
+
+      .main-nav li {
+        margin-left: 30px;
+      }
+
+      .main-nav a {
+        font-weight: 500;
+        color: var(--dark-color);
+        position: relative;
+      }
+
+      .main-nav a:after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: var(--transition);
+      }
+
+      .main-nav a:hover:after,
+      .main-nav a.active:after {
+        width: 100%;
+      }
+
+      .main-nav a.active {
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      /* Hero Banner */
+      .faq-hero {
+        height: 50vh;
+        min-height: 300px;
+        background: rgb(32, 32, 32);
+        display: flex;
+        align-items: center;
+        margin-top: 80px;
+        color: white;
+        text-align: center;
+      }
+
+      .hero-content {
+        width: 100%;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      /* FAQ Categories */
+      .category-tabs {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 40px;
+      }
+
+      .category-tab {
+        padding: 12px 25px;
+        border-radius: 30px;
+        background-color: white;
+        color: var(--dark-color);
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--light-gray);
+      }
+
+      .category-tab:hover {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+
+      .category-tab.active {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      /* FAQ Section */
+      .faq-section {
+        padding: 60px 0;
+        background-color: white;
+      }
+
+      .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .faq-category {
+        margin-bottom: 50px;
+      }
+
+      .faq-category-title {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--light-gray);
+        color: var(--primary-color);
+      }
+
+      .faq-item {
+        margin-bottom: 15px;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .faq-question {
+        padding: 20px;
+        background-color: var(--light-color);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        transition: var(--transition);
+      }
+
+      .faq-question:hover {
+        background-color: #f1f1f1;
+      }
+
+      .faq-question i {
+        transition: var(--transition);
+      }
+
+      .faq-answer {
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        background-color: white;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+      }
+
+      .faq-item.active .faq-question {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+      }
+
+      .faq-item.active .faq-answer {
+        padding: 20px;
+        max-height: 500px;
+        border-top: 1px solid var(--light-gray);
+      }
+
+      /* Search Box */
+      .search-box {
+        max-width: 600px;
+        margin: 0 auto 40px;
+        position: relative;
+      }
+
+      .search-box input {
+        width: 100%;
+        padding: 15px 20px;
+        border-radius: 30px;
+        border: 1px solid var(--light-gray);
+        font-size: 1rem;
+        padding-right: 50px;
+      }
+
+      .search-box button {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* Contact CTA */
+      .contact-cta {
+        padding: 80px 0;
+        text-align: center;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("https://cdn.honda.com.vn/motorbikes/November2021/9hP0Q1Z8KvXQYk8XhQ5k.jpg")
+            no-repeat center center/cover;
+        color: white;
+      }
+
+      .contact-cta h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .contact-cta p {
+        max-width: 600px;
+        margin: 0 auto 30px;
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      /* Footer */
+      .main-footer {
+        background-color: var(--dark-color);
+        color: white;
+        padding: 60px 0 20px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .footer-col h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-col h3:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-logo {
+        margin-bottom: 20px;
+        display: block;
+        max-width: 150px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-links a {
+        width: 35px;
+        height: 35px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      .footer-col ul li {
+        list-style: none;
+        margin-bottom: 10px;
+      }
+
+      .footer-col ul a {
+        color: #adb5bd;
+        transition: var(--transition);
+      }
+
+      .footer-col ul a:hover {
+        color: var(--primary-color);
+        padding-left: 5px;
+      }
+
+      .contact-info li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .contact-info i {
+        margin-right: 10px;
+        color: var(--primary-color);
+        width: 20px;
+        text-align: center;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px 0;
+        text-align: center;
+        color: #adb5bd;
+        font-size: 0.9rem;
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+      }
+
+      .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background-color: #c0041d;
+        transform: translateY(-5px);
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .hero-content h1 {
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .menu-toggle {
+          display: block;
+        }
+
+        .main-nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 80%;
+          max-width: 300px;
+          height: 100vh;
+          background-color: white;
+          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+          transition: var(--transition);
+          padding: 80px 20px 20px;
+          overflow-y: auto;
+        }
+
+        .main-nav.active {
+          right: 0;
+        }
+
+        .main-nav ul {
+          flex-direction: column;
+        }
+
+        .main-nav li {
+          margin: 15px 0;
+        }
+
+        .main-nav a {
+          font-size: 1.1rem;
+        }
+
+        .category-tabs {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .category-tab {
+          width: 100%;
+          text-align: center;
+        }
+
+        .faq-category-title {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .faq-hero {
+          min-height: 250px;
+        }
+
+        .hero-content h1 {
+          font-size: 1.8rem;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .contact-cta h2 {
+          font-size: 1.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="image/Logo_HEAD.png" alt="Honda Logo" />
+        </a>
+
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <nav class="main-nav">
+          <ul>
+            <li><a href="/Trangchu/">Trang chủ</a></li>
+            <li><a href="/sanphamxemay/">Sản phẩm</a></li>
+            <li><a href="/dichvu/">Dịch vụ</a></li>
+            <li><a href="/khuyenmai/">Khuyến mãi</a></li>
+            <li>
+              <a href="/question/" class="active">Câu hỏi thường gặp</a>
+            </li>
+            <li><a href="/lienhe/">Liên hệ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="faq-hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Câu Hỏi Thường Gặp</h1>
+          <p>
+            Tìm câu trả lời cho mọi thắc mắc của bạn về sản phẩm, dịch vụ, phụ
+            tùng và lái xe an toàn
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <!-- Category Tabs -->
+        <div class="category-tabs" id="categoryTabs">
+          <div class="category-tab active" data-category="sales">Bán hàng</div>
+          <div class="category-tab" data-category="service">Dịch vụ</div>
+          <div class="category-tab" data-category="parts">Phụ tùng</div>
+          <div class="category-tab" data-category="safety">Lái xe an toàn</div>
+          <div class="category-tab" data-category="other">Khác</div>
+        </div>
+
+        <!-- FAQ Content -->
+        <div class="faq-container">
+          <!-- Sales Category -->
+          <div class="faq-category" id="sales">
+            <h3 class="faq-category-title">Bán hàng</h3>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Tôi cần chuẩn bị những giấy tờ gì khi mua xe?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Khi mua xe máy mới, bạn cần chuẩn bị:</p>
+                <ul>
+                  <li>Bản gốc CCCD và VNEID mức độ 2 (còn hiệu lực)</li>
+                  <li>Trên 18 tuổi (nếu trả góp)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Thời gian chờ nhận xe là bao lâu?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Thời gian chờ nhận xe tùy thuộc vào:</p>
+                <ul>
+                  <li>
+                    Mẫu xe và phiên bản bạn chọn (phổ thông thường có sẵn)
+                  </li>
+                  <li>
+                    Màu sắc yêu cầu (một số màu đặc biệt có thể phải đặt trước)
+                  </li>
+                  <li>
+                    Thời gian hoàn tất thủ tục (đặc biệt với trường hợp trả góp)
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Tôi có thể đổi trả xe nếu không hài lòng?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Theo chính sách của Honda Việt Nam:</p>
+                <ul>
+                  <li>
+                    Xe chỉ được đổi trả nếu có lỗi kỹ thuật từ nhà sản xuất
+                  </li>
+                  <li>Không áp dụng đổi trả do không hài lòng cá nhân</li>
+                  <li>
+                    Mọi khiếu nại sẽ được giải quyết theo chính sách bảo hành
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Chế độ bảo hành như thế nào?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Chế độ bảo hành chính hãng Honda:</p>
+                <ul>
+                  <li>
+                    Bảo hành 3 năm hoặc 30.000km (tùy điều kiện nào đến trước)
+                  </li>
+                  <li>Áp dụng cho tất cả các dòng xe máy Honda</li>
+                  <li>Bảo hành động cơ, khung xe và các hệ thống chính</li>
+                  <li>Không bao gồm các hư hỏng do va chạm, tự ý sửa chữa</li>
+                  <li>Phải bảo dưỡng định kỳ tại đại lý ủy quyền Honda</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service Category -->
+          <div class="faq-category" id="service" style="display: none">
+            <h3 class="faq-category-title">Dịch vụ</h3>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Lịch bảo dưỡng định kỳ như thế nào?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Lịch bảo dưỡng định kỳ khuyến cáo:</p>
+                <ul>
+                  <li>Lần đầu: 1.000km hoặc 1 tháng sau khi mua</li>
+                  <li>
+                    Định kỳ: 4.000km hoặc 6 tháng (tùy điều kiện nào đến trước)
+                  </li>
+                  <li>
+                    Xe sử dụng nhiều trong điều kiện khắc nghiệt nên bảo dưỡng
+                    thường xuyên hơn
+                  </li>
+                  <li>
+                    Luôn tuân thủ lịch bảo dưỡng trong sổ hướng dẫn sử dụng
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Tôi có thể bảo dưỡng xe ở đâu?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Bạn có thể bảo dưỡng xe tại:</p>
+                <ul>
+                  <li>Hệ thống đại lý ủy quyền Honda trên toàn quốc</li>
+                  <li>Trung tâm dịch vụ kỹ thuật Honda chính hãng</li>
+                  <li>Ưu tiên đặt lịch trước để tiết kiệm thời gian</li>
+                  <li>Mang theo sổ bảo hành và các giấy tờ liên quan</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Chi phí bảo dưỡng định kỳ khoảng bao nhiêu?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Chi phí bảo dưỡng phụ thuộc vào:</p>
+                <ul>
+                  <li>Loại xe và đời xe</li>
+                  <li>Các hạng mục cần bảo dưỡng</li>
+                  <li>Phụ tùng thay thế (nếu có)</li>
+                  <li>
+                    Thông thường từ 300.000 - 800.000 VNĐ tùy lần bảo dưỡng
+                  </li>
+                  <li>Luôn được báo giá trước khi thực hiện dịch vụ</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Xe tôi bị hư hỏng ngoài bảo hành, tôi phải làm gì?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Khi xe hư hỏng ngoài bảo hành:</p>
+                <ul>
+                  <li>Liên hệ đại lý Honda gần nhất để được kiểm tra</li>
+                  <li>Nhận báo giá chi tiết trước khi sửa chữa</li>
+                  <li>Sử dụng phụ tùng chính hãng để đảm bảo chất lượng</li>
+                  <li>Có thể tham khảo ý kiến từ nhiều trung tâm dịch vụ</li>
+                  <li>Giữ lại hóa đơn sửa chữa để theo dõi lịch sử xe</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Parts Category -->
+          <div class="faq-category" id="parts" style="display: none">
+            <h3 class="faq-category-title">Phụ tùng</h3>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Làm sao để nhận biết phụ tùng chính hãng Honda?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Cách nhận biết phụ tùng chính hãng:</p>
+                <ul>
+                  <li>Có logo Honda in rõ nét trên sản phẩm</li>
+                  <li>Bao bì nguyên seal, tem chống hàng giả của Honda</li>
+                  <li>Mã vạch và số part-number rõ ràng</li>
+                  <li>Chỉ được bán tại đại lý ủy quyền Honda</li>
+                  <li>Có phiếu bảo hành đi kèm (với một số phụ tùng)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Tôi có thể mua phụ tùng Honda ở đâu?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Bạn có thể mua phụ tùng chính hãng tại:</p>
+                <ul>
+                  <li>Hệ thống đại lý ủy quyền Honda trên toàn quốc</li>
+                  <li>Cửa hàng phụ tùng chính hãng Honda</li>
+                  <li>Mua online qua website chính thức của Honda Việt Nam</li>
+                  <li>Không nên mua phụ tùng trôi nổi trên thị trường</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Thời gian bảo hành phụ tùng thay thế là bao lâu?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Chính sách bảo hành phụ tùng:</p>
+                <ul>
+                  <li>Phụ tùng thay thế chính hãng: 6 tháng hoặc 10.000km</li>
+                  <li>Một số phụ tùng cao cấp: 12 tháng hoặc 20.000km</li>
+                  <li>Không bảo hành phụ tùng không chính hãng</li>
+                  <li>Phải xuất trình hóa đơn mua hàng khi bảo hành</li>
+                  <li>
+                    Không bảo hành các trường hợp hư hỏng do lắp đặt sai cách
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Tôi có thể tự thay thế phụ tùng tại nhà không?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Về việc tự thay thế phụ tùng:</p>
+                <ul>
+                  <li>
+                    Không khuyến khích tự thay thế nếu không có chuyên môn
+                  </li>
+                  <li>
+                    Một số phụ tùng đơn giản có thể tự thay (đèn, còi, gương...)
+                  </li>
+                  <li>
+                    Phụ tùng quan trọng nên để kỹ thuật viên Honda thực hiện
+                  </li>
+                  <li>Tự ý thay thế có thể làm mất hiệu lực bảo hành</li>
+                  <li>Luôn đọc kỹ hướng dẫn sử dụng trước khi thực hiện</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Safety Category -->
+          <div class="faq-category" id="safety" style="display: none">
+            <h3 class="faq-category-title">Lái xe an toàn</h3>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Những điều cần lưu ý khi lái xe an toàn?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Nguyên tắc lái xe an toàn:</p>
+                <ul>
+                  <li>Luôn đội mũ bảo hiểm đạt chuẩn</li>
+                  <li>Tuân thủ luật giao thông và biển báo</li>
+                  <li>Kiểm tra xe trước khi khởi hành (phanh, đèn, lốp...)</li>
+                  <li>Không sử dụng điện thoại khi lái xe</li>
+                  <li>Giữ khoảng cách an toàn với xe phía trước</li>
+                  <li>Không lái xe sau khi uống rượu bia</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Cách xử lý khi xe gặp sự cố trên đường?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Khi xe gặp sự cố:</p>
+                <ul>
+                  <li>Bình tĩnh, di chuyển xe vào lề đường an toàn</li>
+                  <li>Bật đèn cảnh báo nguy hiểm</li>
+                  <li>Liên hệ tổng đài cứu hộ Honda (1800 8001)</li>
+                  <li>Không tự ý sửa chữa nếu không có chuyên môn</li>
+                  <li>Nếu cần kéo xe, sử dụng dịch vụ chuyên nghiệp</li>
+                  <li>Luôn mang theo giấy tờ xe và bảo hiểm</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Làm thế nào để tiết kiệm nhiên liệu khi lái xe?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Mẹo lái xe tiết kiệm nhiên liệu:</p>
+                <ul>
+                  <li>Bảo dưỡng xe định kỳ đúng hạn</li>
+                  <li>Giữ tốc độ ổn định, tránh tăng tốc đột ngột</li>
+                  <li>Tắt máy khi dừng đèn đỏ lâu (trên 30 giây)</li>
+                  <li>Kiểm tra áp suất lốp thường xuyên</li>
+                  <li>Không chở quá tải trọng cho phép</li>
+                  <li>Sử dụng đúng loại nhiên liệu khuyến cáo</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span
+                  >Cách bảo quản xe khi không sử dụng trong thời gian dài?</span
+                >
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Bảo quản xe đúng cách:</p>
+                <ul>
+                  <li>Làm sạch xe trước khi cất giữ</li>
+                  <li>Đổ đầy bình xăng để tránh đọng nước</li>
+                  <li>Tháo bình ắc quy (nếu không sử dụng trên 1 tháng)</li>
+                  <li>Đặt xe ở nơi khô ráo, tránh ẩm ướt</li>
+                  <li>Che phủ bằng vải bạt chuyên dụng</li>
+                  <li>Khởi động và vận hành ngắn định kỳ (2 tuần/lần)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Other Category -->
+          <div class="faq-category" id="other" style="display: none">
+            <h3 class="faq-category-title">Khác</h3>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Động cơ eSP+ của SH350i (2021) có gì đặc biệt?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Trả lời:</p>
+                <ul>
+                  <li>
+                    SH350i được trang bị động cơ hoàn toàn mới eSP+, dung tích
+                    329,6cc, SOHC xy lanh đơn 4 van, phun xăng điện tử PGM-Fi,
+                    làm mát bằng dung dịch cho công suất tối đa 21,5kW tại 7.500
+                    vòng/phút và mô-men xoắn cực đại 31,8Nm tại 5.250 vòng/phút.
+                  </li>
+                  <li>
+                    Động cơ áp dụng công nghệ bộ tăng cam thủy lực, bơm giảm áp,
+                    xi lanh lệch, cò mổ con lăn và dây đai với cấu trúc mới nhằm
+                    giảm ma sát./li>
+                  </li>
+                  <li>
+                    Động cơ SH350i có đường kính xi-lanh 77,0 mm và hành trình
+                    piston 70,7 mm, tăng đường kính họng ga và đường kính van
+                    nạp, cổng nạp dốc hơn và cổng xả dạng thẳng, trục khuỷu có
+                    độ cứng cao nhưng khối lượng nhẹ, tối ưu hóa thời điểm đóng
+                    mở và độ mở của xu páp giúp làm tăng công suất động cơ.
+                  </li>
+                  <li>
+                    Động cơ sử dụng vòi phun dầu pít tông để làm mát như được sử
+                    dụng trên những mẫu xe hiệu suất cao khác như mẫu xe mô tô
+                    địa hình CRF450R (mẫu xe vốn được dành riêng cho những cuộc
+                    đua)
+                  </li>
+                  <li>
+                    Sử dụng cấu trúc trục cân bằng giúp giảm rung lắc không mong
+                    muốn do động cơ tạo ra.
+                  </li>
+                  <li>
+                    Động cơ của SH350i cũng được thiết kế hướng tới tiêu chuẩn
+                    khí thải Euro4*. Tất cả đã giúp đem lại hiệu quả nhiên liệu
+                    cao, công suất động cơ vượt trội, vận hành êm ái và thân
+                    thiện hơn với môi trường, đưa người dùng đến với những trải
+                    nghiệm lái đẳng cấp hơn.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Đèn Halogen và đèn LED khác nhau như thế nào?</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Trả lời:</p>
+                <ul>
+                  <li>
+                    Đèn Halogen sử dụng dây tóc vonfram để tạo ra ánh sáng. Loại
+                    đèn này sinh nhiệt cao, chi phí thay thế thấp và tiêu thụ
+                    điện năng lớn hơn so với LED.
+                  </li>
+                  <li>
+                    Đèn LED là công nghệ mới, phát sáng thông qua các diode nhỏ
+                    khi có dòng điện kích thích và tuổi thọ của đèn pha LED rất
+                    lâu.
+                  </li>
+                  <li>
+                    Nhìn chung mỗi loại đèn đều có ưu nhược điểm khác nhau.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                <span
+                  >Hệ thống phanh/thắng kết hợp (CBS) có đặc điểm gì nổi
+                  bật?</span
+                >
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Trả lời:</p>
+                <ul>
+                  <li>
+                    Phanh kết hợp hay còn gọi là phanh CBS, là tên viết tắt của
+                    từ tiếng anh: Combine Brake System
+                  </li>
+                  <li>
+                    Hệ thống phanh kết hợp là hệ thống giúp phân bổ lực phanh
+                    giữa bánh trước và bánh sau mà chỉ cần dùng phanh trái, giúp
+                    lực phanh được tốt hơn, giảm quãng đường di chuyển thêm của
+                    xe sau khi phanh. Chiếc xe trang bị hệ thống phanh CBS thì
+                    hệ thống phanh sẽ được hoạt động như sau:<br />
+                    + Phanh tay phải: Khi sử dụng tay phanh này, thì lực phanh
+                    chỉ tác động lên bánh xe phía trước bằng hệ thông phanh đĩa
+                    làm xe dừng lại, đặc điểm này giống với các dòng xe tay ga
+                    trên thị trường<br />
+                    + Phanh tay trái: Được trang bị hệ thống phanh CBS, cũng
+                    chính là điểm khác biệt của dòng xe tay ga hiện tại của
+                    Honda Việt Nam. Khi sử dụng phanh tay trái, lực phanh sẽ
+                    được phân bố cho cả bánh trước và bánh sau xe. Do đó, việc
+                    dừng xe cũng an toàn hơn và hiệu quả hơn
+                  </li>
+                  <li>
+                    Hệ thống này giúp cả người mới lái xe và người đã có kinh
+                    nghiệm có thể sử dụng rất dễ dàng và cực kỳ yên tâm với khả
+                    năng kiểm soát của phanh
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span
+                  >Honda có chương trình khuyến mãi thường xuyên không?</span
+                >
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Về chương trình khuyến mãi:</p>
+                <ul>
+                  <li>Honda thường có các chương trình khuyến mãi theo mùa</li>
+                  <li>Khuyến mãi đầu năm, cuối năm thường lớn nhất</li>
+                  <li>Theo dõi website và fanpage chính thức để cập nhật</li>
+                  <li>
+                    Mỗi đại lý có thể có chính sách riêng ngoài chương trình
+                    chung
+                  </li>
+                  <li>
+                    Khuyến mãi có thể bao gồm: giảm giá, quà tặng, trả góp ưu
+                    đãi
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA 
+    <section class="contact-cta">
+      <div class="container">
+        <h2>Không tìm thấy câu trả lời?</h2>
+        <p>
+          Đội ngũ hỗ trợ của Honda luôn sẵn sàng giải đáp mọi thắc mắc của bạn
+          24/7.
+        </p>
+        <a href="lienhe.html" class="btn btn-primary">Liên hệ hỗ trợ</a>
+      </div>
+    </section>-->
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <img
+              src="image/Logo_HEAD.png"
+              alt="Honda Logo"
+              class="footer-logo"
+            />
+            <p>Công Ty TNHH TM&DV Hùng Mạnh</p>
+            <div class="social-links">
+              <a href="https://www.facebook.com/hethongheadtrunghung"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://www.instagram.com/hethongheadtrunghung"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3>Dòng xe</h3>
+            <ul>
+              <li><a href="/sanphamxemay/">Xe tay ga</a></li>
+              <li><a href="/sanphamxemay/">Xe số</a></li>
+              <li><a href="/sanphamxemay/">Xe côn tay</a></li>
+              <li><a href="/sanphamxemay/">Xe phân khối lớn</a></li>
+              <li><a href="/sanphamxemay/">Xe điện</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Hỗ trợ</h3>
+            <ul>
+              <li><a href="/dichvu/baohanh/">Bảo hành xe máy</a></li>
+              <li><a href="/dichvu/baohanh/">Bảo dưỡng và sửa chữa</a></li>
+              <li><a href="/dichvu/sanphamphutung/">Phụ tùng chính hãng</a></li>
+              <li><a href="/question/">Câu hỏi thường gặp</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Liên hệ</h3>
+            <ul class="contact-info">
+              <li>
+                <i class="fas fa-phone-alt"></i>
+                <span>1900 636 712</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>cr@hungmanh.com.vn</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>cr_mt@hungmanh.com.vn</span>
+              </li>
+              <li>
+                <i class="fas fa-clock"></i>
+                <span>7:30 - 17:30 (Thứ 2 - CN)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById("mobile-menu");
+      const mainNav = document.querySelector(".main-nav");
+
+      menuToggle.addEventListener("click", function () {
+        this.classList.toggle("active");
+        mainNav.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking on a link
+      const navLinks = document.querySelectorAll(".main-nav a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          menuToggle.classList.remove("active");
+          mainNav.classList.remove("active");
+        });
+      });
+
+      // Header scroll effect
+      const header = document.querySelector(".main-header");
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 100) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // Back to Top button - SMOOTH SCROLL
+      const backToTop = document.querySelector(".back-to-top");
+      backToTop.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 300) {
+          backToTop.classList.add("active");
+        } else {
+          backToTop.classList.remove("active");
+        }
+      });
+
+      // FAQ Accordion
+      const faqItems = document.querySelectorAll(".faq-item");
+      faqItems.forEach((item) => {
+        const question = item.querySelector(".faq-question");
+        question.addEventListener("click", () => {
+          // Close all other items in the same category
+          const parentCategory = item.closest(".faq-category");
+          parentCategory.querySelectorAll(".faq-item").forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.classList.remove("active");
+            }
+          });
+          // Toggle current item
+          item.classList.toggle("active");
+        });
+      });
+
+      // Category Tabs
+      const categoryTabs = document.querySelectorAll(".category-tab");
+      const faqCategories = document.querySelectorAll(".faq-category");
+
+      categoryTabs.forEach((tab) => {
+        tab.addEventListener("click", function () {
+          // Update active tab
+          categoryTabs.forEach((t) => t.classList.remove("active"));
+          this.classList.add("active");
+
+          // Show corresponding category
+          const categoryId = this.getAttribute("data-category");
+          faqCategories.forEach((cat) => {
+            cat.style.display = cat.id === categoryId ? "block" : "none";
+          });
+
+          // Scroll to category
+          document.getElementById(categoryId).scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        });
+      });
+
+      // Search Functionality
+      const searchBox = document.querySelector(".search-box input");
+      const searchButton = document.querySelector(".search-box button");
+
+      searchButton.addEventListener("click", function () {
+        const searchTerm = searchBox.value.toLowerCase();
+        if (searchTerm.trim() === "") return;
+
+        let found = false;
+
+        // Search in all categories
+        faqCategories.forEach((category) => {
+          category.style.display = "block"; // Show all categories for search
+
+          const questions = category.querySelectorAll(".faq-question");
+          questions.forEach((q) => {
+            const questionText = q.textContent.toLowerCase();
+            if (questionText.includes(searchTerm)) {
+              found = true;
+              const item = q.closest(".faq-item");
+              item.classList.add("active");
+
+              // Scroll to first found item
+              if (!found) {
+                item.scrollIntoView({ behavior: "smooth", block: "center" });
+                found = true;
+              }
+            }
+          });
+        });
+
+        if (!found) {
+          alert("Không tìm thấy câu hỏi phù hợp với từ khóa: " + searchTerm);
+        }
+      });
+
+      // Allow search on Enter key
+      searchBox.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          searchButton.click();
+        }
+      });
+
+      // Smooth scroll for all links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 100,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
