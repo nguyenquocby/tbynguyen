@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Khuyến Mãi</title>
+    <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Reset & Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-color: #e40521;
+        --secondary-color: #333;
+        --light-color: #f8f9fa;
+        --dark-color: #212529;
+        --gray-color: #6c757d;
+        --light-gray: #e9ecef;
+        --transition: all 0.3s ease;
+      }
+      html {
+        scroll-behavior: smooth; /* Áp dụng cho toàn trang (nếu muốn) */
+      }
+      body {
+        font-family: "Montserrat", sans-serif;
+        line-height: 1.6;
+        color: var(--secondary-color);
+        overflow-x: hidden;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+      }
+
+      ul,
+      ol {
+        list-style-position: inside;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 25px;
+        border-radius: 25px;
+        font-weight: 500;
+        text-align: center;
+        transition: var(--transition);
+        cursor: pointer;
+        border: 2px solid transparent;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      .btn-primary:hover {
+        background-color: #c0041d;
+        border-color: #c0041d;
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: var(--dark-color);
+      }
+
+      .section-subtitle {
+        font-size: 1.1rem;
+        color: var(--gray-color);
+        margin-bottom: 20px;
+      }
+
+      .divider {
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+        margin: 0 auto;
+      }
+
+      /* Header */
+      .main-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        transition: var(--transition);
+      }
+
+      .main-header.scrolled {
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .main-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 40px;
+      }
+
+      /* Mobile Menu Toggle */
+      .menu-toggle {
+        display: none;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .menu-toggle .bar {
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background-color: var(--dark-color);
+        transition: all 0.3s ease;
+        left: 0;
+      }
+
+      .menu-toggle .bar:nth-child(1) {
+        top: 0;
+      }
+
+      .menu-toggle .bar:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .menu-toggle .bar:nth-child(3) {
+        bottom: 0;
+      }
+
+      .menu-toggle.active .bar:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        background-color: var(--primary-color);
+      }
+
+      .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active .bar:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+        background-color: var(--primary-color);
+      }
+
+      .main-nav ul {
+        list-style: none;
+        display: flex;
+      }
+
+      .main-nav li {
+        margin-left: 30px;
+      }
+
+      .main-nav a {
+        font-weight: 500;
+        color: var(--dark-color);
+        position: relative;
+      }
+
+      .main-nav a:after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: var(--transition);
+      }
+
+      .main-nav a:hover:after,
+      .main-nav a.active:after {
+        width: 100%;
+      }
+
+      .main-nav a.active {
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      /* Hero Banner */
+      .promotion-hero {
+        height: 50vh;
+        min-height: 300px;
+        background: rgb(202, 14, 14);
+        display: flex;
+        align-items: center;
+        margin-top: 80px;
+        color: white;
+        text-align: center;
+      }
+
+      .hero-content {
+        width: 100%;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      /* Filter Section */
+      .filter-section {
+        padding: 40px 0;
+        background-color: white;
+      }
+
+      .filter-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 30px;
+      }
+
+      .filter-group {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .filter-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .filter-group select {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid var(--light-gray);
+        border-radius: 25px;
+        background-color: var(--light-color);
+      }
+
+      /* Promotion Grid */
+      .promotion-section {
+        padding: 60px 0;
+        background-color: var(--light-color);
+      }
+
+      .promotion-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .promotion-card {
+        background-color: white;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+      }
+
+      .promotion-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .promotion-img {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .promotion-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .promotion-card:hover .promotion-img img {
+        transform: scale(1.05);
+      }
+
+      .promotion-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 25px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .promotion-content {
+        padding: 20px;
+        position: relative;
+      }
+
+      .promotion-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: var(--dark-color);
+      }
+
+      .promotion-desc {
+        color: var(--gray-color);
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+      }
+
+      .promotion-date {
+        display: flex;
+        align-items: center;
+        color: var(--gray-color);
+        font-size: 0.8rem;
+        margin-top: 15px;
+      }
+
+      .promotion-date i {
+        margin-right: 5px;
+      }
+
+      /* Pagination */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+      }
+
+      .pagination-list {
+        display: flex;
+        list-style: none;
+        gap: 10px;
+      }
+
+      .pagination-item a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: white;
+        color: var(--dark-color);
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .pagination-item a:hover,
+      .pagination-item.active a {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      /* Promotion Modal */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+      }
+
+      .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .promotion-modal {
+        background-color: white;
+        border-radius: 25px;
+        max-width: 800px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        transform: translateY(20px);
+        transition: var(--transition);
+      }
+
+      .modal-overlay.active .promotion-modal {
+        transform: translateY(0);
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 30px;
+        height: 30px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1;
+        border: none;
+      }
+
+      .modal-img {
+        height: 300px;
+        overflow: hidden;
+      }
+
+      .modal-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .modal-content {
+        padding: 30px;
+      }
+
+      .modal-title {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        color: var(--dark-color);
+      }
+
+      .modal-subtitle {
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+      }
+
+      .modal-date {
+        display: flex;
+        align-items: center;
+        color: var(--gray-color);
+        margin-bottom: 20px;
+      }
+
+      .modal-date i {
+        margin-right: 5px;
+      }
+
+      .modal-desc {
+        margin-bottom: 20px;
+        line-height: 1.8;
+      }
+
+      .modal-conditions {
+        margin-top: 30px;
+      }
+
+      .modal-conditions h4 {
+        margin-bottom: 15px;
+        color: var(--dark-color);
+      }
+
+      .modal-conditions ul {
+        margin-left: 20px;
+      }
+
+      .modal-conditions li {
+        margin-bottom: 10px;
+      }
+
+      /* Footer */
+      .main-footer {
+        background-color: var(--dark-color);
+        color: white;
+        padding: 60px 0 20px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .footer-col h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-col h3:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-logo {
+        margin-bottom: 20px;
+        display: block;
+        max-width: 150px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-links a {
+        width: 35px;
+        height: 35px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      .footer-col ul li {
+        list-style: none;
+        margin-bottom: 10px;
+      }
+
+      .footer-col ul a {
+        color: #adb5bd;
+        transition: var(--transition);
+      }
+
+      .footer-col ul a:hover {
+        color: var(--primary-color);
+        padding-left: 5px;
+      }
+
+      .contact-info li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .contact-info i {
+        margin-right: 10px;
+        color: var(--primary-color);
+        width: 20px;
+        text-align: center;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px 0;
+        text-align: center;
+        color: #adb5bd;
+        font-size: 0.9rem;
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease;
+        z-index: 999;
+      }
+
+      .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background-color: #c0041d;
+        transform: translateY(-5px);
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .hero-content h1 {
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .menu-toggle {
+          display: block;
+        }
+
+        .main-nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 80%;
+          max-width: 300px;
+          height: 100vh;
+          background-color: white;
+          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+          transition: var(--transition);
+          padding: 80px 20px 20px;
+          overflow-y: auto;
+        }
+
+        .main-nav.active {
+          right: 0;
+        }
+
+        .main-nav ul {
+          flex-direction: column;
+        }
+
+        .main-nav li {
+          margin: 15px 0;
+        }
+
+        .main-nav a {
+          font-size: 1.1rem;
+        }
+
+        .filter-group {
+          min-width: 100%;
+        }
+
+        .modal-img {
+          height: 200px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .promotion-hero {
+          min-height: 250px;
+        }
+
+        .hero-content h1 {
+          font-size: 1.8rem;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .promotion-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .modal-title {
+          font-size: 1.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container">
+        <a href="/Trangchu/" class="logo">
+          <img
+            src="/sanphamxemay/image/banner/Logo_HEAD.png"
+            alt="Honda Logo"
+          />
+        </a>
+
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <nav class="main-nav">
+          <ul>
+            <li><a href="/Trangchu/">Trang chủ</a></li>
+            <li><a href="/gioithieu/">Giới thiệu</a></li>
+            <li><a href="/sanphamxemay/">Sản phẩm</a></li>
+            <li><a href="/dichvu/">Dịch vụ</a></li>
+            <li><a href="/tintuc/">Tin tức</a></li>
+            <li><a href="/khuyenmai/" class="active">Khuyến mãi</a></li>
+            <li><a href="/lienhe/">Liên hệ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="promotion-hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Chương Trình Khuyến Mãi</h1>
+          <p>
+            Ưu đãi đặc biệt dành cho khách hàng mua xe máy Honda tại Hệ Thống
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter Section 
+    <section class="filter-section">
+      <div class="container">
+        <div class="filter-container">
+          <div class="filter-group">
+            <label for="category">Loại xe</label>
+            <select id="category">
+              <option value="all">Tất cả</option>
+              <option value="scooter">Xe tay ga</option>
+              <option value="sport">Xe số</option>
+              <option value="underbone">Xe côn tay</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="price">Mức giá</label>
+            <select id="price">
+              <option value="all">Tất cả</option>
+              <option value="under20">Dưới 20 triệu</option>
+              <option value="20-40">20 - 40 triệu</option>
+              <option value="over40">Trên 40 triệu</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="promotion">Loại khuyến mãi</label>
+            <select id="promotion">
+              <option value="all">Tất cả</option>
+              <option value="discount">Giảm giá</option>
+              <option value="gift">Quà tặng</option>
+              <option value="installment">Trả góp</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="sort">Sắp xếp</label>
+            <select id="sort">
+              <option value="newest">Mới nhất</option>
+              <option value="oldest">Cũ nhất</option>
+              <option value="discount">Giảm nhiều nhất</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Promotion Section -->
+    <section class="promotion-section">
+      <div class="container">
+        <!---<div class="section-header">
+          <h2 class="section-title">Chương Trình Khuyến Mãi</h2>
+          <p class="section-subtitle">
+            Ưu đãi hấp dẫn dành cho các dòng xe Honda
+          </p>
+          <div class="divider"></div>
+        </div>-->
+
+        <div class="promotion-grid">
+          <!-- Promotion 1 -->
+          <div class="promotion-card" data-promo="1">
+            <div class="promotion-img">
+              <img src="image/DVPT01062025.jpg" alt="Khuyến mãi Honda" />
+              <div class="promotion-badge">Đang diễn ra</div>
+            </div>
+            <div class="promotion-content">
+              <h3 class="promotion-title">
+                Chốt Xế Liền Tay, Miễn Phí Dầu Ngay
+              </h3>
+              <p class="promotion-desc">
+                Ưu đãi dành cho tất cả khách hàng mua xe Honda bất kỳ sau khi
+                kích hoạt bảo hành
+              </p>
+              <div class="promotion-date">
+                <i class="far fa-calendar-alt"></i> 01/06 - 31/07/2025
+              </div>
+            </div>
+          </div>
+          <!-- Promotion 2 -->
+          <div class="promotion-card" data-promo="2">
+            <div class="promotion-img">
+              <img src="image/EVENT01062025.jpg" alt="Khuyến mãi Honda" />
+              <div class="promotion-badge">Đang diễn ra</div>
+            </div>
+            <div class="promotion-content">
+              <h3 class="promotion-title">Hè Sống Động, Bung Ưu Đãi</h3>
+              <p class="promotion-desc">
+                Ưu đãi dành cho tất cả khách hàng mua xe Honda Vario 160, Honda
+                Winner X, Honda CBR150R
+              </p>
+              <div class="promotion-date">
+                <i class="far fa-calendar-alt"></i> 01/06 - 30/06/2025
+              </div>
+            </div>
+          </div>
+          <!-- Promotion 3 -->
+          <div class="promotion-card" data-promo="3">
+            <div class="promotion-img">
+              <img src="image/MXNQ052025.jpg" alt="Khuyến mãi Honda" />
+              <div class="promotion-badge">Đang diễn ra</div>
+            </div>
+            <div class="promotion-content">
+              <h3 class="promotion-title">Mua Xe Mới, Quà Nhận Ngay</h3>
+              <p class="promotion-desc">
+                Ưu đãi dành cho tất cả khách hàng mua xe tại Hệ Thống HEAD Trung
+                Hùng
+              </p>
+              <div class="promotion-date">
+                <i class="far fa-calendar-alt"></i> 01/05 - 30/06/2025
+              </div>
+            </div>
+          </div>
+
+          <!-- Promotion 4 -->
+          <div class="promotion-card" data-promo="4">
+            <div class="promotion-img">
+              <img src="image/head.jpg" alt="Khuyến mãi Honda" />
+              <div class="promotion-badge">Đã kết thúc</div>
+            </div>
+            <div class="promotion-content">
+              <h3 class="promotion-title">Vượt Giới Hạn, Bung Khí Chất</h3>
+              <p class="promotion-desc">
+                Ưu đãi đặc biệt khi mua Honda Vario160, Honda Winner X, Honda
+                CBR150R
+              </p>
+              <div class="promotion-date">
+                <i class="far fa-calendar-alt"></i> 01/04 - 31/05/2025
+              </div>
+            </div>
+          </div>
+
+          <!-- Promotion 5 -->
+          <div class="promotion-card" data-promo="5">
+            <div class="promotion-img">
+              <img src="image/winner.jpg" alt="Khuyến mãi Honda" />
+              <div class="promotion-badge">Đang diễn ra</div>
+            </div>
+            <div class="promotion-content">
+              <h3 class="promotion-title">Ưu Đãi Đỉnh,Định Chất X</h3>
+              <p class="promotion-desc">
+                Khi mua Honda Winner X hỗ trợ lệ phí đăng ký 4 triệu hoặc trả
+                góp 0%
+              </p>
+              <div class="promotion-date">
+                <i class="far fa-calendar-alt"></i> 01/04 - 30/06/2025
+              </div>
+            </div>
+          </div>
+
+          <!-- Promotion 6 -->
+          <div class="promotion-card" data-promo="6">
+            <div class="promotion-img">
+              <img src="image/icone.jpg" alt="Khuyến mãi Honda" />
+              <div class="promotion-badge">Đã kết thúc</div>
+            </div>
+            <div class="promotion-content">
+              <h3 class="promotion-title">Xe Xịn Tem Xinh,Tự Tin Lướt Phố</h3>
+              <p class="promotion-desc">
+                100 khách hàng sở hữu Honda ICON e đầu tiên
+              </p>
+              <div class="promotion-date">
+                <i class="far fa-calendar-alt"></i> 04/04 - 31/05/2025
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <ul class="pagination-list">
+            <li class="pagination-item">
+              <a href="#"><i class="fas fa-chevron-left"></i></a>
+            </li>
+            <li class="pagination-item active">
+              <a href="#">1</a>
+            </li>
+            <li class="pagination-item">
+              <a href="#">2</a>
+            </li>
+            <li class="pagination-item">
+              <a href="#">3</a>
+            </li>
+            <li class="pagination-item">
+              <a href="#"><i class="fas fa-chevron-right"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Promotion Modals -->
+    <!-- Modal 1 -->
+    <div class="modal-overlay" id="promoModal1">
+      <div class="promotion-modal">
+        <button class="modal-close">&times;</button>
+        <div class="modal-img">
+          <img src="image/DVPT01062025.jpg" alt="Khuyến mãi Honda" />
+        </div>
+        <div class="modal-content">
+          <h2 class="modal-title">Chốt Xế Liền Tay, Miễn Phí Dầu Ngay</h2>
+          <p class="modal-subtitle">
+            Ưu đãi dành cho tất cả khách hàng mua xe Honda bất kỳ sau khi kích
+            hoạt bảo hành
+          </p>
+          <div class="modal-date">
+            <i class="far fa-calendar-alt"></i> 01/06 - 31/07/2025
+          </div>
+          <div class="modal-desc">
+            <p>
+              <strong
+                >Nhận ngay voucher thay dầu cao cấp ngay khi kích hoạt bảo hành
+                “xế” mới trên ứng dụng My Honda+💯</strong
+              ><br />
+              Khách hàng đến các HEAD trên toàn quốc để mua xe máy mới và kích
+              hoạt bảo hành trên ứng dụng My Honda+ sẽ nhận được một E-voucher
+              thay dầu động cơ miễn phí sử dụng trong lần làm kiểm tra định kỳ
+              cho xe.
+            </p>
+          </div>
+          <div class="modal-conditions">
+            <h4>Điều kiện áp dụng:</h4>
+            <ul>
+              <li>Áp dụng cho khách hàng mua xe mới từ 01/06 đến 31/07/2025</li>
+              <li>
+                CTKM áp dụng 1 lần/1 xe và voucher có giá trị sử dụng trong vòng
+                6 tháng kể từ ngày nhận.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 2 -->
+    <div class="modal-overlay" id="promoModal2">
+      <div class="promotion-modal">
+        <button class="modal-close">&times;</button>
+        <div class="modal-img">
+          <img src="image/EVENT01062025.jpg" alt="Khuyến mãi Honda" />
+        </div>
+        <div class="modal-content">
+          <h2 class="modal-title">Hè Sống Động, Bung ƯU Đãi</h2>
+          <p class="modal-subtitle">
+            Ưu đãi dành cho tất cả khách hàng mua xe Honda Vario 160/Honda
+            Winenr X/ Honda CBR150R
+          </p>
+          <div class="modal-date">
+            <i class="far fa-calendar-alt"></i> 01/06 - 30/06/2025
+          </div>
+          <div class="modal-desc">
+            <p>
+              <strong
+                >Hệ Thống HEAD Trung Hùng triển khai chương trình khuyến mãi đặc
+                biệt</strong
+              ><br />
+              Tặng ngay 3 triệu đồng cho dòng xe Honda Vario 160<br />
+              Tặng ngay 5 triệu đồng cho dòng xe Honda Winner X<br />
+              Tặng ngay 7 triệu đồng cho dòng xe Honda CBR150R.<br />
+              Đây là cơ hội tốt để sở hữu chiếc xe tay ga đình đám với mức giá
+              ưu đãi nhất trong năm.
+            </p>
+            <p>
+              Chương trình áp dụng cho tất cả các phiên bản Honda Vario 160,
+              Honda Winner X, Honda CBR150R hiện đang được phân phối chính hãng
+              tại hệ thống HEAD Trung Hùng.
+            </p>
+          </div>
+          <div class="modal-conditions">
+            <h4>Điều kiện áp dụng:</h4>
+            <ul>
+              <li>Áp dụng cho khách hàng mua xe mới từ 01/06 đến 30/06/2025</li>
+              <li>Mỗi xe chỉ được áp dụng 1 lần/ 1 khuyến mãi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 3 -->
+    <div class="modal-overlay" id="promoModal3">
+      <div class="promotion-modal">
+        <button class="modal-close">&times;</button>
+        <div class="modal-img">
+          <img src="image/MXNQ052025.jpg" alt="Khuyến mãi Honda" />
+        </div>
+        <div class="modal-content">
+          <h2 class="modal-title">Mua Xe Mới, Quà Nhận Ngay</h2>
+          <p class="modal-subtitle">
+            Ưu đãi dành cho tất cả khách hàng mua xe tại HEAD
+          </p>
+          <div class="modal-date">
+            <i class="far fa-calendar-alt"></i> 01/05 - 30/06/2025
+          </div>
+          <div class="modal-desc">
+            <p>
+              <strong
+                >Khách hàng khi mua xe Honda bất kỳ tại Hệ Thống HEAD Trung Hùng
+                nhận ngay</strong
+              ><br />
+              01 Mũ Bảo Hiểm<br />
+              01 Áo Mưa<br />
+            </p>
+          </div>
+          <div class="modal-conditions">
+            <h4>Điều kiện áp dụng:</h4>
+            <ul>
+              <li>Áp dụng cho khách hàng mua xe mới từ 01/05 đến 30/06/2025</li>
+              <li>Quà tặng không có giá trị quy đổi thành tiền mặt</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 4 -->
+    <div class="modal-overlay" id="promoModal4">
+      <div class="promotion-modal">
+        <button class="modal-close">&times;</button>
+        <div class="modal-img">
+          <img src="image/head.jpg" alt="Khuyến mãi Honda" />
+        </div>
+        <div class="modal-content">
+          <h2 class="modal-title">Vượt Giới Hạn, Bung Khí Chất</h2>
+          <p class="modal-subtitle">
+            Ưu đãi đặc biệt khi mua Honda Vario160, Honda Winner X, Honda
+            CBR150R
+          </p>
+          <div class="modal-date">
+            <i class="far fa-calendar-alt"></i> 01/04 - 31/05/2025
+          </div>
+          <div class="modal-desc">
+            <p>
+              <strong
+                >Hệ Thống HEAD Trung Hùng triển khai chương trình khuyến mãi đặc
+                biệt</strong
+              ><br />
+              Tặng ngay 3 triệu đồng cho dòng xe Honda Vario 160<br />
+              Tặng ngay 5 triệu đồng cho dòng xe Honda Winner X<br />
+              Tặng ngay 7 triệu đồng cho dòng xe Honda CBR150R.<br />
+              Đây là cơ hội tốt để sở hữu chiếc xe tay ga đình đám với mức giá
+              ưu đãi nhất trong năm.
+            </p>
+            <p>
+              Chương trình áp dụng cho tất cả các phiên bản Honda Vario 160,
+              Honda Winner X, Honda CBR150R hiện đang được phân phối chính hãng
+              tại hệ thống HEAD Trung Hùng.
+            </p>
+          </div>
+          <div class="modal-conditions">
+            <h4>Điều kiện áp dụng:</h4>
+            <ul>
+              <li>Áp dụng cho khách hàng mua xe mới từ 01/04 đến 31/05/2025</li>
+              <li>Mỗi xe chỉ được áp dụng 1 lần/ 1 khuyến mãi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 5 -->
+    <div class="modal-overlay" id="promoModal5">
+      <div class="promotion-modal">
+        <button class="modal-close">&times;</button>
+        <div class="modal-img">
+          <img src="image/winner.jpg" alt="Khuyến mãi Honda" />
+        </div>
+        <div class="modal-content">
+          <h2 class="modal-title">Ưu Đãi Đỉnh, Định Chất X</h2>
+          <p class="modal-subtitle">Khi mua Honda Winner X</p>
+          <div class="modal-date">
+            <i class="far fa-calendar-alt"></i> 01/04 - 30/06/2025
+          </div>
+          <div class="modal-desc">
+            <p>
+              Nhằm tri ân khách hàng, Honda Việt Nam triển khai chương trình hỗ
+              trợ lệ phí đăng ký <strong>4 triệu đồng</strong> hoặc trả góp với
+              lãi suất <strong>0%</strong> khi mua xe Honda Winner X.
+            </p>
+          </div>
+          <div class="modal-conditions">
+            <h4>Điều kiện áp dụng:</h4>
+            <ul>
+              <li>Áp dụng cho tất cả các phiên bản Honda Winner X</li>
+              <li>Khách hàng mua xe từ 01/04 đến 30/06/2025</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 6 -->
+    <div class="modal-overlay" id="promoModal6">
+      <div class="promotion-modal">
+        <button class="modal-close">&times;</button>
+        <div class="modal-img">
+          <img src="image/icone.jpg" alt="Khuyến mãi Honda" />
+        </div>
+        <div class="modal-content">
+          <h2 class="modal-title">Xe Xịn Tem Xinh, Tự Tin Lướt Phố</h2>
+          <p class="modal-subtitle">
+            100 khách hàng đầu tiên mua xe Honda ICON e
+          </p>
+          <div class="modal-date">
+            <i class="far fa-calendar-alt"></i> 04/04 - 31/05/2025
+          </div>
+          <div class="modal-desc">
+            <p>
+              Trong 100 khách hàng đầu tiên sở hữu Honda ICON e trên toàn quốc
+              sẽ nhận ngay
+            </p>
+            <p>01 Mũ Bảo Hiểm</p>
+            <p>01 Bộ Tem dán độc quyền</p>
+          </div>
+          <div class="modal-conditions">
+            <h4>Điều kiện áp dụng:</h4>
+            <ul>
+              <li>Áp dụng cho các phiên bản Honda ICON e</li>
+              <li>100 khách hàng đăng ký đầu tiên</li>
+              <li>Chương trình có thể kết thúc sớm khi đã đủ 100 khách hàng</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <img
+              src="/sanphamxemay/image/banner/Logo_HEAD.png"
+              alt="Honda Logo"
+              class="footer-logo"
+            />
+            <p>Công Ty TNHH TM&DV Hùng Mạnh</p>
+            <div class="social-links">
+              <a href="https://www.facebook.com/hethongheadtrunghung"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://www.instagram.com/hethongheadtrunghung"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3>Dòng xe</h3>
+            <ul>
+              <li><a href="/sanphamxemay/">Xe tay ga</a></li>
+              <li><a href="/sanphamxemay/">Xe số</a></li>
+              <li><a href="/sanphamxemay/">Xe côn tay</a></li>
+              <li><a href="/sanphamxemay/">Xe phân khối lớn</a></li>
+              <li><a href="/sanphamxemay/">Xe điện</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Khuyến mãi</h3>
+            <ul>
+              <li><a href="/khuyenmai/">Khuyến mãi</a></li>
+              <li><a href="/dichvu/">Dịch Vụ</a></li>
+              <li>
+                <a href="/sanphamxemay/tragop.html">Chương trình trả góp</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Liên hệ</h3>
+            <ul class="contact-info">
+              <li>
+                <i class="fas fa-phone-alt"></i>
+                <span>1900 636 712</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>cr@hungmanh.com.vn</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>cr_mt@hungmanh.com.vn</span>
+              </li>
+              <li>
+                <i class="fas fa-clock"></i>
+                <span>7:30 - 17:30 (Thứ 2 - CN)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById("mobile-menu");
+      const mainNav = document.querySelector(".main-nav");
+
+      menuToggle.addEventListener("click", function () {
+        this.classList.toggle("active");
+        mainNav.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking on a link
+      const navLinks = document.querySelectorAll(".main-nav a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          menuToggle.classList.remove("active");
+          mainNav.classList.remove("active");
+        });
+      });
+
+      // Header scroll effect
+      const header = document.querySelector(".main-header");
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 100) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // Back to Top button
+      const backToTop = document.querySelector(".back-to-top");
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 300) {
+          backToTop.classList.add("active");
+        } else {
+          backToTop.classList.remove("active");
+        }
+      });
+
+      // Promotion Modal - FIXED VERSION
+      document.querySelectorAll(".promotion-card").forEach((card) => {
+        card.addEventListener("click", function (e) {
+          e.preventDefault();
+          const promoId = this.getAttribute("data-promo");
+          const modal = document.getElementById(`promoModal${promoId}`);
+          if (modal) {
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
+          }
+        });
+      });
+
+      // Close buttons - FIXED VERSION
+      document.querySelectorAll(".modal-close").forEach((button) => {
+        button.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          this.closest(".modal-overlay").classList.remove("active");
+          document.body.style.overflow = "auto";
+        });
+      });
+
+      // Close modal when clicking outside - FIXED VERSION
+      document.querySelectorAll(".modal-overlay").forEach((modal) => {
+        modal.addEventListener("click", function (e) {
+          if (e.target === this) {
+            this.classList.remove("active");
+            document.body.style.overflow = "auto";
+          }
+        });
+      });
+
+      // Pagination - FIXED VERSION
+      document
+        .querySelectorAll(".pagination-item:not(.active) a")
+        .forEach((item) => {
+          item.addEventListener("click", function (e) {
+            e.preventDefault();
+            // Remove active class from all items
+            document.querySelectorAll(".pagination-item").forEach((el) => {
+              el.classList.remove("active");
+            });
+            // Add active class to clicked item
+            this.parentElement.classList.add("active");
+
+            // Here you would normally load new content via AJAX or similar
+            // For demo, we'll just scroll to top
+            window.scrollTo({
+              top: document.querySelector(".promotion-section").offsetTop - 100,
+              behavior: "smooth",
+            });
+          });
+        });
+
+      // Filter functionality
+      const filterCategory = document.getElementById("category");
+      const filterPrice = document.getElementById("price");
+      const filterPromotion = document.getElementById("promotion");
+      const filterSort = document.getElementById("sort");
+
+      [filterCategory, filterPrice, filterPromotion, filterSort].forEach(
+        (filter) => {
+          filter.addEventListener("change", function () {
+            // Filter logic would go here
+            console.log("Filtering by:", this.id, this.value);
+            // In a real implementation, you would filter the promotion cards here
+          });
+        }
+      );
+    </script>
+  </body>
+</html>
