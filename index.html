@@ -23,7 +23,7 @@
       }
 
       /* Video Background */
-      .video-background {
+      .video-container {
         position: fixed;
         top: 0;
         left: 0;
@@ -33,9 +33,25 @@
         overflow: hidden;
       }
 
-      .video-background video {
+      .video-background {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         min-width: 100%;
         min-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: cover;
+      }
+
+      .fallback-image {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
       }
 
@@ -208,10 +224,12 @@
       }
 
       h1 {
-        font-size: 3rem;
+        font-size: 4rem;
         margin-bottom: 20px;
         text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        color: white;
+        background: linear-gradient(135deg, #ff0000, #ff6b6b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         animation: glow 2s infinite alternate;
       }
 
@@ -352,7 +370,7 @@
           font-size: 0.9rem;
         }
 
-        .video-background video {
+        .video-background {
           object-position: center;
         }
       }
@@ -374,13 +392,31 @@
           font-size: 1.2rem;
         }
       }
+
+      /* Fallback for browsers that don't support video */
+      .no-video .video-background {
+        display: none;
+      }
+
+      .no-video .fallback-image {
+        display: block;
+      }
     </style>
   </head>
   <body>
-    <!-- Video Background -->
-    <div class="video-background">
-      <video autoplay muted loop>
+    <!-- Video Background with Fallback -->
+    <div class="video-container">
+      <video class="video-background" autoplay muted loop playsinline>
         <source src="image/VIDEO/TVC.mp4" type="video/mp4" />
+        <!-- Additional video formats for better browser support -->
+        <source src="image/VIDEO/TVC.webm" type="video/webm" />
+        <source src="image/VIDEO/TVC.ogg" type="video/ogg" />
+        <!-- Fallback image -->
+        <img
+          class="fallback-image"
+          src="image/VIDEO/cover.jpg"
+          alt="Background Image"
+        />
       </video>
       <div class="overlay"></div>
     </div>
@@ -388,7 +424,7 @@
     <!-- Header -->
     <header>
       <img
-        src="/sanphamxemay/image/banner/Logo_HEAD.png"
+        src="sanphamxemay/image/banner/Logo_HEAD.png"
         alt="Logo"
         class="logo"
       />
@@ -431,28 +467,49 @@
         Hệ thống HEAD Trung Hùng – chuyên cung cấp xe máy Honda chính hãng, dịch
         vụ bảo dưỡng chuyên nghiệp và trải nghiệm khách hàng tuyệt vời.
       </p>
-      <a href="/Trangchu/" class="btn">Trải nghiệm ngay</a>
+      <a href="/Trangchu/" class="btn">Bắt Đầu Ngay</a>
     </div>
 
     <!-- Footer -->
     <footer>
       <div class="social-icons">
-        <a href="https://www.facebook.com/hethongheadtrunghung"
+        <a href="https://www.facebook.com/hethongheadtrunghung" target="_blank"
           ><i class="fab fa-facebook-f"></i
         ></a>
-        <a href="https://www.youtube.com/@HethongHEADTrungHung"
+        <a href="https://www.youtube.com/@HethongHEADTrungHung" target="_blank"
           ><i class="fab fa-youtube"></i
         ></a>
-        <a href="https://www.instagram.com/hethongheadtrunghung"
+        <a href="https://www.instagram.com/hethongheadtrunghung" target="_blank"
           ><i class="fab fa-instagram"></i
         ></a>
-        <a href="https://www.tiktok.com/@hethongheadtrunghung"
+        <a href="https://www.tiktok.com/@hethongheadtrunghung" target="_blank"
           ><i class="fab fa-tiktok"></i
         ></a>
       </div>
     </footer>
 
     <script>
+      // Detect if browser supports HTML5 video
+      function supportsVideo() {
+        return !!document.createElement("video").canPlayType;
+      }
+
+      // Apply no-video class if video is not supported
+      if (!supportsVideo()) {
+        document.querySelector(".video-container").classList.add("no-video");
+      } else {
+        // Check if video can play
+        const video = document.querySelector(".video-background");
+        video.addEventListener("error", function () {
+          document.querySelector(".video-container").classList.add("no-video");
+        });
+
+        // For iOS - check if video can autoplay
+        video.play().catch(function (error) {
+          document.querySelector(".video-container").classList.add("no-video");
+        });
+      }
+
       // Mobile Menu Toggle
       const menuBtn = document.querySelector(".menu-btn");
       const mobileMenu = document.querySelector(".mobile-menu");
