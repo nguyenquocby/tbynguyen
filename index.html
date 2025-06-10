@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Thêm meta quan trọng cho iOS -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>Trang Website Hiện Đại</title>
     <link
       rel="stylesheet"
@@ -406,17 +409,42 @@
       .no-video .fallback-image {
         display: block;
       }
+      .ios-interaction-message {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 100;
+        color: white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .ios-interaction-message.show {
+        display: flex;
+      }
     </style>
   </head>
   <body>
     <!-- Video Background with Fallback -->
     <div class="video-container">
-      <video class="video-background" autoplay muted loop playsinline>
+      <video
+        class="video-background"
+        autoplay
+        muted
+        loop
+        playsinline
+        webkit-playsinline
+      >
         <source src="image/VIDEO/TVC.mp4" type="video/mp4" />
-        <!-- Additional video formats for better browser support -->
         <source src="image/VIDEO/TVC.webm" type="video/webm" />
         <source src="image/VIDEO/TVC.ogg" type="video/ogg" />
-        <!-- Fallback image -->
         <img
           class="fallback-image"
           src="image/VIDEO/cover.jpg"
@@ -424,6 +452,15 @@
         />
       </video>
       <div class="overlay"></div>
+    </div>
+
+    <div class="ios-interaction-message" id="iosMessage">
+      <h2>Vui lòng tương tác để phát video</h2>
+      <p>
+        Trên thiết bị của bạn, video chỉ phát sau khi có tương tác. Vui lòng
+        chạm vào màn hình để tiếp tục.
+      </p>
+      <button id="startVideoBtn" class="btn">Bắt đầu</button>
     </div>
 
     <!-- Header -->
@@ -494,6 +531,90 @@
     </footer>
 
     <script>
+      // Hàm kiểm tra thiết bị iOS
+      function isIOS() {
+        return (
+          /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+          (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+        );
+      }
+
+      // Hàm kiểm tra video
+      async function checkVideoSupport() {
+        const videoContainer = document.querySelector(".video-container");
+        const video = document.querySelector(".video-background");
+        const iosMessage = document.getElementById("iosMessage");
+
+        // 1. Kiểm tra trình duyệt có hỗ trợ video không
+        if (!document.createElement("video").canPlayType) {
+          videoContainer.classList.add("no-video");
+          return;
+        }
+
+        // 2. Xử lý riêng cho iOS
+        if (isIOS()) {
+          // Hiển thị thông báo yêu cầu tương tác
+          iosMessage.classList.add("show");
+
+          // Khi người dùng tương tác
+          document
+            .getElementById("startVideoBtn")
+            .addEventListener("click", async () => {
+              try {
+                // Thử phát video
+                await video.play();
+                iosMessage.classList.remove("show");
+              } catch (e) {
+                // Nếu vẫn lỗi, chuyển sang hình ảnh
+                videoContainer.classList.add("no-video");
+                iosMessage.classList.remove("show");
+              }
+            });
+
+          // Timeout nếu người dùng không tương tác
+          setTimeout(() => {
+            if (iosMessage.classList.contains("show")) {
+              videoContainer.classList.add("no-video");
+              iosMessage.classList.remove("show");
+            }
+          }, 5000);
+
+          return;
+        }
+
+        // 3. Xử lý cho các trình duyệt khác
+        try {
+          video.muted = true; // Luôn mute để tăng khả năng autoplay
+          const playPromise = video.play();
+
+          if (playPromise !== undefined) {
+            await playPromise.catch((e) => {
+              videoContainer.classList.add("no-video");
+            });
+          }
+        } catch (e) {
+          videoContainer.classList.add("no-video");
+        }
+
+        // 4. Kiểm tra sau khi metadata được tải
+        video.addEventListener("loadedmetadata", function () {
+          if (isNaN(video.duration)) {
+            videoContainer.classList.add("no-video");
+          }
+        });
+
+        // 5. Kiểm tra sau 3 giây nếu video không phát
+        setTimeout(function () {
+          if (video.readyState < 3) {
+            videoContainer.classList.add("no-video");
+          }
+        }, 3000);
+      }
+
+      // Gọi hàm kiểm tra khi trang tải
+      document.addEventListener("DOMContentLoaded", checkVideoSupport);
+
+      // Phần JavaScript còn lại giữ nguyên
       // Kiểm tra hỗ trợ video và khả năng phát
       function checkVideoSupport() {
         const videoContainer = document.querySelector(".video-container");
