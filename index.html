@@ -46,15 +46,20 @@
       }
 
       .fallback-image {
-        display: none;
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        display: none; /* Ẩn ban đầu */
       }
-
+      .no-video .fallback-image {
+        display: block; /* Hiển thị khi video không hoạt động */
+      }
+      .no-video .video-background {
+        display: none; /* Ẩn video khi không hoạt động */
+      }
       .overlay {
         position: absolute;
         top: 0;
@@ -489,26 +494,52 @@
     </footer>
 
     <script>
-      // Detect if browser supports HTML5 video
-      function supportsVideo() {
-        return !!document.createElement("video").canPlayType;
-      }
-
-      // Apply no-video class if video is not supported
-      if (!supportsVideo()) {
-        document.querySelector(".video-container").classList.add("no-video");
-      } else {
-        // Check if video can play
+      // Kiểm tra hỗ trợ video và khả năng phát
+      function checkVideoSupport() {
+        const videoContainer = document.querySelector(".video-container");
         const video = document.querySelector(".video-background");
+
+        // Kiểm tra xem trình duyệt có hỗ trợ video HTML5 không
+        const supportsVideo = !!document.createElement("video").canPlayType;
+
+        if (!supportsVideo) {
+          videoContainer.classList.add("no-video");
+          return;
+        }
+
+        // Kiểm tra nếu video không thể tải
         video.addEventListener("error", function () {
-          document.querySelector(".video-container").classList.add("no-video");
+          videoContainer.classList.add("no-video");
         });
 
-        // For iOS - check if video can autoplay
-        video.play().catch(function (error) {
-          document.querySelector(".video-container").classList.add("no-video");
+        // Kiểm tra cho iOS - thử phát video
+        const playPromise = video.play();
+
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            videoContainer.classList.add("no-video");
+          });
+        }
+
+        // Kiểm tra sau khi metadata được tải
+        video.addEventListener("loadedmetadata", function () {
+          // Nếu thời lượng video là NaN, có thể video không tải được
+          if (isNaN(video.duration)) {
+            videoContainer.classList.add("no-video");
+          }
         });
+
+        // Kiểm tra sau 3 giây nếu video không bắt đầu phát
+        setTimeout(function () {
+          if (video.readyState < 3) {
+            // HAVE_FUTURE_DATA = 3
+            videoContainer.classList.add("no-video");
+          }
+        }, 3000);
       }
+
+      // Gọi hàm kiểm tra khi trang tải
+      document.addEventListener("DOMContentLoaded", checkVideoSupport);
 
       // Mobile Menu Toggle
       const menuBtn = document.querySelector(".menu-btn");
