@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="vi">
   <head>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang Video Bìa</title>
+    <title>Trang Website Hiện Đại</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <style>
+      /* Reset CSS */
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: "Arial", sans-serif;
       }
 
-      body,
-      html {
-        height: 100%;
-        font-family: "Montserrat", sans-serif;
-        scroll-behavior: smooth;
+      body {
+        overflow-x: hidden;
+        color: white;
       }
 
+      /* Video Background */
       .video-background {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        z-index: -1;
+        overflow: hidden;
+      }
+
+      .video-background video {
+        min-width: 100%;
+        min-height: 100%;
         object-fit: cover;
-        z-index: -2;
       }
 
       .overlay {
@@ -42,401 +45,459 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5);
+        background: linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.3) 0%,
+          rgba(0, 0, 0, 0.7) 100%
+        );
+        z-index: 0;
+      }
+
+      /* Header */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 5%;
+        position: relative;
+        z-index: 2;
+      }
+
+      .logo {
+        height: 50px;
+        transition: all 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.1);
+      }
+
+      /* Navigation */
+      .nav-links {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        position: relative;
+        padding: 5px 0;
+        transition: all 0.3s ease;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* Hamburger Menu */
+      .menu-btn {
+        width: 30px;
+        height: 20px;
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s ease;
+      }
+
+      .menu-btn:hover {
+        transform: scale(1.1);
+      }
+
+      .menu-btn span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background: white;
+        transition: all 0.3s ease;
+      }
+
+      .menu-btn.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .menu-btn.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-btn.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+
+      /* Mobile Menu */
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 400px;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        z-index: 9;
+        padding: 100px 30px 30px;
+        transition: right 0.5s ease;
+        overflow-y: auto;
+      }
+
+      .mobile-menu.active {
+        right: 0;
+      }
+
+      .mobile-menu a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-menu a:hover {
+        color: #ff6b6b;
+        padding-left: 10px;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+      }
+
+      /* Main Content */
+      .main-content {
+        position: relative;
+        z-index: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
-        color: #fff;
-        padding: 20px;
-        z-index: 1;
+        min-height: 80vh;
+        padding: 0 20px;
+        animation: fadeIn 1.5s ease-out;
       }
 
-      .logo {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        height: 60px;
-        z-index: 3;
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
-      .title {
-        font-size: 48px;
-        font-weight: 700;
+      h1 {
+        font-size: 3rem;
         margin-bottom: 20px;
-        animation: fadeInDown 1s ease-out;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        color: white;
+        animation: glow 2s infinite alternate;
       }
 
-      .description {
-        font-size: 20px;
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+        to {
+          text-shadow: 0 0 20px rgba(255, 0, 0, 0.8),
+            0 0 30px rgba(255, 50, 50, 0.6);
+        }
+      }
+
+      p {
+        font-size: 1.2rem;
         max-width: 700px;
         margin-bottom: 30px;
-        animation: fadeInUp 1.2s ease-out;
+        line-height: 1.6;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
       }
 
       .btn {
+        display: inline-block;
         padding: 15px 30px;
-        font-size: 18px;
-        background-color: #ff2222;
-        border: none;
+        background: linear-gradient(135deg, #ff0000, #c70000);
         color: white;
-        cursor: pointer;
-        border-radius: 30px;
-        box-shadow: 0 5px 15px rgba(255, 34, 34, 0.5);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        animation: fadeInUp 1.5s ease-out;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
       }
 
       .btn:hover {
-        transform: scale(1.1);
-        box-shadow: 0 10px 25px rgba(255, 34, 34, 0.7);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
       }
 
-      @keyframes fadeInDown {
-        from {
-          opacity: 0;
-          transform: translateY(-50px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .btn:active {
+        transform: translateY(-2px);
       }
 
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(50px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      a {
-        text-decoration: none;
-      }
-
-      .social-links {
-        position: fixed;
-        bottom: -60px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 20px;
-        justify-content: center;
+      .btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #c70000, #ff0000);
+        z-index: -1;
+        transition: opacity 0.3s ease;
         opacity: 0;
-        animation: slideUpFadeIn 1.5s ease-out 1.5s forwards;
+      }
+
+      .btn:hover::after {
+        opacity: 1;
+      }
+
+      /* Footer */
+      footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        padding: 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         z-index: 2;
       }
 
-      @keyframes slideUpFadeIn {
-        to {
-          bottom: 20px;
-          opacity: 1;
-        }
-      }
-
-      .social-links a {
-        color: white;
-        font-size: 24px;
-        transition: transform 0.3s ease;
-      }
-
-      .social-links a:hover {
-        transform: scale(1.2);
-      }
-
-      .call-button {
-        position: fixed;
-        bottom: 90px;
-        right: 20px;
-        width: 60px;
-        height: 60px;
-        background-color: red;
-        border-radius: 50%;
+      .social-icons {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        gap: 25px;
+      }
+
+      .social-icons a {
         color: white;
-        font-size: 24px;
-        text-decoration: none;
-        z-index: 999;
-        box-shadow: 0 0 0 rgba(255, 0, 0, 0.4);
-        animation: pulse 2s infinite;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
       }
 
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
-        }
-        70% {
-          box-shadow: 0 0 0 15px rgba(255, 0, 0, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
-        }
+      .social-icons a:hover {
+        transform: translateY(-5px) scale(1.2);
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
       }
 
-      .menu {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 5;
+      .fa-facebook:hover {
+        color: #3b5998;
       }
-
-      .menu-icon {
-        font-size: 32px;
-        color: white;
-        cursor: pointer;
-        padding: 10px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        transition: background-color 0.3s ease;
+      .fa-instagram:hover {
+        color: #e1306c;
       }
-
-      .menu-icon.active i::before {
-        content: "\f00d";
+      .fa-youtube:hover {
+        color: #ff0000;
       }
-
-      .menu-icon:hover {
-        background-color: rgba(255, 255, 255, 0.3);
-      }
-
-      .menu-panel {
-        position: fixed;
-        top: 0;
-        right: -300px;
-        width: 280px;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(8px);
-        padding: 40px 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        transition: right 0.4s ease;
-        z-index: 6;
-      }
-
-      .menu-panel.active {
-        right: 0;
-      }
-
-      .menu-panel .close-btn {
-        align-self: flex-end;
-        font-size: 28px;
-        color: white;
-        cursor: pointer;
-      }
-
-      .menu-panel ul {
-        list-style: none;
-        padding: 20px 0;
-      }
-
-      .menu-panel ul li {
-        margin: 15px 0;
-        opacity: 0;
-        transform: translateX(50px);
-        animation: slideIn 0.5s forwards;
-      }
-
-      .menu-panel.active ul li:nth-child(1) {
-        animation-delay: 0.2s;
-      }
-      .menu-panel.active ul li:nth-child(2) {
-        animation-delay: 0.4s;
-      }
-      .menu-panel.active ul li:nth-child(3) {
-        animation-delay: 0.6s;
-      }
-      .menu-panel.active ul li:nth-child(4) {
-        animation-delay: 0.8s;
-      }
-      .menu-panel.active ul li:nth-child(5) {
-        animation-delay: 1s;
-      }
-      .menu-panel.active ul li:nth-child(6) {
-        animation-delay: 1.2s;
-      }
-      .menu-panel.active ul li:nth-child(7) {
-        animation-delay: 1.4s;
-      }
-
-      @keyframes slideIn {
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      .menu-panel ul li a {
-        color: white;
-        font-weight: bold;
-        font-size: 18px;
-        transition: color 0.3s;
-      }
-
-      .menu-panel ul li a:hover {
-        color: #ff2222;
-      }
-
-      /* Facebook chat plugin positioning */
-      .fb-customerchat {
-        z-index: 9999;
+      .fa-tiktok:hover {
+        color: #000000;
       }
 
       /* Responsive */
-      @media (max-width: 768px) {
-        .title {
-          font-size: 32px;
+      @media (max-width: 1024px) {
+        .nav-links {
+          display: none;
         }
 
-        .description {
-          font-size: 16px;
-          max-width: 90%;
+        .menu-btn {
+          display: flex;
+        }
+
+        h1 {
+          font-size: 3rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          padding-top: 100px;
+          min-height: 70vh;
+        }
+
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        p {
+          font-size: 1rem;
+          padding: 0 15px;
         }
 
         .btn {
-          font-size: 16px;
-          padding: 12px 24px;
+          padding: 12px 25px;
+          font-size: 0.9rem;
         }
 
-        .menu-icon {
-          font-size: 28px;
+        .video-background video {
+          object-position: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 2rem;
         }
 
-        .menu-panel {
-          width: 100%;
-          right: -100%;
+        footer {
+          padding: 15px 0;
         }
 
-        .menu-panel.active {
-          right: 0;
+        .social-icons {
+          gap: 15px;
+        }
+
+        .social-icons a {
+          font-size: 1.2rem;
         }
       }
     </style>
   </head>
-
   <body>
-    <!-- Facebook chat plugin -->
-    <div id="fb-root"></div>
-    <div id="fb-customer-chat" class="fb-customerchat"></div>
-    <script>
-      window.fbAsyncInit = function () {
-        FB.init({ xfbml: true, version: "v19.0" });
-      };
-      (function (d, s, id) {
-        if (d.getElementById(id)) return;
-        var js = d.createElement(s);
-        js.id = id;
-        js.src = "https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js";
-        d.getElementsByTagName(s)[0].parentNode.insertBefore(js, s);
-      })(document, "script", "facebook-jssdk");
-      document
-        .getElementById("fb-customer-chat")
-        .setAttribute("page_id", "100264182786661");
-      document
-        .getElementById("fb-customer-chat")
-        .setAttribute("attribution", "biz_inbox");
-    </script>
-
-    <!-- Thanh menu 3 gạch -->
-    <div class="menu">
-      <div class="menu-icon" id="menuIcon" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
-      </div>
+    <!-- Video Background -->
+    <div class="video-background">
+      <video autoplay muted loop>
+        <source src="image/VIDEO/TVC.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay"></div>
     </div>
-    <div class="menu-panel" id="menuPanel">
-      <div class="close-btn" onclick="toggleMenu()">
+
+    <!-- Header -->
+    <header>
+      <img
+        src="/sanphamxemay/image/banner/Logo_HEAD.png"
+        alt="Logo"
+        class="logo"
+      />
+
+      <!-- Desktop Navigation -->
+      <nav class="nav-links">
+        <a href="/Trangchu/">Trang chủ</a>
+        <a href="/gioithieu/">Giới thiệu</a>
+        <a href="/sanphamxemay/">Sản phẩm</a>
+        <a href="/dichvu/">Dịch vụ</a>
+        <a href="/tintuc/">Tin tức</a>
+        <a href="/cuahang/">Hệ thống cửa hàng</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <div class="menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+      <div class="close-btn">
         <i class="fas fa-times"></i>
       </div>
-      <ul>
-        <li>
-          <a href="/Trangchu/"><i class="fas fa-home"></i> Trang chủ</a>
-        </li>
-        <li>
-          <a href="/gioithieu/"
-            ><i class="fas fa-info-circle"></i> Giới thiệu</a
-          >
-        </li>
-        <li>
-          <a href="/sanphamxemay/"
-            ><i class="fas fa-motorcycle"></i> Sản phẩm</a
-          >
-        </li>
-        <li>
-          <a href="/dichvu/"><i class="fas fa-tools"></i> Dịch vụ</a>
-        </li>
-        <li>
-          <a href="/tintuc/"><i class="fas fa-newspaper"></i> Tin tức</a>
-        </li>
-        <li>
-          <a href="/cuahang/"><i class="fas fa-store"></i> Hệ thống cửa hàng</a>
-        </li>
-        <li>
-          <a href="/lienhe/"><i class="fas fa-envelope"></i> Liên hệ</a>
-        </li>
-      </ul>
+      <a href="/Trangchu/">Trang chủ</a>
+      <a href="/gioithieu/">Giới thiệu</a>
+      <a href="/sanphamxemay/">Sản phẩm</a>
+      <a href="/dichvu/">Dịch vụ</a>
+      <a href="/tintuc/">Tin tức</a>
+      <a href="/cuahang/">Hệ thống cửa hàng</a>
     </div>
 
-    <!-- Video nền -->
-    <video class="video-background" autoplay muted loop>
-      <source
-        src="https://videos.pexels.com/video-files/3936776/3936776-hd_1920_1080_25fps.mp4"
-        type="video/mp4"
-      />
-      Trình duyệt của bạn không hỗ trợ video nền.
-    </video>
-
-    <!-- Logo hiển thị trên video -->
-    <img
-      src="/sanphamxemay/image/banner/Logo_HEAD.png"
-      alt="Logo"
-      class="logo"
-    />
-
-    <!-- Lớp phủ nội dung -->
-    <div class="overlay">
-      <h1 class="title">Chào mừng đến với HEAD Trung Hùng</h1>
-      <p class="description">
+    <!-- Main Content -->
+    <div class="main-content">
+      <h1>Chào mừng đến với HEAD Trung Hùng</h1>
+      <p>
         Hệ thống HEAD Trung Hùng – chuyên cung cấp xe máy Honda chính hãng, dịch
         vụ bảo dưỡng chuyên nghiệp và trải nghiệm khách hàng tuyệt vời.
       </p>
-      <a href="/Trangchu/" class="btn">Tìm hiểu thêm</a>
+      <a href="/Trangchu/" class="btn">Trải nghiệm ngay</a>
     </div>
 
-    <!-- Nút gọi điện thoại hình tròn đỏ -->
-    <a href="tel:1900636712" class="call-button" title="Gọi ngay"
-      ><i class="fas fa-phone"></i
-    ></a>
-
-    <!-- Liên kết mạng xã hội cố định dưới chân trang -->
-    <div class="social-links">
-      <a href="https://www.facebook.com/hethongheadtrunghung" target="_blank"
-        ><i class="fab fa-facebook-f"></i
-      ></a>
-      <a href="https://www.youtube.com/@HethongHEADTrungHung" target="_blank"
-        ><i class="fab fa-youtube"></i
-      ></a>
-      <a href="https://www.instagram.com/hethongheadtrunghung" target="_blank"
-        ><i class="fab fa-instagram"></i
-      ></a>
-      <a href="https://www.tiktok.com/@hethongheadtrunghung" target="_blank"
-        ><i class="fab fa-tiktok"></i
-      ></a>
-    </div>
+    <!-- Footer -->
+    <footer>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/hethongheadtrunghung"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a href="https://www.youtube.com/@HethongHEADTrungHung"
+          ><i class="fab fa-youtube"></i
+        ></a>
+        <a href="https://www.instagram.com/hethongheadtrunghung"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="https://www.tiktok.com/@hethongheadtrunghung"
+          ><i class="fab fa-tiktok"></i
+        ></a>
+      </div>
+    </footer>
 
     <script>
-      function toggleMenu() {
-        const panel = document.getElementById("menuPanel");
-        const icon = document.getElementById("menuIcon");
-        panel.classList.toggle("active");
-        icon.classList.toggle("active");
-      }
+      // Mobile Menu Toggle
+      const menuBtn = document.querySelector(".menu-btn");
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const closeBtn = document.querySelector(".close-btn");
+
+      menuBtn.addEventListener("click", () => {
+        menuBtn.classList.toggle("active");
+        mobileMenu.classList.toggle("active");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        menuBtn.classList.remove("active");
+        mobileMenu.classList.remove("active");
+      });
+
+      // Close menu when clicking on a link
+      const mobileLinks = document.querySelectorAll(".mobile-menu a");
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          menuBtn.classList.remove("active");
+          mobileMenu.classList.remove("active");
+        });
+      });
+
+      // Hiệu ứng khi cuộn trang
+      window.addEventListener("scroll", () => {
+        const scrollPosition = window.scrollY;
+        const overlay = document.querySelector(".overlay");
+
+        // Thay đổi opacity của overlay khi cuộn
+        overlay.style.opacity = 0.3 + scrollPosition / 1000;
+      });
+
+      // Hiệu ứng khi di chuột vào nút
+      const btn = document.querySelector(".btn");
+
+      btn.addEventListener("mouseenter", () => {
+        btn.style.animation = "none";
+        void btn.offsetWidth; // Trigger reflow
+        btn.style.animation = "glow 1s infinite alternate";
+      });
+
+      btn.addEventListener("mouseleave", () => {
+        btn.style.animation = "none";
+      });
     </script>
   </body>
 </html>
