@@ -218,7 +218,80 @@
           opacity: 1;
         }
       }
+      /* VIDEO */
+      .video-btn {
+        padding: 15px 30px;
+        background: #007bff;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+      }
 
+      .video-btn:hover {
+        background: #0056b3;
+        transform: scale(1.05);
+      }
+
+      .video-popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+      }
+
+      .video-content {
+        position: relative;
+        padding: 15px;
+        border-radius: 25px;
+        max-width: 90%;
+        width: 720px;
+        animation: fadeIn 0.4s ease-in-out;
+      }
+
+      .video-content video {
+        width: 100%;
+        border-radius: 25px;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: -12px;
+        right: -12px;
+        background: #ff4d4d;
+        color: white;
+        border: none;
+        font-size: 20px;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .video-content {
+          width: 95%;
+        }
+      }
       /* Header */
       .main-header {
         position: fixed;
@@ -1221,6 +1294,20 @@
             <a href="#gallery" class="btn btn-primary btn-lg">
               Khám phá ngay <i class="fas fa-arrow-down"></i>
             </a>
+            <button class="video-btn" onclick="openVideo()">Xem Video</button>
+
+            <div class="video-popup" id="videoPopup">
+              <div class="video-content">
+                <button class="close-btn" onclick="closeVideo()">×</button>
+                <video controls>
+                  <source
+                    src="/sanphamxemay/image/video/AB.mp4"
+                    type="video/mp4"
+                  />
+                  Trình duyệt của bạn không hỗ trợ video.
+                </video>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1875,7 +1962,17 @@
     <a href="#home" class="back-to-top" aria-label="Back to top">
       <i class="fas fa-arrow-up"></i>
     </a>
+    <script>
+      function openVideo() {
+        document.getElementById("videoPopup").style.display = "flex";
+      }
 
+      function closeVideo() {
+        const popup = document.getElementById("videoPopup");
+        popup.style.display = "none";
+        popup.querySelector("video").pause();
+      }
+    </script>
     <!-- JavaScript Libraries -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
