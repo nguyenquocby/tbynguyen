@@ -15,7 +15,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Arial", sans-serif;
+        font-family: "Montserrat", sans-serif;
       }
 
       /* Biến màu sắc */
@@ -26,6 +26,10 @@
         --dark-color: #1a1a1a;
         --transition-speed: 0.6s;
         --transition-easing: cubic-bezier(0.65, 0, 0.35, 1);
+        --facebook: #3b5998;
+        --instagram: #e1306c;
+        --youtube: #ff0000;
+        --tiktok: #010101;
       }
 
       body {
@@ -67,7 +71,7 @@
         transform: scale(1);
       }
 
-      /* Image Cover - Mobile */
+      /* Image Cover - Mobile & Tablet */
       .mobile-cover {
         display: none;
         position: absolute;
@@ -79,10 +83,18 @@
         background: url("image/VIDEO/cover.jpg") no-repeat center center/cover;
         opacity: 0;
         transition: opacity 1.5s var(--transition-easing);
+        transform: scale(1.05);
+        transition: transform 8s var(--transition-easing);
       }
 
       .mobile-cover.loaded {
         opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Hiệu ứng zoom ảnh khi hover */
+      .mobile-cover:hover {
+        transform: scale(1.03);
       }
 
       /* Overlay */
@@ -125,7 +137,7 @@
       }
 
       .logo img:hover {
-        transform: scale(1.05);
+        transform: scale(1.1);
       }
 
       /* Menu */
@@ -263,18 +275,19 @@
       }
 
       .main-content h1 {
-        font-size: 2.8rem;
+        font-size: 2.5rem;
         margin-bottom: 20px;
+        /*text-transform: uppercase;*/
         letter-spacing: 3px;
         background: white;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         transition: text-shadow 1.5s ease;
       }
 
       .main-content:hover h1 {
-        text-shadow: white;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
       }
 
       .main-content p {
@@ -340,7 +353,6 @@
         left: 100%;
       }
 
-      /* Footer */
       /* Footer */
       footer {
         position: absolute;
@@ -461,9 +473,128 @@
         transform: scale(2);
         opacity: 1;
       }
+      /* Nút gọi điện thoại */
+      .call-button {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 100;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #00cc00, #009900);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        transition: all 0.5s ease;
+        animation: pulse 2s infinite;
+        overflow: hidden;
+        text-decoration: none;
+      }
+
+      .call-button .phone-number {
+        position: absolute;
+        width: 0;
+        opacity: 0;
+        white-space: nowrap;
+        transition: all 0.5s ease;
+        font-size: 16px;
+        font-weight: bold;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .call-button i {
+        transition: all 0.5s ease;
+      }
+
+      .call-button:hover {
+        width: 200px;
+        border-radius: 30px;
+        animation: shake 2s ease infinite, pulse 2s infinite;
+      }
+
+      .call-button:hover .phone-number {
+        width: auto;
+        opacity: 1;
+        padding: 0 15px 0 40px;
+      }
+
+      .call-button:hover i {
+        position: absolute;
+        left: 15px;
+      }
+
+      .call-button::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: rgba(0, 204, 0, 0.4);
+        z-index: -1;
+        animation: ripple 3s ease-out infinite;
+        opacity: 0;
+      }
+
+      .call-button:hover::before {
+        animation: ripple 1.5s ease-out infinite;
+        border-radius: 30px;
+      }
+
+      /* Hiệu ứng rung */
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0) rotate(0);
+        }
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
+          transform: translateX(-3px) rotate(-2deg);
+        }
+        20%,
+        40%,
+        60%,
+        80% {
+          transform: translateX(3px) rotate(2deg);
+        }
+      }
+
+      /* Hiệu ứng nhấp nháy */
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 204, 0, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 15px rgba(0, 204, 0, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 204, 0, 0);
+        }
+      }
+
+      /* Hiệu ứng lan tỏa */
+      @keyframes ripple {
+        0% {
+          transform: scale(0.8);
+          opacity: 0.7;
+        }
+        100% {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
 
       /* Responsive */
-      @media (max-width: 768px) {
+      @media (max-width: 1024px) {
+        /* iPad và tablet ngang */
         .video-container {
           display: none;
         }
@@ -472,6 +603,25 @@
           display: block;
         }
 
+        .logo {
+          left: 30px;
+        }
+
+        .logo img {
+          height: 45px;
+        }
+
+        .menu-btn {
+          right: 30px;
+        }
+
+        .main-content h1 {
+          font-size: 3rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        /* Tablet dọc và điện thoại ngang */
         .logo {
           left: 20px;
         }
@@ -486,7 +636,7 @@
         }
 
         .main-content h1 {
-          font-size: 1.8rem;
+          font-size: 2rem;
         }
 
         .main-content p {
@@ -497,6 +647,7 @@
           width: 80%;
           right: -80%;
         }
+
         .social-icons {
           gap: 15px;
         }
@@ -506,11 +657,27 @@
           height: 45px;
           font-size: 20px;
         }
+        .call-button {
+          width: 50px;
+          height: 50px;
+          font-size: 20px;
+          bottom: 20px;
+          right: 20px;
+        }
+
+        .call-button:hover {
+          width: 180px;
+        }
+
+        .call-button .phone-number {
+          font-size: 14px;
+        }
       }
 
       @media (max-width: 480px) {
+        /* Điện thoại dọc */
         .main-content h1 {
-          font-size: 1.8rem;
+          font-size: 2rem;
         }
 
         .logo {
@@ -527,13 +694,6 @@
           font-size: 14px;
         }
 
-        .social-icons {
-          gap: 15px;
-        }
-
-        .social-icons a {
-          font-size: 20px;
-        }
         .social-icons {
           gap: 10px;
         }
@@ -556,7 +716,7 @@
         </video>
       </div>
 
-      <!-- Image Cover (Mobile) -->
+      <!-- Image Cover (Mobile & Tablet) -->
       <div class="mobile-cover"></div>
 
       <!-- Overlay -->
@@ -588,36 +748,70 @@
 
       <!-- Main Content -->
       <div class="main-content">
-        <h1>Đồng Hành Cùng Phong Cách</h1>
+        <h1>VẬN HÀNH ÊM ÁI - CHẤT LÁI ĐỈNH CAO</h1>
         <p>
-          Khám phá thế giới xe máy Honda: Hiệu suất vượt trội, thiết kế đẳng cấp
-          và công nghệ tiên phong. Trải nghiệm ngay hôm nay để cảm nhận sự khác
-          biệt!<br />
-          <i>- Hệ Thống HEAD Trung Hùng -</i>
+          Chào mừng bạn đến với HEAD Trung Hùng – đại lý chính hãng Honda, nơi
+          bạn dễ dàng tìm được chiếc xe phù hợp cho chính mình hay cho cả gia
+          đình.
         </p>
-
         <a href="/Trangchu/" class="btn">Khám phá ngay</a>
       </div>
 
       <!-- Footer -->
       <footer>
         <div class="social-icons">
-          <a href="https://www.facebook.com/hethongheadtrunghung"
+          <a
+            href="https://www.facebook.com/hethongheadtrunghung"
+            aria-label="Facebook"
             ><i class="fab fa-facebook-f"></i
           ></a>
-          <a href="https://www.youtube.com/@HethongHEADTrungHung"
-            ><i class="fab fa-youtube"></i
-          ></a>
-          <a href="https://www.instagram.com/hethongheadtrunghung"
+          <a
+            href="https://www.instagram.com/hethongheadtrunghung"
+            aria-label="Instagram"
             ><i class="fab fa-instagram"></i
           ></a>
-          <a href="https://www.tiktok.com/@hethongheadtrunghung"
+          <a
+            href="https://www.youtube.com/@HethongHEADTrungHung"
+            aria-label="YouTube"
+            ><i class="fab fa-youtube"></i
+          ></a>
+          <a
+            href="https://www.tiktok.com/@hethongheadtrunghung"
+            aria-label="TikTok"
             ><i class="fab fa-tiktok"></i
           ></a>
         </div>
       </footer>
+      <a href="tel:1900636712" class="call-button" aria-label="Gọi điện thoại">
+        <i class="fas fa-phone"></i>
+        <span class="phone-number">1900 636 712</span>
+      </a>
     </header>
+    <script>
+      // ... (giữ nguyên JavaScript trước đó) ...
 
+      // Hiệu ứng khi click nút gọi
+      const callButton = document.querySelector(".call-button");
+      if (callButton) {
+        callButton.addEventListener("click", function (e) {
+          // Thêm hiệu ứng click
+          e.preventDefault();
+          this.style.animation = "none";
+          this.style.transform = "scale(0.9)";
+
+          // Tạo hiệu ứng nhấn mạnh
+          setTimeout(() => {
+            this.style.transform = "scale(1)";
+            this.style.animation = "pulse 2s infinite";
+
+            // Mở ứng dụng điện thoại sau hiệu ứng
+            setTimeout(() => {
+              window.location.href = "tel:1900636712";
+            }, 300);
+          }, 200);
+        });
+      }
+    </script>
     <script>
       // Wait for everything to load
       document.addEventListener("DOMContentLoaded", function () {
@@ -638,6 +832,18 @@
           video.oncanplay = function () {
             document.querySelector(".video-container").classList.add("loaded");
           };
+        }
+
+        // Hiệu ứng zoom ảnh khi hover (chỉ trên tablet)
+        const mobileCover = document.querySelector(".mobile-cover");
+        if (mobileCover) {
+          mobileCover.addEventListener("mouseenter", function () {
+            this.style.transform = "scale(1.03)";
+          });
+
+          mobileCover.addEventListener("mouseleave", function () {
+            this.style.transform = "scale(1)";
+          });
         }
       });
 
