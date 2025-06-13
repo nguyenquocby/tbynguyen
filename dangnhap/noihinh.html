@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trò Chơi Nối Chữ - Xe Máy Honda</title>
+    <style>
+      :root {
+        --primary-color: #e5171f;
+        --secondary-color: #333;
+        --light-color: #f8f9fa;
+        --dark-color: #212529;
+        --success-color: #28a745;
+        --border-radius: 8px;
+        --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f5f5;
+        color: var(--dark-color);
+        line-height: 1.6;
+        padding: 20px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 30px;
+        width: 100%;
+      }
+
+      h1 {
+        color: var(--primary-color);
+        margin-bottom: 10px;
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+
+      .subtitle {
+        color: var(--secondary-color);
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+      }
+
+      .game-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        width: 100%;
+      }
+
+      .game-board {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        width: 100%;
+      }
+
+      .images-section,
+      .words-section {
+        background-color: white;
+        border-radius: var(--border-radius);
+        padding: 20px;
+        box-shadow: var(--box-shadow);
+      }
+
+      .section-title {
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+        text-align: center;
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 10px;
+      }
+
+      .items-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 15px;
+      }
+
+      .image-item,
+      .word-item {
+        background-color: var(--light-color);
+        border-radius: var(--border-radius);
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .image-item:hover,
+      .word-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      .image-item.selected,
+      .word-item.selected {
+        border-color: var(--primary-color);
+        background-color: rgba(229, 23, 31, 0.1);
+      }
+
+      .image-item.correct,
+      .word-item.correct {
+        border-color: var(--success-color);
+        background-color: rgba(40, 167, 69, 0.1);
+      }
+
+      .image-item img {
+        width: 100%;
+        height: auto;
+        max-height: 120px;
+        object-fit: contain;
+        margin-bottom: 10px;
+      }
+
+      .word-item {
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      button {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: var(--box-shadow);
+      }
+
+      button:hover {
+        background-color: #c01017;
+        transform: translateY(-2px);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      .score-container {
+        background-color: white;
+        border-radius: var(--border-radius);
+        padding: 15px 25px;
+        box-shadow: var(--box-shadow);
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .score {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+      }
+
+      .timer {
+        color: var(--secondary-color);
+        font-size: 1.2rem;
+        margin-top: 10px;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background-color: white;
+        padding: 30px;
+        border-radius: var(--border-radius);
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .modal h2 {
+        color: var(--primary-color);
+        margin-bottom: 20px;
+      }
+
+      .modal p {
+        margin-bottom: 25px;
+        font-size: 1.1rem;
+      }
+
+      .honda-logo {
+        max-width: 150px;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        .subtitle {
+          font-size: 1rem;
+        }
+
+        .game-board {
+          grid-template-columns: 1fr;
+        }
+
+        .items-container {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        }
+
+        .word-item {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 10px;
+        }
+
+        h1 {
+          font-size: 1.8rem;
+        }
+
+        .items-container {
+          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+          gap: 10px;
+        }
+
+        .image-item,
+        .word-item {
+          padding: 10px;
+        }
+
+        .controls {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        button {
+          width: 100%;
+          max-width: 250px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Honda_Logo.svg/1200px-Honda_Logo.svg.png"
+          alt="Honda Logo"
+          class="honda-logo"
+        />
+        <h1>Trò Chơi Nối Chữ và Hình Ảnh</h1>
+        <p class="subtitle">Chủ đề: Xe Máy Honda</p>
+      </header>
+
+      <div class="score-container">
+        <div>Điểm số: <span class="score">0</span></div>
+        <div class="timer">Thời gian: <span id="time">60</span> giây</div>
+      </div>
+
+      <div class="game-container">
+        <div class="game-board">
+          <div class="images-section">
+            <h2 class="section-title">Hình Ảnh</h2>
+            <div class="items-container" id="images-container">
+              <!-- Images will be inserted here by JavaScript -->
+            </div>
+          </div>
+
+          <div class="words-section">
+            <h2 class="section-title">Tên Xe</h2>
+            <div class="items-container" id="words-container">
+              <!-- Words will be inserted here by JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="check-btn">Kiểm Tra</button>
+          <button id="reset-btn">Làm Lại</button>
+          <button id="new-game-btn">Trò Chơi Mới</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="result-modal">
+      <div class="modal-content">
+        <h2 id="result-title">Kết Quả</h2>
+        <p id="result-message">Bạn đã hoàn thành trò chơi với 5 điểm!</p>
+        <button id="close-modal">Đóng</button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Game data - Honda motorcycle models with image URLs
+        const gameData = [
+          {
+            name: "Honda Wave Alpha",
+            image: "/image/bike/ALPHA.png",
+          },
+          {
+            name: "Honda Vision",
+            image:
+              "https://cdn.honda.com.vn/motorbikes/December2022/9VJhQ3jWYlLZQHqQzXKQ.jpg",
+          },
+          {
+            name: "Honda Air Blade",
+            image:
+              "https://cdn.honda.com.vn/motorbikes/December2022/9VJhQ3jWYlLZQHqQzXKQ.jpg",
+          },
+          {
+            name: "Honda SH Mode",
+            image:
+              "https://cdn.honda.com.vn/motorbikes/December2022/9VJhQ3jWYlLZQHqQzXKQ.jpg",
+          },
+          {
+            name: "Honda Winner X",
+            image:
+              "https://cdn.honda.com.vn/motorbikes/December2022/9VJhQ3jWYlLZQHqQzXKQ.jpg",
+          },
+          {
+            name: "Honda PCX",
+            image:
+              "https://cdn.honda.com.vn/motorbikes/December2022/9VJhQ3jWYlLZQHqQzXKQ.jpg",
+          },
+          {
+            name: "Honda Super Cub",
+            image:
+              "https://cdn.honda.com.vn/motorbikes/December2022/9VJhQ3jWYlLZQHqQzXKQ.jpg",
+          },
+          {
+            name: "Honda CRF150L",
+            image:
+              "https://cdn.honda.com.vn/motorbikes/December2022/9VJhQ3jWYlLZQHqQzXKQ.jpg",
+          },
+        ];
+
+        // Game variables
+        let selectedImage = null;
+        let selectedWord = null;
+        let score = 0;
+        let timeLeft = 60;
+        let timer;
+        let matchedPairs = 0;
+        let currentGameData = [];
+
+        // DOM elements
+        const imagesContainer = document.getElementById("images-container");
+        const wordsContainer = document.getElementById("words-container");
+        const checkBtn = document.getElementById("check-btn");
+        const resetBtn = document.getElementById("reset-btn");
+        const newGameBtn = document.getElementById("new-game-btn");
+        const scoreDisplay = document.querySelector(".score");
+        const timeDisplay = document.getElementById("time");
+        const resultModal = document.getElementById("result-modal");
+        const resultTitle = document.getElementById("result-title");
+        const resultMessage = document.getElementById("result-message");
+        const closeModal = document.getElementById("close-modal");
+
+        // Initialize game
+        initGame();
+
+        // Event listeners
+        checkBtn.addEventListener("click", checkAnswer);
+        resetBtn.addEventListener("click", resetSelections);
+        newGameBtn.addEventListener("click", initGame);
+        closeModal.addEventListener("click", () => {
+          resultModal.style.display = "none";
+        });
+
+        // Initialize a new game
+        function initGame() {
+          // Reset game variables
+          score = 0;
+          timeLeft = 60;
+          matchedPairs = 0;
+          selectedImage = null;
+          selectedWord = null;
+          updateScore();
+          updateTimerDisplay();
+
+          // Clear previous game
+          imagesContainer.innerHTML = "";
+          wordsContainer.innerHTML = "";
+
+          // Select 6 random items from game data
+          currentGameData = [...gameData]
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 6);
+
+          // Create image items
+          currentGameData.forEach((item, index) => {
+            const imageItem = document.createElement("div");
+            imageItem.className = "image-item";
+            imageItem.dataset.index = index;
+            imageItem.innerHTML = `<img src="${item.image}" alt="${item.name}">`;
+            imageItem.addEventListener("click", selectImage);
+            imagesContainer.appendChild(imageItem);
+          });
+
+          // Create word items (shuffled)
+          [...currentGameData]
+            .sort(() => 0.5 - Math.random())
+            .forEach((item, index) => {
+              const wordItem = document.createElement("div");
+              wordItem.className = "word-item";
+              wordItem.dataset.index = index;
+              wordItem.textContent = item.name;
+              wordItem.addEventListener("click", selectWord);
+              wordsContainer.appendChild(wordItem);
+            });
+
+          // Start timer
+          clearInterval(timer);
+          timer = setInterval(updateTimer, 1000);
+
+          // Hide modal if open
+          resultModal.style.display = "none";
+        }
+
+        // Select an image
+        function selectImage(e) {
+          // Deselect previous selection
+          if (selectedImage) {
+            selectedImage.classList.remove("selected");
+          }
+
+          // Select new image
+          selectedImage = e.currentTarget;
+          selectedImage.classList.add("selected");
+
+          // Deselect word if already selected
+          if (selectedWord) {
+            selectedWord.classList.remove("selected");
+            selectedWord = null;
+          }
+        }
+
+        // Select a word
+        function selectWord(e) {
+          // Deselect previous selection
+          if (selectedWord) {
+            selectedWord.classList.remove("selected");
+          }
+
+          // Select new word
+          selectedWord = e.currentTarget;
+          selectedWord.classList.add("selected");
+
+          // Deselect image if already selected
+          if (selectedImage) {
+            selectedImage.classList.remove("selected");
+            selectedImage = null;
+          }
+        }
+
+        // Check if the selected pair matches
+        function checkAnswer() {
+          if (!selectedImage || !selectedWord) {
+            alert("Vui lòng chọn 1 hình ảnh và 1 tên xe để nối!");
+            return;
+          }
+
+          const imageIndex = selectedImage.dataset.index;
+          const wordIndex = selectedWord.dataset.index;
+
+          // Check if the selected pair matches
+          if (currentGameData[imageIndex].name === selectedWord.textContent) {
+            // Correct match
+            selectedImage.classList.add("correct");
+            selectedWord.classList.add("correct");
+            selectedImage.classList.remove("selected");
+            selectedWord.classList.remove("selected");
+            selectedImage.removeEventListener("click", selectImage);
+            selectedWord.removeEventListener("click", selectWord);
+
+            score += 10;
+            matchedPairs++;
+            updateScore();
+
+            // Check if all pairs are matched
+            if (matchedPairs === currentGameData.length) {
+              endGame(true);
+            }
+
+            selectedImage = null;
+            selectedWord = null;
+          } else {
+            // Incorrect match
+            selectedImage.classList.add("selected", "shake");
+            selectedWord.classList.add("selected", "shake");
+
+            setTimeout(() => {
+              selectedImage.classList.remove("shake");
+              selectedWord.classList.remove("shake");
+            }, 500);
+
+            score = Math.max(0, score - 5);
+            updateScore();
+          }
+        }
+
+        // Reset selections
+        function resetSelections() {
+          if (selectedImage) {
+            selectedImage.classList.remove("selected");
+            selectedImage = null;
+          }
+          if (selectedWord) {
+            selectedWord.classList.remove("selected");
+            selectedWord = null;
+          }
+        }
+
+        // Update score display
+        function updateScore() {
+          scoreDisplay.textContent = score;
+        }
+
+        // Update timer
+        function updateTimer() {
+          timeLeft--;
+          updateTimerDisplay();
+
+          if (timeLeft <= 0) {
+            clearInterval(timer);
+            endGame(false);
+          }
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+          timeDisplay.textContent = timeLeft;
+        }
+
+        // End the game
+        function endGame(isComplete) {
+          clearInterval(timer);
+
+          if (isComplete) {
+            resultTitle.textContent = "Chúc Mừng!";
+            resultMessage.textContent = `Bạn đã hoàn thành trò chơi với ${score} điểm!`;
+          } else {
+            resultTitle.textContent = "Hết Giờ!";
+            resultMessage.textContent = `Trò chơi kết thúc! Bạn đạt được ${score} điểm.`;
+          }
+
+          resultModal.style.display = "flex";
+        }
+      });
+    </script>
+  </body>
+</html>
