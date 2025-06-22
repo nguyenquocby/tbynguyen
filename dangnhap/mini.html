@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xì Dzách Tùy Chỉnh</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #1a6e1a;
+        color: white;
+        margin: 0;
+        padding: 20px;
+        background-image: url("/sanphamxemay/image/khac/cover.png");
+        background-size: cover;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+      }
+
+      h1 {
+        text-align: center;
+        color: #ffcc00;
+        text-shadow: 2px 2px 4px #000;
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      .setup-area {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+      }
+
+      .setup-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .control-group {
+        display: flex;
+        flex-direction: column;
+        min-width: 200px;
+      }
+
+      label {
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #ffcc00;
+      }
+
+      input,
+      select {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+
+      .player-inputs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+      }
+
+      .player-input {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 15px;
+        border-radius: 8px;
+        width: 200px;
+      }
+
+      .game-area {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .player {
+        width: 280px;
+        margin-bottom: 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+
+      .player-name {
+        font-size: 20px;
+        font-weight: bold;
+        color: #ffcc00;
+        margin-bottom: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ffcc00;
+        padding-bottom: 5px;
+      }
+
+      .player-cards {
+        display: flex;
+        flex-wrap: wrap;
+        min-height: 120px;
+        justify-content: center;
+      }
+
+      .card {
+        width: 60px;
+        height: 90px;
+        background-color: white;
+        border-radius: 5px;
+        margin: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        color: black;
+        position: relative;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      .card.hearts,
+      .card.diamonds {
+        color: red;
+      }
+
+      .card.clubs,
+      .card.spades {
+        color: black;
+      }
+
+      .card-value {
+        font-weight: bold;
+      }
+
+      .card-suit {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        font-size: 12px;
+      }
+
+      .player-info {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        font-size: 16px;
+      }
+
+      .controls {
+        text-align: center;
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      button {
+        background-color: #ffcc00;
+        color: #000;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s;
+        min-width: 150px;
+      }
+
+      button:hover {
+        background-color: #ffdd33;
+        transform: scale(1.05);
+      }
+
+      button:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .result {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffcc00;
+        margin-top: 20px;
+        min-height: 30px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+      }
+
+      .score-board {
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 20px;
+      }
+
+      .score-title {
+        font-size: 20px;
+        color: #ffcc00;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .scores {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .score-item {
+        text-align: center;
+        background-color: rgba(255, 204, 0, 0.2);
+        padding: 8px 15px;
+        border-radius: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .player {
+          width: 100%;
+        }
+
+        .controls {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Xì Dzách <span>🎮</span></h1>
+      <p>
+        Trò chơi chỉ mang tính chất giải trí, không có độ dưới mọi hình thức
+      </p>
+
+      <div class="setup-area" id="setup-area">
+        <div class="setup-controls">
+          <div class="control-group">
+            <label for="player-count">Số lượng người chơi:</label>
+            <select id="player-count" onchange="updatePlayerInputs()">
+              <option value="2">2 người</option>
+              <option value="3">3 người</option>
+              <option value="4" selected>4 người</option>
+              <option value="5">5 người</option>
+              <option value="6">6 người</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="theme">Chủ đề:</label>
+            <select id="theme">
+              <option value="motorcycle">Xe máy</option>
+              <option value="classic">Cổ điển</option>
+              <option value="animal">Động vật</option>
+              <option value="superhero">Siêu anh hùng</option>
+            </select>
+          </div>
+        </div>
+
+        <h3 style="text-align: center; color: #ffcc00; margin-top: 20px">
+          Đặt tên người chơi:
+        </h3>
+        <div class="player-inputs" id="player-inputs">
+          <!-- Player inputs will be generated here -->
+        </div>
+
+        <div class="controls" style="margin-top: 20px">
+          <button id="start-game-btn">Bắt đầu chơi</button>
+        </div>
+      </div>
+
+      <div class="game-area" id="game-area" style="display: none">
+        <!-- Player areas will be generated here -->
+      </div>
+
+      <div class="controls" id="game-controls" style="display: none">
+        <button id="deal-btn">Chia Bài</button>
+        <button id="hit-btn" disabled>Rút Thêm</button>
+        <button id="stand-btn" disabled>Dừng</button>
+        <button id="new-game-btn" disabled>Ván Mới</button>
+      </div>
+
+      <div class="result" id="game-result"></div>
+
+      <div class="score-board" id="score-board" style="display: none">
+        <div class="score-title">Bảng Điểm</div>
+        <div class="scores" id="scores">
+          <!-- Scores will be generated here -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Biến trò chơi
+      let deck = [];
+      let players = [];
+      let currentPlayer = 0;
+      let gameStarted = false;
+      let currentTheme = "motorcycle";
+
+      // DOM elements
+      const setupArea = document.getElementById("setup-area");
+      const gameArea = document.getElementById("game-area");
+      const playerInputs = document.getElementById("player-inputs");
+      const gameControls = document.getElementById("game-controls");
+      const scoreBoard = document.getElementById("score-board");
+      const scoresElement = document.getElementById("scores");
+      const startGameBtn = document.getElementById("start-game-btn");
+      const dealBtn = document.getElementById("deal-btn");
+      const hitBtn = document.getElementById("hit-btn");
+      const standBtn = document.getElementById("stand-btn");
+      const newGameBtn = document.getElementById("new-game-btn");
+      const gameResult = document.getElementById("game-result");
+      const themeSelect = document.getElementById("theme");
+
+      // Khởi tạo
+      document.addEventListener("DOMContentLoaded", function () {
+        updatePlayerInputs();
+
+        // Sự kiện nút
+        startGameBtn.addEventListener("click", startGame);
+        dealBtn.addEventListener("click", dealCards);
+        hitBtn.addEventListener("click", hit);
+        standBtn.addEventListener("click", stand);
+        newGameBtn.addEventListener("click", newGame);
+        themeSelect.addEventListener("change", updateTheme);
+      });
+
+      // Cập nhật theme
+      function updateTheme() {
+        currentTheme = themeSelect.value;
+        const body = document.body;
+
+        // Xóa tất cả các theme class cũ
+        body.classList.remove(
+          "motorcycle-theme",
+          "classic-theme",
+          "animal-theme",
+          "superhero-theme"
+        );
+
+        // Thêm class theme mới
+        switch (currentTheme) {
+          case "motorcycle":
+            body.style.backgroundImage =
+              "url('/sanphamxemay/image/banner/ALPHARETRO.jpg')";
+            break;
+          case "classic":
+            body.style.backgroundImage =
+              "url('/sanphamxemay/image/khac/cover.png')";
+            break;
+          case "animal":
+            body.style.backgroundImage =
+              "url('/sanphamxemay/image/khac/cover.png')";
+            break;
+          case "superhero":
+            body.style.backgroundImage =
+              "url('/sanphamxemay/image/khac/cover.png')";
+            break;
+        }
+      }
+
+      // Cập nhật ô nhập tên người chơi
+      function updatePlayerInputs() {
+        const playerCount = parseInt(
+          document.getElementById("player-count").value
+        );
+        playerInputs.innerHTML = "";
+
+        for (let i = 0; i < playerCount; i++) {
+          const playerInput = document.createElement("div");
+          playerInput.className = "player-input";
+          playerInput.innerHTML = `
+                    <label for="player-${i + 1}-name">Người chơi ${
+            i + 1
+          }:</label>
+                    <input type="text" id="player-${
+                      i + 1
+                    }-name" placeholder="Nhập tên" value="${getDefaultName(i)}">
+                `;
+          playerInputs.appendChild(playerInput);
+        }
+      }
+
+      // Tạo tên mặc định theo theme
+      function getDefaultName(index) {
+        const themes = {
+          motorcycle: [
+            "Wave Alpha",
+            "SH Mode",
+            "Winner X",
+            "Exciter",
+            "Vision",
+            "Air Blade",
+          ],
+          classic: ["Cơ", "Rô", "Chuồn", "Bích", "Joker", "Phăng teo"],
+          animal: ["Sư Tử", "Hổ", "Gấu", "Cáo", "Sóc", "Chim"],
+          superhero: [
+            "Iron Man",
+            "Spider-Man",
+            "Batman",
+            "Superman",
+            "Wonder Woman",
+            "Thor",
+          ],
+        };
+
+        return themes[currentTheme][index] || `Người chơi ${index + 1}`;
+      }
+
+      // Bắt đầu game
+      function startGame() {
+        const playerCount = parseInt(
+          document.getElementById("player-count").value
+        );
+        players = [];
+
+        // Lấy tên người chơi
+        for (let i = 0; i < playerCount; i++) {
+          const nameInput = document.getElementById(`player-${i + 1}-name`);
+          const name = nameInput.value.trim() || getDefaultName(i);
+
+          players.push({
+            id: i + 1,
+            name: name,
+            cards: [],
+            score: 0,
+            totalScore: 0,
+            status: "waiting",
+            element: `player${i + 1}`,
+          });
+        }
+
+        // Tạo giao diện người chơi
+        gameArea.innerHTML = "";
+        for (let player of players) {
+          const playerElement = document.createElement("div");
+          playerElement.className = "player";
+          playerElement.id = player.element;
+          playerElement.innerHTML = `
+                    <div class="player-name">${player.name}</div>
+                    <div class="player-cards" id="${player.element}-cards"></div>
+                    <div class="player-info">
+                        <span>Tổng điểm: <span id="${player.element}-score">0</span></span>
+                        <span>Tình trạng: <span id="${player.element}-status">Đang chờ</span></span>
+                    </div>
+                `;
+          gameArea.appendChild(playerElement);
+        }
+
+        // Tạo bảng điểm
+        scoresElement.innerHTML = "";
+        for (let player of players) {
+          const scoreElement = document.createElement("div");
+          scoreElement.className = "score-item";
+          scoreElement.id = `score${player.id}`;
+          scoreElement.textContent = `${player.name}: 0`;
+          scoresElement.appendChild(scoreElement);
+        }
+
+        // Hiển thị khu vực chơi game
+        setupArea.style.display = "none";
+        gameArea.style.display = "flex";
+        gameControls.style.display = "flex";
+        scoreBoard.style.display = "block";
+
+        // Reset trò chơi
+        newGame();
+      }
+
+      // Tạo bộ bài
+      function createDeck() {
+        const suits = ["hearts", "diamonds", "clubs", "spades"];
+        const values = [
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "J",
+          "Q",
+          "K",
+          "A",
+        ];
+
+        let newDeck = [];
+
+        for (let suit of suits) {
+          for (let value of values) {
+            newDeck.push({ suit, value });
+          }
+        }
+
+        return shuffleDeck(newDeck);
+      }
+
+      // Xáo bài
+      function shuffleDeck(deck) {
+        for (let i = deck.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [deck[i], deck[j]] = [deck[j], deck[i]];
+        }
+        return deck;
+      }
+
+      // Chia bài
+      function dealCards() {
+        if (gameStarted) return;
+
+        deck = createDeck();
+        gameStarted = true;
+        currentPlayer = 0;
+
+        // Reset người chơi
+        for (let player of players) {
+          player.cards = [];
+          player.score = 0;
+          player.status = "waiting";
+          updatePlayerDisplay(player);
+        }
+
+        // Chia 2 lá cho mỗi người
+        for (let i = 0; i < 2; i++) {
+          for (let player of players) {
+            const card = deck.pop();
+            player.cards.push(card);
+            player.score = calculateScore(player.cards);
+          }
+        }
+
+        // Cập nhật hiển thị
+        for (let player of players) {
+          updatePlayerDisplay(player);
+        }
+
+        // Bắt đầu với người chơi đầu tiên
+        players[0].status = "playing";
+        updatePlayerDisplay(players[0]);
+
+        // Cập nhật nút
+        dealBtn.disabled = true;
+        hitBtn.disabled = false;
+        standBtn.disabled = false;
+        newGameBtn.disabled = true;
+
+        gameResult.textContent = "";
+      }
+
+      // Rút thêm bài
+      function hit() {
+        const player = players[currentPlayer];
+
+        if (player.status !== "playing") return;
+
+        const card = deck.pop();
+        player.cards.push(card);
+        player.score = calculateScore(player.cards);
+
+        updatePlayerDisplay(player);
+
+        // Kiểm tra quá 21 điểm
+        if (player.score > 21) {
+          player.status = "busted";
+          updatePlayerDisplay(player);
+          stand();
+        }
+      }
+
+      // Dừng lại
+      function stand() {
+        const player = players[currentPlayer];
+        player.status = "stood";
+        updatePlayerDisplay(player);
+
+        // Chuyển sang người chơi tiếp theo
+        currentPlayer++;
+
+        if (currentPlayer < players.length) {
+          players[currentPlayer].status = "playing";
+          updatePlayerDisplay(players[currentPlayer]);
+        } else {
+          // Kết thúc game
+          endGame();
+        }
+      }
+
+      // Kết thúc game
+      function endGame() {
+        // Tìm người thắng
+        let winners = [];
+        let maxScore = 0;
+
+        for (let player of players) {
+          if (player.status !== "busted" && player.score <= 21) {
+            if (player.score > maxScore) {
+              maxScore = player.score;
+              winners = [player];
+            } else if (player.score === maxScore) {
+              winners.push(player);
+            }
+          }
+        }
+
+        // Hiển thị kết quả
+        if (winners.length === 1) {
+          gameResult.textContent = `${winners[0].name} thắng với ${winners[0].score} điểm!`;
+          winners[0].totalScore++;
+          document.getElementById(
+            `score${winners[0].id}`
+          ).textContent = `${winners[0].name}: ${winners[0].totalScore}`;
+        } else if (winners.length > 1) {
+          const winnerNames = winners.map((w) => w.name).join(", ");
+          gameResult.textContent = `Hòa! ${winnerNames} cùng có ${maxScore} điểm!`;
+          // Không cộng điểm cho ai
+        } else {
+          gameResult.textContent = "Không có người thắng! Tất cả đều quắc!";
+        }
+
+        // Cập nhật nút
+        dealBtn.disabled = true;
+        hitBtn.disabled = true;
+        standBtn.disabled = true;
+        newGameBtn.disabled = false;
+      }
+
+      // Ván mới
+      function newGame() {
+        gameStarted = false;
+        currentPlayer = 0;
+
+        // Reset người chơi
+        for (let player of players) {
+          player.cards = [];
+          player.score = 0;
+          player.status = "waiting";
+          updatePlayerDisplay(player);
+        }
+
+        // Cập nhật nút
+        dealBtn.disabled = false;
+        hitBtn.disabled = true;
+        standBtn.disabled = true;
+        newGameBtn.disabled = true;
+
+        gameResult.textContent = "";
+      }
+
+      // Tính điểm
+      function calculateScore(cards) {
+        let score = 0;
+        let aces = 0;
+
+        for (let card of cards) {
+          if (card.value === "A") {
+            score += 11;
+            aces++;
+          } else if (["K", "Q", "J"].includes(card.value)) {
+            score += 10;
+          } else {
+            score += parseInt(card.value);
+          }
+        }
+
+        // Điều chỉnh điểm nếu có A và quá 21
+        while (score > 21 && aces > 0) {
+          score -= 10;
+          aces--;
+        }
+
+        return score;
+      }
+
+      // Cập nhật hiển thị người chơi
+      function updatePlayerDisplay(player) {
+        const cardsElement = document.getElementById(`${player.element}-cards`);
+        const scoreElement = document.getElementById(`${player.element}-score`);
+        const statusElement = document.getElementById(
+          `${player.element}-status`
+        );
+
+        // Xóa bài cũ
+        cardsElement.innerHTML = "";
+
+        // Hiển thị bài mới
+        for (let card of player.cards) {
+          const cardElement = document.createElement("div");
+          cardElement.className = `card ${card.suit}`;
+
+          const valueElement = document.createElement("div");
+          valueElement.className = "card-value";
+          valueElement.textContent = card.value;
+
+          const suitElement = document.createElement("div");
+          suitElement.className = "card-suit";
+
+          // Biểu tượng chất bài
+          switch (card.suit) {
+            case "hearts":
+              suitElement.textContent = "♥";
+              break;
+            case "diamonds":
+              suitElement.textContent = "♦";
+              break;
+            case "clubs":
+              suitElement.textContent = "♣";
+              break;
+            case "spades":
+              suitElement.textContent = "♠";
+              break;
+          }
+
+          cardElement.appendChild(valueElement);
+          cardElement.appendChild(suitElement);
+          cardsElement.appendChild(cardElement);
+        }
+
+        // Cập nhật điểm và trạng thái
+        scoreElement.textContent = player.score;
+
+        switch (player.status) {
+          case "waiting":
+            statusElement.textContent = "Đang chờ";
+            statusElement.style.color = "white";
+            break;
+          case "playing":
+            statusElement.textContent = "Đang chơi";
+            statusElement.style.color = "yellow";
+            break;
+          case "stood":
+            statusElement.textContent = "Đã dừng";
+            statusElement.style.color = "lightgreen";
+            break;
+          case "busted":
+            statusElement.textContent = "Quắc";
+            statusElement.style.color = "red";
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>
