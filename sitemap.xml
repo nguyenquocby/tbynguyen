@@ -1,51 +1,242 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.trunghung.com.vn/</loc>
-    <priority>1.00</priority>
-  </url>
-  <url>
-    <loc>https://www.trunghung.com.vn/Trangchu/</loc>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://www.trunghung.com.vn/gioithieu/</loc>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.trunghung.com.vn/sanphamxemay/</loc>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.trunghung.com.vn/khuyenmai/</loc>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://www.trunghung.com.vn/dichvu/</loc>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://www.trunghung.com.vn/cuahang/</loc>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://www.trunghung.com.vn/tintuc/</loc>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://www.trunghung.com.vn/lienhe/</loc>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.trunghung.com.vn/huongdanmuahang/</loc>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.trunghung.com.vn/question/</loc>
-    <priority>0.50</priority>
-  </url>
-  <url>
-    <loc>https://www.trunghung.com.vn/LXAT/</loc>
-    <priority>0.50</priority>
-  </url>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://www.trunghung.com.vn/</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/Trangchu/</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/gioithieu/</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/dichvu/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/cuahang/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/tintuc/</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/lienhe/</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/Shmode/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/WinnerX/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/WaveAlpha/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/ICONe/</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/khuyenmai/</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/tintuc/tintucxemay/</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/dichvu/sanphamphutung/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/dichvu/baoduong/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/dichvu/baohanh/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/question/</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/huongdanmuahang/</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/gioithieu/index.html</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/LXAT/</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/tragop.html</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/banggia.html</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/SH350/</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/SH160/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/SH125/</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/Vario160/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/Vario125/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/Vision/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/LEAD/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/AB160/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/AB125/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/CUB/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/WaveRSX/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/WaveAlpha%20Retro/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/Future/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/BLADE/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/CBR150R/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/CB350Hness/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/tintuc/tintucsukien/</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/tintuc/tintuclxat/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/dangnhap/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/index.html</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/dichvu//sanphamphutung/</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/AB160/index.html</loc>
+  <lastmod>2025-07-04T01:43:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.trunghung.com.vn/sanphamxemay/AB125/index.html</loc>
+  <lastmod>2025-07-04T01:43:11+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+
+
 </urlset>
