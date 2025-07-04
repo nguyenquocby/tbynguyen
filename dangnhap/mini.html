@@ -3,760 +3,439 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Xì Dzách Tùy Chỉnh</title>
+    <title>Trò chơi ghép dầu đúng xe</title>
+    <link
+      rel="icon"
+      href="/sanphamxemay/image/banner/Logo_HEAD.png"
+      type="image/x-icon"
+    />
     <style>
       body {
         font-family: "Arial", sans-serif;
-        background-color: #1a6e1a;
-        color: white;
+        background-color: #f5f5f5;
+        color: #333;
         margin: 0;
-        padding: 20px;
-        background-image: url("/sanphamxemay/image/khac/cover.png");
-        background-size: cover;
+        padding: 0;
       }
-
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        background-color: rgba(0, 0, 0, 0.7);
-        border-radius: 15px;
-        padding: 20px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-      }
-
-      h1 {
+      .header {
+        background-color: #e61e24;
+        color: white;
+        padding: 20px 0;
         text-align: center;
-        color: #ffcc00;
-        text-shadow: 2px 2px 4px #000;
-        font-size: 36px;
-        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       }
-
-      .setup-area {
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
+      .logo {
+        max-width: 180px;
+        margin-bottom: 10px;
+      }
+      .game-title {
+        font-size: 2.2em;
+        margin: 10px 0;
+      }
+      .game-container {
+        max-width: 900px;
+        margin: 30px auto;
         padding: 20px;
-        margin-bottom: 30px;
+        background: white;
+        border-radius: 25px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
-
-      .setup-controls {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-        margin-bottom: 20px;
+      .game-description {
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 1.1em;
+        line-height: 1.6;
       }
-
-      .control-group {
-        display: flex;
-        flex-direction: column;
-        min-width: 200px;
-      }
-
-      label {
-        margin-bottom: 8px;
-        font-weight: bold;
-        color: #ffcc00;
-      }
-
-      input,
-      select {
-        padding: 10px;
-        border-radius: 5px;
-        border: none;
-        background-color: rgba(255, 255, 255, 0.9);
-      }
-
-      .player-inputs {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        justify-content: center;
-      }
-
-      .player-input {
-        background-color: rgba(0, 0, 0, 0.5);
-        padding: 15px;
-        border-radius: 8px;
-        width: 200px;
-      }
-
       .game-area {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
         gap: 20px;
-      }
-
-      .player {
-        width: 280px;
-        margin-bottom: 20px;
-        background-color: rgba(0, 0, 0, 0.7);
-        border-radius: 10px;
-        padding: 15px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-        position: relative;
-      }
-
-      .player-name {
-        font-size: 20px;
-        font-weight: bold;
-        color: #ffcc00;
-        margin-bottom: 10px;
-        text-align: center;
-        border-bottom: 1px solid #ffcc00;
-        padding-bottom: 5px;
-      }
-
-      .player-cards {
-        display: flex;
-        flex-wrap: wrap;
-        min-height: 120px;
         justify-content: center;
       }
+      .bike-card,
+      .oil-card {
+        width: 200px;
+        border: 2px solid #ddd;
+        border-radius: 25px;
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s, border-color 0.3s;
+      }
+      .bike-card:hover,
+      .oil-card:hover {
+        transform: scale(1.05);
+        border-color: #e61e24;
+      }
+      .bike-card img,
+      .oil-card img {
+        width: 100%;
+        height: 120px;
+        object-fit: contain;
+        margin-bottom: 10px;
+      }
+      .selected {
+        border-color: #e61e24;
+        background-color: #fff0f0;
+      }
+      .correct {
+        border-color: #4caf50;
+        background-color: #e8f5e9;
+      }
+      .wrong {
+        border-color: #f44336;
+        background-color: #ffebee;
+      }
+      .result-message {
+        text-align: center;
+        margin: 20px 0;
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+      .btn {
+        display: inline-block;
+        background-color: #e61e24;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 25px;
+        margin: 10px 5px;
+        transition: background-color 0.3s;
+        cursor: pointer;
+        border: none;
+        font-size: 1em;
+      }
+      .btn:hover {
+        background-color: #c4171c;
+      }
+      .score-display {
+        text-align: center;
+        font-size: 1.3em;
+        margin: 15px 0;
+      }
+      .oil-info {
+        background: #f9f9f9;
+        padding: 15px;
+        border-radius: 25px;
+        margin-top: 20px;
+      }
 
-      .card {
-        width: 60px;
-        height: 90px;
-        background-color: white;
-        border-radius: 5px;
-        margin: 5px;
+      /* Popup Style */
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 20px;
-        color: black;
-        position: relative;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
       }
-
-      .card.hearts,
-      .card.diamonds {
-        color: red;
+      .popup-overlay.active {
+        opacity: 1;
+        visibility: visible;
       }
-
-      .card.clubs,
-      .card.spades {
-        color: black;
-      }
-
-      .card-value {
-        font-weight: bold;
-      }
-
-      .card-suit {
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
-        font-size: 12px;
-      }
-
-      .player-info {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 10px;
-        font-size: 16px;
-      }
-
-      .controls {
+      .popup-content {
+        background-color: white;
+        padding: 30px;
+        border-radius: 25px;
+        max-width: 500px;
+        width: 90%;
         text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        transform: scale(0.7);
+        transition: transform 0.3s;
+      }
+      .popup-overlay.active .popup-content {
+        transform: scale(1);
+      }
+      .popup-content h2 {
+        color: #e61e24;
+        margin-bottom: 15px;
+      }
+      .popup-content p {
+        margin-bottom: 20px;
+        font-size: 1.1em;
+      }
+      .popup-buttons {
+        margin-top: 20px;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 15px 0;
         margin-top: 30px;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 15px;
-      }
-
-      button {
-        background-color: #ffcc00;
-        color: #000;
-        border: none;
-        padding: 12px 24px;
-        font-size: 18px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: bold;
-        transition: all 0.3s;
-        min-width: 150px;
-      }
-
-      button:hover {
-        background-color: #ffdd33;
-        transform: scale(1.05);
-      }
-
-      button:disabled {
-        background-color: #cccccc;
-        cursor: not-allowed;
-        transform: none;
-      }
-
-      .result {
-        text-align: center;
-        font-size: 24px;
-        font-weight: bold;
-        color: #ffcc00;
-        margin-top: 20px;
-        min-height: 30px;
-        padding: 10px;
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 8px;
-      }
-
-      .score-board {
-        background-color: rgba(0, 0, 0, 0.7);
-        border-radius: 10px;
-        padding: 15px;
-        margin-top: 20px;
-      }
-
-      .score-title {
-        font-size: 20px;
-        color: #ffcc00;
-        margin-bottom: 10px;
-        text-align: center;
-      }
-
-      .scores {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-      }
-
-      .score-item {
-        text-align: center;
-        background-color: rgba(255, 204, 0, 0.2);
-        padding: 8px 15px;
-        border-radius: 5px;
-      }
-
-      @media (max-width: 768px) {
-        .player {
-          width: 100%;
-        }
-
-        .controls {
-          flex-direction: column;
-          align-items: center;
-        }
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <h1>Xì Dzách <span>🎮</span></h1>
-      <p>
-        Trò chơi chỉ mang tính chất giải trí, không có độ dưới mọi hình thức
-      </p>
+    <div class="header">
+      <h1 class="game-title">GHÉP DẦU ĐÚNG XE</h1>
+      <p>Thử thách kiến thức dầu nhờn xe máy Honda của bạn!</p>
+    </div>
 
-      <div class="setup-area" id="setup-area">
-        <div class="setup-controls">
-          <div class="control-group">
-            <label for="player-count">Số lượng người chơi:</label>
-            <select id="player-count" onchange="updatePlayerInputs()">
-              <option value="2">2 người</option>
-              <option value="3">3 người</option>
-              <option value="4" selected>4 người</option>
-              <option value="5">5 người</option>
-              <option value="6">6 người</option>
-            </select>
-          </div>
-
-          <div class="control-group">
-            <label for="theme">Chủ đề:</label>
-            <select id="theme">
-              <option value="motorcycle">Xe máy</option>
-              <option value="classic">Cổ điển</option>
-              <option value="animal">Động vật</option>
-              <option value="superhero">Siêu anh hùng</option>
-            </select>
-          </div>
-        </div>
-
-        <h3 style="text-align: center; color: #ffcc00; margin-top: 20px">
-          Đặt tên người chơi:
-        </h3>
-        <div class="player-inputs" id="player-inputs">
-          <!-- Player inputs will be generated here -->
-        </div>
-
-        <div class="controls" style="margin-top: 20px">
-          <button id="start-game-btn">Bắt đầu chơi</button>
+    <div class="game-container">
+      <div class="game-description">
+        <p>
+          Chọn đúng loại dầu nhờn phù hợp với từng dòng xe Honda. Bạn sẽ có
+          <strong>3 giây</strong> để ghép đôi chính xác!
+        </p>
+        <div class="score-display">
+          Điểm: <span id="score">0</span> | Lượt chơi:
+          <span id="attempts">0</span>/<span id="totalQuestions">5</span>
         </div>
       </div>
 
-      <div class="game-area" id="game-area" style="display: none">
-        <!-- Player areas will be generated here -->
+      <div class="game-area" id="gameArea">
+        <!-- Xe và dầu nhờn sẽ được hiển thị ở đây bằng JavaScript -->
       </div>
 
-      <div class="controls" id="game-controls" style="display: none">
-        <button id="deal-btn">Chia Bài</button>
-        <button id="hit-btn" disabled>Rút Thêm</button>
-        <button id="stand-btn" disabled>Dừng</button>
-        <button id="new-game-btn" disabled>Ván Mới</button>
+      <div class="result-message" id="resultMessage"></div>
+
+      <div style="text-align: center">
+        <button class="btn" id="nextBtn">Xe tiếp theo</button>
+        <button class="btn" id="resetBtn">Chơi lại</button>
       </div>
 
-      <div class="result" id="game-result"></div>
+      <!--<div class="oil-info">
+        <h3>Thông tin về dầu nhờn Honda</h3>
+        <p>Honda cung cấp các loại dầu nhờn đặc chế cho từng dòng xe:</p>
+        <ul>
+          <li>
+            <strong>Dầu khoáng 10W30</strong>: Phù hợp với các xe số cũ (Wave
+            RSX, Wave Alpha...)
+          </li>
+          <li>
+            <strong>Dầu bán tổng hợp 10W30</strong>: Dòng xe số mới (Wave RSX
+            FI, Blade...)
+          </li>
+          <li>
+            <strong>Dầu tổng hợp 10W30</strong>: Xe tay ga phổ thông (Vision,
+            Air Blade 110cc...)
+          </li>
+          <li>
+            <strong>Dầu tổng hợp hiệu năng cao 10W30/5W30</strong>: Xe cao cấp
+            (SH, PCX, ADV...)
+          </li>
+        </ul>
+      </div>
+    </div>-->
 
-      <div class="score-board" id="score-board" style="display: none">
-        <div class="score-title">Bảng Điểm</div>
-        <div class="scores" id="scores">
-          <!-- Scores will be generated here -->
+    <!-- Popup Kết thúc trò chơi -->
+    <div class="popup-overlay" id="gameOverPopup">
+      <div class="popup-content">
+        <h2>CHÚC MỪNG!</h2>
+        <p>
+          Bạn đã hoàn thành trò chơi với
+          <strong><span id="finalScore">0</span>/5</strong> câu đúng!
+        </p>
+        <p>Kiến thức về dầu nhờn Honda của bạn thật tuyệt vời!</p>
+        <div class="popup-buttons">
+          <button class="btn" id="playAgainBtn">Chơi lại từ đầu</button>
         </div>
       </div>
     </div>
 
+    <footer>
+      <p>
+        © 2025 HEAD Trung Hùng. Bản quyền thuộc về HEAD Trung Hùng
+      </p>
+    </footer>
+
     <script>
+      // Dữ liệu trò chơi
+      const gameData = [
+        {
+          bike: "Honda Wave Alpha",
+          bikeImage: "image/bike/ALPHA.png",
+          correctOil: "Dầu Nhờn 4T SL 10W-30 MA",
+          oilImage: "image/phutung/2.png",
+        },
+        {
+          bike: "Honda Shmode",
+          bikeImage: "image/bike/SHMODE.png",
+          correctOil: "Dầu Nhờn 4T SL 10W-30 MB",
+          oilImage: "image/phutung/3.png",
+        },
+        {
+          bike: "Honda Vision",
+          bikeImage: "image/bike/VISION.png",
+          correctOil: "Dầu Nhờn 4T SL 10W-30 MB",
+          oilImage: "image/phutung/3.png",
+        },
+        {
+          bike: "Honda Winner X",
+          bikeImage: "image/bike/WINNERX.png",
+          correctOil: "Dầu Nhờn Tổng Hợp 4T SL 10W-30 MA",
+          oilImage: "image/phutung/1.png",
+        },
+        {
+          bike: "Honda Air Blade 125cc",
+          bikeImage: "image/bike/AB.png",
+          correctOil: "Dầu Nhờn 4T SL 10W-30 MB",
+          oilImage: "image/phutung/3.png",
+        },
+      ];
+
+      // Các loại dầu nhờn
+      const oilTypes = [
+        { name: "Dầu Nhờn 4T SL 10W-30 MA", image: "image/phutung/2.png" },
+        { name: "Dầu Nhờn 4T SL 10W-30 MB", image: "image/phutung/3.png" },
+        {
+          name: "Dầu Nhờn Tổng Hợp 4T SL 10W-30 MA",
+          image: "image/phutung/1.png",
+        },
+      ];
+
       // Biến trò chơi
-      let deck = [];
-      let players = [];
-      let currentPlayer = 0;
-      let gameStarted = false;
-      let currentTheme = "motorcycle";
+      let currentBike = null;
+      let selectedOil = null;
+      let score = 0;
+      let attempts = 0;
+      let gameActive = false;
+      let usedBikes = [];
 
-      // DOM elements
-      const setupArea = document.getElementById("setup-area");
-      const gameArea = document.getElementById("game-area");
-      const playerInputs = document.getElementById("player-inputs");
-      const gameControls = document.getElementById("game-controls");
-      const scoreBoard = document.getElementById("score-board");
-      const scoresElement = document.getElementById("scores");
-      const startGameBtn = document.getElementById("start-game-btn");
-      const dealBtn = document.getElementById("deal-btn");
-      const hitBtn = document.getElementById("hit-btn");
-      const standBtn = document.getElementById("stand-btn");
-      const newGameBtn = document.getElementById("new-game-btn");
-      const gameResult = document.getElementById("game-result");
-      const themeSelect = document.getElementById("theme");
+      // DOM Elements
+      const gameArea = document.getElementById("gameArea");
+      const resultMessage = document.getElementById("resultMessage");
+      const scoreDisplay = document.getElementById("score");
+      const attemptsDisplay = document.getElementById("attempts");
+      const totalQuestionsDisplay = document.getElementById("totalQuestions");
+      const nextBtn = document.getElementById("nextBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const gameOverPopup = document.getElementById("gameOverPopup");
+      const finalScoreDisplay = document.getElementById("finalScore");
+      const playAgainBtn = document.getElementById("playAgainBtn");
 
-      // Khởi tạo
-      document.addEventListener("DOMContentLoaded", function () {
-        updatePlayerInputs();
-
-        // Sự kiện nút
-        startGameBtn.addEventListener("click", startGame);
-        dealBtn.addEventListener("click", dealCards);
-        hitBtn.addEventListener("click", hit);
-        standBtn.addEventListener("click", stand);
-        newGameBtn.addEventListener("click", newGame);
-        themeSelect.addEventListener("change", updateTheme);
-      });
-
-      // Cập nhật theme
-      function updateTheme() {
-        currentTheme = themeSelect.value;
-        const body = document.body;
-
-        // Xóa tất cả các theme class cũ
-        body.classList.remove(
-          "motorcycle-theme",
-          "classic-theme",
-          "animal-theme",
-          "superhero-theme"
-        );
-
-        // Thêm class theme mới
-        switch (currentTheme) {
-          case "motorcycle":
-            body.style.backgroundImage =
-              "url('/sanphamxemay/image/banner/ALPHARETRO.jpg')";
-            break;
-          case "classic":
-            body.style.backgroundImage =
-              "url('/sanphamxemay/image/khac/cover.png')";
-            break;
-          case "animal":
-            body.style.backgroundImage =
-              "url('/sanphamxemay/image/khac/cover.png')";
-            break;
-          case "superhero":
-            body.style.backgroundImage =
-              "url('/sanphamxemay/image/khac/cover.png')";
-            break;
-        }
+      // Khởi tạo trò chơi
+      function initGame() {
+        score = 0;
+        attempts = 0;
+        usedBikes = [];
+        updateScore();
+        hidePopup();
+        loadNextBike();
       }
 
-      // Cập nhật ô nhập tên người chơi
-      function updatePlayerInputs() {
-        const playerCount = parseInt(
-          document.getElementById("player-count").value
-        );
-        playerInputs.innerHTML = "";
+      // Hiển thị popup
+      function showPopup() {
+        gameOverPopup.classList.add("active");
+      }
 
-        for (let i = 0; i < playerCount; i++) {
-          const playerInput = document.createElement("div");
-          playerInput.className = "player-input";
-          playerInput.innerHTML = `
-                    <label for="player-${i + 1}-name">Người chơi ${
-            i + 1
-          }:</label>
-                    <input type="text" id="player-${
-                      i + 1
-                    }-name" placeholder="Nhập tên" value="${getDefaultName(i)}">
+      // Ẩn popup
+      function hidePopup() {
+        gameOverPopup.classList.remove("active");
+      }
+
+      // Tải xe tiếp theo
+      function loadNextBike() {
+        gameActive = true;
+        selectedOil = null;
+        resultMessage.textContent = "";
+
+        // Kiểm tra nếu đã hoàn thành tất cả câu hỏi
+        if (usedBikes.length === gameData.length) {
+          endGame();
+          return;
+        }
+
+        // Chọn ngẫu nhiên một xe chưa dùng
+        let availableBikes = gameData.filter(
+          (bike) => !usedBikes.includes(bike.bike)
+        );
+        const randomIndex = Math.floor(Math.random() * availableBikes.length);
+        currentBike = availableBikes[randomIndex];
+        usedBikes.push(currentBike.bike);
+
+        // Hiển thị xe
+        gameArea.innerHTML = `
+                <div class="bike-card" id="currentBike">
+                    <img src="${currentBike.bikeImage}" alt="${currentBike.bike}">
+                    <h3>${currentBike.bike}</h3>
+                </div>
+            `;
+
+        // Hiển thị các lựa chọn dầu
+        const shuffledOils = [...oilTypes].sort(() => 0.5 - Math.random());
+        shuffledOils.forEach((oil) => {
+          const oilCard = document.createElement("div");
+          oilCard.className = "oil-card";
+          oilCard.innerHTML = `
+                    <img src="${oil.image}" alt="${oil.name}">
+                    <p>${oil.name}</p>
                 `;
-          playerInputs.appendChild(playerInput);
-        }
+          oilCard.addEventListener("click", () => selectOil(oil, oilCard));
+          gameArea.appendChild(oilCard);
+        });
+
+        attempts++;
+        updateScore();
       }
 
-      // Tạo tên mặc định theo theme
-      function getDefaultName(index) {
-        const themes = {
-          motorcycle: [
-            "Wave Alpha",
-            "SH Mode",
-            "Winner X",
-            "Exciter",
-            "Vision",
-            "Air Blade",
-          ],
-          classic: ["Cơ", "Rô", "Chuồn", "Bích", "Joker", "Phăng teo"],
-          animal: ["Sư Tử", "Hổ", "Gấu", "Cáo", "Sóc", "Chim"],
-          superhero: [
-            "Iron Man",
-            "Spider-Man",
-            "Batman",
-            "Superman",
-            "Wonder Woman",
-            "Thor",
-          ],
-        };
+      // Chọn dầu
+      function selectOil(oil, oilCard) {
+        if (!gameActive) return;
 
-        return themes[currentTheme][index] || `Người chơi ${index + 1}`;
-      }
+        selectedOil = oil;
+        gameActive = false;
 
-      // Bắt đầu game
-      function startGame() {
-        const playerCount = parseInt(
-          document.getElementById("player-count").value
-        );
-        players = [];
+        // Đánh dấu đã chọn
+        document.querySelectorAll(".oil-card").forEach((card) => {
+          card.classList.remove("selected");
+        });
+        oilCard.classList.add("selected");
 
-        // Lấy tên người chơi
-        for (let i = 0; i < playerCount; i++) {
-          const nameInput = document.getElementById(`player-${i + 1}-name`);
-          const name = nameInput.value.trim() || getDefaultName(i);
+        // Kiểm tra kết quả
+        if (oil.name === currentBike.correctOil) {
+          oilCard.classList.add("correct");
+          resultMessage.textContent = "Chính xác! Bạn đã chọn đúng dầu nhờn.";
+          resultMessage.style.color = "#4CAF50";
+          score++;
+        } else {
+          oilCard.classList.add("wrong");
+          resultMessage.textContent = `Chưa đúng! Dầu phù hợp là: ${currentBike.correctOil}`;
+          resultMessage.style.color = "#f44336";
 
-          players.push({
-            id: i + 1,
-            name: name,
-            cards: [],
-            score: 0,
-            totalScore: 0,
-            status: "waiting",
-            element: `player${i + 1}`,
+          // Đánh dấu đáp án đúng
+          document.querySelectorAll(".oil-card").forEach((card) => {
+            if (card.textContent.includes(currentBike.correctOil)) {
+              card.classList.add("correct");
+            }
           });
         }
 
-        // Tạo giao diện người chơi
-        gameArea.innerHTML = "";
-        for (let player of players) {
-          const playerElement = document.createElement("div");
-          playerElement.className = "player";
-          playerElement.id = player.element;
-          playerElement.innerHTML = `
-                    <div class="player-name">${player.name}</div>
-                    <div class="player-cards" id="${player.element}-cards"></div>
-                    <div class="player-info">
-                        <span>Tổng điểm: <span id="${player.element}-score">0</span></span>
-                        <span>Tình trạng: <span id="${player.element}-status">Đang chờ</span></span>
-                    </div>
-                `;
-          gameArea.appendChild(playerElement);
-        }
-
-        // Tạo bảng điểm
-        scoresElement.innerHTML = "";
-        for (let player of players) {
-          const scoreElement = document.createElement("div");
-          scoreElement.className = "score-item";
-          scoreElement.id = `score${player.id}`;
-          scoreElement.textContent = `${player.name}: 0`;
-          scoresElement.appendChild(scoreElement);
-        }
-
-        // Hiển thị khu vực chơi game
-        setupArea.style.display = "none";
-        gameArea.style.display = "flex";
-        gameControls.style.display = "flex";
-        scoreBoard.style.display = "block";
-
-        // Reset trò chơi
-        newGame();
+        updateScore();
       }
 
-      // Tạo bộ bài
-      function createDeck() {
-        const suits = ["hearts", "diamonds", "clubs", "spades"];
-        const values = [
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "J",
-          "Q",
-          "K",
-          "A",
-        ];
-
-        let newDeck = [];
-
-        for (let suit of suits) {
-          for (let value of values) {
-            newDeck.push({ suit, value });
-          }
-        }
-
-        return shuffleDeck(newDeck);
-      }
-
-      // Xáo bài
-      function shuffleDeck(deck) {
-        for (let i = deck.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [deck[i], deck[j]] = [deck[j], deck[i]];
-        }
-        return deck;
-      }
-
-      // Chia bài
-      function dealCards() {
-        if (gameStarted) return;
-
-        deck = createDeck();
-        gameStarted = true;
-        currentPlayer = 0;
-
-        // Reset người chơi
-        for (let player of players) {
-          player.cards = [];
-          player.score = 0;
-          player.status = "waiting";
-          updatePlayerDisplay(player);
-        }
-
-        // Chia 2 lá cho mỗi người
-        for (let i = 0; i < 2; i++) {
-          for (let player of players) {
-            const card = deck.pop();
-            player.cards.push(card);
-            player.score = calculateScore(player.cards);
-          }
-        }
-
-        // Cập nhật hiển thị
-        for (let player of players) {
-          updatePlayerDisplay(player);
-        }
-
-        // Bắt đầu với người chơi đầu tiên
-        players[0].status = "playing";
-        updatePlayerDisplay(players[0]);
-
-        // Cập nhật nút
-        dealBtn.disabled = true;
-        hitBtn.disabled = false;
-        standBtn.disabled = false;
-        newGameBtn.disabled = true;
-
-        gameResult.textContent = "";
-      }
-
-      // Rút thêm bài
-      function hit() {
-        const player = players[currentPlayer];
-
-        if (player.status !== "playing") return;
-
-        const card = deck.pop();
-        player.cards.push(card);
-        player.score = calculateScore(player.cards);
-
-        updatePlayerDisplay(player);
-
-        // Kiểm tra quá 21 điểm
-        if (player.score > 21) {
-          player.status = "busted";
-          updatePlayerDisplay(player);
-          stand();
-        }
-      }
-
-      // Dừng lại
-      function stand() {
-        const player = players[currentPlayer];
-        player.status = "stood";
-        updatePlayerDisplay(player);
-
-        // Chuyển sang người chơi tiếp theo
-        currentPlayer++;
-
-        if (currentPlayer < players.length) {
-          players[currentPlayer].status = "playing";
-          updatePlayerDisplay(players[currentPlayer]);
-        } else {
-          // Kết thúc game
-          endGame();
-        }
-      }
-
-      // Kết thúc game
+      // Kết thúc trò chơi
       function endGame() {
-        // Tìm người thắng
-        let winners = [];
-        let maxScore = 0;
-
-        for (let player of players) {
-          if (player.status !== "busted" && player.score <= 21) {
-            if (player.score > maxScore) {
-              maxScore = player.score;
-              winners = [player];
-            } else if (player.score === maxScore) {
-              winners.push(player);
-            }
-          }
-        }
-
-        // Hiển thị kết quả
-        if (winners.length === 1) {
-          gameResult.textContent = `${winners[0].name} thắng với ${winners[0].score} điểm!`;
-          winners[0].totalScore++;
-          document.getElementById(
-            `score${winners[0].id}`
-          ).textContent = `${winners[0].name}: ${winners[0].totalScore}`;
-        } else if (winners.length > 1) {
-          const winnerNames = winners.map((w) => w.name).join(", ");
-          gameResult.textContent = `Hòa! ${winnerNames} cùng có ${maxScore} điểm!`;
-          // Không cộng điểm cho ai
-        } else {
-          gameResult.textContent = "Không có người thắng! Tất cả đều quắc!";
-        }
-
-        // Cập nhật nút
-        dealBtn.disabled = true;
-        hitBtn.disabled = true;
-        standBtn.disabled = true;
-        newGameBtn.disabled = false;
+        gameArea.innerHTML = "<p>Bạn đã hoàn thành tất cả câu hỏi!</p>";
+        finalScoreDisplay.textContent = score;
+        showPopup();
       }
 
-      // Ván mới
-      function newGame() {
-        gameStarted = false;
-        currentPlayer = 0;
-
-        // Reset người chơi
-        for (let player of players) {
-          player.cards = [];
-          player.score = 0;
-          player.status = "waiting";
-          updatePlayerDisplay(player);
-        }
-
-        // Cập nhật nút
-        dealBtn.disabled = false;
-        hitBtn.disabled = true;
-        standBtn.disabled = true;
-        newGameBtn.disabled = true;
-
-        gameResult.textContent = "";
+      // Cập nhật điểm
+      function updateScore() {
+        scoreDisplay.textContent = score;
+        attemptsDisplay.textContent = attempts;
+        totalQuestionsDisplay.textContent = gameData.length;
       }
 
-      // Tính điểm
-      function calculateScore(cards) {
-        let score = 0;
-        let aces = 0;
+      // Sự kiện nút
+      nextBtn.addEventListener("click", loadNextBike);
+      resetBtn.addEventListener("click", initGame);
+      playAgainBtn.addEventListener("click", initGame);
 
-        for (let card of cards) {
-          if (card.value === "A") {
-            score += 11;
-            aces++;
-          } else if (["K", "Q", "J"].includes(card.value)) {
-            score += 10;
-          } else {
-            score += parseInt(card.value);
-          }
-        }
-
-        // Điều chỉnh điểm nếu có A và quá 21
-        while (score > 21 && aces > 0) {
-          score -= 10;
-          aces--;
-        }
-
-        return score;
-      }
-
-      // Cập nhật hiển thị người chơi
-      function updatePlayerDisplay(player) {
-        const cardsElement = document.getElementById(`${player.element}-cards`);
-        const scoreElement = document.getElementById(`${player.element}-score`);
-        const statusElement = document.getElementById(
-          `${player.element}-status`
-        );
-
-        // Xóa bài cũ
-        cardsElement.innerHTML = "";
-
-        // Hiển thị bài mới
-        for (let card of player.cards) {
-          const cardElement = document.createElement("div");
-          cardElement.className = `card ${card.suit}`;
-
-          const valueElement = document.createElement("div");
-          valueElement.className = "card-value";
-          valueElement.textContent = card.value;
-
-          const suitElement = document.createElement("div");
-          suitElement.className = "card-suit";
-
-          // Biểu tượng chất bài
-          switch (card.suit) {
-            case "hearts":
-              suitElement.textContent = "♥";
-              break;
-            case "diamonds":
-              suitElement.textContent = "♦";
-              break;
-            case "clubs":
-              suitElement.textContent = "♣";
-              break;
-            case "spades":
-              suitElement.textContent = "♠";
-              break;
-          }
-
-          cardElement.appendChild(valueElement);
-          cardElement.appendChild(suitElement);
-          cardsElement.appendChild(cardElement);
-        }
-
-        // Cập nhật điểm và trạng thái
-        scoreElement.textContent = player.score;
-
-        switch (player.status) {
-          case "waiting":
-            statusElement.textContent = "Đang chờ";
-            statusElement.style.color = "white";
-            break;
-          case "playing":
-            statusElement.textContent = "Đang chơi";
-            statusElement.style.color = "yellow";
-            break;
-          case "stood":
-            statusElement.textContent = "Đã dừng";
-            statusElement.style.color = "lightgreen";
-            break;
-          case "busted":
-            statusElement.textContent = "Quắc";
-            statusElement.style.color = "red";
-            break;
-        }
-      }
+      // Bắt đầu trò chơi
+      totalQuestionsDisplay.textContent = gameData.length;
+      initGame();
     </script>
   </body>
 </html>
