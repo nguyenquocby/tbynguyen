@@ -1,895 +1,1614 @@
 <!DOCTYPE html>
 <html lang="vi">
   <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G4PSCX8Q0Q"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-G4PSCX8Q0Q');
-</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hệ Thống HEAD Trung Hùng</title>
-    <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
+    <title>Hệ Thống Cửa Hàng Honda</title>
+    <link
+      rel="icon"
+      href="/sanphamxemay/image/banner/Logo_HEAD.png"
+      type="image/x-icon"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      rel="stylesheet"
+    />
     <style>
-      /* Reset CSS */
+      /* Reset & Base Styles */
+      :root {
+        --primary-color: #e11931; /* Honda Red */
+        --secondary-color: #004225; /* Honda Green */
+        --dark-color: #1a1a1a;
+        --light-color: #f8f9fa;
+        --gray-color: #6c757d;
+        --transition: all 0.3s ease;
+        --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        --border-radius: 25px;
+      }
+
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Montserrat", sans-serif;
       }
 
-      /* Biến màu sắc */
-      :root {
-        --primary-color: linear-gradient(135deg, #ff0000, #990000);
-        --text-color: #ffffff;
-        --accent-color: #ff3333;
-        --dark-color: #1a1a1a;
-        --transition-speed: 0.6s;
-        --transition-easing: cubic-bezier(0.65, 0, 0.35, 1);
-        --facebook: #3b5998;
-        --instagram: #e1306c;
-        --youtube: #ff0000;
-        --tiktok: #010101;
+      html {
+        scroll-behavior: smooth;
+        font-size: 62.5%; /* 1rem = 10px */
       }
 
       body {
-        overflow-x: hidden;
-      }
-
-      /* Header */
-      header {
-        position: relative;
-        height: 100vh;
-        overflow: hidden;
-      }
-
-      /* Video Cover - Desktop */
-      .video-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        opacity: 0;
-        transition: opacity 1.5s var(--transition-easing);
-      }
-
-      .video-container.loaded {
-        opacity: 1;
-      }
-
-      .video-container video {
-        min-width: 100%;
-        min-height: 100%;
-        object-fit: cover;
-        transform: scale(1.05);
-        transition: transform 8s var(--transition-easing);
-      }
-
-      .video-container.loaded video {
-        transform: scale(1);
-      }
-
-      /* Image Cover - Mobile & Tablet */
-      .mobile-cover {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: url("image/VIDEO/cover.jpg") no-repeat center center/cover;
-        opacity: 0;
-        transition: opacity 1.5s var(--transition-easing);
-        transform: scale(1.05);
-        transition: transform 8s var(--transition-easing);
-      }
-
-      .mobile-cover.loaded {
-        opacity: 1;
-        transform: scale(1);
-      }
-
-      /* Hiệu ứng zoom ảnh khi hover */
-      .mobile-cover:hover {
-        transform: scale(1.03);
-      }
-
-      /* Overlay */
-      .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 0;
-        opacity: 0;
-        transition: opacity 1.2s var(--transition-easing) 0.3s;
-      }
-
-      .overlay.loaded {
-        opacity: 1;
-      }
-
-      /* Logo */
-      .logo {
-        position: absolute;
-        top: 30px;
-        left: 50px;
-        z-index: 10;
-        opacity: 0;
-        transform: translateY(-20px);
-        transition: all var(--transition-speed) var(--transition-easing) 0.4s;
-      }
-
-      .logo.loaded {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .logo img {
-        height: 50px;
-        width: auto;
-        transition: transform 0.3s ease;
-      }
-
-      .logo img:hover {
-        transform: scale(1.1);
-      }
-
-      /* Menu */
-      .menu-btn {
-        position: absolute;
-        top: 40px;
-        right: 50px;
-        z-index: 10;
-        cursor: pointer;
-        opacity: 0;
-        transform: translateY(-20px);
-        transition: all var(--transition-speed) var(--transition-easing) 0.5s;
-      }
-
-      .menu-btn.loaded {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .menu-btn .bar {
-        width: 30px;
-        height: 3px;
-        background: white;
-        margin: 6px 0;
-        transition: all 0.4s var(--transition-easing);
-      }
-
-      .menu-btn.active .bar:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-        background: var(--accent-color);
-      }
-
-      .menu-btn.active .bar:nth-child(2) {
-        opacity: 0;
-      }
-
-      .menu-btn.active .bar:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-        background: var(--accent-color);
-      }
-
-      /* Navigation */
-      .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 300px;
-        height: 100%;
-        background: rgba(26, 26, 26, 0.98);
-        backdrop-filter: blur(10px);
-        z-index: 9;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: right var(--transition-speed) var(--transition-easing);
-      }
-
-      .nav-menu.active {
-        right: 0;
-      }
-
-      .nav-menu a {
-        color: white;
-        text-decoration: none;
-        font-size: 18px;
-        margin: 15px 0;
-        padding: 10px 20px;
-        position: relative;
-        opacity: 0;
-        transform: translateX(20px);
-        transition: all 0.3s ease;
-      }
-
-      .nav-menu.active a {
-        opacity: 1;
-        transform: translateX(0);
-        transition: all 0.4s var(--transition-easing);
-      }
-
-      .nav-menu a:nth-child(1) {
-        transition-delay: 0.1s;
-      }
-      .nav-menu a:nth-child(2) {
-        transition-delay: 0.2s;
-      }
-      .nav-menu a:nth-child(3) {
-        transition-delay: 0.3s;
-      }
-      .nav-menu a:nth-child(4) {
-        transition-delay: 0.4s;
-      }
-      .nav-menu a:nth-child(5) {
-        transition-delay: 0.5s;
-      }
-
-      .nav-menu a:hover {
-        color: var(--accent-color);
-      }
-
-      .nav-menu a::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 2px;
-        background: var(--primary-color);
-        transition: width 0.3s ease;
-      }
-
-      .nav-menu a:hover::after {
-        width: 80%;
-      }
-
-      /* Main Content */
-      .main-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        color: white;
-        z-index: 5;
-        width: 80%;
-        opacity: 0;
-        transform: translate(-50%, -40%);
-        transition: all var(--transition-speed) var(--transition-easing) 0.6s;
-      }
-
-      .main-content.loaded {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-      }
-
-      .main-content h1 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-        /*text-transform: uppercase;*/
-        letter-spacing: 3px;
-        background: white;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-        transition: text-shadow 1.5s ease;
-      }
-
-      .main-content:hover h1 {
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
-      }
-
-      .main-content p {
-        font-size: 1.2rem;
-        margin-bottom: 30px;
+        font-family: "Montserrat", sans-serif;
         line-height: 1.6;
-        opacity: 0.9;
-        transform: translateY(10px);
-        transition: all 0.8s ease 0.8s;
+        color: var(--dark-color);
+        overflow-x: hidden;
+        background-color: #fff;
       }
 
-      .main-content.loaded p {
-        opacity: 1;
-        transform: translateY(0);
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ul {
+        list-style: none;
       }
 
       .btn {
         display: inline-block;
-        padding: 15px 35px;
-        background: var(--primary-color);
+        padding: 1.2rem 2.4rem;
+        border-radius: var(--border-radius);
+        font-weight: 600;
+        font-size: 1.4rem;
+        text-align: center;
+        transition: var(--transition);
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
         color: white;
-        text-decoration: none;
-        border-radius: 30px;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.4s var(--transition-easing);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .btn-primary:hover {
+        background-color: #c01027;
+        transform: translateY(-3px);
+        box-shadow: var(--box-shadow);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--primary-color);
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .btn-lg {
+        padding: 1.5rem 3rem;
+        font-size: 1.6rem;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 6rem;
+      }
+
+      .section-title {
+        font-size: 3.6rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--dark-color);
         position: relative;
-        overflow: hidden;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.8s var(--transition-easing) 1s;
+        display: inline-block;
       }
 
-      .main-content.loaded .btn {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .btn:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-      }
-
-      .btn::before {
+      .section-title::after {
         content: "";
         position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+      }
+
+      .section-subtitle {
+        font-size: 1.8rem;
+        color: var(--gray-color);
+        margin-bottom: 2rem;
+      }
+
+      .divider {
+        height: 1px;
+        background-color: #eee;
+        margin: 3rem auto;
+        width: 100px;
+      }
+
+      /* Preloader */
+      .preloader {
+        position: fixed;
         top: 0;
-        left: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+
+      .preloader.fade-out {
+        opacity: 0;
+      }
+
+      .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+        gap: 1rem;
+      }
+
+      .loader-square {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+        animation: loaderAnimation 1.5s infinite ease-in-out;
+      }
+
+      .loader-square:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .loader-square:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .loader-square:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .loader-square:nth-child(4) {
+        animation-delay: 0.6s;
+      }
+
+      @keyframes loaderAnimation {
+        0%,
+        100% {
+          transform: scale(0.8);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+      }
+
+      /* Header */
+      .main-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 2rem 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .main-header.scrolled {
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem 0;
+      }
+
+      .main-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 40px;
+        transition: var(--transition);
+      }
+
+      .main-header.scrolled .logo img {
+        height: 35px;
+      }
+
+      .main-nav ul {
+        display: flex;
+      }
+
+      .main-nav li {
+        margin-left: 3rem;
+      }
+
+      .main-nav a {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: white;
+        position: relative;
+        transition: var(--transition);
+      }
+
+      .main-nav a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: white;
+        transition: var(--transition);
+      }
+
+      .main-nav a:hover::after,
+      .main-nav a.active::after {
+        width: 100%;
+      }
+
+      .main-header.scrolled .main-nav a {
+        color: var(--dark-color);
+      }
+
+      .main-header.scrolled .main-nav a::after {
+        background-color: var(--primary-color);
+      }
+
+      .menu-toggle {
+        display: none;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: white;
+        transition: all 0.3s ease;
+      }
+
+      .main-header.scrolled .bar {
+        background-color: var(--dark-color);
+      }
+
+      /* Hero Section */
+      .hero-section {
+        position: relative;
+        height: 100vh;
+        min-height: 600px;
+        background: url("image/HEAD.JPG") no-repeat center center/cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.2),
-          transparent
+          to right,
+          rgba(0, 0, 0, 0.7),
+          rgba(0, 0, 0, 0.3)
         );
-        transition: 0.5s;
       }
 
-      .btn:hover::before {
-        left: 100%;
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        padding-top: 8rem;
       }
 
-      /* Footer */
-      footer {
+      .hero-title {
+        font-size: 5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        /*--text-transform: uppercase;*/
+        letter-spacing: 2px;
+      }
+
+      .hero-subtitle {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+        font-weight: 400;
+      }
+
+      /* Stores Section */
+      .stores-section {
+        padding: 8rem 0;
+        background-color: #f9f9f9;
+      }
+
+      .region-filter {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-bottom: 4rem;
+      }
+
+      .filter-btn {
+        padding: 1rem 2rem;
+        border: none;
+        background-color: white;
+        border-radius: 30px;
+        font-size: 1.4rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .filter-btn.active {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .filter-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .stores-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 3rem;
+      }
+
+      .store-card {
+        background-color: white;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--box-shadow);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .store-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .store-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .store-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .store-card:hover .store-image img {
+        transform: scale(1.05);
+      }
+
+      .store-info {
+        padding: 2rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .store-info h3 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        color: var(--dark-color);
+      }
+
+      .store-meta {
+        margin-bottom: 1.5rem;
+      }
+
+      .store-meta span {
+        display: flex;
+        align-items: center;
+        font-size: 1.4rem;
+        color: var(--gray-color);
+        margin-bottom: 0.8rem;
+      }
+
+      .store-meta i {
+        margin-right: 0.8rem;
+        color: var(--primary-color);
+      }
+
+      .store-desc {
+        font-size: 1.4rem;
+        color: var(--gray-color);
+        margin-bottom: 2rem;
+        flex: 1;
+      }
+
+      /* Map Section */
+      .map-section {
+        padding: 8rem 0;
+        background-color: white;
+      }
+
+      .map-container {
+        display: flex;
+        gap: 3rem;
+      }
+
+      #storeMap {
+        height: 500px;
+        width: 100%;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+      }
+
+      .map-legend {
+        background-color: #f9f9f9;
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        min-width: 200px;
+      }
+
+      .map-legend h4 {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+        color: var(--dark-color);
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .legend-color {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-right: 1rem;
+      }
+
+      /* Contact Section */
+      .contact-section {
+        padding: 8rem 0;
+        background-color: #f9f9f9;
+      }
+
+      .contact-container {
+        display: flex;
+        gap: 5rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .contact-info {
+        flex: 1;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 4rem;
+        border-radius: var(--border-radius);
+      }
+
+      .contact-info h3 {
+        font-size: 2.4rem;
+        margin-bottom: 3rem;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      .contact-info h3::after {
+        content: "";
         position: absolute;
         bottom: 0;
         left: 0;
-        width: 100%;
-        padding: 20px 0;
-        text-align: center;
-        z-index: 5;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all var(--transition-speed) var(--transition-easing) 1.2s;
+        width: 50px;
+        height: 3px;
+        background-color: white;
       }
 
-      footer.loaded {
-        opacity: 1;
-        transform: translateY(0);
+      .info-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 2rem;
+        gap: 1.5rem;
+      }
+
+      .info-item i {
+        font-size: 2rem;
+        margin-top: 0.3rem;
+      }
+
+      .info-item h4 {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .info-item p {
+        font-size: 1.4rem;
+      }
+
+      .contact-form {
+        flex: 1;
+        background-color: white;
+        padding: 4rem;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+      }
+
+      .contact-form h3 {
+        font-size: 2.4rem;
+        margin-bottom: 3rem;
+        color: var(--dark-color);
+      }
+
+      .form-group {
+        margin-bottom: 2rem;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 1.2rem 1.5rem;
+        border: 1px solid #ddd;
+        border-radius: var(--border-radius);
+        font-size: 1.5rem;
+        font-family: "Montserrat", sans-serif;
+        transition: var(--transition);
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(225, 25, 49, 0.1);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      /* Footer */
+      .main-footer {
+        background-color: var(--dark-color);
+        color: white;
+        padding: 6rem 0 0;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 4rem;
+        margin-bottom: 4rem;
+      }
+
+      .footer-logo img {
+        height: 40px;
+        margin-bottom: 2rem;
+      }
+
+      .footer-logo p {
+        font-size: 1.4rem;
+        color: #aaa;
+        margin-bottom: 2rem;
+      }
+
+      .footer-links h4 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      .footer-links h4::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-links ul li {
+        margin-bottom: 1rem;
+      }
+
+      .footer-links ul li a {
+        font-size: 1.4rem;
+        color: #aaa;
+        transition: var(--transition);
+      }
+
+      .footer-links ul li a:hover {
+        color: white;
+        padding-left: 5px;
+      }
+
+      .footer-social h4 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      .footer-social h4::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
       }
 
       .social-icons {
         display: flex;
-        justify-content: center;
-        gap: 25px;
+        gap: 1.5rem;
       }
 
       .social-icons a {
-        color: white;
-        font-size: 24px;
-        transition: all 0.4s var(--transition-easing);
-        opacity: 0.8;
-        transform: translateY(0);
-        width: 50px;
-        height: 50px;
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
         border-radius: 50%;
-        position: relative;
-        overflow: hidden;
-        background: rgba(255, 255, 255, 0.1);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        text-decoration: none;
-      }
-
-      .social-icons a::before {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: var(--primary-color);
-        top: 0;
-        left: -100%;
-        transition: all 0.4s var(--transition-easing);
-        z-index: -1;
-      }
-
-      .social-icons a:hover::before {
-        left: 0;
-      }
-
-      /* Hiệu ứng riêng cho từng icon */
-      .social-icons a:nth-child(1) {
-        color: var(--facebook);
-        transition-delay: 1.3s;
-      }
-      .social-icons a:nth-child(2) {
-        color: var(--instagram);
-        transition-delay: 1.4s;
-      }
-      .social-icons a:nth-child(3) {
-        color: var(--youtube);
-        transition-delay: 1.5s;
-      }
-      .social-icons a:nth-child(4) {
-        color: var(--tiktok);
-        transition-delay: 1.6s;
-      }
-
-      footer.loaded .social-icons a {
-        opacity: 1;
+        color: white;
+        font-size: 1.6rem;
+        transition: var(--transition);
       }
 
       .social-icons a:hover {
-        transform: translateY(-5px) scale(1.1);
-        opacity: 1;
-        color: white;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
       }
 
-      /* Hiệu ứng đặc biệt khi hover */
-      .social-icons a i {
-        transition: transform 0.3s ease;
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 3rem;
+        text-align: center;
       }
 
-      .social-icons a:hover i {
-        transform: scale(1.2) rotate(10deg);
+      .footer-bottom p {
+        font-size: 1.4rem;
+        color: #aaa;
       }
 
-      /* Hiệu ứng sóng */
-      .social-icons a::after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background: radial-gradient(
-          circle,
-          rgba(255, 255, 255, 0.4) 0%,
-          rgba(255, 255, 255, 0) 70%
-        );
-        transform: scale(0);
-        opacity: 0;
-        transition: all 0.5s var(--transition-easing);
-      }
-
-      .social-icons a:hover::after {
-        transform: scale(2);
-        opacity: 1;
-      }
-      /* Nút gọi điện thoại */
-      .call-button {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        z-index: 100;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #00cc00, #009900);
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        cursor: pointer;
-        transition: all 0.5s ease;
-        animation: pulse 2s infinite;
-        overflow: hidden;
-        text-decoration: none;
-      }
-
-      .call-button .phone-number {
-        position: absolute;
-        width: 0;
-        opacity: 0;
-        white-space: nowrap;
-        transition: all 0.5s ease;
-        font-size: 16px;
-        font-weight: bold;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
-      .call-button i {
-        transition: all 0.5s ease;
-      }
-
-      .call-button:hover {
-        width: 200px;
-        border-radius: 30px;
-        animation: shake 2s ease infinite, pulse 2s infinite;
-      }
-
-      .call-button:hover .phone-number {
-        width: auto;
-        opacity: 1;
-        padding: 0 15px 0 40px;
-      }
-
-      .call-button:hover i {
-        position: absolute;
-        left: 15px;
-      }
-
-      .call-button::before {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background: rgba(0, 204, 0, 0.4);
-        z-index: -1;
-        animation: ripple 3s ease-out infinite;
-        opacity: 0;
-      }
-
-      .call-button:hover::before {
-        animation: ripple 1.5s ease-out infinite;
-        border-radius: 30px;
-      }
-
-      /* Hiệu ứng rung */
-      @keyframes shake {
-        0%,
-        100% {
-          transform: translateX(0) rotate(0);
-        }
-        10%,
-        30%,
-        50%,
-        70%,
-        90% {
-          transform: translateX(-3px) rotate(-2deg);
-        }
-        20%,
-        40%,
-        60%,
-        80% {
-          transform: translateX(3px) rotate(2deg);
-        }
-      }
-
-      /* Hiệu ứng nhấp nháy */
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(0, 204, 0, 0.7);
-        }
-        70% {
-          box-shadow: 0 0 0 15px rgba(0, 204, 0, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(0, 204, 0, 0);
-        }
-      }
-
-      /* Hiệu ứng lan tỏa */
-      @keyframes ripple {
-        0% {
-          transform: scale(0.8);
-          opacity: 0.7;
-        }
-        100% {
-          transform: scale(2);
-          opacity: 0;
-        }
-      }
-
-      /* Responsive */
-      @media (max-width: 1024px) {
-        /* iPad và tablet ngang */
-        .video-container {
-          display: none;
+      /* Responsive Styles */
+      @media (max-width: 992px) {
+        .map-container {
+          flex-direction: column;
         }
 
-        .mobile-cover {
-          display: block;
+        .map-legend {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 2rem;
+          justify-content: center;
         }
 
-        .logo {
-          left: 30px;
-        }
-
-        .logo img {
-          height: 45px;
-        }
-
-        .menu-btn {
-          right: 30px;
-        }
-
-        .main-content h1 {
-          font-size: 3rem;
+        .contact-container {
+          flex-direction: column;
         }
       }
 
       @media (max-width: 768px) {
-        /* Tablet dọc và điện thoại ngang */
-        .logo {
-          left: 20px;
+        html {
+          font-size: 56.25%; /* 1rem = 9px */
         }
 
-        .logo img {
-          height: 40px;
+        .menu-toggle {
+          display: block;
         }
 
-        .menu-btn {
-          right: 20px;
-          top: 30px;
+        .menu-toggle.active .bar:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
         }
 
-        .main-content h1 {
-          font-size: 2rem;
+        .menu-toggle.active .bar:nth-child(2) {
+          opacity: 0;
         }
 
-        .main-content p {
-          font-size: 0.8rem;
+        .menu-toggle.active .bar:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
         }
 
-        .nav-menu {
+        .main-nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
           width: 80%;
-          right: -80%;
+          max-width: 300px;
+          height: 100vh;
+          background-color: white;
+          padding: 8rem 3rem;
+          transition: var(--transition);
+          z-index: 1000;
         }
 
-        .social-icons {
-          gap: 15px;
+        .main-nav.active {
+          right: 0;
+          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
         }
 
-        .social-icons a {
-          width: 45px;
-          height: 45px;
-          font-size: 20px;
-        }
-        .call-button {
-          width: 50px;
-          height: 50px;
-          font-size: 20px;
-          bottom: 20px;
-          right: 20px;
+        .main-nav ul {
+          flex-direction: column;
         }
 
-        .call-button:hover {
-          width: 180px;
+        .main-nav li {
+          margin: 1.5rem 0;
         }
 
-        .call-button .phone-number {
-          font-size: 14px;
+        .main-nav a {
+          color: var(--dark-color);
+          font-size: 1.8rem;
+        }
+
+        .hero-title {
+          font-size: 4rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1.8rem;
+        }
+
+        .stores-container {
+          grid-template-columns: 1fr;
         }
       }
 
-      @media (max-width: 480px) {
-        /* Điện thoại dọc */
-        .main-content h1 {
-          font-size: 2rem;
+      @media (max-width: 576px) {
+        html {
+          font-size: 50%; /* 1rem = 8px */
         }
 
-        .logo {
-          top: 20px;
-          left: 15px;
+        .section-title {
+          font-size: 3rem;
         }
 
-        .logo img {
-          height: 35px;
+        .hero-title {
+          font-size: 3.5rem;
         }
 
-        .btn {
-          padding: 12px 25px;
-          font-size: 14px;
+        .hero-subtitle {
+          font-size: 1.6rem;
         }
 
-        .social-icons {
-          gap: 10px;
+        .region-filter {
+          flex-direction: column;
+          align-items: center;
         }
 
-        .social-icons a {
-          width: 40px;
-          height: 40px;
-          font-size: 18px;
+        .filter-btn {
+          width: 100%;
+          text-align: center;
         }
       }
     </style>
   </head>
   <body>
-    <header>
-      <!-- Video Cover (Desktop) -->
-      <div class="video-container">
-        <video autoplay muted loop>
-          <source src="image/VIDEO/TVC.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="loader">
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
       </div>
+    </div>
 
-      <!-- Image Cover (Mobile & Tablet) -->
-      <div class="mobile-cover"></div>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container">
+        <a href="/Trangchu/" class="logo">
+          <img src="image/Logo_HEAD.png" alt="Honda Logo" />
+        </a>
 
-      <!-- Overlay -->
-      <div class="overlay"></div>
-
-      <!-- Logo -->
-      <div class="logo">
-        <img
-          src="/sanphamxemay/image/banner/Logo_HEAD.png"
-          alt="Company Logo"
-        />
-      </div>
-
-      <!-- Menu Button -->
-      <div class="menu-btn">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-
-      <!-- Navigation Menu -->
-      <nav class="nav-menu">
-        <a href="/Trangchu/">Trang Chủ</a>
-        <a href="/gioithieu/">Giới Thiệu</a>
-        <a href="/sanphamxemay/">Sản phẩm</a>
-        <a href="/dichvu/">Dịch vụ</a>
-        <a href="/cuahang/">Hệ thống cửa hàng</a>
-      </nav>
-
-      <!-- Main Content -->
-      <div class="main-content">
-        <h1>VẬN HÀNH ÊM ÁI - CHẤT LÁI ĐỈNH CAO</h1>
-        <p>
-          Chào mừng bạn đến với HEAD Trung Hùng – đại lý chính hãng Honda, nơi
-          bạn dễ dàng tìm được chiếc xe phù hợp cho chính mình hay cho cả gia
-          đình.
-        </p>
-        <a href="/Trangchu/" class="btn">Khám phá ngay</a>
-      </div>
-
-      <!-- Footer -->
-      <footer>
-        <div class="social-icons">
-          <a
-            href="https://www.facebook.com/hethongheadtrunghung"
-            aria-label="Facebook"
-            ><i class="fab fa-facebook-f"></i
-          ></a>
-          <a
-            href="https://www.instagram.com/hethongheadtrunghung"
-            aria-label="Instagram"
-            ><i class="fab fa-instagram"></i
-          ></a>
-          <a
-            href="https://www.youtube.com/@HethongHEADTrungHung"
-            aria-label="YouTube"
-            ><i class="fab fa-youtube"></i
-          ></a>
-          <a
-            href="https://www.tiktok.com/@hethongheadtrunghung"
-            aria-label="TikTok"
-            ><i class="fab fa-tiktok"></i
-          ></a>
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
         </div>
-      </footer>
-      <a href="tel:1900636712" class="call-button" aria-label="Gọi điện thoại">
-        <i class="fas fa-phone"></i>
-        <span class="phone-number">1900 636 712</span>
-      </a>
+
+        <nav class="main-nav">
+          <ul>
+            <li><a href="/Trangchu/" class="active">Trang chủ</a></li>
+            <li><a href="#stores">Hệ thống cửa hàng</a></li>
+            <!--<li><a href="#map">Bản đồ</a></li>-->
+            <li><a href="#contact">Liên hệ</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="container">
+          <h1 class="hero-title">Hệ Thống Cửa Hàng Honda</h1>
+          <p class="hero-subtitle">
+            12 cửa hàng chính hãng tại
+            <strong>Gia Lai, Hà Nội, Sơn La</strong>
+          </p>
+          <a href="#stores" class="btn btn-primary btn-lg"
+            >Xem cửa hàng gần bạn</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Stores Section -->
+    <section id="stores" class="stores-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Hệ Thống Cửa Hàng</h2>
+          <p class="section-subtitle">Tìm cửa hàng Honda gần bạn nhất</p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="region-filter">
+          <button class="filter-btn active" data-region="all">Tất cả</button>
+          <button class="filter-btn" data-region="binh-dinh">
+            Gia Lai (4)
+          </button>
+          <button class="filter-btn" data-region="ha-noi">Hà Nội (1)</button>
+          <button class="filter-btn" data-region="son-la">Sơn La (7)</button>
+        </div>
+
+        <div class="stores-container">
+          <!-- Bình Định Stores -->
+          <div class="store-card" data-region="binh-dinh">
+            <div class="store-image">
+              <img src="image/HEAD.JPG" alt="Honda Bình Định 1" />
+            </div>
+            <div class="store-info">
+              <h3>HEAD Trung Hùng 1</h3>
+              <div class="store-meta">
+                <span
+                  ><i class="fas fa-map-marker-alt"></i> 288-290-292 Lê Hồng
+                  Phong, P. Quy Nhơn, Tỉnh Gia Lai</span
+                >
+                <span><i class="fas fa-phone-alt"></i> 0256 3824 471</span>
+                <span><i class="fas fa-phone-alt"></i> 084 68 30015</span>
+                <span
+                  ><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</span
+                >
+              </div>
+              <a
+                href="https://www.google.com/maps/place/HONDA+TRUNG+H%C3%99NG+1/@13.7758146,109.2243526,750m/data=!3m2!1e3!4b1!4m6!3m5!1s0x316f6c85a6d6924d:0xa455acdefd4d31d7!8m2!3d13.7758094!4d109.2269275!16s%2Fg%2F11btrs8zjy?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+                class="btn btn-outline"
+                >Xem chỉ đường</a
+              >
+            </div>
+          </div>
+
+          <div class="store-card" data-region="binh-dinh">
+            <div class="store-image">
+              <img src="image/HEAD.JPG" alt="Honda Bình Định 2" />
+            </div>
+            <div class="store-info">
+              <h3>HEAD Trung Hùng 2</h3>
+              <div class="store-meta">
+                <span
+                  ><i class="fas fa-map-marker-alt"></i> 2531 Quang Trung, P.
+                  Bồng Sơn, Tỉnh Gia Lai</span
+                >
+                <span><i class="fas fa-phone-alt"></i> 0256 3861 366</span>
+                <span><i class="fas fa-phone-alt"></i> 084 68 30016</span>
+                <span
+                  ><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</span
+                >
+              </div>
+              <a
+                href="https://www.google.com/maps/place/C%E1%BB%ADa+h%C3%A0ng+Xe+m%C3%A1y+Honda+Trung+H%C3%B9ng+2/@14.4408623,109.0161645,747m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3168c51617963d47:0xb580b0db5f44734f!8m2!3d14.4408571!4d109.0187394!16s%2Fg%2F11b67sbdw4?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+                class="btn btn-outline"
+                >Xem chỉ đường</a
+              >
+            </div>
+          </div>
+
+          <div class="store-card" data-region="binh-dinh">
+            <div class="store-image">
+              <img src="image/HEAD.JPG" alt="Honda Bình Định 3" />
+            </div>
+            <div class="store-info">
+              <h3>HEAD Trung Hùng 3</h3>
+              <div class="store-meta">
+                <span
+                  ><i class="fas fa-map-marker-alt"></i> 236 Tây Sơn, P. Quy
+                  Nhơn Nam, Tỉnh Gia Lai</span
+                >
+                <span><i class="fas fa-phone-alt"></i> 0256 3547 777</span>
+                <span><i class="fas fa-phone-alt"></i> 084 68 30017</span>
+                <span
+                  ><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</span
+                >
+              </div>
+              <a
+                href="https://www.google.com/maps/place/Head+Trung+H%C3%B9ng+3/@13.7548785,109.2065604,750m/data=!3m2!1e3!4b1!4m6!3m5!1s0x316f6cc2e17a7fa5:0xd1a4906d6d8c1e7a!8m2!3d13.7548733!4d109.2091353!16s%2Fg%2F11fnwhlkcm?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+                class="btn btn-outline"
+                >Xem chỉ đường</a
+              >
+            </div>
+          </div>
+
+          <div class="store-card" data-region="binh-dinh">
+            <div class="store-image">
+              <img src="image/HEAD.JPG" alt="Honda Bình Định 4" />
+            </div>
+            <div class="store-info">
+              <h3>HEAD Trung Hùng 4</h3>
+              <div class="store-meta">
+                <span
+                  ><i class="fas fa-map-marker-alt"></i> 450 Quang Trung, P. Tam
+                  Quan, Tỉnh Gia Lai</span
+                >
+                <span><i class="fas fa-phone-alt"></i> 0256 3965 007</span>
+                <span><i class="fas fa-phone-alt"></i> 084 68 30018</span>
+                <span
+                  ><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</span
+                >
+              </div>
+              <a
+                href="https://www.google.com/maps/place/Head+Honda+Trung+H%C3%B9ng+4/@14.5495973,109.0407683,747m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3168c3073bc9c4c3:0x6e3f7e27df08852f!8m2!3d14.5495921!4d109.0433432!16s%2Fg%2F1jkvpkn4v?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+                class="btn btn-outline"
+                >Xem chỉ đường</a
+              >
+            </div>
+          </div>
+
+          <!-- Hà Nội Store -->
+          <div class="store-card" data-region="ha-noi">
+            <div class="store-image">
+              <img src="image/HEAD.JPG" alt="Honda Hà Nội" />
+            </div>
+            <div class="store-info">
+              <h3>HEAD Hùng Mạnh 7</h3>
+              <div class="store-meta">
+                <span
+                  ><i class="fas fa-map-marker-alt"></i> 319 Nguyễn Văn Cừ, P.
+                  Bồ Đề, Hà Nội</span
+                >
+                <span><i class="fas fa-phone-alt"></i> 0243 8732 863</span>
+                <span><i class="fas fa-phone-alt"></i> 085 6614 054</span>
+                <span
+                  ><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</span
+                >
+              </div>
+              <a
+                href="https://www.google.com/maps/place/Honda+H%C3%B9ng+M%E1%BA%A1nh+7/@21.0458397,105.8730269,720m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3135abd5fc29275f:0x62992c006999cd20!8m2!3d21.0458347!4d105.8756018!16s%2Fg%2F11gdqqqfsd?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+                class="btn btn-outline"
+                >Xem chỉ đường</a
+              >
+            </div>
+          </div>
+
+          <!-- Sơn La Stores -->
+          <div class="store-card" data-region="son-la">
+            <div class="store-image">
+              <img src="image/HEAD.JPG" alt="Honda Sơn La 1" />
+            </div>
+            <div class="store-info">
+              <h3>HEAD Hùng Mạnh 1</h3>
+              <div class="store-meta">
+                <span
+                  ><i class="fas fa-map-marker-alt"></i> Số nhà 30, Tiểu khu 20,
+                  X. Mai Sơn, Sơn La</span
+                >
+                <span><i class="fas fa-phone-alt"></i> 0212 3744 028</span>
+                <span
+                  ><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</span
+                >
+              </div>
+              <a
+                href="https://www.google.com/maps/search/C%C3%94NG+TY+TNHH+TM%26+DV+H%C3%99NG+M%E1%BA%A0NH+-+C%E1%BB%ACA+H%C3%80NG+XE+M%C3%81Y+HONDA/@21.177483,103.967907,92127m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+                class="btn btn-outline"
+                >Xem chỉ đường</a
+              >
+            </div>
+          </div>
+
+          <div class="store-card" data-region="son-la">
+            <div class="store-image">
+              <img src="image/HEAD.JPG" alt="Honda Sơn La 2" />
+            </div>
+            <div class="store-info">
+              <h3>HEAD Hùng Mạnh 2</h3>
+              <div class="store-meta">
+                <span
+                  ><i class="fas fa-map-marker-alt"></i> Số nhà 482A Tô Hiệu, Tổ
+                  7, P. Tô Hiệu, Sơn La</span
+                >
+                <span><i class="fas fa-phone-alt"></i> 0212 3752 136</span>
+                <span><i class="fas fa-phone-alt"></i> 088 6412 004</span>
+                <span
+                  ><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</span
+                >
+              </div>
+              <a
+                href="https://www.google.com/maps/place/Honda+H%C3%B9ng+M%E1%BA%A1nh+2/@21.3412231,103.9060071,719m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31328bb3836f50b9:0x98c72fed596cf1d9!8m2!3d21.3412181!4d103.908582!16s%2Fg%2F11swg7sjx5?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+                class="btn btn-outline"
+                >Xem chỉ đường</a
+              >
+            </div>
+          </div>
+
+          <div class="store-card" data-region="son-la">
+            <div class="store-image">
+              <img src="image/HEAD.JPG" alt="Honda Sơn La 3" />
+            </div>
+            <div class="store-info">
+              <h3>HEAD Hùng Mạnh 3</h3>
+              <div class="store-meta">
+                <span
+                  ><i class="fas fa-map-marker-alt"></i> Số 135 Chu Văn Thịnh,
+                  Tổ 1, P. Tô Hiệu, Sơn La</span
+                >
+                <span><i class="fas fa-phone-alt"></i> 081 5712 001</span>
+                <span
+                  ><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</span
+                >
+              </div>
+              <a
+                href="https://www.google.com/maps/place/Head+H%C3%B9ng+M%E1%BA%A1nh+3/@21.3312788,103.9098181,719m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31328b2d6f538d19:0xcba4b60a29410ff1!8m2!3d21.3312738!4d103.912393!16s%2Fg%2F11b67txg1z?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+                class="btn btn-outline"
+                >Xem chỉ đường</a
+              >
+            </div>
+          </div>
+
+          <div class="store-card" data-region="son-la">
+            <div class="store-image">
+              <img src="image/HEAD.JPG" alt="Honda Sơn La 4" />
+            </div>
+            <div class="store-info">
+              <h3>HEAD Hùng Mạnh 4</h3>
+              <div class="store-meta">
+                <span
+                  ><i class="fas fa-map-marker-alt"></i> Số nhà 252 Đường Tô
+                  Hiệu, Tổ Dân Phố 4, P. Mộc Châu,Sơn La
+                </span>
+                <span><i class="fas fa-phone-alt"></i> 0212 3868 338</span>
+                <span
+                  ><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</span
+                >
+              </div>
+              <a
+                href="https://www.google.com/maps/place/C%C3%B4ng+Ty+Tnhh+Tm+Dv+H%C3%B9ng+M%E1%BA%A1nh+4+-+Head+Honda/@20.8461296,104.6404453,721m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3133bff11447339d:0x59ace4c31a9b7ea6!8m2!3d20.8461246!4d104.6430202!16s%2Fg%2F1pp2v10dm?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+                class="btn btn-outline"
+                >Xem chỉ đường</a
+              >
+            </div>
+          </div>
+
+          <div class="store-card" data-region="son-la">
+            <div class="store-image">
+              <img src="image/HEAD.JPG" alt="Honda Sơn La 5" />
+            </div>
+            <div class="store-info">
+              <h3>HEAD Hùng Mạnh 5</h3>
+              <div class="store-meta">
+                <span
+                  ><i class="fas fa-map-marker-alt"></i> Số 262 Tô Hiệu, TK3, X.
+                  Mường La, Sơn La</span
+                >
+                <span><i class="fas fa-phone-alt"></i> 0212 3831 666</span>
+                <span><i class="fas fa-phone-alt"></i> 0815 412 008</span>
+                <span
+                  ><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</span
+                >
+              </div>
+              <a
+                href="https://www.google.com/maps/place/C%E1%BB%ADa+H%C3%A0ng+Honda+%E1%BB%A6y+Nhi%E1%BB%87m+H%C3%B9ng+M%E1%BA%A1nh+5/@21.5122725,103.8774173,11z/data=!4m7!3m6!1s0x3132ee9a8ce7ce7b:0xd1ccec9ce3cb4960!8m2!3d21.5122725!4d104.017493!15sChRIb25kYSBIw7luZyBN4bqhbmggNZIBEW1vdG9yY3ljbGVfZGVhbGVy4AEA!16s%2Fg%2F11c6w0t_20?coh=219816&entry=tts&g_ep=EgoyMDI0MDgxMi4wKgBIAVAD"
+                class="btn btn-outline"
+                >Xem chỉ đường</a
+              >
+            </div>
+          </div>
+
+          <div class="store-card" data-region="son-la">
+            <div class="store-image">
+              <img src="image/HEAD.JPG" alt="Honda Sơn La 6" />
+            </div>
+            <div class="store-info">
+              <h3>HEAD Hùng Mạnh 6</h3>
+              <div class="store-meta">
+                <span
+                  ><i class="fas fa-map-marker-alt"></i> Tiểu khu 7, X. Thuận
+                  Châu, Sơn La</span
+                >
+                <span><i class="fas fa-phone-alt"></i> 0212 3748 888</span>
+                <span><i class="fas fa-phone-alt"></i> 0827 412 009</span>
+                <span
+                  ><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</span
+                >
+              </div>
+              <a
+                href="https://www.google.com/maps/place/Ti%E1%BB%87m+S%E1%BB%ADa+Xe+Honda+M%E1%BA%A1nh+H%C3%B9ng/@21.4341327,102.5748448,364452m/data=!3m1!1e3!4m6!3m5!1s0x313285086879b369:0xa37db9d43b8add18!8m2!3d21.4341327!4d103.6954503!16s%2Fg%2F11c1t50ql8?entry=ttu&g_ep=EgoyMDI0MTAxMy4wIKXMDSoASAFQAw%3D%3D"
+                class="btn btn-outline"
+                >Xem chỉ đường</a
+              >
+            </div>
+          </div>
+
+          <div class="store-card" data-region="son-la">
+            <div class="store-image">
+              <img src="image/HEAD.JPG" alt="Honda Sơn La 7" />
+            </div>
+            <div class="store-info">
+              <h3>HEAD Hùng Mạnh 8</h3>
+              <div class="store-meta">
+                <span
+                  ><i class="fas fa-map-marker-alt"></i> Số nhà 950 Đường Thảo
+                  Nguyên, Tổ dân phố Trung Nguyên, P. Thảo Nguyên, Sơn La</span
+                >
+                <span><i class="fas fa-phone-alt"></i> 0212 3566 777</span>
+                <span
+                  ><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</span
+                >
+              </div>
+              <a
+                href="https://www.google.com/maps/place/C%C3%B4ng+Ty+Tnhh+Th%C6%B0%C6%A1ng+M%E1%BA%A1i+D%E1%BB%8Bch+V%E1%BB%A5+H%C3%B9ng+M%E1%BA%A1nh+-+C%E1%BB%ADa+H%C3%A0ng+Honda/@20.837221,103.5621609,8z/data=!4m7!3m6!1s0x3133953565f7bcab:0x9cfc449091e30d7e!8m2!3d20.837221!4d104.6827664!15sChJIb25kYSBIw7luZyBN4bqhbmiSARRtb3Rvcl92ZWhpY2xlX2RlYWxlcuABAA!16s%2Fg%2F11cs320s1k?coh=219816&entry=tts&g_ep=EgoyMDI0MDgxMi4wKgBIAVAD"
+                class="btn btn-outline"
+                >Xem chỉ đường</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map Section 
+    <section id="map" class="map-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Bản Đồ Cửa Hàng</h2>
+          <p class="section-subtitle">Tìm đường đến cửa hàng Honda gần nhất</p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="map-container">
+          <div id="storeMap"></div>
+          <div class="map-legend">
+            <h4>Chú thích:</h4>
+            <div class="legend-item">
+              <span
+                class="legend-color"
+                style="background-color: #e11931"
+              ></span>
+              <span>Bình Định (4)</span>
+            </div>
+            <div class="legend-item">
+              <span
+                class="legend-color"
+                style="background-color: #ff1010"
+              ></span>
+              <span>Hà Nội (1)</span>
+            </div>
+            <div class="legend-item">
+              <span
+                class="legend-color"
+                style="background-color: #d10000"
+              ></span>
+              <span>Sơn La (7)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>-->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Liên Hệ</h2>
+          <p class="section-subtitle">Chúng tôi luôn sẵn sàng hỗ trợ bạn</p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="contact-container">
+          <div class="contact-info">
+            <h3>Thông Tin Liên Hệ</h3>
+            <div class="info-item">
+              <i class="fas fa-headset"></i>
+              <div>
+                <h4>Tổng Đài Hỗ Trợ</h4>
+                <p>1900 636 712</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <p>cr@hungmanh.com.vn</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <p>cr_mt@hungmanh.com.vn</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-clock"></i>
+              <div>
+                <h4>Giờ Làm Việc</h4>
+                <p>7:30 - 17:30 (Thứ 2 - Chủ Nhật)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="image/Logo_HEAD.png" alt="Honda Logo" />
+            <p>
+              Hệ thống cửa hàng xe máy và dịch vụ chính hãng tại
+              <strong>Gia Lai, Hà Nội, Sơn La</strong>
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <h4>Liên Kết Nhanh</h4>
+            <ul>
+              <li><a href="#home">Trang chủ</a></li>
+              <li><a href="#stores">Hệ thống cửa hàng</a></li>
+
+              <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-social">
+            <h4>Theo Dõi Chúng Tôi</h4>
+            <div class="social-icons">
+              <a href="https://www.facebook.com/hethongheadtrunghung"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://www.instagram.com/hethongheadtrunghung"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 HEAD Trung Hùng. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-      // ... (giữ nguyên JavaScript trước đó) ...
-
-      // Hiệu ứng khi click nút gọi
-      const callButton = document.querySelector(".call-button");
-      if (callButton) {
-        callButton.addEventListener("click", function (e) {
-          // Thêm hiệu ứng click
-          e.preventDefault();
-          this.style.animation = "none";
-          this.style.transform = "scale(0.9)";
-
-          // Tạo hiệu ứng nhấn mạnh
-          setTimeout(() => {
-            this.style.transform = "scale(1)";
-            this.style.animation = "pulse 2s infinite";
-
-            // Mở ứng dụng điện thoại sau hiệu ứng
-            setTimeout(() => {
-              window.location.href = "tel:1900636712";
-            }, 300);
-          }, 200);
-        });
-      }
-    </script>
-    <script>
-      // Wait for everything to load
       document.addEventListener("DOMContentLoaded", function () {
-        // Add loaded class to elements for animations
-        setTimeout(() => {
-          document.querySelector(".video-container").classList.add("loaded");
-          document.querySelector(".mobile-cover").classList.add("loaded");
-          document.querySelector(".overlay").classList.add("loaded");
-          document.querySelector(".logo").classList.add("loaded");
-          document.querySelector(".menu-btn").classList.add("loaded");
-          document.querySelector(".main-content").classList.add("loaded");
-          document.querySelector("footer").classList.add("loaded");
-        }, 100);
+        // Preloader
+        const preloader = document.querySelector(".preloader");
 
-        // Video loading simulation (in case video takes time to load)
-        const video = document.querySelector("video");
-        if (video) {
-          video.oncanplay = function () {
-            document.querySelector(".video-container").classList.add("loaded");
+        window.addEventListener("load", function () {
+          setTimeout(function () {
+            preloader.classList.add("fade-out");
+            setTimeout(function () {
+              preloader.style.display = "none";
+            }, 500);
+          }, 1000);
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector(".menu-toggle");
+        const mainNav = document.querySelector(".main-nav");
+        const bars = document.querySelectorAll(".bar");
+
+        menuToggle.addEventListener("click", function () {
+          this.classList.toggle("active");
+          mainNav.classList.toggle("active");
+
+          // Change menu icon color when scrolled
+          if (window.scrollY > 100) {
+            bars.forEach((bar) => {
+              bar.style.backgroundColor = this.classList.contains("active")
+                ? "white"
+                : "var(--dark-color)";
+            });
+          }
+        });
+
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll(".main-nav a");
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            if (mainNav.classList.contains("active")) {
+              menuToggle.classList.remove("active");
+              mainNav.classList.remove("active");
+            }
+          });
+        });
+
+        // Header Scroll Effect
+        const header = document.querySelector(".main-header");
+
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 100) {
+            header.classList.add("scrolled");
+          } else {
+            header.classList.remove("scrolled");
+          }
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              const headerHeight =
+                document.querySelector(".main-header").offsetHeight;
+              const targetPosition =
+                targetElement.getBoundingClientRect().top +
+                window.pageYOffset -
+                headerHeight;
+
+              window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // Store Filtering
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const storeCards = document.querySelectorAll(".store-card");
+
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            // Remove active class from all buttons
+            filterButtons.forEach((btn) => btn.classList.remove("active"));
+
+            // Add active class to clicked button
+            this.classList.add("active");
+
+            // Get the region to filter
+            const region = this.getAttribute("data-region");
+
+            // Filter store cards
+            storeCards.forEach((card) => {
+              if (
+                region === "all" ||
+                card.getAttribute("data-region") === region
+              ) {
+                card.style.display = "flex";
+                setTimeout(() => {
+                  card.style.opacity = "1";
+                }, 50);
+              } else {
+                card.style.opacity = "0";
+                setTimeout(() => {
+                  card.style.display = "none";
+                }, 300);
+              }
+            });
+          });
+        });
+
+        // Initialize Map
+        function initMap() {
+          // Coordinates for each region's center
+          const regions = {
+            "binh-dinh": [14.1667, 108.9833], // Bình Định
+            "ha-noi": [21.0285, 105.8542], // Hà Nội
+            "son-la": [21.3167, 103.9], // Sơn La
           };
-        }
 
-        // Hiệu ứng zoom ảnh khi hover (chỉ trên tablet)
-        const mobileCover = document.querySelector(".mobile-cover");
-        if (mobileCover) {
-          mobileCover.addEventListener("mouseenter", function () {
-            this.style.transform = "scale(1.03)";
+          // Create map centered on Vietnam
+          const map = L.map("storeMap").setView([16.1667, 107.8333], 6);
+
+          // Add tile layer (OpenStreetMap)
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution:
+              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          }).addTo(map);
+
+          // Custom icons
+          const binhDinhIcon = L.icon({
+            iconUrl: "image/logo/Logo_HEAD.png",
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
           });
 
-          mobileCover.addEventListener("mouseleave", function () {
-            this.style.transform = "scale(1)";
+          const haNoiIcon = L.icon({
+            iconUrl: "image/logo/Logo_HEAD.png",
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
           });
-        }
-      });
 
-      // Menu Toggle
-      const menuBtn = document.querySelector(".menu-btn");
-      const navMenu = document.querySelector(".nav-menu");
-
-      menuBtn.addEventListener("click", () => {
-        menuBtn.classList.toggle("active");
-        navMenu.classList.toggle("active");
-
-        // Toggle body overflow when menu is open
-        if (navMenu.classList.contains("active")) {
-          document.body.style.overflow = "hidden";
-        } else {
-          document.body.style.overflow = "";
-        }
-      });
-
-      // Close menu when clicking on a link
-      const navLinks = document.querySelectorAll(".nav-menu a");
-      navLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          menuBtn.classList.remove("active");
-          navMenu.classList.remove("active");
-          document.body.style.overflow = "";
-        });
-      });
-
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
+          const sonLaIcon = L.icon({
+            iconUrl: "image/logo/Logo_HEAD.png",
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
           });
-        });
+
+          // Store locations data
+          const stores = [
+            // Bình Định stores (4)
+            {
+              name: "HEAD Trung Hùng 1",
+              position: [13.77587, 109.22696], // Quy Nhơn
+              region: "binh-dinh",
+              address:
+                "290-292 Lê Hồng Phong, P. Thị Nại TP. Quy Nhơn, Bình Định",
+              phone: "0256 3824 471",
+            },
+            {
+              name: "HEAD Trung Hùng 2",
+              position: [14.44111, 109.01869], // Hoài Nhơn
+              region: "binh-dinh",
+              address:
+                "2531 Quang Trung, P. Bồng Sơn, TX. Hoài Nhơn, Bình Định",
+              phone: "0256 3861 366",
+            },
+            {
+              name: "HEAD Trung Hùng 3",
+              position: [13.75501, 109.20911], // Quy Nhơn
+              region: "binh-dinh",
+              address: "236 Tây Sơn, P. Nguyễn Văn Cừ, TP. Quy Nhơn, Bình Định",
+              phone: "0256 3547 777",
+            },
+            {
+              name: "HEAD Trung Hùng 4",
+              position: [14.55379, 109.04472], // Hoài Nhơn
+              region: "binh-dinh",
+              address: "450 Quang Trung, P. Tam Quan, TX. Hoài Nhơn, Bình Định",
+              phone: "0256 3965 007",
+            },
+
+            // Hà Nội store (1)
+            {
+              name: "HEAD Hùng Mạnh 7",
+              position: [21.04606, 105.87566], // Hà Nội
+              region: "ha-noi",
+              address: "319 Nguyễn Văn Cừ, P. Ngọc Lâm, Q. Long Biên, Hà Nội",
+              phone: "1900 636 712",
+            },
+
+            // Sơn La stores (7)
+            {
+              name: "HEAD Hùng Mạnh 1",
+              position: [21.21801, 104.10694], // Mai Sơn
+              region: "son-la",
+              address:
+                "Số nhà 30, Tiểu khu 20, TT. Hát Lót, H. Mai Sơn, Sơn La",
+              phone: "0212 3744 028",
+            },
+            {
+              name: "HEAD Hùng Mạnh 2",
+              position: [21.34148, 103.90849], // TP Sơn La
+              region: "son-la",
+              address: "Số nhà 482A Tô Hiệu, P. Chiềng Lề, TP. Sơn La, Sơn La",
+              phone: "0212 3752 136",
+            },
+            {
+              name: "HEAD Hùng Mạnh 3",
+              position: [21.33145, 103.91243], // TP Sơn La
+              region: "son-la",
+              address: "Số 135 Chu Văn Thịnh, P. Tô Hiệu, TP. Sơn La, Sơn La",
+              phone: "081 5712 001",
+            },
+            {
+              name: "HEAD Hùng Mạnh 4",
+              position: [20.84637, 104.64305], // Mộc Châu
+              region: "son-la",
+              address: "Tiểu khu 4, TT. Mộc Châu, H. Mộc Châu, Sơn La",
+              phone: "0212 3868 338",
+            },
+            {
+              name: "HEAD Hùng Mạnh 5",
+              position: [21.52665, 104.0223], // Mường La
+              region: "son-la",
+              address: "Tiểu khu 3, TT. Ít Ong, H. Mường La, Sơn La",
+              phone: "0212 3831 666",
+            },
+            {
+              name: "HEAD Hùng Mạnh 6",
+              position: [21.57979, 103.68996], // Thuận Châu
+              region: "son-la",
+              address: "Tiểu khu 10, TT. Thuận Châu, H. Thuận Châu, Sơn La",
+              phone: "0212 3748 888",
+            },
+            {
+              name: "HEAD Hùng Mạnh 8",
+              position: [20.94756, 104.69925], // Mộc Châu
+              region: "son-la",
+              address: "SN 740, TK Cơ Quan, TTNT Mộc Châu, H. Mộc Châu, Sơn La",
+              phone: "0212 3566 777",
+            },
+          ];
+
+          // Add markers to map
+          stores.forEach((store) => {
+            let icon;
+            if (store.region === "binh-dinh") icon = binhDinhIcon;
+            else if (store.region === "ha-noi") icon = haNoiIcon;
+            else icon = sonLaIcon;
+
+            const marker = L.marker(store.position, { icon: icon }).addTo(map);
+
+            marker.bindPopup(`
+        <div class="map-popup">
+          <h3>${store.name}</h3>
+          <p><i class="fas fa-map-marker-alt"></i> ${store.address}</p>
+          <p><i class="fas fa-phone-alt"></i> ${store.phone}</p>
+          <a href="#" class="btn btn-primary btn-sm">Chỉ đường</a>
+        </div>
+      `);
+          });
+
+          // Fit bounds to show all markers
+          const group = new L.featureGroup(
+            stores.map((store) => L.marker(store.position))
+          );
+          map.fitBounds(group.getBounds().pad(0.2));
+        }
+
+        // Initialize map when page loads
+        initMap();
       });
     </script>
   </body>
