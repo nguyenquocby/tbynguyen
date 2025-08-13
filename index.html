@@ -1005,6 +1005,7 @@
         visibility: hidden;
         transition: var(--transition);
         z-index: 999;
+        box-shadow: 0 4px 12px rgba(228, 5, 33, 0.3);
       }
 
       .back-to-top.active {
@@ -1019,6 +1020,13 @@
 
       /* Responsive Adjustments */
       @media (max-width: 768px) {
+        .back-to-top {
+          width: 45px;
+          height: 45px;
+          font-size: 1rem;
+          right: 20px;
+          bottom: 20px;
+        }
         .section-title {
           font-size: 2rem;
         }
@@ -1035,6 +1043,62 @@
 
         .legal-links {
           justify-content: center;
+        }
+      }
+      /* Messenger Chat Button */
+      .messenger-chat {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background-color: #0084ff;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        box-shadow: 0 4px 12px rgba(0, 132, 255, 0.3);
+        z-index: 999;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+
+      .messenger-chat:hover {
+        background-color: #0066cc;
+        transform: scale(1.1);
+      }
+
+      /* Hiệu ứng lan tỏa */
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
+        }
+      }
+
+      /* Điều chỉnh vị trí khi có cả 2 nút */
+      .back-to-top.active ~ .messenger-chat {
+        bottom: 100px;
+      }
+
+      @media (max-width: 768px) {
+        .messenger-chat {
+          width: 50px;
+          height: 50px;
+          font-size: 24px;
+          right: 18px;
+          bottom: 80px;
+        }
+
+        .back-to-top.active ~ .messenger-chat {
+          bottom: 80px;
         }
       }
     </style>
@@ -1488,7 +1552,14 @@
         </div>
       </div>
     </footer>
-
+    <!-------Messenger Chat Button----------->
+    <a
+      href="https://m.me/hethongheadtrunghung"
+      class="messenger-chat"
+      target="_blank"
+    >
+      <i class="fab fa-facebook-messenger"></i>
+    </a>
     <!-- Back to Top -->
     <a href="#" class="back-to-top" id="backToTop">
       <i class="fas fa-arrow-up"></i>
