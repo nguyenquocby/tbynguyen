@@ -318,7 +318,12 @@
         justify-content: space-between;
         align-items: center;
       }
-
+      .main-header h1 {
+        display: none;
+        font-size: 18px;
+        color: rgb(0, 0, 0);
+        transition: color 0.3s ease; /* Hiệu ứng chuyển màu mượt mà */
+      }
       .logo img {
         height: 40px;
         transition: var(--transition);
@@ -1194,7 +1199,9 @@
           color: var(--dark-color);
           font-size: 1.8rem;
         }
-
+        .main-header h1 {
+          display: block;
+        }
         .hero-title {
           font-size: 4rem;
         }
@@ -1322,7 +1329,7 @@
               alt="Honda Logo"
             />
           </a>
-
+          <h1>HEAD TRUNG HÙNG</h1>
           <div class="menu-toggle" id="mobile-menu">
             <span class="bar"></span>
             <span class="bar"></span>
