@@ -213,7 +213,9 @@ ul {
   justify-content: space-between;
   align-items: center;
 }
-
+.main-header h1 {
+  display: none;
+}
 .logo img {
   height: 40px;
   transition: var(--transition);
@@ -847,6 +849,10 @@ ul {
 
   .tab-btn {
     min-width: max-content;
+  }
+  .main-header h1 {
+    display: block;
+    color: #000000;
   }
 }
 
