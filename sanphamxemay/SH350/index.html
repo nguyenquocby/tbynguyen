@@ -317,6 +317,16 @@
         justify-content: space-between;
         align-items: center;
       }
+      .main-header h1 {
+        display: none;
+        font-size: 18px;
+        color: rgb(0, 0, 0);
+        transition: color 0.3s ease; /* Hiệu ứng chuyển màu mượt mà */
+      }
+      /* Class sẽ được thêm vào khi cuộn */
+      .scrolled .main-header h1 {
+        color: black;
+      }
 
       .logo img {
         height: 40px;
@@ -1188,6 +1198,11 @@
         .main-nav li {
           margin: 1.5rem 0;
         }
+        .main-header h1 {
+          display: block;
+          font-size: 18px;
+          color: rgb(0, 0, 0);
+        }
 
         .main-nav a {
           color: var(--dark-color);
@@ -1321,7 +1336,7 @@
               alt="Honda Logo"
             />
           </a>
-
+          <h1>HEAD TRUNG HÙNG</h1>
           <div class="menu-toggle" id="mobile-menu">
             <span class="bar"></span>
             <span class="bar"></span>
