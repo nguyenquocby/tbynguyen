@@ -596,6 +596,10 @@
         margin: 0 auto;
         overflow: hidden;
         border-radius: var(--border-radius);
+        touch-action: pan-y;
+        /* Thêm các thuộc tính mới */
+        width: 100%;
+        aspect-ratio: 16/9; /* Tỉ lệ khung hình cố định */
       }
 
       .slider-container.active {
@@ -614,19 +618,36 @@
 
       .slider {
         display: flex;
-
         width: 100%;
+        height: 100%; /* Chiếm toàn bộ chiều cao container */
+        will-change: transform;
+      }
+
+      .slider.grabbing {
+        cursor: grabbing;
+        transition: none;
       }
 
       .slide {
         min-width: 100%;
+        flex-shrink: 0;
+        -webkit-user-drag: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px; /* Thêm padding để hình không chạm viền */
+        box-sizing: border-box;
       }
 
       .slide img {
         width: 100%;
-        height: 500px;
-        object-fit: contain;
+        height: 100%;
+        object-fit: contain; /* Giữ nguyên tỉ lệ hình, không crop */
         object-position: center;
+        pointer-events: none;
+        border-radius: calc(
+          var(--border-radius) - 5px
+        ); /* Border radius nhỏ hơn container */
       }
 
       .slider-nav {
@@ -635,7 +656,6 @@
         transform: translateY(-50%);
         width: 50px;
         height: 50px;
-        /*-background-color: rgba(255, 255, 255, 0.8);*/
         border: none;
         border-radius: 50%;
         font-size: 1.8rem;
@@ -645,8 +665,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        /*box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);*/
         z-index: 10;
+        background-color: rgba(255, 255, 255, 0.8);
       }
 
       .slider-nav:hover {
@@ -660,6 +680,27 @@
 
       .next-btn {
         right: 20px;
+      }
+
+      /* Slide Indicators */
+      .slide-indicators {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        gap: 8px;
+      }
+
+      .indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .indicator.active {
+        background-color: var(--primary-color);
       }
 
       /* Specifications Section */
@@ -1120,8 +1161,55 @@
         transform: translateY(-5px);
       }
 
+      /* Messenger Chat Button */
+      .messenger-chat {
+        position: fixed;
+        bottom: 100px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        background-color: #0084ff;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        box-shadow: 0 4px 12px rgba(0, 132, 255, 0.3);
+        z-index: 999;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+
+      .messenger-chat:hover {
+        background-color: #0066cc;
+        transform: scale(1.1);
+      }
+
+      /* Hiệu ứng lan tỏa */
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
+        }
+      }
+
+      /* Điều chỉnh vị trí khi có cả 2 nút */
+      .back-to-top.active ~ .messenger-chat {
+        bottom: 100px;
+      }
+
       /* Responsive Styles */
       @media (max-width: 1024px) {
+        .slider-container {
+          max-width: 90vw;
+          aspect-ratio: 4/3; /* Tỉ lệ phù hợp hơn cho tablet */
+        }
         .hero-title {
           font-size: 5rem;
         }
@@ -1147,7 +1235,19 @@
         html {
           font-size: 56.25%;
         }
+        .slider-container {
+          max-width: 95vw;
+          aspect-ratio: 1/1; /* Tỉ lệ vuông cho mobile */
+          border-radius: 15px; /* Border radius nhỏ hơn trên mobile */
+        }
 
+        .slide {
+          padding: 5px;
+        }
+
+        .slide img {
+          border-radius: 10px;
+        }
         .menu-toggle {
           display: block;
         }
@@ -1206,6 +1306,24 @@
         .slide img {
           height: 400px;
         }
+
+        .slider-nav {
+          width: 40px;
+          height: 40px;
+          font-size: 1.6rem;
+        }
+
+        .messenger-chat {
+          width: 60px;
+          height: 60px;
+          font-size: 26px;
+          right: 26px;
+          bottom: 100px;
+        }
+
+        .back-to-top.active ~ .messenger-chat {
+          bottom: 80px;
+        }
       }
 
       @media (max-width: 576px) {
@@ -1238,61 +1356,19 @@
           width: 100%;
           text-align: center;
         }
-      }
-      /* Messenger Chat Button */
-      .messenger-chat {
-        position: fixed;
-        bottom: 100px;
-        right: 25px;
-        width: 60px;
-        height: 60px;
-        background-color: #0084ff;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 28px;
-        box-shadow: 0 4px 12px rgba(0, 132, 255, 0.3);
-        z-index: 999;
-        transition: all 0.3s ease;
-        animation: pulse 2s infinite;
-      }
 
-      .messenger-chat:hover {
-        background-color: #0066cc;
-        transform: scale(1.1);
-      }
-
-      /* Hiệu ứng lan tỏa */
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
-        }
-        70% {
-          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
-        }
-      }
-
-      /* Điều chỉnh vị trí khi có cả 2 nút */
-      .back-to-top.active ~ .messenger-chat {
-        bottom: 100px;
-      }
-
-      @media (max-width: 768px) {
-        .messenger-chat {
-          width: 60px;
-          height: 60px;
-          font-size: 26px;
-          right: 26px;
-          bottom: 100px;
+        .slider-nav {
+          width: 35px;
+          height: 35px;
+          font-size: 1.4rem;
         }
 
-        .back-to-top.active ~ .messenger-chat {
-          bottom: 80px;
+        .prev-btn {
+          left: 10px;
+        }
+
+        .next-btn {
+          right: 10px;
         }
       }
     </style>
@@ -1345,7 +1421,11 @@
         <div class="container">
           <h1 class="hero-title" data-aos="fade-up">Honda CB350 H'ness</h1>
           <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">
-           CB350 H’ness được tạo hình như một bản phối tinh tế giữa nét hoài cổ và chất đường phố hiện đại. Khối động cơ đặt thẳng hàng tạo cảm giác hầm hố, khung xe cấu trúc dạng nôi kép chắc chắn bao trọn toàn bộ cụm động cơ, cùng với ống xả mạ chrome sáng bóng làm nổi bật vẻ sang trọng.
+            CB350 H’ness được tạo hình như một bản phối tinh tế giữa nét hoài cổ
+            và chất đường phố hiện đại. Khối động cơ đặt thẳng hàng tạo cảm giác
+            hầm hố, khung xe cấu trúc dạng nôi kép chắc chắn bao trọn toàn bộ
+            cụm động cơ, cùng với ống xả mạ chrome sáng bóng làm nổi bật vẻ sang
+            trọng.
           </p>
           <div data-aos="fade-up" data-aos-delay="200">
             <a href="#gallery" class="btn btn-primary btn-lg">
@@ -1411,28 +1491,60 @@
         <div class="slider-container active" data-color="xam-den">
           <div class="slider">
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/1.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/1.png"
+                alt="Honda CB350 Xám Đen 1"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/8.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/8.png"
+                alt="Honda CB350 Xám Đen 2"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/7.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/7.png"
+                alt="Honda CB350 Xám Đen 3"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/6.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/6.png"
+                alt="Honda CB350 Xám Đen 4"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/5.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/5.png"
+                alt="Honda CB350 Xám Đen 5"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/4.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/4.png"
+                alt="Honda CB350 Xám Đen 6"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/3.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/3.png"
+                alt="Honda CB350 Xám Đen 7"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/2.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/2.png"
+                alt="Honda CB350 Xám Đen 8"
+                loading="lazy"
+              />
             </div>
           </div>
           <button class="slider-nav prev-btn" aria-label="Previous image">
@@ -1441,33 +1553,75 @@
           <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
+          <div class="slide-indicators">
+            <span class="indicator active" data-index="0"></span>
+            <span class="indicator" data-index="1"></span>
+            <span class="indicator" data-index="2"></span>
+            <span class="indicator" data-index="3"></span>
+            <span class="indicator" data-index="4"></span>
+            <span class="indicator" data-index="5"></span>
+            <span class="indicator" data-index="6"></span>
+            <span class="indicator" data-index="7"></span>
+          </div>
         </div>
 
         <div class="slider-container" data-color="do-den">
           <div class="slider">
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/1.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/1.png"
+                alt="Honda CB350 Đỏ Đen 1"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/8.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/8.png"
+                alt="Honda CB350 Đỏ Đen 2"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/7.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/7.png"
+                alt="Honda CB350 Đỏ Đen 3"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/6.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/6.png"
+                alt="Honda CB350 Đỏ Đen 4"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/5.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/5.png"
+                alt="Honda CB350 Đỏ Đen 5"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/4.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/4.png"
+                alt="Honda CB350 Đỏ Đen 6"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/3.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/3.png"
+                alt="Honda CB350 Đỏ Đen 7"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/2.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/2.png"
+                alt="Honda CB350 Đỏ Đen 8"
+                loading="lazy"
+              />
             </div>
           </div>
           <button class="slider-nav prev-btn" aria-label="Previous image">
@@ -1476,6 +1630,16 @@
           <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
+          <div class="slide-indicators">
+            <span class="indicator active" data-index="0"></span>
+            <span class="indicator" data-index="1"></span>
+            <span class="indicator" data-index="2"></span>
+            <span class="indicator" data-index="3"></span>
+            <span class="indicator" data-index="4"></span>
+            <span class="indicator" data-index="5"></span>
+            <span class="indicator" data-index="6"></span>
+            <span class="indicator" data-index="7"></span>
+          </div>
         </div>
       </div>
     </section>
@@ -1547,9 +1711,13 @@
             <h3 class="specs-title">Hệ Thống Phanh</h3>
             <ul class="specs-list">
               <li>
-                Phuộc trước: Ống lồng giảm chấn thủy lực, hành trình 106mm, phanh trước đĩa đơn thủy lực đường kính 310mm, trang bị ABS
+                Phuộc trước: Ống lồng giảm chấn thủy lực, hành trình 106mm,
+                phanh trước đĩa đơn thủy lực đường kính 310mm, trang bị ABS
               </li>
-              <li>Phuộc sau: Hệ thống treo sau với lò xo trụ đôi, hành trình 120mm, phanh sau đĩa đơn thủy lực đường kính 240mm, trang bị ABS</li>
+              <li>
+                Phuộc sau: Hệ thống treo sau với lò xo trụ đôi, hành trình
+                120mm, phanh sau đĩa đơn thủy lực đường kính 240mm, trang bị ABS
+              </li>
               <li>Hệ thống chống bó cứng phanh: Có</li>
             </ul>
           </div>
@@ -1594,15 +1762,24 @@
               <div class="feature-text" data-aos="fade-right">
                 <h3>Thiết Kế</h3>
                 <p>
-                  Hai phiên bản màu mới mang phong thái cá tính, đậm chất đường phố, dành cho những bạn trẻ yêu dịch chuyển và muốn khẳng định phong cách riêng mỗi khi xuống phố. Sự kết hợp giữa vẻ nhẹ nhàng và sự nổi bật đúng lúc giúp chiếc xe trở thành điểm nhấn trong mọi ánh nhìn.
-Màu Đỏ Đen mang sắc thái ấm áp, trầm lắng nhưng vẫn toát lên nét khác biệt, lý tưởng cho những ai muốn nổi bật theo cách tinh tế của riêng mình. Trong khi đó, Xám Đen lại phóng khoáng, hiện đại, phù hợp với những tay lái trẻ tìm kiếm một mẫu xe vừa mạnh mẽ, trẻ trung vừa thời thượng và đầy phong cách.
-Logo CB350 mới được dập nổi sắc sảo, tạo cảm giác vững chãi và cao cấp, như một dấu ấn nhận diện đặc biệt dành cho những người đam mê chất xe khác biệt.
+                  Hai phiên bản màu mới mang phong thái cá tính, đậm chất đường
+                  phố, dành cho những bạn trẻ yêu dịch chuyển và muốn khẳng định
+                  phong cách riêng mỗi khi xuống phố. Sự kết hợp giữa vẻ nhẹ
+                  nhàng và sự nổi bật đúng lúc giúp chiếc xe trở thành điểm nhấn
+                  trong mọi ánh nhìn. Màu Đỏ Đen mang sắc thái ấm áp, trầm lắng
+                  nhưng vẫn toát lên nét khác biệt, lý tưởng cho những ai muốn
+                  nổi bật theo cách tinh tế của riêng mình. Trong khi đó, Xám
+                  Đen lại phóng khoáng, hiện đại, phù hợp với những tay lái trẻ
+                  tìm kiếm một mẫu xe vừa mạnh mẽ, trẻ trung vừa thời thượng và
+                  đầy phong cách. Logo CB350 mới được dập nổi sắc sảo, tạo cảm
+                  giác vững chãi và cao cấp, như một dấu ấn nhận diện đặc biệt
+                  dành cho những người đam mê chất xe khác biệt.
                 </p>
               </div>
               <div class="feature-image" data-aos="fade-left">
                 <img
                   src="CB350Hness/TK.png"
-                  alt="Thiết kế Honda"
+                  alt="Thiết kế Honda CB350"
                   loading="lazy"
                 />
               </div>
@@ -1614,13 +1791,16 @@ Logo CB350 mới được dập nổi sắc sảo, tạo cảm giác vững chã
               <div class="feature-text" data-aos="fade-right">
                 <h3>Động Cơ</h3>
                 <p>
-                  CB350 được trang bị khối động cơ lớn, 350cc, đậm chất cổ điển và mạnh mẽ với thiết kế xi lanh thẳng đứng cùng các cánh gió tản nhiệt, cho khả năng vận hành mượt mà và tăng tốc phấn khích, giúp nâng tầm trải nghiệm lái xe trên mọi hành trình
+                  CB350 được trang bị khối động cơ lớn, 350cc, đậm chất cổ điển
+                  và mạnh mẽ với thiết kế xi lanh thẳng đứng cùng các cánh gió
+                  tản nhiệt, cho khả năng vận hành mượt mà và tăng tốc phấn
+                  khích, giúp nâng tầm trải nghiệm lái xe trên mọi hành trình
                 </p>
               </div>
               <div class="feature-image" data-aos="fade-left">
                 <img
                   src="CB350Hness/ĐC.png"
-                  alt="Động cơ Honda"
+                  alt="Động cơ Honda CB350"
                   loading="lazy"
                 />
               </div>
@@ -1632,13 +1812,14 @@ Logo CB350 mới được dập nổi sắc sảo, tạo cảm giác vững chã
               <div class="feature-text" data-aos="fade-right">
                 <h3>Công Nghệ</h3>
                 <p>
-                  HSTC duy trì độ bám giữa lốp sau và mặt đường, tự động điều chỉnh lực kéo của động cơ khi phát hiện có sự trượt bánh
+                  HSTC duy trì độ bám giữa lốp sau và mặt đường, tự động điều
+                  chỉnh lực kéo của động cơ khi phát hiện có sự trượt bánh
                 </p>
               </div>
               <div class="feature-image" data-aos="fade-left">
                 <img
                   src="CB350Hness/CN.jpg"
-                  alt="Công nghệ Honda"
+                  alt="Công nghệ Honda CB350"
                   loading="lazy"
                 />
               </div>
@@ -1650,13 +1831,17 @@ Logo CB350 mới được dập nổi sắc sảo, tạo cảm giác vững chã
               <div class="feature-text" data-aos="fade-right">
                 <h3>Tiện ích và An toàn</h3>
                 <p>
-                  CB350 được trang bị hệ thống ABS 2 kênh trên cả bánh trước và bánh sau, phanh đĩa trước đường kính 310mm kết hợp cùng phanh đĩa sau đường kính 240mm không những giúp kiểm soát hiệu quả tốc độ của xe, ngăn ngừa hiện tượng khóa bánh trong các tình huống phanh khẩn cấp mà còn đem lại hình ảnh thể thao mạnh mẽ.
+                  CB350 được trang bị hệ thống ABS 2 kênh trên cả bánh trước và
+                  bánh sau, phanh đĩa trước đường kính 310mm kết hợp cùng phanh
+                  đĩa sau đường kính 240mm không những giúp kiểm soát hiệu quả
+                  tốc độ của xe, ngăn ngừa hiện tượng khóa bánh trong các tình
+                  huống phanh khẩn cấp mà còn đem lại hình ảnh thể thao mạnh mẽ.
                 </p>
               </div>
               <div class="feature-image" data-aos="fade-left">
                 <img
                   src="CB350Hness/AT.png"
-                  alt="An toàn Honda"
+                  alt="An toàn Honda CB350"
                   loading="lazy"
                 />
               </div>
@@ -1680,15 +1865,11 @@ Logo CB350 mới được dập nổi sắc sảo, tạo cảm giác vững chã
             <h3>Thông Tin Liên Hệ</h3>
             <div class="info-item">
               <i class="fas fa-map-marker-alt"></i>
-              <p>
-                Trụ Sở Chính: 135 Chu Văn Thịnh, Tổ 1, P. Tô Hiệu, Sơn La
-              </p>
+              <p>Trụ Sở Chính: 135 Chu Văn Thịnh, Tổ 1, P. Tô Hiệu, Sơn La</p>
             </div>
             <div class="info-item">
               <i class="fas fa-map-marker-alt"></i>
-              <p>
-                CN Hà Nội: 319 Nguyễn Văn Cừ, P. Bồ Đề, TP. Hà Nội
-              </p>
+              <p>CN Hà Nội: 319 Nguyễn Văn Cừ, P. Bồ Đề, TP. Hà Nội</p>
             </div>
             <div class="info-item">
               <i class="fas fa-map-marker-alt"></i>
@@ -1928,7 +2109,7 @@ Logo CB350 mới được dập nổi sắc sảo, tạo cảm giác vững chã
           });
         });
 
-        // Product Gallery Sliders
+        // Product Gallery Sliders với tính năng vuốt
         function initSliders() {
           const sliderContainers =
             document.querySelectorAll(".slider-container");
@@ -1938,10 +2119,17 @@ Logo CB350 mới được dập nổi sắc sảo, tạo cảm giác vững chã
             const slides = container.querySelectorAll(".slide");
             const slideCount = slides.length;
             let currentIndex = 0;
+            let isDragging = false;
+            let startPos = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+            let animationID;
+            const indicators = container.querySelectorAll(".indicator");
 
-            // Set initial slide width
+            // Set initial slide width - SỬA LẠI PHẦN NÀY
             slides.forEach((slide) => {
               slide.style.minWidth = "100%";
+              slide.style.flexShrink = "0";
             });
 
             // Next button
@@ -1960,42 +2148,95 @@ Logo CB350 mới được dập nổi sắc sảo, tạo cảm giác vững chã
                 updateSlider();
               });
 
-            function updateSlider() {
-              slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
+            // Indicator click
+            indicators.forEach((indicator, index) => {
+              indicator.addEventListener("click", () => {
+                currentIndex = index;
+                updateSlider();
+              });
+            });
 
             // Touch events for mobile
-            let touchStartX = 0;
-            let touchEndX = 0;
+            slider.addEventListener("touchstart", touchStart, {
+              passive: true,
+            });
+            slider.addEventListener("touchmove", touchMove, { passive: true });
+            slider.addEventListener("touchend", touchEnd);
 
-            slider.addEventListener(
-              "touchstart",
-              (e) => {
-                touchStartX = e.touches[0].clientX;
-              },
-              { passive: true }
-            );
+            // Mouse events for desktop
+            slider.addEventListener("mousedown", touchStart);
+            slider.addEventListener("mousemove", touchMove);
+            slider.addEventListener("mouseup", touchEnd);
+            slider.addEventListener("mouseleave", touchEnd);
 
-            slider.addEventListener(
-              "touchend",
-              (e) => {
-                touchEndX = e.changedTouches[0].clientX;
-                handleSwipe();
-              },
-              { passive: true }
-            );
-
-            function handleSwipe() {
-              const diff = touchStartX - touchEndX;
-              if (diff > 50) {
-                // Swipe left - next
-                currentIndex = (currentIndex + 1) % slideCount;
-              } else if (diff < -50) {
-                // Swipe right - prev
-                currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+            function touchStart(event) {
+              if (event.type === "mousedown") {
+                event.preventDefault();
               }
+
+              isDragging = true;
+              startPos = getPositionX(event);
+              slider.classList.add("grabbing");
+
+              // Cancel any current animation
+              cancelAnimationFrame(animationID);
+            }
+
+            function touchMove(event) {
+              if (!isDragging) return;
+
+              const currentPosition = getPositionX(event);
+              currentTranslate = prevTranslate + currentPosition - startPos;
+            }
+
+            function touchEnd() {
+              if (!isDragging) return;
+
+              isDragging = false;
+              slider.classList.remove("grabbing");
+
+              const movedBy = currentTranslate - prevTranslate;
+
+              // Nếu vuốt đủ xa, chuyển slide - với độ nhạy phù hợp
+              if (movedBy < -50 && currentIndex < slideCount - 1) {
+                currentIndex += 1;
+              }
+
+              if (movedBy > 50 && currentIndex > 0) {
+                currentIndex -= 1;
+              }
+
+              // Reset về slide hiện tại nếu không vuốt đủ
               updateSlider();
             }
+
+            function getPositionX(event) {
+              return event.type.includes("mouse")
+                ? event.pageX
+                : event.touches[0].clientX;
+            }
+
+            function updateSlider() {
+              // Cập nhật vị trí slider - SỬA LẠI TÍNH TOÁN
+              const slideWidth = slider.offsetWidth;
+              currentTranslate = -currentIndex * slideWidth;
+              prevTranslate = currentTranslate;
+
+              slider.style.transform = `translateX(${currentTranslate}px)`;
+
+              // Cập nhật indicators
+              indicators.forEach((indicator, index) => {
+                indicator.classList.toggle("active", index === currentIndex);
+              });
+            }
+
+            // Xử lý resize window để đảm bảo slider hoạt động đúng
+            window.addEventListener("resize", () => {
+              updateSlider();
+            });
+
+            // Khởi tạo slider
+            updateSlider();
           });
         }
 
