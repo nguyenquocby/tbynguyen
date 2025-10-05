@@ -222,80 +222,7 @@
           opacity: 1;
         }
       }
-      /* VIDEO */
-      .video-btn {
-        padding: 15px 30px;
-        background: #007bff;
-        color: white;
-        font-size: 18px;
-        border: none;
-        border-radius: 25px;
-        cursor: pointer;
-        transition: background 0.3s, transform 0.2s;
-      }
 
-      .video-btn:hover {
-        background: #0056b3;
-        transform: scale(1.05);
-      }
-
-      .video-popup {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.7);
-        justify-content: center;
-        align-items: center;
-        z-index: 999;
-      }
-
-      .video-content {
-        position: relative;
-        padding: 15px;
-        border-radius: 25px;
-        max-width: 90%;
-        width: 720px;
-        animation: fadeIn 0.4s ease-in-out;
-      }
-
-      .video-content video {
-        width: 100%;
-        border-radius: 25px;
-      }
-
-      .close-btn {
-        position: absolute;
-        top: -12px;
-        right: -12px;
-        background: #ff4d4d;
-        color: white;
-        border: none;
-        font-size: 20px;
-        border-radius: 50%;
-        width: 32px;
-        height: 32px;
-        cursor: pointer;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: scale(0.9);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-
-      @media (max-width: 768px) {
-        .video-content {
-          width: 95%;
-        }
-      }
       /* Header */
       .main-header {
         position: fixed;
@@ -596,6 +523,9 @@
         margin: 0 auto;
         overflow: hidden;
         border-radius: var(--border-radius);
+        touch-action: pan-y;
+        width: 100%;
+        aspect-ratio: 16/9;
       }
 
       .slider-container.active {
@@ -614,19 +544,34 @@
 
       .slider {
         display: flex;
-
         width: 100%;
+        height: 100%;
+        will-change: transform;
+      }
+
+      .slider.grabbing {
+        cursor: grabbing;
+        transition: none;
       }
 
       .slide {
         min-width: 100%;
+        flex-shrink: 0;
+        -webkit-user-drag: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        box-sizing: border-box;
       }
 
       .slide img {
         width: 100%;
-        height: 500px;
+        height: 100%;
         object-fit: contain;
         object-position: center;
+        pointer-events: none;
+        border-radius: calc(var(--border-radius) - 5px);
       }
 
       .slider-nav {
@@ -635,7 +580,6 @@
         transform: translateY(-50%);
         width: 50px;
         height: 50px;
-        /*-background-color: rgba(255, 255, 255, 0.8);*/
         border: none;
         border-radius: 50%;
         font-size: 1.8rem;
@@ -645,8 +589,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        /*box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);*/
         z-index: 10;
+        background-color: rgba(255, 255, 255, 0.8);
       }
 
       .slider-nav:hover {
@@ -662,7 +606,28 @@
         right: 20px;
       }
 
-      /* Specifications Section */
+      /* Slide Indicators */
+      .slide-indicators {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        gap: 8px;
+      }
+
+      .indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .indicator.active {
+        background-color: var(--primary-color);
+      }
+
+      /* Specifications Section - ĐÃ SỬA */
       .specs-section {
         padding: 8rem 0;
         background-color: white;
@@ -721,7 +686,7 @@
         border-radius: 50%;
       }
 
-      /* Features Section */
+      /* Features Section - ĐÃ SỬA */
       .features-section {
         padding: 8rem 0;
         background-color: #f9f9f9;
@@ -834,101 +799,151 @@
         transform: scale(1.05);
       }
 
-      /* Contact Section */
-      .contact-section {
+      /* NEW: Button thay thế section contact */
+      .contact-button-section {
         padding: 8rem 0;
         background-color: white;
+        text-align: center;
       }
 
-      .contact-container {
-        display: flex;
-        gap: 5rem;
-        max-width: 1000px;
-        margin: 0 auto;
-      }
-
-      .contact-info {
-        flex: 1;
-        background-color: var(--primary-color);
+      .contact-button {
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
         color: white;
-        padding: 4rem;
-        border-radius: var(--border-radius);
+        border: none;
+        padding: 16px 32px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 25px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
       }
 
-      .contact-info h3 {
-        font-size: 2.4rem;
-        margin-bottom: 3rem;
-        position: relative;
-        padding-bottom: 1rem;
+      .contact-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
       }
 
-      .contact-info h3::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
+      .contact-button:active {
+        transform: translateY(0);
+      }
+
+      /* NEW: Slider Modal Styles */
+      .slider-modal {
+        display: none;
+        position: fixed;
+        top: 0;
         left: 0;
-        width: 50px;
-        height: 3px;
-        background-color: white;
-      }
-
-      .info-item {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 2rem;
-      }
-
-      .info-item i {
-        font-size: 1.8rem;
-        margin-right: 1.5rem;
-        margin-top: 0.3rem;
-      }
-
-      .info-item p {
-        font-size: 1.5rem;
-      }
-
-      .contact-form {
-        flex: 1;
-        background-color: #f9f9f9;
-        padding: 4rem;
-        border-radius: var(--border-radius);
-      }
-
-      .form-group {
-        margin-bottom: 2rem;
-      }
-
-      .form-group label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-size: 1.4rem;
-        font-weight: 500;
-      }
-
-      .form-group input,
-      .form-group select,
-      .form-group textarea {
         width: 100%;
-        padding: 1.2rem 1.5rem;
-        border: 1px solid #ddd;
-        border-radius: var(--border-radius);
-        font-size: 1.5rem;
-        font-family: "Montserrat", sans-serif;
-        transition: var(--transition);
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
       }
 
-      .form-group input:focus,
-      .form-group select:focus,
-      .form-group textarea:focus {
-        outline: none;
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(225, 25, 49, 0.1);
+      .modal-slider-container {
+        width: 80%;
+        max-width: 900px;
+        height: 80%;
+        position: relative;
+        overflow: hidden;
       }
 
-      .form-group textarea {
-        resize: vertical;
-        min-height: 120px;
+      .modal-slider {
+        display: flex;
+        width: 1000%;
+        height: 100%;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .modal-slide {
+        width: 10%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-slide img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 8px;
+      }
+
+      .modal-close-btn {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 36px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        z-index: 1001;
+        transition: color 0.3s;
+      }
+
+      .modal-close-btn:hover {
+        color: #e74c3c;
+      }
+
+      .modal-slider-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        gap: 20px;
+      }
+
+      .modal-prev-btn,
+      .modal-next-btn {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s;
+      }
+
+      .modal-prev-btn:hover,
+      .modal-next-btn:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+
+      .modal-slide-indicators {
+        display: flex;
+        gap: 10px;
+      }
+
+      .modal-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .modal-indicator.active {
+        background-color: #e74c3c;
+      }
+
+      .modal-slide-counter {
+        color: white;
+        font-size: 18px;
+        margin-top: 10px;
       }
 
       /* Footer */
@@ -1120,8 +1135,55 @@
         transform: translateY(-5px);
       }
 
+      /* Messenger Chat Button */
+      .messenger-chat {
+        position: fixed;
+        bottom: 100px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        background-color: #0084ff;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        box-shadow: 0 4px 12px rgba(0, 132, 255, 0.3);
+        z-index: 999;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+
+      .messenger-chat:hover {
+        background-color: #0066cc;
+        transform: scale(1.1);
+      }
+
+      /* Hiệu ứng lan tỏa */
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
+        }
+      }
+
+      /* Điều chỉnh vị trí khi có cả 2 nút */
+      .back-to-top.active ~ .messenger-chat {
+        bottom: 100px;
+      }
+
       /* Responsive Styles */
       @media (max-width: 1024px) {
+        .slider-container {
+          max-width: 90vw;
+          aspect-ratio: 4/3;
+        }
         .hero-title {
           font-size: 5rem;
         }
@@ -1137,17 +1199,25 @@
         .feature-image {
           order: -1;
         }
-
-        .contact-container {
-          flex-direction: column;
-        }
       }
 
       @media (max-width: 768px) {
         html {
           font-size: 56.25%;
         }
+        .slider-container {
+          max-width: 95vw;
+          aspect-ratio: 1/1;
+          border-radius: 15px;
+        }
 
+        .slide {
+          padding: 5px;
+        }
+
+        .slide img {
+          border-radius: 10px;
+        }
         .menu-toggle {
           display: block;
         }
@@ -1206,6 +1276,30 @@
         .slide img {
           height: 400px;
         }
+
+        .slider-nav {
+          width: 40px;
+          height: 40px;
+          font-size: 1.6rem;
+        }
+
+        .messenger-chat {
+          width: 60px;
+          height: 60px;
+          font-size: 26px;
+          right: 26px;
+          bottom: 100px;
+        }
+
+        .back-to-top.active ~ .messenger-chat {
+          bottom: 80px;
+        }
+
+        /* Modal responsive */
+        .modal-slider-container {
+          width: 95%;
+          height: 70%;
+        }
       }
 
       @media (max-width: 576px) {
@@ -1238,61 +1332,38 @@
           width: 100%;
           text-align: center;
         }
-      }
-      /* Messenger Chat Button */
-      .messenger-chat {
-        position: fixed;
-        bottom: 100px;
-        right: 25px;
-        width: 60px;
-        height: 60px;
-        background-color: #0084ff;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 28px;
-        box-shadow: 0 4px 12px rgba(0, 132, 255, 0.3);
-        z-index: 999;
-        transition: all 0.3s ease;
-        animation: pulse 2s infinite;
-      }
 
-      .messenger-chat:hover {
-        background-color: #0066cc;
-        transform: scale(1.1);
-      }
-
-      /* Hiệu ứng lan tỏa */
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
-        }
-        70% {
-          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
-        }
-      }
-
-      /* Điều chỉnh vị trí khi có cả 2 nút */
-      .back-to-top.active ~ .messenger-chat {
-        bottom: 100px;
-      }
-
-      @media (max-width: 768px) {
-        .messenger-chat {
-          width: 60px;
-          height: 60px;
-          font-size: 26px;
-          right: 26px;
-          bottom: 100px;
+        .slider-nav {
+          width: 35px;
+          height: 35px;
+          font-size: 1.4rem;
         }
 
-        .back-to-top.active ~ .messenger-chat {
-          bottom: 80px;
+        .prev-btn {
+          left: 10px;
+        }
+
+        .next-btn {
+          right: 10px;
+        }
+
+        /* Modal responsive */
+        .modal-slider-container {
+          width: 98%;
+          height: 60%;
+        }
+
+        .modal-close-btn {
+          top: 10px;
+          right: 15px;
+          font-size: 28px;
+        }
+
+        .modal-prev-btn,
+        .modal-next-btn {
+          width: 40px;
+          height: 40px;
+          font-size: 20px;
         }
       }
     </style>
@@ -1332,10 +1403,10 @@
           <nav class="main-nav">
             <ul>
               <li><a href="/Trangchu/" class="active">Trang chủ</a></li>
-              <li><a href="#gallery">Thư viện ảnh</a></li>
+              <li><a href="#gallery">Phiên bản & màu sắc</a></li>
               <li><a href="#specs">Thông số kỹ thuật</a></li>
               <li><a href="#features">Tính năng</a></li>
-              <li><a href="#contact">Liên hệ</a></li>
+              <li><a href="#contact">Thư viện ảnh</a></li>
             </ul>
           </nav>
         </div>
@@ -1345,7 +1416,7 @@
         <div class="container">
           <h1 class="hero-title" data-aos="fade-up">Honda CB350 H'ness</h1>
           <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">
-            CB350 H’ness được tạo hình như một bản phối tinh tế giữa nét hoài cổ
+            CB350 H'ness được tạo hình như một bản phối tinh tế giữa nét hoài cổ
             và chất đường phố hiện đại. Khối động cơ đặt thẳng hàng tạo cảm giác
             hầm hố, khung xe cấu trúc dạng nôi kép chắc chắn bao trọn toàn bộ
             cụm động cơ, cùng với ống xả mạ chrome sáng bóng làm nổi bật vẻ sang
@@ -1355,20 +1426,6 @@
             <a href="#gallery" class="btn btn-primary btn-lg">
               Khám phá ngay <i class="fas fa-arrow-down"></i>
             </a>
-            <!--<button class="video-btn" onclick="openVideo()">Xem Video</button>-->
-
-            <div class="video-popup" id="videoPopup">
-              <div class="video-content">
-                <button class="close-btn" onclick="closeVideo()">×</button>
-                <video controls>
-                  <source
-                    src="/sanphamxemay/image/video/CB350.mp4"
-                    type="video/mp4"
-                  />
-                  Trình duyệt của bạn không hỗ trợ video.
-                </video>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -1391,7 +1448,7 @@
     <section id="gallery" class="product-gallery-section">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Bộ Sưu Tập Hình Ảnh</h2>
+          <h2 class="section-title">Phiên bản & Màu sắc</h2>
           <p class="section-subtitle">
             Khám phá Honda CB350 H'ness qua các phiên bản màu sắc
           </p>
@@ -1415,28 +1472,60 @@
         <div class="slider-container active" data-color="xam-den">
           <div class="slider">
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/1.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/1.png"
+                alt="Honda CB350 Xám Đen 1"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/8.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/8.png"
+                alt="Honda CB350 Xám Đen 2"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/7.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/7.png"
+                alt="Honda CB350 Xám Đen 3"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/6.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/6.png"
+                alt="Honda CB350 Xám Đen 4"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/5.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/5.png"
+                alt="Honda CB350 Xám Đen 5"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/4.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/4.png"
+                alt="Honda CB350 Xám Đen 6"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/3.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/3.png"
+                alt="Honda CB350 Xám Đen 7"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/XÁM ĐEN/2.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/XÁM ĐEN/2.png"
+                alt="Honda CB350 Xám Đen 8"
+                loading="lazy"
+              />
             </div>
           </div>
           <button class="slider-nav prev-btn" aria-label="Previous image">
@@ -1445,33 +1534,75 @@
           <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
+          <div class="slide-indicators">
+            <span class="indicator active" data-index="0"></span>
+            <span class="indicator" data-index="1"></span>
+            <span class="indicator" data-index="2"></span>
+            <span class="indicator" data-index="3"></span>
+            <span class="indicator" data-index="4"></span>
+            <span class="indicator" data-index="5"></span>
+            <span class="indicator" data-index="6"></span>
+            <span class="indicator" data-index="7"></span>
+          </div>
         </div>
 
         <div class="slider-container" data-color="do-den">
           <div class="slider">
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/1.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/1.png"
+                alt="Honda CB350 Đỏ Đen 1"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/8.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/8.png"
+                alt="Honda CB350 Đỏ Đen 2"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/7.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/7.png"
+                alt="Honda CB350 Đỏ Đen 3"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/6.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/6.png"
+                alt="Honda CB350 Đỏ Đen 4"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/5.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/5.png"
+                alt="Honda CB350 Đỏ Đen 5"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/4.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/4.png"
+                alt="Honda CB350 Đỏ Đen 6"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/3.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/3.png"
+                alt="Honda CB350 Đỏ Đen 7"
+                loading="lazy"
+              />
             </div>
             <div class="slide">
-              <img src="CB350Hness/ĐỎ ĐEN/2.png" alt="Honda" loading="lazy" />
+              <img
+                src="CB350Hness/ĐỎ ĐEN/2.png"
+                alt="Honda CB350 Đỏ Đen 8"
+                loading="lazy"
+              />
             </div>
           </div>
           <button class="slider-nav prev-btn" aria-label="Previous image">
@@ -1480,11 +1611,21 @@
           <button class="slider-nav next-btn" aria-label="Next image">
             <i class="fas fa-chevron-right"></i>
           </button>
+          <div class="slide-indicators">
+            <span class="indicator active" data-index="0"></span>
+            <span class="indicator" data-index="1"></span>
+            <span class="indicator" data-index="2"></span>
+            <span class="indicator" data-index="3"></span>
+            <span class="indicator" data-index="4"></span>
+            <span class="indicator" data-index="5"></span>
+            <span class="indicator" data-index="6"></span>
+            <span class="indicator" data-index="7"></span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Specifications Section -->
+    <!-- Specifications Section - ĐÃ SỬA -->
     <section id="specs" class="specs-section">
       <div class="container">
         <div class="section-header">
@@ -1576,7 +1717,7 @@
       </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Features Section - ĐÃ SỬA -->
     <section id="features" class="features-section">
       <div class="container">
         <div class="section-header">
@@ -1619,7 +1760,7 @@
               <div class="feature-image" data-aos="fade-left">
                 <img
                   src="CB350Hness/TK.png"
-                  alt="Thiết kế Honda"
+                  alt="Thiết kế Honda CB350"
                   loading="lazy"
                 />
               </div>
@@ -1640,7 +1781,7 @@
               <div class="feature-image" data-aos="fade-left">
                 <img
                   src="CB350Hness/ĐC.png"
-                  alt="Động cơ Honda"
+                  alt="Động cơ Honda CB350"
                   loading="lazy"
                 />
               </div>
@@ -1659,7 +1800,7 @@
               <div class="feature-image" data-aos="fade-left">
                 <img
                   src="CB350Hness/CN.jpg"
-                  alt="Công nghệ Honda"
+                  alt="Công nghệ Honda CB350"
                   loading="lazy"
                 />
               </div>
@@ -1681,7 +1822,7 @@
               <div class="feature-image" data-aos="fade-left">
                 <img
                   src="CB350Hness/AT.png"
-                  alt="An toàn Honda"
+                  alt="An toàn Honda CB350"
                   loading="lazy"
                 />
               </div>
@@ -1691,83 +1832,51 @@
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
+    <!-- NEW: Button thay thế section contact -->
+    <section id="contact" class="contact-button-section">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Liên Hệ Tư Vấn</h2>
-          <p class="section-subtitle">Liên hệ trực tiếp với chúng tôi</p>
+          <h2 class="section-title">Xem Thêm Hình Ảnh</h2>
+          <p class="section-subtitle">Khám phá bộ sưu tập hình ảnh đầy đủ</p>
           <div class="divider"></div>
         </div>
 
-        <div class="contact-container">
-          <div class="contact-info" data-aos="fade-right">
-            <h3>Thông Tin Liên Hệ</h3>
-            <div class="info-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <p>Trụ Sở Chính: 135 Chu Văn Thịnh, Tổ 1, P. Tô Hiệu, Sơn La</p>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <p>CN Hà Nội: 319 Nguyễn Văn Cừ, P. Bồ Đề, TP. Hà Nội</p>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <p>
-                CN Bình Định: 290-292 Lê Hồng Phong, P. Quy Nhơn, Tỉnh Gia Lai
-              </p>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-phone-alt"></i>
-              <p>Hotline: 1900 636 712</p>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-envelope"></i>
-              <p>Email: cr@hungmanh.com.vn</p>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-envelope"></i>
-              <p>Email: cr_mt@hungmanh.com.vn</p>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-clock"></i>
-              <p>Giờ làm việc: 7:30 - 17:30 (Thứ 2 - Chủ Nhật)</p>
-            </div>
-          </div>
-
-          <div class="contact-form" data-aos="fade-left">
-            <h3>Gửi Yêu Cầu Tư Vấn</h3>
-            <form id="consultationForm">
-              <div class="form-group">
-                <label for="name">Họ và tên</label>
-                <input type="text" id="name" name="name" required />
-              </div>
-              <div class="form-group">
-                <label for="phone">Số điện thoại</label>
-                <input type="tel" id="phone" name="phone" required />
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" />
-              </div>
-              <div class="form-group">
-                <label for="model">Mẫu xe quan tâm</label>
-                <select id="model" name="model">
-                  <option value="CB350">CB350 H'ness</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="message">Nội dung yêu cầu</label>
-                <textarea id="message" name="message" required></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary btn-lg">
-                Gửi yêu cầu
-              </button>
-            </form>
-          </div>
-        </div>
+        <button class="contact-button" id="contactButton">
+          <i class="fas fa-images"></i>
+          Xem Hình Ảnh
+        </button>
       </div>
     </section>
+
+    <!-- NEW: Slider Modal -->
+    <div class="slider-modal" id="sliderModal">
+      <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+
+      <div class="modal-slider-container">
+        <div class="modal-slider" id="modalSlider">
+          <!-- 10 slides sẽ được thêm bằng JavaScript -->
+        </div>
+      </div>
+
+      <div class="modal-slider-controls">
+        <button class="modal-prev-btn" id="modalPrevBtn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="modal-slide-indicators" id="modalSlideIndicators">
+          <!-- Indicators sẽ được thêm bằng JavaScript -->
+        </div>
+
+        <button class="modal-next-btn" id="modalNextBtn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <div class="modal-slide-counter">
+        <span id="modalCurrentSlide">1</span> /
+        <span id="modalTotalSlides">10</span>
+      </div>
+    </div>
 
     <!-- Footer -->
     <footer class="main-footer">
@@ -1785,10 +1894,10 @@
             <h4>Liên Kết Nhanh</h4>
             <ul>
               <li><a href="#home">Trang đầu</a></li>
-              <li><a href="#gallery">Thư viện ảnh</a></li>
+              <li><a href="#gallery">Phiên bản & màu sắc</a></li>
               <li><a href="#specs">Thông số kỹ thuật</a></li>
               <li><a href="#features">Tính năng</a></li>
-              <li><a href="#contact">Liên hệ</a></li>
+              <li><a href="#contact">Thư viện ảnh</a></li>
             </ul>
           </div>
 
@@ -1847,18 +1956,7 @@
     <a href="#home" class="back-to-top" aria-label="Back to top">
       <i class="fas fa-arrow-up"></i>
     </a>
-    <!----------video-------->
-    <script>
-      function openVideo() {
-        document.getElementById("videoPopup").style.display = "flex";
-      }
 
-      function closeVideo() {
-        const popup = document.getElementById("videoPopup");
-        popup.style.display = "none";
-        popup.querySelector("video").pause();
-      }
-    </script>
     <!-- JavaScript Libraries -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -1949,7 +2047,7 @@
           });
         });
 
-        // Product Gallery Sliders
+        // Product Gallery Sliders với tính năng vuốt
         function initSliders() {
           const sliderContainers =
             document.querySelectorAll(".slider-container");
@@ -1959,10 +2057,17 @@
             const slides = container.querySelectorAll(".slide");
             const slideCount = slides.length;
             let currentIndex = 0;
+            let isDragging = false;
+            let startPos = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+            let animationID;
+            const indicators = container.querySelectorAll(".indicator");
 
             // Set initial slide width
             slides.forEach((slide) => {
               slide.style.minWidth = "100%";
+              slide.style.flexShrink = "0";
             });
 
             // Next button
@@ -1981,42 +2086,95 @@
                 updateSlider();
               });
 
-            function updateSlider() {
-              slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
+            // Indicator click
+            indicators.forEach((indicator, index) => {
+              indicator.addEventListener("click", () => {
+                currentIndex = index;
+                updateSlider();
+              });
+            });
 
             // Touch events for mobile
-            let touchStartX = 0;
-            let touchEndX = 0;
+            slider.addEventListener("touchstart", touchStart, {
+              passive: true,
+            });
+            slider.addEventListener("touchmove", touchMove, { passive: true });
+            slider.addEventListener("touchend", touchEnd);
 
-            slider.addEventListener(
-              "touchstart",
-              (e) => {
-                touchStartX = e.touches[0].clientX;
-              },
-              { passive: true }
-            );
+            // Mouse events for desktop
+            slider.addEventListener("mousedown", touchStart);
+            slider.addEventListener("mousemove", touchMove);
+            slider.addEventListener("mouseup", touchEnd);
+            slider.addEventListener("mouseleave", touchEnd);
 
-            slider.addEventListener(
-              "touchend",
-              (e) => {
-                touchEndX = e.changedTouches[0].clientX;
-                handleSwipe();
-              },
-              { passive: true }
-            );
-
-            function handleSwipe() {
-              const diff = touchStartX - touchEndX;
-              if (diff > 50) {
-                // Swipe left - next
-                currentIndex = (currentIndex + 1) % slideCount;
-              } else if (diff < -50) {
-                // Swipe right - prev
-                currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+            function touchStart(event) {
+              if (event.type === "mousedown") {
+                event.preventDefault();
               }
+
+              isDragging = true;
+              startPos = getPositionX(event);
+              slider.classList.add("grabbing");
+
+              // Cancel any current animation
+              cancelAnimationFrame(animationID);
+            }
+
+            function touchMove(event) {
+              if (!isDragging) return;
+
+              const currentPosition = getPositionX(event);
+              currentTranslate = prevTranslate + currentPosition - startPos;
+            }
+
+            function touchEnd() {
+              if (!isDragging) return;
+
+              isDragging = false;
+              slider.classList.remove("grabbing");
+
+              const movedBy = currentTranslate - prevTranslate;
+
+              // Nếu vuốt đủ xa, chuyển slide - với độ nhạy phù hợp
+              if (movedBy < -50 && currentIndex < slideCount - 1) {
+                currentIndex += 1;
+              }
+
+              if (movedBy > 50 && currentIndex > 0) {
+                currentIndex -= 1;
+              }
+
+              // Reset về slide hiện tại nếu không vuốt đủ
               updateSlider();
             }
+
+            function getPositionX(event) {
+              return event.type.includes("mouse")
+                ? event.pageX
+                : event.touches[0].clientX;
+            }
+
+            function updateSlider() {
+              // Cập nhật vị trí slider
+              const slideWidth = slider.offsetWidth;
+              currentTranslate = -currentIndex * slideWidth;
+              prevTranslate = currentTranslate;
+
+              slider.style.transform = `translateX(${currentTranslate}px)`;
+
+              // Cập nhật indicators
+              indicators.forEach((indicator, index) => {
+                indicator.classList.toggle("active", index === currentIndex);
+              });
+            }
+
+            // Xử lý resize window để đảm bảo slider hoạt động đúng
+            window.addEventListener("resize", () => {
+              updateSlider();
+            });
+
+            // Khởi tạo slider
+            updateSlider();
           });
         }
 
@@ -2053,7 +2211,7 @@
           });
         }
 
-        // Features Tabs
+        // Features Tabs - ĐÃ SỬA
         function initFeaturesTabs() {
           const tabButtons = document.querySelectorAll(".tab-btn");
           const tabContents = document.querySelectorAll(".tab-content");
@@ -2075,39 +2233,165 @@
               });
 
               // Show selected tab
-              document
-                .querySelector(`.tab-content[data-tab="${tabId}"]`)
-                .classList.add("active");
+              const selectedTab = document.querySelector(
+                `.tab-content[data-tab="${tabId}"]`
+              );
+              if (selectedTab) {
+                selectedTab.classList.add("active");
+              }
             });
           });
         }
 
-        // Form submission
-        function initForm() {
-          const form = document.getElementById("consultationForm");
+        // NEW: Modal Slider Functionality với hình ảnh từ thư viện của bạn
+        function initModalSlider() {
+          const contactButton = document.getElementById("contactButton");
+          const sliderModal = document.getElementById("sliderModal");
+          const modalCloseBtn = document.getElementById("modalCloseBtn");
+          const modalSlider = document.getElementById("modalSlider");
+          const modalPrevBtn = document.getElementById("modalPrevBtn");
+          const modalNextBtn = document.getElementById("modalNextBtn");
+          const modalSlideIndicators = document.getElementById(
+            "modalSlideIndicators"
+          );
+          const modalCurrentSlideElement =
+            document.getElementById("modalCurrentSlide");
+          const modalTotalSlidesElement =
+            document.getElementById("modalTotalSlides");
 
-          form.addEventListener("submit", function (e) {
-            e.preventDefault();
+          let currentModalSlide = 0;
+          const totalModalSlides = 5;
 
-            // Here you would typically send the form data to a server
-            alert(
-              "Cảm ơn bạn đã gửi yêu cầu tư vấn. Chúng tôi sẽ liên hệ với bạn sớm nhất!"
-            );
-            form.reset();
+          // Danh sách 10 hình ảnh từ thư viện của bạn
+          const imagePaths = [
+            "CB350Hness/picture/1.jpg",
+            "CB350Hness/picture/2.jpg",
+            "CB350Hness/picture/3.jpg",
+            "CB350Hness/picture/4.jpg",
+            "CB350Hness/picture/5.jpg",
+          ];
+
+          // Mô tả cho từng hình ảnh
+          const imageDescriptions = [
+            "Honda CB350 Xám Đen",
+            "Honda CB350 Xám Đen",
+            "Honda CB350 Xám Đen",
+            "Honda CB350 Xám Đen",
+            "Honda CB350 Xám Đen",
+          ];
+
+          // Khởi tạo modal slider với 10 hình ảnh từ thư viện của bạn
+          function initModalSliderContent() {
+            // Xóa nội dung hiện tại
+            modalSlider.innerHTML = "";
+            modalSlideIndicators.innerHTML = "";
+
+            // Thêm 10 slides với hình ảnh từ thư viện của bạn
+            for (let i = 0; i < totalModalSlides; i++) {
+              // Tạo slide
+              const slide = document.createElement("div");
+              slide.className = "modal-slide";
+
+              // Tạo hình ảnh từ thư viện của bạn
+              const img = document.createElement("img");
+              img.src = imagePaths[i];
+              img.alt = imageDescriptions[i];
+              img.loading = "lazy";
+
+              slide.appendChild(img);
+              modalSlider.appendChild(slide);
+
+              // Tạo indicator
+              const indicator = document.createElement("div");
+              indicator.className = "modal-indicator";
+              if (i === 0) indicator.classList.add("active");
+              indicator.addEventListener("click", () => goToModalSlide(i));
+              modalSlideIndicators.appendChild(indicator);
+            }
+
+            // Cập nhật tổng số slides
+            modalTotalSlidesElement.textContent = totalModalSlides;
+            updateModalSlideCounter();
+          }
+
+          // Chuyển đến slide cụ thể
+          function goToModalSlide(slideIndex) {
+            currentModalSlide = slideIndex;
+            modalSlider.style.transform = `translateX(-${
+              currentModalSlide * 10
+            }%)`;
+            updateModalIndicators();
+            updateModalSlideCounter();
+          }
+
+          // Chuyển đến slide tiếp theo
+          function nextModalSlide() {
+            currentModalSlide = (currentModalSlide + 1) % totalModalSlides;
+            goToModalSlide(currentModalSlide);
+          }
+
+          // Chuyển đến slide trước đó
+          function prevModalSlide() {
+            currentModalSlide =
+              (currentModalSlide - 1 + totalModalSlides) % totalModalSlides;
+            goToModalSlide(currentModalSlide);
+          }
+
+          // Cập nhật indicators
+          function updateModalIndicators() {
+            const indicators = document.querySelectorAll(".modal-indicator");
+            indicators.forEach((indicator, index) => {
+              if (index === currentModalSlide) {
+                indicator.classList.add("active");
+              } else {
+                indicator.classList.remove("active");
+              }
+            });
+          }
+
+          // Cập nhật bộ đếm slide
+          function updateModalSlideCounter() {
+            modalCurrentSlideElement.textContent = currentModalSlide + 1;
+          }
+
+          // Mở modal
+          contactButton.addEventListener("click", function () {
+            sliderModal.style.display = "flex";
+            document.body.style.overflow = "hidden"; // Ngăn cuộn trang nền
           });
-        }
 
-        // Newsletter subscription
-        function initNewsletter() {
-          const newsletterForm = document.querySelector(".newsletter-form");
+          // Đóng modal
+          modalCloseBtn.addEventListener("click", function () {
+            sliderModal.style.display = "none";
+            document.body.style.overflow = "auto"; // Khôi phục cuộn trang
+          });
 
-          newsletterForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            const emailInput = this.querySelector("input");
+          // Đóng modal khi click ra ngoài
+          sliderModal.addEventListener("click", function (e) {
+            if (e.target === sliderModal) {
+              sliderModal.style.display = "none";
+              document.body.style.overflow = "auto";
+            }
+          });
 
-            if (emailInput.value) {
-              alert("Cảm ơn bạn đã đăng ký nhận bản tin!");
-              emailInput.value = "";
+          // Điều khiển slider
+          modalPrevBtn.addEventListener("click", prevModalSlide);
+          modalNextBtn.addEventListener("click", nextModalSlide);
+
+          // Khởi tạo modal slider
+          initModalSliderContent();
+
+          // Thêm sự kiện bàn phím
+          document.addEventListener("keydown", function (e) {
+            if (sliderModal.style.display === "flex") {
+              if (e.key === "ArrowLeft") {
+                prevModalSlide();
+              } else if (e.key === "ArrowRight") {
+                nextModalSlide();
+              } else if (e.key === "Escape") {
+                sliderModal.style.display = "none";
+                document.body.style.overflow = "auto";
+              }
             }
           });
         }
@@ -2116,8 +2400,7 @@
         initSliders();
         initColorChange();
         initFeaturesTabs();
-        initForm();
-        initNewsletter();
+        initModalSlider();
 
         // Initialize AOS (Animate On Scroll)
         AOS.init({
