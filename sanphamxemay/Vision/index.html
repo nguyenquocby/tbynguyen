@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Honda Vision</title>
+    <title>Honda Vision - Xe Tay Ga</title>
+
     <link
       rel="icon"
       href="/sanphamxemay/image/banner/Logo_HEAD.png"
       type="image/x-icon"
     />
-
-    <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -319,12 +318,7 @@
         justify-content: space-between;
         align-items: center;
       }
-      .main-header h1 {
-        display: none;
-        font-size: 18px;
-        color: rgb(0, 0, 0);
-        transition: color 0.3s ease; /* Hiệu ứng chuyển màu mượt mà */
-      }
+
       .logo img {
         height: 40px;
         transition: var(--transition);
@@ -840,101 +834,169 @@
         transform: scale(1.05);
       }
 
-      /* Contact Section */
-      .contact-section {
+      /* Modern Gallery Button Section */
+      .gallery-button-section {
         padding: 8rem 0;
         background-color: white;
+        text-align: center;
       }
 
-      .contact-container {
-        display: flex;
-        gap: 5rem;
-        max-width: 1000px;
-        margin: 0 auto;
-      }
-
-      .contact-info {
-        flex: 1;
+      .gallery-button {
+        padding: 1.8rem 4rem;
         background-color: var(--primary-color);
         color: white;
-        padding: 4rem;
-        border-radius: var(--border-radius);
-      }
-
-      .contact-info h3 {
-        font-size: 2.4rem;
-        margin-bottom: 3rem;
-        position: relative;
-        padding-bottom: 1rem;
-      }
-
-      .contact-info h3::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 50px;
-        height: 3px;
-        background-color: white;
-      }
-
-      .info-item {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 2rem;
-      }
-
-      .info-item i {
+        border: none;
+        border-radius: 50px;
         font-size: 1.8rem;
-        margin-right: 1.5rem;
-        margin-top: 0.3rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 5px 15px rgba(225, 25, 49, 0.3);
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
       }
 
-      .info-item p {
-        font-size: 1.5rem;
+      .gallery-button:hover {
+        background-color: #c01027;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(225, 25, 49, 0.4);
       }
 
-      .contact-form {
-        flex: 1;
-        background-color: #f9f9f9;
-        padding: 4rem;
-        border-radius: var(--border-radius);
-      }
-
-      .form-group {
-        margin-bottom: 2rem;
-      }
-
-      .form-group label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-size: 1.4rem;
-        font-weight: 500;
-      }
-
-      .form-group input,
-      .form-group select,
-      .form-group textarea {
+      /* Modern Gallery Popup */
+      .modern-gallery-popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
-        padding: 1.2rem 1.5rem;
-        border: 1px solid #ddd;
-        border-radius: var(--border-radius);
-        font-size: 1.5rem;
-        font-family: "Montserrat", sans-serif;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .modern-gallery-popup.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .modern-gallery-container {
+        position: relative;
+        width: 90%;
+        max-width: 1000px;
+        height: 80vh;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .modern-gallery-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.8rem;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         transition: var(--transition);
       }
 
-      .form-group input:focus,
-      .form-group select:focus,
-      .form-group textarea:focus {
-        outline: none;
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(225, 25, 49, 0.1);
+      .modern-gallery-close:hover {
+        background-color: #c01027;
+        transform: rotate(90deg);
       }
 
-      .form-group textarea {
-        resize: vertical;
-        min-height: 120px;
+      .modern-gallery-slider {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+
+      .modern-slide {
+        min-width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+      }
+
+      .modern-slide img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .modern-gallery-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 60px;
+        height: 60px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border: none;
+        border-radius: 50%;
+        font-size: 2rem;
+        color: var(--dark-color);
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .modern-gallery-nav:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .modern-prev {
+        left: 20px;
+      }
+
+      .modern-next {
+        right: 20px;
+      }
+
+      .modern-gallery-indicators {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+      }
+
+      .modern-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .modern-indicator.active {
+        background-color: var(--primary-color);
+        transform: scale(1.2);
       }
 
       /* Footer */
@@ -1126,6 +1188,49 @@
         transform: translateY(-5px);
       }
 
+      /* Messenger Chat Button */
+      .messenger-chat {
+        position: fixed;
+        bottom: 100px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        background-color: #0084ff;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        box-shadow: 0 4px 12px rgba(0, 132, 255, 0.3);
+        z-index: 999;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+
+      .messenger-chat:hover {
+        background-color: #0066cc;
+        transform: scale(1.1);
+      }
+
+      /* Hiệu ứng lan tỏa */
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
+        }
+      }
+
+      /* Điều chỉnh vị trí khi có cả 2 nút */
+      .back-to-top.active ~ .messenger-chat {
+        bottom: 100px;
+      }
+
       /* Responsive Styles */
       @media (max-width: 1024px) {
         .hero-title {
@@ -1142,10 +1247,6 @@
 
         .feature-image {
           order: -1;
-        }
-
-        .contact-container {
-          flex-direction: column;
         }
       }
 
@@ -1200,9 +1301,7 @@
           color: var(--dark-color);
           font-size: 1.8rem;
         }
-        .main-header h1 {
-          display: block;
-        }
+
         .hero-title {
           font-size: 4rem;
         }
@@ -1213,6 +1312,21 @@
 
         .slide img {
           height: 400px;
+        }
+
+        .modern-gallery-container {
+          width: 95%;
+          height: 70vh;
+        }
+
+        .modern-gallery-nav {
+          width: 50px;
+          height: 50px;
+          font-size: 1.6rem;
+        }
+
+        .modern-slide {
+          padding: 20px;
         }
       }
 
@@ -1246,61 +1360,23 @@
           width: 100%;
           text-align: center;
         }
-      }
-      /* Messenger Chat Button */
-      .messenger-chat {
-        position: fixed;
-        bottom: 100px;
-        right: 25px;
-        width: 60px;
-        height: 60px;
-        background-color: #0084ff;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 28px;
-        box-shadow: 0 4px 12px rgba(0, 132, 255, 0.3);
-        z-index: 999;
-        transition: all 0.3s ease;
-        animation: pulse 2s infinite;
-      }
 
-      .messenger-chat:hover {
-        background-color: #0066cc;
-        transform: scale(1.1);
-      }
-
-      /* Hiệu ứng lan tỏa */
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
-        }
-        70% {
-          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
-        }
-      }
-
-      /* Điều chỉnh vị trí khi có cả 2 nút */
-      .back-to-top.active ~ .messenger-chat {
-        bottom: 100px;
-      }
-
-      @media (max-width: 768px) {
-        .messenger-chat {
-          width: 60px;
-          height: 60px;
-          font-size: 26px;
-          right: 26px;
-          bottom: 100px;
+        .modern-gallery-container {
+          height: 60vh;
         }
 
-        .back-to-top.active ~ .messenger-chat {
-          bottom: 80px;
+        .modern-gallery-nav {
+          width: 40px;
+          height: 40px;
+          font-size: 1.4rem;
+        }
+
+        .modern-gallery-close {
+          top: 10px;
+          right: 10px;
+          width: 35px;
+          height: 35px;
+          font-size: 1.6rem;
         }
       }
     </style>
@@ -1330,7 +1406,7 @@
               alt="Honda Logo"
             />
           </a>
-          <h1>HEAD TRUNG HÙNG</h1>
+
           <div class="menu-toggle" id="mobile-menu">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -1340,10 +1416,10 @@
           <nav class="main-nav">
             <ul>
               <li><a href="/Trangchu/" class="active">Trang chủ</a></li>
-              <li><a href="#gallery">Thư viện ảnh</a></li>
+              <li><a href="#gallery">Phiên bản & Màu Sắc</a></li>
               <li><a href="#specs">Thông số kỹ thuật</a></li>
               <li><a href="#features">Tính năng</a></li>
-              <li><a href="#contact">Liên hệ</a></li>
+              <li><a href="#modern-gallery">Thư viện ảnh</a></li>
             </ul>
           </nav>
         </div>
@@ -1397,7 +1473,7 @@
     <section id="gallery" class="product-gallery-section">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Bộ Sưu Tập Hình Ảnh</h2>
+          <h2 class="section-title">Phiên bản & Màu sắc</h2>
           <p class="section-subtitle">
             Khám phá Honda Vision qua các phiên bản màu sắc
           </p>
@@ -1406,30 +1482,30 @@
 
         <div class="color-picker">
           <select class="color-listbox" aria-label="Chọn màu xe">
-            <option value="xam-den-tt" data-color="#757474" selected>
+            <option value="xam-den-tt" data-color="##555555	" selected>
               Xám Đen - Thể Thao
             </option>
             <option value="den-tt" data-color="#000000">Đen - Thể Thao</option>
-            <option value="nau-den-db" data-color="#825200">
+            <option value="nau-den-db" data-color="#8B4513">
               Nâu Đen - Đặc Biệt
             </option>
-            <option value="xanh-den-cc" data-color="#0023a3">
+            <option value="xanh-den-cc" data-color="#0000FF">
               Xanh Đen - Cao Cấp
             </option>
-            <option value="do-den-cc" data-color="#b30000">
+            <option value="do-den-cc" data-color="#aa0000">
               Đỏ Đen - Cao Cấp
             </option>
-            <option value="trang-den-tc" data-color="#ffff">
-              Trắng Đen - Tiêu Chuẩn
+            <option value="trang-den-tc" data-color="#FFFFFF">
+              Trắng Bạc - Tiêu Chuẩn
             </option>
           </select>
           <div
             class="selected-color-preview"
-            style="background-color: #757474"
+            style="background-color: #555555"
           ></div>
         </div>
 
-        <!-- Xám Đen - Thể Thao -->
+        <!-- Thể Thao -->
         <div class="slider-container active" data-color="xam-den-tt">
           <div class="slider">
             <div class="slide">
@@ -1563,6 +1639,7 @@
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
+
         <div class="slider-container" data-color="nau-den-db">
           <div class="slider">
             <div class="slide">
@@ -1629,6 +1706,7 @@
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
+
         <div class="slider-container" data-color="xanh-den-cc">
           <div class="slider">
             <div class="slide">
@@ -1695,6 +1773,7 @@
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
+
         <div class="slider-container" data-color="do-den-cc">
           <div class="slider">
             <div class="slide">
@@ -1761,6 +1840,7 @@
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
+
         <div class="slider-container" data-color="trang-den-tc">
           <div class="slider">
             <div class="slide">
@@ -1836,7 +1916,7 @@
         <div class="section-header">
           <h2 class="section-title">Thông Số Kỹ Thuật</h2>
           <p class="section-subtitle">
-            Khám phá thông số kỹ thuật của Honda Vario 125
+            Khám phá thông số kỹ thuật của Honda Vision
           </p>
           <div class="divider"></div>
         </div>
@@ -1851,7 +1931,7 @@
               <li>
                 Loại động cơ: 4 kỳ , 1 xy-lanh đơn, làm mát bằng không khí
               </li>
-              <li>Dung tích xy-lanh: 109,5cm3</li>
+              <li>Dung tích xy-lanh: 109,5 cm3</li>
               <li>Công suất tối đa: 6,59 kw/7500 vòng/phút</li>
               <li>Mô-men xoắn cực đại: 9,29 Nm/6000 vòng/phút</li>
             </ul>
@@ -1877,7 +1957,7 @@
               <li>Dài x Rộng x Cao: 1.925 mm x 686 mm x 1.126 mm</li>
               <li>Độ cao yên: 785 mm</li>
               <li>Khoảng sáng gầm xe: 175 mm</li>
-              <li>Khối lượng bản thân: 97 kg</li>
+              <li>Khối lượng bản thân: 97kg</li>
             </ul>
           </div>
 
@@ -1898,8 +1978,8 @@
             </div>
             <h3 class="specs-title">Hệ Thống Phanh</h3>
             <ul class="specs-list">
-              <li>Phanh trước: Ống lồng, giảm chấn thủy lực</li>
-              <li>Phanh sau: Lò xo trụ đơn, giảm chấn thủy lực</li>
+              <li>Phuộc trước: Ống lồng, giảm chấn thủy lực</li>
+              <li>Phuộc sau: Lò xo trụ đơn, giảm chấn thủy lực</li>
               <li>Hệ thống chống bó cứng phanh: Không</li>
             </ul>
           </div>
@@ -1912,7 +1992,7 @@
             <ul class="specs-list">
               <li>Hệ thống chiếu sáng: LED</li>
               <li>Đồng hồ hiển thị: LCD đa thông tin</li>
-              <li>Hệ thống chống trộm: Smart Key</li>
+              <li>Hệ thống chống trộm: Smart key</li>
               <li>Hộc đựng đồ: Có</li>
             </ul>
           </div>
@@ -2010,90 +2090,57 @@
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
+    <!-- Modern Gallery Button Section -->
+    <section id="modern-gallery" class="gallery-button-section">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Liên Hệ Tư Vấn</h2>
-          <p class="section-subtitle">Liên hệ trực tiếp với chúng tôi</p>
-          <div class="divider"></div>
+          <h2 class="section-title">Thư viện ảnh</h2>
+          <p class="section-subtitle">Khám phá Honda Vision</p>
         </div>
-
-        <div class="contact-container">
-          <div class="contact-info" data-aos="fade-right">
-            <h3>Thông Tin Liên Hệ</h3>
-            <div class="info-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <p>
-                Trụ Sở Chính: 135 Chu Văn Thịnh, Tổ 1, P. Tô Hiệu, TP. Sơn La,
-                Sơn La
-              </p>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <p>
-                CN Hà Nội: 319 Nguyễn Văn Cừ, P. Ngọc Lâm, Q. Long Biên, TP. Hà
-                Nội
-              </p>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <p>
-                CN Bình Định: 290-292 Lê Hồng Phong, P. Thị Nại, TP. Quy Nhơn,
-                Bình Định
-              </p>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-phone-alt"></i>
-              <p>Hotline: 1900 636 712</p>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-envelope"></i>
-              <p>Email: cr@hungmanh.com.vn</p>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-envelope"></i>
-              <p>Email: cr_mt@hungmanh.com.vn</p>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-clock"></i>
-              <p>Giờ làm việc: 7:30 - 17:30 (Thứ 2 - Chủ Nhật)</p>
-            </div>
-          </div>
-
-          <div class="contact-form" data-aos="fade-left">
-            <h3>Gửi Yêu Cầu Tư Vấn</h3>
-            <form id="consultationForm">
-              <div class="form-group">
-                <label for="name">Họ và tên</label>
-                <input type="text" id="name" name="name" required />
-              </div>
-              <div class="form-group">
-                <label for="phone">Số điện thoại</label>
-                <input type="tel" id="phone" name="phone" required />
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" />
-              </div>
-              <div class="form-group">
-                <label for="model">Mẫu xe quan tâm</label>
-                <select id="model" name="model">
-                  <option value="Vision">Vision</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="message">Nội dung yêu cầu</label>
-                <textarea id="message" name="message" required></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary btn-lg">
-                Gửi yêu cầu
-              </button>
-            </form>
-          </div>
-        </div>
+        <button class="gallery-button" id="modernGalleryBtn">
+          <i class="fas fa-images"></i> Xem Bộ Sưu Tập
+        </button>
       </div>
     </section>
+
+    <!-- Modern Gallery Popup -->
+    <div class="modern-gallery-popup" id="modernGalleryPopup">
+      <div class="modern-gallery-container">
+        <button class="modern-gallery-close" id="modernGalleryClose">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="modern-gallery-slider" id="modernGallerySlider">
+          <div class="modern-slide">
+            <img src="Vision/picture/1.png" alt="Honda" />
+          </div>
+          <div class="modern-slide">
+            <img src="Vision/picture/2.png" alt="Honda" />
+          </div>
+          <div class="modern-slide">
+            <img src="Vision/picture/3.png" alt="Honda" />
+          </div>
+          <div class="modern-slide">
+            <img src="Vision/picture/4.png" alt="Honda" />
+          </div>
+          <div class="modern-slide">
+            <img src="Vision/picture/5.png" alt="Honda" />
+          </div>
+        </div>
+        <button class="modern-gallery-nav modern-prev" id="modernPrev">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="modern-gallery-nav modern-next" id="modernNext">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="modern-gallery-indicators" id="modernIndicators">
+          <span class="modern-indicator active"></span>
+          <span class="modern-indicator"></span>
+          <span class="modern-indicator"></span>
+          <span class="modern-indicator"></span>
+          <span class="modern-indicator"></span>
+        </div>
+      </div>
+    </div>
 
     <!-- Footer -->
     <footer class="main-footer">
@@ -2104,17 +2151,17 @@
               src="/sanphamxemay/image/logobike/Vision.png"
               alt="Honda Logo"
             />
-            <p>Honda Vision - Dẫn đầu phong cách, bứt phá mọi hành trình</p>
+            <p>Honda Vision - Trẻ trung từng chuyển động</p>
           </div>
 
           <div class="footer-links">
             <h4>Liên Kết Nhanh</h4>
             <ul>
               <li><a href="#home">Trang đầu</a></li>
-              <li><a href="#gallery">Thư viện ảnh</a></li>
+              <li><a href="#gallery">Phiên bản & Màu sắc</a></li>
               <li><a href="#specs">Thông số kỹ thuật</a></li>
               <li><a href="#features">Tính năng</a></li>
-              <li><a href="#contact">Liên hệ</a></li>
+              <li><a href="#modern-gallery">Thư viện ảnh</a></li>
             </ul>
           </div>
 
@@ -2408,19 +2455,91 @@
           });
         }
 
-        // Form submission
-        function initForm() {
-          const form = document.getElementById("consultationForm");
+        // Modern Gallery Functionality
+        function initModernGallery() {
+          const galleryBtn = document.getElementById("modernGalleryBtn");
+          const galleryPopup = document.getElementById("modernGalleryPopup");
+          const galleryClose = document.getElementById("modernGalleryClose");
+          const gallerySlider = document.getElementById("modernGallerySlider");
+          const prevBtn = document.getElementById("modernPrev");
+          const nextBtn = document.getElementById("modernNext");
+          const indicators = document.querySelectorAll(".modern-indicator");
 
-          form.addEventListener("submit", function (e) {
-            e.preventDefault();
+          const slides = document.querySelectorAll(".modern-slide");
+          const slideCount = slides.length;
+          let currentSlide = 0;
 
-            // Here you would typically send the form data to a server
-            alert(
-              "Cảm ơn bạn đã gửi yêu cầu tư vấn. Chúng tôi sẽ liên hệ với bạn sớm nhất!"
-            );
-            form.reset();
+          // Open gallery
+          galleryBtn.addEventListener("click", function () {
+            galleryPopup.classList.add("active");
+            document.body.style.overflow = "hidden"; // Prevent scrolling
           });
+
+          // Close gallery
+          galleryClose.addEventListener("click", function () {
+            galleryPopup.classList.remove("active");
+            document.body.style.overflow = ""; // Restore scrolling
+          });
+
+          // Close gallery when clicking outside
+          galleryPopup.addEventListener("click", function (e) {
+            if (e.target === galleryPopup) {
+              galleryPopup.classList.remove("active");
+              document.body.style.overflow = "";
+            }
+          });
+
+          // Next slide
+          nextBtn.addEventListener("click", function () {
+            currentSlide = (currentSlide + 1) % slideCount;
+            updateGallery();
+          });
+
+          // Previous slide
+          prevBtn.addEventListener("click", function () {
+            currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+            updateGallery();
+          });
+
+          // Indicator click
+          indicators.forEach((indicator, index) => {
+            indicator.addEventListener("click", function () {
+              currentSlide = index;
+              updateGallery();
+            });
+          });
+
+          // Keyboard navigation
+          document.addEventListener("keydown", function (e) {
+            if (!galleryPopup.classList.contains("active")) return;
+
+            if (e.key === "ArrowRight") {
+              currentSlide = (currentSlide + 1) % slideCount;
+              updateGallery();
+            } else if (e.key === "ArrowLeft") {
+              currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+              updateGallery();
+            } else if (e.key === "Escape") {
+              galleryPopup.classList.remove("active");
+              document.body.style.overflow = "";
+            }
+          });
+
+          // Update gallery display
+          function updateGallery() {
+            gallerySlider.style.transform = `translateX(-${
+              currentSlide * 100
+            }%)`;
+
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+              if (index === currentSlide) {
+                indicator.classList.add("active");
+              } else {
+                indicator.classList.remove("active");
+              }
+            });
+          }
         }
 
         // Newsletter subscription
@@ -2442,7 +2561,7 @@
         initSliders();
         initColorChange();
         initFeaturesTabs();
-        initForm();
+        initModernGallery();
         initNewsletter();
 
         // Initialize AOS (Animate On Scroll)
