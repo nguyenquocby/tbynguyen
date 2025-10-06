@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tin Tức xe máy</title>
+    <title>Tin Tức & sự kiện</title>
 
     <link
       rel="icon"
@@ -66,7 +66,6 @@
         height: auto;
         display: block;
       }
-
       a {
         text-decoration: none;
         color: inherit;
@@ -719,6 +718,33 @@
         color: white;
       }
 
+      /* Article Content */
+      .article-content {
+        background-color: white;
+        border-radius: var(--border-radius);
+        padding: 4rem;
+        box-shadow: var(--box-shadow);
+        margin-bottom: 4rem;
+      }
+
+      .article-content h1 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        color: var(--dark-color);
+      }
+
+      .article-content p {
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+        line-height: 1.7;
+        color: var(--dark-color);
+      }
+
+      .article-content b {
+        font-weight: 700;
+        color: var(--dark-color);
+      }
+
       /* Footer */
       .main-footer {
         background-color: var(--dark-color);
@@ -1029,6 +1055,14 @@
         .news-grid {
           grid-template-columns: 1fr;
         }
+
+        .article-content {
+          padding: 2.5rem;
+        }
+
+        .article-content h1 {
+          font-size: 2.5rem;
+        }
       }
 
       @media (max-width: 576px) {
@@ -1060,6 +1094,14 @@
           padding: 2rem;
         }
 
+        .article-content {
+          padding: 2rem;
+        }
+
+        .article-content h1 {
+          font-size: 2.2rem;
+        }
+
         .footer-bottom {
           flex-direction: column;
           gap: 2rem;
@@ -1070,16 +1112,6 @@
   </head>
   <body>
     <!-- Preloader -->
-    <div class="preloader">
-      <div class="loader">
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-      </div>
-    </div>
 
     <!-- Header -->
     <header class="main-header">
@@ -1113,9 +1145,7 @@
     <section class="news-hero-section">
       <div class="container">
         <div class="news-hero-content">
-          <h1 class="news-hero-title" data-aos="fade-up">
-            Tin Tức, Sự Kiện, Khuyến Mãi
-          </h1>
+          <h1 class="news-hero-title" data-aos="fade-up">Tin Tức Xe Máy</h1>
           <p
             class="news-hero-subtitle"
             data-aos="fade-up"
@@ -1142,231 +1172,144 @@
         <div class="news-container">
           <!-- Main Content -->
           <div class="news-main">
-            <!-- Featured News -->
-            <div class="featured-news">
-              <div class="featured-news-card" data-aos="fade-up">
-                <div class="featured-news-image">
-                  <img
-                    src="/sanphamxemay/image/banner/CB350.jpg"
-                    alt="Honda CB350 H'ness ra mắt phiên bản mới"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="featured-news-content">
-                  <span class="news-category">Sản phẩm mới</span>
-                  <h2 class="featured-news-title">
-                    Honda CB350 H'ness chính thức ra mắt phiên bản 2025 với
-                    nhiều cải tiến đột phá
-                  </h2>
-                  <p class="featured-news-excerpt">
-                    Honda CB350 H'ness 2025 mang đến những nâng cấp đáng kể về
-                    công nghệ và thiết kế, hứa hẹn mang lại trải nghiệm lái xe
-                    hoàn toàn mới cho các tín đồ xe phân khối lớn.
-                  </p>
-                  <div class="news-meta">
-                    <span><i class="far fa-calendar"></i> 02/10/2025</span>
-                    <span><i class="far fa-eye"></i> 1.245 lượt xem</span>
-                  </div>
-                  <a
-                    href="/tintuc/tintucxemay/tintucxe/trang1/CB35012102025.html"
-                    class="read-more"
-                  >
-                    Đọc tiếp <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- News Grid -->
-            <div class="news-grid">
-              <!-- News Card 1 -->
-              <div class="news-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="news-card-image">
-                  <img
-                    src="/sanphamxemay/image/banner/WINNERR.jpg"
-                    alt="Honda"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-card-content">
-                  <span class="news-category">Sản phẩm mới</span>
-                  <h3 class="news-card-title">
-                    Honda Việt Nam giới thiệu WINNER R hoàn toàn mới
-                  </h3>
-                  <p class="news-card-excerpt">
-                    Nhằm đáp ứng nhu cầu đa dạng của khách hàng cũng như dẫn
-                    đầu...
-                  </p>
-                  <div class="news-meta">
-                    <span><i class="far fa-calendar"></i> 13/09/2025</span>
-                    <span><i class="far fa-eye"></i> 856 lượt xem</span>
-                  </div>
-                  <a href="/tintuc/tintucxemay/tintucxe/trang1/WINNERR13092025.html" class="read-more">
-                    Đọc tiếp <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- News Card 2 -->
-              <div class="news-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="news-card-image">
-                  <img
-                    src="/sanphamxemay/image/banner/WAVERSX.jpg"
-                    alt="Honda"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-card-content">
-                  <span class="news-category">Sản phẩm mới</span>
-                  <h3 class="news-card-title">
-                    Honda Việt Nam giới thiệu mẫu xe Wave RSX FI
-                  </h3>
-                  <p class="news-card-excerpt">
-                    Là một trong những mẫu xe số phổ thông được ưa chuộng nhất
-                    tại Việt Nam...
-                  </p>
-                  <div class="news-meta">
-                    <span><i class="far fa-calendar"></i> 07/08/2025</span>
-                    <span><i class="far fa-eye"></i> 1.526 lượt xem</span>
-                  </div>
-                  <a href="#" class="read-more">
-                    Đọc tiếp <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- News Card 3 -->
-              <div class="news-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="news-card-image">
-                  <img
-                    src="/sanphamxemay/image/banner/ICONE.png"
-                    alt="Honda"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-card-content">
-                  <span class="news-category">Sản phẩm mới</span>
-                  <h3 class="news-card-title">
-                    Xe gắn máy điện ICON e: - Icon sống xanh, lướt cùng phong
-                    cách
-                  </h3>
-                  <p class="news-card-excerpt">
-                    ICON e: là mẫu xe gắn máy điện đầu tiên do Honda Việt Nam
-                    sản xuất...
-                  </p>
-                  <div class="news-meta">
-                    <span><i class="far fa-calendar"></i> 04/04/2025</span>
-                    <span><i class="far fa-eye"></i> 3.219 lượt xem</span>
-                  </div>
-                  <a href="#" class="read-more">
-                    Đọc tiếp <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- News Card 4 -->
-              <div class="news-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="news-card-image">
-                  <img
-                    src="/sanphamxemay/image/banner/VARIO125.jpg"
-                    alt="Honda"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-card-content">
-                  <span class="news-category">Sản phẩm mới</span>
-                  <h3 class="news-card-title">
-                    Honda Việt Nam giới thiệu màu mới cho Vario 125 phiên bản
-                    2025 - Chất ngông thành thị
-                  </h3>
-                  <p class="news-card-excerpt">
-                    Ngày 01/12/2024, Honda Việt Nam chính thức giới thiệu Vario
-                    125 phiên bản 2025...
-                  </p>
-                  <div class="news-meta">
-                    <span><i class="far fa-calendar"></i> 01/12/2025</span>
-                    <span><i class="far fa-eye"></i> 2.459 lượt xem</span>
-                  </div>
-                  <a href="#" class="read-more">
-                    Đọc tiếp <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- News Card 5 -->
-              <div class="news-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="news-card-image">
-                  <img
-                    src="/sanphamxemay/image/banner/VISION.png"
-                    alt="Honda"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-card-content">
-                  <span class="news-category">Sản phẩm mới</span>
-                  <h3 class="news-card-title">
-                    Honda Việt Nam giới thiệu phiên bản mới mẫu xe Vision 2025 -
-                    Rực rỡ những đầu tiên
-                  </h3>
-                  <p class="news-card-excerpt">
-                    Ra mắt lần đầu năm 2011, Vision đã trở thành mẫu xe tay ga
-                    nhỏ gọn, đa dụng, được ưa chuộng...
-                  </p>
-                  <div class="news-meta">
-                    <span><i class="far fa-calendar"></i> 17/11/2024</span>
-                    <span><i class="far fa-eye"></i> 5.622 lượt xem</span>
-                  </div>
-                  <a href="#" class="read-more">
-                    Đọc tiếp <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- News Card 6 -->
-              <div class="news-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="news-card-image">
-                  <img
-                    src="/sanphamxemay/image/banner/SH350.jpg"
-                    alt="Honda"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-card-content">
-                  <span class="news-category">Sản phẩm mới</span>
-                  <h3 class="news-card-title">
-                    Honda Việt Nam giới thiệu SH350i hoàn toàn mới - DẤU ẤN VƯỢT
-                    THỜI GIAN
-                  </h3>
-                  <p class="news-card-excerpt">
-                    Mẫu SH350i mới được ra mắt tại Triển lãm EICMA...
-                  </p>
-                  <div class="news-meta">
-                    <span><i class="far fa-calendar"></i> 05/11/2024</span>
-                    <span><i class="far fa-eye"></i> 8.328 lượt xem</span>
-                  </div>
-                  <a href="#" class="read-more">
-                    Đọc tiếp <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pagination -->
-            <div class="pagination">
-              <ul class="pagination-list">
-                <li class="pagination-item">
-                  <a href="#" class="active">1</a>
-                </li>
-                <li class="pagination-item">
-                  <a href="#">2</a>
-                </li>
-                <li class="pagination-item">
-                  <a href="#">3</a>
-                </li>
-                <li class="pagination-item">
-                  <a href="#">
-                    <i class="fas fa-chevron-right"></i>
-                  </a>
-                </li>
-              </ul>
+            <!-- Article Content -->
+            <div class="article-content" data-aos="fade-up">
+              <h1>
+                Honda Việt Nam giới thiệu mẫu xe CB350 H'ness với các màu sắc
+                mới
+              </h1>
+              <p>
+                Phú Thọ, ngày 2 tháng 10 năm 2025, Công ty Honda Việt Nam (HVN)
+                chính thức giới thiệu mẫu xe CB350 H'ness với các màu sắc mới.
+                Với sự cập nhật này, mẫu xe không chỉ giữ trọn vẻ đẹp cổ điển và
+                phong cách lịch lãm, mà còn mang đến nhiều lựa chọn đa dạng hơn
+                cho khách hàng, giúp người lái thể hiện cá tính và phong cách
+                riêng trên mọi hành trình.
+              </p>
+              <p>
+                • Hai màu sắc mới mang đến phong thái cá tính, đậm chất đường
+                phố; sự dung hòa giữa nét tinh tế nhẹ nhàng và sự nổi bật đúng
+                lúc giúp chiếc xe trở thành tâm điểm trong mọi ánh nhìn.<br />
+                • Sở hữu công nghệ hiện đại, động cơ mạnh mẽ nhưng không kém
+                phần linh hoạt, góp phần tạo nên trải nghiệm lái phấn khích
+                nhưng vẫn mượt mà và ổn định nhờ động cơ 350cc xi-lanh đơn, 4
+                kỳ, làm mát bằng không khí, vận hành êm ái và bứt tốc mạnh mẽ,…
+                <br />• Công nghệ an toàn & tiện ích hàng đầu phân khúc: bộ ly
+                hợp hỗ trợ và chống trượt hai chiều, hệ thống phanh ABS 2 kênh,
+                hệ thống kiểm soát lực kéo (HSTC) và hệ thống cảnh báo dừng khẩn
+                cấp (ESS),…
+              </p>
+              <p>
+                <b
+                  >Phong cách thiết kế khẳng định chất riêng trên mọi hành
+                  trình</b
+                >
+              </p>
+              <p>
+                Ra đời từ năm 1959, dòng xe CB nhanh chóng ghi dấu với khả năng
+                vận hành mạnh mẽ và công nghệ tiên phong. Trải qua hơn nửa thế
+                kỷ, tinh thần ấy vẫn được nối dài qua nhiều thế hệ. Tại Việt
+                Nam, CB350 H’ness lần đầu tiên được giới thiệu vào năm 2024, mở
+                ra lựa chọn khác biệt cho những tay lái trẻ yêu phong cách. Và
+                nay, bước sang năm 2025, CB350 H’ness tiếp tục trở lại với diện
+                mạo cuốn hút, giữ trọn tinh thần biểu tượng và đồng thời khẳng
+                định vị thế đặc biệt trong phân khúc.
+              </p>
+              <p>
+                CB350 H’ness được tạo hình như một bản phối tinh tế giữa nét
+                hoài cổ và chất đường phố hiện đại. Khối động cơ đặt thẳng hàng
+                tạo cảm giác hầm hố, khung xe cấu trúc dạng nôi kép chắc chắn
+                bao trọn toàn bộ cụm động cơ, cùng với ống xả mạ chrome sáng
+                bóng làm nổi bật vẻ sang trọng. Cụm đèn pha dạng tròn cổ điển
+                được nâng cấp bằng công nghệ LED, đi kèm xi-nhan LED vòng lửa
+                trẻ trung, bình xăng lớn bo tròn hai bên mang nét cổ điển lịch
+                lãm. Vành đúc 14 chấu kết hợp lốp không săm to bản, nhiều rãnh
+                thoát nước không chỉ tăng tính ổn định khi vận hành mà còn góp
+                phần tôn lên phong cách mạnh mẽ, ấn tượng. Cụm đồng hồ LCD đa
+                chức năng trên CB350 H’ness mang đến sự hòa quyện giữa cổ điển
+                và hiện đại, với kim cơ hiển thị tốc độ kết hợp màn hình LCD đa
+                chức năng, cung cấp đầy đủ thông tin từ lượng xăng và giờ, vị
+                trí cấp số, mức tiêu thụ nhiên liệu trung bình, mức tiêu thụ
+                nhiên liệu theo thời gian thực, điện áp ắc quy và quãng đường đi
+                được với lượng xăng còn lại trong bình.
+              </p>
+              <p>
+                Mẫu xe mới năm nay, còn đặt sự thoải mái của người trải nghiệm
+                lên hàng đầu với yên xe phẳng, rộng rãi, mang lại tư thế ngồi êm
+                ái trong suốt hành trình. CB350 H’ness tiếp tục chinh phục người
+                yêu xe nhờ âm thanh ống xả trầm ấm, uy lực; thiết kế miệng thoát
+                khí đường kính lớn tạo nên tiếng nổ giòn giã, đầy phấn khích.
+              </p>
+              <p>
+                <b>Màu sắc mới đầy khác biệt</b>
+              </p>
+              <p>
+                CB350 H’ness năm nay được làm mới với hai tùy chọn màu sắc độc
+                đáo: Đỏ đen và Xám Đen. Sự kết hợp hài hòa giữa gam màu mới và
+                các chi tiết mạ chrome tạo nên diện mạo vừa cổ điển, vừa hiện
+                đại. Bên cạnh đó, logo CB được thiết kế dập nổi, tinh xảo trên
+                thân xe, như một tuyên ngôn khẳng định đẳng cấp và giá trị biểu
+                tượng mà dòng xe CB đã xây dựng qua nhiều thập kỷ.
+              </p>
+              <p><b>Động cơ mạnh mẽ mang tới trải nghiệm lái hứng khởi</b></p>
+              <p>
+                CB350 H’ness mang trong mình một “trái tim” 350cc, xi-lanh đơn,
+                4 kỳ, làm mát bằng không khí, với công suất cực đại đạt 15,5 kW
+                tại 5.500 vòng/phút và mô-men xoắn 30 Nm ở 3.000 vòng/phút - cho
+                mỗi cú vặn ga, mang lại cảm giác phấn khích nhưng vẫn mượt mà,
+                dễ kiểm soát. Bên cạnh đó, trục chính của hộp số được tích hợp
+                tạ đối trọng đóng vai trò như một trục cân bằng nằm phía sau của
+                xi lanh, hoạt động kết hợp với trục cân bằng phía trước xi lanh
+                nhằm triệt tiêu rung chấn hiệu quả, từ đó mang lại khả năng vận
+                hành êm ái, tăng tốc nhẹ nhàng, sự linh hoạt tuyệt vời cho người
+                lái khi di chuyển trong nội đô cũng như những chuyến đi dài dịp
+                cuối tuần.
+              </p>
+              <p><b>Tiện ích thông minh, an toàn vượt trội</b></p>
+              <p>
+                CB350 H’ness giống như một “trợ thủ” thông minh, sẵn sàng đồng
+                hành cùng người lái trên mọi hành trình, dù là tay lái mới làm
+                quen với xe phân khối lớn hay những biker giàu kinh nghiệm.
+                Những công nghệ tiên tiến được trang bị không chỉ nâng cao độ an
+                toàn, mà còn mang lại sự tự tin và cảm giác kiểm soát tuyệt đối.
+              </p>
+              <p>
+                Mẫu xe cũng được trang bị hệ thống ly hợp hỗ trợ và chống trượt
+                hai chiều, giúp giảm hiện tượng khóa bánh sau khi về số gấp,
+                đồng thời mang lại cảm giác bóp côn nhẹ nhàng và vận hành mượt
+                mà hơn. Xe sử dụng phanh đĩa trước 310mm và sau 240mm đi kèm hệ
+                thống phanh ABS 2 kênh, đóng vai trò như “lá chắn” an toàn, hỗ
+                trợ kiểm soát khi phanh gấp. Bên cạnh đó, hệ thống kiểm soát lực
+                kéo (HSTC) duy trì độ bám giữa bánh sau và mặt đường, tự động
+                điều chỉnh công suất động cơ khi phát hiện bánh bị trượt. Hệ
+                thống cảnh báo dừng khẩn cấp (ESS) cũng được tích hợp, giúp xe
+                an toàn hơn bằng cách tự động nháy đèn xi-nhan khi xe giảm tốc
+                đột ngột, cảnh báo kịp thời cho các phương tiện phía sau.
+              </p>
+              <p>
+                Phiên bản năm nay tiếp tục được trang bị nhiều tiện ích nâng cao
+                trải nghiệm người lái. Chắn bùn trước kéo dài giúp hạn chế bắn
+                bẩn khi di chuyển trên đường ướt. Công tắc tắt động cơ tích hợp
+                nút khởi động mang lại sự tiện lợi khi dừng đỗ trong đô thị. Bên
+                cạnh đó, đèn cảnh báo nguy hiểm với tín hiệu nhấp nháy 4 xi-nhan
+                cùng lúc giúp tăng cường an toàn trong tình huống khẩn cấp hoặc
+                khi di chuyển trong điều kiện tầm nhìn kém.
+              </p>
+              <p>
+                Mẫu xe CB350 H’ness được mở bán vào ngày 12/10/2025 tại hệ thống
+                Cửa hàng CB ủy nhiệm với chế độ bảo hành 3 năm hoặc 30.000
+                kilomet (tùy theo điều kiện nào đến trước).
+              </p>
+              <p>
+                Với thiết kế cổ điển pha chất đường phố cá tính, động cơ mạnh mẽ
+                cùng loạt công nghệ và tiện ích hiện đại, CB350 H’ness không chỉ
+                mang đến trải nghiệm lái đầy hứng khởi mà còn khẳng định phong
+                cách riêng cho những ai yêu thích sự khác biệt. Mẫu xe hứa hẹn
+                sẽ trở thành lựa chọn mới mẻ, cuốn hút trong phân khúc, tiếp tục
+                ghi dấu ấn Honda trên hành trình chinh phục trái tim khách hàng.
+              </p>
             </div>
           </div>
-
           <!-- Sidebar -->
           <div class="news-sidebar">
             <!-- Categories Widget -->
@@ -1374,9 +1317,9 @@
               <h3 class="widget-title">Danh mục</h3>
               <ul class="categories-list">
                 <li>
-                  <a href="#">
+                  <a href="/tintuc/tintucxemay/">
                     Sản phẩm mới
-                    <span>10</span>
+                    <span>12</span>
                   </a>
                 </li>
                 <li>
@@ -1393,63 +1336,6 @@
                 </li>
               </ul>
             </div>
-
-            <!-- Recent Posts Widget -->
-            <div class="sidebar-widget">
-              <h3 class="widget-title">Bài viết gần đây</h3>
-              <ul class="recent-posts">
-                <li>
-                  <div class="recent-post-image">
-                    <img
-                      src="/sanphamxemay/image/banner/CB350.jpg"
-                      alt="Bài viết gần đây"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="recent-post-content">
-                    <h4>
-                      Honda CB350 H'ness chính thức ra mắt phiên bản 2025 với
-                      nhiều cải tiến đột phá
-                    </h4>
-                    <div class="news-meta">
-                      <span><i class="far fa-calendar"></i> 02/10/2025</span>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="recent-post-image">
-                    <img
-                      src="/sanphamxemay/image/banner/WINNERR.jpg"
-                      alt="Bài viết gần đây"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="recent-post-content">
-                    <h4>Honda Việt Nam giới thiệu WINNER R hoàn toàn mới</h4>
-                    <div class="news-meta">
-                      <span><i class="far fa-calendar"></i> 13/09/2025</span>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="recent-post-image">
-                    <img
-                      src="/sanphamxemay/image/banner/WAVERSX.jpg"
-                      alt="Bài viết gần đây"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="recent-post-content">
-                    <h4>Honda Việt Nam giới thiệu mẫu xe Wave RSX FI</h4>
-                    <div class="news-meta">
-                      <span><i class="far fa-calendar"></i> 07/08/2025</span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
- 
-            </div>
           </div>
         </div>
       </div>
@@ -1459,8 +1345,6 @@
     <footer class="main-footer">
       <div class="container">
         <div class="footer-content">
-          
-
           <div class="footer-links">
             <h4>Liên Kết Nhanh</h4>
             <ul>

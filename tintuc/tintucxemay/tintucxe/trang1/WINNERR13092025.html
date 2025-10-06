@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tin Tức xe máy</title>
+    <title>Tin Tức & sự kiện</title>
 
     <link
       rel="icon"
@@ -66,7 +66,6 @@
         height: auto;
         display: block;
       }
-
       a {
         text-decoration: none;
         color: inherit;
@@ -320,7 +319,7 @@
         height: 60vh;
         min-height: 400px;
         background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-          url("/sanphamxemay/image/banner/CB350.jpg") no-repeat center
+          url("/sanphamxemay/image/banner/WINNERR.jpg") no-repeat center
             center/cover;
         display: flex;
         flex-direction: column;
@@ -719,6 +718,33 @@
         color: white;
       }
 
+      /* Article Content */
+      .article-content {
+        background-color: white;
+        border-radius: var(--border-radius);
+        padding: 4rem;
+        box-shadow: var(--box-shadow);
+        margin-bottom: 4rem;
+      }
+
+      .article-content h1 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        color: var(--dark-color);
+      }
+
+      .article-content p {
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+        line-height: 1.7;
+        color: var(--dark-color);
+      }
+
+      .article-content b {
+        font-weight: 700;
+        color: var(--dark-color);
+      }
+
       /* Footer */
       .main-footer {
         background-color: var(--dark-color);
@@ -1029,6 +1055,14 @@
         .news-grid {
           grid-template-columns: 1fr;
         }
+
+        .article-content {
+          padding: 2.5rem;
+        }
+
+        .article-content h1 {
+          font-size: 2.5rem;
+        }
       }
 
       @media (max-width: 576px) {
@@ -1060,6 +1094,14 @@
           padding: 2rem;
         }
 
+        .article-content {
+          padding: 2rem;
+        }
+
+        .article-content h1 {
+          font-size: 2.2rem;
+        }
+
         .footer-bottom {
           flex-direction: column;
           gap: 2rem;
@@ -1070,16 +1112,6 @@
   </head>
   <body>
     <!-- Preloader -->
-    <div class="preloader">
-      <div class="loader">
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-      </div>
-    </div>
 
     <!-- Header -->
     <header class="main-header">
@@ -1113,9 +1145,7 @@
     <section class="news-hero-section">
       <div class="container">
         <div class="news-hero-content">
-          <h1 class="news-hero-title" data-aos="fade-up">
-            Tin Tức, Sự Kiện, Khuyến Mãi
-          </h1>
+          <h1 class="news-hero-title" data-aos="fade-up">Tin Tức Xe Máy</h1>
           <p
             class="news-hero-subtitle"
             data-aos="fade-up"
@@ -1142,231 +1172,195 @@
         <div class="news-container">
           <!-- Main Content -->
           <div class="news-main">
-            <!-- Featured News -->
-            <div class="featured-news">
-              <div class="featured-news-card" data-aos="fade-up">
-                <div class="featured-news-image">
-                  <img
-                    src="/sanphamxemay/image/banner/CB350.jpg"
-                    alt="Honda CB350 H'ness ra mắt phiên bản mới"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="featured-news-content">
-                  <span class="news-category">Sản phẩm mới</span>
-                  <h2 class="featured-news-title">
-                    Honda CB350 H'ness chính thức ra mắt phiên bản 2025 với
-                    nhiều cải tiến đột phá
-                  </h2>
-                  <p class="featured-news-excerpt">
-                    Honda CB350 H'ness 2025 mang đến những nâng cấp đáng kể về
-                    công nghệ và thiết kế, hứa hẹn mang lại trải nghiệm lái xe
-                    hoàn toàn mới cho các tín đồ xe phân khối lớn.
-                  </p>
-                  <div class="news-meta">
-                    <span><i class="far fa-calendar"></i> 02/10/2025</span>
-                    <span><i class="far fa-eye"></i> 1.245 lượt xem</span>
-                  </div>
-                  <a
-                    href="/tintuc/tintucxemay/tintucxe/trang1/CB35012102025.html"
-                    class="read-more"
-                  >
-                    Đọc tiếp <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- News Grid -->
-            <div class="news-grid">
-              <!-- News Card 1 -->
-              <div class="news-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="news-card-image">
-                  <img
-                    src="/sanphamxemay/image/banner/WINNERR.jpg"
-                    alt="Honda"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-card-content">
-                  <span class="news-category">Sản phẩm mới</span>
-                  <h3 class="news-card-title">
-                    Honda Việt Nam giới thiệu WINNER R hoàn toàn mới
-                  </h3>
-                  <p class="news-card-excerpt">
-                    Nhằm đáp ứng nhu cầu đa dạng của khách hàng cũng như dẫn
-                    đầu...
-                  </p>
-                  <div class="news-meta">
-                    <span><i class="far fa-calendar"></i> 13/09/2025</span>
-                    <span><i class="far fa-eye"></i> 856 lượt xem</span>
-                  </div>
-                  <a href="/tintuc/tintucxemay/tintucxe/trang1/WINNERR13092025.html" class="read-more">
-                    Đọc tiếp <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- News Card 2 -->
-              <div class="news-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="news-card-image">
-                  <img
-                    src="/sanphamxemay/image/banner/WAVERSX.jpg"
-                    alt="Honda"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-card-content">
-                  <span class="news-category">Sản phẩm mới</span>
-                  <h3 class="news-card-title">
-                    Honda Việt Nam giới thiệu mẫu xe Wave RSX FI
-                  </h3>
-                  <p class="news-card-excerpt">
-                    Là một trong những mẫu xe số phổ thông được ưa chuộng nhất
-                    tại Việt Nam...
-                  </p>
-                  <div class="news-meta">
-                    <span><i class="far fa-calendar"></i> 07/08/2025</span>
-                    <span><i class="far fa-eye"></i> 1.526 lượt xem</span>
-                  </div>
-                  <a href="#" class="read-more">
-                    Đọc tiếp <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- News Card 3 -->
-              <div class="news-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="news-card-image">
-                  <img
-                    src="/sanphamxemay/image/banner/ICONE.png"
-                    alt="Honda"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-card-content">
-                  <span class="news-category">Sản phẩm mới</span>
-                  <h3 class="news-card-title">
-                    Xe gắn máy điện ICON e: - Icon sống xanh, lướt cùng phong
-                    cách
-                  </h3>
-                  <p class="news-card-excerpt">
-                    ICON e: là mẫu xe gắn máy điện đầu tiên do Honda Việt Nam
-                    sản xuất...
-                  </p>
-                  <div class="news-meta">
-                    <span><i class="far fa-calendar"></i> 04/04/2025</span>
-                    <span><i class="far fa-eye"></i> 3.219 lượt xem</span>
-                  </div>
-                  <a href="#" class="read-more">
-                    Đọc tiếp <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- News Card 4 -->
-              <div class="news-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="news-card-image">
-                  <img
-                    src="/sanphamxemay/image/banner/VARIO125.jpg"
-                    alt="Honda"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-card-content">
-                  <span class="news-category">Sản phẩm mới</span>
-                  <h3 class="news-card-title">
-                    Honda Việt Nam giới thiệu màu mới cho Vario 125 phiên bản
-                    2025 - Chất ngông thành thị
-                  </h3>
-                  <p class="news-card-excerpt">
-                    Ngày 01/12/2024, Honda Việt Nam chính thức giới thiệu Vario
-                    125 phiên bản 2025...
-                  </p>
-                  <div class="news-meta">
-                    <span><i class="far fa-calendar"></i> 01/12/2025</span>
-                    <span><i class="far fa-eye"></i> 2.459 lượt xem</span>
-                  </div>
-                  <a href="#" class="read-more">
-                    Đọc tiếp <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- News Card 5 -->
-              <div class="news-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="news-card-image">
-                  <img
-                    src="/sanphamxemay/image/banner/VISION.png"
-                    alt="Honda"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-card-content">
-                  <span class="news-category">Sản phẩm mới</span>
-                  <h3 class="news-card-title">
-                    Honda Việt Nam giới thiệu phiên bản mới mẫu xe Vision 2025 -
-                    Rực rỡ những đầu tiên
-                  </h3>
-                  <p class="news-card-excerpt">
-                    Ra mắt lần đầu năm 2011, Vision đã trở thành mẫu xe tay ga
-                    nhỏ gọn, đa dụng, được ưa chuộng...
-                  </p>
-                  <div class="news-meta">
-                    <span><i class="far fa-calendar"></i> 17/11/2024</span>
-                    <span><i class="far fa-eye"></i> 5.622 lượt xem</span>
-                  </div>
-                  <a href="#" class="read-more">
-                    Đọc tiếp <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- News Card 6 -->
-              <div class="news-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="news-card-image">
-                  <img
-                    src="/sanphamxemay/image/banner/SH350.jpg"
-                    alt="Honda"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-card-content">
-                  <span class="news-category">Sản phẩm mới</span>
-                  <h3 class="news-card-title">
-                    Honda Việt Nam giới thiệu SH350i hoàn toàn mới - DẤU ẤN VƯỢT
-                    THỜI GIAN
-                  </h3>
-                  <p class="news-card-excerpt">
-                    Mẫu SH350i mới được ra mắt tại Triển lãm EICMA...
-                  </p>
-                  <div class="news-meta">
-                    <span><i class="far fa-calendar"></i> 05/11/2024</span>
-                    <span><i class="far fa-eye"></i> 8.328 lượt xem</span>
-                  </div>
-                  <a href="#" class="read-more">
-                    Đọc tiếp <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pagination -->
-            <div class="pagination">
-              <ul class="pagination-list">
-                <li class="pagination-item">
-                  <a href="#" class="active">1</a>
-                </li>
-                <li class="pagination-item">
-                  <a href="#">2</a>
-                </li>
-                <li class="pagination-item">
-                  <a href="#">3</a>
-                </li>
-                <li class="pagination-item">
-                  <a href="#">
-                    <i class="fas fa-chevron-right"></i>
-                  </a>
-                </li>
-              </ul>
+            <!-- Article Content -->
+            <div class="article-content" data-aos="fade-up">
+              <h1>
+                Honda Việt Nam giới thiệu WINNER R hoàn toàn mới tại sự kiện
+                Honda Biker Rally Đà Lạt
+              </h1>
+              <p>
+                Hà Nội, ngày 13 tháng 09 năm 2025, Công ty Honda Việt Nam (HVN)
+                giới thiệu WINNER R hoàn toàn mới. Tất cả được ra mắt tại Honda
+                Biker Rally Đà Lạt – sự kiện quy tụ hàng trăm anh em đam mê tốc
+                độ từ mọi miền.
+              </p>
+              <p>
+                Nhằm đáp ứng nhu cầu đa dạng của khách hàng cũng như dẫn đầu
+                trong việc xây dựng văn hóa xe máy bền vững tại Việt Nam, HVN
+                luôn đặt việc phát triển các dòng xe phục vụ sở thích khách hàng
+                là một trong những ưu tiên hàng đầu. Không ngừng nỗ lực mang đến
+                những dòng xe với hình ảnh thể thao cuốn hút và cảm giác lái thú
+                vị cho người dùng, ngày 13 tháng 09 năm 2025, HVN chính thức
+                giới thiệu WINNER R hoàn toàn mới
+              </p>
+              <p>
+                <b
+                  >Honda Biker Rally Đà Lạt được tổ chức tại Quảng trường Lâm
+                  Viên, Thành phố Đà Lạt, Tỉnh Lâm Đồng vào ngày 13 và 14 tháng
+                  9. Sự kiện đã đánh dấu một cột mốc mới với sự quy tụ của hơn
+                  600 biker đam mê, trở thành kỳ hội ngộ biker lớn nhất từ trước
+                  đến nay tại Việt Nam.</b
+                >
+              </p>
+              <p>
+                Với tinh thần “All Ride in One Ride”, sự kiện đã diễn ra bùng nổ
+                với hàng loạt điểm nhấn mới mẻ: những cung đường touring giao
+                hòa giữa thiên nhiên hùng vĩ cùng niềm đam mê chinh phục từ
+                TP.HCM, Đắk Lắk và Nha Trang đến Đà Lạt, hành trình touring 3
+                ngày 2 đêm, local tour khám phá thiên nhiên Đà Lạt, thử thách
+                Enduro kịch tính, và đặc biệt nhất - tâm điểm khuấy động cộng
+                đồng đam mê xe chính là màn ra mắt ba mẫu xe mới từ HVN.
+              </p>
+              <p>
+                Được phát triển từ dòng xe WINNER ra mắt lần đầu tại Việt Nam
+                vào năm 2016, WINNER đánh dấu sự chuyển mình mạnh mẽ trong phong
+                cách thiết kế, hướng tới hình ảnh một mẫu xe mô tô thể thao. Đến
+                nay, WINNER ngày càng chứng tỏ vị thế của một mẫu xe côn tay thể
+                thao phá vỡ mọi giới hạn, chiếm trọn trái tim của những tín đồ
+                đam mê “xê dịch” bởi thiết kế linh hoạt, khối động cơ mạnh mẽ và
+                tính năng vượt trội.
+              </p>
+              <p>
+                "Hơn cả sự phấn khích” chính là dấu ấn trong lần lột xác toàn
+                diện này của Winner R. Mẫu xe côn tay thể thao thế hệ mới với
+                thiết kế mạnh mẽ, uy lực, mang âm hưởng của những chiếc siêu mô
+                tô đỉnh cao. Không chỉ nổi bật ở thiết kế, Winner R còn khơi dậy
+                tinh thần khai phóng, trẻ trung và táo bạo. Trở thành biểu tượng
+                cho niềm đam mê tốc độ.
+              </p>
+              <p>
+                <b
+                  >WINNER R chinh phục khách hàng với thiết kế mới, nâng tầm dấu
+                  ấn thể thao.</b
+                >
+              </p>
+              <p>
+                Tên gọi WINNER R không chỉ là một cái tên mới, mà còn là tuyên
+                ngôn của những tay lái đam mê tốc độ. Chữ “R” – Racing chính là
+                nhịp đập của đường đua, là tinh thần bứt phá không giới hạn.
+                Logo Winner R được tạo hình mạnh mẽ, sắc sảo, gợi lên hình ảnh
+                của sự quyết liệt và khí chất thể thao, giúp chiếc xe toát lên
+                thần thái của một cỗ máy đua thực thụ.
+              </p>
+              <p>
+                Tiếp tục sở hữu thiết kế nổi bật WINNER R có phần đầu xe mạnh mẽ
+                cùng phần thân sau thon gọn. Bên cạnh đó, thân xe được tối ưu
+                khí động học với những đường nét liền mạch và khỏe khoắn giúp xe
+                lướt gió êm mượt khi vận hành. Giá để đồ trung tâm được thiết kế
+                tinh gọn, liền mạch vào thân xe, tạo tư thế ngồi thoải mái và dễ
+                điều khiển. Bề mặt sần chắc chắn giúp tăng độ bám khi đặt đồ,
+                hạn chế rơi trượt, mang lại sự tiện lợi tối đa cho người lái.
+              </p>
+              <p>
+                Với WINNER R, Thiết kế yên 2 màu mới, vuốt sắc thể thao cùng tay
+                nắm sau ấn gọn trong đuôi xe, tạo tổng thể liền mạch và tỉnh
+                gọn. Hệ thống đèn chiếu sáng LED hiện đại với cụm đèn pha tích
+                hợp đèn xi nhan mới nhỏ gọn mang đến diện mạo đậm chất thể thao.
+                Bên cạnh đó, công nghệ “ánh sáng pha lê” mới áp dụng cho đèn
+                chiếu sáng LED, giúp độ sáng của đèn pha được cải thiện vượt
+                trội, khoảng cách chiếu sáng xa hơn, tăng khả năng quan sát và
+                an toàn khi di chuyển trên mọi cung đường. Thiết kế đèn hậu treo
+                dạng nổi độc đáo, tạo hiệu ứng thị giác ấn tượng.
+              </p>
+              <p>
+                Trên WINNER R, bộ mâm thể thao được thiết kế mới với diện mạo
+                mạnh mẽ và vững chắc hơn, góp phần tăng sự ổn định khi vận hành.
+                Đường nét sắc sảo và hiện đại của mâm xe không chỉ nâng tầm
+                phong thái, mà còn hoàn thiện hình ảnh đầy năng động và cuốn hút
+                của chiếc xe. Mặt đồng hồ kỹ thuật số dạng âm bản hiện đại, nhỏ
+                gọn, mang đến khả năng hiển thị rõ ràng, giúp người lái dễ dàng
+                nắm bắt thông tin trong mọi điều kiện ánh sáng.
+              </p>
+              <p>
+                Bên cạnh đó, WINNER R mang diện mạo mới đầy ấn tượng nhờ những
+                phối màu độc đáo, tôn lên phong thái mạnh mẽ và tự tin cho người
+                cầm lái. Phiên bản Thể thao (Đỏ Đen) tiếp tục lấy cảm hứng từ
+                “chiến binh đường đua” CBR1000RR-R, khẳng định đậm chất siêu mô
+                tô thể thao. Phiên bản Đặc biệt (Xanh Đen/Đen /Xám Đen/ Đỏ Đen)
+                nổi bật với các đường tem cá tính trải dọc mặt nạ trước và thân
+                xe, tạo điểm nhấn sắc sảo và khác biệt. Phiên bản Tiêu chuẩn
+                (Đen Bạc/ Đỏ Đen) thể hiện sự trẻ trung với phong cách tem phối
+                mới mẻ, mang đến hình ảnh cuốn hút ngay từ ánh nhìn đầu tiên.
+              </p>
+              <p>
+                <b
+                  >Động cơ uy lực cùng công nghệ đột phá tiếp tục được trang bị
+                  giúp người lái tự tin làm chủ hoàn toàn tốc độ, chinh phục mọi
+                  thách thức.</b
+                >
+              </p>
+              <p>
+                WINNER R mang trong mình khối động cơ 150cc, DOHC, 4 van, 6 cấp
+                số – trái tim đầy uy lực được tinh chỉnh với góc mở xu-pap tối
+                ưu. Mỗi cú vặn ga là một nhịp bùng nổ, cho khả năng tăng tốc dứt
+                khoát, liền mạch trên mọi dải tua máy. Sức mạnh ấy không chỉ
+                mang đến cảm giác lái phấn khích, mà còn mang lại trải nghiệm
+                của một cỗ máy đua thực thụ.
+              </p>
+              <p>
+                Hướng tới trải nghiệm thể thao đỉnh cao, WINNER R tiếp tục trang
+                bị bộ ly hợp hỗ trợ và chống trượt hai chiều (Assist & Slipper
+                Clutch). Công nghệ đặc trưng trên xe phân khối lớn này giúp sang
+                số nhanh, mượt, vào cua ổn định và tránh khóa bánh khi về số
+                gấp, mang lại cảm giác làm chủ đường đua trọn vẹn. Chiếc xe áp
+                dụng công nghệ giảm rung lắc với đối trọng đồng trục kết hợp bạc
+                lót để giữ ổ bi, đồng thời giảm thiểu tiếng ồn nhờ bánh răng
+                nghiêng và vòng bi cho heo số, mang đến cảm giác vận hành êm ái
+                và mượt mà. Động cơ PGM-FI trên WINNER R được tối ưu với hàng
+                loạt công nghệ giảm ma sát như xi-lanh lệch tâm, váy piston phủ
+                molybdenum với vân thô, cò mổ con lăn và ống lót xi-lanh đặc
+                biệt. Nhờ đó, xe vừa đạt công suất mạnh mẽ vượt trội vừa tối ưu
+                khả năng tiết kiệm nhiên liệu. Bên cạnh đó, WINNER R sử dụng
+                cuộn dây đánh lửa cải tiến mới, giúp phản hồi tay ga nhạy bén,
+                mang lại cảm giác tăng tốc mạnh mẽ và đầy phấn khích.
+              </p>
+              <p>
+                <b
+                  >Tính năng vượt trội khẳng định đẳng cấp của chiếc xe côn tay
+                  thế hệ mới</b
+                >
+              </p>
+              <p>
+                WINNER R tiếp tục duy trì các trang bị nâng cao cảm giác lái an
+                toàn và tiện ích cao cấp, hướng đến sự toàn diện trong trải
+                nghiệm sử dụng xe. Tiếp nối thế hệ trước, WINNER R tiếp tục được
+                trang bị hệ thống khóa thông minh trên cả 3 phiên bản. Công nghệ
+                hiện đại này cho phép xác định vị trí, mở khóa từ xa tiện lợi,
+                mang đến trải nghiệm cao cấp cho người dùng. Điểm nhấn đặc biệt
+                là vòng LED xanh phát sáng mỗi khi kích hoạt, tạo nên hình ảnh
+                hiện đại và thời thượng. Trên các phiên bản Đặc biệt & Thể thao,
+                WINNER R tiếp tục trang bị xích O-Ring, giúp tăng độ bền, giảm
+                tần suất bảo dưỡng và đảm bảo xe vận hành mượt mà, êm ái trong
+                suốt quá trình sử dụng. Bên cạnh đó, xe tiếp tục được trang bị
+                cổng sạc USB loại A kèm nắp chống nước, bố trí tiện lợi ở phía
+                trước đối với phiên bản đặc biệt & thể thao. Trang bị này giúp
+                người lái dễ dàng sạc điện thoại mọi lúc cần thiết, tăng thêm sự
+                tiện ích trên mỗi hành trình.
+              </p>
+              <p>
+                Phấn khích, mượt mà nhưng không kém phần ổn định và an tâm là
+                cảm giác mà WINNER R mang lại cho người lái. Trên phiên bản Thể
+                thao & Đặc biệt, xe được trang bị hệ thống chống bó cứng phanh
+                ABS cho bánh trước, giúp kiểm soát lực phanh tối ưu, hạn chế
+                khóa bánh khi phanh gấp ở tốc độ cao hay trên mặt đường trơn
+                trượt. Nhờ đó, người lái vừa tận hưởng cảm giác phấn khích mượt
+                mà, vừa an tâm làm chủ mọi tình huống.
+              </p>
+              <p>
+                Với thiết kế thể thao khác biệt hay động cơ mạnh mẽ đều được
+                thiết lập toàn diện, WINNER R hoàn toàn mới xứng danh chiến hữu
+                đích thực trong phân khúc xe côn tay thể thao, đại diện cho thế
+                hệ thủ lĩnh trẻ mang tinh thần mãnh liệt, niềm tự hào và khát
+                khao khám phá để chinh phục mọi cung đường tổ quốc.
+              </p>
+              <p>
+                WINNER R sẽ chính thức được bán ra thị trường từ ngày 23 tháng
+                09 năm 2025 thông qua các cửa hàng Bán xe và Dịch vụ do Honda Ủy
+                nhiệm (HEAD) trên toàn quốc với thời gian bảo hành 3 năm hoặc
+                30.000 km tùy theo điều kiện nào đến trước
+              </p>
             </div>
           </div>
-
           <!-- Sidebar -->
           <div class="news-sidebar">
             <!-- Categories Widget -->
@@ -1374,9 +1368,9 @@
               <h3 class="widget-title">Danh mục</h3>
               <ul class="categories-list">
                 <li>
-                  <a href="#">
+                  <a href="/tintuc/tintucxemay/">
                     Sản phẩm mới
-                    <span>10</span>
+                    <span>12</span>
                   </a>
                 </li>
                 <li>
@@ -1393,63 +1387,6 @@
                 </li>
               </ul>
             </div>
-
-            <!-- Recent Posts Widget -->
-            <div class="sidebar-widget">
-              <h3 class="widget-title">Bài viết gần đây</h3>
-              <ul class="recent-posts">
-                <li>
-                  <div class="recent-post-image">
-                    <img
-                      src="/sanphamxemay/image/banner/CB350.jpg"
-                      alt="Bài viết gần đây"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="recent-post-content">
-                    <h4>
-                      Honda CB350 H'ness chính thức ra mắt phiên bản 2025 với
-                      nhiều cải tiến đột phá
-                    </h4>
-                    <div class="news-meta">
-                      <span><i class="far fa-calendar"></i> 02/10/2025</span>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="recent-post-image">
-                    <img
-                      src="/sanphamxemay/image/banner/WINNERR.jpg"
-                      alt="Bài viết gần đây"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="recent-post-content">
-                    <h4>Honda Việt Nam giới thiệu WINNER R hoàn toàn mới</h4>
-                    <div class="news-meta">
-                      <span><i class="far fa-calendar"></i> 13/09/2025</span>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="recent-post-image">
-                    <img
-                      src="/sanphamxemay/image/banner/WAVERSX.jpg"
-                      alt="Bài viết gần đây"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="recent-post-content">
-                    <h4>Honda Việt Nam giới thiệu mẫu xe Wave RSX FI</h4>
-                    <div class="news-meta">
-                      <span><i class="far fa-calendar"></i> 07/08/2025</span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
- 
-            </div>
           </div>
         </div>
       </div>
@@ -1459,8 +1396,6 @@
     <footer class="main-footer">
       <div class="container">
         <div class="footer-content">
-          
-
           <div class="footer-links">
             <h4>Liên Kết Nhanh</h4>
             <ul>
