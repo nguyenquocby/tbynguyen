@@ -24,7 +24,6 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "G-G4PSCX8Q0Q");
     </script>
     <style>
@@ -43,6 +42,9 @@
         --gray-color: #6c757d;
         --light-gray: #e9ecef;
         --transition: all 0.3s ease;
+        --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.05);
+        --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.1);
+        --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.15);
       }
 
       html {
@@ -80,24 +82,29 @@
 
       .btn {
         display: inline-block;
-        padding: 10px 25px;
-        border-radius: 25px;
-        font-weight: 500;
+        padding: 12px 30px;
+        border-radius: 30px;
+        font-weight: 600;
         text-align: center;
         transition: var(--transition);
         cursor: pointer;
         border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
       }
 
       .btn-primary {
         background-color: var(--primary-color);
         color: white;
         border-color: var(--primary-color);
+        box-shadow: 0 4px 15px rgba(228, 5, 33, 0.3);
       }
 
       .btn-primary:hover {
         background-color: #c0041d;
         border-color: #c0041d;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(228, 5, 33, 0.4);
       }
 
       .btn-outline {
@@ -109,11 +116,13 @@
       .btn-outline:hover {
         background-color: var(--primary-color);
         color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(228, 5, 33, 0.3);
       }
 
       .section-header {
         text-align: center;
-        margin-bottom: 50px;
+        margin-bottom: 60px;
       }
 
       .section-title {
@@ -121,82 +130,32 @@
         font-weight: 700;
         margin-bottom: 15px;
         color: var(--dark-color);
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
       }
 
       .section-subtitle {
         font-size: 1.1rem;
         color: var(--gray-color);
         margin-bottom: 20px;
-      }
-
-      .divider {
-        width: 80px;
-        height: 3px;
-        background-color: var(--primary-color);
-        margin: 0 auto;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .text-center {
         text-align: center;
-      }
-
-      /* Preloader */
-      .preloader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-        transition: opacity 0.5s ease;
-      }
-
-      .preloader.fade-out {
-        opacity: 0;
-      }
-
-      .loader {
-        display: flex;
-        gap: 10px;
-      }
-
-      .loader-square {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background-color: var(--primary-color);
-        animation: loaderAnimation 1.2s infinite ease-in-out;
-      }
-
-      .loader-square:nth-child(1) {
-        animation-delay: 0s;
-      }
-
-      .loader-square:nth-child(2) {
-        animation-delay: 0.2s;
-      }
-
-      .loader-square:nth-child(3) {
-        animation-delay: 0.4s;
-      }
-
-      .loader-square:nth-child(4) {
-        animation-delay: 0.6s;
-      }
-
-      @keyframes loaderAnimation {
-        0%,
-        40%,
-        100% {
-          transform: scaleY(0.6);
-        }
-        20% {
-          transform: scaleY(1);
-        }
       }
 
       /* Header */
@@ -205,8 +164,9 @@
         top: 0;
         left: 0;
         width: 100%;
-        padding: 15px 0;
-        background-color: white;
+        padding: 20px 0;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
         transition: var(--transition);
@@ -224,7 +184,8 @@
       }
 
       .logo img {
-        height: 35px;
+        height: 40px;
+        transition: var(--transition);
       }
 
       .main-nav ul {
@@ -239,12 +200,13 @@
         font-weight: 500;
         color: var(--dark-color);
         position: relative;
+        padding: 5px 0;
       }
 
       .main-nav a:after {
         content: "";
         position: absolute;
-        bottom: -5px;
+        bottom: 0;
         left: 0;
         width: 0;
         height: 2px;
@@ -292,6 +254,7 @@
       .menu-toggle .bar:nth-child(3) {
         bottom: 0;
       }
+
       /* When menu is active */
       .menu-toggle.active .bar:nth-child(1) {
         top: 50%;
@@ -363,6 +326,7 @@
           grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         }
       }
+
       /* Thêm các hiệu ứng animation */
       @keyframes fadeIn {
         from {
@@ -375,7 +339,7 @@
 
       @keyframes slideUp {
         from {
-          transform: translateY(20px);
+          transform: translateY(30px);
           opacity: 0;
         }
         to {
@@ -383,6 +347,29 @@
           opacity: 1;
         }
       }
+
+      @keyframes slideInLeft {
+        from {
+          transform: translateX(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          transform: translateX(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
       /* Hero Banner */
       .hero-banner {
         position: relative;
@@ -395,44 +382,51 @@
         justify-content: center;
         color: white;
         animation: fadeIn 1s ease-out forwards;
+        overflow: hidden;
       }
 
-      .hero-overlay {
+      .hero-banner::before {
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
+        background: linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.7) 0%,
+          rgba(255, 255, 255, 0.3) 100%
+        );
+        z-index: 1;
       }
 
       .hero-content {
         position: relative;
-        z-index: 1;
+        z-index: 2;
         color: white;
-        max-width: 600px;
+        max-width: 700px;
       }
 
       .hero-content h1 {
-        font-size: 2.2rem;
+        font-size: 3rem;
         font-weight: 700;
         margin-bottom: 20px;
         line-height: 1.2;
-        animation: slideUp 0.8s ease-out 0.3s forwards;
+        animation: slideInLeft 1s ease-out 0.3s forwards;
         opacity: 0;
       }
 
       .hero-content p {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         margin-bottom: 30px;
-        animation: slideUp 0.8s ease-out 0.5s forwards;
+        animation: slideInRight 1s ease-out 0.5s forwards;
         opacity: 0;
       }
 
       .hero-buttons {
         display: flex;
         gap: 15px;
-        animation: slideUp 0.8s ease-out 0.7s forwards;
+        animation: slideUp 1s ease-out 0.7s forwards;
         opacity: 0;
       }
 
@@ -471,15 +465,16 @@
           padding: 8px 0;
           display: block;
         }
+
         /* Điều chỉnh header khi menu mở */
         body.menu-open {
           overflow: hidden;
         }
         .hero-content h1 {
-          font-size: 1.5rem;
+          font-size: 2rem;
         }
         .hero-content p {
-          font-size: 0.9rem;
+          font-size: 1rem;
         }
 
         .hero-buttons {
@@ -492,103 +487,103 @@
 
       /* Quick Links */
       .quick-links {
-        padding: 60px 0;
+        padding: 80px 0;
         background-color: #f8f9fa;
       }
 
       .quick-links .container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 15px;
+        gap: 20px;
       }
 
       .quick-link-card {
         position: relative;
-        border-radius: 25px;
+        border-radius: 15px;
         overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        aspect-ratio: 1/1; /* Giữ tỉ lệ vuông */
+        box-shadow: var(--shadow-light);
+        transition: var(--transition);
+        aspect-ratio: 1/1;
+        background: white;
       }
 
       .quick-link-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-heavy);
       }
 
       .quick-link-card a {
-        pointer-events: auto !important; /* Đảm bảo thẻ a có thể click */
+        pointer-events: auto !important;
         position: relative;
-        z-index: 2; /* Đặt cao hơn các layer khác */
+        z-index: 2;
+        display: block;
+        height: 100%;
       }
+
       .quick-link-card img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.5s ease;
       }
+
       .quick-link-card:hover img {
-        transform: scale(1.05);
+        transform: scale(1.1);
       }
-      .quick-link-card:hover span {
-        color: #b80018;
-      }
+
       .quick-link-card span {
         position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
-        padding: 15px;
+        padding: 20px;
         background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
         color: white;
         font-weight: 600;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         text-align: center;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-      }
-      /* Hiệu ứng overlay */
-      .quick-link-card::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(5, 146, 228, 0.3);
-        opacity: 0;
-        transition: opacity 0.5s ease;
+        transition: var(--transition);
       }
 
-      .quick-link-card:hover::after {
-        opacity: 1;
+      .quick-link-card:hover span {
+        background: linear-gradient(to top, rgba(228, 5, 33, 0.8), transparent);
       }
-      /* Featured Section */
+
+      /* Featured Section - SLIDER STYLES */
       .featured-section {
-        padding: 80px 0;
-      }
-
-      .featured-products {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-      }
-
-      .product-card {
+        padding: 100px 0;
+        background: white;
         position: relative;
-        width: 260px; /* hoặc % tuỳ theo responsive */
-        /*border: 1px solid #eee;*/
-        border-radius: 25px;
+      }
+
+      .products-slider {
+        position: relative;
         overflow: hidden;
-        /*background: #fff;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);*/
+        margin-bottom: 40px;
+      }
+
+      .slider-container {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        gap: 30px;
+      }
+
+      .slider-item {
+        flex: 0 0 calc(25% - 22.5px);
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: var(--shadow-light);
         display: flex;
         flex-direction: column;
-        transition: transform 0.5s ease;
+        transition: var(--transition);
       }
 
-      .product-card:hover {
-        transform: translateY(-5px);
+      .slider-item:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-heavy);
       }
 
       .product-badge {
@@ -597,16 +592,17 @@
         right: 15px;
         background-color: var(--primary-color);
         color: white;
-        padding: 5px 10px;
+        padding: 8px 15px;
         border-radius: 25px;
         font-size: 0.8rem;
-        font-weight: 500;
+        font-weight: 600;
         z-index: 1;
+        box-shadow: 0 3px 10px rgba(228, 5, 33, 0.3);
       }
 
       .product-image {
         width: 100%;
-        aspect-ratio: 4 / 3; /* Giữ tỷ lệ khung hình */
+        aspect-ratio: 4 / 3;
         overflow: hidden;
         position: relative;
       }
@@ -614,79 +610,186 @@
       .product-image img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Đảm bảo ảnh không bị méo và không mất góc */
+        object-fit: cover;
         object-position: center;
         transition: var(--transition);
       }
 
-      .product-card:hover .product-image img {
-        transform: scale(1.05);
+      .slider-item:hover .product-image img {
+        transform: scale(1.1);
       }
 
       .product-info {
-        padding: 20px;
+        padding: 25px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
 
       .product-info h3 {
-        font-size: 1rem;
+        font-size: 1.2rem;
         margin-bottom: 10px;
         color: var(--dark-color);
+        font-weight: 600;
       }
 
       .product-price {
-        font-size: 0.9rem;
-        font-weight: 600;
+        font-size: 1rem;
+        font-weight: 700;
         color: var(--primary-color);
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+      }
+
+      /* Slider Navigation */
+      .slider-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-top: 30px;
+      }
+
+      .slider-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: white;
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: var(--shadow-light);
+      }
+
+      .slider-btn:hover {
+        background-color: var(--primary-color);
+        color: white;
+        transform: scale(1.1);
+      }
+
+      .slider-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .slider-btn:disabled:hover {
+        background-color: white;
+        color: var(--primary-color);
+      }
+
+      .slider-dots {
+        display: flex;
+        gap: 10px;
+      }
+
+      .slider-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: var(--light-gray);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .slider-dot.active {
+        background-color: var(--primary-color);
+        transform: scale(1.2);
+      }
+
+      /* Responsive adjustments for slider */
+      @media (max-width: 1200px) {
+        .slider-item {
+          flex: 0 0 calc(33.333% - 20px);
+        }
+      }
+
+      @media (max-width: 992px) {
+        .slider-item {
+          flex: 0 0 calc(50% - 15px);
+        }
+      }
+
+      @media (max-width: 576px) {
+        .slider-item {
+          flex: 0 0 100%;
+        }
       }
 
       /* Promo Banner */
       .promo-banner {
-        padding: 80px 0;
-        background: rgb(58, 58, 58);
+        padding: 100px 0;
+        background: linear-gradient(135deg, #333 0%, #000 100%);
         color: white;
         text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .promo-banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23e40521" fill-opacity="0.1" d="M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,138.7C672,139,768,181,864,192C960,203,1056,181,1152,165.3C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+        background-size: cover;
+        background-position: center;
+      }
+
+      .promo-content {
+        position: relative;
+        z-index: 1;
       }
 
       .promo-content h2 {
-        font-size: 2.5rem;
-        margin-bottom: 15px;
+        font-size: 2.8rem;
+        margin-bottom: 20px;
+        font-weight: 700;
       }
 
       .promo-content p {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         margin-bottom: 30px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       /* News Section */
       .news-section {
-        padding: 80px 0;
+        padding: 100px 0;
         background-color: var(--light-color);
       }
 
       .news-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
         gap: 30px;
         margin-bottom: 40px;
       }
 
       .news-card {
         background-color: white;
-        border-radius: 25px;
+        border-radius: 15px;
         overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        box-shadow: var(--shadow-light);
         transition: var(--transition);
       }
 
       .news-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-heavy);
       }
 
       .news-image {
         position: relative;
-        height: 200px;
+        height: 220px;
         overflow: hidden;
       }
 
@@ -698,7 +801,7 @@
       }
 
       .news-card:hover .news-image img {
-        transform: scale(1.05);
+        transform: scale(1.1);
       }
 
       .news-date {
@@ -708,9 +811,10 @@
         background-color: var(--primary-color);
         color: white;
         text-align: center;
-        padding: 10px;
+        padding: 12px;
         border-radius: 10px;
         line-height: 1;
+        box-shadow: 0 3px 10px rgba(228, 5, 33, 0.3);
       }
 
       .news-date span:first-child {
@@ -725,12 +829,13 @@
       }
 
       .news-content {
-        padding: 20px;
+        padding: 25px;
       }
 
       .news-content h3 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        font-weight: 600;
       }
 
       .news-content h3 a:hover {
@@ -739,44 +844,71 @@
 
       .news-content p {
         color: var(--gray-color);
-        margin-bottom: 15px;
+        margin-bottom: 20px;
         font-size: 0.95rem;
+        line-height: 1.6;
       }
 
       .read-more {
         color: var(--primary-color);
-        font-weight: 500;
-        font-size: 0.9rem;
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: inline-flex;
+        align-items: center;
       }
 
       .read-more i {
-        margin-left: 5px;
+        margin-left: 8px;
         font-size: 0.8rem;
+        transition: var(--transition);
+      }
+
+      .read-more:hover i {
+        transform: translateX(5px);
       }
 
       /* Service Section */
       .service-section {
-        padding: 80px 0;
+        padding: 100px 0;
+        background: white;
       }
 
       .service-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 30px;
       }
 
       .service-card {
         background-color: white;
-        border-radius: 25px;
-        padding: 30px;
+        border-radius: 15px;
+        padding: 40px 30px;
         text-align: center;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        box-shadow: var(--shadow-light);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: var(--primary-color);
+        transform: scaleX(0);
         transition: var(--transition);
       }
 
       .service-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--shadow-heavy);
+      }
+
+      .service-card:hover::before {
+        transform: scaleX(1);
       }
 
       .service-icon {
@@ -787,111 +919,51 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0 auto 20px;
+        margin: 0 auto 25px;
         font-size: 2rem;
         color: var(--primary-color);
+        transition: var(--transition);
+      }
+
+      .service-card:hover .service-icon {
+        background-color: var(--primary-color);
+        color: white;
+        transform: rotateY(180deg);
       }
 
       .service-card h3 {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         margin-bottom: 15px;
         color: var(--dark-color);
+        font-weight: 600;
       }
 
       .service-card p {
         color: var(--gray-color);
-        margin-bottom: 20px;
-      }
-
-      /* Store Section */
-      .store-section {
-        padding: 80px 0;
-        background: url("../images/store-banner.jpg") no-repeat center
-          center/cover;
-        color: white;
-        text-align: center;
-        position: relative;
-      }
-
-      .store-section:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-      }
-
-      .store-content {
-        position: relative;
-        z-index: 1;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      .store-content h2 {
-        font-size: 2.5rem;
-        margin-bottom: 15px;
-      }
-
-      .store-content p {
-        font-size: 1.1rem;
-        margin-bottom: 30px;
-      }
-
-      .store-search {
-        display: flex;
-        margin-bottom: 20px;
-      }
-
-      .store-search input {
-        flex: 1;
-        padding: 12px 15px;
-        border: none;
-        border-radius: 4px 0 0 4px;
-        font-size: 1rem;
-      }
-
-      .store-search button {
-        border-radius: 0 4px 4px 0;
-        border: none;
-      }
-
-      .store-link {
-        color: white;
-        font-weight: 500;
-        display: inline-flex;
-        align-items: center;
-      }
-
-      .store-link:hover {
-        color: var(--primary-color);
-      }
-
-      .store-link i {
-        margin-left: 5px;
+        margin-bottom: 25px;
+        line-height: 1.6;
       }
 
       /* Footer */
       .main-footer {
         background-color: var(--dark-color);
         color: white;
-        padding: 60px 0 0;
+        padding: 80px 0 0;
       }
 
       .footer-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 40px;
         margin-bottom: 40px;
       }
 
       .footer-col h3 {
-        font-size: 1rem;
-        margin-bottom: 20px;
+        font-size: 1.2rem;
+        margin-bottom: 25px;
         position: relative;
         padding-bottom: 10px;
+        font-weight: 600;
       }
 
       .footer-col h3:after {
@@ -907,12 +979,13 @@
       .footer-logo {
         margin-bottom: 20px;
         display: block;
-        max-width: 100px;
+        max-width: 120px;
       }
 
       .footer-col p {
         color: #adb5bd;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
+        line-height: 1.6;
       }
 
       .social-links {
@@ -921,8 +994,8 @@
       }
 
       .social-links a {
-        width: 35px;
-        height: 35px;
+        width: 40px;
+        height: 40px;
         background-color: rgba(255, 255, 255, 0.1);
         border-radius: 50%;
         display: flex;
@@ -933,39 +1006,41 @@
 
       .social-links a:hover {
         background-color: var(--primary-color);
-        transform: translateY(-3px);
+        transform: translateY(-5px);
       }
 
       .footer-col ul li {
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
 
       .footer-col ul a {
         color: #adb5bd;
         transition: var(--transition);
+        display: inline-block;
       }
 
       .footer-col ul a:hover {
         color: var(--primary-color);
-        padding-left: 5px;
+        padding-left: 8px;
       }
 
       .contact-info li {
         margin-bottom: 15px;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
       }
 
       .contact-info i {
-        margin-right: 10px;
+        margin-right: 12px;
         color: var(--primary-color);
         width: 20px;
         text-align: center;
+        margin-top: 3px;
       }
 
       .footer-bottom {
         border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 20px 0;
+        padding: 25px 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -1005,7 +1080,7 @@
         visibility: hidden;
         transition: var(--transition);
         z-index: 999;
-        box-shadow: 0 4px 12px rgba(228, 5, 33, 0.3);
+        box-shadow: 0 4px 15px rgba(228, 5, 33, 0.3);
       }
 
       .back-to-top.active {
@@ -1016,35 +1091,9 @@
       .back-to-top:hover {
         background-color: #c0041d;
         transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(228, 5, 33, 0.4);
       }
 
-      /* Responsive Adjustments */
-      @media (max-width: 768px) {
-        .back-to-top {
-          width: 45px;
-          height: 45px;
-          font-size: 1rem;
-          right: 20px;
-          bottom: 20px;
-        }
-        .section-title {
-          font-size: 2rem;
-        }
-
-        .section-subtitle {
-          font-size: 1rem;
-        }
-
-        .footer-bottom {
-          flex-direction: column;
-          text-align: center;
-          gap: 10px;
-        }
-
-        .legal-links {
-          justify-content: center;
-        }
-      }
       /* Messenger Chat Button */
       .messenger-chat {
         position: fixed;
@@ -1059,7 +1108,7 @@
         justify-content: center;
         align-items: center;
         font-size: 28px;
-        box-shadow: 0 4px 12px rgba(0, 132, 255, 0.3);
+        box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
         z-index: 999;
         transition: all 0.3s ease;
         animation: pulse 2s infinite;
@@ -1068,6 +1117,7 @@
       .messenger-chat:hover {
         background-color: #0066cc;
         transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 132, 255, 0.4);
       }
 
       /* Hiệu ứng lan tỏa */
@@ -1088,7 +1138,34 @@
         bottom: 100px;
       }
 
+      /* Responsive Adjustments */
       @media (max-width: 768px) {
+        .back-to-top {
+          width: 45px;
+          height: 45px;
+          font-size: 1rem;
+          right: 20px;
+          bottom: 20px;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .section-subtitle {
+          font-size: 1rem;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+          gap: 10px;
+        }
+
+        .legal-links {
+          justify-content: center;
+        }
+
         .messenger-chat {
           width: 50px;
           height: 50px;
@@ -1100,22 +1177,18 @@
         .back-to-top.active ~ .messenger-chat {
           bottom: 80px;
         }
+
+        .promo-content h2 {
+          font-size: 2rem;
+        }
+
+        .promo-content p {
+          font-size: 1.1rem;
+        }
       }
     </style>
   </head>
   <body>
-    <!-- Preloader 
-    <div class="preloader">
-      <div class="loader">
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-      </div>
-    </div>-->
-
     <!-- Header -->
     <header class="main-header">
       <div class="container">
@@ -1148,14 +1221,12 @@
 
     <!-- Hero Banner -->
     <section class="hero-banner">
-      <div class="hero-overlay"></div>
       <div class="container">
         <div class="hero-content">
           <h1>Khởi đầu hành trình vững chắc!</h1>
           <p>- Hệ Thống HEAD Trung Hùng -</p>
           <div class="hero-buttons">
             <a href="#products" class="btn btn-primary">Khám phá ngay</a>
-            <!----<a href="#" class="btn btn-outline">Ưu đãi hấp dẫn</a>--->
           </div>
         </div>
       </div>
@@ -1205,83 +1276,129 @@
       </section>
     </section>
 
-    <!-- Featured Products -->
+    <!-- Featured Products - SLIDER VERSION -->
     <section class="featured-section">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Sản Phẩm Nổi Bật</h2>
           <p class="section-subtitle">Khám phá những dòng xe bán chạy nhất</p>
-          <div class="divider"></div>
         </div>
 
-        <div class="featured-products">
-          <div class="product-card">
-            <div class="product-badge">Bán chạy</div>
-            <div class="product-image">
-              <img
-                src="/sanphamxemay/image/bike/SHMODE.png"
-                alt="Honda SH Mode"
-              />
+        <div class="products-slider">
+          <div class="slider-container" id="sliderContainer">
+            <div class="slider-item">
+              <div class="product-badge">Bán chạy</div>
+              <div class="product-image">
+                <img
+                  src="/sanphamxemay/image/bike/SHMODE.png"
+                  alt="Honda SH Mode"
+                />
+              </div>
+              <div class="product-info">
+                <h3>Honda SH Mode</h3>
+                <div class="product-price">Liên hệ trực tiếp</div>
+                <a href="/sanphamxemay/Shmode/" class="btn btn-outline"
+                  >Xem chi tiết</a
+                >
+              </div>
             </div>
-            <div class="product-info">
-              <h3>Honda SH Mode</h3>
-              <div class="product-price">Liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/Shmode/" class="btn btn-outline"
-                >Xem chi tiết</a
-              >
-            </div>
-          </div>
 
-          <div class="product-card">
-            <div class="product-badge">Mới</div>
-            <div class="product-image">
-              <img
-                src="/sanphamxemay/image/bike/WINNERR.png"
-                alt="Honda Winner R"
-              />
+            <div class="slider-item">
+              <div class="product-badge">Mới</div>
+              <div class="product-image">
+                <img
+                  src="/sanphamxemay/image/bike/WINNERR.png"
+                  alt="Honda Winner R"
+                />
+              </div>
+              <div class="product-info">
+                <h3>Honda Winner R</h3>
+                <div class="product-price">Liên hệ trực tiếp</div>
+                <a href="/sanphamxemay/WinnerR/" class="btn btn-outline"
+                  >Xem chi tiết</a
+                >
+              </div>
             </div>
-            <div class="product-info">
-              <h3>Honda Winner R</h3>
-              <div class="product-price">Liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/WinnerR/" class="btn btn-outline"
-                >Xem chi tiết</a
-              >
-            </div>
-          </div>
 
-          <div class="product-card">
-            <div class="product-badge">Mới</div>
-            <div class="product-image">
-              <img
-                src="/sanphamxemay/CB350Hness/CB350Hness/XÁM ĐEN/6.png"
-                alt="Honda Wave Alpha"
-              />
+            <div class="slider-item">
+              <div class="product-badge">Mới</div>
+              <div class="product-image">
+                <img
+                  src="/sanphamxemay/CB350Hness/CB350Hness/XÁM ĐEN/6.png"
+                  alt="Honda Wave Alpha"
+                />
+              </div>
+              <div class="product-info">
+                <h3>Honda CB350 H'ness</h3>
+                <div class="product-price">Liên hệ trực tiếp</div>
+                <a href="/sanphamxemay/CB350Hness/" class="btn btn-outline"
+                  >Xem chi tiết</a
+                >
+              </div>
             </div>
-            <div class="product-info">
-              <h3>Honda CB350 H'ness</h3>
-              <div class="product-price">Liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/CB350Hness/" class="btn btn-outline"
-                >Xem chi tiết</a
-              >
-            </div>
-          </div>
 
-          <div class="product-card">
-            <div class="product-badge">Xe điện</div>
-            <div class="product-image">
-              <img
-                src="/sanphamxemay/image/bike/ICONE.png"
-                alt="Honda ICON e"
-              />
+            <div class="slider-item">
+              <div class="product-badge">Xe điện</div>
+              <div class="product-image">
+                <img
+                  src="/sanphamxemay/image/bike/ICONE.png"
+                  alt="Honda ICON e"
+                />
+              </div>
+              <div class="product-info">
+                <h3>Honda ICON e</h3>
+                <div class="product-price">Liên hệ trực tiếp</div>
+                <a href="/sanphamxemay/ICONe/" class="btn btn-outline"
+                  >Xem chi tiết</a
+                >
+              </div>
             </div>
-            <div class="product-info">
-              <h3>Honda ICON e</h3>
-              <div class="product-price">Liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/ICONe/" class="btn btn-outline"
-                >Xem chi tiết</a
-              >
+
+            <!-- Additional products for slider -->
+            <div class="slider-item">
+              <div class="product-badge">Bán chạy</div>
+              <div class="product-image">
+                <img
+                  src="/sanphamxemay/image/bike/VARIO.png"
+                  alt="Honda Vario"
+                />
+              </div>
+              <div class="product-info">
+                <h3>Honda Vario</h3>
+                <div class="product-price">Liên hệ trực tiếp</div>
+                <a href="/sanphamxemay/Vario/" class="btn btn-outline"
+                  >Xem chi tiết</a
+                >
+              </div>
+            </div>
+
+            <div class="slider-item">
+              <div class="product-badge">Mới</div>
+              <div class="product-image">
+                <img
+                  src="/sanphamxemay/image/bike/WAVE.png"
+                  alt="Honda Wave Alpha"
+                />
+              </div>
+              <div class="product-info">
+                <h3>Honda Wave Alpha</h3>
+                <div class="product-price">Liên hệ trực tiếp</div>
+                <a href="/sanphamxemay/WaveAlpha/" class="btn btn-outline"
+                  >Xem chi tiết</a
+                >
+              </div>
             </div>
           </div>
+        </div>
+
+        <div class="slider-nav">
+          <button class="slider-btn" id="prevBtn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="slider-dots" id="sliderDots"></div>
+          <button class="slider-btn" id="nextBtn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
         </div>
 
         <div class="text-center">
@@ -1315,7 +1432,6 @@
           <p class="section-subtitle">
             Cập nhật những thông tin mới nhất từ Honda và HEAD
           </p>
-          <div class="divider"></div>
         </div>
 
         <div class="news-grid">
@@ -1330,13 +1446,13 @@
             <div class="news-content">
               <h3>
                 <a href="/tintuc/tintucxemay/"
-                  >Honda Việt Nam giới thiệu mẫu xe CB350 H’ness với các màu sắc
+                  >Honda Việt Nam giới thiệu mẫu xe CB350 H'ness với các màu sắc
                   mới</a
                 >
               </h3>
               <p>
                 Phú Thọ, ngày 2 tháng 10 năm 2025, Công ty Honda Việt Nam (HVN)
-                chính thức giới thiệu mẫu xe CB350 H’ness với các màu sắc mới.
+                chính thức giới thiệu mẫu xe CB350 H'ness với các màu sắc mới.
                 Với sự cập nhật....
               </p>
               <a
@@ -1390,8 +1506,8 @@
               <h3>
                 <a href="/tintuc/tintucxemay/"
                   >Honda Việt Nam giới thiệu mẫu xe ADV350 lần đầu tiên xuất
-                  hiện tại Việt Nam
-                </a>
+                  hiện tại Việt Nam</a
+                >
               </h3>
               <p>
                 Hà Nội, ngày 13 tháng 09 năm 2025, Công ty Honda Việt Nam (HVN)
@@ -1418,7 +1534,6 @@
           <p class="section-subtitle">
             Chăm sóc toàn diện cho chiếc xe của bạn
           </p>
-          <div class="divider"></div>
         </div>
 
         <div class="service-grid">
@@ -1465,23 +1580,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Store Locator
-    <section class="store-section">
-      <div class="container">
-        <div class="store-content">
-          <h2>Tìm Đại Lý Gần Nhất</h2>
-          <p>Hệ thống hơn 1000 đại lý chính thức trên toàn quốc</p>
-          <form class="store-search">
-            <input type="text" placeholder="Nhập tỉnh/thành phố" />
-            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-          </form>
-          <a href="stores.html" class="store-link"
-            >Xem tất cả đại lý <i class="fas fa-arrow-right"></i
-          ></a>
-        </div>
-      </div>
-    </section>-->
 
     <!-- Footer -->
     <footer class="main-footer">
@@ -1557,6 +1655,7 @@
         </div>
       </div>
     </footer>
+
     <!-------Messenger Chat Button----------->
     <a
       href="https://m.me/hethongheadtrunghung"
@@ -1565,6 +1664,7 @@
     >
       <i class="fab fa-facebook-messenger"></i>
     </a>
+
     <!-- Back to Top -->
     <a href="#" class="back-to-top" id="backToTop">
       <i class="fas fa-arrow-up"></i>
@@ -1572,16 +1672,6 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Preloader
-        const preloader = document.querySelector(".preloader");
-
-        window.addEventListener("load", function () {
-          preloader.classList.add("fade-out");
-          setTimeout(() => {
-            preloader.style.display = "none";
-          }, 500);
-        });
-
         // Mobile Menu Toggle - Updated Version
         const menuToggle = document.querySelector(".menu-toggle");
         const mainNav = document.querySelector(".main-nav");
@@ -1609,6 +1699,7 @@
             body.style.overflow = "";
           }
         });
+
         // Close menu when window is resized above breakpoint
         window.addEventListener("resize", function () {
           if (window.innerWidth > 992) {
@@ -1695,6 +1786,111 @@
 
         window.addEventListener("scroll", animateOnScroll);
         animateOnScroll(); // Run once on page load
+
+        // SLIDER FUNCTIONALITY
+        const sliderContainer = document.getElementById("sliderContainer");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const sliderDots = document.getElementById("sliderDots");
+
+        const sliderItems = document.querySelectorAll(".slider-item");
+        const totalItems = sliderItems.length;
+        let currentIndex = 0;
+
+        // Calculate items per slide based on screen width
+        function getItemsPerSlide() {
+          if (window.innerWidth < 576) return 1;
+          if (window.innerWidth < 992) return 2;
+          if (window.innerWidth < 1200) return 3;
+          return 4;
+        }
+
+        let itemsPerSlide = getItemsPerSlide();
+        const totalSlides = Math.ceil(totalItems / itemsPerSlide);
+
+        // Create dots
+        function createDots() {
+          sliderDots.innerHTML = "";
+          for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement("div");
+            dot.classList.add("slider-dot");
+            if (i === currentIndex) dot.classList.add("active");
+            dot.addEventListener("click", () => goToSlide(i));
+            sliderDots.appendChild(dot);
+          }
+        }
+
+        // Update slider position
+        function updateSlider() {
+          const itemWidth = sliderItems[0].offsetWidth + 30; // width + gap
+          const translateX = -currentIndex * itemsPerSlide * itemWidth;
+          sliderContainer.style.transform = `translateX(${translateX}px)`;
+
+          // Update dots
+          document.querySelectorAll(".slider-dot").forEach((dot, index) => {
+            dot.classList.toggle("active", index === currentIndex);
+          });
+
+          // Update button states
+          prevBtn.disabled = currentIndex === 0;
+          nextBtn.disabled = currentIndex === totalSlides - 1;
+        }
+
+        // Go to specific slide
+        function goToSlide(index) {
+          currentIndex = index;
+          updateSlider();
+        }
+
+        // Next slide
+        function nextSlide() {
+          if (currentIndex < totalSlides - 1) {
+            currentIndex++;
+            updateSlider();
+          }
+        }
+
+        // Previous slide
+        function prevSlide() {
+          if (currentIndex > 0) {
+            currentIndex--;
+            updateSlider();
+          }
+        }
+
+        // Event listeners
+        prevBtn.addEventListener("click", prevSlide);
+        nextBtn.addEventListener("click", nextSlide);
+
+        // Handle window resize
+        window.addEventListener("resize", function () {
+          itemsPerSlide = getItemsPerSlide();
+          const newTotalSlides = Math.ceil(totalItems / itemsPerSlide);
+
+          // Adjust current index if needed
+          if (currentIndex >= newTotalSlides) {
+            currentIndex = newTotalSlides - 1;
+          }
+
+          createDots();
+          updateSlider();
+        });
+
+        // Initialize slider
+        createDots();
+        updateSlider();
+
+        // Auto slide (optional)
+        let autoSlideInterval = setInterval(nextSlide, 5000);
+
+        // Pause auto slide on hover
+        sliderContainer.addEventListener("mouseenter", () => {
+          clearInterval(autoSlideInterval);
+        });
+
+        sliderContainer.addEventListener("mouseleave", () => {
+          autoSlideInterval = setInterval(nextSlide, 5000);
+        });
       });
     </script>
   </body>
