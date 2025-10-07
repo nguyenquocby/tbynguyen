@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rước Xe Ngay - Rinh Trọn Ưu Đãi</title>
+
+    <link
+      rel="icon"
+      href="/sanphamxemay/image/banner/Logo_HEAD.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      /* CSS Variables */
+      :root {
+        --primary-color: #e11931;
+        --secondary-color: #004225;
+        --dark-color: #1a1a1a;
+        --light-color: #f8f9fa;
+        --gray-color: #6c757d;
+        --transition: all 0.3s ease;
+        --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        --border-radius: 25px;
+        --header-height: 80px;
+        --header-shrink-height: 70px;
+      }
+
+      /* Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 62.5%;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        line-height: 1.6;
+        color: var(--dark-color);
+        overflow-x: hidden;
+        background-color: #fff;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 1.2rem 2.4rem;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 1.4rem;
+        text-align: center;
+        transition: var(--transition);
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background-color: #c01027;
+        transform: translateY(-3px);
+        box-shadow: var(--box-shadow);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--primary-color);
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .btn-lg {
+        padding: 1.5rem 3rem;
+        font-size: 1.6rem;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 6rem;
+      }
+
+      .section-title {
+        font-size: 3.6rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--dark-color);
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+      }
+
+      .section-subtitle {
+        font-size: 1.8rem;
+        color: var(--gray-color);
+        margin-bottom: 2rem;
+      }
+
+      .divider {
+        height: 1px;
+        background-color: #eee;
+        margin: 3rem auto;
+        width: 100px;
+      }
+
+      /* Preloader */
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+
+      .preloader.fade-out {
+        opacity: 0;
+      }
+
+      .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+      }
+
+      .loader-square {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        margin: 0 8px;
+        background-color: var(--primary-color);
+        animation: loaderAnimation 1.5s infinite ease-in-out;
+      }
+
+      .loader-square:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .loader-square:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .loader-square:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .loader-square:nth-child(4) {
+        animation-delay: 0.6s;
+      }
+      .loader-square:nth-child(5) {
+        animation-delay: 0.8s;
+      }
+      .loader-square:nth-child(6) {
+        animation-delay: 1s;
+      }
+      .loader-square:nth-child(7) {
+        animation-delay: 1.2s;
+      }
+
+      @keyframes loaderAnimation {
+        0%,
+        100% {
+          transform: scale(0.8);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+      }
+
+      /* Header */
+      .main-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 2rem 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .main-header.scrolled {
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem 0;
+      }
+
+      .main-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 40px;
+        transition: var(--transition);
+      }
+
+      .main-header.scrolled .logo img {
+        height: 35px;
+      }
+
+      .main-nav ul {
+        display: flex;
+      }
+
+      .main-nav li {
+        margin-left: 3rem;
+      }
+
+      .main-nav a {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: white;
+        position: relative;
+        transition: var(--transition);
+      }
+
+      .main-nav a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: white;
+        transition: var(--transition);
+      }
+
+      .main-nav a:hover::after,
+      .main-nav a.active::after {
+        width: 100%;
+      }
+
+      .main-header.scrolled .main-nav a {
+        color: var(--dark-color);
+      }
+
+      .main-header.scrolled .main-nav a::after {
+        background-color: var(--primary-color);
+      }
+
+      .menu-toggle {
+        display: none;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: white;
+        transition: all 0.3s ease;
+      }
+
+      .main-header.scrolled .bar {
+        background-color: var(--dark-color);
+      }
+
+      /* Hero Section */
+      .news-hero-section {
+        position: relative;
+        height: 60vh;
+        min-height: 400px;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("/khuyenmai/image/EVENT01082025.jpg") no-repeat center
+            center/cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+        margin-top: var(--header-height);
+      }
+
+      .news-hero-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+      }
+
+      .news-hero-title {
+        font-size: 4.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        letter-spacing: 2px;
+        animation: fadeInUp 1s ease;
+      }
+
+      .news-hero-subtitle {
+        font-size: 1.8rem;
+        margin-bottom: 3rem;
+        font-weight: 400;
+        animation: fadeInUp 1s ease 0.2s both;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Breadcrumb */
+      .breadcrumb {
+        background-color: #f9f9f9;
+        padding: 1.5rem 0;
+        margin-bottom: 4rem;
+      }
+
+      .breadcrumb-content {
+        display: flex;
+        align-items: center;
+        font-size: 1.4rem;
+      }
+
+      .breadcrumb a {
+        color: var(--primary-color);
+        transition: var(--transition);
+      }
+
+      .breadcrumb a:hover {
+        text-decoration: underline;
+      }
+
+      .breadcrumb span {
+        margin: 0 1rem;
+        color: var(--gray-color);
+      }
+
+      /* News Section */
+      .news-section {
+        padding: 6rem 0;
+        background-color: #f9f9f9;
+      }
+
+      .news-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 4rem;
+      }
+
+      /* Featured News */
+      .featured-news {
+        margin-bottom: 4rem;
+      }
+
+      .featured-news-card {
+        background-color: white;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--box-shadow);
+        transition: var(--transition);
+      }
+
+      .featured-news-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .featured-news-image {
+        height: 400px;
+        overflow: hidden;
+      }
+
+      .featured-news-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .featured-news-card:hover .featured-news-image img {
+        transform: scale(1.05);
+      }
+
+      .featured-news-content {
+        padding: 3rem;
+      }
+
+      .news-category {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 30px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+      }
+
+      .featured-news-title {
+        font-size: 2.4rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.3;
+      }
+
+      .featured-news-excerpt {
+        font-size: 1.6rem;
+        color: var(--gray-color);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .news-meta {
+        display: flex;
+        align-items: center;
+        font-size: 1.4rem;
+        color: var(--gray-color);
+        margin-bottom: 2rem;
+      }
+
+      .news-meta span {
+        display: flex;
+        align-items: center;
+        margin-right: 2rem;
+      }
+
+      .news-meta i {
+        margin-right: 0.5rem;
+        color: var(--primary-color);
+      }
+
+      /* News Grid */
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 3rem;
+        margin-bottom: 4rem;
+      }
+
+      .news-card {
+        background-color: white;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--box-shadow);
+        transition: var(--transition);
+      }
+
+      .news-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .news-card-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .news-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .news-card:hover .news-card-image img {
+        transform: scale(1.05);
+      }
+
+      .news-card-content {
+        padding: 2rem;
+      }
+
+      .news-card-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+      }
+
+      .news-card-excerpt {
+        font-size: 1.4rem;
+        color: var(--gray-color);
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+      }
+
+      .read-more {
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 1.4rem;
+        display: inline-flex;
+        align-items: center;
+        transition: var(--transition);
+      }
+
+      .read-more i {
+        margin-left: 0.5rem;
+        transition: var(--transition);
+      }
+
+      .read-more:hover {
+        color: #c01027;
+      }
+
+      .read-more:hover i {
+        transform: translateX(5px);
+      }
+
+      /* Sidebar */
+      .news-sidebar {
+        background-color: white;
+        border-radius: var(--border-radius);
+        padding: 3rem;
+        box-shadow: var(--box-shadow);
+        height: fit-content;
+        position: sticky;
+        top: 100px;
+      }
+
+      .sidebar-widget {
+        margin-bottom: 4rem;
+      }
+
+      .sidebar-widget:last-child {
+        margin-bottom: 0;
+      }
+
+      .widget-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--primary-color);
+        position: relative;
+      }
+
+      .widget-title::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      /* Categories Widget */
+      .categories-list li {
+        margin-bottom: 1rem;
+      }
+
+      .categories-list a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        font-size: 1.5rem;
+        color: var(--dark-color);
+        transition: var(--transition);
+        border-bottom: 1px solid #eee;
+      }
+
+      .categories-list a:hover {
+        color: var(--primary-color);
+        padding-left: 1rem;
+      }
+
+      .categories-list span {
+        background-color: #f5f5f5;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 1.2rem;
+      }
+
+      /* Recent Posts Widget */
+      .recent-posts li {
+        display: flex;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      .recent-posts li:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .recent-post-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-right: 1.5rem;
+        flex-shrink: 0;
+      }
+
+      .recent-post-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .recent-post-content h4 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+      }
+
+      .recent-post-content .news-meta {
+        margin-bottom: 0;
+        font-size: 1.2rem;
+      }
+
+      /* Tags Widget */
+      .tags-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .tags-list a {
+        display: inline-block;
+        padding: 0.7rem 1.5rem;
+        background-color: #f5f5f5;
+        border-radius: 30px;
+        font-size: 1.3rem;
+        color: var(--dark-color);
+        transition: var(--transition);
+      }
+
+      .tags-list a:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      /* Pagination */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 4rem;
+      }
+
+      .pagination-list {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .pagination-item a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: white;
+        font-size: 1.5rem;
+        font-weight: 600;
+        box-shadow: var(--box-shadow);
+        transition: var(--transition);
+      }
+
+      .pagination-item a:hover,
+      .pagination-item a.active {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      /* Article Content */
+      .article-content {
+        background-color: white;
+        border-radius: var(--border-radius);
+        padding: 4rem;
+        box-shadow: var(--box-shadow);
+        margin-bottom: 4rem;
+      }
+
+      .article-content h1 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        color: #cc0000;
+      }
+
+      .article-content p {
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+        line-height: 1.7;
+        color: var(--dark-color);
+      }
+
+      .article-content b {
+        font-weight: 700;
+        color: var(--dark-color);
+      }
+
+      /* Footer */
+      .main-footer {
+        background-color: var(--dark-color);
+        color: white;
+        padding: 6rem 0 0;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 4rem;
+        margin-bottom: 4rem;
+      }
+
+      .footer-logo img {
+        height: 40px;
+        margin-bottom: 2rem;
+      }
+
+      .footer-logo p {
+        font-size: 1.4rem;
+        color: #aaa;
+        margin-bottom: 2rem;
+      }
+
+      .footer-links h4 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      .footer-links h4::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-links ul li {
+        margin-bottom: 1rem;
+      }
+
+      .footer-links ul li a {
+        font-size: 1.4rem;
+        color: #aaa;
+        transition: var(--transition);
+      }
+
+      .footer-links ul li a:hover {
+        color: white;
+        padding-left: 5px;
+      }
+
+      .footer-social h4 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      .footer-social h4::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: white;
+        font-size: 1.6rem;
+        transition: var(--transition);
+      }
+
+      .social-icons a:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      .footer-social p {
+        font-size: 1.4rem;
+        color: #aaa;
+        margin-bottom: 1rem;
+      }
+
+      .newsletter-form {
+        display: flex;
+      }
+
+      .newsletter-form input {
+        flex: 1;
+        padding: 1rem 1.5rem;
+        border: none;
+        border-radius: 30px 0 0 30px;
+        font-size: 1.4rem;
+      }
+
+      .newsletter-form button {
+        width: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 0 30px 30px 0;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .newsletter-form button:hover {
+        background-color: #c01027;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-bottom p {
+        font-size: 1.3rem;
+        color: #aaa;
+      }
+
+      .legal-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .legal-links a {
+        font-size: 1.3rem;
+        color: #aaa;
+        transition: var(--transition);
+      }
+
+      .legal-links a:hover {
+        color: white;
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.8rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background-color: #c01027;
+        transform: translateY(-5px);
+      }
+
+      /* Messenger Chat Button */
+      .messenger-chat {
+        position: fixed;
+        bottom: 100px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        background-color: #0084ff;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        box-shadow: 0 4px 12px rgba(0, 132, 255, 0.3);
+        z-index: 999;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+
+      .messenger-chat:hover {
+        background-color: #0066cc;
+        transform: scale(1.1);
+      }
+
+      /* Hiệu ứng lan tỏa */
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
+        }
+      }
+
+      /* Điều chỉnh vị trí khi có cả 2 nút */
+      .back-to-top.active ~ .messenger-chat {
+        bottom: 100px;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 1024px) {
+        .news-container {
+          grid-template-columns: 1fr;
+        }
+
+        .news-sidebar {
+          position: static;
+        }
+      }
+
+      @media (max-width: 768px) {
+        html {
+          font-size: 56.25%;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+
+        .menu-toggle.active .bar:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-toggle.active .bar:nth-child(2) {
+          opacity: 0;
+        }
+
+        .menu-toggle.active .bar:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .main-nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 80%;
+          max-width: 300px;
+          height: 100vh;
+          background-color: white;
+          padding: 8rem 3rem;
+          transition: var(--transition);
+          z-index: 1000;
+        }
+
+        .main-nav.active {
+          right: 0;
+          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-nav ul {
+          flex-direction: column;
+        }
+
+        .main-nav li {
+          margin: 1.5rem 0;
+        }
+
+        .main-nav a {
+          color: var(--dark-color);
+          font-size: 1.8rem;
+        }
+
+        .news-hero-title {
+          font-size: 3.5rem;
+        }
+
+        .news-hero-subtitle {
+          font-size: 1.6rem;
+        }
+
+        .featured-news-image {
+          height: 300px;
+        }
+
+        .news-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .article-content {
+          padding: 2.5rem;
+        }
+
+        .article-content h1 {
+          font-size: 2.5rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        html {
+          font-size: 50%;
+        }
+
+        .section-title {
+          font-size: 3rem;
+        }
+
+        .news-hero-title {
+          font-size: 3rem;
+        }
+
+        .news-hero-subtitle {
+          font-size: 1.4rem;
+        }
+
+        .featured-news-content {
+          padding: 2rem;
+        }
+
+        .featured-news-title {
+          font-size: 2rem;
+        }
+
+        .news-sidebar {
+          padding: 2rem;
+        }
+
+        .article-content {
+          padding: 2rem;
+        }
+
+        .article-content h1 {
+          font-size: 2.2rem;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          gap: 2rem;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Preloader -->
+
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container">
+        <a href="/Trangchu/" class="logo">
+          <img
+            src="/sanphamxemay/image/banner/Logo_HEAD.png"
+            alt="Honda Logo"
+          />
+        </a>
+
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <nav class="main-nav">
+          <ul>
+            <li><a href="/Trangchu/">Trang chủ</a></li>
+            <li><a href="/sanpham/">Sản phẩm</a></li>
+            <li><a href="/tintuc/" class="active">Tin tức</a></li>
+            <li><a href="/dichvu/">Dịch vụ</a></li>
+            <li><a href="/lienhe/">Liên hệ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="news-hero-section">
+      <div class="container">
+        <div class="news-hero-content">
+          <h1 class="news-hero-title" data-aos="fade-up">
+            Rước Xe Ngay - Rinh Trọn Ưu Đãi
+          </h1>
+          <p
+            class="news-hero-subtitle"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          ></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <div class="container">
+        <div class="breadcrumb-content">
+          <a href="/Trangchu/">Trang chủ</a>
+          <span>/</span>
+          <a href="/tintuc/">Tin tức</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- News Section -->
+    <section class="news-section">
+      <div class="container">
+        <div class="news-container">
+          <!-- Main Content -->
+          <div class="news-main">
+            <!-- Article Content -->
+            <div class="article-content" data-aos="fade-up">
+              <h1>
+                HEAD Trung Hùng tri ân khách hàng với chương trình khuyến mại
+                dành cho dòng xe Honda Vario 160, Winner X, CBR150R “Rước Xe
+                Ngay, Rinh Trọn Ưu Đãi”
+              </h1>
+              <p>
+                Ưu Đãi Lớn nhất tháng 8 tại Hệ Thống HEAD Trung Hùng. Bạn muốn
+                xe mới - giá tốt - quà tặng khủng? Thời điểm là NGAY BÂY GIỜ!
+              </p>
+
+              <img
+                src="/khuyenmai/image/EVENT01082025.jpg"
+                alt="Honda Logo"
+              /><br />
+              <p>
+                Khách hàng mua xe tại Hệ Thống HEAD Trung Hùng sẽ nhận ngay:
+              </p>
+              <p>
+                Mua Vario160 tặng ngay 3.000.000 VNĐ<br />Mua Winner X tặng ngay
+                6.000.000 VNĐ<br />Mua CBR150R tặng ngay 7.000.000 VNĐ
+              </p>
+              <p><b>Điều kiện áp dụng:</b></p>
+              <p>
+                Áp dụng cho khách hàng mua xe Honda Vario 160, Honda Winner X,
+                Honda CBR150R từ 01/08 đến 30/09/2025
+              </p>
+            </div>
+          </div>
+          <!-- Sidebar -->
+          <div class="news-sidebar">
+            <!-- Categories Widget -->
+            <div class="sidebar-widget">
+              <h3 class="widget-title">Danh mục</h3>
+              <ul class="categories-list">
+                <li>
+                  <a href="/tintuc/tintucxemay/">
+                    Sản phẩm mới
+                    <span>chi tiết</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/tintuc/tintuckhuyenmai/">
+                    Khuyến mãi
+                    <span>chi tiết</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/tintuc/tintucsukien/">
+                    Sự kiện
+                    <span>chi tiết</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-links">
+            <h4>Liên Kết Nhanh</h4>
+            <ul>
+              <li><a href="/Trangchu/">Trang đầu</a></li>
+              <li><a href="/sanpham/">Sản phẩm</a></li>
+              <li><a href="/tintuc/">Tin tức</a></li>
+              <li><a href="/dichvu/">Dịch vụ</a></li>
+              <li><a href="/lienhe/">Liên hệ</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-social">
+            <h4>Theo Dõi Chúng Tôi</h4>
+            <div class="social-icons">
+              <a
+                href="https://www.facebook.com/hethongheadtrunghung"
+                aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="https://www.youtube.com/@HethongHEADTrungHung"
+                aria-label="YouTube"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/hethongheadtrunghung"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.tiktok.com/@hethongheadtrunghung"
+                aria-label="TikTok"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+            <p>Đăng ký nhận bản tin</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Nhập email của bạn" />
+              <button type="submit" aria-label="Subscribe">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 HEAD Trung Hung. All Rights Reserved.</p>
+          <div class="legal-links">
+            <a href="#">Chính sách bảo mật</a>
+            <a href="#">Điều khoản sử dụng</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Messenger Chat Button -->
+    <a
+      href="https://m.me/hethongheadtrunghung"
+      class="messenger-chat"
+      target="_blank"
+    >
+      <i class="fab fa-facebook-messenger"></i>
+    </a>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Preloader
+        const preloader = document.querySelector(".preloader");
+
+        window.addEventListener("load", function () {
+          setTimeout(function () {
+            preloader.classList.add("fade-out");
+            setTimeout(function () {
+              preloader.style.display = "none";
+            }, 500);
+          }, 1000);
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector(".menu-toggle");
+        const mainNav = document.querySelector(".main-nav");
+        const bars = document.querySelectorAll(".bar");
+
+        menuToggle.addEventListener("click", function () {
+          this.classList.toggle("active");
+          mainNav.classList.toggle("active");
+
+          // Change menu icon color when scrolled
+          if (window.scrollY > 100) {
+            bars.forEach((bar) => {
+              bar.style.backgroundColor = this.classList.contains("active")
+                ? "black"
+                : "var(--dark-color)";
+            });
+          }
+        });
+
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll(".main-nav a");
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            if (mainNav.classList.contains("active")) {
+              menuToggle.classList.remove("active");
+              mainNav.classList.remove("active");
+            }
+          });
+        });
+
+        // Header Scroll Effect
+        const header = document.querySelector(".main-header");
+
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 100) {
+            header.classList.add("scrolled");
+          } else {
+            header.classList.remove("scrolled");
+          }
+
+          // Back to Top Button
+          const backToTop = document.querySelector(".back-to-top");
+          if (window.scrollY > 300) {
+            backToTop.classList.add("active");
+          } else {
+            backToTop.classList.remove("active");
+          }
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              const headerHeight =
+                document.querySelector(".main-header").offsetHeight;
+              const targetPosition =
+                targetElement.getBoundingClientRect().top +
+                window.pageYOffset -
+                headerHeight;
+
+              window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // Newsletter subscription
+        function initNewsletter() {
+          const newsletterForm = document.querySelector(".newsletter-form");
+
+          newsletterForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const emailInput = this.querySelector("input");
+
+            if (emailInput.value) {
+              alert("Cảm ơn bạn đã đăng ký nhận bản tin!");
+              emailInput.value = "";
+            }
+          });
+        }
+
+        // Initialize components
+        initNewsletter();
+
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+          duration: 800,
+          easing: "ease-in-out",
+          once: true,
+          offset: 100,
+        });
+      });
+    </script>
+  </body>
+</html>
