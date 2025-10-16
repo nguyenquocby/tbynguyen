@@ -524,23 +524,43 @@
         }
       }
 
-      /* Hero Banner */
-      .hero-banner {
+      /* Hero Banner SLIDER */
+      .hero-slider {
         margin-top: 40px; /* Chiều cao của top bar + main-header */
         position: relative;
         height: calc(100vh - 40px); /* Trừ đi chiều cao top bar */
         min-height: 560px; /* Điều chỉnh min-height */
-        background: url("/sanphamxemay/image/banner/WINNERR.jpg") no-repeat
-          center center/cover;
+        overflow: hidden;
+      }
+
+      .slider-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease, transform 1.5s ease;
+        background-size: cover;
+        background-position: center;
         display: flex;
         flex-direction: column;
         justify-content: center;
         color: white;
-        animation: fadeIn 1s ease-out forwards;
-        overflow: hidden;
       }
 
-      .hero-banner::before {
+      .slide.active {
+        opacity: 1;
+        z-index: 1;
+      }
+
+      .slide::before {
         content: "";
         position: absolute;
         top: 0;
@@ -552,17 +572,20 @@
           rgba(0, 0, 0, 0.7) 0%,
           rgba(0, 0, 0, 0.3) 100%
         );
-        z-index: 1;
+        z-index: -1;
       }
 
-      .hero-content {
+      .slide-content {
         position: relative;
         z-index: 2;
         color: white;
         max-width: 700px;
+        padding: 0 20px;
+        margin: 0 auto;
+        text-align: center;
       }
 
-      .hero-content h1 {
+      .slide-content h1 {
         font-size: 3rem;
         font-weight: 700;
         margin-bottom: 20px;
@@ -571,20 +594,75 @@
         opacity: 0;
       }
 
-      .hero-content p {
+      .slide-content p {
         font-size: 1.3rem;
         margin-bottom: 30px;
         animation: slideInRight 1s ease-out 0.5s forwards;
         opacity: 0;
       }
 
-      .hero-buttons {
+      .slide-buttons {
         display: flex;
         gap: 15px;
+        justify-content: center;
         animation: slideUp 1s ease-out 0.7s forwards;
         opacity: 0;
       }
 
+      /* Slider Navigation */
+      .slider-nav {
+        position: absolute;
+        bottom: 30px;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        z-index: 10;
+      }
+
+      .slider-dots {
+        display: flex;
+        gap: 10px;
+      }
+
+      .slider-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .slider-dot.active {
+        background-color: var(--primary-color);
+        transform: scale(1.2);
+      }
+
+      .slider-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: var(--transition);
+        backdrop-filter: blur(5px);
+      }
+
+      .slider-btn:hover {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        transform: scale(1.1);
+      }
+
+      /* Responsive adjustments for hero slider */
       @media (max-width: 768px) {
         .main-header {
           top: auto; /* Reset top position */
@@ -593,62 +671,28 @@
         .main-header.scrolled {
           top: 0;
         }
-        .hero-banner {
+        .hero-slider {
           margin-top: 0;
           height: 100vh;
           min-height: 600px;
         }
-        .menu-toggle {
-          display: block;
-        }
-        .main-nav {
-          position: fixed;
-          top: 0;
-          right: -100%;
-          width: 80%;
-          max-width: 300px;
-          height: 100vh;
-          background-color: white;
-          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-          transition: all 0.4s ease;
-          padding: 80px 20px 20px;
-          overflow-y: auto;
-          z-index: 1000;
-        }
-        .main-nav.active {
-          right: 0;
-        }
 
-        .main-nav ul {
-          flex-direction: column;
-        }
-
-        .main-nav li {
-          margin: 15px 0;
-        }
-
-        .main-nav a {
-          font-size: 1.1rem;
-          padding: 8px 0;
-          display: block;
-        }
-
-        /* Điều chỉnh header khi menu mở */
-        body.menu-open {
-          overflow: hidden;
-        }
-        .hero-content h1 {
+        .slide-content h1 {
           font-size: 2rem;
         }
-        .hero-content p {
+        .slide-content p {
           font-size: 1rem;
         }
 
-        .hero-buttons {
+        .slide-buttons {
           flex-direction: column;
+          align-items: center;
         }
-        .quick-links .container {
-          grid-template-columns: repeat(3, 1fr);
+
+        .slider-btn {
+          width: 40px;
+          height: 40px;
+          font-size: 0.9rem;
         }
       }
 
@@ -717,37 +761,33 @@
         background: linear-gradient(to top, rgba(228, 5, 33, 0.8), transparent);
       }
 
-      /* Featured Section - SLIDER STYLES */
+      /* Featured Section - OPTIMIZED FOR 4 PRODUCTS */
       .featured-section {
         padding: 100px 0;
         background: white;
         position: relative;
       }
 
-      .products-slider {
-        position: relative;
-        overflow: hidden;
-        margin-bottom: 40px;
-      }
-
-      .slider-container {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
+      .featured-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
         gap: 30px;
+        margin-bottom: 50px;
       }
 
-      .slider-item {
-        flex: 0 0 calc(25% - 22.5px);
+      .featured-item {
         position: relative;
         overflow: hidden;
         background: #fff;
+        border-radius: 15px;
         box-shadow: var(--shadow-light);
+        transition: var(--transition);
         display: flex;
         flex-direction: column;
-        transition: var(--transition);
+        height: 100%;
       }
 
-      .slider-item:hover {
+      .featured-item:hover {
         transform: translateY(-10px);
         box-shadow: var(--shadow-heavy);
       }
@@ -781,7 +821,7 @@
         transition: var(--transition);
       }
 
-      .slider-item:hover .product-image img {
+      .featured-item:hover .product-image img {
         transform: scale(1.1);
       }
 
@@ -798,6 +838,7 @@
         margin-bottom: 10px;
         color: var(--dark-color);
         font-weight: 600;
+        line-height: 1.4;
       }
 
       .product-price {
@@ -807,82 +848,52 @@
         margin-bottom: 20px;
       }
 
-      /* Slider Navigation */
-      .slider-nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        margin-top: 30px;
-      }
-
-      .slider-btn {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: white;
-        border: 2px solid var(--primary-color);
-        color: var(--primary-color);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        transition: var(--transition);
-        box-shadow: var(--shadow-light);
-      }
-
-      .slider-btn:hover {
-        background-color: var(--primary-color);
-        color: white;
-        transform: scale(1.1);
-      }
-
-      .slider-btn:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-        transform: none;
-      }
-
-      .slider-btn:disabled:hover {
-        background-color: white;
-        color: var(--primary-color);
-      }
-
-      .slider-dots {
-        display: flex;
-        gap: 10px;
-      }
-
-      .slider-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background-color: var(--light-gray);
-        cursor: pointer;
-        transition: var(--transition);
-      }
-
-      .slider-dot.active {
-        background-color: var(--primary-color);
-        transform: scale(1.2);
-      }
-
-      /* Responsive adjustments for slider */
+      /* Responsive adjustments for featured grid */
       @media (max-width: 1200px) {
-        .slider-item {
-          flex: 0 0 calc(33.333% - 20px);
+        .featured-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 25px;
         }
       }
 
-      @media (max-width: 992px) {
-        .slider-item {
-          flex: 0 0 calc(50% - 15px);
+      @media (max-width: 768px) {
+        .featured-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+          max-width: 400px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .featured-item {
+          margin-bottom: 0;
+        }
+
+        .product-info {
+          padding: 20px;
+        }
+
+        .product-info h3 {
+          font-size: 1.1rem;
         }
       }
 
-      @media (max-width: 576px) {
-        .slider-item {
-          flex: 0 0 100%;
+      @media (max-width: 480px) {
+        .featured-grid {
+          gap: 15px;
+        }
+
+        .product-info {
+          padding: 15px;
+        }
+
+        .product-info h3 {
+          font-size: 1rem;
+        }
+
+        .btn {
+          padding: 10px 20px;
+          font-size: 0.9rem;
         }
       }
 
@@ -1432,15 +1443,98 @@
       </div>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="hero-banner">
-      <div class="container">
-        <div class="hero-content">
-          <h1>Khởi đầu hành trình vững chắc!</h1>
-          <p>- Hệ Thống HEAD Trung Hùng -</p>
-          <div class="hero-buttons">
-            <a href="#products" class="btn btn-primary">Khám phá ngay</a>
+    <!-- Hero Banner SLIDER -->
+    <section class="hero-slider">
+      <div class="slider-container">
+        <!-- Slide 1 -->
+        <div
+          class="slide active"
+          style="
+            background-image: url('/sanphamxemay/image/banner/WINNERR.jpg');
+          "
+        >
+          <div class="slide-content">
+            <h1>Khởi đầu hành trình vững chắc!</h1>
+            <p>- Hệ Thống HEAD Trung Hùng -</p>
+            <div class="slide-buttons">
+              <a href="#products" class="btn btn-primary">Khám phá ngay</a>
+            </div>
           </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div
+          class="slide"
+          style="
+            background-image: url('/sanphamxemay/image/banner/VARIO125.jpg');
+          "
+        >
+          <div class="slide-content">
+            <h1>Vario 125 - Phong cách đẳng cấp</h1>
+            <p>Trải nghiệm sự tiện nghi và hiện đại</p>
+            <div class="slide-buttons">
+              <a href="/sanphamxemay/Vario125/" class="btn btn-primary"
+                >Tìm hiểu thêm</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div
+          class="slide"
+          style="background-image: url('/sanphamxemay/image/banner/CB350.jpg')"
+        >
+          <div class="slide-content">
+            <h1>CB350 H'ness - Phong cách cổ điển</h1>
+            <p>Hoài niệm và đẳng cấp trong từng chi tiết</p>
+            <div class="slide-buttons">
+              <a href="/sanphamxemay/CB350Hness/" class="btn btn-primary"
+                >Khám phá</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div
+          class="slide"
+          style="background-image: url('/sanphamxemay/image/banner/CUB.jpg')"
+        >
+          <div class="slide-content">
+            <h1>Honda Cub - Biểu tượng vượt thời gian</h1>
+            <p>Hơn 100 triệu chiếc được bán ra toàn cầu</p>
+            <div class="slide-buttons">
+              <a href="/sanphamxemay/CUB/" class="btn btn-primary">Tìm hiểu</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div
+          class="slide"
+          style="background-image: url('/sanphamxemay/image/banner/ICONE.png')"
+        >
+          <div class="slide-content">
+            <h1>ICON e - Xe điện thông minh</h1>
+            <p>Di chuyển xanh, tiết kiệm và hiện đại</p>
+            <div class="slide-buttons">
+              <a href="/sanphamxemay/ICONe/" class="btn btn-primary"
+                >Khám phá ngay</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Slider Navigation -->
+        <div class="slider-nav">
+          <button class="slider-btn" id="prevSlide">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="slider-dots" id="sliderDots"></div>
+          <button class="slider-btn" id="nextSlide">
+            <i class="fas fa-chevron-right"></i>
+          </button>
         </div>
       </div>
     </section>
@@ -1489,7 +1583,7 @@
       </section>
     </section>
 
-    <!-- Featured Products - SLIDER VERSION -->
+    <!-- Featured Products - OPTIMIZED 4 PRODUCTS GRID -->
     <section class="featured-section">
       <div class="container">
         <div class="section-header">
@@ -1497,138 +1591,74 @@
           <p class="section-subtitle">Khám phá những dòng xe bán chạy nhất</p>
         </div>
 
-        <div class="products-slider">
-          <div class="slider-container" id="sliderContainer">
-            <div class="slider-item">
-              <div class="product-badge">Bán chạy</div>
-              <div class="product-image">
-                <img
-                  src="/sanphamxemay/Shmode/Shmode/Phiên bản đặc biệt - BẠC ĐEN/6.png"
-                  alt="Honda SH Mode"
-                />
-              </div>
-              <div class="product-info">
-                <h3>Honda SH Mode</h3>
-                <div class="product-price">Liên hệ trực tiếp</div>
-                <a href="/sanphamxemay/Shmode/" class="btn btn-outline"
-                  >Xem chi tiết</a
-                >
-              </div>
+        <div class="featured-grid">
+          <div class="featured-item">
+            <div class="product-badge">Bán chạy</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/Shmode/Shmode/Phiên bản đặc biệt - BẠC ĐEN/6.png"
+                alt="Honda SH Mode"
+              />
             </div>
-
-            <div class="slider-item">
-              <div class="product-badge">Mới</div>
-              <div class="product-image">
-                <img
-                  src="/sanphamxemay/WinnerR/Winner R/Phiên bản Đặc Biệt - Xanh Đen/6.png"
-                  alt="Honda Winner R"
-                />
-              </div>
-              <div class="product-info">
-                <h3>Honda Winner R</h3>
-                <div class="product-price">Liên hệ trực tiếp</div>
-                <a href="/sanphamxemay/WinnerR/" class="btn btn-outline"
-                  >Xem chi tiết</a
-                >
-              </div>
-            </div>
-
-            <div class="slider-item">
-              <div class="product-badge">Mới</div>
-              <div class="product-image">
-                <img
-                  src="/sanphamxemay/CB350Hness/CB350Hness/XÁM ĐEN/6.png"
-                  alt="Honda Wave Alpha"
-                />
-              </div>
-              <div class="product-info">
-                <h3>Honda CB350 H'ness</h3>
-                <div class="product-price">Liên hệ trực tiếp</div>
-                <a href="/sanphamxemay/CB350Hness/" class="btn btn-outline"
-                  >Xem chi tiết</a
-                >
-              </div>
-            </div>
-
-            <div class="slider-item">
-              <div class="product-badge">Xe điện</div>
-              <div class="product-image">
-                <img
-                  src="/sanphamxemay/ICONe/ICONe/Phiên bản thể thao - XANH/6.png"
-                  alt="Honda ICON e"
-                />
-              </div>
-              <div class="product-info">
-                <h3>Honda ICON e</h3>
-                <div class="product-price">Liên hệ trực tiếp</div>
-                <a href="/sanphamxemay/ICONe/" class="btn btn-outline"
-                  >Xem chi tiết</a
-                >
-              </div>
-            </div>
-
-            <!-- Additional products for slider -->
-            <div class="slider-item">
-              <div class="product-badge">Bán chạy</div>
-              <div class="product-image">
-                <img
-                  src="/sanphamxemay/Vario125/VARIO125/Phiên bản thể thao - XANH ĐEN/6.png"
-                  alt="Honda Vario"
-                />
-              </div>
-              <div class="product-info">
-                <h3>Honda Vario</h3>
-                <div class="product-price">Liên hệ trực tiếp</div>
-                <a href="/sanphamxemay/Vario125/" class="btn btn-outline"
-                  >Xem chi tiết</a
-                >
-              </div>
-            </div>
-
-            <div class="slider-item">
-              <div class="product-badge">Mới</div>
-              <div class="product-image">
-                <img
-                  src="/sanphamxemay/WaveRSX/Wave RSX/Phiên bản thể thao - ĐỎ ĐEN/6.png"
-                  alt="Honda Wave Alpha"
-                />
-              </div>
-              <div class="product-info">
-                <h3>Honda Wave Alpha</h3>
-                <div class="product-price">Liên hệ trực tiếp</div>
-                <a href="/sanphamxemay/WaveRSX/" class="btn btn-outline"
-                  >Xem chi tiết</a
-                >
-              </div>
-            </div>
-
-            <div class="slider-item">
-              <div class="product-badge">Mới</div>
-              <div class="product-image">
-                <img
-                  src="/sanphamxemay/WaveAlpha/Wave Alpha/Phiên bản đặc biệt - ĐEN/6.png"
-                  alt="Honda Wave Alpha"
-                />
-              </div>
-              <div class="product-info">
-                <h3>Honda Wave Alpha</h3>
-                <div class="product-price">Liên hệ trực tiếp</div>
-                <a href="/sanphamxemay/WaveAlpha/" class="btn btn-outline"
-                  >Xem chi tiết</a
-                >
-              </div>
+            <div class="product-info">
+              <h3>Honda SH Mode</h3>
+              <div class="product-price">Liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/Shmode/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
             </div>
           </div>
-        </div>
 
-        <div class="slider-nav">
-          <button class="slider-btn" id="prevBtn">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <div class="slider-dots" id="sliderDots"></div>
-          <button class="slider-btn" id="nextBtn">
-            <i class="fas fa-chevron-right"></i>
-          </button>
+          <div class="featured-item">
+            <div class="product-badge">Mới</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/WinnerR/Winner R/Phiên bản Đặc Biệt - Xanh Đen/6.png"
+                alt="Honda Winner R"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda Winner R</h3>
+              <div class="product-price">Liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/WinnerR/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <div class="featured-item">
+            <div class="product-badge">Mới</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/CB350Hness/CB350Hness/XÁM ĐEN/6.png"
+                alt="Honda CB350 H'ness"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda CB350 H'ness</h3>
+              <div class="product-price">Liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/CB350Hness/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <div class="featured-item">
+            <div class="product-badge">Xe điện</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/ICONe/ICONe/Phiên bản thể thao - XANH/6.png"
+                alt="Honda ICON e"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda ICON e</h3>
+              <div class="product-price">Liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/ICONe/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
         </div>
 
         <div class="text-center">
@@ -2017,110 +2047,75 @@
         window.addEventListener("scroll", animateOnScroll);
         animateOnScroll(); // Run once on page load
 
-        // SLIDER FUNCTIONALITY
-        const sliderContainer = document.getElementById("sliderContainer");
-        const prevBtn = document.getElementById("prevBtn");
-        const nextBtn = document.getElementById("nextBtn");
+        // HERO SLIDER FUNCTIONALITY
+        const slides = document.querySelectorAll(".slide");
+        const prevBtn = document.getElementById("prevSlide");
+        const nextBtn = document.getElementById("nextSlide");
         const sliderDots = document.getElementById("sliderDots");
 
-        const sliderItems = document.querySelectorAll(".slider-item");
-        const totalItems = sliderItems.length;
-        let currentIndex = 0;
+        let currentSlide = 0;
+        const totalSlides = slides.length;
 
-        // Calculate items per slide based on screen width
-        function getItemsPerSlide() {
-          if (window.innerWidth < 576) return 1;
-          if (window.innerWidth < 992) return 2;
-          if (window.innerWidth < 1200) return 3;
-          return 4;
-        }
-
-        let itemsPerSlide = getItemsPerSlide();
-        const totalSlides = Math.ceil(totalItems / itemsPerSlide);
-
-        // Create dots
-        function createDots() {
+        // Create dots for hero slider
+        function createHeroDots() {
           sliderDots.innerHTML = "";
           for (let i = 0; i < totalSlides; i++) {
             const dot = document.createElement("div");
             dot.classList.add("slider-dot");
-            if (i === currentIndex) dot.classList.add("active");
+            if (i === currentSlide) dot.classList.add("active");
             dot.addEventListener("click", () => goToSlide(i));
             sliderDots.appendChild(dot);
           }
         }
 
-        // Update slider position
-        function updateSlider() {
-          const itemWidth = sliderItems[0].offsetWidth + 30; // width + gap
-          const translateX = -currentIndex * itemsPerSlide * itemWidth;
-          sliderContainer.style.transform = `translateX(${translateX}px)`;
-
-          // Update dots
-          document.querySelectorAll(".slider-dot").forEach((dot, index) => {
-            dot.classList.toggle("active", index === currentIndex);
-          });
-
-          // Update button states
-          prevBtn.disabled = currentIndex === 0;
-          nextBtn.disabled = currentIndex === totalSlides - 1;
-        }
-
         // Go to specific slide
         function goToSlide(index) {
-          currentIndex = index;
-          updateSlider();
+          slides[currentSlide].classList.remove("active");
+          currentSlide = index;
+          slides[currentSlide].classList.add("active");
+          updateHeroDots();
+        }
+
+        // Update hero dots
+        function updateHeroDots() {
+          document.querySelectorAll(".slider-dot").forEach((dot, index) => {
+            dot.classList.toggle("active", index === currentSlide);
+          });
         }
 
         // Next slide
         function nextSlide() {
-          if (currentIndex < totalSlides - 1) {
-            currentIndex++;
-            updateSlider();
-          }
+          let nextIndex = currentSlide + 1;
+          if (nextIndex >= totalSlides) nextIndex = 0;
+          goToSlide(nextIndex);
         }
 
         // Previous slide
         function prevSlide() {
-          if (currentIndex > 0) {
-            currentIndex--;
-            updateSlider();
-          }
+          let prevIndex = currentSlide - 1;
+          if (prevIndex < 0) prevIndex = totalSlides - 1;
+          goToSlide(prevIndex);
         }
 
-        // Event listeners
+        // Event listeners for hero slider
         prevBtn.addEventListener("click", prevSlide);
         nextBtn.addEventListener("click", nextSlide);
 
-        // Handle window resize
-        window.addEventListener("resize", function () {
-          itemsPerSlide = getItemsPerSlide();
-          const newTotalSlides = Math.ceil(totalItems / itemsPerSlide);
-
-          // Adjust current index if needed
-          if (currentIndex >= newTotalSlides) {
-            currentIndex = newTotalSlides - 1;
-          }
-
-          createDots();
-          updateSlider();
-        });
-
-        // Initialize slider
-        createDots();
-        updateSlider();
-
-        // Auto slide (optional)
-        let autoSlideInterval = setInterval(nextSlide, 5000);
+        // Auto slide for hero slider
+        let heroAutoSlide = setInterval(nextSlide, 5000);
 
         // Pause auto slide on hover
-        sliderContainer.addEventListener("mouseenter", () => {
-          clearInterval(autoSlideInterval);
+        const heroSlider = document.querySelector(".hero-slider");
+        heroSlider.addEventListener("mouseenter", () => {
+          clearInterval(heroAutoSlide);
         });
 
-        sliderContainer.addEventListener("mouseleave", () => {
-          autoSlideInterval = setInterval(nextSlide, 5000);
+        heroSlider.addEventListener("mouseleave", () => {
+          heroAutoSlide = setInterval(nextSlide, 5000);
         });
+
+        // Initialize hero slider
+        createHeroDots();
       });
       // Thêm vào phần JavaScript hiện có
       const topBar = document.querySelector(".top-bar");
