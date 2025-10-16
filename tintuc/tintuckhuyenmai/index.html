@@ -365,8 +365,7 @@
 
       /* Breadcrumb */
       .breadcrumb {
-        background-color: #f9f9f9;
-        padding: 1.5rem 0;
+        padding-top: 10.5rem;
         margin-bottom: 4rem;
       }
 
@@ -1109,7 +1108,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="news-hero-section">
+    <!---<section class="news-hero-section">
       <div class="container">
         <div class="news-hero-content">
           <h1 class="news-hero-title" data-aos="fade-up">TIN TỨC KHUYẾN MÃI</h1>
@@ -1120,7 +1119,7 @@
           ></p>
         </div>
       </div>
-    </section>
+    </section>-->
 
     <!-- Breadcrumb -->
     <div class="breadcrumb">
@@ -1129,6 +1128,8 @@
           <a href="/Trangchu/">Trang chủ</a>
           <span>/</span>
           <a href="/tintuc/">Tin tức</a>
+          <span>/</span>
+          <a>Khuyến mãi</a>
         </div>
       </div>
     </div>
@@ -1144,7 +1145,7 @@
               <div class="featured-news-card" data-aos="fade-up">
                 <div class="featured-news-image">
                   <img
-                    src="/khuyenmai/image/15072025.jpg"
+                    src="/khuyenmai/image/HVN01112025.png"
                     alt="Honda"
                     loading="lazy"
                   />
@@ -1152,24 +1153,22 @@
                 <div class="featured-news-content">
                   <span class="news-category">Khuyến mãi</span>
                   <h2 class="featured-news-title">
-                    Honda Việt Nam tri ân khách hàng với loạt ưu đãi hấp dẫn
-                    chào hè trong chương trình khuyến mại khủng dành cho các
-                    dòng xe máy và xe gắn máy điện – “Chốt đơn Honda – Săn quà
-                    cực đã”
+                    Honda Việt Nam tri ân khách hàng với ưu đãi hấp dẫn trong
+                    chương trình khuyến mại khủng dành cho dòng xe Sh mode –
+                    “Lên đời đẳng cấp – Không lo lãi suất”
                   </h2>
                   <p class="featured-news-excerpt">
-                    Mùa hè là thời điểm lý tưởng để khởi động những hành trình
-                    mới, khám phá bản thân và tận hưởng từng khoảnh khắc trên
-                    mọi cung đường...
+                    Nhằm nâng cao cơ hội trải nghiệm và sử dụng mẫu xe Sh mode
+                    cho khách hàng...
                   </p>
                   <div class="news-meta">
                     <span
-                      ><i class="far fa-calendar"></i> 15/07 - 15/10/2025</span
+                      ><i class="far fa-calendar"></i> 01/11 - 30/11/2025</span
                     >
-                    <span><i class="far fa-eye"></i> 4.286 lượt xem</span>
+                    <span><i class="far fa-eye"></i> 2.286 lượt xem</span>
                   </div>
                   <a
-                    href="/tintuc/tintuckhuyenmai/khuyenmai/15072025HVN.html"
+                    href="/tintuc/tintuckhuyenmai/khuyenmai/01112025HVN.html"
                     class="read-more"
                   >
                     Đọc tiếp <i class="fas fa-arrow-right"></i>
@@ -1359,24 +1358,13 @@
       // News data - you can add more news items here
       const newsData = [
         {
-          id: 1,
-          image: "/khuyenmai/image/HVN01112025.png",
-          category: "Khuyến mãi",
-          title: "Lên Đời Đẳng Cấp, Không Lo Lãi Suất",
-          excerpt:
-            "Nhằm nâng cao cơ hội trải nghiệm và sử dụng mẫu xe Sh mode cho khách hàng...",
-          date: "01/11 - 30/11/2025",
-          views: "563",
-          link: "/tintuc/tintuckhuyenmai/khuyenmai/01112025HVN.html",
-        },
-        {
           id: 2,
           image: "/khuyenmai/image/EVENT01102025.jpg",
           category: "Khuyến mãi",
           title: "Bật Chìa Nổ Máy, Ưu Đãi Trao Ngay",
           excerpt: "Chỉ trong tháng 10 – Cơ hội không lặp lại!...",
           date: "01/10 - 31/10/2025",
-          views: "1.692",
+          views: "2.692",
           link: "/tintuc/tintuckhuyenmai/khuyenmai/01102025HEAD.html",
         },
         {
@@ -1387,7 +1375,7 @@
           excerpt:
             "Ưu đãi đặc biệt khi mua xe bất kỳ tại Hệ Thống HEAD Trung Hùng...",
           date: "01/09/2025",
-          views: "2.608",
+          views: "3.608",
           link: "/tintuc/tintuckhuyenmai/khuyenmai/01092025HEADE.html",
         },
         {
@@ -1397,7 +1385,7 @@
           title: "Lướt CB350 H'ness, Ưu Đãi Trao Ngay",
           excerpt: "Chương trình khuyến mãi dành cho dòng xe CB350 H'ness..",
           date: "01/08 - 31/08/2025",
-          views: "4.017",
+          views: "5.017",
           link: "/tintuc/tintuckhuyenmai/khuyenmai/01082025HEADC.html",
         },
         {
@@ -1408,8 +1396,19 @@
           excerpt:
             "Ưu đãi đặc biệt khi mua xe Honda Vario 160, Winner X, CBR150R..",
           date: "01/08 - 30/09/2025",
-          views: "6.127",
+          views: "7.127",
           link: "/tintuc/tintuckhuyenmai/khuyenmai/01092025HEADE.html",
+        },
+        {
+          id: 5,
+          image: "/khuyenmai/image/15072025.jpg",
+          category: "Khuyến mãi",
+          title: "Chốt Đơn Honda, Săn Quà Cực Đã",
+          excerpt:
+            "Honda Việt Nam tri ân khách hàng với loạt ưu đãi hấp dẫn chào hè trong chương trình khuyến mại khủng..",
+          date: "15/07 - 15/10/2025",
+          views: "26.127",
+          link: "/tintuc/tintuckhuyenmai/khuyenmai/15072025HVN.html",
         },
       ];
 
