@@ -157,11 +157,166 @@
       .text-center {
         text-align: center;
       }
+      /* Top Bar Menu */
+      .top-bar {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 8px 0;
+        font-size: 0.85rem;
+        position: relative;
+        z-index: 1001;
+        transition: transform 0.3s ease;
+      }
 
+      .top-bar .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .top-nav ul {
+        display: flex;
+        gap: 20px;
+      }
+
+      .top-nav a {
+        color: white;
+        font-weight: 500;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        white-space: nowrap;
+      }
+
+      .top-nav a:hover {
+        color: var(--light-gray);
+        transform: translateY(-1px);
+      }
+
+      .top-nav i {
+        font-size: 0.8rem;
+      }
+
+      .top-contact {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+      }
+
+      .contact-item i {
+        font-size: 0.8rem;
+      }
+
+      /* Mobile dropdown for top bar */
+      .top-bar-mobile-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      .top-bar-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      /* Responsive adjustments for top bar */
+      @media (max-width: 992px) {
+        .top-bar {
+          padding: 6px 0;
+        }
+
+        .top-nav ul {
+          gap: 15px;
+        }
+
+        .top-nav a {
+          font-size: 0.8rem;
+        }
+
+        .contact-item {
+          font-size: 0.75rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .top-bar {
+          position: relative;
+          padding: 8px 0;
+        }
+
+        .top-bar .container {
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .top-bar-content {
+          flex-direction: column;
+          gap: 8px;
+          text-align: center;
+        }
+
+        .top-nav ul {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 10px 15px;
+        }
+
+        .top-nav a {
+          font-size: 0.8rem;
+          padding: 2px 5px;
+        }
+
+        .top-contact {
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+
+        .contact-item {
+          font-size: 0.75rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .top-nav ul {
+          gap: 8px 12px;
+        }
+
+        .top-nav a {
+          font-size: 0.75rem;
+        }
+
+        .top-nav a span {
+          display: none; /* Ẩn text, chỉ hiện icon trên mobile rất nhỏ */
+        }
+
+        .top-nav a i {
+          font-size: 0.9rem;
+        }
+
+        .contact-item span {
+          font-size: 0.7rem;
+        }
+      }
       /* Header */
       .main-header {
         position: fixed;
-        top: 0;
+        top: 40px; /* Chiều cao của top bar */
         left: 0;
         width: 100%;
         padding: 20px 0;
@@ -173,8 +328,7 @@
       }
 
       .main-header.scrolled {
-        padding: 15px 0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        top: 0;
       }
 
       .main-header .container {
@@ -372,9 +526,10 @@
 
       /* Hero Banner */
       .hero-banner {
+        margin-top: 40px; /* Chiều cao của top bar + main-header */
         position: relative;
-        height: 100vh;
-        min-height: 600px;
+        height: calc(100vh - 40px); /* Trừ đi chiều cao top bar */
+        min-height: 560px; /* Điều chỉnh min-height */
         background: url("/sanphamxemay/image/banner/WINNERR.jpg") no-repeat
           center center/cover;
         display: flex;
@@ -395,7 +550,7 @@
         background: linear-gradient(
           135deg,
           rgba(0, 0, 0, 0.7) 0%,
-          rgba(255, 255, 255, 0.3) 100%
+          rgba(0, 0, 0, 0.3) 100%
         );
         z-index: 1;
       }
@@ -431,6 +586,18 @@
       }
 
       @media (max-width: 768px) {
+        .main-header {
+          top: auto; /* Reset top position */
+          margin-top: 0;
+        }
+        .main-header.scrolled {
+          top: 0;
+        }
+        .hero-banner {
+          margin-top: 0;
+          height: 100vh;
+          min-height: 600px;
+        }
         .menu-toggle {
           display: block;
         }
@@ -1188,6 +1355,53 @@
     </style>
   </head>
   <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container">
+        <nav class="top-nav">
+          <ul>
+            <li>
+              <a href="/question/">
+                <i class="fas fa-question-circle"></i>
+                Câu hỏi thường gặp
+              </a>
+            </li>
+            <li>
+              <a href="/huongdanmuahang/">
+                <i class="fas fa-shopping-cart"></i>
+                Hướng dẫn mua hàng
+              </a>
+            </li>
+            <li>
+              <a href="/dichvu/baohanh/">
+                <i class="fas fa-shield-alt"></i>
+                Chính sách bảo hành
+              </a>
+            </li>
+            <li>
+              <a href="/lienhe/">
+                <i class="fas fa-headset"></i>
+                Hỗ trợ khách hàng
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="top-contact">
+          <div class="contact-item">
+            <a href="tel:1900636712">
+              <i class="fas fa-phone-alt"></i>
+              <span>1900 636 712</span>
+            </a>
+          </div>
+          <div class="contact-item">
+            <a href="mailto:cr@hungmanh.com.vn">
+              <i class="fas fa-envelope"></i>
+              <span>cr@hungmanh.com.vn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Header -->
     <header class="main-header">
       <div class="container">
@@ -1908,6 +2122,29 @@
           autoSlideInterval = setInterval(nextSlide, 5000);
         });
       });
+      // Thêm vào phần JavaScript hiện có
+      const topBar = document.querySelector(".top-bar");
+
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 100) {
+          header.classList.add("scrolled");
+          // Ẩn top bar khi scroll
+          if (topBar) {
+            topBar.style.transform = "translateY(-100%)";
+          }
+        } else {
+          header.classList.remove("scrolled");
+          // Hiện lại top bar khi ở đầu trang
+          if (topBar) {
+            topBar.style.transform = "translateY(0)";
+          }
+        }
+      });
+
+      // Thêm transition cho top bar
+      if (topBar) {
+        topBar.style.transition = "transform 0.3s ease";
+      }
     </script>
   </body>
 </html>
