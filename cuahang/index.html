@@ -236,13 +236,29 @@
         align-items: center;
       }
 
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
       .logo img {
         height: 40px;
         transition: var(--transition);
       }
 
+      .logo h1 {
+        font-size: 1.8rem;
+        color: white;
+        font-weight: 600;
+      }
+
       .main-header.scrolled .logo img {
         height: 35px;
+      }
+
+      .main-header.scrolled .logo h1 {
+        color: var(--dark-color);
       }
 
       .main-nav ul {
@@ -339,14 +355,30 @@
         font-size: 5rem;
         font-weight: 800;
         margin-bottom: 1.5rem;
-        /*--text-transform: uppercase;*/
         letter-spacing: 2px;
+        animation: fadeInUp 1s ease-out;
       }
 
       .hero-subtitle {
         font-size: 2rem;
         margin-bottom: 3rem;
         font-weight: 400;
+        animation: fadeInUp 1s ease-out 0.3s both;
+      }
+
+      .hero-cta {
+        animation: fadeInUp 1s ease-out 0.6s both;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       /* Stores Section */
@@ -399,6 +431,12 @@
         transition: var(--transition);
         display: flex;
         flex-direction: column;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .store-card.hidden {
+        display: none;
       }
 
       .store-card:hover {
@@ -409,6 +447,7 @@
       .store-image {
         height: 200px;
         overflow: hidden;
+        position: relative;
       }
 
       .store-image img {
@@ -420,6 +459,18 @@
 
       .store-card:hover .store-image img {
         transform: scale(1.05);
+      }
+
+      .store-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 1.2rem;
+        font-weight: 600;
       }
 
       .store-info {
@@ -714,6 +765,125 @@
         color: #aaa;
       }
 
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+        box-shadow: 0 4px 15px rgba(228, 5, 33, 0.3);
+      }
+
+      .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background-color: #c0041d;
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(228, 5, 33, 0.4);
+      }
+
+      /* Messenger Chat Button */
+      .messenger-chat {
+        position: fixed;
+        bottom: 100px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        background-color: #0084ff;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
+        z-index: 999;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+
+      .messenger-chat:hover {
+        background-color: #0066cc;
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 132, 255, 0.4);
+      }
+
+      /* Hiệu ứng lan tỏa */
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
+        }
+      }
+
+      /* Điều chỉnh vị trí khi có cả 2 nút */
+      .back-to-top.active ~ .messenger-chat {
+        bottom: 100px;
+      }
+
+      /* Mobile Bottom Navigation Bar */
+      .mobile-bottom-nav {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 998;
+        padding: 10px 0;
+      }
+
+      .mobile-bottom-nav .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        padding: 5px 0;
+        transition: var(--transition);
+      }
+
+      .mobile-nav-item.active {
+        color: var(--primary-color);
+      }
+
+      .mobile-nav-icon {
+        font-size: 1.2rem;
+        margin-bottom: 4px;
+      }
+
+      .mobile-nav-label {
+        font-size: 0.7rem;
+        font-weight: 500;
+      }
+
       /* Responsive Styles */
       @media (max-width: 992px) {
         .map-container {
@@ -733,10 +903,43 @@
       }
 
       @media (max-width: 768px) {
-        html {
-          font-size: 56.25%; /* 1rem = 9px */
+        .back-to-top {
+          width: 45px;
+          height: 45px;
+          font-size: 1rem;
+          right: 20px;
+          bottom: 180px;
         }
 
+        .messenger-chat {
+          width: 50px;
+          height: 50px;
+          font-size: 24px;
+          right: 18px;
+          bottom: 110px;
+        }
+
+        .back-to-top.active ~ .messenger-chat {
+          bottom: 80px;
+        }
+
+        .promo-content h2 {
+          font-size: 2rem;
+        }
+
+        .promo-content p {
+          font-size: 1.1rem;
+        }
+
+        /* Hiển thị thanh menu mobile ở chân trang */
+        .mobile-bottom-nav {
+          display: block;
+        }
+
+        /* Điều chỉnh padding cho footer để tránh bị che bởi menu mobile */
+        .main-footer {
+          padding-bottom: 70px;
+        }
         .menu-toggle {
           display: block;
         }
@@ -798,10 +1001,6 @@
       }
 
       @media (max-width: 576px) {
-        html {
-          font-size: 50%; /* 1rem = 8px */
-        }
-
         .section-title {
           font-size: 3rem;
         }
@@ -822,6 +1021,14 @@
         .filter-btn {
           width: 100%;
           text-align: center;
+        }
+        /* Điều chỉnh mobile bottom nav cho màn hình nhỏ */
+        .mobile-nav-icon {
+          font-size: 1.9rem;
+        }
+
+        .mobile-nav-label {
+          font-size: 1rem;
         }
       }
     </style>
@@ -844,8 +1051,8 @@
       <div class="container">
         <a href="/Trangchu/" class="logo">
           <img src="image/Logo_HEAD.png" alt="Honda Logo" />
+          <h1>HEAD TRUNG HÙNG</h1>
         </a>
-
         <div class="menu-toggle" id="mobile-menu">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -856,7 +1063,6 @@
           <ul>
             <li><a href="/Trangchu/" class="active">Trang chủ</a></li>
             <li><a href="#stores">Hệ thống cửa hàng</a></li>
-            <!--<li><a href="#map">Bản đồ</a></li>-->
             <li><a href="#contact">Liên hệ</a></li>
           </ul>
         </nav>
@@ -873,9 +1079,11 @@
             12 cửa hàng chính hãng tại
             <strong>Gia Lai, Hà Nội, Sơn La</strong>
           </p>
-          <a href="#stores" class="btn btn-primary btn-lg"
-            >Xem cửa hàng gần bạn</a
-          >
+          <div class="hero-cta">
+            <a href="#stores" class="btn btn-primary btn-lg"
+              >Xem cửa hàng gần bạn</a
+            >
+          </div>
         </div>
       </div>
     </section>
@@ -891,18 +1099,17 @@
 
         <div class="region-filter">
           <button class="filter-btn active" data-region="all">Tất cả</button>
-          <button class="filter-btn" data-region="binh-dinh">
-            Gia Lai (4)
-          </button>
+          <button class="filter-btn" data-region="gia-lai">Gia Lai (4)</button>
           <button class="filter-btn" data-region="ha-noi">Hà Nội (1)</button>
           <button class="filter-btn" data-region="son-la">Sơn La (7)</button>
         </div>
 
         <div class="stores-container">
-          <!-- Bình Định Stores -->
-          <div class="store-card" data-region="binh-dinh">
+          <!-- Gia Lai Stores -->
+          <div class="store-card" data-region="gia-lai">
             <div class="store-image">
-              <img src="image/HEAD.JPG" alt="Honda Bình Định 1" />
+              <img src="image/HEAD.JPG" alt="Honda Gia Lai 1" />
+              <div class="store-badge">Gia Lai</div>
             </div>
             <div class="store-info">
               <h3>HEAD Trung Hùng 1</h3>
@@ -920,14 +1127,16 @@
               <a
                 href="https://www.google.com/maps/place/HONDA+TRUNG+H%C3%99NG+1/@13.7758146,109.2243526,750m/data=!3m2!1e3!4b1!4m6!3m5!1s0x316f6c85a6d6924d:0xa455acdefd4d31d7!8m2!3d13.7758094!4d109.2269275!16s%2Fg%2F11btrs8zjy?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
                 class="btn btn-outline"
+                target="_blank"
                 >Xem chỉ đường</a
               >
             </div>
           </div>
 
-          <div class="store-card" data-region="binh-dinh">
+          <div class="store-card" data-region="gia-lai">
             <div class="store-image">
-              <img src="image/HEAD.JPG" alt="Honda Bình Định 2" />
+              <img src="image/HEAD.JPG" alt="Honda Gia Lai 2" />
+              <div class="store-badge">Gia Lai</div>
             </div>
             <div class="store-info">
               <h3>HEAD Trung Hùng 2</h3>
@@ -945,14 +1154,16 @@
               <a
                 href="https://www.google.com/maps/place/C%E1%BB%ADa+h%C3%A0ng+Xe+m%C3%A1y+Honda+Trung+H%C3%B9ng+2/@14.4408623,109.0161645,747m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3168c51617963d47:0xb580b0db5f44734f!8m2!3d14.4408571!4d109.0187394!16s%2Fg%2F11b67sbdw4?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
                 class="btn btn-outline"
+                target="_blank"
                 >Xem chỉ đường</a
               >
             </div>
           </div>
 
-          <div class="store-card" data-region="binh-dinh">
+          <div class="store-card" data-region="gia-lai">
             <div class="store-image">
-              <img src="image/HEAD.JPG" alt="Honda Bình Định 3" />
+              <img src="image/HEAD.JPG" alt="Honda Gia Lai 3" />
+              <div class="store-badge">Gia Lai</div>
             </div>
             <div class="store-info">
               <h3>HEAD Trung Hùng 3</h3>
@@ -970,14 +1181,16 @@
               <a
                 href="https://www.google.com/maps/place/Head+Trung+H%C3%B9ng+3/@13.7548785,109.2065604,750m/data=!3m2!1e3!4b1!4m6!3m5!1s0x316f6cc2e17a7fa5:0xd1a4906d6d8c1e7a!8m2!3d13.7548733!4d109.2091353!16s%2Fg%2F11fnwhlkcm?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
                 class="btn btn-outline"
+                target="_blank"
                 >Xem chỉ đường</a
               >
             </div>
           </div>
 
-          <div class="store-card" data-region="binh-dinh">
+          <div class="store-card" data-region="gia-lai">
             <div class="store-image">
-              <img src="image/HEAD.JPG" alt="Honda Bình Định 4" />
+              <img src="image/HEAD.JPG" alt="Honda Gia Lai 4" />
+              <div class="store-badge">Gia Lai</div>
             </div>
             <div class="store-info">
               <h3>HEAD Trung Hùng 4</h3>
@@ -995,6 +1208,7 @@
               <a
                 href="https://www.google.com/maps/place/Head+Honda+Trung+H%C3%B9ng+4/@14.5495973,109.0407683,747m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3168c3073bc9c4c3:0x6e3f7e27df08852f!8m2!3d14.5495921!4d109.0433432!16s%2Fg%2F1jkvpkn4v?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
                 class="btn btn-outline"
+                target="_blank"
                 >Xem chỉ đường</a
               >
             </div>
@@ -1004,6 +1218,7 @@
           <div class="store-card" data-region="ha-noi">
             <div class="store-image">
               <img src="image/HEAD.JPG" alt="Honda Hà Nội" />
+              <div class="store-badge">Hà Nội</div>
             </div>
             <div class="store-info">
               <h3>HEAD Hùng Mạnh 7</h3>
@@ -1021,6 +1236,7 @@
               <a
                 href="https://www.google.com/maps/place/Honda+H%C3%B9ng+M%E1%BA%A1nh+7/@21.0458397,105.8730269,720m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3135abd5fc29275f:0x62992c006999cd20!8m2!3d21.0458347!4d105.8756018!16s%2Fg%2F11gdqqqfsd?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
                 class="btn btn-outline"
+                target="_blank"
                 >Xem chỉ đường</a
               >
             </div>
@@ -1030,6 +1246,7 @@
           <div class="store-card" data-region="son-la">
             <div class="store-image">
               <img src="image/HEAD.JPG" alt="Honda Sơn La 1" />
+              <div class="store-badge">Sơn La</div>
             </div>
             <div class="store-info">
               <h3>HEAD Hùng Mạnh 1</h3>
@@ -1047,6 +1264,7 @@
               <a
                 href="https://www.google.com/maps/search/C%C3%94NG+TY+TNHH+TM%26+DV+H%C3%99NG+M%E1%BA%A0NH+-+C%E1%BB%ACA+H%C3%80NG+XE+M%C3%81Y+HONDA/@21.177483,103.967907,92127m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
                 class="btn btn-outline"
+                target="_blank"
                 >Xem chỉ đường</a
               >
             </div>
@@ -1199,49 +1417,11 @@
                 >Xem chỉ đường</a
               >
             </div>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- Map Section 
-    <section id="map" class="map-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Bản Đồ Cửa Hàng</h2>
-          <p class="section-subtitle">Tìm đường đến cửa hàng Honda gần nhất</p>
-          <div class="divider"></div>
-        </div>
-
-        <div class="map-container">
-          <div id="storeMap"></div>
-          <div class="map-legend">
-            <h4>Chú thích:</h4>
-            <div class="legend-item">
-              <span
-                class="legend-color"
-                style="background-color: #e11931"
-              ></span>
-              <span>Bình Định (4)</span>
-            </div>
-            <div class="legend-item">
-              <span
-                class="legend-color"
-                style="background-color: #ff1010"
-              ></span>
-              <span>Hà Nội (1)</span>
-            </div>
-            <div class="legend-item">
-              <span
-                class="legend-color"
-                style="background-color: #d10000"
-              ></span>
-              <span>Sơn La (7)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>-->
+   
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
@@ -1284,6 +1464,31 @@
               </div>
             </div>
           </div>
+          <div class="contact-form">
+            <h3>Gửi Tin Nhắn</h3>
+            <form id="contactForm">
+              <div class="form-group">
+                <input type="text" placeholder="Họ và tên" required />
+              </div>
+              <div class="form-group">
+                <input type="tel" placeholder="Số điện thoại" required />
+              </div>
+              <div class="form-group">
+                <select required>
+                  <option value="" disabled selected>Chọn khu vực</option>
+                  <option value="gia-lai">Gia Lai</option>
+                  <option value="ha-noi">Hà Nội</option>
+                  <option value="son-la">Sơn La</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <textarea placeholder="Nội dung tin nhắn" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Gửi Tin Nhắn
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -1305,7 +1510,6 @@
             <ul>
               <li><a href="#home">Trang chủ</a></li>
               <li><a href="#stores">Hệ thống cửa hàng</a></li>
-
               <li><a href="#contact">Liên hệ</a></li>
             </ul>
           </div>
@@ -1313,16 +1517,24 @@
           <div class="footer-social">
             <h4>Theo Dõi Chúng Tôi</h4>
             <div class="social-icons">
-              <a href="https://www.facebook.com/hethongheadtrunghung"
+              <a
+                href="https://www.facebook.com/hethongheadtrunghung"
+                target="_blank"
                 ><i class="fab fa-facebook-f"></i
               ></a>
-              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+              <a
+                href="https://www.youtube.com/@HethongHEADTrungHung"
+                target="_blank"
                 ><i class="fab fa-youtube"></i
               ></a>
-              <a href="https://www.instagram.com/hethongheadtrunghung"
+              <a
+                href="https://www.instagram.com/hethongheadtrunghung"
+                target="_blank"
                 ><i class="fab fa-instagram"></i
               ></a>
-              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+              <a
+                href="https://www.tiktok.com/@hethongheadtrunghung"
+                target="_blank"
                 ><i class="fab fa-tiktok"></i
               ></a>
             </div>
@@ -1334,6 +1546,56 @@
         </div>
       </div>
     </footer>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+      <div class="container">
+        <a href="index.html" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="mobile-nav-label">Trang chủ</div>
+        </a>
+        <a href="/sanphamxemay/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-motorcycle"></i>
+          </div>
+          <div class="mobile-nav-label">Sản phẩm</div>
+        </a>
+        <a href="/tintuc/tintuckhuyenmai/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fa-solid fa-gift"></i>
+          </div>
+          <div class="mobile-nav-label">Khuyến mãi</div>
+        </a>
+        <a href="/cuahang/" class="mobile-nav-item active">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="mobile-nav-label">Đại lý</div>
+        </a>
+        <a href="/lienhe/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="mobile-nav-label">Liên hệ</div>
+        </a>
+      </div>
+    </nav>
+
+    <!-------Messenger Chat Button----------->
+    <a
+      href="https://m.me/hethongheadtrunghung"
+      class="messenger-chat"
+      target="_blank"
+    >
+      <i class="fab fa-facebook-messenger"></i>
+    </a>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+      <i class="fas fa-arrow-up"></i>
+    </a>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
@@ -1389,6 +1651,14 @@
           } else {
             header.classList.remove("scrolled");
           }
+
+          // Back to top button
+          const backToTop = document.getElementById("backToTop");
+          if (window.scrollY > 500) {
+            backToTop.classList.add("active");
+          } else {
+            backToTop.classList.remove("active");
+          }
         });
 
         // Smooth Scrolling for Anchor Links
@@ -1437,14 +1707,16 @@
                 region === "all" ||
                 card.getAttribute("data-region") === region
               ) {
-                card.style.display = "flex";
+                card.classList.remove("hidden");
                 setTimeout(() => {
                   card.style.opacity = "1";
+                  card.style.transform = "translateY(0)";
                 }, 50);
               } else {
                 card.style.opacity = "0";
+                card.style.transform = "translateY(20px)";
                 setTimeout(() => {
-                  card.style.display = "none";
+                  card.classList.add("hidden");
                 }, 300);
               }
             });
@@ -1453,13 +1725,6 @@
 
         // Initialize Map
         function initMap() {
-          // Coordinates for each region's center
-          const regions = {
-            "binh-dinh": [14.1667, 108.9833], // Bình Định
-            "ha-noi": [21.0285, 105.8542], // Hà Nội
-            "son-la": [21.3167, 103.9], // Sơn La
-          };
-
           // Create map centered on Vietnam
           const map = L.map("storeMap").setView([16.1667, 107.8333], 6);
 
@@ -1470,7 +1735,7 @@
           }).addTo(map);
 
           // Custom icons
-          const binhDinhIcon = L.icon({
+          const giaLaiIcon = L.icon({
             iconUrl: "image/logo/Logo_HEAD.png",
             iconSize: [32, 32],
             iconAnchor: [16, 32],
@@ -1490,42 +1755,40 @@
 
           // Store locations data
           const stores = [
-            // Bình Định stores (4)
+            // Gia Lai stores (4)
             {
               name: "HEAD Trung Hùng 1",
-              position: [13.77587, 109.22696], // Quy Nhơn
-              region: "binh-dinh",
-              address:
-                "290-292 Lê Hồng Phong, P. Thị Nại TP. Quy Nhơn, Bình Định",
+              position: [13.77587, 109.22696],
+              region: "gia-lai",
+              address: "288-290-292 Lê Hồng Phong, P. Quy Nhơn, Tỉnh Gia Lai",
               phone: "0256 3824 471",
             },
             {
               name: "HEAD Trung Hùng 2",
-              position: [14.44111, 109.01869], // Hoài Nhơn
-              region: "binh-dinh",
-              address:
-                "2531 Quang Trung, P. Bồng Sơn, TX. Hoài Nhơn, Bình Định",
+              position: [14.44111, 109.01869],
+              region: "gia-lai",
+              address: "2531 Quang Trung, P. Bồng Sơn, TX. Hoài Nhơn, Gia Lai",
               phone: "0256 3861 366",
             },
             {
               name: "HEAD Trung Hùng 3",
-              position: [13.75501, 109.20911], // Quy Nhơn
-              region: "binh-dinh",
-              address: "236 Tây Sơn, P. Nguyễn Văn Cừ, TP. Quy Nhơn, Bình Định",
+              position: [13.75501, 109.20911],
+              region: "gia-lai",
+              address: "236 Tây Sơn, P. Nguyễn Văn Cừ, TP. Quy Nhơn, Gia Lai",
               phone: "0256 3547 777",
             },
             {
               name: "HEAD Trung Hùng 4",
-              position: [14.55379, 109.04472], // Hoài Nhơn
-              region: "binh-dinh",
-              address: "450 Quang Trung, P. Tam Quan, TX. Hoài Nhơn, Bình Định",
+              position: [14.55379, 109.04472],
+              region: "gia-lai",
+              address: "450 Quang Trung, P. Tam Quan, TX. Hoài Nhơn, Gia Lai",
               phone: "0256 3965 007",
             },
 
             // Hà Nội store (1)
             {
               name: "HEAD Hùng Mạnh 7",
-              position: [21.04606, 105.87566], // Hà Nội
+              position: [21.04606, 105.87566],
               region: "ha-noi",
               address: "319 Nguyễn Văn Cừ, P. Ngọc Lâm, Q. Long Biên, Hà Nội",
               phone: "1900 636 712",
@@ -1534,7 +1797,7 @@
             // Sơn La stores (7)
             {
               name: "HEAD Hùng Mạnh 1",
-              position: [21.21801, 104.10694], // Mai Sơn
+              position: [21.21801, 104.10694],
               region: "son-la",
               address:
                 "Số nhà 30, Tiểu khu 20, TT. Hát Lót, H. Mai Sơn, Sơn La",
@@ -1587,20 +1850,20 @@
           // Add markers to map
           stores.forEach((store) => {
             let icon;
-            if (store.region === "binh-dinh") icon = binhDinhIcon;
+            if (store.region === "gia-lai") icon = giaLaiIcon;
             else if (store.region === "ha-noi") icon = haNoiIcon;
             else icon = sonLaIcon;
 
             const marker = L.marker(store.position, { icon: icon }).addTo(map);
 
             marker.bindPopup(`
-        <div class="map-popup">
-          <h3>${store.name}</h3>
-          <p><i class="fas fa-map-marker-alt"></i> ${store.address}</p>
-          <p><i class="fas fa-phone-alt"></i> ${store.phone}</p>
-          <a href="#" class="btn btn-primary btn-sm">Chỉ đường</a>
-        </div>
-      `);
+              <div class="map-popup">
+                <h3>${store.name}</h3>
+                <p><i class="fas fa-map-marker-alt"></i> ${store.address}</p>
+                <p><i class="fas fa-phone-alt"></i> ${store.phone}</p>
+                <a href="#" class="btn btn-primary btn-sm">Chỉ đường</a>
+              </div>
+            `);
           });
 
           // Fit bounds to show all markers
@@ -1612,6 +1875,16 @@
 
         // Initialize map when page loads
         initMap();
+
+        // Contact form submission
+        const contactForm = document.getElementById("contactForm");
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert(
+            "Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể."
+          );
+          contactForm.reset();
+        });
       });
     </script>
   </body>
