@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Liên Hệ</title>
-    <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="/sanphamxemay/image/banner/Logo_HEAD.png"
+      type="image/x-icon"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -236,7 +240,7 @@
         height: 50vh;
         min-height: 300px;
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-          url("image/KETNOI.jpg") no-repeat center center/cover;
+          url("/lienhe/image/KETNOI.jpg") no-repeat center center/cover;
         display: flex;
         align-items: center;
         margin-top: 80px;
@@ -579,7 +583,7 @@
       /* Back to Top */
       .back-to-top {
         position: fixed;
-        bottom: 30px;
+        bottom: 180px;
         right: 30px;
         width: 50px;
         height: 50px;
@@ -594,6 +598,7 @@
         visibility: hidden;
         transition: var(--transition);
         z-index: 999;
+        box-shadow: 0 4px 15px rgba(228, 5, 33, 0.3);
       }
 
       .back-to-top.active {
@@ -604,6 +609,94 @@
       .back-to-top:hover {
         background-color: #c0041d;
         transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(228, 5, 33, 0.4);
+      }
+
+      /* Messenger Chat Button */
+      .messenger-chat {
+        position: fixed;
+        bottom: 100px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        background-color: #0084ff;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
+        z-index: 999;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+
+      .messenger-chat:hover {
+        background-color: #0066cc;
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 132, 255, 0.4);
+      }
+
+      /* Hiệu ứng lan tỏa */
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
+        }
+      }
+
+      /* Điều chỉnh vị trí khi có cả 2 nút */
+      .back-to-top.active ~ .messenger-chat {
+        bottom: 100px;
+      }
+
+      /* Mobile Bottom Navigation Bar */
+      .mobile-bottom-nav {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 998;
+        padding: 10px 0;
+      }
+
+      .mobile-bottom-nav .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        padding: 5px 0;
+        transition: var(--transition);
+      }
+
+      .mobile-nav-item.active {
+        color: var(--primary-color);
+      }
+
+      .mobile-nav-icon {
+        font-size: 1.2rem;
+        margin-bottom: 4px;
+      }
+
+      .mobile-nav-label {
+        font-size: 0.7rem;
+        font-weight: 500;
       }
 
       /* Responsive */
@@ -634,6 +727,7 @@
           transition: var(--transition);
           padding: 80px 20px 20px;
           overflow-y: auto;
+          z-index: 1000;
         }
 
         .main-nav.active {
@@ -659,6 +753,16 @@
         .map-container {
           height: 350px;
         }
+
+        /* Hiển thị thanh menu mobile ở chân trang */
+        .mobile-bottom-nav {
+          display: block;
+        }
+
+        /* Điều chỉnh padding cho footer để tránh bị che bởi menu mobile */
+        .main-footer {
+          padding-bottom: 70px;
+        }
       }
 
       @media (max-width: 576px) {
@@ -676,6 +780,15 @@
 
         .contact-form {
           padding: 20px;
+        }
+
+        /* Điều chỉnh mobile bottom nav cho màn hình nhỏ */
+        .mobile-nav-icon {
+          font-size: 1.9rem;
+        }
+
+        .mobile-nav-label {
+          font-size: 1rem;
         }
       }
     </style>
@@ -786,16 +899,24 @@
 
             <h3 style="margin-top: 30px">Kết Nối Với Chúng Tôi</h3>
             <div class="social-links">
-              <a href="https://www.facebook.com/hethongheadtrunghung"
+              <a
+                href="https://www.facebook.com/hethongheadtrunghung"
+                target="_blank"
                 ><i class="fab fa-facebook-f"></i
               ></a>
-              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+              <a
+                href="https://www.youtube.com/@HethongHEADTrungHung"
+                target="_blank"
                 ><i class="fab fa-youtube"></i
               ></a>
-              <a href="https://www.instagram.com/hethongheadtrunghung"
+              <a
+                href="https://www.instagram.com/hethongheadtrunghung"
+                target="_blank"
                 ><i class="fab fa-instagram"></i
               ></a>
-              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+              <a
+                href="https://www.tiktok.com/@hethongheadtrunghung"
+                target="_blank"
                 ><i class="fab fa-tiktok"></i
               ></a>
             </div>
@@ -880,15 +1001,16 @@
               <a
                 href="https://www.google.com/maps/place/Honda+H%C3%B9ng+M%E1%BA%A1nh+7/@21.0458397,105.8730269,720m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3135abd5fc29275f:0x62992c006999cd20!8m2!3d21.0458347!4d105.8756018!16s%2Fg%2F11gdqqqfsd?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
                 class="btn btn-outline"
+                target="_blank"
                 >Chỉ đường</a
               >
             </div>
           </div>
 
-          <!-- Binh Dinh Branch -->
+          <!-- Gia Lai Branch -->
           <div class="branch-card">
             <div class="branch-image">
-              <img src="image/BINHDINH.jpg" alt="Chi nhánh Bình Định" />
+              <img src="image/BINHDINH.jpg" alt="Chi nhánh Gia Lai" />
             </div>
             <div class="branch-content">
               <h3 class="branch-title">Chi Nhánh Gia Lai</h3>
@@ -913,6 +1035,7 @@
               <a
                 href="https://www.google.com/maps/place/HONDA+TRUNG+H%C3%99NG+1/@13.7758146,109.2243526,750m/data=!3m2!1e3!4b1!4m6!3m5!1s0x316f6c85a6d6924d:0xa455acdefd4d31d7!8m2!3d13.7758094!4d109.2269275!16s%2Fg%2F11btrs8zjy?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
                 class="btn btn-outline"
+                target="_blank"
                 >Chỉ đường</a
               >
             </div>
@@ -946,6 +1069,7 @@
               <a
                 href="https://www.google.com/maps/place/Head+H%C3%B9ng+M%E1%BA%A1nh+3/@21.3312788,103.9098181,719m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31328b2d6f538d19:0xcba4b60a29410ff1!8m2!3d21.3312738!4d103.912393!16s%2Fg%2F11b67txg1z?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
                 class="btn btn-outline"
+                target="_blank"
                 >Chỉ đường</a
               >
             </div>
@@ -953,79 +1077,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Map Section 
-    <section class="map-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Bản Đồ Chi Nhánh</h2>
-          <p class="section-subtitle">
-            Tìm đường đến các chi nhánh của Honda Việt Nam
-          </p>
-          <div class="divider"></div>
-        </div>
-
-        <div class="map-container">
-           In a real implementation, you would embed Google Maps here 
-          <div
-            style="
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              height: 100%;
-              background-color: #eee;
-            "
-          >
-            <p style="font-size: 1.2rem; color: var(--gray-color)">
-              Bản đồ các chi nhánh Honda Việt Nam
-            </p>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- Working Hours Section
-    <section class="hours-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Giờ Làm Việc</h2>
-          <p class="section-subtitle">Thời gian phục vụ tại các chi nhánh</p>
-          <div class="divider"></div>
-        </div>
-
-        <table class="hours-table">
-          <thead>
-            <tr>
-              <th>Chi nhánh</th>
-              <th>Ngày làm việc</th>
-              <th>Giờ làm việc</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Hà Nội</td>
-              <td>Thứ 2 - Thứ 7</td>
-              <td>8:00 - 17:00</td>
-            </tr>
-            <tr>
-              <td>Bình Định</td>
-              <td>Thứ 2 - Thứ 7</td>
-              <td>8:00 - 17:00</td>
-            </tr>
-            <tr>
-              <td>Sơn La</td>
-              <td>Thứ 2 - Thứ 7</td>
-              <td>8:00 - 17:00</td>
-            </tr>
-            <tr>
-              <td>Dịch vụ khẩn cấp</td>
-              <td>Tất cả các ngày</td>
-              <td>24/7</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>  -->
 
     <!-- Footer -->
     <footer class="main-footer">
@@ -1039,16 +1090,24 @@
             />
             <p>Công ty TNHH TM&DV Hùng Mạnh</p>
             <div class="footer-social-links">
-              <a href="https://www.facebook.com/hethongheadtrunghung"
+              <a
+                href="https://www.facebook.com/hethongheadtrunghung"
+                target="_blank"
                 ><i class="fab fa-facebook-f"></i
               ></a>
-              <a href="https://www.youtube.com/@HethongHEADTrungHung"
+              <a
+                href="https://www.youtube.com/@HethongHEADTrungHung"
+                target="_blank"
                 ><i class="fab fa-youtube"></i
               ></a>
-              <a href="https://www.instagram.com/hethongheadtrunghung"
+              <a
+                href="https://www.instagram.com/hethongheadtrunghung"
+                target="_blank"
                 ><i class="fab fa-instagram"></i
               ></a>
-              <a href="https://www.tiktok.com/@hethongheadtrunghung"
+              <a
+                href="https://www.tiktok.com/@hethongheadtrunghung"
+                target="_blank"
                 ><i class="fab fa-tiktok"></i
               ></a>
             </div>
@@ -1064,22 +1123,6 @@
               <li><a href="/lienhe/">Liên hệ</a></li>
             </ul>
           </div>
-
-          <!--<div class="footer-col">
-            <h3>Chi nhánh</h3>
-            <ul class="footer-contact-info">
-              <li>
-                <i class="fas fa-map-marker-alt"></i> Hà Nội: Số 1 Phạm Hùng
-              </li>
-              <li>
-                <i class="fas fa-map-marker-alt"></i> Bình Định: 123 Trần Hưng
-                Đạo
-              </li>
-              <li>
-                <i class="fas fa-map-marker-alt"></i> Sơn La: 456 Chu Văn Thịnh
-              </li>
-            </ul>
-          </div>-->
 
           <div class="footer-col">
             <h3>Liên hệ</h3>
@@ -1098,11 +1141,55 @@
       </div>
     </footer>
 
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+      <div class="container">
+        <a href="/Trangchu/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="mobile-nav-label">Trang chủ</div>
+        </a>
+        <a href="/sanphamxemay/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-motorcycle"></i>
+          </div>
+          <div class="mobile-nav-label">Sản phẩm</div>
+        </a>
+        <a href="/tintuc/tintuckhuyenmai/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fa-solid fa-gift"></i>
+          </div>
+          <div class="mobile-nav-label">Khuyến mãi</div>
+        </a>
+        <a href="/cuahang/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="mobile-nav-label">Đại lý</div>
+        </a>
+        <a href="/lienhe/" class="mobile-nav-item active">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="mobile-nav-label">Liên hệ</div>
+        </a>
+      </div>
+    </nav>
+
+    <!-------Messenger Chat Button----------->
+    <a
+      href="https://m.me/hethongheadtrunghung"
+      class="messenger-chat"
+      target="_blank"
+    >
+      <i class="fab fa-facebook-messenger"></i>
+    </a>
+
     <!-- Back to Top -->
     <a href="#" class="back-to-top" id="backToTop">
       <i class="fas fa-arrow-up"></i>
     </a>
-
     <script>
       // Mobile Menu Toggle
       const mobileMenu = document.getElementById("mobile-menu");
@@ -1152,6 +1239,15 @@
           contactForm.reset();
         });
       }
+
+      // Close mobile menu when clicking on a link
+      const navLinks = document.querySelectorAll(".main-nav a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("active");
+          mainNav.classList.remove("active");
+        });
+      });
     </script>
   </body>
 </html>
