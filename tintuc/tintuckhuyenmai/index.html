@@ -15,7 +15,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
@@ -47,11 +47,18 @@
       }
 
       body {
-        font-family: "Montserrat", sans-serif;
+        font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
         line-height: 1.6;
         color: var(--dark-color);
         overflow-x: hidden;
         background-color: #fff;
+        font-weight: 400;
+      }
+
+      body * {
+        font-family: inherit;
       }
 
       .container {
@@ -86,6 +93,7 @@
         transition: var(--transition);
         cursor: pointer;
         border: none;
+        font-family: inherit;
       }
 
       .btn-primary {
@@ -232,6 +240,7 @@
         padding: 2rem 0;
         z-index: 1000;
         transition: all 0.3s ease;
+        background-color: #f9f9f9;
       }
 
       .main-header.scrolled {
@@ -367,6 +376,7 @@
       .breadcrumb {
         padding-top: 10.5rem;
         margin-bottom: 4rem;
+        background-color: #f8f9fa;
       }
 
       .breadcrumb-content {
@@ -831,6 +841,7 @@
         border: none;
         border-radius: 30px 0 0 30px;
         font-size: 1.4rem;
+        font-family: inherit;
       }
 
       .newsletter-form button {
@@ -841,6 +852,7 @@
         border-radius: 0 30px 30px 0;
         cursor: pointer;
         transition: var(--transition);
+        font-family: inherit;
       }
 
       .newsletter-form button:hover {
@@ -888,12 +900,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         opacity: 0;
         visibility: hidden;
         transition: var(--transition);
         z-index: 999;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 15px rgba(228, 5, 33, 0.3);
       }
 
       .back-to-top.active {
@@ -902,8 +914,9 @@
       }
 
       .back-to-top:hover {
-        background-color: #c01027;
+        background-color: #c0041d;
         transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(228, 5, 33, 0.4);
       }
 
       /* Messenger Chat Button */
@@ -920,7 +933,7 @@
         justify-content: center;
         align-items: center;
         font-size: 28px;
-        box-shadow: 0 4px 12px rgba(0, 132, 255, 0.3);
+        box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
         z-index: 999;
         transition: all 0.3s ease;
         animation: pulse 2s infinite;
@@ -929,6 +942,7 @@
       .messenger-chat:hover {
         background-color: #0066cc;
         transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 132, 255, 0.4);
       }
 
       /* Hiệu ứng lan tỏa */
@@ -949,6 +963,52 @@
         bottom: 100px;
       }
 
+      /* Mobile Bottom Navigation Bar - ĐÃ SỬA FONT CHỮ */
+      .mobile-bottom-nav {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 998;
+        padding: 10px 0;
+      }
+
+      .mobile-bottom-nav .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        padding: 5px 0;
+        transition: var(--transition);
+        font-family: inherit; /* Đảm bảo kế thừa font */
+      }
+
+      .mobile-nav-item.active {
+        color: var(--primary-color);
+      }
+
+      .mobile-nav-icon {
+        font-size: 1.8rem; /* Tăng kích thước icon */
+        margin-bottom: 5px;
+      }
+
+      .mobile-nav-label {
+        font-size: 1.1rem; /* Tăng kích thước font chữ */
+        font-weight: 500;
+        text-align: center;
+        line-height: 1.2;
+      }
+
       /* Responsive Styles */
       @media (max-width: 1024px) {
         .news-container {
@@ -961,10 +1021,6 @@
       }
 
       @media (max-width: 768px) {
-        html {
-          font-size: 56.25%;
-        }
-
         .menu-toggle {
           display: block;
         }
@@ -1027,13 +1083,45 @@
         .news-grid {
           grid-template-columns: 1fr;
         }
+        .back-to-top {
+          width: 45px;
+          height: 45px;
+          font-size: 1.5rem;
+          right: 20px;
+          bottom: 180px;
+        }
+        .messenger-chat {
+          width: 50px;
+          height: 50px;
+          font-size: 24px;
+          right: 18px;
+          bottom: 110px;
+        }
+
+        .back-to-top.active ~ .messenger-chat {
+          bottom: 80px;
+        }
+
+        .promo-content h2 {
+          font-size: 2rem;
+        }
+
+        .promo-content p {
+          font-size: 1.1rem;
+        }
+
+        /* Hiển thị thanh menu mobile ở chân trang */
+        .mobile-bottom-nav {
+          display: block;
+        }
+
+        /* Điều chỉnh padding cho footer để tránh bị che bởi menu mobile */
+        .main-footer {
+          padding-bottom: 70px;
+        }
       }
 
       @media (max-width: 576px) {
-        html {
-          font-size: 50%;
-        }
-
         .section-title {
           font-size: 3rem;
         }
@@ -1062,6 +1150,30 @@
           flex-direction: column;
           gap: 2rem;
           text-align: center;
+        }
+
+        /* Điều chỉnh mobile bottom nav cho màn hình nhỏ */
+        .mobile-nav-icon {
+          font-size: 1.9rem;
+        }
+
+        .mobile-nav-label {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 400px) {
+        /* Tối ưu hóa cho màn hình rất nhỏ */
+        .mobile-nav-icon {
+          font-size: 1.5rem;
+        }
+
+        .mobile-nav-label {
+          font-size: 0.9rem;
+        }
+
+        .mobile-bottom-nav {
+          padding: 8px 0;
         }
       }
     </style>
@@ -1098,7 +1210,7 @@
         <nav class="main-nav">
           <ul>
             <li><a href="/Trangchu/">Trang chủ</a></li>
-            <li><a href="/sanpham/">Sản phẩm</a></li>
+            <li><a href="/sanphamxemay/">Sản phẩm</a></li>
             <li><a href="/tintuc/" class="active">Tin tức</a></li>
             <li><a href="/dichvu/">Dịch vụ</a></li>
             <li><a href="/lienhe/">Liên hệ</a></li>
@@ -1155,7 +1267,7 @@
                   <h2 class="featured-news-title">
                     Honda Việt Nam tri ân khách hàng với ưu đãi hấp dẫn trong
                     chương trình khuyến mại khủng dành cho dòng xe Sh mode –
-                    “Lên đời đẳng cấp – Không lo lãi suất”
+                    "Lên đời đẳng cấp – Không lo lãi suất"
                   </h2>
                   <p class="featured-news-excerpt">
                     Nhằm nâng cao cơ hội trải nghiệm và sử dụng mẫu xe Sh mode
@@ -1337,7 +1449,41 @@
         </div>
       </div>
     </footer>
-
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+      <div class="container">
+        <a href="/Trangchu/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="mobile-nav-label">Trang chủ</div>
+        </a>
+        <a href="/sanphamxemay/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-motorcycle"></i>
+          </div>
+          <div class="mobile-nav-label">Sản phẩm</div>
+        </a>
+        <a href="/tintuc/tintuckhuyenmai/" class="mobile-nav-item active">
+          <div class="mobile-nav-icon">
+            <i class="fa-solid fa-gift"></i>
+          </div>
+          <div class="mobile-nav-label">Khuyến mãi</div>
+        </a>
+        <a href="/cuahang/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="mobile-nav-label">Đại lý</div>
+        </a>
+        <a href="/lienhe/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="mobile-nav-label">Liên hệ</div>
+        </a>
+      </div>
+    </nav>
     <!-- Messenger Chat Button -->
     <a
       href="https://m.me/hethongheadtrunghung"
