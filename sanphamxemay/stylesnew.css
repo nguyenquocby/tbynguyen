@@ -1504,4 +1504,13 @@ ul {
     right: 20px;
     bottom: 180px;
   }
+  /* Điều chỉnh mobile bottom nav cho màn hình nhỏ */
+        .mobile-nav-icon {
+          font-size: 1.9rem;
+        }
+
+        .mobile-nav-label {
+          font-size: 1rem;
+        }
 }
+
