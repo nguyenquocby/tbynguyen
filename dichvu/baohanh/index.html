@@ -581,7 +581,6 @@
         color: #adb5bd;
         font-size: 0.9rem;
       }
-
       /* Back to Top */
       .back-to-top {
         position: fixed;
@@ -600,6 +599,7 @@
         visibility: hidden;
         transition: var(--transition);
         z-index: 999;
+        box-shadow: 0 4px 15px rgba(228, 5, 33, 0.3);
       }
 
       .back-to-top.active {
@@ -610,6 +610,94 @@
       .back-to-top:hover {
         background-color: #c0041d;
         transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(228, 5, 33, 0.4);
+      }
+
+      /* Messenger Chat Button */
+      .messenger-chat {
+        position: fixed;
+        bottom: 100px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        background-color: #0084ff;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
+        z-index: 999;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+
+      .messenger-chat:hover {
+        background-color: #0066cc;
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 132, 255, 0.4);
+      }
+
+      /* Hiệu ứng lan tỏa */
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
+        }
+      }
+
+      /* Điều chỉnh vị trí khi có cả 2 nút */
+      .back-to-top.active ~ .messenger-chat {
+        bottom: 100px;
+      }
+
+      /* Mobile Bottom Navigation Bar */
+      .mobile-bottom-nav {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 998;
+        padding: 10px 0;
+      }
+
+      .mobile-bottom-nav .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        padding: 5px 0;
+        transition: var(--transition);
+      }
+
+      .mobile-nav-item.active {
+        color: var(--primary-color);
+      }
+
+      .mobile-nav-icon {
+        font-size: 1.2rem;
+        margin-bottom: 4px;
+      }
+
+      .mobile-nav-label {
+        font-size: 0.7rem;
+        font-weight: 500;
       }
 
       /* Responsive */
@@ -680,6 +768,49 @@
         .check-form button {
           margin-top: 10px;
         }
+        .back-to-top {
+          width: 45px;
+          height: 45px;
+          font-size: 1rem;
+          right: 20px;
+          bottom: 180px;
+        }
+
+        .messenger-chat {
+          width: 50px;
+          height: 50px;
+          font-size: 24px;
+          right: 18px;
+          bottom: 110px;
+        }
+
+        .back-to-top.active ~ .messenger-chat {
+          bottom: 80px;
+        }
+        /* Hiển thị thanh menu mobile ở chân trang */
+        .mobile-bottom-nav {
+          display: block;
+        }
+
+        /* Điều chỉnh padding cho footer để tránh bị che bởi menu mobile */
+        .main-footer {
+          padding-bottom: 70px;
+        }
+        .menu-toggle {
+          display: block;
+        }
+
+        .menu-toggle.active .bar:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-toggle.active .bar:nth-child(2) {
+          opacity: 0;
+        }
+
+        .menu-toggle.active .bar:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
+        }
       }
 
       @media (max-width: 576px) {
@@ -712,7 +843,7 @@
             alt="Honda Logo"
           />
         </a>
-
+        <h3>HEAD TRUNG HÙNG</h3>
         <div class="menu-toggle" id="mobile-menu">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -1482,6 +1613,51 @@
         </div>
       </div>
     </footer>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+      <div class="container">
+        <a href="index.html" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="mobile-nav-label">Trang chủ</div>
+        </a>
+        <a href="/sanphamxemay/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-motorcycle"></i>
+          </div>
+          <div class="mobile-nav-label">Sản phẩm</div>
+        </a>
+        <a href="/tintuc/tintuckhuyenmai/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fa-solid fa-gift"></i>
+          </div>
+          <div class="mobile-nav-label">Khuyến mãi</div>
+        </a>
+        <a href="/cuahang/" class="mobile-nav-item active">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="mobile-nav-label">Đại lý</div>
+        </a>
+        <a href="/lienhe/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="mobile-nav-label">Liên hệ</div>
+        </a>
+      </div>
+    </nav>
+
+    <!-------Messenger Chat Button----------->
+    <a
+      href="https://m.me/hethongheadtrunghung"
+      class="messenger-chat"
+      target="_blank"
+    >
+      <i class="fab fa-facebook-messenger"></i>
+    </a>
 
     <!-- Back to Top -->
     <a href="#" class="back-to-top" id="backToTop">
