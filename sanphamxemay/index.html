@@ -1690,9 +1690,8 @@
         let currentSlide = 0;
         let autoSlideInterval;
         const totalSlides = slides.length;
-        const slideDuration = 5000; // 5 seconds per slide
+        const slideDuration = 5000;
 
-        // Create dots for hero slider
         function createHeroDots() {
           sliderDots.innerHTML = "";
           for (let i = 0; i < totalSlides; i++) {
@@ -1704,52 +1703,38 @@
           }
         }
 
-        // Go to specific slide
         function goToSlide(index) {
-          // Reset progress bar
           progressBar.style.transition = "none";
           progressBar.style.width = "0%";
-
-          // Update slides
           slides[currentSlide].classList.remove("active");
           currentSlide = index;
           slides[currentSlide].classList.add("active");
-
-          // Update dots
           updateHeroDots();
-
-          // Restart progress bar animation
           setTimeout(() => {
             progressBar.style.transition = `width ${slideDuration}ms linear`;
             progressBar.style.width = "100%";
           }, 50);
-
-          // Reset auto slide timer
           resetAutoSlide();
         }
 
-        // Update hero dots
         function updateHeroDots() {
           document.querySelectorAll(".slider-dot").forEach((dot, index) => {
             dot.classList.toggle("active", index === currentSlide);
           });
         }
 
-        // Next slide
         function nextSlide() {
           let nextIndex = currentSlide + 1;
           if (nextIndex >= totalSlides) nextIndex = 0;
           goToSlide(nextIndex);
         }
 
-        // Previous slide
         function prevSlide() {
           let prevIndex = currentSlide - 1;
           if (prevIndex < 0) prevIndex = totalSlides - 1;
           goToSlide(prevIndex);
         }
 
-        // Auto slide functionality
         function startAutoSlide() {
           autoSlideInterval = setInterval(nextSlide, slideDuration);
         }
@@ -1759,35 +1744,23 @@
           startAutoSlide();
         }
 
-        // Event listeners for hero slider
         prevBtn.addEventListener("click", prevSlide);
         nextBtn.addEventListener("click", nextSlide);
 
-        // Pause auto slide on hover
         const heroSlider = document.querySelector(".hero-slider");
-        heroSlider.addEventListener("mouseenter", () => {
-          clearInterval(autoSlideInterval);
-          progressBar.style.animationPlayState = "paused";
-        });
+        heroSlider.addEventListener("mouseenter", () =>
+          clearInterval(autoSlideInterval)
+        );
+        heroSlider.addEventListener("mouseleave", startAutoSlide);
 
-        heroSlider.addEventListener("mouseleave", () => {
-          startAutoSlide();
-          progressBar.style.animationPlayState = "running";
-        });
-
-        // Initialize hero slider
         createHeroDots();
         startAutoSlide();
         progressBar.style.width = "100%";
 
         // ===== HEADER SCROLL EFFECT =====
         const header = document.querySelector(".main-header");
-        window.addEventListener("scroll", function () {
-          if (window.scrollY > 100) {
-            header.classList.add("scrolled");
-          } else {
-            header.classList.remove("scrolled");
-          }
+        window.addEventListener("scroll", () => {
+          header.classList.toggle("scrolled", window.scrollY > 100);
         });
 
         // ===== MOBILE MENU TOGGLE =====
@@ -1798,19 +1771,14 @@
         menuToggle.addEventListener("click", function () {
           this.classList.toggle("active");
           mainNav.classList.toggle("active");
-          // Toggle body overflow when menu is open
-          if (mainNav.classList.contains("active")) {
-            body.style.overflow = "hidden";
-          } else {
-            body.style.overflow = "";
-          }
+          body.style.overflow = mainNav.classList.contains("active")
+            ? "hidden"
+            : "";
         });
 
-        // Close mobile menu when clicking on a link or outside
         document.addEventListener("click", function (e) {
           const isClickInsideNav =
             mainNav.contains(e.target) || menuToggle.contains(e.target);
-
           if (!isClickInsideNav && mainNav.classList.contains("active")) {
             menuToggle.classList.remove("active");
             mainNav.classList.remove("active");
@@ -1818,7 +1786,6 @@
           }
         });
 
-        // Close menu when window is resized above breakpoint
         window.addEventListener("resize", function () {
           if (window.innerWidth > 992) {
             menuToggle.classList.remove("active");
@@ -1831,65 +1798,74 @@
         const tabBtns = document.querySelectorAll(".tab-btn");
         const productCards = document.querySelectorAll(".product-card");
 
+        function applyFilter(category) {
+          // Cập nhật trạng thái active cho nút lọc
+          tabBtns.forEach((b) => {
+            b.classList.toggle(
+              "active",
+              b.getAttribute("data-category") === category
+            );
+          });
+
+          // Lọc sản phẩm
+          productCards.forEach((card) => {
+            if (
+              category === "all" ||
+              card.getAttribute("data-category") === category
+            ) {
+              card.style.display = "block";
+              card.classList.add("fade-in");
+              setTimeout(() => card.classList.remove("fade-in"), 1000);
+            } else {
+              card.style.display = "none";
+            }
+          });
+        }
+
+        // Khi click tab
         tabBtns.forEach((btn) => {
           btn.addEventListener("click", function () {
-            // Update active tab
-            tabBtns.forEach((b) => b.classList.remove("active"));
-            this.classList.add("active");
-
-            // Filter products
             const category = this.getAttribute("data-category");
-
-            productCards.forEach((card) => {
-              if (
-                category === "all" ||
-                card.getAttribute("data-category") === category
-              ) {
-                card.style.display = "block";
-                // Add animation
-                card.classList.add("fade-in");
-                setTimeout(() => card.classList.remove("fade-in"), 1000);
-              } else {
-                card.style.display = "none";
-              }
-            });
+            applyFilter(category);
+            // Cập nhật URL (optional)
+            const newUrl = new URL(window.location.href);
+            newUrl.searchParams.set("category", category);
+            window.history.pushState({}, "", newUrl);
           });
         });
-        // Back to Top Button
+
+        // Khi load trang, đọc query ?category=
+        const params = new URLSearchParams(window.location.search);
+        const categoryFromUrl = params.get("category");
+        if (categoryFromUrl) {
+          applyFilter(categoryFromUrl);
+        } else {
+          applyFilter("all"); // mặc định hiển thị tất cả
+        }
+
+        // ===== BACK TO TOP =====
         const backToTop = document.querySelector("#backToTop");
-        window.addEventListener("scroll", function () {
-          if (window.scrollY > 300) {
-            backToTop.classList.add("active");
-          } else {
-            backToTop.classList.remove("active");
-          }
+        window.addEventListener("scroll", () => {
+          backToTop.classList.toggle("active", window.scrollY > 300);
+        });
+        backToTop.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
-        backToTop.addEventListener("click", function (e) {
-          e.preventDefault();
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-        });
         // ===== SMOOTH SCROLLING =====
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
           anchor.addEventListener("click", function (e) {
             e.preventDefault();
-
             const targetId = this.getAttribute("href");
             if (targetId === "#") return;
-
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-              // Close mobile menu if open
               if (mainNav.classList.contains("active")) {
                 menuToggle.classList.remove("active");
                 mainNav.classList.remove("active");
                 body.style.overflow = "";
               }
-
-              // Scroll to target
               window.scrollTo({
                 top: targetElement.offsetTop - 100,
                 behavior: "smooth",
