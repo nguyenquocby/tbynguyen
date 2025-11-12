@@ -292,6 +292,18 @@
 
       .tab-content.active {
         display: block;
+        animation: fadeIn 0.5s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       /* Products Grid */
@@ -334,6 +346,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
       }
 
       .product-image img {
@@ -362,7 +375,26 @@
         color: var(--gray-color);
         font-size: 0.9rem;
         margin-bottom: 15px;
-        min-height: 60px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-description.collapsed {
+        max-height: 60px;
+      }
+
+      .product-description.expanded {
+        max-height: none;
+      }
+
+      .read-more-btn {
+        background: none;
+        border: none;
+        color: var(--primary-color);
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 5px;
+        display: inline-block;
       }
 
       .color-options {
@@ -386,6 +418,7 @@
         border-radius: 50%;
         cursor: pointer;
         transition: var(--transition);
+        border: 2px solid transparent;
       }
 
       .color-item.active {
@@ -554,6 +587,7 @@
         visibility: hidden;
         transition: var(--transition);
         z-index: 999;
+        box-shadow: 0 4px 15px rgba(228, 5, 33, 0.3);
       }
 
       .back-to-top.active {
@@ -564,6 +598,94 @@
       .back-to-top:hover {
         background-color: #c0041d;
         transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(228, 5, 33, 0.4);
+      }
+
+      /* Messenger Chat Button */
+      .messenger-chat {
+        position: fixed;
+        bottom: 100px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        background-color: #0084ff;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
+        z-index: 999;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+
+      .messenger-chat:hover {
+        background-color: #0066cc;
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 132, 255, 0.4);
+      }
+
+      /* Hiệu ứng lan tỏa */
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
+        }
+      }
+
+      /* Điều chỉnh vị trí khi có cả 2 nút */
+      .back-to-top.active ~ .messenger-chat {
+        bottom: 100px;
+      }
+
+      /* Mobile Bottom Navigation Bar */
+      .mobile-bottom-nav {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 998;
+        padding: 10px 0;
+      }
+
+      .mobile-bottom-nav .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        padding: 5px 0;
+        transition: var(--transition);
+      }
+
+      .mobile-nav-item.active {
+        color: var(--primary-color);
+      }
+
+      .mobile-nav-icon {
+        font-size: 1.2rem;
+        margin-bottom: 4px;
+      }
+
+      .mobile-nav-label {
+        font-size: 0.7rem;
+        font-weight: 500;
       }
 
       /* Responsive */
@@ -630,6 +752,49 @@
         .newsletter-form button {
           margin-top: 10px;
         }
+        .back-to-top {
+          width: 45px;
+          height: 45px;
+          font-size: 1rem;
+          right: 20px;
+          bottom: 180px;
+        }
+
+        .messenger-chat {
+          width: 50px;
+          height: 50px;
+          font-size: 24px;
+          right: 18px;
+          bottom: 110px;
+        }
+
+        .back-to-top.active ~ .messenger-chat {
+          bottom: 80px;
+        }
+        /* Hiển thị thanh menu mobile ở chân trang */
+        .mobile-bottom-nav {
+          display: block;
+        }
+
+        /* Điều chỉnh padding cho footer để tránh bị che bởi menu mobile */
+        .main-footer {
+          padding-bottom: 70px;
+        }
+        .menu-toggle {
+          display: block;
+        }
+
+        .menu-toggle.active .bar:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-toggle.active .bar:nth-child(2) {
+          opacity: 0;
+        }
+
+        .menu-toggle.active .bar:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
+        }
       }
 
       @media (max-width: 576px) {
@@ -661,7 +826,7 @@
             alt="Honda Logo"
           />
         </a>
-
+        <h3>HEAD TRUNG HÙNG</h3>
         <div class="menu-toggle" id="mobile-menu">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -717,158 +882,340 @@
             <div class="product-card">
               <div class="product-badge">Bán chạy</div>
               <div class="product-image">
-                <img src="image/MBH/1.png" alt="Mũ bảo hiểm Honda Fullface" />
+                <img
+                  src="image/MBH/Mũ Hiway Tiêu chuẩn/TRANG.png"
+                  alt="Mũ bảo hiểm Honda Fullface"
+                  data-color="white"
+                />
+                <img
+                  src="image/MBH/Mũ Hiway Tiêu chuẩn/DEN.png"
+                  alt="Mũ bảo hiểm Honda Fullface"
+                  data-color="black"
+                  style="display: none"
+                />
+                <img
+                  src="image/MBH/Mũ Hiway Tiêu chuẩn/XANH.png"
+                  alt="Mũ bảo hiểm Honda Fullface"
+                  data-color="blue"
+                  style="display: none"
+                />
+                <img
+                  src="image/MBH/Mũ Hiway Tiêu chuẩn/BE.png"
+                  alt="Mũ bảo hiểm Honda Fullface"
+                  data-color="yellow"
+                  style="display: none"
+                />
               </div>
               <div class="product-info">
                 <h3>Mũ Hiway tiêu chuẩn</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Thiết kế: Mũ nửa đầu không kính Hiway tiêu chuẩn - Trắng bóng
                   Mũ nửa đầu không kính Hiway tiêu chuẩn - Đen mờ Mũ nửa đầu
                   không kính Hiway tiêu chuẩn - Xanh Navy Mũ nửa đầu không kính
                   Hiway tiêu chuẩn - Be
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="color-options">
                   <h4>Màu sắc:</h4>
                   <div class="color-list">
                     <div
                       class="color-item active"
-                      style="background-color: #fff56c"
+                      style="background-color: #ffffff"
+                      data-color="white"
                     ></div>
                     <div
                       class="color-item"
                       style="background-color: #000000"
+                      data-color="black"
                     ></div>
                     <div
                       class="color-item"
                       style="background-color: #0056b3"
+                      data-color="blue"
                     ></div>
                     <div
                       class="color-item"
-                      style="background-color: #ffffff; border: 1px solid #ddd"
+                      style="background-color: #f3f583"
+                      data-color="yellow"
                     ></div>
                   </div>
                 </div>
-                <div class="product-price">149.000 VNĐ</div>
+                <div class="product-price">Từ 149.000 VNĐ</div>
               </div>
             </div>
-
             <!-- Product 2 -->
             <div class="product-card">
               <div class="product-badge">Bán chạy</div>
               <div class="product-image">
-                <img src="image/MBH/2.png" alt="Mũ bảo hiểm Honda Fullface" />
+                <img
+                  src="image/MBH/Mũ Jet Cao cấp Tem/DEN.png"
+                  alt="Mũ bảo hiểm Honda"
+                  data-color="black"
+                />
+                <img
+                  src="image/MBH/Mũ Jet Cao cấp Tem/HONG.png"
+                  alt="Mũ bảo hiểm Honda"
+                  data-color="pink"
+                  style="display: none"
+                />
               </div>
               <div class="product-info">
-                <h3>Mũ Jet Thời Trang</h3>
-                <p class="product-description">
-                  Thiết kế: Mũ bảo hiểm Jet Thời Trang không kính - Xám xi măng
-                  bóng Mũ bảo hiểm Jet Thời Trang không kính - Đen mờ Mũ bảo
-                  hiểm Jet Thời Trang không kính - Trắng bóng
+                <h3>Mũ Jet Cao Cấp Tem</h3>
+                <p class="product-description collapsed">
+                  <b>Thiết kế:</b> Màu sắc Mũ Jet Cao cấp - Tem: Đen Xám/ Đen
+                  Hồng Chất liệu vỏ: Nhựa ABS nguyên sinh cao cấp, đạt chuẩn
+                  Quatest Việt Nam Lót trong: Xốp EPS dày & vải nâu đất sang
+                  trọng Kính âm toàn diện: Chống bụi – nắng – mưa – tia UV
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="color-options">
                   <h4>Màu sắc:</h4>
                   <div class="color-list">
                     <div
                       class="color-item active"
                       style="background-color: #000000"
+                      data-color="black"
                     ></div>
                     <div
                       class="color-item"
-                      style="background-color: #6d6d6d"
-                    ></div>
-                    <div
-                      class="color-item"
-                      style="background-color: #ffffff; border: 1px solid #ddd"
+                      style="background-color: #ff5bce"
+                      data-color="pink"
                     ></div>
                   </div>
                 </div>
-                <div class="product-price">349.000 VNĐ</div>
+                <div class="product-price">Từ 489.000 VNĐ</div>
               </div>
             </div>
-
+            <!-- Product 2 -->
+            <div class="product-card">
+              <div class="product-badge">Bán chạy</div>
+              <div class="product-image">
+                <img
+                  src="image/MBH/Mũ Jet Cao cấp Trơn/DEN.png"
+                  alt="Mũ bảo hiểm Honda"
+                  data-color="black"
+                />
+                <img
+                  src="image/MBH/Mũ Jet Cao cấp Trơn/SUA.png"
+                  alt="Mũ bảo hiểm Honda"
+                  data-color="yellow"
+                  style="display: none"
+                />
+                <img
+                  src="image/MBH/Mũ Jet Cao cấp Trơn/XIMANG.png"
+                  alt="Mũ bảo hiểm Honda"
+                  data-color="gray"
+                  style="display: none"
+                />
+              </div>
+              <div class="product-info">
+                <h3>Mũ Jet Cao Cấp Tem</h3>
+                <p class="product-description collapsed">
+                  <b>Thiết kế:</b> Màu sắc Mũ Jet Cao cấp - Tem: Đen Xám/ Đen
+                  Hồng Chất liệu vỏ: Nhựa ABS nguyên sinh cao cấp, đạt chuẩn
+                  Quatest Việt Nam Lót trong: Xốp EPS dày & vải nâu đất sang
+                  trọng Kính âm toàn diện: Chống bụi – nắng – mưa – tia UV
+                </p>
+                <button class="read-more-btn">Xem thêm</button>
+                <div class="color-options">
+                  <h4>Màu sắc:</h4>
+                  <div class="color-list">
+                    <div
+                      class="color-item active"
+                      style="background-color: #000000"
+                      data-color="black"
+                    ></div>
+                    <div
+                      class="color-item"
+                      style="background-color: #cab4a6"
+                      data-color="yellow"
+                    ></div>
+                    <div
+                      class="color-item"
+                      style="background-color: #505050"
+                      data-color="gray"
+                    ></div>
+                  </div>
+                </div>
+                <div class="product-price">Từ 449.000 VNĐ</div>
+              </div>
+            </div>
             <!-- Product 3 -->
             <div class="product-card">
               <div class="product-badge">Bán chạy</div>
               <div class="product-image">
-                <img src="image/MBH/3.png" alt="Mũ bảo hiểm Honda Fullface" />
+                <img
+                  src="image/MBH/Mũ Jet Thời Trang/DEN.png"
+                  alt="Mũ bảo hiểm Honda Fullface"
+                  data-color="black"
+                />
+                <img
+                  src="image/MBH/Mũ Jet Thời Trang/XAM.png"
+                  alt="Mũ bảo hiểm Honda Fullface"
+                  data-color="gray"
+                  style="display: none"
+                />
+                <img
+                  src="image/MBH/Mũ Jet Thời Trang/TRANG.png"
+                  alt="Mũ bảo hiểm Honda Fullface"
+                  data-color="white"
+                  style="display: none"
+                />
               </div>
               <div class="product-info">
-                <h3>Mũ Jet Cổ Điển</h3>
-                <p class="product-description">
-                  Thiết kế: Mũ bảo hiểm Jet Cổ điển có kính - Đen mờ Mũ bảo hiểm
-                  Jet Cổ điển có kính - Trắng bóng
+                <h3>Mũ Jet Thời Trang</h3>
+                <p class="product-description collapsed">
+                  Thiết kế: Mũ bảo hiểm Jet Thời Trang không kính - Xám xi măng
+                  bóng Mũ bảo hiểm Jet Thời Trang không kính - Đen mờ Mũ bảo
+                  hiểm Jet Thời Trang không kính - Trắng bóng
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="color-options">
                   <h4>Màu sắc:</h4>
                   <div class="color-list">
                     <div
                       class="color-item active"
                       style="background-color: #000000"
+                      data-color="black"
+                    ></div>
+                    <div
+                      class="color-item"
+                      style="background-color: #6d6d6d"
+                      data-color="gray"
                     ></div>
                     <div
                       class="color-item"
                       style="background-color: #ffffff; border: 1px solid #ddd"
+                      data-color="white"
                     ></div>
                   </div>
                 </div>
-                <div class="product-price">449.000 VNĐ</div>
+                <div class="product-price">Từ 349.000 VNĐ</div>
               </div>
             </div>
 
             <!-- Product 4 -->
             <div class="product-card">
-              <div class="product-badge">Mới</div>
+              <div class="product-badge">Bán chạy</div>
               <div class="product-image">
-                <img src="image/MBH/4.jpg" alt="Mũ bảo hiểm Honda Fullface" />
+                <img
+                  src="image/MBH/Mũ Jet Cổ Điển/DEN.png"
+                  alt="Mũ bảo hiểm Honda Fullface"
+                  data-color="black"
+                />
+                <img
+                  src="image/MBH/Mũ Jet Cổ Điển/TRANG.png"
+                  alt="Mũ bảo hiểm Honda Fullface"
+                  data-color="white"
+                  style="display: none"
+                />
               </div>
               <div class="product-info">
-                <h3>Mũ cả đầu không cằm Nex 30</h3>
-                <p class="product-description">
-                  Thiết kế: Mũ bảo hiểm 3/4 đầu không cằm Thiết kế thể thao,
-                  hiện đại
+                <h3>Mũ Jet Cổ Điển</h3>
+                <p class="product-description collapsed">
+                  Thiết kế: Mũ bảo hiểm Jet Cổ điển có kính - Đen mờ Mũ bảo hiểm
+                  Jet Cổ điển có kính - Trắng bóng
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="color-options">
                   <h4>Màu sắc:</h4>
                   <div class="color-list">
                     <div
                       class="color-item active"
                       style="background-color: #000000"
+                      data-color="black"
                     ></div>
                     <div
                       class="color-item"
                       style="background-color: #ffffff; border: 1px solid #ddd"
+                      data-color="white"
                     ></div>
                   </div>
                 </div>
-                <div class="product-price">729.000 VNĐ</div>
+                <div class="product-price">Từ 449.000 VNĐ</div>
               </div>
             </div>
+
             <!-- Product 5 -->
             <div class="product-card">
               <div class="product-badge">Mới</div>
               <div class="product-image">
-                <img src="image/MBH/5.jpg" alt="Mũ bảo hiểm Honda Fullface" />
+                <img
+                  src="image/MBH/Mũ cả đầu không cằm Nex 30/DEN.jpeg"
+                  alt="Mũ bảo hiểm Honda Fullface"
+                  data-color="black"
+                />
+                <img
+                  src="image/MBH/Mũ cả đầu không cằm Nex 30/TRANG.jpeg"
+                  alt="Mũ bảo hiểm Honda Fullface"
+                  data-color="white"
+                  style="display: none"
+                />
               </div>
               <div class="product-info">
-                <h3>Mũ cả đầu Nex 70</h3>
-                <p class="product-description">
-                  Thiết kế: Mũ bảo hiểm cả đầu Nex 70 Thiết kế thể thao và hiện
-                  đại
+                <h3>Mũ cả đầu không cằm Nex 30</h3>
+                <p class="product-description collapsed">
+                  Thiết kế: Mũ bảo hiểm 3/4 đầu không cằm Thiết kế thể thao,
+                  hiện đại
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="color-options">
                   <h4>Màu sắc:</h4>
                   <div class="color-list">
                     <div
                       class="color-item active"
                       style="background-color: #000000"
+                      data-color="black"
                     ></div>
                     <div
                       class="color-item"
                       style="background-color: #ffffff; border: 1px solid #ddd"
+                      data-color="white"
                     ></div>
                   </div>
                 </div>
-                <div class="product-price">1.199.000 VNĐ</div>
+                <div class="product-price">Từ 729.000 VNĐ</div>
+              </div>
+            </div>
+            <!-- Product 6 -->
+            <div class="product-card">
+              <div class="product-badge">Mới</div>
+              <div class="product-image">
+                <img
+                  src="image/MBH/Mũ cả đầu Nex 70/DEN.jpeg"
+                  alt="Mũ bảo hiểm Honda Fullface"
+                  data-color="black"
+                />
+                <img
+                  src="image/MBH/Mũ cả đầu Nex 70/TRANG.jpeg"
+                  alt="Mũ bảo hiểm Honda Fullface"
+                  data-color="white"
+                  style="display: none"
+                />
+              </div>
+              <div class="product-info">
+                <h3>Mũ cả đầu Nex 70</h3>
+                <p class="product-description collapsed">
+                  Thiết kế: Mũ bảo hiểm cả đầu Nex 70 Thiết kế thể thao và hiện
+                  đại
+                </p>
+                <button class="read-more-btn">Xem thêm</button>
+                <div class="color-options">
+                  <h4>Màu sắc:</h4>
+                  <div class="color-list">
+                    <div
+                      class="color-item active"
+                      style="background-color: #000000"
+                      data-color="black"
+                    ></div>
+                    <div
+                      class="color-item"
+                      style="background-color: #ffffff; border: 1px solid #ddd"
+                      data-color="white"
+                    ></div>
+                  </div>
+                </div>
+                <div class="product-price">Từ 1.199.000 VNĐ</div>
               </div>
             </div>
           </div>
@@ -884,23 +1231,33 @@
                 <img
                   src="image/TRANG PHUC/1.png"
                   alt="Khăn ống đa năng Honda"
+                  data-color="red"
+                />
+                <img
+                  src="image/TRANG PHUC/1_black.png"
+                  alt="Khăn ống đa năng Honda"
+                  data-color="black"
+                  style="display: none"
                 />
               </div>
               <div class="product-info">
                 <h3>Khăn ống đa năng Honda</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Thiết kế: Khăn ống đa năng Honda
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="color-options">
                   <h4>Màu sắc:</h4>
                   <div class="color-list">
                     <div
                       class="color-item active"
                       style="background-color: #ce0000"
+                      data-color="red"
                     ></div>
                     <div
                       class="color-item"
                       style="background-color: #000000; border: 1px solid #ddd"
+                      data-color="black"
                     ></div>
                   </div>
                 </div>
@@ -912,17 +1269,25 @@
             <div class="product-card">
               <div class="product-badge">Mới</div>
               <div class="product-image">
-                <img src="image/TRANG PHUC/2.png" alt="Mũ lưỡi trai Honda" />
+                <img
+                  src="image/TRANG PHUC/2.png"
+                  alt="Mũ lưỡi trai Honda"
+                  data-color="black"
+                />
               </div>
               <div class="product-info">
                 <h3>Mũ lưỡi trai Honda</h3>
-                <p class="product-description">Thiết kế: Mũ lưỡi trai Honda</p>
+                <p class="product-description collapsed">
+                  Thiết kế: Mũ lưỡi trai Honda
+                </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="color-options">
                   <h4>Màu sắc:</h4>
                   <div class="color-list">
                     <div
                       class="color-item active"
                       style="background-color: #000000"
+                      data-color="black"
                     ></div>
                   </div>
                 </div>
@@ -941,9 +1306,10 @@
               </div>
               <div class="product-info">
                 <h3>Áo sơ mi +84HondaBikers</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Thiết kế: Áo sơ mi +84HondaBikers
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">350.000 VNĐ</div>
               </div>
             </div>
@@ -952,23 +1318,36 @@
             <div class="product-card">
               <div class="product-badge">Mới</div>
               <div class="product-image">
-                <img src="image/TRANG PHUC/4.jpg" alt="Áo thun Honda màu xám" />
+                <img
+                  src="image/TRANG PHUC/4.jpg"
+                  alt="Áo thun Honda màu xám"
+                  data-color="dark-gray"
+                />
+                <img
+                  src="image/TRANG PHUC/4_light.jpg"
+                  alt="Áo thun Honda màu xám"
+                  data-color="light-gray"
+                  style="display: none"
+                />
               </div>
               <div class="product-info">
                 <h3>Áo thun Honda màu xám</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Thiết kế: Áo thun Honda màu xám
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="color-options">
                   <h4>Màu sắc:</h4>
                   <div class="color-list">
                     <div
                       class="color-item active"
                       style="background-color: #4e4e4e"
+                      data-color="dark-gray"
                     ></div>
                     <div
                       class="color-item"
                       style="background-color: #a0a0a0; border: 1px solid #ddd"
+                      data-color="light-gray"
                     ></div>
                   </div>
                 </div>
@@ -989,18 +1368,48 @@
               </div>
               <div class="product-info">
                 <h3>Móc treo chìa khóa</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Tính năng: Móc treo chìa khóa in logo Honda
                 </p>
-                <div class="product-price">11.782 VNĐ</div>
+                <button class="read-more-btn">Xem thêm</button>
+                <div class="product-price">Từ 11.782 VNĐ</div>
               </div>
             </div>
 
             <!-- Product 2 -->
+            <div class="product-card">
+              <div class="product-badge">Mới</div>
+              <div class="product-image">
+                <img src="image/PHUKIEN/2.jpg" alt="Bao da đựng giấy tờ" />
+              </div>
+              <div class="product-info">
+                <h3>Ốp chìa khóa Smartkey 3 nút</h3>
+                <p class="product-description collapsed">
+                  <b> Tính năng:</b> Với 3 nút bấm, chất liệu silicon bền dai,
+                  không độc hại. Tiện dụng, nâng cao tuổi thọ cho chìa Thiết kế
+                  ôm khit, chắc chắn Chống nước, bảo vệ chìa Không ảnh hưởng tới
+                  sóng tin hiệu của chìa
+                </p>
+                <button class="read-more-btn">Xem thêm</button>
+                <div class="product-price">Từ 36.327 VNĐ</div>
+              </div>
+            </div>
 
             <!-- Product 3 -->
-
-            <!-- Product 4 -->
+            <div class="product-card">
+              <div class="product-badge">Mới</div>
+              <div class="product-image">
+                <img src="image/PHUKIEN/TLSH.jpeg" alt="Thảm lót chân" />
+              </div>
+              <div class="product-info">
+                <h3>Thảm lót chân [SH160i/125i]</h3>
+                <p class="product-description collapsed">
+                  <b>Tính năng:</b> Bảo vệ và trang trí cho phần để chân
+                </p>
+                <button class="read-more-btn">Xem thêm</button>
+                <div class="product-price">Từ 93.276 VNĐ</div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1015,7 +1424,7 @@
               </div>
               <div class="product-info">
                 <h3>Tấm lọc gió</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Lọc gió có chức năng lọc không khí đi vào động cơ và giữ lại
                   bụi bẩn, đảm bảo không khí đi vào động cơ. Lọc gió không được
                   kiểm tra và vệ sinh sẽ làm gia tăng việc tiêu hao nhiên liệu
@@ -1025,6 +1434,7 @@
                   16000km với xe bảo hành 2 năm, mỗi 18000km với xe bảo hành 3
                   năm để đảm bảo xe được vận hành an toàn.
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 51.000 VNĐ</div>
               </div>
             </div>
@@ -1037,13 +1447,14 @@
               </div>
               <div class="product-info">
                 <h3>Bugi</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Honda khuyến cáo cứ 8000 km bạn nên thay thế định kì 1 lần để
                   đảm bảo xe của bạn được vận hành an toàn, riêng với Airblade
                   và PCX 2016, sau 12000 km bạn nên thay thế định kì 1 lần. Giá
                   bán lẻ đề xuất được công bố chi tiết tại các cửa hàng ủy nhiệm
                   của Honda Việt Nam (HEAD) trên toàn quốc
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 40.000 VNĐ</div>
               </div>
             </div>
@@ -1056,7 +1467,7 @@
               </div>
               <div class="product-info">
                 <h3>Bộ má phanh</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Hệ thống phanh giữ vai trò là hệ thống an toàn, nếu duy trì
                   tình trạng xấu trong thời gian dài có thể làm lây lan hư hỏng
                   sang các chi tiết và bộ phận liên quan, trường hợp xấu có thể
@@ -1064,6 +1475,7 @@
                   4000km với xe bảo hành 2 năm hoặc mỗi 6000km với xe bảo hành 3
                   năm để đảm bảo xe được vận hành an toàn.
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 61.000 VNĐ</div>
               </div>
             </div>
@@ -1076,7 +1488,7 @@
               </div>
               <div class="product-info">
                 <h3>Bộ má phanh dầu</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Hệ thống phanh giữ vai trò là hệ thống an toàn, nếu duy trì
                   tình trạng xấu trong thời gian dài có thể làm lây lan hư hỏng
                   sang các chi tiết và bộ phận liên quan, trường hợp xấu có thể
@@ -1084,6 +1496,7 @@
                   4000km với xe bảo hành 2 năm hoặc mỗi 6000km với xe bảo hành 3
                   năm để đảm bảo xe được vận hành an toàn.
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 113.000 VNĐ</div>
               </div>
             </div>
@@ -1096,13 +1509,14 @@
               </div>
               <div class="product-info">
                 <h3>Bộ nhông, xích</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Tuổi thọ của xích tải phụ thuộc vào việc điều chỉnh va bôi
                   trơn hợp lý. Bảo dưỡng không tốt dẫn đến hư hỏng xích tải và
                   nhông xích. Honda khuyến cáo bạn nên kiểm tra và bôi trơn định
                   kì mỗi 500km và thay thế theo tư vấn của kỹ thuật viên để đảm
                   bảo xe của bạn được vận hành an toàn.
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 175.000 VNĐ</div>
               </div>
             </div>
@@ -1115,7 +1529,7 @@
               </div>
               <div class="product-info">
                 <h3>Ắc quy</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Ắc quy không được kiểm tra định kỳ, xe có thể không khởi động
                   được, hệ thống chếu sáng bị ảnh hưởng. Sử dụng ắc quy không
                   chính hiệu, không tương thích dễ dẫn đến hư hỏng bất thường.
@@ -1124,6 +1538,7 @@
                   quy khô để đảm bảo xe của bạn được vận hành an toàn. (Riêng
                   PCX 125 cần kiểm tra sau mỗi 6000km)
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 239.000 VNĐ</div>
               </div>
             </div>
@@ -1136,7 +1551,7 @@
               </div>
               <div class="product-info">
                 <h3>Lốp sau</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Lốp sau dành cho xe máy: Lốp xe bảo đảm cho việc lái xe an
                   toàn và êm ái. Sử dụng lốp không chính hiệu làm giảm tuổi thọ
                   của các phụ tùng liên quan khác, gây khó khăn khi điều khiển
@@ -1144,6 +1559,7 @@
                   tra lốp xe mỗi 4000km với xe bảo hành 2 năm hoặc mỗi 6000km
                   với xe bảo hành 3 năm để đảm bảo xe được vận hành an toàn
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 228.000 VNĐ</div>
               </div>
             </div>
@@ -1156,7 +1572,7 @@
               </div>
               <div class="product-info">
                 <h3>Lốp trước</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Lốp trước dành cho xe máy: Lốp xe bảo đảm cho việc lái xe an
                   toàn và êm ái. Sử dụng lốp không chính hiệu làm giảm tuổi thọ
                   của các phụ tùng liên quan khác, gây khó khăn khi điều khiển
@@ -1164,6 +1580,7 @@
                   tra lốp xe mỗi 4000km với xe bảo hành 2 năm hoặc mỗi 6000km
                   với xe bảo hành 3 năm để đảm bảo xe được vận hành an toàn
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 191.000 VNĐ</div>
               </div>
             </div>
@@ -1181,7 +1598,7 @@
               </div>
               <div class="product-info">
                 <h3>Dầu Tổng hợp Cao cấp 4T SL 10W-30 MA Pro Honda</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Dầu Tổng hợp Cao cấp 4T SL 10W-30 MA Pro Honda đặc chế cho các
                   dòng xe côn tay và xe thể thao Honda chứa dầu gốc tổng hợp
                   toàn phần được sản xuất với quá trình kiểm soát nghiêm ngặt và
@@ -1192,6 +1609,7 @@
                   tiết kiệm nhiên liệu. Honda Việt Nam khuyến cáo sử dụng: Thay
                   lần đầu sau 1,000km. Các lần sau thay mỗi 2,000km-2,500km.
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 309.000 VNĐ</div>
               </div>
             </div>
@@ -1204,13 +1622,14 @@
               </div>
               <div class="product-info">
                 <h3>Dầu nhờn xe số 4T SL 10W-30 MA Pro Honda</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Dầu nhờn xe số SL MA 10W-30 Pro Honda: Là dầu gốc khoáng đặc
                   chế chuyên biệt cho các dòng xe số Honda giúp bảo vệ động cơ
                   tối ưu và tiết kiệm nhiên liệu. Honda VIệt Nam khuyến cáo sử
                   dụng: Thay lần đầu sau 1,000km. Các lần sau thay mỗi
                   2,000km-2,500km
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 84.000 VNĐ</div>
               </div>
             </div>
@@ -1223,13 +1642,14 @@
               </div>
               <div class="product-info">
                 <h3>Dầu nhờn xe ga 4T SL 10W-30 MB Pro Honda</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Dầu nhờn xe ga 4T SL 10W-30 MB Pro Honda: Là dầu gốc khoáng
                   đặc chế chuyên biệt cho các dòng xe ga Honda giúp bảo vệ động
                   cơ tối ưu và tiết kiệm nhiên liệu. Honda VIệt Nam khuyến cáo
                   sử dụng: Thay lần đầu sau 1,000km. Các lần sau thay mỗi
                   2,000km-2,500km.
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 89.000 VNĐ</div>
               </div>
             </div>
@@ -1242,7 +1662,7 @@
               </div>
               <div class="product-info">
                 <h3>Dầu nhờn xe số 4T SL 10W-30 MA Pro Honda (200L)</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Dầu nhờn xe số 4T SL 10W-30 MA ProHonda (200L): Là dầu nhờn
                   gốc khoáng đặc chế chuyên biệt cho các dòng xe số Honda giúp
                   bảo vệ động cơ tối ưu và tiết kiệm nhiên liệu. Nhằm mục tiêu
@@ -1255,6 +1675,7 @@
                   Nam khuyến cáo sử dụng: Thay lần đầu sau 1,000km. Các lần sau
                   thay mỗi 2,000km-2,500km.
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 91.210 VNĐ</div>
               </div>
             </div>
@@ -1267,7 +1688,7 @@
               </div>
               <div class="product-info">
                 <h3>Dầu nhờn xe ga 4T SL 10W-30 MB Pro Honda (200L)</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Dầu nhờn xe ga 4T SL 10W-30 MB Pro Honda (200L): Là dầu gốc
                   khoáng đặc chế chuyên biệt cho các dòng xe ga Honda giúp bảo
                   vệ động cơ tối ưu và tiết kiệm nhiên liệu. Nhằm mục tiêu giảm
@@ -1280,6 +1701,7 @@
                   Nam khuyến cáo sử dụng: Thay lần đầu sau 1,000km. Các lần sau
                   thay mỗi 2,000km-2,500km.
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 108.050 VNĐ</div>
               </div>
             </div>
@@ -1292,7 +1714,7 @@
               </div>
               <div class="product-info">
                 <h3>Dầu làm sạch và bôi trơn xích (sên) tải Honda</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Mã số sp: 08CG3075501 Sử dụng cho xe số, xe côn tay . Sản phẩm
                   kết hợp 2 tính năng quan trọng LÀM SẠCH và BÔI TRƠN, giúp bộ
                   xích (sên) tải luôn được bảo vệ: Chống rỉ sét, hạn chế bám
@@ -1303,6 +1725,7 @@
                   liền trên chai, có thể xịt ngược và xoay vòi xịt 360 độ Xuất
                   xứ: Thái Lan
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 199.000 VNĐ</div>
               </div>
             </div>
@@ -1315,11 +1738,12 @@
               </div>
               <div class="product-info">
                 <h3>Nước làm mát</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Sử dụng cho xe máy. Giúp ngăn chặn gỉ bên trong, ngăn ngừa
                   hiệu ứng gia tăng nhiệt và tạo khả năng tản nhiệt tốt cho động
                   cơ. Honda khuyến caó nên thay thế sản phẩm sau 2 năm sử dụng.
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 38.000 VNĐ</div>
               </div>
             </div>
@@ -1332,7 +1756,7 @@
               </div>
               <div class="product-info">
                 <h3>Dung dịch vệ sinh kim phun và buồng đốt xe máy</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Sử dụng cho xe tay ga, xe số, xe côn tay với khả năng: Làm
                   sạch hoàn hảo carbon đóng cặn tích tụ trong buồng đốt, đầu
                   piston; Tiết kiệm nhiên liệu; Giảm tiếng ồn động cơ; Giúp bảo
@@ -1340,6 +1764,7 @@
                   cáo nên thay thế sản phẩm sau mỗi 3000km để đạt hiệu quả tốt
                   nhất.
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 52.000 VNĐ</div>
               </div>
             </div>
@@ -1352,11 +1777,12 @@
               </div>
               <div class="product-info">
                 <h3>Dầu giảm xóc</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Dầu giảm xóc: Thích hợp cho tất cả các loại giảm xóc xe máy.
                   Giúp xe vận hành êm ái, chống mài mòn và kéo dài tuổi thọ cho
                   xe.
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 35.000 VNĐ</div>
               </div>
             </div>
@@ -1369,11 +1795,12 @@
               </div>
               <div class="product-info">
                 <h3>Dầu hộp số</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Dầu hộp số dùng cho hộp số xe tay ga. Giúp nâng cao hiệu quả
                   hệ thống truyền dẫn. Bảo vệ hộp số, chống hao mòn vượt trội.
                   Honda khuyến cáo nên thay thế sau 2 năm sử dụng
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 36.000 VNĐ</div>
               </div>
             </div>
@@ -1386,12 +1813,13 @@
               </div>
               <div class="product-info">
                 <h3>Dầu phanh</h3>
-                <p class="product-description">
+                <p class="product-description collapsed">
                   Dầu phanh là sản phẩm dầu bôi trơn chuyên dùng trong bộ phận
                   phanh giúp bảo vệ, chống ăn mòn hệ thống phanh. Dầu phanh được
                   thay thế sau khi sử dụng 2 năm. Ngoài ra 4000 km cần kiểm tra
                   và thay thế nếu dầu biến thành màu vàng sậm.
                 </p>
+                <button class="read-more-btn">Xem thêm</button>
                 <div class="product-price">Từ 50.000 VNĐ</div>
               </div>
             </div>
@@ -1467,6 +1895,51 @@
       </div>
     </footer>
 
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+      <div class="container">
+        <a href="index.html" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="mobile-nav-label">Trang chủ</div>
+        </a>
+        <a href="/sanphamxemay/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-motorcycle"></i>
+          </div>
+          <div class="mobile-nav-label">Sản phẩm</div>
+        </a>
+        <a href="/tintuc/tintuckhuyenmai/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fa-solid fa-gift"></i>
+          </div>
+          <div class="mobile-nav-label">Khuyến mãi</div>
+        </a>
+        <a href="/cuahang/" class="mobile-nav-item active">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="mobile-nav-label">Đại lý</div>
+        </a>
+        <a href="/lienhe/" class="mobile-nav-item">
+          <div class="mobile-nav-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="mobile-nav-label">Liên hệ</div>
+        </a>
+      </div>
+    </nav>
+
+    <!-------Messenger Chat Button----------->
+    <a
+      href="https://m.me/hethongheadtrunghung"
+      class="messenger-chat"
+      target="_blank"
+    >
+      <i class="fab fa-facebook-messenger"></i>
+    </a>
+
     <!-- Back to Top -->
     <a href="#" class="back-to-top" id="backToTop">
       <i class="fas fa-arrow-up"></i>
@@ -1526,6 +1999,52 @@
         window.scrollTo({
           top: 0,
           behavior: "smooth",
+        });
+      });
+
+      // Read More Functionality
+      const readMoreBtns = document.querySelectorAll(".read-more-btn");
+      readMoreBtns.forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const description = this.previousElementSibling;
+          if (description.classList.contains("collapsed")) {
+            description.classList.remove("collapsed");
+            description.classList.add("expanded");
+            this.textContent = "Thu gọn";
+          } else {
+            description.classList.remove("expanded");
+            description.classList.add("collapsed");
+            this.textContent = "Xem thêm";
+          }
+        });
+      });
+
+      // Color Selection Functionality
+      const colorItems = document.querySelectorAll(".color-item");
+      colorItems.forEach((item) => {
+        item.addEventListener("click", function () {
+          const productCard = this.closest(".product-card");
+          const color = this.getAttribute("data-color");
+
+          // Remove active class from all color items in this product
+          const colorList = this.closest(".color-list");
+          colorList.querySelectorAll(".color-item").forEach((item) => {
+            item.classList.remove("active");
+          });
+
+          // Add active class to clicked color item
+          this.classList.add("active");
+
+          // Hide all images and show the one with matching color
+          const productImages =
+            productCard.querySelectorAll(".product-image img");
+          productImages.forEach((img) => {
+            if (img.getAttribute("data-color") === color) {
+              img.style.display = "block";
+            } else {
+              img.style.display = "none";
+            }
+          });
         });
       });
     </script>
