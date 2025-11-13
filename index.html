@@ -157,6 +157,78 @@
       .text-center {
         text-align: center;
       }
+
+      /* Loading Screen */
+      loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .ripple-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .loading-logo {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        z-index: 10;
+        animation: pulse 2s infinite ease-in-out;
+      }
+
+      .ripple-circle {
+        position: absolute;
+        border: 2px solid #e10600; /* Màu chủ đạo của HEAD */
+        border-radius: 50%;
+        animation: ripple 3s infinite ease-out;
+      }
+
+      .ripple-circle:nth-child(2) {
+        animation-delay: 1s;
+      }
+
+      .ripple-circle:nth-child(3) {
+        animation-delay: 2s;
+      }
+
+      /* Hiệu ứng lan tỏa */
+      @keyframes ripple {
+        0% {
+          width: 0;
+          height: 0;
+          opacity: 1;
+        }
+        100% {
+          width: 200px;
+          height: 200px;
+          opacity: 0;
+        }
+      }
+
+      /* Hiệu ứng nhấp nháy cho logo */
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 0.8;
+        }
+      }
+
       /* Top Bar Menu */
       .top-bar {
         background-color: var(--primary-color);
@@ -172,11 +244,13 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
       }
 
       .top-nav ul {
         display: flex;
         gap: 20px;
+        flex-wrap: wrap;
       }
 
       .top-nav a {
@@ -187,6 +261,7 @@
         align-items: center;
         gap: 5px;
         white-space: nowrap;
+        padding: 4px 8px;
       }
 
       .top-nav a:hover {
@@ -202,6 +277,8 @@
         display: flex;
         align-items: center;
         gap: 15px;
+        flex-wrap: nowrap;
+        white-space: nowrap;
       }
 
       .contact-item {
@@ -216,36 +293,25 @@
         font-size: 0.8rem;
       }
 
-      /* Mobile dropdown for top bar */
-      .top-bar-mobile-toggle {
-        display: none;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1rem;
-        cursor: pointer;
-        padding: 5px;
-      }
-
-      .top-bar-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-      }
-
       /* Responsive adjustments for top bar */
       @media (max-width: 992px) {
         .top-bar {
-          padding: 6px 0;
+          padding: 10px 0;
+        }
+
+        .top-bar .container {
+          gap: 10px;
         }
 
         .top-nav ul {
-          gap: 15px;
+          justify-content: center;
+          gap: 8px 15px;
+          width: 100%;
         }
 
         .top-nav a {
           font-size: 0.8rem;
+          padding: 3px 6px;
         }
 
         .contact-item {
@@ -255,8 +321,7 @@
 
       @media (max-width: 768px) {
         .top-bar {
-          position: relative;
-          padding: 8px 0;
+          padding: 12px 0;
         }
 
         .top-bar .container {
@@ -264,59 +329,88 @@
           gap: 8px;
         }
 
-        .top-bar-content {
-          flex-direction: column;
-          gap: 8px;
-          text-align: center;
+        .top-nav {
+          width: 100%;
+          display: flex;
+          justify-content: center;
         }
 
         .top-nav ul {
-          flex-wrap: wrap;
           justify-content: center;
-          gap: 10px 15px;
-        }
-
-        .top-nav a {
-          font-size: 0.8rem;
-          padding: 2px 5px;
+          width: 100%;
         }
 
         .top-contact {
+          width: 100%;
           justify-content: center;
-          flex-wrap: wrap;
-          gap: 10px;
+          gap: 15px;
         }
 
         .contact-item {
           font-size: 0.75rem;
+          padding: 3px 8px;
+          background-color: rgba(255, 255, 255, 0.1);
+          border-radius: 4px;
         }
       }
 
-      @media (max-width: 480px) {
+      @media (max-width: 576px) {
+        .top-bar {
+          padding: 10px 0;
+        }
+
         .top-nav ul {
-          gap: 8px 12px;
+          gap: 6px 12px;
         }
 
         .top-nav a {
           font-size: 0.75rem;
+          padding: 3px 6px;
         }
 
-        .top-nav a span {
-          display: none; /* Ẩn text, chỉ hiện icon trên mobile rất nhỏ */
+        .contact-item {
+          font-size: 0.7rem;
+          padding: 2px 6px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .top-bar {
+          padding: 8px 0;
+        }
+
+        .top-nav ul {
+          gap: 4px 8px;
+        }
+
+        .top-nav a {
+          font-size: 0.7rem;
+          padding: 2px 4px;
+          flex-direction: column;
+          gap: 2px;
+          text-align: center;
+          min-width: 80px;
         }
 
         .top-nav a i {
-          font-size: 0.9rem;
+          font-size: 0.8rem;
+          margin-bottom: 2px;
         }
 
-        .contact-item span {
-          font-size: 0.7rem;
+        .top-contact {
+          gap: 10px;
+        }
+
+        .contact-item {
+          font-size: 0.65rem;
+          padding: 2px 4px;
         }
       }
+
       /* Header */
       .main-header {
         position: fixed;
-        top: 40px; /* Chiều cao của top bar */
+        top: 40px;
         left: 0;
         width: 100%;
         padding: 20px 0;
@@ -348,6 +442,7 @@
 
       .main-nav li {
         margin-left: 30px;
+        position: relative;
       }
 
       .main-nav a {
@@ -355,6 +450,9 @@
         color: var(--dark-color);
         position: relative;
         padding: 5px 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
       }
 
       .main-nav a:after {
@@ -378,6 +476,66 @@
         font-weight: 600;
       }
 
+      /* Dropdown Menu Styles - FIXED VERTICAL LAYOUT */
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 220px;
+        background-color: white;
+        box-shadow: var(--shadow-heavy);
+        border-radius: 8px;
+        padding: 15px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        display: block !important; /* Đảm bảo hiển thị block */
+      }
+
+      .dropdown:hover .dropdown-content {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-content li {
+        margin: 0;
+        display: block !important; /* Đảm bảo mỗi item trên 1 dòng */
+      }
+
+      .dropdown-content a {
+        display: flex !important;
+        align-items: center;
+        padding: 12px 25px;
+        color: var(--dark-color);
+        font-weight: 500;
+        transition: var(--transition);
+        border-left: 3px solid transparent;
+        gap: 8px;
+        width: 100%;
+        box-sizing: border-box;
+        white-space: nowrap;
+      }
+
+      .dropdown-content a:hover {
+        background-color: var(--light-gray);
+        color: var(--primary-color);
+        border-left-color: var(--primary-color);
+        padding-left: 30px;
+      }
+
+      .dropdown-content a i {
+        font-size: 0.9rem;
+        width: 16px;
+        text-align: center;
+      }
+
       /* Mobile Menu Toggle Styles */
       .menu-toggle {
         display: none;
@@ -396,6 +554,7 @@
         transition: all 0.4s ease;
         left: 0;
       }
+
       .menu-toggle .bar:nth-child(1) {
         top: 0;
       }
@@ -409,7 +568,6 @@
         bottom: 0;
       }
 
-      /* When menu is active */
       .menu-toggle.active .bar:nth-child(1) {
         top: 50%;
         transform: translateY(-50%) rotate(45deg);
@@ -430,18 +588,6 @@
       @media (max-width: 992px) {
         .menu-toggle {
           display: block;
-        }
-
-        .menu-toggle.active .bar:nth-child(1) {
-          transform: translateY(8px) rotate(45deg);
-        }
-
-        .menu-toggle.active .bar:nth-child(2) {
-          opacity: 0;
-        }
-
-        .menu-toggle.active .bar:nth-child(3) {
-          transform: translateY(-8px) rotate(-45deg);
         }
 
         .main-nav {
@@ -476,61 +622,35 @@
           padding: 8px 0;
           display: block;
         }
-        .quick-links .container {
-          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        }
-      }
 
-      /* Thêm các hiệu ứng animation */
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
+        /* Mobile dropdown styles */
+        .dropdown-content {
+          position: static;
+          width: 100%;
           opacity: 1;
+          visibility: visible;
+          transform: none;
+          box-shadow: none;
+          padding: 0;
+          margin-top: 10px;
+          margin-left: 20px;
+          border-left: 2px solid var(--light-gray);
+        }
+
+        .dropdown-content a {
+          padding: 10px 15px;
+          font-size: 0.95rem;
         }
       }
 
-      @keyframes slideUp {
-        from {
-          transform: translateY(30px);
-          opacity: 0;
-        }
-        to {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-
-      @keyframes slideInLeft {
-        from {
-          transform: translateX(-50px);
-          opacity: 0;
-        }
-        to {
-          transform: translateX(0);
-          opacity: 1;
-        }
-      }
-
-      @keyframes slideInRight {
-        from {
-          transform: translateX(50px);
-          opacity: 0;
-        }
-        to {
-          transform: translateX(0);
-          opacity: 1;
-        }
-      }
-
-      /* Hero Banner SLIDER */
+      /* Hero Banner SLIDER với hiệu ứng Zoom */
       .hero-slider {
-        margin-top: 40px; /* Chiều cao của top bar + main-header */
+        margin-top: 120px;
         position: relative;
-        height: calc(100vh - 40px); /* Trừ đi chiều cao top bar */
-        min-height: 560px; /* Điều chỉnh min-height */
+        height: 80vh;
+        min-height: 500px;
         overflow: hidden;
+        width: 100%;
       }
 
       .slider-container {
@@ -546,18 +666,23 @@
         width: 100%;
         height: 100%;
         opacity: 0;
-        transition: opacity 1s ease, transform 1.5s ease;
+        transition: opacity 1.2s ease;
         background-size: cover;
         background-position: center;
+        background-repeat: no-repeat;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         color: white;
+        transform: scale(1.1);
+        transition: transform 8s ease, opacity 1.2s ease;
       }
 
       .slide.active {
         opacity: 1;
         z-index: 1;
+        transform: scale(1);
       }
 
       .slide::before {
@@ -572,95 +697,231 @@
           rgba(0, 0, 0, 0.7) 0%,
           rgba(0, 0, 0, 0.3) 100%
         );
-        z-index: -1;
+        z-index: 1;
+        transition: opacity 1.2s ease;
       }
 
       .slide-content {
         position: relative;
         z-index: 2;
         color: white;
-        max-width: 700px;
+        max-width: 800px;
         padding: 0 20px;
-        margin: 0 auto;
         text-align: center;
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
 
       .slide-content h1 {
-        font-size: 3rem;
-        font-weight: 700;
+        font-size: 3.5rem;
+        font-weight: 800;
         margin-bottom: 20px;
         line-height: 1.2;
-        animation: slideInLeft 1s ease-out 0.3s forwards;
-        opacity: 0;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        transform: translateX(0);
+        opacity: 1;
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
 
       .slide-content p {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         margin-bottom: 30px;
-        animation: slideInRight 1s ease-out 0.5s forwards;
-        opacity: 0;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        transform: translateX(0);
+        opacity: 1;
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
 
       .slide-buttons {
         display: flex;
         gap: 15px;
         justify-content: center;
-        animation: slideUp 1s ease-out 0.7s forwards;
-        opacity: 0;
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
 
-      /* Slider Navigation */
+      /* Slider Navigation - Enhanced */
       .slider-nav {
         position: absolute;
-        bottom: 30px;
+        bottom: 40px;
         left: 0;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 15px;
+        gap: 20px;
         z-index: 10;
       }
 
       .slider-dots {
         display: flex;
-        gap: 10px;
+        gap: 12px;
       }
 
       .slider-dot {
-        width: 12px;
-        height: 12px;
+        width: 14px;
+        height: 14px;
         border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.4);
         cursor: pointer;
-        transition: var(--transition);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slider-dot::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--primary-color);
+        transition: left 0.4s ease;
       }
 
       .slider-dot.active {
-        background-color: var(--primary-color);
+        background-color: rgba(255, 255, 255, 0.8);
+        transform: scale(1.3);
+      }
+
+      .slider-dot.active::before {
+        left: 0;
+      }
+
+      .slider-dot:hover {
         transform: scale(1.2);
+        background-color: rgba(255, 255, 255, 0.6);
       }
 
       .slider-btn {
-        width: 50px;
-        height: 50px;
+        width: 55px;
+        height: 55px;
         border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.2);
-        border: 2px solid rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.15);
+        border: 2px solid rgba(255, 255, 255, 0.4);
         color: white;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        transition: var(--transition);
-        backdrop-filter: blur(5px);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        backdrop-filter: blur(10px);
+        font-size: 1.1rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slider-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--primary-color);
+        transition: left 0.4s ease;
+        z-index: -1;
       }
 
       .slider-btn:hover {
         background-color: var(--primary-color);
         border-color: var(--primary-color);
-        transform: scale(1.1);
+        transform: scale(1.15) translateY(-2px);
+        box-shadow: 0 8px 25px rgba(228, 5, 33, 0.4);
       }
+
+      .slider-btn:hover::before {
+        left: 0;
+      }
+
+      /* Progress Bar */
+      .slider-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.2);
+        z-index: 10;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: var(--primary-color);
+        width: 0%;
+        transition: width 5s linear;
+      }
+
+      .slide.active ~ .slider-progress .progress-bar {
+        width: 100%;
+      }
+
+      /* Floating elements animation */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .floating {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      /* Responsive adjustments for hero slider */
+      @media (max-width: 768px) {
+        .hero-slider {
+          margin-top: 100px;
+          height: 60vh;
+          min-height: 400px;
+        }
+
+        .slide-content h1 {
+          font-size: 2.2rem;
+        }
+
+        .slide-content p {
+          font-size: 1.1rem;
+        }
+
+        .slide-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .slider-btn {
+          width: 45px;
+          height: 45px;
+          font-size: 1rem;
+        }
+
+        .slider-dot {
+          width: 12px;
+          height: 12px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .slide-content h1 {
+          font-size: 1.8rem;
+        }
+
+        .slide-content p {
+          font-size: 1rem;
+        }
+
+        .slider-nav {
+          bottom: 20px;
+          gap: 15px;
+        }
+      }
+
       /* Back to Top */
       .back-to-top {
         position: fixed;
@@ -778,39 +1039,6 @@
       .mobile-nav-label {
         font-size: 0.7rem;
         font-weight: 500;
-      }
-      /* Responsive adjustments for hero slider */
-      @media (max-width: 768px) {
-        .main-header {
-          top: auto; /* Reset top position */
-          margin-top: 0;
-        }
-        .main-header.scrolled {
-          top: 0;
-        }
-        .hero-slider {
-          margin-top: 0;
-          height: 100vh;
-          min-height: 600px;
-        }
-
-        .slide-content h1 {
-          font-size: 2rem;
-        }
-        .slide-content p {
-          font-size: 1rem;
-        }
-
-        .slide-buttons {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .slider-btn {
-          width: 40px;
-          height: 40px;
-          font-size: 0.9rem;
-        }
       }
 
       /* Quick Links */
@@ -963,55 +1191,6 @@
         font-weight: 700;
         color: var(--primary-color);
         margin-bottom: 20px;
-      }
-
-      /* Responsive adjustments for featured grid */
-      @media (max-width: 1200px) {
-        .featured-grid {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 25px;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .featured-grid {
-          grid-template-columns: 1fr;
-          gap: 20px;
-          max-width: 400px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        .featured-item {
-          margin-bottom: 0;
-        }
-
-        .product-info {
-          padding: 20px;
-        }
-
-        .product-info h3 {
-          font-size: 1.1rem;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .featured-grid {
-          gap: 15px;
-        }
-
-        .product-info {
-          padding: 15px;
-        }
-
-        .product-info h3 {
-          font-size: 1rem;
-        }
-
-        .btn {
-          padding: 10px 20px;
-          font-size: 0.9rem;
-        }
       }
 
       /* Promo Banner */
@@ -1357,7 +1536,51 @@
       }
 
       /* Responsive Adjustments */
+      @media (max-width: 1200px) {
+        .featured-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 25px;
+        }
+      }
+
+      @media (max-width: 992px) {
+        .main-nav li {
+          margin-left: 20px;
+        }
+      }
+
       @media (max-width: 768px) {
+        .main-header {
+          top: auto;
+          margin-top: 0;
+        }
+        .main-header.scrolled {
+          top: 0;
+        }
+        .hero-slider {
+          margin-top: 0;
+          height: 100vh;
+          min-height: 600px;
+        }
+
+        .slide-content h1 {
+          font-size: 2rem;
+        }
+        .slide-content p {
+          font-size: 1rem;
+        }
+
+        .slide-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .slider-btn {
+          width: 40px;
+          height: 40px;
+          font-size: 0.9rem;
+        }
+
         .back-to-top {
           width: 45px;
           height: 45px;
@@ -1413,10 +1636,58 @@
         .main-footer {
           padding-bottom: 70px;
         }
+
+        .featured-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+          max-width: 400px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .featured-item {
+          margin-bottom: 0;
+        }
+
+        .product-info {
+          padding: 20px;
+        }
+
+        .product-info h3 {
+          font-size: 1.1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .featured-grid {
+          gap: 15px;
+        }
+
+        .product-info {
+          padding: 15px;
+        }
+
+        .product-info h3 {
+          font-size: 1rem;
+        }
+
+        .btn {
+          padding: 10px 20px;
+          font-size: 0.9rem;
+        }
       }
     </style>
   </head>
   <body>
+    <!-- Loading Screen 
+    <div class="loading-screen" id="loadingScreen">
+      <img
+        src="/sanphamxemay/image/banner/Logo_HEAD.png"
+        alt="HEAD Trung Hùng"
+        class="loading-logo"
+      />
+    </div>-->
+
     <!-- Top Bar -->
     <div class="top-bar">
       <div class="container">
@@ -1425,14 +1696,13 @@
             <li>
               <a href="/question/">
                 <i class="fas fa-question-circle"></i>
-                Câu hỏi thường gặp
+                <span>Câu hỏi thường gặp</span>
               </a>
             </li>
-
             <li>
               <a href="/cuahang/">
                 <i class="fa-solid fa-location-dot"></i>
-                Hệ thống đại lý
+                <span>Hệ thống đại lý</span>
               </a>
             </li>
           </ul>
@@ -1453,6 +1723,7 @@
         </div>
       </div>
     </div>
+
     <!-- Header -->
     <header class="main-header">
       <div class="container">
@@ -1473,9 +1744,83 @@
           <ul>
             <li><a href="index.html" class="active">Trang chủ</a></li>
             <li><a href="/gioithieu/">Giới thiệu</a></li>
-            <li><a href="/sanphamxemay/">Sản phẩm</a></li>
-            <li><a href="/dichvu/">Dịch Vụ</a></li>
-            <li><a href="/tintuc/">Tin tức</a></li>
+            <li class="dropdown">
+              <a href="/sanphamxemay/"
+                >Sản phẩm <i class="fas fa-chevron-down"></i
+              ></a>
+              <ul class="dropdown-content">
+                <li>
+                  <a href="/sanphamxemay/?category=xe-ga"
+                    ><i class="fas fa-motorcycle"></i> Xe Ga</a
+                  >
+                </li>
+                <li>
+                  <a href="/sanphamxemay/?category=xe-so"
+                    ><i class="fas fa-bicycle"></i> Xe Số</a
+                  >
+                </li>
+                <li>
+                  <a href="/sanphamxemay/?category=xe-con-tay"
+                    ><i class="fas fa-cog"></i> Xe Côn Tay</a
+                  >
+                </li>
+                <li>
+                  <a href="/sanphamxemay/?category=pkl"
+                    ><i class="fas fa-tachometer-alt"></i> Phân Khối Lớn</a
+                  >
+                </li>
+                <li>
+                  <a href="/sanphamxemay/?category=xe-dien"
+                    ><i class="fas fa-bolt"></i> Xe Điện</a
+                  >
+                </li>
+                <li>
+                  <a href="/sanphamxemay/?category=all"
+                    ><i class="fas fa-list"></i> Tất Cả</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="/dichvu/">Dịch Vụ <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown-content">
+                <li>
+                  <a href="/dichvu/sanphamphutung/"
+                    ><i class="fa-solid fa-gear"></i> Phụ Tùng Chính Hãng</a
+                  >
+                </li>
+                <li>
+                  <a href="/dichvu/baoduong/"
+                    ><i class="fas fa-tools"></i> Bảo Dưỡng Và Sửa Chữa</a
+                  >
+                </li>
+                <li>
+                  <a href="/dichvu/baohanh/"
+                    ><i class="fas fa-shield-alt"></i> Bảo Hành Xe Máy</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="/tintuc/">Tin tức <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown-content">
+                <li>
+                  <a href="/tintuc/tintucxemay/"
+                    ><i class="fas fa-newspaper"></i> Tin Tức Xe Máy</a
+                  >
+                </li>
+                <li>
+                  <a href="/tintuc/sukien/"
+                    ><i class="fas fa-calendar-alt"></i> Sự Kiện</a
+                  >
+                </li>
+                <li>
+                  <a href="/tintuc/tintuckhuyenmai/"
+                    ><i class="fa-solid fa-gift"></i> Khuyến Mãi</a
+                  >
+                </li>
+              </ul>
+            </li>
             <li><a href="/cuahang/">Hệ thống đại lý</a></li>
             <li><a href="/lienhe/">Liên hệ</a></li>
           </ul>
@@ -1483,7 +1828,7 @@
       </div>
     </header>
 
-    <!-- Hero Banner SLIDER -->
+    <!-- Hero Banner SLIDER với hiệu ứng Zoom -->
     <section class="hero-slider">
       <div class="slider-container">
         <!-- Slide 1 -->
@@ -1497,7 +1842,9 @@
             <h1>Khởi đầu hành trình vững chắc!</h1>
             <p>- Hệ Thống HEAD Trung Hùng -</p>
             <div class="slide-buttons">
-              <a href="#products" class="btn btn-primary">Khám phá ngay</a>
+              <a href="#products" class="btn btn-primary floating"
+                >Khám phá ngay</a
+              >
             </div>
           </div>
         </div>
@@ -1511,12 +1858,13 @@
             <h1>Honda LEAD - Gu Hiện Đại, Đẹp Cuốn Hút</h1>
             <p>Trải nghiệm sự tiện nghi và hiện đại</p>
             <div class="slide-buttons">
-              <a href="/sanphamxemay/LEAD/" class="btn btn-primary"
+              <a href="/sanphamxemay/LEAD/" class="btn btn-primary floating"
                 >Tìm hiểu thêm</a
               >
             </div>
           </div>
         </div>
+
         <!-- Slide 3 -->
         <div
           class="slide"
@@ -1528,62 +1876,47 @@
             <h1>Air Blade - Nâng Khí Chất, Khơi Tài Năng</h1>
             <p>Khi khí chất lên tiếng, tài năng tự khơi!</p>
             <div class="slide-buttons">
-              <a href="#products" class="btn btn-primary">Khám phá</a>
+              <a href="#products" class="btn btn-primary floating">Khám phá</a>
             </div>
           </div>
         </div>
-
         <!-- Slide 4 -->
         <div
           class="slide"
-          style="background-image: url('/sanphamxemay/image/banner/CB350.jpg')"
+          style="
+            background-image: url('/sanphamxemay/ICONe/ICONe/picture/1.jpg');
+          "
         >
           <div class="slide-content">
-            <h1>CB350 H'ness - Phong cách cổ điển</h1>
-            <p>Hoài niệm và đẳng cấp trong từng chi tiết</p>
+            <h1>Honda ICON e</h1>
+            <p>Biểu tượng mới của di chuyển xanh</p>
             <div class="slide-buttons">
-              <a href="/sanphamxemay/CB350Hness/" class="btn btn-primary"
+              <a href="/sanphamxemay/ICONe/" class="btn btn-primary floating"
                 >Khám phá</a
               >
             </div>
           </div>
         </div>
-
         <!-- Slide 5 -->
         <div
           class="slide"
           style="
-            background-image: url('/sanphamxemay/Future/Future/picture/6.jpg');
+            background-image: url('/sanphamxemay/WinnerR/Winner R/picture/3.jpg');
           "
         >
           <div class="slide-content">
-            <h1>Honda Future - Đậm phong thái, lái vững bền</h1>
-            <p>
-              Ra mắt lần đầu vào năm 1999, Honda Future đã trở thành biểu tượng
-              của sự lịch lãm
-            </p>
+            <h1>Honda Winner R - Khai Phóng Đam Mê</h1>
+            <p>Bứt tốc đỉnh cao, khẳng định khí chất chiến binh</p>
             <div class="slide-buttons">
-              <a href="/sanphamxemay/Future/" class="btn btn-primary"
-                >Tìm hiểu</a
+              <a href="/sanphamxemay/WinnerR/" class="btn btn-primary floating"
+                >Tìm hiểu thêm</a
               >
             </div>
           </div>
         </div>
-
-        <!-- Slide 6 -->
-        <div
-          class="slide"
-          style="background-image: url('/sanphamxemay/image/banner/ICONE.png')"
-        >
-          <div class="slide-content">
-            <h1>ICON e - Xe điện thông minh</h1>
-            <p>Di chuyển xanh, tiết kiệm và hiện đại</p>
-            <div class="slide-buttons">
-              <a href="/sanphamxemay/ICONe/" class="btn btn-primary"
-                >Khám phá ngay</a
-              >
-            </div>
-          </div>
+        <!-- Progress Bar -->
+        <div class="slider-progress">
+          <div class="progress-bar"></div>
         </div>
 
         <!-- Slider Navigation -->
@@ -1611,14 +1944,17 @@
           </div>
           <div class="quick-link-card">
             <a href="/sanphamxemay/?category=xe-so">
-              <img src="/sanphamxemay/image/banner/CUB.jpg" alt="Xe số" />
+              <img
+                src="/sanphamxemay/WaveRSX/Wave RSX/picture/2.jpg"
+                alt="Xe số"
+              />
               <span>Xe Số</span>
             </a>
           </div>
           <div class="quick-link-card">
             <a href="/sanphamxemay/?category=xe-con-tay">
               <img
-                src="/sanphamxemay/image/banner/WINNERR1.jpg"
+                src="/sanphamxemay/WinnerR/Winner R/picture/3.jpg"
                 alt="Xe côn tay"
               />
               <span>Xe Côn Tay</span>
@@ -1626,13 +1962,19 @@
           </div>
           <div class="quick-link-card">
             <a href="/sanphamxemay/?category=pkl">
-              <img src="/sanphamxemay/image/banner/CB350.jpg" alt="Xe pkl" />
+              <img
+                src="/sanphamxemay/CB350Hness/CB350Hness/picture/1.jpg"
+                alt="Xe pkl"
+              />
               <span>Xe Phân Khối Lớn</span>
             </a>
           </div>
           <div class="quick-link-card">
             <a href="/sanphamxemay/?category=xe-dien">
-              <img src="/sanphamxemay/image/banner/ICONE.png" alt="Xe điện" />
+              <img
+                src="/sanphamxemay/ICONe/ICONe/picture/3.jpg"
+                alt="Xe điện"
+              />
               <span>Xe Điện</span>
             </a>
           </div>
@@ -1675,7 +2017,7 @@
             <div class="product-badge">Mới</div>
             <div class="product-image">
               <img
-                src="/sanphamxemay/AB125/AB125/AB125 - phiên bản thể thao - TRẮNG ĐỎ ĐEN/6.png"
+                src="/sanphamxemay/AB160/AB160/AB160 - phiên bản thể thao - TRẮNG ĐỎ ĐEN/6.png"
                 alt="Honda"
               />
             </div>
@@ -1759,7 +2101,7 @@
           <div class="news-card">
             <div class="news-image">
               <img
-                src="/sanphamxemay/AB160/AB160/picture/3.jpg"
+                src="/sanphamxemay/AB160/AB160/picture/4.jpg"
                 alt="Tin tức 1"
               />
               <div class="news-date">
@@ -1776,8 +2118,8 @@
               </h3>
               <p>
                 Với mong muốn đồng hành cùng khách hàng trên hành trình tìm kiếm
-                và khẳng định phong cách và cá tính riêng, trong sự kiện “Khai
-                phá dấu ấn độc bản” diễn ra tại...
+                và khẳng định phong cách và cá tính riêng, trong sự kiện "Khai
+                phá dấu ấn độc bản" diễn ra tại...
               </p>
               <a
                 href="/tintuc/tintucxemay/tintucxe/trang1/ABSHLEAD04112025.html"
@@ -1789,7 +2131,7 @@
           <div class="news-card">
             <div class="news-image">
               <img
-                src="/sanphamxemay/image/banner/FUTURE.png"
+                src="/sanphamxemay/Future/Future/picture/3.png"
                 alt="Tin tức 1"
               />
               <div class="news-date">
@@ -1809,7 +2151,7 @@
                 Phú Thọ, ngày 28 tháng 10 năm 2025 – Công ty Honda Việt Nam
                 (HVN) chính thức giới thiệu mẫu xe số cao cấp Future 125 FI
                 2026, tiếp nối hành trình gần ba thập kỷ khẳng định vị thế
-                “huyền thoại”....
+                "huyền thoại"....
               </p>
               <a
                 href="/tintuc/tintucxemay/tintucxe/trang1/FUTURE28102025.html"
@@ -1820,7 +2162,10 @@
           </div>
           <div class="news-card">
             <div class="news-image">
-              <img src="/sanphamxemay/image/banner/CB350.jpg" alt="Tin tức 1" />
+              <img
+                src="/sanphamxemay/CB350Hness/CB350Hness/picture/4.jpg"
+                alt="Tin tức 1"
+              />
               <div class="news-date">
                 <span>02</span>
                 <span>Th10</span>
@@ -2034,8 +2379,16 @@
     </a>
 
     <script>
+      // Loading Screen
+      window.addEventListener("load", function () {
+        const loadingScreen = document.getElementById("loadingScreen");
+        setTimeout(function () {
+          loadingScreen.classList.add("hidden");
+        }, 1000);
+      });
+
       document.addEventListener("DOMContentLoaded", function () {
-        // Mobile Menu Toggle - Updated Version
+        // Mobile Menu Toggle
         const menuToggle = document.querySelector(".menu-toggle");
         const mainNav = document.querySelector(".main-nav");
         const body = document.body;
@@ -2043,7 +2396,6 @@
         menuToggle.addEventListener("click", function () {
           this.classList.toggle("active");
           mainNav.classList.toggle("active");
-          // Toggle body overflow when menu is open
           if (mainNav.classList.contains("active")) {
             body.style.overflow = "hidden";
           } else {
@@ -2051,21 +2403,11 @@
           }
         });
 
-        // Close mobile menu when clicking on a link or outside
+        // Close mobile menu when clicking outside
         document.addEventListener("click", function (e) {
           const isClickInsideNav =
             mainNav.contains(e.target) || menuToggle.contains(e.target);
-
           if (!isClickInsideNav && mainNav.classList.contains("active")) {
-            menuToggle.classList.remove("active");
-            mainNav.classList.remove("active");
-            body.style.overflow = "";
-          }
-        });
-
-        // Close menu when window is resized above breakpoint
-        window.addEventListener("resize", function () {
-          if (window.innerWidth > 992) {
             menuToggle.classList.remove("active");
             mainNav.classList.remove("active");
             body.style.overflow = "";
@@ -2074,13 +2416,182 @@
 
         // Header scroll effect
         const header = document.querySelector(".main-header");
+        const topBar = document.querySelector(".top-bar");
+
         window.addEventListener("scroll", function () {
           if (window.scrollY > 100) {
             header.classList.add("scrolled");
+            if (topBar) {
+              topBar.style.transform = "translateY(-100%)";
+            }
           } else {
             header.classList.remove("scrolled");
+            if (topBar) {
+              topBar.style.transform = "translateY(0)";
+            }
           }
         });
+
+        // HERO SLIDER FUNCTIONALITY - ĐÃ SỬA LỖI SLIDE-CONTENT
+        const slides = document.querySelectorAll(".slide");
+        const prevBtn = document.getElementById("prevSlide");
+        const nextBtn = document.getElementById("nextSlide");
+        const sliderDots = document.getElementById("sliderDots");
+        const progressBar = document.querySelector(".progress-bar");
+
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        let autoSlideInterval;
+        let progressInterval;
+
+        // Initialize slider
+        function initSlider() {
+          createHeroDots();
+          goToSlide(0);
+          startAutoSlide();
+          startProgressBar();
+        }
+
+        // Create dots for hero slider
+        function createHeroDots() {
+          sliderDots.innerHTML = "";
+          for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement("div");
+            dot.classList.add("slider-dot");
+            if (i === currentSlide) dot.classList.add("active");
+            dot.addEventListener("click", () => goToSlide(i));
+            sliderDots.appendChild(dot);
+          }
+        }
+
+        // Go to specific slide
+        function goToSlide(index) {
+          // Remove active class from all slides
+          slides.forEach((slide) => {
+            slide.classList.remove("active");
+          });
+
+          // Update current slide
+          currentSlide = index;
+
+          // Add active class to current slide
+          slides[currentSlide].classList.add("active");
+
+          // Update dots
+          updateHeroDots();
+
+          // Reset progress bar
+          resetProgressBar();
+        }
+
+        // Update hero dots
+        function updateHeroDots() {
+          document.querySelectorAll(".slider-dot").forEach((dot, index) => {
+            dot.classList.toggle("active", index === currentSlide);
+          });
+        }
+
+        // Start auto slide
+        function startAutoSlide() {
+          autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+
+        // Stop auto slide
+        function stopAutoSlide() {
+          clearInterval(autoSlideInterval);
+        }
+
+        // Start progress bar animation
+        function startProgressBar() {
+          resetProgressBar();
+        }
+
+        // Reset progress bar
+        function resetProgressBar() {
+          if (progressBar) {
+            progressBar.style.transition = "none";
+            progressBar.style.width = "0%";
+
+            setTimeout(() => {
+              progressBar.style.transition = "width 5s linear";
+              progressBar.style.width = "100%";
+            }, 100);
+          }
+        }
+
+        // Next slide
+        function nextSlide() {
+          let nextIndex = currentSlide + 1;
+          if (nextIndex >= totalSlides) nextIndex = 0;
+          goToSlide(nextIndex);
+        }
+
+        // Previous slide
+        function prevSlide() {
+          let prevIndex = currentSlide - 1;
+          if (prevIndex < 0) prevIndex = totalSlides - 1;
+          goToSlide(prevIndex);
+        }
+
+        // Event listeners for hero slider
+        prevBtn.addEventListener("click", () => {
+          prevSlide();
+          stopAutoSlide();
+          setTimeout(startAutoSlide, 6000);
+        });
+
+        nextBtn.addEventListener("click", () => {
+          nextSlide();
+          stopAutoSlide();
+          setTimeout(startAutoSlide, 6000);
+        });
+
+        // Pause auto slide on hover
+        const heroSlider = document.querySelector(".hero-slider");
+        heroSlider.addEventListener("mouseenter", () => {
+          stopAutoSlide();
+          if (progressBar) {
+            progressBar.style.transition = "none";
+          }
+        });
+
+        heroSlider.addEventListener("mouseleave", () => {
+          startAutoSlide();
+          resetProgressBar();
+        });
+
+        // Touch events for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        heroSlider.addEventListener("touchstart", (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        });
+
+        heroSlider.addEventListener("touchend", (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          handleSwipe();
+        });
+
+        function handleSwipe() {
+          const swipeThreshold = 50;
+          const diff = touchStartX - touchEndX;
+
+          if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+              // Swipe left - next slide
+              nextSlide();
+            } else {
+              // Swipe right - previous slide
+              prevSlide();
+            }
+            stopAutoSlide();
+            setTimeout(startAutoSlide, 6000);
+          }
+        }
+
+        // Initialize slider
+        initSlider();
 
         // Back to Top Button
         const backToTop = document.querySelector("#backToTop");
@@ -2105,10 +2616,8 @@
           anchor.addEventListener("click", function (e) {
             if (this.getAttribute("href") !== "#") {
               e.preventDefault();
-
               const targetId = this.getAttribute("href");
               const targetElement = document.querySelector(targetId);
-
               if (targetElement) {
                 window.scrollTo({
                   top: targetElement.offsetTop - 80,
@@ -2119,107 +2628,6 @@
           });
         });
 
-        // Animation on scroll
-        function animateOnScroll() {
-          const elements = document.querySelectorAll(
-            ".featured-section, .service-section, .news-section"
-          );
-
-          elements.forEach((element) => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-
-            if (elementPosition < windowHeight - 100) {
-              element.style.opacity = "1";
-              element.style.transform = "translateY(0)";
-            }
-          });
-        }
-
-        // Set initial state for animated elements
-        document
-          .querySelectorAll(
-            ".featured-section, .service-section, .news-section"
-          )
-          .forEach((element) => {
-            element.style.opacity = "0";
-            element.style.transform = "translateY(30px)";
-            element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-          });
-
-        window.addEventListener("scroll", animateOnScroll);
-        animateOnScroll(); // Run once on page load
-
-        // HERO SLIDER FUNCTIONALITY
-        const slides = document.querySelectorAll(".slide");
-        const prevBtn = document.getElementById("prevSlide");
-        const nextBtn = document.getElementById("nextSlide");
-        const sliderDots = document.getElementById("sliderDots");
-
-        let currentSlide = 0;
-        const totalSlides = slides.length;
-
-        // Create dots for hero slider
-        function createHeroDots() {
-          sliderDots.innerHTML = "";
-          for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement("div");
-            dot.classList.add("slider-dot");
-            if (i === currentSlide) dot.classList.add("active");
-            dot.addEventListener("click", () => goToSlide(i));
-            sliderDots.appendChild(dot);
-          }
-        }
-
-        // Go to specific slide
-        function goToSlide(index) {
-          slides[currentSlide].classList.remove("active");
-          currentSlide = index;
-          slides[currentSlide].classList.add("active");
-          updateHeroDots();
-        }
-
-        // Update hero dots
-        function updateHeroDots() {
-          document.querySelectorAll(".slider-dot").forEach((dot, index) => {
-            dot.classList.toggle("active", index === currentSlide);
-          });
-        }
-
-        // Next slide
-        function nextSlide() {
-          let nextIndex = currentSlide + 1;
-          if (nextIndex >= totalSlides) nextIndex = 0;
-          goToSlide(nextIndex);
-        }
-
-        // Previous slide
-        function prevSlide() {
-          let prevIndex = currentSlide - 1;
-          if (prevIndex < 0) prevIndex = totalSlides - 1;
-          goToSlide(prevIndex);
-        }
-
-        // Event listeners for hero slider
-        prevBtn.addEventListener("click", prevSlide);
-        nextBtn.addEventListener("click", nextSlide);
-
-        // Auto slide for hero slider
-        let heroAutoSlide = setInterval(nextSlide, 5000);
-
-        // Pause auto slide on hover
-        const heroSlider = document.querySelector(".hero-slider");
-        heroSlider.addEventListener("mouseenter", () => {
-          clearInterval(heroAutoSlide);
-        });
-
-        heroSlider.addEventListener("mouseleave", () => {
-          heroAutoSlide = setInterval(nextSlide, 5000);
-        });
-
-        // Initialize hero slider
-        createHeroDots();
-
         // Mobile Bottom Navigation Active State
         const mobileNavItems = document.querySelectorAll(".mobile-nav-item");
         mobileNavItems.forEach((item) => {
@@ -2229,29 +2637,6 @@
           });
         });
       });
-      // Thêm vào phần JavaScript hiện có
-      const topBar = document.querySelector(".top-bar");
-
-      window.addEventListener("scroll", function () {
-        if (window.scrollY > 100) {
-          header.classList.add("scrolled");
-          // Ẩn top bar khi scroll
-          if (topBar) {
-            topBar.style.transform = "translateY(-100%)";
-          }
-        } else {
-          header.classList.remove("scrolled");
-          // Hiện lại top bar khi ở đầu trang
-          if (topBar) {
-            topBar.style.transform = "translateY(0)";
-          }
-        }
-      });
-
-      // Thêm transition cho top bar
-      if (topBar) {
-        topBar.style.transition = "transform 0.3s ease";
-      }
     </script>
   </body>
 </html>
