@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hệ Thống HEAD Trung Hùng</title>
-    <link rel="icon" href="image/logo/Logo_HEAD.png" type="image/x-icon" />
+    <title>Sản phẩm xe máy Honda - HEAD TRUNG HÙNG</title>
+    <link
+      rel="icon"
+      href="/sanphamxemay/image/banner/Logo_HEAD.png"
+      type="image/x-icon"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -13,21 +17,8 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-G4PSCX8Q0Q"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-G4PSCX8Q0Q");
-    </script>
     <style>
-      /* Reset & Base Styles */
+      /* ===== RESET & BASE STYLES ===== */
       * {
         margin: 0;
         padding: 0;
@@ -47,15 +38,12 @@
         --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.15);
       }
 
-      html {
-        scroll-behavior: smooth;
-      }
-
       body {
         font-family: "Montserrat", sans-serif;
         line-height: 1.6;
         color: var(--secondary-color);
         overflow-x: hidden;
+        background-color: var(--light-color);
       }
 
       .container {
@@ -120,6 +108,11 @@
         box-shadow: 0 6px 15px rgba(228, 5, 33, 0.3);
       }
 
+      .btn-lg {
+        padding: 15px 35px;
+        font-size: 1.1rem;
+      }
+
       .section-header {
         text-align: center;
         margin-bottom: 60px;
@@ -158,259 +151,10 @@
         text-align: center;
       }
 
-      /* Loading Screen */
-      loading-screen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.95);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-      }
-
-      .ripple-container {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .loading-logo {
-        width: 100px;
-        height: 100px;
-        position: relative;
-        z-index: 10;
-        animation: pulse 2s infinite ease-in-out;
-      }
-
-      .ripple-circle {
-        position: absolute;
-        border: 2px solid #e10600; /* Màu chủ đạo của HEAD */
-        border-radius: 50%;
-        animation: ripple 3s infinite ease-out;
-      }
-
-      .ripple-circle:nth-child(2) {
-        animation-delay: 1s;
-      }
-
-      .ripple-circle:nth-child(3) {
-        animation-delay: 2s;
-      }
-
-      /* Hiệu ứng lan tỏa */
-      @keyframes ripple {
-        0% {
-          width: 0;
-          height: 0;
-          opacity: 1;
-        }
-        100% {
-          width: 200px;
-          height: 200px;
-          opacity: 0;
-        }
-      }
-
-      /* Hiệu ứng nhấp nháy cho logo */
-      @keyframes pulse {
-        0%,
-        100% {
-          transform: scale(1);
-          opacity: 1;
-        }
-        50% {
-          transform: scale(1.05);
-          opacity: 0.8;
-        }
-      }
-
-      /* Top Bar Menu */
-      .top-bar {
-        background-color: var(--primary-color);
-        color: white;
-        padding: 8px 0;
-        font-size: 0.85rem;
-        position: relative;
-        z-index: 1001;
-        transition: transform 0.3s ease;
-      }
-
-      .top-bar .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-
-      .top-nav ul {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
-
-      .top-nav a {
-        color: white;
-        font-weight: 500;
-        transition: var(--transition);
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        white-space: nowrap;
-        padding: 4px 8px;
-      }
-
-      .top-nav a:hover {
-        color: var(--light-gray);
-        transform: translateY(-1px);
-      }
-
-      .top-nav i {
-        font-size: 0.8rem;
-      }
-
-      .top-contact {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        flex-wrap: nowrap;
-        white-space: nowrap;
-      }
-
-      .contact-item {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        font-size: 0.8rem;
-        white-space: nowrap;
-      }
-
-      .contact-item i {
-        font-size: 0.8rem;
-      }
-
-      /* Responsive adjustments for top bar */
-      @media (max-width: 992px) {
-        .top-bar {
-          padding: 10px 0;
-        }
-
-        .top-bar .container {
-          gap: 10px;
-        }
-
-        .top-nav ul {
-          justify-content: center;
-          gap: 8px 15px;
-          width: 100%;
-        }
-
-        .top-nav a {
-          font-size: 0.8rem;
-          padding: 3px 6px;
-        }
-
-        .contact-item {
-          font-size: 0.75rem;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .top-bar {
-          padding: 12px 0;
-        }
-
-        .top-bar .container {
-          flex-direction: column;
-          gap: 8px;
-        }
-
-        .top-nav {
-          width: 100%;
-          display: flex;
-          justify-content: center;
-        }
-
-        .top-nav ul {
-          justify-content: center;
-          width: 100%;
-        }
-
-        .top-contact {
-          width: 100%;
-          justify-content: center;
-          gap: 15px;
-        }
-
-        .contact-item {
-          font-size: 0.75rem;
-          padding: 3px 8px;
-          background-color: rgba(255, 255, 255, 0.1);
-          border-radius: 4px;
-        }
-      }
-
-      @media (max-width: 576px) {
-        .top-bar {
-          padding: 10px 0;
-        }
-
-        .top-nav ul {
-          gap: 6px 12px;
-        }
-
-        .top-nav a {
-          font-size: 0.75rem;
-          padding: 3px 6px;
-        }
-
-        .contact-item {
-          font-size: 0.7rem;
-          padding: 2px 6px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .top-bar {
-          padding: 8px 0;
-        }
-
-        .top-nav ul {
-          gap: 4px 8px;
-        }
-
-        .top-nav a {
-          font-size: 0.7rem;
-          padding: 2px 4px;
-          flex-direction: column;
-          gap: 2px;
-          text-align: center;
-          min-width: 80px;
-        }
-
-        .top-nav a i {
-          font-size: 0.8rem;
-          margin-bottom: 2px;
-        }
-
-        .top-contact {
-          gap: 10px;
-        }
-
-        .contact-item {
-          font-size: 0.65rem;
-          padding: 2px 4px;
-        }
-      }
-
-      /* Header */
+      /* ===== HEADER STYLES ===== */
       .main-header {
         position: fixed;
-        top: 40px;
+        top: 0;
         left: 0;
         width: 100%;
         padding: 20px 0;
@@ -422,7 +166,8 @@
       }
 
       .main-header.scrolled {
-        top: 0;
+        padding: 15px 0;
+        background-color: rgba(255, 255, 255, 0.98);
       }
 
       .main-header .container {
@@ -431,9 +176,21 @@
         align-items: center;
       }
 
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
       .logo img {
         height: 40px;
         transition: var(--transition);
+      }
+
+      .main-header h1 {
+        font-size: 1.5rem;
+        color: var(--dark-color);
+        font-weight: 700;
       }
 
       .main-nav ul {
@@ -442,7 +199,6 @@
 
       .main-nav li {
         margin-left: 30px;
-        position: relative;
       }
 
       .main-nav a {
@@ -450,9 +206,6 @@
         color: var(--dark-color);
         position: relative;
         padding: 5px 0;
-        display: flex;
-        align-items: center;
-        gap: 5px;
       }
 
       .main-nav a:after {
@@ -476,67 +229,7 @@
         font-weight: 600;
       }
 
-      /* Dropdown Menu Styles - FIXED VERTICAL LAYOUT */
-      .dropdown {
-        position: relative;
-      }
-
-      .dropdown-content {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 220px;
-        background-color: white;
-        box-shadow: var(--shadow-heavy);
-        border-radius: 8px;
-        padding: 15px 0;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(10px);
-        transition: all 0.3s ease;
-        z-index: 1000;
-        display: block !important; /* Đảm bảo hiển thị block */
-      }
-
-      .dropdown:hover .dropdown-content {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-
-      .dropdown-content li {
-        margin: 0;
-        display: block !important; /* Đảm bảo mỗi item trên 1 dòng */
-      }
-
-      .dropdown-content a {
-        display: flex !important;
-        align-items: center;
-        padding: 12px 25px;
-        color: var(--dark-color);
-        font-weight: 500;
-        transition: var(--transition);
-        border-left: 3px solid transparent;
-        gap: 8px;
-        width: 100%;
-        box-sizing: border-box;
-        white-space: nowrap;
-      }
-
-      .dropdown-content a:hover {
-        background-color: var(--light-gray);
-        color: var(--primary-color);
-        border-left-color: var(--primary-color);
-        padding-left: 30px;
-      }
-
-      .dropdown-content a i {
-        font-size: 0.9rem;
-        width: 16px;
-        text-align: center;
-      }
-
-      /* Mobile Menu Toggle Styles */
+      /* Mobile Menu Toggle */
       .menu-toggle {
         display: none;
         width: 30px;
@@ -554,7 +247,6 @@
         transition: all 0.4s ease;
         left: 0;
       }
-
       .menu-toggle .bar:nth-child(1) {
         top: 0;
       }
@@ -622,35 +314,15 @@
           padding: 8px 0;
           display: block;
         }
-
-        /* Mobile dropdown styles */
-        .dropdown-content {
-          position: static;
-          width: 100%;
-          opacity: 1;
-          visibility: visible;
-          transform: none;
-          box-shadow: none;
-          padding: 0;
-          margin-top: 10px;
-          margin-left: 20px;
-          border-left: 2px solid var(--light-gray);
-        }
-
-        .dropdown-content a {
-          padding: 10px 15px;
-          font-size: 0.95rem;
-        }
       }
 
-      /* Hero Banner SLIDER với hiệu ứng Zoom */
+      /* ===== HERO SLIDER STYLES ===== */
       .hero-slider {
-        margin-top: 120px;
         position: relative;
-        height: 80vh;
-        min-height: 500px;
+        height: 100vh;
+        min-height: 700px;
         overflow: hidden;
-        width: 100%;
+        margin-top: 80px;
       }
 
       .slider-container {
@@ -666,17 +338,15 @@
         width: 100%;
         height: 100%;
         opacity: 0;
-        transition: opacity 1.2s ease;
+        transition: opacity 1s ease, transform 1.5s ease;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
         color: white;
         transform: scale(1.1);
-        transition: transform 8s ease, opacity 1.2s ease;
       }
 
       .slide.active {
@@ -697,8 +367,7 @@
           rgba(0, 0, 0, 0.7) 0%,
           rgba(0, 0, 0, 0.3) 100%
         );
-        z-index: 1;
-        transition: opacity 1.2s ease;
+        z-index: -1;
       }
 
       .slide-content {
@@ -708,41 +377,38 @@
         max-width: 800px;
         padding: 0 20px;
         text-align: center;
-        transform: translateY(0);
-        opacity: 1;
-        transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform: translateY(50px);
+        opacity: 0;
+        transition: all 0.8s ease 0.5s;
       }
 
-      .slide-content h1 {
+      .slide.active .slide-content {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .hero-title {
         font-size: 3.5rem;
-        font-weight: 800;
+        font-weight: 700;
         margin-bottom: 20px;
         line-height: 1.2;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-        transform: translateX(0);
-        opacity: 1;
-        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
       }
 
-      .slide-content p {
-        font-size: 1.4rem;
+      .hero-subtitle {
+        font-size: 1.5rem;
         margin-bottom: 30px;
-        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-        transform: translateX(0);
-        opacity: 1;
-        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
       }
 
-      .slide-buttons {
+      .hero-buttons {
         display: flex;
-        gap: 15px;
+        gap: 20px;
         justify-content: center;
-        transform: translateY(0);
-        opacity: 1;
-        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        flex-wrap: wrap;
       }
 
-      /* Slider Navigation - Enhanced */
+      /* Slider Navigation */
       .slider-nav {
         position: absolute;
         bottom: 40px;
@@ -764,162 +430,467 @@
         width: 14px;
         height: 14px;
         border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.4);
+        background-color: rgba(255, 255, 255, 0.5);
         cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition: var(--transition);
         position: relative;
-        overflow: hidden;
       }
 
-      .slider-dot::before {
+      .slider-dot::after {
         content: "";
         position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: var(--primary-color);
-        transition: left 0.4s ease;
+        top: -4px;
+        left: -4px;
+        right: -4px;
+        bottom: -4px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        transition: var(--transition);
       }
 
       .slider-dot.active {
-        background-color: rgba(255, 255, 255, 0.8);
-        transform: scale(1.3);
-      }
-
-      .slider-dot.active::before {
-        left: 0;
-      }
-
-      .slider-dot:hover {
+        background-color: var(--primary-color);
         transform: scale(1.2);
-        background-color: rgba(255, 255, 255, 0.6);
+      }
+
+      .slider-dot.active::after {
+        border-color: rgba(255, 255, 255, 0.5);
       }
 
       .slider-btn {
-        width: 55px;
-        height: 55px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.15);
-        border: 2px solid rgba(255, 255, 255, 0.4);
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.5);
         color: white;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        backdrop-filter: blur(10px);
-        font-size: 1.1rem;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .slider-btn::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: var(--primary-color);
-        transition: left 0.4s ease;
-        z-index: -1;
+        transition: var(--transition);
+        backdrop-filter: blur(5px);
       }
 
       .slider-btn:hover {
         background-color: var(--primary-color);
         border-color: var(--primary-color);
-        transform: scale(1.15) translateY(-2px);
-        box-shadow: 0 8px 25px rgba(228, 5, 33, 0.4);
-      }
-
-      .slider-btn:hover::before {
-        left: 0;
+        transform: scale(1.1);
       }
 
       /* Progress Bar */
-      .slider-progress {
+      .progress-bar {
         position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
         height: 4px;
-        background: rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.2);
         z-index: 10;
       }
 
-      .progress-bar {
+      .progress {
         height: 100%;
-        background: var(--primary-color);
+        background-color: var(--primary-color);
         width: 0%;
         transition: width 5s linear;
       }
 
-      .slide.active ~ .slider-progress .progress-bar {
+      .slide.active ~ .progress-bar .progress {
         width: 100%;
       }
 
-      /* Floating elements animation */
-      @keyframes float {
-        0%,
+      /* ===== PRODUCTS SECTION STYLES ===== */
+      .categories-section {
+        padding: 100px 0;
+        background-color: var(--light-color);
+      }
+
+      .category-tabs {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 40px;
+        position: relative;
+      }
+
+      .tab-btn {
+        padding: 12px 25px;
+        background-color: white;
+        border: 2px solid var(--light-gray);
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .tab-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background: linear-gradient(135deg, var(--primary-color), #ff2a4e);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: -1;
+        border-radius: 30px;
+      }
+
+      .tab-btn.active,
+      .tab-btn:hover {
+        color: white;
+        border-color: var(--primary-color);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(228, 5, 33, 0.3);
+      }
+
+      .tab-btn.active::before,
+      .tab-btn:hover::before {
+        width: 100%;
+      }
+
+      .products-counter {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+        color: var(--gray-color);
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.5s ease;
+      }
+
+      .products-counter.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        transition: all 0.5s ease;
+      }
+
+      .product-card {
+        background-color: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: var(--shadow-light);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+
+      .product-card.hidden {
+        display: none;
+      }
+
+      .product-card.filtered-out {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+        pointer-events: none;
+        height: 0;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        border: none;
+      }
+
+      .product-card.filtered-in {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        animation: cardAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        height: auto;
+        overflow: visible;
+      }
+
+      @keyframes cardAppear {
+        0% {
+          opacity: 0;
+          transform: scale(0.8) translateY(20px);
+        }
         100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-10px);
+          opacity: 1;
+          transform: scale(1) translateY(0);
         }
       }
 
-      .floating {
-        animation: float 3s ease-in-out infinite;
+      .product-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: var(--shadow-heavy);
       }
 
-      /* Responsive adjustments for hero slider */
-      @media (max-width: 768px) {
-        .hero-slider {
-          margin-top: 100px;
-          height: 60vh;
-          min-height: 400px;
-        }
+      .product-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 25px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        z-index: 1;
+        box-shadow: 0 3px 10px rgba(228, 5, 33, 0.3);
+        transition: all 0.3s ease;
+      }
 
-        .slide-content h1 {
-          font-size: 2.2rem;
-        }
+      .product-card:hover .product-badge {
+        transform: scale(1.1);
+      }
 
-        .slide-content p {
-          font-size: 1.1rem;
-        }
+      .product-image {
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+        position: relative;
+      }
 
-        .slide-buttons {
-          flex-direction: column;
-          align-items: center;
-        }
+      .product-image img {
+        width: 100%;
+        height: 220px;
+        object-fit: contain;
+        transition: transform 0.5s ease;
+      }
 
-        .slider-btn {
-          width: 45px;
-          height: 45px;
-          font-size: 1rem;
-        }
+      .product-card:hover .product-image img {
+        transform: scale(1.1);
+      }
 
-        .slider-dot {
-          width: 12px;
-          height: 12px;
+      .product-info {
+        padding: 25px;
+      }
+
+      .product-info h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        color: var(--dark-color);
+        font-weight: 600;
+      }
+
+      .product-specs {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+        color: var(--gray-color);
+      }
+
+      .product-specs span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .product-price {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+      }
+
+      /* Hiệu ứng tìm kiếm */
+      .search-container {
+        max-width: 500px;
+        margin: 0 auto 40px;
+        position: relative;
+      }
+
+      .search-box {
+        width: 100%;
+        padding: 15px 50px 15px 20px;
+        border: 2px solid var(--light-gray);
+        border-radius: 30px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background-color: white;
+      }
+
+      .search-box:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(228, 5, 33, 0.1);
+        outline: none;
+      }
+
+      .search-icon {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--gray-color);
+        font-size: 1.2rem;
+      }
+
+      /* Hiệu ứng loading */
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .loading-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(228, 5, 33, 0.2);
+        border-radius: 50%;
+        border-top-color: var(--primary-color);
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
         }
       }
 
-      @media (max-width: 480px) {
-        .slide-content h1 {
-          font-size: 1.8rem;
-        }
+      /* Hiệu ứng sắp xếp lại lưới */
+      .products-grid.rearranging .product-card {
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
 
-        .slide-content p {
-          font-size: 1rem;
-        }
+      /* ===== ACTION BUTTONS SECTION ===== */
+      .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 40px 0;
+        flex-wrap: wrap;
+      }
 
-        .slider-nav {
-          bottom: 20px;
-          gap: 15px;
-        }
+      .action-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 30px;
+        background: white;
+        border: 2px solid var(--light-gray);
+        border-radius: 50px;
+        font-weight: 600;
+        color: var(--dark-color);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        box-shadow: var(--shadow-light);
+      }
+
+      .action-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-medium);
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .action-btn i {
+        font-size: 1.2rem;
+      }
+
+      /* ===== FOOTER STYLES ===== */
+      .main-footer {
+        background-color: var(--dark-color);
+        color: white;
+        padding: 60px 0 20px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-logo img {
+        height: 50px;
+        margin-bottom: 15px;
+      }
+
+      .footer-logo p {
+        color: #adb5bd;
+        line-height: 1.6;
+      }
+
+      .footer-links h4,
+      .footer-social h4 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-links h4:after,
+      .footer-social h4:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-links ul li {
+        margin-bottom: 12px;
+      }
+
+      .footer-links ul a {
+        color: #adb5bd;
+        transition: var(--transition);
+      }
+
+      .footer-links ul a:hover {
+        color: var(--primary-color);
+        padding-left: 8px;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-icons a {
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+      }
+
+      .social-icons a:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-5px);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 25px;
+        text-align: center;
+        color: #adb5bd;
+        font-size: 0.9rem;
       }
 
       /* Back to Top */
@@ -993,11 +964,6 @@
         }
       }
 
-      /* Điều chỉnh vị trí khi có cả 2 nút */
-      .back-to-top.active ~ .messenger-chat {
-        bottom: 100px;
-      }
-
       /* Mobile Bottom Navigation Bar */
       .mobile-bottom-nav {
         display: none;
@@ -1041,546 +1007,50 @@
         font-weight: 500;
       }
 
-      /* Quick Links */
-      .quick-links {
-        padding: 80px 0;
-        background-color: #f8f9fa;
-      }
-
-      .quick-links .container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 20px;
-      }
-
-      .quick-link-card {
-        position: relative;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: var(--shadow-light);
-        transition: var(--transition);
-        aspect-ratio: 1/1;
-        background: white;
-      }
-
-      .quick-link-card:hover {
-        transform: translateY(-10px);
-        box-shadow: var(--shadow-heavy);
-      }
-
-      .quick-link-card a {
-        pointer-events: auto !important;
-        position: relative;
-        z-index: 2;
-        display: block;
-        height: 100%;
-      }
-
-      .quick-link-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-
-      .quick-link-card:hover img {
-        transform: scale(1.1);
-      }
-
-      .quick-link-card span {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 20px;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-        color: white;
-        font-weight: 600;
-        font-size: 1.2rem;
-        text-align: center;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-        transition: var(--transition);
-      }
-
-      .quick-link-card:hover span {
-        background: linear-gradient(to top, rgba(228, 5, 33, 0.8), transparent);
-      }
-
-      /* Featured Section - OPTIMIZED FOR 4 PRODUCTS */
-      .featured-section {
-        padding: 100px 0;
-        background: white;
-        position: relative;
-      }
-
-      .featured-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 30px;
-        margin-bottom: 50px;
-      }
-
-      .featured-item {
-        position: relative;
-        overflow: hidden;
-        background: #fff;
-        border-radius: 15px;
-        box-shadow: var(--shadow-light);
-        transition: var(--transition);
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-      }
-
-      .featured-item:hover {
-        transform: translateY(-10px);
-        box-shadow: var(--shadow-heavy);
-      }
-
-      .product-badge {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background-color: var(--primary-color);
-        color: white;
-        padding: 8px 15px;
-        border-radius: 25px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        z-index: 1;
-        box-shadow: 0 3px 10px rgba(228, 5, 33, 0.3);
-      }
-
-      .product-image {
-        width: 100%;
-        aspect-ratio: 3 / 2;
-        overflow: hidden;
-        position: relative;
-      }
-
-      .product-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        transition: var(--transition);
-      }
-
-      .featured-item:hover .product-image img {
-        transform: scale(1.1);
-      }
-
-      .product-info {
-        padding: 25px;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
-      .product-info h3 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-        color: var(--dark-color);
-        font-weight: 600;
-        line-height: 1.4;
-      }
-
-      .product-price {
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--primary-color);
-        margin-bottom: 20px;
-      }
-
-      /* Promo Banner */
-      .promo-banner {
-        padding: 100px 0;
-        background: linear-gradient(135deg, #333 0%, #000 100%);
-        color: white;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .promo-banner::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23e40521" fill-opacity="0.1" d="M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,138.7C672,139,768,181,864,192C960,203,1056,181,1152,165.3C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-        background-size: cover;
-        background-position: center;
-      }
-
-      .promo-content {
-        position: relative;
-        z-index: 1;
-      }
-
-      .promo-content h2 {
-        font-size: 2.8rem;
-        margin-bottom: 20px;
-        font-weight: 700;
-      }
-
-      .promo-content p {
-        font-size: 1.3rem;
-        margin-bottom: 30px;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      /* News Section */
-      .news-section {
-        padding: 100px 0;
-        background-color: var(--light-color);
-      }
-
-      .news-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-        gap: 30px;
-        margin-bottom: 40px;
-      }
-
-      .news-card {
-        background-color: white;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: var(--shadow-light);
-        transition: var(--transition);
-      }
-
-      .news-card:hover {
-        transform: translateY(-10px);
-        box-shadow: var(--shadow-heavy);
-      }
-
-      .news-image {
-        position: relative;
-        height: 220px;
-        overflow: hidden;
-      }
-
-      .news-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: var(--transition);
-      }
-
-      .news-card:hover .news-image img {
-        transform: scale(1.1);
-      }
-
-      .news-date {
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        background-color: var(--primary-color);
-        color: white;
-        text-align: center;
-        padding: 12px;
-        border-radius: 10px;
-        line-height: 1;
-        box-shadow: 0 3px 10px rgba(228, 5, 33, 0.3);
-      }
-
-      .news-date span:first-child {
-        font-size: 1.5rem;
-        font-weight: 700;
-        display: block;
-      }
-
-      .news-date span:last-child {
-        font-size: 0.9rem;
-        text-transform: uppercase;
-      }
-
-      .news-content {
-        padding: 25px;
-      }
-
-      .news-content h3 {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-        font-weight: 600;
-      }
-
-      .news-content h3 a:hover {
-        color: var(--primary-color);
-      }
-
-      .news-content p {
-        color: var(--gray-color);
-        margin-bottom: 20px;
-        font-size: 0.95rem;
-        line-height: 1.6;
-      }
-
-      .read-more {
-        color: var(--primary-color);
-        font-weight: 600;
-        font-size: 0.95rem;
-        display: inline-flex;
-        align-items: center;
-      }
-
-      .read-more i {
-        margin-left: 8px;
-        font-size: 0.8rem;
-        transition: var(--transition);
-      }
-
-      .read-more:hover i {
-        transform: translateX(5px);
-      }
-
-      /* Service Section */
-      .service-section {
-        padding: 100px 0;
-        background: white;
-      }
-
-      .service-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 30px;
-      }
-
-      .service-card {
-        background-color: white;
-        border-radius: 15px;
-        padding: 40px 30px;
-        text-align: center;
-        box-shadow: var(--shadow-light);
-        transition: var(--transition);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .service-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 5px;
-        background: var(--primary-color);
-        transform: scaleX(0);
-        transition: var(--transition);
-      }
-
-      .service-card:hover {
-        transform: translateY(-10px);
-        box-shadow: var(--shadow-heavy);
-      }
-
-      .service-card:hover::before {
-        transform: scaleX(1);
-      }
-
-      .service-icon {
-        width: 80px;
-        height: 80px;
-        background-color: var(--light-color);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto 25px;
-        font-size: 2rem;
-        color: var(--primary-color);
-        transition: var(--transition);
-      }
-
-      .service-card:hover .service-icon {
-        background-color: var(--primary-color);
-        color: white;
-        transform: rotateY(180deg);
-      }
-
-      .service-card h3 {
-        font-size: 1.4rem;
-        margin-bottom: 15px;
-        color: var(--dark-color);
-        font-weight: 600;
-      }
-
-      .service-card p {
-        color: var(--gray-color);
-        margin-bottom: 25px;
-        line-height: 1.6;
-      }
-
-      /* Footer */
-      .main-footer {
-        background-color: var(--dark-color);
-        color: white;
-        padding: 80px 0 0;
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 40px;
-        margin-bottom: 40px;
-      }
-
-      .footer-col h3 {
-        font-size: 1.2rem;
-        margin-bottom: 25px;
-        position: relative;
-        padding-bottom: 10px;
-        font-weight: 600;
-      }
-
-      .footer-col h3:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 40px;
-        height: 2px;
-        background-color: var(--primary-color);
-      }
-
-      .footer-logo {
-        margin-bottom: 20px;
-        display: block;
-        max-width: 120px;
-      }
-
-      .footer-col p {
-        color: #adb5bd;
-        margin-bottom: 25px;
-        line-height: 1.6;
-      }
-
-      .social-links {
-        display: flex;
-        gap: 15px;
-      }
-
-      .social-links a {
-        width: 40px;
-        height: 40px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: var(--transition);
-      }
-
-      .social-links a:hover {
-        background-color: var(--primary-color);
-        transform: translateY(-5px);
-      }
-
-      .footer-col ul li {
-        margin-bottom: 12px;
-      }
-
-      .footer-col ul a {
-        color: #adb5bd;
-        transition: var(--transition);
-        display: inline-block;
-      }
-
-      .footer-col ul a:hover {
-        color: var(--primary-color);
-        padding-left: 8px;
-      }
-
-      .contact-info li {
-        margin-bottom: 15px;
-        display: flex;
-        align-items: flex-start;
-      }
-
-      .contact-info i {
-        margin-right: 12px;
-        color: var(--primary-color);
-        width: 20px;
-        text-align: center;
-        margin-top: 3px;
-      }
-
-      .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 25px 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: #adb5bd;
-        font-size: 0.9rem;
-      }
-
-      .legal-links {
-        display: flex;
-        gap: 20px;
-      }
-
-      .legal-links a {
-        color: #adb5bd;
-        transition: var(--transition);
-      }
-
-      .legal-links a:hover {
-        color: var(--primary-color);
-      }
-
-      /* Responsive Adjustments */
-      @media (max-width: 1200px) {
-        .featured-grid {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 25px;
-        }
-      }
-
+      /* Responsive adjustments */
       @media (max-width: 992px) {
-        .main-nav li {
-          margin-left: 20px;
+        .hero-slider {
+          height: 80vh;
+          min-height: 600px;
+        }
+
+        .hero-title {
+          font-size: 2.8rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1.3rem;
         }
       }
 
       @media (max-width: 768px) {
-        .main-header {
-          top: auto;
-          margin-top: 0;
-        }
-        .main-header.scrolled {
-          top: 0;
-        }
         .hero-slider {
-          margin-top: 0;
-          height: 100vh;
-          min-height: 600px;
+          height: 70vh;
+          min-height: 500px;
+          margin-top: 70px;
         }
 
-        .slide-content h1 {
-          font-size: 2rem;
-        }
-        .slide-content p {
-          font-size: 1rem;
+        .hero-title {
+          font-size: 2.2rem;
         }
 
-        .slide-buttons {
+        .hero-subtitle {
+          font-size: 1.1rem;
+        }
+
+        .hero-buttons {
           flex-direction: column;
           align-items: center;
         }
 
         .slider-btn {
-          width: 40px;
-          height: 40px;
-          font-size: 0.9rem;
+          width: 45px;
+          height: 45px;
         }
 
+        .slider-nav {
+          bottom: 25px;
+        }
         .back-to-top {
           width: 45px;
           height: 45px;
@@ -1597,14 +1067,21 @@
           font-size: 1rem;
         }
 
+        .action-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .action-btn {
+          width: 100%;
+          max-width: 300px;
+          justify-content: center;
+        }
+
         .footer-bottom {
           flex-direction: column;
           text-align: center;
           gap: 10px;
-        }
-
-        .legal-links {
-          justify-content: center;
         }
 
         .messenger-chat {
@@ -1619,14 +1096,6 @@
           bottom: 80px;
         }
 
-        .promo-content h2 {
-          font-size: 2rem;
-        }
-
-        .promo-content p {
-          font-size: 1.1rem;
-        }
-
         /* Hiển thị thanh menu mobile ở chân trang */
         .mobile-bottom-nav {
           display: block;
@@ -1636,104 +1105,35 @@
         .main-footer {
           padding-bottom: 70px;
         }
-
-        .featured-grid {
-          grid-template-columns: 1fr;
-          gap: 20px;
-          max-width: 400px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        .featured-item {
-          margin-bottom: 0;
-        }
-
-        .product-info {
-          padding: 20px;
-        }
-
-        .product-info h3 {
-          font-size: 1.1rem;
-        }
       }
 
       @media (max-width: 480px) {
-        .featured-grid {
-          gap: 15px;
+        .hero-slider {
+          height: 60vh;
+          min-height: 400px;
         }
 
-        .product-info {
-          padding: 15px;
+        .hero-title {
+          font-size: 1.8rem;
         }
 
-        .product-info h3 {
+        .hero-subtitle {
           font-size: 1rem;
-        }
-
-        .btn {
-          padding: 10px 20px;
-          font-size: 0.9rem;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Loading Screen 
-    <div class="loading-screen" id="loadingScreen">
-      <img
-        src="/sanphamxemay/image/banner/Logo_HEAD.png"
-        alt="HEAD Trung Hùng"
-        class="loading-logo"
-      />
-    </div>-->
-
-    <!-- Top Bar -->
-    <div class="top-bar">
-      <div class="container">
-        <nav class="top-nav">
-          <ul>
-            <li>
-              <a href="/question/">
-                <i class="fas fa-question-circle"></i>
-                <span>Câu hỏi thường gặp</span>
-              </a>
-            </li>
-            <li>
-              <a href="/cuahang/">
-                <i class="fa-solid fa-location-dot"></i>
-                <span>Hệ thống đại lý</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <div class="top-contact">
-          <div class="contact-item">
-            <a href="tel:1900636712">
-              <i class="fas fa-phone-alt"></i>
-              <span>1900 636 712</span>
-            </a>
-          </div>
-          <div class="contact-item">
-            <a href="mailto:cr@hungmanh.com.vn">
-              <i class="fas fa-envelope"></i>
-              <span>cr_mt@hungmanh.com.vn</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Header -->
     <header class="main-header">
       <div class="container">
-        <a href="index.html" class="logo">
+        <a href="/Trangchu/" class="logo">
           <img
             src="/sanphamxemay/image/banner/Logo_HEAD.png"
             alt="Honda Logo"
           />
+          <h1>HEAD TRUNG HÙNG</h1>
         </a>
-        <h3>HEAD TRUNG HÙNG</h3>
         <div class="menu-toggle" id="mobile-menu">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -1742,109 +1142,30 @@
 
         <nav class="main-nav">
           <ul>
-            <li><a href="index.html" class="active">Trang chủ</a></li>
-            <li><a href="/gioithieu/">Giới thiệu</a></li>
-            <li class="dropdown">
-              <a href="/sanphamxemay/"
-                >Sản phẩm <i class="fas fa-chevron-down"></i
-              ></a>
-              <ul class="dropdown-content">
-                <li>
-                  <a href="/sanphamxemay/?category=xe-ga"
-                    ><i class="fas fa-motorcycle"></i> Xe Ga</a
-                  >
-                </li>
-                <li>
-                  <a href="/sanphamxemay/?category=xe-so"
-                    ><i class="fas fa-bicycle"></i> Xe Số</a
-                  >
-                </li>
-                <li>
-                  <a href="/sanphamxemay/?category=xe-con-tay"
-                    ><i class="fas fa-cog"></i> Xe Côn Tay</a
-                  >
-                </li>
-                <li>
-                  <a href="/sanphamxemay/?category=pkl"
-                    ><i class="fas fa-tachometer-alt"></i> Phân Khối Lớn</a
-                  >
-                </li>
-                <li>
-                  <a href="/sanphamxemay/?category=xe-dien"
-                    ><i class="fas fa-bolt"></i> Xe Điện</a
-                  >
-                </li>
-                <li>
-                  <a href="/sanphamxemay/?category=all"
-                    ><i class="fas fa-list"></i> Tất Cả</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="/dichvu/">Dịch Vụ <i class="fas fa-chevron-down"></i></a>
-              <ul class="dropdown-content">
-                <li>
-                  <a href="/dichvu/sanphamphutung/"
-                    ><i class="fa-solid fa-gear"></i> Phụ Tùng Chính Hãng</a
-                  >
-                </li>
-                <li>
-                  <a href="/dichvu/baoduong/"
-                    ><i class="fas fa-tools"></i> Bảo Dưỡng Và Sửa Chữa</a
-                  >
-                </li>
-                <li>
-                  <a href="/dichvu/baohanh/"
-                    ><i class="fas fa-shield-alt"></i> Bảo Hành Xe Máy</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="/tintuc/">Tin tức <i class="fas fa-chevron-down"></i></a>
-              <ul class="dropdown-content">
-                <li>
-                  <a href="/tintuc/tintucxemay/"
-                    ><i class="fas fa-newspaper"></i> Tin Tức Xe Máy</a
-                  >
-                </li>
-                <li>
-                  <a href="/tintuc/tintucsukien/"
-                    ><i class="fas fa-calendar-alt"></i> Sự Kiện</a
-                  >
-                </li>
-                <li>
-                  <a href="/tintuc/tintuckhuyenmai/"
-                    ><i class="fa-solid fa-gift"></i> Khuyến Mãi</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li><a href="/cuahang/">Hệ thống đại lý</a></li>
+            <li><a href="/Trangchu/">Trang chủ</a></li>
+            <li><a href="#products" class="active">Sản phẩm</a></li>
+            <li><a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a></li>
             <li><a href="/lienhe/">Liên hệ</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <!-- Hero Banner SLIDER với hiệu ứng Zoom -->
+    <!-- Hero Slider -->
     <section class="hero-slider">
       <div class="slider-container">
         <!-- Slide 1 -->
         <div
           class="slide active"
           style="
-            background-image: url('/sanphamxemay/SH160/SH160/picture/2.jpg');
+            background-image: url('/sanphamxemay/AB160/AB160/picture/3.jpg');
           "
         >
           <div class="slide-content">
-            <h1>Khởi đầu hành trình vững chắc!</h1>
-            <p>- Hệ Thống HEAD Trung Hùng -</p>
-            <div class="slide-buttons">
-              <a href="#products" class="btn btn-primary floating"
-                >Khám phá ngay</a
-              >
+            <h1 class="hero-title">Danh Mục Sản Phẩm Honda</h1>
+            <p class="hero-subtitle">Khám phá toàn bộ dòng xe máy chính hãng</p>
+            <div class="hero-buttons">
+              <a href="#products" class="btn btn-primary btn-lg">Xem ngay</a>
             </div>
           </div>
         </div>
@@ -1852,15 +1173,15 @@
         <!-- Slide 2 -->
         <div
           class="slide"
-          style="background-image: url('/sanphamxemay/LEAD/LEAD/picture/5.jpg')"
+          style="
+            background-image: url('/sanphamxemay/SH160/SH160/picture/2.jpg');
+          "
         >
           <div class="slide-content">
-            <h1>Honda LEAD - Gu Hiện Đại, Đẹp Cuốn Hút</h1>
-            <p>Trải nghiệm sự tiện nghi và hiện đại</p>
-            <div class="slide-buttons">
-              <a href="/sanphamxemay/LEAD/" class="btn btn-primary floating"
-                >Tìm hiểu thêm</a
-              >
+            <h1 class="hero-title">Xe Ga Thời Thượng</h1>
+            <p class="hero-subtitle">Trải nghiệm sự tiện nghi và hiện đại</p>
+            <div class="hero-buttons">
+              <a href="#products" class="btn btn-primary btn-lg">Xem ngay</a>
             </div>
           </div>
         </div>
@@ -1869,54 +1190,18 @@
         <div
           class="slide"
           style="
-            background-image: url('/sanphamxemay/AB125/AB125/picture/3.jpg');
+            background-image: url('/sanphamxemay/CB350Hness/CB350Hness/picture/3.jpg');
           "
         >
           <div class="slide-content">
-            <h1>Air Blade - Nâng Khí Chất, Khơi Tài Năng</h1>
-            <p>Khi khí chất lên tiếng, tài năng tự khơi!</p>
-            <div class="slide-buttons">
-              <a href="#products" class="btn btn-primary floating">Khám phá</a>
+            <h1 class="hero-title">Phân Khối Lớn Đẳng Cấp</h1>
+            <p class="hero-subtitle">
+              Hoài niệm và đẳng cấp trong từng chi tiết
+            </p>
+            <div class="hero-buttons">
+              <a href="#products" class="btn btn-primary btn-lg">Khám phá</a>
             </div>
           </div>
-        </div>
-        <!-- Slide 4 -->
-        <div
-          class="slide"
-          style="
-            background-image: url('/sanphamxemay/ICONe/ICONe/picture/1.jpg');
-          "
-        >
-          <div class="slide-content">
-            <h1>Honda ICON e</h1>
-            <p>Biểu tượng mới của di chuyển xanh</p>
-            <div class="slide-buttons">
-              <a href="/sanphamxemay/ICONe/" class="btn btn-primary floating"
-                >Khám phá</a
-              >
-            </div>
-          </div>
-        </div>
-        <!-- Slide 5 -->
-        <div
-          class="slide"
-          style="
-            background-image: url('/sanphamxemay/WinnerR/Winner R/picture/3.jpg');
-          "
-        >
-          <div class="slide-content">
-            <h1>Honda Winner R - Khai Phóng Đam Mê</h1>
-            <p>Bứt tốc đỉnh cao, khẳng định khí chất chiến binh</p>
-            <div class="slide-buttons">
-              <a href="/sanphamxemay/WinnerR/" class="btn btn-primary floating"
-                >Tìm hiểu thêm</a
-              >
-            </div>
-          </div>
-        </div>
-        <!-- Progress Bar -->
-        <div class="slider-progress">
-          <div class="progress-bar"></div>
         </div>
 
         <!-- Slider Navigation -->
@@ -1929,342 +1214,545 @@
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+          <div class="progress"></div>
+        </div>
       </div>
     </section>
 
-    <!-- Quick Links -->
+    <!-- Product Categories -->
     <section id="products" class="categories-section">
-      <section class="quick-links">
-        <div class="container">
-          <div class="quick-link-card">
-            <a href="/sanphamxemay/?category=xe-ga">
-              <img src="/sanphamxemay/SH160/SH160/picture/5.jpg" alt="Xe ga" />
-              <span>Xe Ga</span>
-            </a>
-          </div>
-          <div class="quick-link-card">
-            <a href="/sanphamxemay/?category=xe-so">
-              <img
-                src="/sanphamxemay/WaveRSX/Wave RSX/picture/2.jpg"
-                alt="Xe số"
-              />
-              <span>Xe Số</span>
-            </a>
-          </div>
-          <div class="quick-link-card">
-            <a href="/sanphamxemay/?category=xe-con-tay">
-              <img
-                src="/sanphamxemay/WinnerR/Winner R/picture/3.jpg"
-                alt="Xe côn tay"
-              />
-              <span>Xe Côn Tay</span>
-            </a>
-          </div>
-          <div class="quick-link-card">
-            <a href="/sanphamxemay/?category=pkl">
-              <img
-                src="/sanphamxemay/CB350Hness/CB350Hness/picture/1.jpg"
-                alt="Xe pkl"
-              />
-              <span>Xe Phân Khối Lớn</span>
-            </a>
-          </div>
-          <div class="quick-link-card">
-            <a href="/sanphamxemay/?category=xe-dien">
-              <img
-                src="/sanphamxemay/ICONe/ICONe/picture/3.jpg"
-                alt="Xe điện"
-              />
-              <span>Xe Điện</span>
-            </a>
-          </div>
-          <div class="quick-link-card">
-            <a href="/sanphamxemay/?category=all">
-              <img src="/sanphamxemay/image/banner/VMS.png" alt="Tất cả" />
-              <span>Tất Cả</span>
-            </a>
-          </div>
-        </div>
-      </section>
-    </section>
-
-    <!-- Featured Products - OPTIMIZED 4 PRODUCTS GRID -->
-    <section class="featured-section">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Sản Phẩm Nổi Bật</h2>
-          <p class="section-subtitle">Khám phá những dòng xe bán chạy nhất</p>
+          <h2 class="section-title">Dòng Sản Phẩm</h2>
+          <p class="section-subtitle">Chọn loại xe bạn quan tâm</p>
         </div>
 
-        <div class="featured-grid">
-          <div class="featured-item">
-            <div class="product-badge">Mới</div>
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <a href="banggia.html" class="action-btn">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Bảng Giá</span>
+          </a>
+          <a href="tragop.html" class="action-btn">
+            <i class="fas fa-hand-holding-usd"></i>
+            <span>Hỗ Trợ Trả Góp</span>
+          </a>
+        </div>
+
+        <!-- Thanh tìm kiếm -->
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-box"
+            id="productSearch"
+            placeholder="Tìm kiếm sản phẩm..."
+          />
+          <div class="search-icon">
+            <i class="fas fa-search"></i>
+          </div>
+        </div>
+
+        <div class="category-tabs">
+          <button class="tab-btn active" data-category="all">Tất cả</button>
+          <button class="tab-btn" data-category="xe-ga">Xe Ga</button>
+          <button class="tab-btn" data-category="xe-so">Xe Số</button>
+          <button class="tab-btn" data-category="xe-con-tay">Xe Côn Tay</button>
+          <button class="tab-btn" data-category="pkl">Phân Khối Lớn</button>
+          <button class="tab-btn" data-category="xe-dien">Xe Điện</button>
+        </div>
+
+        <!-- Bộ đếm sản phẩm -->
+        <div class="products-counter" id="productsCounter">
+          Hiển thị <span id="visibleCount">0</span> trong tổng số
+          <span id="totalCount">0</span> sản phẩm
+        </div>
+
+        <!-- Lưới sản phẩm -->
+        <div class="products-grid" id="productsGrid">
+          <!-- Xe Ga -->
+          <div class="product-card" data-category="xe-ga">
+            <div class="product-badge">Xe Ga</div>
             <div class="product-image">
               <img
-                src="/sanphamxemay/SH160/SH160/Phiên bản thể thao - XANH ĐEN ĐỎ/6.png"
-                alt="Honda"
+                src="/sanphamxemay/SH350/SH350/Phiên bản Thể Thao - XANH ĐEN/6.png"
+                alt="Honda SH350i"
               />
             </div>
             <div class="product-info">
-              <h3>Honda SH160/125</h3>
-              <div class="product-price">Liên hệ trực tiếp</div>
+              <h3>Honda SH350i</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 330cc</span>
+                <span><i class="fas fa-gas-pump"></i> 3.52L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/SH350/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <div class="product-card" data-category="xe-ga">
+            <div class="product-badge">Xe Ga</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/SH160/SH160/Phiên bản thể thao - XÁM ĐEN ĐỎ/6.png"
+                alt="Honda SH160"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda SH160</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 160cc</span>
+                <span><i class="fas fa-gas-pump"></i> 2.34L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
               <a href="/sanphamxemay/SH160/" class="btn btn-outline"
                 >Xem chi tiết</a
               >
             </div>
           </div>
-          <div class="featured-item">
-            <div class="product-badge">Mới</div>
+
+          <div class="product-card" data-category="xe-ga">
+            <div class="product-badge">Xe Ga</div>
             <div class="product-image">
               <img
-                src="/sanphamxemay/AB160/AB160/AB160 - phiên bản thể thao - TRẮNG ĐỎ ĐEN/6.png"
-                alt="Honda"
+                src="/sanphamxemay/SH125/SH125/Phiên bản đặc biệt - XÁM ĐEN/6.png"
+                alt="Honda SH125"
               />
             </div>
             <div class="product-info">
-              <h3>Honda Air Blade</h3>
-              <div class="product-price">Liên hệ trực tiếp</div>
+              <h3>Honda SH125</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 125cc</span>
+                <span><i class="fas fa-gas-pump"></i> 2.33L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/SH125/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <div class="product-card" data-category="xe-ga">
+            <div class="product-badge">Xe Ga</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/Shmode/Shmode/Phiên bản đặc biệt - BẠC ĐEN/6.png"
+                alt="Honda Shmode"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda Shmode</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 125cc</span>
+                <span><i class="fas fa-gas-pump"></i> 2.52L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/Shmode/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <div class="product-card" data-category="xe-ga">
+            <div class="product-badge">Xe Ga</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/AB160/AB160/AB160 - phiên bản thể thao - TRẮNG ĐỎ ĐEN/6.png"
+                alt="Honda AB160"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda Air Blade 160</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 160cc</span>
+                <span><i class="fas fa-gas-pump"></i> 2.23L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/AB160/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <div class="product-card" data-category="xe-ga">
+            <div class="product-badge">Xe Ga</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/AB125/AB125/AB125 - phiên bản đặc biệt - XANH ĐEN XÁM/6.png"
+                alt="Honda AB125"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda Air Blade 125</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 125cc</span>
+                <span><i class="fas fa-gas-pump"></i> 2.12L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
               <a href="/sanphamxemay/AB125/" class="btn btn-outline"
                 >Xem chi tiết</a
               >
             </div>
           </div>
-          <div class="featured-item">
-            <div class="product-badge">Mới</div>
+
+          <div class="product-card" data-category="xe-ga">
+            <div class="product-badge">Xe Ga</div>
             <div class="product-image">
               <img
-                src="/sanphamxemay/LEAD/LEAD/Phiên bản Đặc Biệt - BẠC ĐEN/6.png"
-                alt="Honda"
+                src="/sanphamxemay/Vario160/VARIO160/Phiên bản cao cấp - XANH ĐEN BẠC/6.png"
+                alt="Honda Vario 160"
               />
             </div>
             <div class="product-info">
-              <h3>Honda LEAD</h3>
-              <div class="product-price">Liên hệ trực tiếp</div>
+              <h3>Honda Vario 160</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 160cc</span>
+                <span><i class="fas fa-gas-pump"></i> 2.20L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/Vario160/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <div class="product-card" data-category="xe-ga">
+            <div class="product-badge">Xe Ga</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/Vario125/VARIO125/Phiên bản thể thao - XANH ĐEN/6.png"
+                alt="Honda Vario125"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda Vario 125</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 125cc</span>
+                <span><i class="fas fa-gas-pump"></i> 2.16L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/Vario125/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <div class="product-card" data-category="xe-ga">
+            <div class="product-badge">Xe Ga</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/Vision/Vision/Phiên bản đặc biệt - NÂU ĐEN/6.png"
+                alt="Honda Vision"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda Vision</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 110cc</span>
+                <span><i class="fas fa-gas-pump"></i> 1.85L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/Vision/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <div class="product-card" data-category="xe-ga">
+            <div class="product-badge">Xe Ga</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/LEAD/LEAD/Phiên bản Đặc Biệt - BẠC ĐEN/6.png"
+                alt="Honda LEAD ABS"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda LEAD ABS</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 125cc</span>
+                <span><i class="fas fa-gas-pump"></i> 2.1L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
               <a href="/sanphamxemay/LEAD/" class="btn btn-outline"
                 >Xem chi tiết</a
               >
             </div>
           </div>
 
-          <div class="featured-item">
-            <div class="product-badge">Mới</div>
+          <!-- Xe Số -->
+          <div class="product-card" data-category="xe-so">
+            <div class="product-badge">Xe Số</div>
             <div class="product-image">
               <img
-                src="/sanphamxemay/WinnerR/Winner R/Phiên bản Thể Thao/6.png"
+                src="/sanphamxemay/CUB/Super Cub/Phiên bản tiêu chuẩn - XANH DƯƠNG/6.png"
+                alt="Honda Super Cub"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda Super Cub C125</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 125cc</span>
+                <span><i class="fas fa-gas-pump"></i> 1.5L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/CUB/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <div class="product-card" data-category="xe-so">
+            <div class="product-badge">Xe Số</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/WaveRSX/Wave RSX/Phiên bản thể thao - ĐỎ ĐEN/6.png"
+                alt="Honda Wave RSX"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda Wave RSX</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 110cc</span>
+                <span><i class="fas fa-gas-pump"></i> 1.56L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/WaveRSX/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <div class="product-card" data-category="xe-so">
+            <div class="product-badge">Xe Số</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/WaveAlpha/Wave Alpha/Phiên bản tiêu chuẩn - TRẮNG/6.png"
+                alt="Honda Wave Alpha"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda Wave Alpha</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 110cc</span>
+                <span><i class="fas fa-gas-pump"></i> 1.72L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/WaveAlpha/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <div class="product-card" data-category="xe-so">
+            <div class="product-badge">Xe Số</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/WaveAlpha Retro/Wave Alpha - retro/Phiên bản cổ điển - XÁM TRẮNG/6.png"
+                alt="Honda Wave Alpha"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda Wave Alpha Cổ Điển</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 110cc</span>
+                <span><i class="fas fa-gas-pump"></i> 1.72L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/WaveAlpha Retro/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <div class="product-card" data-category="xe-so">
+            <div class="product-badge">Xe Số</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/Future/Future/Phiên bản đặc biệt - BẠC ĐEN XÁM/6.png"
+                alt="Honda Future"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda Future</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 125cc</span>
+                <span><i class="fas fa-gas-pump"></i> 1.47L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/Future/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <div class="product-card" data-category="xe-so">
+            <div class="product-badge">Xe Số</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/BLADE/Blade/Phiên bản thể thao - ĐEN ĐỎ/6.png"
+                alt="Honda BLADE"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda BLADE</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 110cc</span>
+                <span><i class="fas fa-gas-pump"></i> 1.85L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/BLADE/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <!-- Xe Côn Tay -->
+          <div class="product-card" data-category="xe-con-tay">
+            <div class="product-badge">Xe Côn Tay</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/WinnerR/Winner R/Phiên bản Đặc Biệt - Xanh Đen/6.png"
                 alt="Honda Winner R"
               />
             </div>
             <div class="product-info">
               <h3>Honda Winner R</h3>
-              <div class="product-price">Liên hệ trực tiếp</div>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 150cc</span>
+                <span><i class="fas fa-gas-pump"></i> 2.59L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
               <a href="/sanphamxemay/WinnerR/" class="btn btn-outline"
                 >Xem chi tiết</a
               >
             </div>
           </div>
-        </div>
 
-        <div class="text-center">
-          <a href="/sanphamxemay/" class="btn btn-primary"
-            >Xem tất cả sản phẩm</a
-          >
-        </div>
-      </div>
-    </section>
-
-    <!-- Promotions Banner -->
-    <section class="promo-banner">
-      <div class="container">
-        <div class="promo-content">
-          <h2>Khuyến Mãi Đặc Biệt</h2>
-          <p>
-            Ưu đãi lên đến <strong>7 triệu đồng</strong> khi mua xe tại HEAD
-          </p>
-          <a href="/tintuc/tintuckhuyenmai/" class="btn btn-primary"
-            >Xem ngay</a
-          >
-        </div>
-      </div>
-    </section>
-
-    <!-- News Section -->
-    <section class="news-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Tin Tức & Sự Kiện</h2>
-          <p class="section-subtitle">
-            Cập nhật những thông tin mới nhất từ Honda và HEAD
-          </p>
-        </div>
-
-        <div class="news-grid">
-          <div class="news-card">
-            <div class="news-image">
+          <div class="product-card" data-category="xe-con-tay">
+            <div class="product-badge">Xe Côn Tay</div>
+            <div class="product-image">
               <img
-                src="/sanphamxemay/AB160/AB160/picture/4.jpg"
-                alt="Tin tức 1"
+                src="/sanphamxemay/CBR150R/CBR150R/6.png"
+                alt="Honda CB150R"
               />
-              <div class="news-date">
-                <span>13</span>
-                <span>Th09</span>
-              </div>
             </div>
-            <div class="news-content">
-              <h3>
-                <a href="/tintuc/tintucxemay/"
-                  >Honda Việt Nam giới thiệu Air Blade 125/160, SH125/160, LEAD
-                  phiên bản 2026</a
-                >
-              </h3>
-              <p>
-                Với mong muốn đồng hành cùng khách hàng trên hành trình tìm kiếm
-                và khẳng định phong cách và cá tính riêng, trong sự kiện "Khai
-                phá dấu ấn độc bản" diễn ra tại...
-              </p>
-              <a
-                href="/tintuc/tintucxemay/tintucxe/trang1/ABSHLEAD04112025.html"
-                class="read-more"
-                >Đọc tiếp <i class="fas fa-arrow-right"></i
-              ></a>
+            <div class="product-info">
+              <h3>Honda CB150R</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 150cc</span>
+                <span><i class="fas fa-gas-pump"></i> 2.91L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/CBR150R/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
             </div>
           </div>
-          <div class="news-card">
-            <div class="news-image">
-              <img
-                src="/sanphamxemay/Future/Future/picture/3.png"
-                alt="Tin tức 1"
-              />
-              <div class="news-date">
-                <span>28</span>
-                <span>Th10</span>
-              </div>
-            </div>
-            <div class="news-content">
-              <h3>
-                <a
-                  href="/tintuc/tintucxemay/tintucxe/trang1/FUTURE28102025.html"
-                  >Honda Việt Nam ra mắt Future 125 FI 2026 mới - Đậm phong
-                  thái, lái vững bền-</a
-                >
-              </h3>
-              <p>
-                Phú Thọ, ngày 28 tháng 10 năm 2025 – Công ty Honda Việt Nam
-                (HVN) chính thức giới thiệu mẫu xe số cao cấp Future 125 FI
-                2026, tiếp nối hành trình gần ba thập kỷ khẳng định vị thế
-                "huyền thoại"....
-              </p>
-              <a
-                href="/tintuc/tintucxemay/tintucxe/trang1/FUTURE28102025.html"
-                class="read-more"
-                >Đọc tiếp <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-          <div class="news-card">
-            <div class="news-image">
-              <img
-                src="/sanphamxemay/CB350Hness/CB350Hness/picture/4.jpg"
-                alt="Tin tức 1"
-              />
-              <div class="news-date">
-                <span>02</span>
-                <span>Th10</span>
-              </div>
-            </div>
-            <div class="news-content">
-              <h3>
-                <a href="/tintuc/tintucxemay/"
-                  >Honda Việt Nam giới thiệu mẫu xe CB350 H'ness với các màu sắc
-                  mới</a
-                >
-              </h3>
-              <p>
-                Phú Thọ, ngày 2 tháng 10 năm 2025, Công ty Honda Việt Nam (HVN)
-                chính thức giới thiệu mẫu xe CB350 H'ness với các màu sắc mới.
-                Với sự cập nhật....
-              </p>
-              <a
-                href="/tintuc/tintucxemay/tintucxe/trang1/CB35012102025.html"
-                class="read-more"
-                >Đọc tiếp <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-        </div>
 
-        <div class="text-center">
-          <a href="/tintuc/" class="btn btn-outline">Xem tất cả tin tức</a>
+          <!-- Phân Khối Lớn -->
+          <div class="product-card" data-category="pkl">
+            <div class="product-badge">PKL</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/CB350Hness/CB350Hness/XÁM ĐEN/6.png"
+                alt="Honda CB350"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda CB350 H'ness</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-tachometer-alt"></i> 350cc</span>
+                <span><i class="fas fa-gas-pump"></i> 2.59L/100km</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/CB350Hness/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <!-- Xe Điện -->
+          <div class="product-card" data-category="xe-dien">
+            <div class="product-badge">Xe Điện</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/ICONe/ICONe/Phiên bản cao cấp - ĐỎ XÁM/6.png"
+                alt="Honda ICON E"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda ICON e</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-battery-full"></i> Pin Lithium</span>
+                <span><i class="fas fa-road"></i> 71km/1 lần sạc</span>
+              </div>
+              <div class="product-price">Giá bán: trực tiếp</div>
+              <a href="/sanphamxemay/ICONe/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+
+          <div class="product-card" data-category="xe-dien">
+            <div class="product-badge">Xe Điện</div>
+            <div class="product-image">
+              <img
+                src="/sanphamxemay/CUVe/CUV e/Trắng ngọc trai/6.png"
+                alt="Honda CUV E"
+              />
+            </div>
+            <div class="product-info">
+              <h3>Honda CUV e</h3>
+              <div class="product-specs">
+                <span><i class="fas fa-battery-full"></i> Pin Lithium</span>
+                <span><i class="fas fa-road"></i> Tốc độ tối đa 80km/h</span>
+              </div>
+              <div class="product-price">Giá thuê: 1.472.727 VNĐ</div>
+              <a href="/sanphamxemay/CUVe/" class="btn btn-outline"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Service Section -->
-    <section class="service-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Dịch Vụ Sau Bán Hàng</h2>
-          <p class="section-subtitle">
-            Chăm sóc toàn diện cho chiếc xe của bạn
-          </p>
-        </div>
-
-        <div class="service-grid">
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fa-solid fa-gear"></i>
-            </div>
-            <h3>Phụ Tùng Chính Hãng</h3>
-            <p>
-              Chúng tôi cam kết cung cấp 100% phụ tùng Honda chính hãng, đảm bảo
-              chất lượng, độ bền và an toàn cho xe của bạn.
-            </p>
-            <a href="/dichvu/sanphamphutung/" class="btn btn-outline"
-              >Tìm hiểu ngay</a
-            >
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-tools"></i>
-            </div>
-            <h3>Bảo Dưỡng Và Sửa Chữa</h3>
-            <p>
-              Dịch vụ bảo dưỡng và sửa chữa chuẩn Honda, thực hiện bởi đội ngũ
-              kỹ thuật viên tay nghề cao, giúp xe bạn vận hành ổn định và bền bỉ
-              theo thời gian.
-            </p>
-            <a href="/dichvu/baoduong/" class="btn btn-outline"
-              >Tìm hiểu thêm</a
-            >
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-shield-alt"></i>
-            </div>
-            <h3>Bảo Hành Xe Máy</h3>
-            <p>
-              Chính sách bảo hành rõ ràng, minh bạch theo tiêu chuẩn Honda, giúp
-              bạn yên tâm sử dụng và được hỗ trợ kịp thời khi cần thiết.
-            </p>
-            <a href="/dichvu/baohanh/" class="btn btn-outline">Tìm hiểu thêm</a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner"></div>
+    </div>
 
     <!-- Footer -->
     <footer class="main-footer">
       <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
+        <div class="footer-content">
+          <div class="footer-logo">
             <img
               src="/sanphamxemay/image/banner/Logo_HEAD.png"
               alt="Honda Logo"
-              class="footer-logo"
             />
-            <p>Công Ty TNHH Thương Mại Và Dịch Vụ Hùng Mạnh</p>
-            <div class="social-links">
+            <p>Hệ thống sản phẩm xe máy Honda chính hãng</p>
+          </div>
+
+          <div class="footer-links">
+            <h4>Liên Kết Nhanh</h4>
+            <ul>
+              <li><a href="/Trangchu/">Trang chủ</a></li>
+              <li><a href="/sanphamxemay/">Sản phẩm</a></li>
+              <li><a href="banggia.html">Bảng giá</a></li>
+              <li><a href="tragop.html">Trả góp</a></li>
+              <li><a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a></li>
+              <li><a href="/lienhe/">Liên hệ</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-social">
+            <h4>Theo Dõi Chúng Tôi</h4>
+            <div class="social-icons">
               <a href="https://www.facebook.com/hethongheadtrunghung"
                 ><i class="fab fa-facebook-f"></i
               ></a>
@@ -2279,51 +1767,10 @@
               ></a>
             </div>
           </div>
-
-          <div class="footer-col">
-            <h3>Sản Phẩm</h3>
-            <ul>
-              <li><a href="/sanphamxemay/">Xe Ga</a></li>
-              <li><a href="/sanphamxemay/">Xe Số</a></li>
-              <li><a href="/sanphamxemay/">Xe Côn Tay</a></li>
-              <li><a href="/sanphamxemay/">Phân Khối Lớn</a></li>
-              <li><a href="/sanphamxemay/">Xe Điện</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h3>Dịch Vụ</h3>
-            <ul>
-              <li><a href="/dichvu/baoduong/">Bảo dưỡng Và Sửa chữa</a></li>
-              <li><a href="/dichvu/baohanh/">Bảo hành xe máy</a></li>
-              <li><a href="/dichvu/sanphamphutung/">Phụ tùng Chính Hãng</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h3>Hỗ Trợ</h3>
-            <ul>
-              <li><a href="/lienhe/">Liên hệ</a></li>
-              <li><a href="/question/">Câu hỏi thường gặp</a></li>
-              <li><a href="/huongdanmuahang/">Hướng dẫn mua hàng</a></li>
-              <li><a href="/dichvu/baohanh/">Chính sách bảo hành</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h3>Liên Hệ</h3>
-            <ul class="contact-info">
-              <li></li>
-              <li><i class="fas fa-phone-alt"></i> 1900 636 712</li>
-              <li><i class="fas fa-envelope"></i> cr@hungmanh.com.vn</li>
-              <li><i class="fas fa-envelope"></i> cr_mt@hungmanh.com.vn</li>
-              <li><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</li>
-            </ul>
-          </div>
         </div>
 
         <div class="footer-bottom">
-          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+          <p>&copy; 2025 HEAD Trung Hùng. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
@@ -2331,13 +1778,13 @@
     <!-- Mobile Bottom Navigation -->
     <nav class="mobile-bottom-nav">
       <div class="container">
-        <a href="index.html" class="mobile-nav-item active">
+        <a href="/Trangchu/" class="mobile-nav-item">
           <div class="mobile-nav-icon">
             <i class="fas fa-home"></i>
           </div>
           <div class="mobile-nav-label">Trang chủ</div>
         </a>
-        <a href="/sanphamxemay/" class="mobile-nav-item">
+        <a href="/sanphamxemay/" class="mobile-nav-item active">
           <div class="mobile-nav-icon">
             <i class="fas fa-motorcycle"></i>
           </div>
@@ -2364,7 +1811,7 @@
       </div>
     </nav>
 
-    <!-------Messenger Chat Button----------->
+    <!-- Messenger Chat Button -->
     <a
       href="https://m.me/hethongheadtrunghung"
       class="messenger-chat"
@@ -2379,80 +1826,19 @@
     </a>
 
     <script>
-      // Loading Screen
-      window.addEventListener("load", function () {
-        const loadingScreen = document.getElementById("loadingScreen");
-        setTimeout(function () {
-          loadingScreen.classList.add("hidden");
-        }, 1000);
-      });
-
       document.addEventListener("DOMContentLoaded", function () {
-        // Mobile Menu Toggle
-        const menuToggle = document.querySelector(".menu-toggle");
-        const mainNav = document.querySelector(".main-nav");
-        const body = document.body;
-
-        menuToggle.addEventListener("click", function () {
-          this.classList.toggle("active");
-          mainNav.classList.toggle("active");
-          if (mainNav.classList.contains("active")) {
-            body.style.overflow = "hidden";
-          } else {
-            body.style.overflow = "";
-          }
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener("click", function (e) {
-          const isClickInsideNav =
-            mainNav.contains(e.target) || menuToggle.contains(e.target);
-          if (!isClickInsideNav && mainNav.classList.contains("active")) {
-            menuToggle.classList.remove("active");
-            mainNav.classList.remove("active");
-            body.style.overflow = "";
-          }
-        });
-
-        // Header scroll effect
-        const header = document.querySelector(".main-header");
-        const topBar = document.querySelector(".top-bar");
-
-        window.addEventListener("scroll", function () {
-          if (window.scrollY > 100) {
-            header.classList.add("scrolled");
-            if (topBar) {
-              topBar.style.transform = "translateY(-100%)";
-            }
-          } else {
-            header.classList.remove("scrolled");
-            if (topBar) {
-              topBar.style.transform = "translateY(0)";
-            }
-          }
-        });
-
-        // HERO SLIDER FUNCTIONALITY - ĐÃ SỬA LỖI SLIDE-CONTENT
+        // ===== HERO SLIDER FUNCTIONALITY =====
         const slides = document.querySelectorAll(".slide");
         const prevBtn = document.getElementById("prevSlide");
         const nextBtn = document.getElementById("nextSlide");
         const sliderDots = document.getElementById("sliderDots");
-        const progressBar = document.querySelector(".progress-bar");
+        const progressBar = document.querySelector(".progress");
 
         let currentSlide = 0;
-        const totalSlides = slides.length;
         let autoSlideInterval;
-        let progressInterval;
+        const totalSlides = slides.length;
+        const slideDuration = 5000;
 
-        // Initialize slider
-        function initSlider() {
-          createHeroDots();
-          goToSlide(0);
-          startAutoSlide();
-          startProgressBar();
-        }
-
-        // Create dots for hero slider
         function createHeroDots() {
           sliderDots.innerHTML = "";
           for (let i = 0; i < totalSlides; i++) {
@@ -2464,176 +1850,269 @@
           }
         }
 
-        // Go to specific slide
         function goToSlide(index) {
-          // Remove active class from all slides
-          slides.forEach((slide) => {
-            slide.classList.remove("active");
-          });
-
-          // Update current slide
+          progressBar.style.transition = "none";
+          progressBar.style.width = "0%";
+          slides[currentSlide].classList.remove("active");
           currentSlide = index;
-
-          // Add active class to current slide
           slides[currentSlide].classList.add("active");
-
-          // Update dots
           updateHeroDots();
-
-          // Reset progress bar
-          resetProgressBar();
+          setTimeout(() => {
+            progressBar.style.transition = `width ${slideDuration}ms linear`;
+            progressBar.style.width = "100%";
+          }, 50);
+          resetAutoSlide();
         }
 
-        // Update hero dots
         function updateHeroDots() {
           document.querySelectorAll(".slider-dot").forEach((dot, index) => {
             dot.classList.toggle("active", index === currentSlide);
           });
         }
 
-        // Start auto slide
-        function startAutoSlide() {
-          autoSlideInterval = setInterval(nextSlide, 5000);
-        }
-
-        // Stop auto slide
-        function stopAutoSlide() {
-          clearInterval(autoSlideInterval);
-        }
-
-        // Start progress bar animation
-        function startProgressBar() {
-          resetProgressBar();
-        }
-
-        // Reset progress bar
-        function resetProgressBar() {
-          if (progressBar) {
-            progressBar.style.transition = "none";
-            progressBar.style.width = "0%";
-
-            setTimeout(() => {
-              progressBar.style.transition = "width 5s linear";
-              progressBar.style.width = "100%";
-            }, 100);
-          }
-        }
-
-        // Next slide
         function nextSlide() {
           let nextIndex = currentSlide + 1;
           if (nextIndex >= totalSlides) nextIndex = 0;
           goToSlide(nextIndex);
         }
 
-        // Previous slide
         function prevSlide() {
           let prevIndex = currentSlide - 1;
           if (prevIndex < 0) prevIndex = totalSlides - 1;
           goToSlide(prevIndex);
         }
 
-        // Event listeners for hero slider
-        prevBtn.addEventListener("click", () => {
-          prevSlide();
-          stopAutoSlide();
-          setTimeout(startAutoSlide, 6000);
-        });
-
-        nextBtn.addEventListener("click", () => {
-          nextSlide();
-          stopAutoSlide();
-          setTimeout(startAutoSlide, 6000);
-        });
-
-        // Pause auto slide on hover
-        const heroSlider = document.querySelector(".hero-slider");
-        heroSlider.addEventListener("mouseenter", () => {
-          stopAutoSlide();
-          if (progressBar) {
-            progressBar.style.transition = "none";
-          }
-        });
-
-        heroSlider.addEventListener("mouseleave", () => {
-          startAutoSlide();
-          resetProgressBar();
-        });
-
-        // Touch events for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        heroSlider.addEventListener("touchstart", (e) => {
-          touchStartX = e.changedTouches[0].screenX;
-        });
-
-        heroSlider.addEventListener("touchend", (e) => {
-          touchEndX = e.changedTouches[0].screenX;
-          handleSwipe();
-        });
-
-        function handleSwipe() {
-          const swipeThreshold = 50;
-          const diff = touchStartX - touchEndX;
-
-          if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-              // Swipe left - next slide
-              nextSlide();
-            } else {
-              // Swipe right - previous slide
-              prevSlide();
-            }
-            stopAutoSlide();
-            setTimeout(startAutoSlide, 6000);
-          }
+        function startAutoSlide() {
+          autoSlideInterval = setInterval(nextSlide, slideDuration);
         }
 
-        // Initialize slider
-        initSlider();
+        function resetAutoSlide() {
+          clearInterval(autoSlideInterval);
+          startAutoSlide();
+        }
 
-        // Back to Top Button
-        const backToTop = document.querySelector("#backToTop");
-        window.addEventListener("scroll", function () {
-          if (window.scrollY > 300) {
-            backToTop.classList.add("active");
-          } else {
-            backToTop.classList.remove("active");
+        prevBtn.addEventListener("click", prevSlide);
+        nextBtn.addEventListener("click", nextSlide);
+
+        const heroSlider = document.querySelector(".hero-slider");
+        heroSlider.addEventListener("mouseenter", () =>
+          clearInterval(autoSlideInterval)
+        );
+        heroSlider.addEventListener("mouseleave", startAutoSlide);
+
+        createHeroDots();
+        startAutoSlide();
+        progressBar.style.width = "100%";
+
+        // ===== HEADER SCROLL EFFECT =====
+        const header = document.querySelector(".main-header");
+        window.addEventListener("scroll", () => {
+          header.classList.toggle("scrolled", window.scrollY > 100);
+        });
+
+        // ===== MOBILE MENU TOGGLE =====
+        const menuToggle = document.querySelector(".menu-toggle");
+        const mainNav = document.querySelector(".main-nav");
+        const body = document.body;
+
+        menuToggle.addEventListener("click", function () {
+          this.classList.toggle("active");
+          mainNav.classList.toggle("active");
+          body.style.overflow = mainNav.classList.contains("active")
+            ? "hidden"
+            : "";
+        });
+
+        document.addEventListener("click", function (e) {
+          const isClickInsideNav =
+            mainNav.contains(e.target) || menuToggle.contains(e.target);
+          if (!isClickInsideNav && mainNav.classList.contains("active")) {
+            menuToggle.classList.remove("active");
+            mainNav.classList.remove("active");
+            body.style.overflow = "";
           }
         });
 
-        backToTop.addEventListener("click", function (e) {
-          e.preventDefault();
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
+        window.addEventListener("resize", function () {
+          if (window.innerWidth > 992) {
+            menuToggle.classList.remove("active");
+            mainNav.classList.remove("active");
+            body.style.overflow = "";
+          }
+        });
+
+        // ===== CẢI TIẾN BỘ LỌC SẢN PHẨM =====
+        const tabBtns = document.querySelectorAll(".tab-btn");
+        const productCards = document.querySelectorAll(".product-card");
+        const productsGrid = document.getElementById("productsGrid");
+        const productsCounter = document.getElementById("productsCounter");
+        const visibleCountEl = document.getElementById("visibleCount");
+        const totalCountEl = document.getElementById("totalCount");
+        const productSearch = document.getElementById("productSearch");
+        const loadingOverlay = document.getElementById("loadingOverlay");
+
+        let currentFilter = "all";
+        let currentSearch = "";
+        let isAnimating = false;
+
+        // Khởi tạo bộ đếm
+        totalCountEl.textContent = productCards.length;
+        updateProductCounter();
+
+        // Hàm cập nhật bộ đếm sản phẩm
+        function updateProductCounter() {
+          const visibleProducts = document.querySelectorAll(
+            ".product-card:not(.hidden)"
+          ).length;
+          visibleCountEl.textContent = visibleProducts;
+
+          // Hiển thị bộ đếm với hiệu ứng
+          productsCounter.classList.add("show");
+        }
+
+        // Hàm lọc sản phẩm với hiệu ứng
+        function applyFilter(category, searchTerm = "") {
+          if (isAnimating) return;
+
+          isAnimating = true;
+          currentFilter = category;
+          currentSearch = searchTerm.toLowerCase();
+
+          // Hiển thị loading nếu có nhiều sản phẩm
+          if (productCards.length > 10) {
+            loadingOverlay.classList.add("active");
+          }
+
+          // Thêm class rearranging để kích hoạt hiệu ứng sắp xếp lại
+          productsGrid.classList.add("rearranging");
+
+          // Cập nhật trạng thái active cho nút lọc
+          tabBtns.forEach((btn) => {
+            btn.classList.toggle(
+              "active",
+              btn.getAttribute("data-category") === category
+            );
+          });
+
+          // Lọc sản phẩm
+          let visibleCount = 0;
+          productCards.forEach((card, index) => {
+            const cardCategory = card.getAttribute("data-category");
+            const cardTitle = card
+              .querySelector("h3")
+              .textContent.toLowerCase();
+            const cardMatchesCategory =
+              category === "all" || cardCategory === category;
+            const cardMatchesSearch =
+              currentSearch === "" || cardTitle.includes(currentSearch);
+
+            if (cardMatchesCategory && cardMatchesSearch) {
+              visibleCount++;
+              // Thêm delay cho hiệu ứng xuất hiện
+              setTimeout(() => {
+                card.classList.remove("filtered-out", "hidden");
+                card.classList.add("filtered-in");
+              }, index * 50);
+            } else {
+              card.classList.remove("filtered-in");
+              card.classList.add("filtered-out");
+              // Sau khi hiệu ứng kết thúc, ẩn hoàn toàn sản phẩm
+              setTimeout(() => {
+                card.classList.add("hidden");
+              }, 500);
+            }
+          });
+
+          // Cập nhật URL (optional)
+          const newUrl = new URL(window.location.href);
+          newUrl.searchParams.set("category", category);
+          if (searchTerm) {
+            newUrl.searchParams.set("search", searchTerm);
+          } else {
+            newUrl.searchParams.delete("search");
+          }
+          window.history.pushState({}, "", newUrl);
+
+          // Kết thúc hiệu ứng
+          setTimeout(() => {
+            productsGrid.classList.remove("rearranging");
+            loadingOverlay.classList.remove("active");
+            updateProductCounter();
+            isAnimating = false;
+          }, 600);
+        }
+
+        // Sự kiện click tab
+        tabBtns.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const category = this.getAttribute("data-category");
+            applyFilter(category, currentSearch);
           });
         });
 
-        // Smooth scrolling for all links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            if (this.getAttribute("href") !== "#") {
-              e.preventDefault();
-              const targetId = this.getAttribute("href");
-              const targetElement = document.querySelector(targetId);
-              if (targetElement) {
-                window.scrollTo({
-                  top: targetElement.offsetTop - 80,
-                  behavior: "smooth",
-                });
-              }
+        // Sự kiện tìm kiếm
+        let searchTimeout;
+        productSearch.addEventListener("input", function () {
+          clearTimeout(searchTimeout);
+          searchTimeout = setTimeout(() => {
+            applyFilter(currentFilter, this.value);
+          }, 300);
+        });
+
+        // Khi load trang, đọc query parameters
+        const params = new URLSearchParams(window.location.search);
+        const categoryFromUrl = params.get("category") || "all";
+        const searchFromUrl = params.get("search") || "";
+
+        if (searchFromUrl) {
+          productSearch.value = searchFromUrl;
+        }
+
+        applyFilter(categoryFromUrl, searchFromUrl);
+
+        // Thêm hiệu ứng khi di chuột vào nút tab
+        tabBtns.forEach((btn) => {
+          btn.addEventListener("mouseenter", function () {
+            if (!this.classList.contains("active")) {
+              this.style.transform = "translateY(-3px)";
+            }
+          });
+
+          btn.addEventListener("mouseleave", function () {
+            if (!this.classList.contains("active")) {
+              this.style.transform = "translateY(0)";
             }
           });
         });
 
-        // Mobile Bottom Navigation Active State
-        const mobileNavItems = document.querySelectorAll(".mobile-nav-item");
-        mobileNavItems.forEach((item) => {
-          item.addEventListener("click", function () {
-            mobileNavItems.forEach((i) => i.classList.remove("active"));
-            this.classList.add("active");
+        // ===== BACK TO TOP =====
+        const backToTop = document.querySelector("#backToTop");
+        window.addEventListener("scroll", () => {
+          backToTop.classList.toggle("active", window.scrollY > 300);
+        });
+        backToTop.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // ===== SMOOTH SCROLLING =====
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              if (mainNav.classList.contains("active")) {
+                menuToggle.classList.remove("active");
+                mainNav.classList.remove("active");
+                body.style.overflow = "";
+              }
+              window.scrollTo({
+                top: targetElement.offsetTop - 100,
+                behavior: "smooth",
+              });
+            }
           });
         });
       });
