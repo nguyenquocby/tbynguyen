@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
@@ -39,8 +39,8 @@
       id="home"
       class="hero-section"
       style="
-        background: url('/sanphamxemay/AB125/AB125/picture/1.jpg') no-repeat
-          center center/cover;
+        background: url(&quot;/sanphamxemay/AB125/AB125/picture/1.jpg&quot;)
+          no-repeat center center/cover;
       "
     >
       <div class="hero-overlay"></div>
@@ -146,6 +146,12 @@
             </option>
             <option value="do-den-tc" data-color="#FF0000">
               Đỏ Đen - Tiêu Chuẩn
+            </option>
+            <option value="Spider-Man" data-color="#FF0000">
+              Phiên bản Marvel' Spider-Man
+            </option>
+            <option value="Venom" data-color="#000000	">
+              Phiên bản Marvel' Venom
             </option>
           </select>
           <div
@@ -541,6 +547,138 @@
             <div class="slide">
               <img
                 src="AB125/AB125 - phiên bản tiêu chuẩn - ĐỎ ĐEN/2.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <button class="slider-nav prev-btn" aria-label="Previous image">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="slider-nav next-btn" aria-label="Next image">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="slider-container" data-color="Spider-Man">
+          <div class="slider">
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Spider-Man/1.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Spider-Man/8.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Spider-Man/7.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Spider-Man/6.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Spider-Man/5.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Spider-Man/4.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Spider-Man/3.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Spider-Man/2.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <button class="slider-nav prev-btn" aria-label="Previous image">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="slider-nav next-btn" aria-label="Next image">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="slider-container" data-color="Venom">
+          <div class="slider">
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Venom/1.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Venom/8.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Venom/7.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Venom/6.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Venom/5.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Venom/4.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Venom/3.png"
+                alt="Honda"
+                loading="lazy"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="AB125/AB125 - phiên bản Marvel Venom/2.png"
                 alt="Honda"
                 loading="lazy"
               />
@@ -1063,7 +1201,7 @@
               (e) => {
                 touchStartX = e.touches[0].clientX;
               },
-              { passive: true }
+              { passive: true },
             );
 
             slider.addEventListener(
@@ -1072,7 +1210,7 @@
                 touchEndX = e.changedTouches[0].clientX;
                 handleSwipe();
               },
-              { passive: true }
+              { passive: true },
             );
 
             function handleSwipe() {
@@ -1093,7 +1231,7 @@
         function initColorChange() {
           const colorListbox = document.querySelector(".color-listbox");
           const colorPreview = document.querySelector(
-            ".selected-color-preview"
+            ".selected-color-preview",
           );
 
           colorListbox.addEventListener("change", function () {
@@ -1114,7 +1252,7 @@
 
             // Show selected slider
             const targetSlider = document.querySelector(
-              `.slider-container[data-color="${colorValue}"]`
+              `.slider-container[data-color="${colorValue}"]`,
             );
             if (targetSlider) {
               targetSlider.classList.add("active");
