@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
@@ -338,7 +338,9 @@
         width: 100%;
         height: 100%;
         opacity: 0;
-        transition: opacity 1s ease, transform 1.5s ease;
+        transition:
+          opacity 1s ease,
+          transform 1.5s ease;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -1158,7 +1160,7 @@
         <div
           class="slide active"
           style="
-            background-image: url('/sanphamxemay/AB160/AB160/picture/3.jpg');
+            background-image: url(&quot;/sanphamxemay/AB160/AB160/picture/3.jpg&quot;);
           "
         >
           <div class="slide-content">
@@ -1174,7 +1176,7 @@
         <div
           class="slide"
           style="
-            background-image: url('/sanphamxemay/SH160/SH160/picture/2.jpg');
+            background-image: url(&quot;/sanphamxemay/SH160/SH160/picture/2.jpg&quot;);
           "
         >
           <div class="slide-content">
@@ -1189,7 +1191,7 @@
         <div
           class="slide"
           style="
-            background-image: url('/sanphamxemay/Vision2026/Vision2026/picture/1.jpg');
+            background-image: url(&quot;/sanphamxemay/Vision2026/Vision2026/picture/1.jpg&quot;);
           "
         >
           <div class="slide-content">
@@ -1204,7 +1206,7 @@
         <div
           class="slide"
           style="
-            background-image: url('/sanphamxemay/CB350Hness/CB350Hness/picture/3.jpg');
+            background-image: url(&quot;/sanphamxemay/CB350Hness/CB350Hness/picture/3.jpg&quot;);
           "
         >
           <div class="slide-content">
@@ -1396,7 +1398,7 @@
             <div class="product-badge">Xe Ga</div>
             <div class="product-image">
               <img
-                src="/sanphamxemay/AB125/AB125/AB125 - phiên bản đặc biệt - XANH ĐEN XÁM/6.png"
+                src="/sanphamxemay/AB125/AB125/AB125 - phiên bản Marvel Spider-Man/6.png"
                 alt="Honda AB125"
               />
             </div>
@@ -1931,7 +1933,7 @@
 
         const heroSlider = document.querySelector(".hero-slider");
         heroSlider.addEventListener("mouseenter", () =>
-          clearInterval(autoSlideInterval)
+          clearInterval(autoSlideInterval),
         );
         heroSlider.addEventListener("mouseleave", startAutoSlide);
 
@@ -1997,7 +1999,7 @@
         // Hàm cập nhật bộ đếm sản phẩm
         function updateProductCounter() {
           const visibleProducts = document.querySelectorAll(
-            ".product-card:not(.hidden)"
+            ".product-card:not(.hidden)",
           ).length;
           visibleCountEl.textContent = visibleProducts;
 
@@ -2025,7 +2027,7 @@
           tabBtns.forEach((btn) => {
             btn.classList.toggle(
               "active",
-              btn.getAttribute("data-category") === category
+              btn.getAttribute("data-category") === category,
             );
           });
 
