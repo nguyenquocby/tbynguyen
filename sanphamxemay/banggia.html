@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
@@ -901,7 +901,6 @@
               </td>
               <td>
                 <div class="bike-price">Từ 56.490.000 VNĐ</div>
-                <div class="bike-promo">Giảm trực tiếp 7.000.000 VNĐ</div>
               </td>
             </tr>
 
@@ -1198,7 +1197,6 @@
               </td>
               <td>
                 <div class="bike-price">Từ 72.290.000 VNĐ</div>
-                <div class="bike-promo">Ưu đãi lên đến 7.000.000 VNĐ</div>
               </td>
             </tr>
 
@@ -1399,12 +1397,12 @@
         function filterBikes() {
           // Get selected type
           const typeFilter = document.querySelector(
-            ".filter-group:first-child .filter-btn.active"
+            ".filter-group:first-child .filter-btn.active",
           ).dataset.type;
 
           // Get selected price range
           const priceFilter = document.querySelector(
-            ".filter-group:last-child .filter-btn.active"
+            ".filter-group:last-child .filter-btn.active",
           ).dataset.price;
 
           let visibleCount = 0;
@@ -1532,7 +1530,7 @@
         // Animation on scroll
         function animateOnScroll() {
           const elements = document.querySelectorAll(
-            ".featured-section, .service-section, .news-section"
+            ".featured-section, .service-section, .news-section",
           );
 
           elements.forEach((element) => {
@@ -1549,7 +1547,7 @@
         // Set initial state for animated elements
         document
           .querySelectorAll(
-            ".featured-section, .service-section, .news-section"
+            ".featured-section, .service-section, .news-section",
           )
           .forEach((element) => {
             element.style.opacity = "0";
