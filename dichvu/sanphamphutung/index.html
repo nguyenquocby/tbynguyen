@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sản Phẩm Phụ Tùng</title>
+    <title>Sản Phẩm Phụ Tùng Chính Hãng – HEAD Trung Hùng Honda</title>
     <link
       rel="icon"
       href="/sanphamxemay/image/banner/Logo_HEAD.png"
@@ -14,1813 +14,2042 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Barlow:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* Reset & Base Styles */
+      /* ======================================================
+   TOKENS
+====================================================== */
+      :root {
+        --red: #d10017;
+        --red-mid: #a5000e;
+        --red-soft: rgba(209, 0, 23, 0.09);
+        --red-glow: rgba(209, 0, 23, 0.22);
+        --ink: #0f0f10;
+        --ink2: #222225;
+        --paper: #f8f6f3;
+        --paper2: #efecea;
+        --white: #ffffff;
+        --border: rgba(15, 15, 16, 0.09);
+        --muted: #7a7570;
+        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
-      :root {
-        --primary-color: #e40521;
-        --secondary-color: #333;
-        --light-color: #f8f9fa;
-        --dark-color: #212529;
-        --gray-color: #6c757d;
-        --light-gray: #e9ecef;
-        --transition: all 0.3s ease;
+      html {
+        font-size: 62.5%;
+        scroll-behavior: smooth;
       }
-
       body {
-        font-family: "Montserrat", sans-serif;
-        line-height: 1.6;
-        color: var(--secondary-color);
+        font-family: "Barlow", sans-serif;
+        background: var(--paper);
+        color: var(--ink);
         overflow-x: hidden;
-        background-color: #f5f5f5;
+        line-height: 1.6;
       }
-
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 15px;
-      }
-
       img {
         max-width: 100%;
-        height: auto;
-        object-fit: cover;
+        display: block;
       }
-
       a {
         text-decoration: none;
         color: inherit;
-        transition: var(--transition);
       }
-
       ul {
         list-style: none;
       }
-
-      .btn {
-        display: inline-block;
-        padding: 10px 25px;
-        border-radius: 4px;
-        font-weight: 500;
-        text-align: center;
-        transition: var(--transition);
+      button {
+        border: none;
+        background: none;
         cursor: pointer;
-        border: 2px solid transparent;
+        font-family: inherit;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--red);
       }
 
-      .btn-primary {
-        background-color: var(--primary-color);
-        color: white;
-        border-color: var(--primary-color);
+      /* ======================================================
+   HEADER
+====================================================== */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 500;
+        background: rgba(248, 246, 243, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition: box-shadow 0.35s;
       }
-
-      .btn-primary:hover {
-        background-color: #c0041d;
-        border-color: #c0041d;
+      .site-header.lifted {
+        box-shadow: 0 2px 24px rgba(15, 15, 16, 0.07);
       }
-
-      .btn-outline {
-        background-color: transparent;
-        color: var(--primary-color);
-        border-color: var(--primary-color);
-      }
-
-      .btn-outline:hover {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 50px;
-      }
-
-      .section-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: var(--dark-color);
-      }
-
-      .section-subtitle {
-        font-size: 1.1rem;
-        color: var(--gray-color);
-        margin-bottom: 20px;
-      }
-
-      .divider {
-        width: 80px;
-        height: 3px;
-        background-color: var(--primary-color);
+      .hdr {
+        max-width: 1340px;
         margin: 0 auto;
-      }
-
-      /* Header */
-      .main-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 20px 0;
-        background-color: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        transition: var(--transition);
-      }
-
-      .main-header.scrolled {
-        padding: 15px 0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      }
-
-      .main-header .container {
+        padding: 0 3rem;
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
+        height: 72px;
+        gap: 2rem;
       }
 
-      .logo img {
-        height: 40px;
+      /* Logo: image + text */
+      .logo-wrap {
+        display: flex;
+        align-items: center;
+        gap: 1.3rem;
+        flex-shrink: 0;
+        text-decoration: none;
+      }
+      .logo-img {
+        height: 44px;
+        width: auto;
+        flex-shrink: 0;
+        transition: opacity 0.25s;
+      }
+      .logo-wrap:hover .logo-img {
+        opacity: 0.85;
+      }
+      .logo-text-block {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+      .logo-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      .logo-sub {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+        margin-top: 0.2rem;
       }
 
-      /* Mobile Menu Toggle */
-      .menu-toggle {
-        display: none;
-        width: 30px;
-        height: 24px;
+      /* Nav */
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0;
+      }
+      .main-nav a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        padding: 0.7rem 1.4rem;
         position: relative;
-        cursor: pointer;
-        z-index: 1001;
+        transition: color 0.2s;
       }
-
-      .menu-toggle .bar {
+      .main-nav a::after {
+        content: "";
         position: absolute;
-        width: 100%;
-        height: 3px;
-        background-color: var(--dark-color);
-        transition: all 0.3s ease;
-        left: 0;
-      }
-
-      .menu-toggle .bar:nth-child(1) {
-        top: 0;
-      }
-
-      .menu-toggle .bar:nth-child(2) {
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      .menu-toggle .bar:nth-child(3) {
         bottom: 0;
+        left: 1.4rem;
+        right: 1.4rem;
+        height: 2px;
+        background: var(--red);
+        transform: scaleX(0);
+        transition: transform 0.3s var(--ease);
+      }
+      .main-nav a:hover,
+      .main-nav a.active {
+        color: var(--red);
+      }
+      .main-nav a:hover::after,
+      .main-nav a.active::after {
+        transform: scaleX(1);
       }
 
-      .menu-toggle.active .bar:nth-child(1) {
-        top: 50%;
-        transform: translateY(-50%) rotate(45deg);
-        background-color: var(--primary-color);
+      .hdr-cta {
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.85rem 2.2rem;
+        border-radius: 4px;
+        flex-shrink: 0;
+        transition: all 0.3s;
+      }
+      .hdr-cta:hover {
+        background: var(--red-mid);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px var(--red-glow);
       }
 
-      .menu-toggle.active .bar:nth-child(2) {
+      /* Hamburger */
+      .ham {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 4px;
+      }
+      .ham span {
+        width: 22px;
+        height: 2px;
+        background: var(--ink);
+        transition: all 0.3s;
+        border-radius: 1px;
+      }
+      .ham.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .ham.open span:nth-child(2) {
         opacity: 0;
       }
-
-      .menu-toggle.active .bar:nth-child(3) {
-        bottom: 50%;
-        transform: translateY(50%) rotate(-45deg);
-        background-color: var(--primary-color);
+      .ham.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
       }
 
-      .main-nav ul {
-        display: flex;
-      }
-
-      .main-nav li {
-        margin-left: 30px;
-      }
-
-      .main-nav a {
-        font-weight: 500;
-        color: var(--dark-color);
-        position: relative;
-      }
-
-      .main-nav a:after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: var(--primary-color);
-        transition: var(--transition);
-      }
-
-      .main-nav a:hover:after,
-      .main-nav a.active:after {
-        width: 100%;
-      }
-
-      .main-nav a.active {
-        color: var(--primary-color);
-        font-weight: 600;
-      }
-
-      /* Hero Banner */
-      .hero-banner {
-        height: 50vh;
-        min-height: 300px;
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-          url("image/COVER.jpg") no-repeat center center/cover;
-        display: flex;
-        align-items: center;
-        margin-top: 80px;
-        color: white;
-        text-align: center;
-      }
-
-      .hero-content {
-        width: 100%;
-      }
-
-      .hero-content h1 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-      }
-
-      /* Product Categories */
-      .categories-section {
-        padding: 60px 0;
-        background-color: var(--light-color);
-      }
-
-      .categories-tabs {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 40px;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .tab-btn {
-        padding: 10px 25px;
-        background-color: var(--light-gray);
-        border: none;
-        border-radius: 25px;
-        cursor: pointer;
-        transition: var(--transition);
-        font-weight: 500;
-      }
-
-      .tab-btn.active {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      .tab-content {
-        display: none;
-      }
-
-      .tab-content.active {
-        display: block;
-        animation: fadeIn 0.5s ease;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* Products Grid */
-      .products-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 30px;
-      }
-
-      .product-card {
-        background-color: white;
-        border-radius: 25px;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        transition: var(--transition);
-        position: relative;
-      }
-
-      .product-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-      }
-
-      .product-badge {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background-color: var(--primary-color);
-        color: white;
-        padding: 5px 10px;
-        border-radius: 25px;
-        font-size: 0.8rem;
-        font-weight: 500;
-        z-index: 1;
-      }
-
-      .product-image {
-        height: 200px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-      }
-
-      .product-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        transition: var(--transition);
-        padding: 20px;
-      }
-
-      .product-card:hover .product-image img {
-        transform: scale(1.05);
-      }
-
-      .product-info {
-        padding: 20px;
-      }
-
-      .product-info h3 {
-        margin-bottom: 10px;
-        font-size: 1.1rem;
-        min-height: 50px;
-      }
-
-      .product-description {
-        color: var(--gray-color);
-        font-size: 0.9rem;
-        margin-bottom: 15px;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .product-description.collapsed {
-        max-height: 60px;
-      }
-
-      .product-description.expanded {
-        max-height: none;
-      }
-
-      .read-more-btn {
-        background: none;
-        border: none;
-        color: var(--primary-color);
-        font-weight: 600;
-        cursor: pointer;
-        margin-top: 5px;
-        display: inline-block;
-      }
-
-      .color-options {
-        margin-bottom: 15px;
-      }
-
-      .color-options h4 {
-        font-size: 0.9rem;
-        margin-bottom: 10px;
-        color: var(--gray-color);
-      }
-
-      .color-list {
-        display: flex;
-        gap: 10px;
-      }
-
-      .color-item {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: var(--transition);
-        border: 2px solid transparent;
-      }
-
-      .color-item.active {
-        border-color: var(--primary-color);
-        transform: scale(1.2);
-      }
-
-      .product-price {
-        font-weight: 700;
-        color: var(--primary-color);
-        margin-bottom: 15px;
-        font-size: 1.2rem;
-      }
-
-      .product-actions {
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .product-actions .btn {
-        padding: 8px 15px;
-        font-size: 0.9rem;
-      }
-
-      /* Featured Products */
-      .featured-section {
-        padding: 80px 0;
-        background-color: white;
-      }
-
-      /* Newsletter */
-      .newsletter-section {
-        padding: 60px 0;
-        background-color: var(--primary-color);
-        color: white;
-        text-align: center;
-      }
-
-      .newsletter-form {
-        max-width: 600px;
-        margin: 0 auto;
-        display: flex;
-      }
-
-      .newsletter-form input {
-        flex: 1;
-        padding: 12px 15px;
-        border: none;
-        border-radius: 4px 0 0 4px;
-        font-size: 1rem;
-      }
-
-      .newsletter-form button {
-        border-radius: 0 4px 4px 0;
-        border: none;
-      }
-
-      /* Footer */
-      .main-footer {
-        background-color: var(--dark-color);
-        color: white;
-        padding: 60px 0 20px;
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 30px;
-        margin-bottom: 40px;
-      }
-
-      .footer-col h3 {
-        font-size: 1.2rem;
-        margin-bottom: 20px;
-        position: relative;
-        padding-bottom: 10px;
-      }
-
-      .footer-col h3:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 40px;
-        height: 2px;
-        background-color: var(--primary-color);
-      }
-
-      .footer-logo {
-        margin-bottom: 20px;
-        display: block;
-        max-width: 150px;
-      }
-
-      .social-links {
-        display: flex;
-        gap: 15px;
-      }
-
-      .social-links a {
-        width: 35px;
-        height: 35px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: var(--transition);
-      }
-
-      .social-links a:hover {
-        background-color: var(--primary-color);
-        transform: translateY(-3px);
-      }
-
-      .footer-col ul li {
-        margin-bottom: 10px;
-      }
-
-      .footer-col ul a {
-        color: #adb5bd;
-        transition: var(--transition);
-      }
-
-      .footer-col ul a:hover {
-        color: var(--primary-color);
-        padding-left: 5px;
-      }
-
-      .contact-info li {
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-      }
-
-      .contact-info i {
-        margin-right: 10px;
-        color: var(--primary-color);
-        width: 20px;
-        text-align: center;
-      }
-
-      .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 20px 0;
-        text-align: center;
-        color: #adb5bd;
-        font-size: 0.9rem;
-      }
-
-      /* Back to Top */
-      .back-to-top {
+      /* Drawer */
+      .dov {
         position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background-color: var(--primary-color);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 1.2rem;
+        inset: 0;
+        background: rgba(15, 15, 16, 0.55);
+        z-index: 498;
         opacity: 0;
         visibility: hidden;
-        transition: var(--transition);
-        z-index: 999;
-        box-shadow: 0 4px 15px rgba(228, 5, 33, 0.3);
+        transition: all 0.3s;
       }
-
-      .back-to-top.active {
+      .dov.on {
         opacity: 1;
         visibility: visible;
       }
-
-      .back-to-top:hover {
-        background-color: #c0041d;
-        transform: translateY(-5px);
-        box-shadow: 0 6px 20px rgba(228, 5, 33, 0.4);
-      }
-
-      /* Messenger Chat Button */
-      .messenger-chat {
+      .sdraw {
         position: fixed;
-        bottom: 100px;
-        right: 25px;
-        width: 60px;
-        height: 60px;
-        background-color: #0084ff;
-        color: white;
+        top: 0;
+        right: -100%;
+        width: min(330px, 90vw);
+        height: 100%;
+        background: var(--white);
+        z-index: 499;
+        padding: 6rem 2.8rem 3rem;
+        transition: right 0.38s var(--ease);
+        border-left: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+      }
+      .sdraw.on {
+        right: 0;
+      }
+      .sdx {
+        position: absolute;
+        top: 1.6rem;
+        right: 1.6rem;
+        width: 36px;
+        height: 36px;
+        background: var(--paper2);
         border-radius: 50%;
         display: flex;
-        justify-content: center;
         align-items: center;
-        font-size: 28px;
-        box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
-        z-index: 999;
-        transition: all 0.3s ease;
-        animation: pulse 2s infinite;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--muted);
+        transition: all 0.2s;
+      }
+      .sdx:hover {
+        background: var(--red);
+        color: #fff;
+      }
+      .dnav {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .dnav a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        padding: 1.4rem 0;
+        border-bottom: 1px solid var(--border);
+        transition: color 0.2s;
+      }
+      .dnav a:hover,
+      .dnav a.active {
+        color: var(--red);
+      }
+      .dcta {
+        background: var(--red);
+        color: #fff;
+        text-align: center;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.3rem;
+        border-radius: 4px;
+        margin-top: auto;
+        transition: background 0.3s;
+      }
+      .dcta:hover {
+        background: var(--red-mid);
       }
 
-      .messenger-chat:hover {
-        background-color: #0066cc;
-        transform: scale(1.1);
-        box-shadow: 0 6px 20px rgba(0, 132, 255, 0.4);
+      /* ======================================================
+   PAGE HERO
+====================================================== */
+      .page-hero {
+        background: var(--ink);
+        position: relative;
+        overflow: hidden;
+        padding: 6rem 3rem 5.5rem;
+      }
+      .page-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 55% 80% at 90% 50%,
+            rgba(209, 0, 23, 0.18),
+            transparent
+          ),
+          radial-gradient(
+            ellipse 40% 50% at 5% 90%,
+            rgba(209, 0, 23, 0.08),
+            transparent
+          );
+      }
+      .ph-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(209, 0, 23, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(209, 0, 23, 0.06) 1px, transparent 1px);
+        background-size: 48px 48px;
+        mask-image: radial-gradient(
+          ellipse 80% 90% at 50% 50%,
+          black 20%,
+          transparent 100%
+        );
+      }
+      .ph-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .ph-crumb {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.35rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.3);
+        margin-bottom: 2.5rem;
+      }
+      .ph-crumb a {
+        color: rgba(255, 255, 255, 0.5);
+        transition: color 0.2s;
+      }
+      .ph-crumb a:hover {
+        color: #fff;
+      }
+      .ph-crumb .sep {
+        color: rgba(255, 255, 255, 0.18);
+      }
+      .ph-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 1.8rem;
+      }
+      .ph-kicker::before {
+        content: "";
+        width: 20px;
+        height: 1.5px;
+        background: var(--red);
+      }
+      .ph-h1 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(6rem, 10vw, 11rem);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        line-height: 0.88;
+        color: #fff;
+        margin-bottom: 2rem;
+      }
+      .ph-sub {
+        font-size: 1.7rem;
+        color: rgba(255, 255, 255, 0.4);
+        max-width: 560px;
+        line-height: 1.6;
+        font-weight: 300;
+      }
+      .ph-stats {
+        display: flex;
+        gap: 4rem;
+        margin-top: 4rem;
+        flex-wrap: wrap;
+      }
+      .ph-stat .v {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 4rem;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        color: #fff;
+        line-height: 1;
+      }
+      .ph-stat .v em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .ph-stat .l {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.3);
+        margin-top: 0.3rem;
       }
 
-      /* Hiệu ứng lan tỏa */
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
+      /* ======================================================
+   PRODUCTS SECTION
+====================================================== */
+      .products-section {
+        padding: 7rem 3rem;
+      }
+      .ps-wrap {
+        max-width: 1340px;
+        margin: 0 auto;
+      }
+
+      .sec-eyebrow {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--red);
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 1.6rem;
+      }
+      .sec-eyebrow::before {
+        content: "";
+        width: 20px;
+        height: 1.5px;
+        background: var(--red);
+      }
+      .sec-h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 5.2rem;
+        font-weight: 900;
+        letter-spacing: 0.03em;
+        line-height: 0.95;
+        margin-bottom: 4rem;
+      }
+
+      /* Category tabs */
+      .cat-tabs {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 4rem;
+      }
+      .ctab {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.45rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.85rem 2.4rem;
+        border-radius: 5px;
+        border: 1.5px solid var(--border);
+        color: var(--muted);
+        background: var(--white);
+        transition: all 0.25s;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+      .ctab i {
+        font-size: 1.3rem;
+      }
+      .ctab:hover {
+        border-color: var(--red);
+        color: var(--red);
+      }
+      .ctab.active {
+        background: var(--red);
+        color: #fff;
+        border-color: var(--red);
+        box-shadow: 0 4px 18px var(--red-glow);
+      }
+
+      /* Tab panels */
+      .tab-panel {
+        display: none;
+        animation: fadeUp 0.4s var(--ease) both;
+      }
+      .tab-panel.active {
+        display: block;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
         }
-        70% {
-          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
+        to {
+          opacity: 1;
+          transform: none;
         }
       }
 
-      /* Điều chỉnh vị trí khi có cả 2 nút */
-      .back-to-top.active ~ .messenger-chat {
-        bottom: 100px;
+      /* Products grid */
+      .prod-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        gap: 2rem;
       }
 
-      /* Mobile Bottom Navigation Bar */
-      .mobile-bottom-nav {
+      /* Product card */
+      .prod-card {
+        background: var(--white);
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.4s var(--ease);
+        position: relative;
+      }
+      .prod-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 18px 50px rgba(15, 15, 16, 0.1);
+        border-color: rgba(209, 0, 23, 0.18);
+      }
+      .card-badge {
+        position: absolute;
+        top: 1.2rem;
+        left: 1.2rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background: var(--red);
+        color: #fff;
+        padding: 0.38rem 1.1rem;
+        border-radius: 4px;
+        z-index: 2;
+      }
+
+      /* Image */
+      .card-img {
+        height: 200px;
+        background: var(--paper2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+      .card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 1.8rem;
+        transition: transform 0.5s var(--ease);
+      }
+      .prod-card:hover .card-img img {
+        transform: scale(1.07);
+      }
+
+      /* Body */
+      .card-body {
+        padding: 1.8rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .card-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.95rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        line-height: 1.2;
+        color: var(--ink);
+        margin-bottom: 1rem;
+        transition: color 0.2s;
+        min-height: 52px;
+      }
+      .prod-card:hover .card-name {
+        color: var(--red);
+      }
+
+      /* Description collapsible */
+      .card-desc {
+        font-size: 1.35rem;
+        color: var(--muted);
+        line-height: 1.65;
+        margin-bottom: 0.8rem;
+        overflow: hidden;
+        transition: max-height 0.4s var(--ease);
+        max-height: 60px;
+      }
+      .card-desc.open {
+        max-height: 600px;
+      }
+      .read-more {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 1.4rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        transition: gap 0.2s;
+      }
+      .read-more:hover {
+        gap: 0.8rem;
+      }
+
+      /* Color options */
+      .card-colors {
+        margin-bottom: 1.5rem;
+      }
+      .cc-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.8rem;
+      }
+      .cc-list {
+        display: flex;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+      }
+      .cc-dot {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 2.5px solid transparent;
+        cursor: pointer;
+        transition: all 0.25s var(--spring);
+        outline: 2px solid transparent;
+      }
+      .cc-dot:hover {
+        transform: scale(1.15);
+      }
+      .cc-dot.active {
+        border-color: var(--red);
+        outline: 2px solid rgba(209, 0, 23, 0.3);
+        transform: scale(1.2);
+      }
+
+      /* Price + footer */
+      .card-price {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        color: var(--red);
+        margin-top: auto;
+        padding-top: 1.2rem;
+        border-top: 1px solid var(--border);
+      }
+
+      /* ======================================================
+   PROMO STRIP
+====================================================== */
+      .promo-strip {
+        background: var(--ink);
+        padding: 5.5rem 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .promo-strip::before {
+        content: "HONDA";
+        position: absolute;
+        right: -2rem;
+        bottom: -3rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 20rem;
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.03);
+        letter-spacing: 0.04em;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+      .ps-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3rem;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+      .ps-text h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 4.8rem;
+        font-weight: 900;
+        letter-spacing: 0.03em;
+        color: #fff;
+        line-height: 0.95;
+        margin-bottom: 1rem;
+      }
+      .ps-text p {
+        font-size: 1.6rem;
+        color: rgba(255, 255, 255, 0.4);
+        max-width: 440px;
+        line-height: 1.6;
+      }
+      .ps-btns {
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+      }
+      .ps-btn-pri {
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.3rem 3rem;
+        border-radius: 5px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.9rem;
+        transition: all 0.3s;
+      }
+      .ps-btn-pri:hover {
+        background: var(--red-mid);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px var(--red-glow);
+      }
+      .ps-btn-sec {
+        background: rgba(255, 255, 255, 0.07);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.3rem 3rem;
+        border-radius: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.9rem;
+        transition: all 0.3s;
+      }
+      .ps-btn-sec:hover {
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      /* ======================================================
+   FOOTER
+====================================================== */
+      footer {
+        background: #050505;
+        padding: 6.5rem 3rem 3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .ft-grid {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 5rem;
+        margin-bottom: 5rem;
+        padding-bottom: 5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .ft-logo-img {
+        height: 38px;
+        width: auto;
+        opacity: 0.8;
+        margin-bottom: 1.6rem;
+      }
+      .ft-logo-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        margin-bottom: 1.2rem;
+      }
+      .ft-logo-sub {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.2);
+        text-transform: uppercase;
+        margin-bottom: 2.5rem;
+      }
+      .ft-socs {
+        display: flex;
+        gap: 1rem;
+      }
+      .ft-soc {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 1.3rem;
+        transition: all 0.25s;
+        text-decoration: none;
+      }
+      .ft-soc:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+      .ft-col h5 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        color: rgba(255, 255, 255, 0.2);
+        text-transform: uppercase;
+        margin-bottom: 1.8rem;
+      }
+      .ft-col li {
+        margin-bottom: 1.1rem;
+      }
+      .ft-col a {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        transition: color 0.2s;
+      }
+      .ft-col a:hover {
+        color: #fff;
+      }
+      .ft-contact li {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        margin-bottom: 1.2rem;
+      }
+      .ft-contact i {
+        color: var(--red);
+        font-size: 1.2rem;
+        margin-top: 0.2rem;
+        flex-shrink: 0;
+      }
+      .ft-btm {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .ft-btm p {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.18);
+      }
+      .ft-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.18);
+      }
+      .ft-badge i {
+        color: var(--red);
+      }
+
+      /* ======================================================
+   MOBILE NAV
+====================================================== */
+      .mob-nav {
         display: none;
         position: fixed;
         bottom: 0;
         left: 0;
-        width: 100%;
-        background-color: white;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 998;
-        padding: 10px 0;
+        right: 0;
+        background: rgba(248, 246, 243, 0.97);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid var(--border);
+        z-index: 400;
+        padding: 0.8rem 0;
       }
-
-      .mobile-bottom-nav .container {
+      .mnb {
         display: flex;
         justify-content: space-around;
-        align-items: center;
       }
-
-      .mobile-nav-item {
+      .mnb-a {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 0.35rem;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        transition: color 0.2s;
+      }
+      .mnb-a.on,
+      .mnb-a:hover {
+        color: var(--red);
+      }
+      .mnb-a i {
+        font-size: 2rem;
+      }
+      .mnb-a span {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* ======================================================
+   FLOATS
+====================================================== */
+      .messenger-float {
+        position: fixed;
+        bottom: 9rem;
+        right: 2.5rem;
+        width: 50px;
+        height: 50px;
+        background: #0084ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
         justify-content: center;
-        flex: 1;
-        padding: 5px 0;
-        transition: var(--transition);
+        font-size: 2.1rem;
+        color: #fff;
+        text-decoration: none;
+        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.3);
+        z-index: 300;
+        animation: mpulse 2.5s infinite;
+        transition: transform 0.3s;
       }
-
-      .mobile-nav-item.active {
-        color: var(--primary-color);
+      .messenger-float:hover {
+        transform: scale(1.1);
       }
-
-      .mobile-nav-icon {
-        font-size: 1.2rem;
-        margin-bottom: 4px;
-      }
-
-      .mobile-nav-label {
-        font-size: 0.7rem;
-        font-weight: 500;
-      }
-
-      /* Responsive */
-      @media (max-width: 992px) {
-        .section-title {
-          font-size: 2rem;
+      @keyframes mpulse {
+        0%,
+        100% {
+          box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
         }
-
-        .hero-content h1 {
-          font-size: 2rem;
+        50% {
+          box-shadow: 0 4px 36px rgba(0, 132, 255, 0.55);
         }
       }
+      .back-top {
+        position: fixed;
+        bottom: 2.5rem;
+        right: 2.5rem;
+        width: 44px;
+        height: 44px;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        color: #fff;
+        text-decoration: none;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+        z-index: 300;
+      }
+      .back-top.on {
+        opacity: 1;
+        visibility: visible;
+      }
+      .back-top:hover {
+        background: var(--red-mid);
+        transform: translateY(-3px);
+      }
 
+      /* ======================================================
+   REVEAL
+====================================================== */
+      .rv {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ======================================================
+   RESPONSIVE
+====================================================== */
+      @media (max-width: 1200px) {
+        .ft-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+        }
+      }
+      @media (max-width: 900px) {
+        .main-nav,
+        .hdr-cta {
+          display: none;
+        }
+        .ham {
+          display: flex;
+        }
+        .hdr {
+          padding: 0 2rem;
+        }
+        .logo-sub {
+          display: none;
+        }
+        .prod-grid {
+          grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        }
+      }
       @media (max-width: 768px) {
-        .menu-toggle {
-          display: block;
+        .products-section {
+          padding: 5rem 2rem;
         }
-
-        .main-nav {
-          position: fixed;
-          top: 0;
-          right: -100%;
-          width: 80%;
-          max-width: 300px;
-          height: 100vh;
-          background-color: white;
-          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-          transition: var(--transition);
-          padding: 80px 20px 20px;
-          overflow-y: auto;
+        .page-hero {
+          padding: 5rem 2rem 4.5rem;
         }
-
-        .main-nav.active {
-          right: 0;
+        .ph-h1 {
+          font-size: clamp(5rem, 18vw, 8rem);
         }
-
-        .main-nav ul {
+        .ps-inner {
           flex-direction: column;
         }
-
-        .main-nav li {
-          margin: 15px 0;
-        }
-
-        .main-nav a {
-          font-size: 1.1rem;
-        }
-
-        .categories-tabs {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .newsletter-form {
+        .ps-btns {
           flex-direction: column;
         }
-
-        .newsletter-form input,
-        .newsletter-form button {
-          width: 100%;
-          border-radius: 4px;
+        .ft-grid {
+          grid-template-columns: 1fr;
+          gap: 3.5rem;
         }
-
-        .newsletter-form button {
-          margin-top: 10px;
+        footer {
+          padding: 5rem 2rem 3rem;
         }
-        .back-to-top {
-          width: 45px;
-          height: 45px;
-          font-size: 1rem;
-          right: 20px;
-          bottom: 180px;
+        .ft-btm {
+          flex-direction: column;
+          text-align: center;
         }
-
-        .messenger-chat {
-          width: 50px;
-          height: 50px;
-          font-size: 24px;
-          right: 18px;
-          bottom: 110px;
-        }
-
-        .back-to-top.active ~ .messenger-chat {
-          bottom: 80px;
-        }
-        /* Hiển thị thanh menu mobile ở chân trang */
-        .mobile-bottom-nav {
+        .mob-nav {
           display: block;
         }
-
-        /* Điều chỉnh padding cho footer để tránh bị che bởi menu mobile */
-        .main-footer {
-          padding-bottom: 70px;
+        footer {
+          padding-bottom: 8rem;
         }
-        .menu-toggle {
-          display: block;
+        .messenger-float {
+          bottom: 8.5rem;
+          right: 1.8rem;
         }
-
-        .menu-toggle.active .bar:nth-child(1) {
-          transform: translateY(8px) rotate(45deg);
+        .back-top {
+          bottom: 8.5rem;
+          right: 1.8rem;
         }
-
-        .menu-toggle.active .bar:nth-child(2) {
-          opacity: 0;
-        }
-
-        .menu-toggle.active .bar:nth-child(3) {
-          transform: translateY(-8px) rotate(-45deg);
+        .promo-strip {
+          padding: 4rem 2rem;
         }
       }
-
-      @media (max-width: 576px) {
-        .hero-banner {
-          min-height: 250px;
+      @media (max-width: 480px) {
+        .cat-tabs {
+          gap: 0.7rem;
         }
-
-        .hero-content h1 {
-          font-size: 1.8rem;
+        .ctab {
+          font-size: 1.3rem;
+          padding: 0.75rem 1.6rem;
         }
-
-        .section-title {
-          font-size: 1.8rem;
-        }
-
-        .products-grid {
+        .prod-grid {
           grid-template-columns: 1fr;
+        }
+        .ph-stats {
+          gap: 2.5rem;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Header -->
-    <header class="main-header">
-      <div class="container">
-        <a href="/Trangchu/" class="logo">
+    <!-- ============================================================ HEADER -->
+    <header class="site-header" id="siteHeader">
+      <div class="hdr">
+        <!-- Logo: image + text -->
+        <a href="/Trangchu/" class="logo-wrap">
           <img
             src="/sanphamxemay/image/banner/Logo_HEAD.png"
-            alt="Honda Logo"
+            alt="HEAD Logo"
+            class="logo-img"
           />
+          <div class="logo-text-block">
+            <span class="logo-name">HỆ THỐNG HEAD TRUNG HÙNG</span>
+            <span class="logo-sub"
+              >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
+            >
+          </div>
         </a>
-        <h3>HEAD TRUNG HÙNG</h3>
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
 
+        <!-- Desktop nav -->
         <nav class="main-nav">
-          <ul>
-            <li><a href="/Trangchu/">Trang chủ</a></li>
-            <li>
-              <a href="/dichvu/sanphamphutung/" class="active">Phụ Tùng </a>
-            </li>
-            <li><a href="/dichvu/">Dịch vụ</a></li>
-            <li><a href="/tintuc/">Tin tức</a></li>
-            <li><a href="/lienhe/">Liên hệ</a></li>
-          </ul>
+          <a href="/Trangchu/">Trang chủ</a>
+          <a href="/dichvu/sanphamphutung/" class="active"
+            >Phụ Tùng Chính Hãng</a
+          >
+          <a href="/dichvu/baoduong/">Bão Dưỡng & Sửa Chữa</a>
+          <a href="/dichvu/baohanh/">Bảo Hành Xe Máy</a>
+          <a href="/lienhe/">Liên hệ</a>
         </nav>
+
+        <a href="tel:1900636712" class="hdr-cta"
+          ><i class="fas fa-phone-alt"></i> Gọi ngay</a
+        >
+        <div class="ham" id="ham"><span></span><span></span><span></span></div>
       </div>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="hero-banner">
-      <div class="container">
-        <div class="hero-content">
-          <h1>Sản Phẩm Phụ Tùng Chính Hãng Honda</h1>
-          <p>Chất lượng cao - Bảo hành dài hạn - Giá cả hợp lý</p>
+    <!-- Drawer -->
+    <div class="dov" id="dov"></div>
+    <div class="sdraw" id="sdraw">
+      <button class="sdx" id="sdx"><i class="fas fa-times"></i></button>
+      <nav class="dnav">
+        <a href="/Trangchu/">Trang chủ</a>
+        <a href="/dichvu/sanphamphutung/" class="active">Phụ Tùng</a>
+        <a href="/dichvu/">Dịch vụ</a>
+        <a href="/tintuc/">Tin tức</a>
+        <a href="/lienhe/">Liên hệ</a>
+      </nav>
+      <a href="tel:1900636712" class="dcta"
+        ><i class="fas fa-phone-alt"></i> 1900 636 712</a
+      >
+    </div>
+
+    <!-- ============================================================ PAGE HERO -->
+    <section class="page-hero">
+      <div class="ph-grid"></div>
+      <div class="ph-inner">
+        <div class="ph-crumb">
+          <a href="/Trangchu/">Trang chủ</a>
+          <span class="sep">/</span>
+          <a href="/dichvu/">Dịch vụ</a>
+          <span class="sep">/</span>
+          <span style="color: rgba(255, 255, 255, 0.7)">Phụ tùng</span>
+        </div>
+        <div class="ph-kicker">Honda Genuine Parts</div>
+        <h1 class="ph-h1">PHỤ TÙNG<br />CHÍNH HÃNG</h1>
+        <p class="ph-sub">
+          Chất lượng cao · Bảo hành dài hạn · Giá cả hợp lý — Phụ tùng chính
+          hãng Honda dành riêng cho xe của bạn.
+        </p>
+        <div class="ph-stats">
+          <div class="ph-stat">
+            <div class="v">5<em>+</em></div>
+            <div class="l">Danh mục</div>
+          </div>
+          <div class="ph-stat">
+            <div class="v">100<em>%</em></div>
+            <div class="l">Chính hãng</div>
+          </div>
+          <div class="ph-stat">
+            <div class="v">12<em>CH</em></div>
+            <div class="l">Cửa hàng</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Product Categories -->
-    <section class="categories-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Danh Mục Sản Phẩm</h2>
-          <div class="divider"></div>
-        </div>
+    <!-- ============================================================ PRODUCTS -->
+    <section class="products-section">
+      <div class="ps-wrap">
+        <div class="sec-eyebrow rv">Danh mục sản phẩm</div>
+        <h2 class="sec-h2 rv">CHỌN LOẠI<br />SẢN PHẨM</h2>
 
-        <div class="categories-tabs">
-          <button class="tab-btn active" data-tab="helmets">Mũ Bảo Hiểm</button>
-          <button class="tab-btn" data-tab="apparel">Trang Phục</button>
-          <button class="tab-btn" data-tab="accessories">Phụ Kiện</button>
-          <button class="tab-btn" data-tab="parts">Phụ Tùng</button>
-          <button class="tab-btn" data-tab="lubricants">
-            Dầu Nhớt & Hóa Chất
+        <!-- Category tabs -->
+        <div class="cat-tabs rv">
+          <button class="ctab active" data-tab="helmets">
+            <i class="fas fa-hard-hat"></i>Mũ Bảo Hiểm
+          </button>
+          <button class="ctab" data-tab="apparel">
+            <i class="fas fa-tshirt"></i>Trang Phục
+          </button>
+          <button class="ctab" data-tab="accessories">
+            <i class="fas fa-key"></i>Phụ Kiện
+          </button>
+          <button class="ctab" data-tab="parts">
+            <i class="fas fa-cog"></i>Phụ Tùng
+          </button>
+          <button class="ctab" data-tab="lubricants">
+            <i class="fas fa-oil-can"></i>Dầu Nhớt & Hóa Chất
           </button>
         </div>
 
-        <!-- Mũ Bảo Hiểm -->
-        <div id="helmets" class="tab-content active">
-          <div class="products-grid">
-            <!-- Product 1 -->
-            <div class="product-card">
-              <div class="product-badge">Bán chạy</div>
-              <div class="product-image">
+        <!-- ==================== MŨ BẢO HIỂM ==================== -->
+        <div class="tab-panel active" id="helmets">
+          <div class="prod-grid">
+            <!-- 1 -->
+            <div class="prod-card">
+              <div class="card-badge">Bán chạy</div>
+              <div class="card-img" id="img-hiway">
                 <img
                   src="image/MBH/Mũ Hiway Tiêu chuẩn/TRANG.png"
-                  alt="Mũ bảo hiểm Honda Fullface"
-                  data-color="white"
-                />
-                <img
-                  src="image/MBH/Mũ Hiway Tiêu chuẩn/DEN.png"
-                  alt="Mũ bảo hiểm Honda Fullface"
-                  data-color="black"
-                  style="display: none"
-                />
-                <img
-                  src="image/MBH/Mũ Hiway Tiêu chuẩn/XANH.png"
-                  alt="Mũ bảo hiểm Honda Fullface"
-                  data-color="blue"
-                  style="display: none"
-                />
-                <img
-                  src="image/MBH/Mũ Hiway Tiêu chuẩn/BE.png"
-                  alt="Mũ bảo hiểm Honda Fullface"
-                  data-color="yellow"
-                  style="display: none"
+                  alt="Mũ Hiway Trắng"
                 />
               </div>
-              <div class="product-info">
-                <h3>Mũ Hiway tiêu chuẩn</h3>
-                <p class="product-description collapsed">
-                  Thiết kế: Mũ nửa đầu không kính Hiway tiêu chuẩn - Trắng bóng
-                  Mũ nửa đầu không kính Hiway tiêu chuẩn - Đen mờ Mũ nửa đầu
-                  không kính Hiway tiêu chuẩn - Xanh Navy Mũ nửa đầu không kính
-                  Hiway tiêu chuẩn - Be
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="color-options">
-                  <h4>Màu sắc:</h4>
-                  <div class="color-list">
+              <div class="card-body">
+                <div class="card-name">Mũ Hiway Tiêu Chuẩn</div>
+                <div class="card-desc">
+                  Mũ nửa đầu không kính Hiway tiêu chuẩn. Có các màu: Trắng
+                  bóng, Đen mờ, Xanh Navy, Be. Thiết kế gọn nhẹ, phù hợp đi hàng
+                  ngày.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-colors">
+                  <div class="cc-label">Màu sắc:</div>
+                  <div class="cc-list">
                     <div
-                      class="color-item active"
-                      style="background-color: #ffffff"
-                      data-color="white"
+                      class="cc-dot active"
+                      style="
+                        background: #ffffff;
+                        box-shadow: inset 0 0 0 1px #ccc;
+                      "
+                      data-img="image/MBH/Mũ Hiway Tiêu chuẩn/TRANG.png"
+                      data-target="img-hiway"
                     ></div>
                     <div
-                      class="color-item"
-                      style="background-color: #000000"
-                      data-color="black"
+                      class="cc-dot"
+                      style="background: #111"
+                      data-img="image/MBH/Mũ Hiway Tiêu chuẩn/DEN.png"
+                      data-target="img-hiway"
                     ></div>
                     <div
-                      class="color-item"
-                      style="background-color: #0056b3"
-                      data-color="blue"
+                      class="cc-dot"
+                      style="background: #003f80"
+                      data-img="image/MBH/Mũ Hiway Tiêu chuẩn/XANH.png"
+                      data-target="img-hiway"
                     ></div>
                     <div
-                      class="color-item"
-                      style="background-color: #f3f583"
-                      data-color="yellow"
+                      class="cc-dot"
+                      style="
+                        background: #f3f09e;
+                        box-shadow: inset 0 0 0 1px #ccc;
+                      "
+                      data-img="image/MBH/Mũ Hiway Tiêu chuẩn/BE.png"
+                      data-target="img-hiway"
                     ></div>
                   </div>
                 </div>
-                <div class="product-price">Từ 149.000 VNĐ</div>
+                <div class="card-price">Từ 149.000 VNĐ</div>
               </div>
             </div>
-            <!-- Product 2 -->
-            <div class="product-card">
-              <div class="product-badge">Bán chạy</div>
-              <div class="product-image">
+
+            <!-- 2 -->
+            <div class="prod-card">
+              <div class="card-badge">Bán chạy</div>
+              <div class="card-img" id="img-jet-tem">
                 <img
                   src="image/MBH/Mũ Jet Cao cấp Tem/DEN.png"
-                  alt="Mũ bảo hiểm Honda"
-                  data-color="black"
-                />
-                <img
-                  src="image/MBH/Mũ Jet Cao cấp Tem/HONG.png"
-                  alt="Mũ bảo hiểm Honda"
-                  data-color="pink"
-                  style="display: none"
+                  alt="Mũ Jet Cao Cấp Tem"
                 />
               </div>
-              <div class="product-info">
-                <h3>Mũ Jet Cao Cấp Tem</h3>
-                <p class="product-description collapsed">
-                  <b>Thiết kế:</b> Màu sắc Mũ Jet Cao cấp - Tem: Đen Xám/ Đen
-                  Hồng Chất liệu vỏ: Nhựa ABS nguyên sinh cao cấp, đạt chuẩn
-                  Quatest Việt Nam Lót trong: Xốp EPS dày & vải nâu đất sang
-                  trọng Kính âm toàn diện: Chống bụi – nắng – mưa – tia UV
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="color-options">
-                  <h4>Màu sắc:</h4>
-                  <div class="color-list">
+              <div class="card-body">
+                <div class="card-name">Mũ Jet Cao Cấp Tem</div>
+                <div class="card-desc">
+                  Chất liệu vỏ nhựa ABS nguyên sinh cao cấp, đạt chuẩn Quatest
+                  Việt Nam. Lót trong xốp EPS dày & vải nâu đất sang trọng. Kính
+                  âm toàn diện chống bụi – nắng – mưa – tia UV.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-colors">
+                  <div class="cc-label">Màu sắc:</div>
+                  <div class="cc-list">
                     <div
-                      class="color-item active"
-                      style="background-color: #000000"
-                      data-color="black"
+                      class="cc-dot active"
+                      style="background: #111"
+                      data-img="image/MBH/Mũ Jet Cao cấp Tem/DEN.png"
+                      data-target="img-jet-tem"
                     ></div>
                     <div
-                      class="color-item"
-                      style="background-color: #ff5bce"
-                      data-color="pink"
+                      class="cc-dot"
+                      style="background: #ff5bce"
+                      data-img="image/MBH/Mũ Jet Cao cấp Tem/HONG.png"
+                      data-target="img-jet-tem"
                     ></div>
                   </div>
                 </div>
-                <div class="product-price">Từ 489.000 VNĐ</div>
+                <div class="card-price">Từ 489.000 VNĐ</div>
               </div>
             </div>
-            <!-- Product 2 -->
-            <div class="product-card">
-              <div class="product-badge">Bán chạy</div>
-              <div class="product-image">
+
+            <!-- 3 -->
+            <div class="prod-card">
+              <div class="card-badge">Bán chạy</div>
+              <div class="card-img" id="img-jet-tron">
                 <img
                   src="image/MBH/Mũ Jet Cao cấp Trơn/DEN.png"
-                  alt="Mũ bảo hiểm Honda"
-                  data-color="black"
-                />
-                <img
-                  src="image/MBH/Mũ Jet Cao cấp Trơn/SUA.png"
-                  alt="Mũ bảo hiểm Honda"
-                  data-color="yellow"
-                  style="display: none"
-                />
-                <img
-                  src="image/MBH/Mũ Jet Cao cấp Trơn/XIMANG.png"
-                  alt="Mũ bảo hiểm Honda"
-                  data-color="gray"
-                  style="display: none"
+                  alt="Mũ Jet Cao Cấp Trơn"
                 />
               </div>
-              <div class="product-info">
-                <h3>Mũ Jet Cao Cấp Tem</h3>
-                <p class="product-description collapsed">
-                  <b>Thiết kế:</b> Màu sắc Mũ Jet Cao cấp - Tem: Đen Xám/ Đen
-                  Hồng Chất liệu vỏ: Nhựa ABS nguyên sinh cao cấp, đạt chuẩn
-                  Quatest Việt Nam Lót trong: Xốp EPS dày & vải nâu đất sang
-                  trọng Kính âm toàn diện: Chống bụi – nắng – mưa – tia UV
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="color-options">
-                  <h4>Màu sắc:</h4>
-                  <div class="color-list">
+              <div class="card-body">
+                <div class="card-name">Mũ Jet Cao Cấp Trơn</div>
+                <div class="card-desc">
+                  Chất liệu vỏ nhựa ABS nguyên sinh cao cấp. Lót trong xốp EPS
+                  dày. Kính âm toàn diện chống bụi – nắng – mưa – tia UV. Màu
+                  sắc: Đen, Sữa, Xi măng.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-colors">
+                  <div class="cc-label">Màu sắc:</div>
+                  <div class="cc-list">
                     <div
-                      class="color-item active"
-                      style="background-color: #000000"
-                      data-color="black"
+                      class="cc-dot active"
+                      style="background: #111"
+                      data-img="image/MBH/Mũ Jet Cao cấp Trơn/DEN.png"
+                      data-target="img-jet-tron"
                     ></div>
                     <div
-                      class="color-item"
-                      style="background-color: #cab4a6"
-                      data-color="yellow"
+                      class="cc-dot"
+                      style="background: #cab4a6"
+                      data-img="image/MBH/Mũ Jet Cao cấp Trơn/SUA.png"
+                      data-target="img-jet-tron"
                     ></div>
                     <div
-                      class="color-item"
-                      style="background-color: #505050"
-                      data-color="gray"
+                      class="cc-dot"
+                      style="background: #505050"
+                      data-img="image/MBH/Mũ Jet Cao cấp Trơn/XIMANG.png"
+                      data-target="img-jet-tron"
                     ></div>
                   </div>
                 </div>
-                <div class="product-price">Từ 449.000 VNĐ</div>
+                <div class="card-price">Từ 449.000 VNĐ</div>
               </div>
             </div>
-            <!-- Product 3 -->
-            <div class="product-card">
-              <div class="product-badge">Bán chạy</div>
-              <div class="product-image">
+
+            <!-- 4 -->
+            <div class="prod-card">
+              <div class="card-badge">Bán chạy</div>
+              <div class="card-img" id="img-jet-tt">
                 <img
                   src="image/MBH/Mũ Jet Thời Trang/DEN.png"
-                  alt="Mũ bảo hiểm Honda Fullface"
-                  data-color="black"
-                />
-                <img
-                  src="image/MBH/Mũ Jet Thời Trang/XAM.png"
-                  alt="Mũ bảo hiểm Honda Fullface"
-                  data-color="gray"
-                  style="display: none"
-                />
-                <img
-                  src="image/MBH/Mũ Jet Thời Trang/TRANG.png"
-                  alt="Mũ bảo hiểm Honda Fullface"
-                  data-color="white"
-                  style="display: none"
+                  alt="Mũ Jet Thời Trang"
                 />
               </div>
-              <div class="product-info">
-                <h3>Mũ Jet Thời Trang</h3>
-                <p class="product-description collapsed">
-                  Thiết kế: Mũ bảo hiểm Jet Thời Trang không kính - Xám xi măng
-                  bóng Mũ bảo hiểm Jet Thời Trang không kính - Đen mờ Mũ bảo
-                  hiểm Jet Thời Trang không kính - Trắng bóng
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="color-options">
-                  <h4>Màu sắc:</h4>
-                  <div class="color-list">
+              <div class="card-body">
+                <div class="card-name">Mũ Jet Thời Trang</div>
+                <div class="card-desc">
+                  Mũ bảo hiểm Jet Thời Trang không kính với thiết kế hiện đại,
+                  trẻ trung. Có 3 màu: Xám xi măng bóng, Đen mờ, Trắng bóng.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-colors">
+                  <div class="cc-label">Màu sắc:</div>
+                  <div class="cc-list">
                     <div
-                      class="color-item active"
-                      style="background-color: #000000"
-                      data-color="black"
+                      class="cc-dot active"
+                      style="background: #111"
+                      data-img="image/MBH/Mũ Jet Thời Trang/DEN.png"
+                      data-target="img-jet-tt"
                     ></div>
                     <div
-                      class="color-item"
-                      style="background-color: #6d6d6d"
-                      data-color="gray"
+                      class="cc-dot"
+                      style="background: #6d6d6d"
+                      data-img="image/MBH/Mũ Jet Thời Trang/XAM.png"
+                      data-target="img-jet-tt"
                     ></div>
                     <div
-                      class="color-item"
-                      style="background-color: #ffffff; border: 1px solid #ddd"
-                      data-color="white"
+                      class="cc-dot"
+                      style="background: #fff; box-shadow: inset 0 0 0 1px #ccc"
+                      data-img="image/MBH/Mũ Jet Thời Trang/TRANG.png"
+                      data-target="img-jet-tt"
                     ></div>
                   </div>
                 </div>
-                <div class="product-price">Từ 349.000 VNĐ</div>
+                <div class="card-price">Từ 349.000 VNĐ</div>
               </div>
             </div>
 
-            <!-- Product 4 -->
-            <div class="product-card">
-              <div class="product-badge">Bán chạy</div>
-              <div class="product-image">
+            <!-- 5 -->
+            <div class="prod-card">
+              <div class="card-badge">Bán chạy</div>
+              <div class="card-img" id="img-jet-cd">
                 <img
                   src="image/MBH/Mũ Jet Cổ Điển/DEN.png"
-                  alt="Mũ bảo hiểm Honda Fullface"
-                  data-color="black"
-                />
-                <img
-                  src="image/MBH/Mũ Jet Cổ Điển/TRANG.png"
-                  alt="Mũ bảo hiểm Honda Fullface"
-                  data-color="white"
-                  style="display: none"
+                  alt="Mũ Jet Cổ Điển"
                 />
               </div>
-              <div class="product-info">
-                <h3>Mũ Jet Cổ Điển</h3>
-                <p class="product-description collapsed">
-                  Thiết kế: Mũ bảo hiểm Jet Cổ điển có kính - Đen mờ Mũ bảo hiểm
-                  Jet Cổ điển có kính - Trắng bóng
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="color-options">
-                  <h4>Màu sắc:</h4>
-                  <div class="color-list">
+              <div class="card-body">
+                <div class="card-name">Mũ Jet Cổ Điển</div>
+                <div class="card-desc">
+                  Mũ bảo hiểm Jet Cổ điển có kính, thiết kế retro lịch lãm. Màu:
+                  Đen mờ, Trắng bóng.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-colors">
+                  <div class="cc-label">Màu sắc:</div>
+                  <div class="cc-list">
                     <div
-                      class="color-item active"
-                      style="background-color: #000000"
-                      data-color="black"
+                      class="cc-dot active"
+                      style="background: #111"
+                      data-img="image/MBH/Mũ Jet Cổ Điển/DEN.png"
+                      data-target="img-jet-cd"
                     ></div>
                     <div
-                      class="color-item"
-                      style="background-color: #ffffff; border: 1px solid #ddd"
-                      data-color="white"
+                      class="cc-dot"
+                      style="background: #fff; box-shadow: inset 0 0 0 1px #ccc"
+                      data-img="image/MBH/Mũ Jet Cổ Điển/TRANG.png"
+                      data-target="img-jet-cd"
                     ></div>
                   </div>
                 </div>
-                <div class="product-price">Từ 449.000 VNĐ</div>
+                <div class="card-price">Từ 449.000 VNĐ</div>
               </div>
             </div>
 
-            <!-- Product 5 -->
-            <div class="product-card">
-              <div class="product-badge">Mới</div>
-              <div class="product-image">
+            <!-- 6 -->
+            <div class="prod-card">
+              <div class="card-badge">Mới</div>
+              <div class="card-img" id="img-nex30">
                 <img
                   src="image/MBH/Mũ cả đầu không cằm Nex 30/DEN.jpeg"
-                  alt="Mũ bảo hiểm Honda Fullface"
-                  data-color="black"
-                />
-                <img
-                  src="image/MBH/Mũ cả đầu không cằm Nex 30/TRANG.jpeg"
-                  alt="Mũ bảo hiểm Honda Fullface"
-                  data-color="white"
-                  style="display: none"
+                  alt="Mũ Nex 30"
                 />
               </div>
-              <div class="product-info">
-                <h3>Mũ cả đầu không cằm Nex 30</h3>
-                <p class="product-description collapsed">
-                  Thiết kế: Mũ bảo hiểm 3/4 đầu không cằm Thiết kế thể thao,
-                  hiện đại
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="color-options">
-                  <h4>Màu sắc:</h4>
-                  <div class="color-list">
+              <div class="card-body">
+                <div class="card-name">Mũ Cả Đầu Nex 30</div>
+                <div class="card-desc">
+                  Mũ bảo hiểm 3/4 đầu không cằm. Thiết kế thể thao, hiện đại,
+                  bảo vệ tối ưu.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-colors">
+                  <div class="cc-label">Màu sắc:</div>
+                  <div class="cc-list">
                     <div
-                      class="color-item active"
-                      style="background-color: #000000"
-                      data-color="black"
+                      class="cc-dot active"
+                      style="background: #111"
+                      data-img="image/MBH/Mũ cả đầu không cằm Nex 30/DEN.jpeg"
+                      data-target="img-nex30"
                     ></div>
                     <div
-                      class="color-item"
-                      style="background-color: #ffffff; border: 1px solid #ddd"
-                      data-color="white"
+                      class="cc-dot"
+                      style="background: #fff; box-shadow: inset 0 0 0 1px #ccc"
+                      data-img="image/MBH/Mũ cả đầu không cằm Nex 30/TRANG.jpeg"
+                      data-target="img-nex30"
                     ></div>
                   </div>
                 </div>
-                <div class="product-price">Từ 729.000 VNĐ</div>
+                <div class="card-price">Từ 729.000 VNĐ</div>
               </div>
             </div>
-            <!-- Product 6 -->
-            <div class="product-card">
-              <div class="product-badge">Mới</div>
-              <div class="product-image">
+
+            <!-- 7 -->
+            <div class="prod-card">
+              <div class="card-badge">Mới</div>
+              <div class="card-img" id="img-nex70">
                 <img
                   src="image/MBH/Mũ cả đầu Nex 70/DEN.jpeg"
-                  alt="Mũ bảo hiểm Honda Fullface"
-                  data-color="black"
-                />
-                <img
-                  src="image/MBH/Mũ cả đầu Nex 70/TRANG.jpeg"
-                  alt="Mũ bảo hiểm Honda Fullface"
-                  data-color="white"
-                  style="display: none"
+                  alt="Mũ Nex 70"
                 />
               </div>
-              <div class="product-info">
-                <h3>Mũ cả đầu Nex 70</h3>
-                <p class="product-description collapsed">
-                  Thiết kế: Mũ bảo hiểm cả đầu Nex 70 Thiết kế thể thao và hiện
-                  đại
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="color-options">
-                  <h4>Màu sắc:</h4>
-                  <div class="color-list">
+              <div class="card-body">
+                <div class="card-name">Mũ Cả Đầu Nex 70</div>
+                <div class="card-desc">
+                  Mũ bảo hiểm cả đầu Nex 70. Thiết kế thể thao và hiện đại, bảo
+                  vệ toàn diện đầu và cằm.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-colors">
+                  <div class="cc-label">Màu sắc:</div>
+                  <div class="cc-list">
                     <div
-                      class="color-item active"
-                      style="background-color: #000000"
-                      data-color="black"
+                      class="cc-dot active"
+                      style="background: #111"
+                      data-img="image/MBH/Mũ cả đầu Nex 70/DEN.jpeg"
+                      data-target="img-nex70"
                     ></div>
                     <div
-                      class="color-item"
-                      style="background-color: #ffffff; border: 1px solid #ddd"
-                      data-color="white"
+                      class="cc-dot"
+                      style="background: #fff; box-shadow: inset 0 0 0 1px #ccc"
+                      data-img="image/MBH/Mũ cả đầu Nex 70/TRANG.jpeg"
+                      data-target="img-nex70"
                     ></div>
                   </div>
                 </div>
-                <div class="product-price">Từ 1.199.000 VNĐ</div>
+                <div class="card-price">Từ 1.199.000 VNĐ</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Trang Phục -->
-        <div id="apparel" class="tab-content">
-          <div class="products-grid">
-            <!-- Product 1 -->
-            <div class="product-card">
-              <div class="product-badge">Mới</div>
-              <div class="product-image">
-                <img
-                  src="image/TRANG PHUC/1.png"
-                  alt="Khăn ống đa năng Honda"
-                  data-color="red"
-                />
-                <img
-                  src="image/TRANG PHUC/1_black.png"
-                  alt="Khăn ống đa năng Honda"
-                  data-color="black"
-                  style="display: none"
-                />
+        <!-- ==================== TRANG PHỤC ==================== -->
+        <div class="tab-panel" id="apparel">
+          <div class="prod-grid">
+            <div class="prod-card">
+              <div class="card-badge">Mới</div>
+              <div class="card-img" id="img-khan">
+                <img src="image/TRANG PHUC/1.png" alt="Khăn ống Honda" />
               </div>
-              <div class="product-info">
-                <h3>Khăn ống đa năng Honda</h3>
-                <p class="product-description collapsed">
-                  Thiết kế: Khăn ống đa năng Honda
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="color-options">
-                  <h4>Màu sắc:</h4>
-                  <div class="color-list">
+              <div class="card-body">
+                <div class="card-name">Khăn Ống Đa Năng Honda</div>
+                <div class="card-desc">
+                  Khăn ống đa năng Honda in logo thương hiệu. Chất liệu thoáng
+                  mát, co giãn tốt, dùng được nhiều cách.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-colors">
+                  <div class="cc-label">Màu sắc:</div>
+                  <div class="cc-list">
                     <div
-                      class="color-item active"
-                      style="background-color: #ce0000"
-                      data-color="red"
+                      class="cc-dot active"
+                      style="background: #ce0000"
+                      data-img="image/TRANG PHUC/1.png"
+                      data-target="img-khan"
                     ></div>
                     <div
-                      class="color-item"
-                      style="background-color: #000000; border: 1px solid #ddd"
-                      data-color="black"
+                      class="cc-dot"
+                      style="background: #111"
+                      data-img="image/TRANG PHUC/1_black.png"
+                      data-target="img-khan"
                     ></div>
                   </div>
                 </div>
-                <div class="product-price">230.727 VNĐ</div>
+                <div class="card-price">230.727 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 2 -->
-            <div class="product-card">
-              <div class="product-badge">Mới</div>
-              <div class="product-image">
-                <img
-                  src="image/TRANG PHUC/2.png"
-                  alt="Mũ lưỡi trai Honda"
-                  data-color="black"
-                />
+            <div class="prod-card">
+              <div class="card-badge">Mới</div>
+              <div class="card-img">
+                <img src="image/TRANG PHUC/2.png" alt="Mũ lưỡi trai Honda" />
               </div>
-              <div class="product-info">
-                <h3>Mũ lưỡi trai Honda</h3>
-                <p class="product-description collapsed">
-                  Thiết kế: Mũ lưỡi trai Honda
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="color-options">
-                  <h4>Màu sắc:</h4>
-                  <div class="color-list">
-                    <div
-                      class="color-item active"
-                      style="background-color: #000000"
-                      data-color="black"
-                    ></div>
-                  </div>
+              <div class="card-body">
+                <div class="card-name">Mũ Lưỡi Trai Honda</div>
+                <div class="card-desc">
+                  Mũ lưỡi trai Honda thêu logo thương hiệu. Chất liệu cao cấp,
+                  thoáng khí.
                 </div>
-                <div class="product-price">324.000 VNĐ</div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">324.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 3 -->
-            <div class="product-card">
-              <div class="product-badge">Mới</div>
-              <div class="product-image">
+            <div class="prod-card">
+              <div class="card-badge">Mới</div>
+              <div class="card-img">
                 <img
                   src="image/TRANG PHUC/3.png"
                   alt="Áo sơ mi +84HondaBikers"
                 />
               </div>
-              <div class="product-info">
-                <h3>Áo sơ mi +84HondaBikers</h3>
-                <p class="product-description collapsed">
-                  Thiết kế: Áo sơ mi +84HondaBikers
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">350.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Áo Sơ Mi +84HondaBikers</div>
+                <div class="card-desc">
+                  Áo sơ mi +84HondaBikers thiết kế đặc biệt dành cho cộng đồng
+                  yêu xe Honda.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">350.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 4 -->
-            <div class="product-card">
-              <div class="product-badge">Mới</div>
-              <div class="product-image">
-                <img
-                  src="image/TRANG PHUC/4.jpg"
-                  alt="Áo thun Honda màu xám"
-                  data-color="dark-gray"
-                />
-                <img
-                  src="image/TRANG PHUC/4_light.jpg"
-                  alt="Áo thun Honda màu xám"
-                  data-color="light-gray"
-                  style="display: none"
-                />
+            <div class="prod-card">
+              <div class="card-badge">Mới</div>
+              <div class="card-img" id="img-aothun">
+                <img src="image/TRANG PHUC/4.jpg" alt="Áo thun Honda" />
               </div>
-              <div class="product-info">
-                <h3>Áo thun Honda màu xám</h3>
-                <p class="product-description collapsed">
-                  Thiết kế: Áo thun Honda màu xám
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="color-options">
-                  <h4>Màu sắc:</h4>
-                  <div class="color-list">
+              <div class="card-body">
+                <div class="card-name">Áo Thun Honda</div>
+                <div class="card-desc">
+                  Áo thun Honda chất liệu cotton thoáng mát. Có hai tone màu xám
+                  đậm và xám nhạt.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-colors">
+                  <div class="cc-label">Màu sắc:</div>
+                  <div class="cc-list">
                     <div
-                      class="color-item active"
-                      style="background-color: #4e4e4e"
-                      data-color="dark-gray"
+                      class="cc-dot active"
+                      style="background: #4e4e4e"
+                      data-img="image/TRANG PHUC/4.jpg"
+                      data-target="img-aothun"
                     ></div>
                     <div
-                      class="color-item"
-                      style="background-color: #a0a0a0; border: 1px solid #ddd"
-                      data-color="light-gray"
+                      class="cc-dot"
+                      style="background: #a0a0a0"
+                      data-img="image/TRANG PHUC/4_light.jpg"
+                      data-target="img-aothun"
                     ></div>
                   </div>
                 </div>
-                <div class="product-price">417.273 VNĐ</div>
+                <div class="card-price">417.273 VNĐ</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Phụ Kiện -->
-        <div id="accessories" class="tab-content">
-          <div class="products-grid">
-            <!-- Product 1 -->
-            <div class="product-card">
-              <div class="product-badge">Mới</div>
-              <div class="product-image">
+        <!-- ==================== PHỤ KIỆN ==================== -->
+        <div class="tab-panel" id="accessories">
+          <div class="prod-grid">
+            <div class="prod-card">
+              <div class="card-badge">Mới</div>
+              <div class="card-img">
                 <img src="image/PHUKIEN/1.jpg" alt="Móc treo chìa khóa" />
               </div>
-              <div class="product-info">
-                <h3>Móc treo chìa khóa</h3>
-                <p class="product-description collapsed">
-                  Tính năng: Móc treo chìa khóa in logo Honda
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 11.782 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Móc Treo Chìa Khóa Honda</div>
+                <div class="card-desc">
+                  Móc treo chìa khóa in logo Honda. Nhỏ gọn, tiện lợi, chất liệu
+                  bền bỉ.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 11.782 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 2 -->
-            <div class="product-card">
-              <div class="product-badge">Mới</div>
-              <div class="product-image">
-                <img src="image/PHUKIEN/2.jpg" alt="Bao da đựng giấy tờ" />
+            <div class="prod-card">
+              <div class="card-badge">Mới</div>
+              <div class="card-img">
+                <img src="image/PHUKIEN/2.jpg" alt="Ốp chìa khóa Smartkey" />
               </div>
-              <div class="product-info">
-                <h3>Ốp chìa khóa Smartkey 3 nút</h3>
-                <p class="product-description collapsed">
-                  <b> Tính năng:</b> Với 3 nút bấm, chất liệu silicon bền dai,
-                  không độc hại. Tiện dụng, nâng cao tuổi thọ cho chìa Thiết kế
-                  ôm khit, chắc chắn Chống nước, bảo vệ chìa Không ảnh hưởng tới
-                  sóng tin hiệu của chìa
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 36.327 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Ốp Chìa Khóa Smartkey 3 Nút</div>
+                <div class="card-desc">
+                  Chất liệu silicon bền dai, không độc hại. Chống nước, bảo vệ
+                  chìa khóa. Không ảnh hưởng tới tín hiệu. Thiết kế ôm khít,
+                  chắc chắn.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 36.327 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 3 -->
-            <div class="product-card">
-              <div class="product-badge">Mới</div>
-              <div class="product-image">
-                <img src="image/PHUKIEN/TLSH.jpeg" alt="Thảm lót chân" />
+            <div class="prod-card">
+              <div class="card-badge">Mới</div>
+              <div class="card-img">
+                <img src="image/PHUKIEN/TLSH.jpeg" alt="Thảm lót chân SH" />
               </div>
-              <div class="product-info">
-                <h3>Thảm lót chân [SH160i/125i]</h3>
-                <p class="product-description collapsed">
-                  <b>Tính năng:</b> Bảo vệ và trang trí cho phần để chân
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 93.276 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Thảm Lót Chân [SH160i/125i]</div>
+                <div class="card-desc">
+                  Thảm lót chân bảo vệ và trang trí cho phần để chân xe SH.
+                  Chống trơn trượt, dễ vệ sinh.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 93.276 VNĐ</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Phụ Tùng -->
-        <div id="parts" class="tab-content">
-          <div class="products-grid">
-            <!-- Product 1 -->
-            <div class="product-card">
-              <div class="product-badge">Phụ Tùng</div>
-              <div class="product-image">
+        <!-- ==================== PHỤ TÙNG ==================== -->
+        <div class="tab-panel" id="parts">
+          <div class="prod-grid">
+            <div class="prod-card">
+              <div class="card-badge">Phụ Tùng</div>
+              <div class="card-img">
                 <img src="image/PHUTUNG/1.png" alt="Tấm lọc gió" />
               </div>
-              <div class="product-info">
-                <h3>Tấm lọc gió</h3>
-                <p class="product-description collapsed">
+              <div class="card-body">
+                <div class="card-name">Tấm Lọc Gió</div>
+                <div class="card-desc">
                   Lọc gió có chức năng lọc không khí đi vào động cơ và giữ lại
-                  bụi bẩn, đảm bảo không khí đi vào động cơ. Lọc gió không được
-                  kiểm tra và vệ sinh sẽ làm gia tăng việc tiêu hao nhiên liệu
-                  và giảm tuổi thọ các phụ tùng khác. Lọc gió khô cần được vệ
-                  sinh sau mỗi 4000km và thay thế sau mỗi 12000km. Đối với lọc
-                  gió dầu, không được cố gắng làm sạch mà cần thay thế sau mỗi
-                  16000km với xe bảo hành 2 năm, mỗi 18000km với xe bảo hành 3
-                  năm để đảm bảo xe được vận hành an toàn.
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 51.000 VNĐ</div>
+                  bụi bẩn. Cần vệ sinh sau mỗi 4000km và thay thế sau mỗi
+                  12000km.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 51.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 2 -->
-            <div class="product-card">
-              <div class="product-badge">Phụ Tùng</div>
-              <div class="product-image">
+            <div class="prod-card">
+              <div class="card-badge">Phụ Tùng</div>
+              <div class="card-img">
                 <img src="image/PHUTUNG/2.jpg" alt="Bugi" />
               </div>
-              <div class="product-info">
-                <h3>Bugi</h3>
-                <p class="product-description collapsed">
-                  Honda khuyến cáo cứ 8000 km bạn nên thay thế định kì 1 lần để
-                  đảm bảo xe của bạn được vận hành an toàn, riêng với Airblade
-                  và PCX 2016, sau 12000 km bạn nên thay thế định kì 1 lần. Giá
-                  bán lẻ đề xuất được công bố chi tiết tại các cửa hàng ủy nhiệm
-                  của Honda Việt Nam (HEAD) trên toàn quốc
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 40.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Bugi Honda</div>
+                <div class="card-desc">
+                  Nên thay thế định kỳ sau mỗi 8000km. Riêng Air Blade và PCX
+                  2016 sau 12000km. Đảm bảo xe vận hành an toàn, tiết kiệm nhiên
+                  liệu.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 40.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 3 -->
-            <div class="product-card">
-              <div class="product-badge">Phụ Tùng</div>
-              <div class="product-image">
-                <img src="image/PHUTUNG/3.jpg" alt="Bộ má phanh" />
+            <div class="prod-card">
+              <div class="card-badge">Phụ Tùng</div>
+              <div class="card-img">
+                <img src="image/PHUTUNG/3.jpg" alt="Má phanh" />
               </div>
-              <div class="product-info">
-                <h3>Bộ má phanh</h3>
-                <p class="product-description collapsed">
-                  Hệ thống phanh giữ vai trò là hệ thống an toàn, nếu duy trì
-                  tình trạng xấu trong thời gian dài có thể làm lây lan hư hỏng
-                  sang các chi tiết và bộ phận liên quan, trường hợp xấu có thể
-                  gây ra tai nạn. Honda khuyến cáo cần kiểm tra má phanh mỗi
-                  4000km với xe bảo hành 2 năm hoặc mỗi 6000km với xe bảo hành 3
-                  năm để đảm bảo xe được vận hành an toàn.
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 61.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Bộ Má Phanh</div>
+                <div class="card-desc">
+                  Hệ thống phanh giữ vai trò an toàn quan trọng. Kiểm tra mỗi
+                  4000km với xe bảo hành 2 năm hoặc 6000km với xe bảo hành 3
+                  năm.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 61.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 4 -->
-            <div class="product-card">
-              <div class="product-badge">Phụ Tùng</div>
-              <div class="product-image">
-                <img src="image/PHUTUNG/4.jpg" alt="Bộ má phanh dầu" />
+            <div class="prod-card">
+              <div class="card-badge">Phụ Tùng</div>
+              <div class="card-img">
+                <img src="image/PHUTUNG/4.jpg" alt="Má phanh dầu" />
               </div>
-              <div class="product-info">
-                <h3>Bộ má phanh dầu</h3>
-                <p class="product-description collapsed">
-                  Hệ thống phanh giữ vai trò là hệ thống an toàn, nếu duy trì
-                  tình trạng xấu trong thời gian dài có thể làm lây lan hư hỏng
-                  sang các chi tiết và bộ phận liên quan, trường hợp xấu có thể
-                  gây ra tai nạn. Honda khuyến cáo cần kiểm tra má phanh mỗi
-                  4000km với xe bảo hành 2 năm hoặc mỗi 6000km với xe bảo hành 3
-                  năm để đảm bảo xe được vận hành an toàn.
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 113.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Bộ Má Phanh Dầu</div>
+                <div class="card-desc">
+                  Phanh đĩa dầu cho lực phanh mạnh và ổn định. Kiểm tra định kỳ
+                  mỗi 4000–6000km để đảm bảo an toàn.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 113.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 5 -->
-            <div class="product-card">
-              <div class="product-badge">Phụ Tùng</div>
-              <div class="product-image">
-                <img src="image/PHUTUNG/5.png" alt="Bộ nhông, xích" />
+            <div class="prod-card">
+              <div class="card-badge">Phụ Tùng</div>
+              <div class="card-img">
+                <img src="image/PHUTUNG/5.png" alt="Nhông xích" />
               </div>
-              <div class="product-info">
-                <h3>Bộ nhông, xích</h3>
-                <p class="product-description collapsed">
-                  Tuổi thọ của xích tải phụ thuộc vào việc điều chỉnh va bôi
-                  trơn hợp lý. Bảo dưỡng không tốt dẫn đến hư hỏng xích tải và
-                  nhông xích. Honda khuyến cáo bạn nên kiểm tra và bôi trơn định
-                  kì mỗi 500km và thay thế theo tư vấn của kỹ thuật viên để đảm
-                  bảo xe của bạn được vận hành an toàn.
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 175.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Bộ Nhông, Xích</div>
+                <div class="card-desc">
+                  Tuổi thọ phụ thuộc việc bôi trơn hợp lý. Nên kiểm tra và bôi
+                  trơn mỗi 500km. Thay thế theo tư vấn kỹ thuật viên.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 175.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 6 -->
-            <div class="product-card">
-              <div class="product-badge">Phụ Tùng</div>
-              <div class="product-image">
+            <div class="prod-card">
+              <div class="card-badge">Phụ Tùng</div>
+              <div class="card-img">
                 <img src="image/PHUTUNG/6.png" alt="Ắc quy" />
               </div>
-              <div class="product-info">
-                <h3>Ắc quy</h3>
-                <p class="product-description collapsed">
-                  Ắc quy không được kiểm tra định kỳ, xe có thể không khởi động
-                  được, hệ thống chếu sáng bị ảnh hưởng. Sử dụng ắc quy không
-                  chính hiệu, không tương thích dễ dẫn đến hư hỏng bất thường.
-                  Honda khuyến cáo sau 2 năm bạn nên thay thế định kì 1 lần đối
-                  với ắc quy nước và sau 3 năm thay thế định kì 1 lần đối với ắc
-                  quy khô để đảm bảo xe của bạn được vận hành an toàn. (Riêng
-                  PCX 125 cần kiểm tra sau mỗi 6000km)
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 239.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Ắc Quy Honda</div>
+                <div class="card-desc">
+                  Thay sau 2 năm với ắc quy nước, 3 năm với ắc quy khô. Sử dụng
+                  ắc quy chính hãng đảm bảo hệ thống điện và khởi động an toàn.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 239.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 7 -->
-            <div class="product-card">
-              <div class="product-badge">Phụ Tùng</div>
-              <div class="product-image">
+            <div class="prod-card">
+              <div class="card-badge">Phụ Tùng</div>
+              <div class="card-img">
                 <img src="image/PHUTUNG/7.png" alt="Lốp sau" />
               </div>
-              <div class="product-info">
-                <h3>Lốp sau</h3>
-                <p class="product-description collapsed">
-                  Lốp sau dành cho xe máy: Lốp xe bảo đảm cho việc lái xe an
-                  toàn và êm ái. Sử dụng lốp không chính hiệu làm giảm tuổi thọ
-                  của các phụ tùng liên quan khác, gây khó khăn khi điều khiển
-                  xe và làm gia tăng nhiên liệu tiêu hao. Khuyến cáo: Cần kiểm
-                  tra lốp xe mỗi 4000km với xe bảo hành 2 năm hoặc mỗi 6000km
-                  với xe bảo hành 3 năm để đảm bảo xe được vận hành an toàn
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 228.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Lốp Sau</div>
+                <div class="card-desc">
+                  Lốp chính hãng đảm bảo lái xe an toàn, êm ái. Kiểm tra mỗi
+                  4000–6000km để đảm bảo an toàn vận hành.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 228.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 8 -->
-            <div class="product-card">
-              <div class="product-badge">Phụ Tùng</div>
-              <div class="product-image">
+            <div class="prod-card">
+              <div class="card-badge">Phụ Tùng</div>
+              <div class="card-img">
                 <img src="image/PHUTUNG/8.jpg" alt="Lốp trước" />
               </div>
-              <div class="product-info">
-                <h3>Lốp trước</h3>
-                <p class="product-description collapsed">
-                  Lốp trước dành cho xe máy: Lốp xe bảo đảm cho việc lái xe an
-                  toàn và êm ái. Sử dụng lốp không chính hiệu làm giảm tuổi thọ
-                  của các phụ tùng liên quan khác, gây khó khăn khi điều khiển
-                  xe và làm gia tăng nhiên liệu tiêu hao. Khuyến cáo: Cần kiểm
-                  tra lốp xe mỗi 4000km với xe bảo hành 2 năm hoặc mỗi 6000km
-                  với xe bảo hành 3 năm để đảm bảo xe được vận hành an toàn
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 191.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Lốp Trước</div>
+                <div class="card-desc">
+                  Lốp trước chính hãng Honda. Kiểm tra mỗi 4000–6000km. Sử dụng
+                  lốp không chính hiệu sẽ giảm tuổi thọ các phụ tùng liên quan.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 191.000 VNĐ</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Dầu Nhớt -->
-        <div id="lubricants" class="tab-content">
-          <div class="products-grid">
-            <!-- Product 1 -->
-            <div class="product-card">
-              <div class="product-badge">Dầu Nhờn</div>
-              <div class="product-image">
-                <img src="image/DAUNHON/1.png" alt="Dầu Tổng hợp Cao cấp 4T" />
+        <!-- ==================== DẦU NHỚT ==================== -->
+        <div class="tab-panel" id="lubricants">
+          <div class="prod-grid">
+            <div class="prod-card">
+              <div class="card-badge">Dầu Nhờn</div>
+              <div class="card-img">
+                <img src="image/DAUNHON/1.png" alt="Dầu tổng hợp 4T" />
               </div>
-              <div class="product-info">
-                <h3>Dầu Tổng hợp Cao cấp 4T SL 10W-30 MA Pro Honda</h3>
-                <p class="product-description collapsed">
-                  Dầu Tổng hợp Cao cấp 4T SL 10W-30 MA Pro Honda đặc chế cho các
-                  dòng xe côn tay và xe thể thao Honda chứa dầu gốc tổng hợp
-                  toàn phần được sản xuất với quá trình kiểm soát nghiêm ngặt và
-                  kỹ thuật cao tạo ra các phân tử có hình dáng và kích thước
-                  đồng nhất. Dầu Tổng hợp Cao cấp 4T SL 10W-30 MA Pro Honda cho
-                  khả năng hoạt động bền bỉ dù ở nhiệt độ cao hay nhiệt độ rất
-                  thấp, tối ưu công suất động cơ Honda, bảo vệ động cơ tối ưu và
-                  tiết kiệm nhiên liệu. Honda Việt Nam khuyến cáo sử dụng: Thay
-                  lần đầu sau 1,000km. Các lần sau thay mỗi 2,000km-2,500km.
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 309.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">
+                  Dầu Tổng Hợp Cao Cấp 4T SL 10W-30 MA
+                </div>
+                <div class="card-desc">
+                  Đặc chế cho xe côn tay và xe thể thao Honda. Dầu gốc tổng hợp
+                  toàn phần, hoạt động bền bỉ ở nhiệt độ cao/thấp, tối ưu công
+                  suất. Thay lần đầu sau 1.000km, sau đó mỗi 2.000–2.500km.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 309.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 2 -->
-            <div class="product-card">
-              <div class="product-badge">Dầu Nhờn</div>
-              <div class="product-image">
-                <img src="image/DAUNHON/2.png" alt="Dầu nhờn xe số 4T" />
+            <div class="prod-card">
+              <div class="card-badge">Dầu Nhờn</div>
+              <div class="card-img">
+                <img src="image/DAUNHON/2.png" alt="Dầu nhờn xe số" />
               </div>
-              <div class="product-info">
-                <h3>Dầu nhờn xe số 4T SL 10W-30 MA Pro Honda</h3>
-                <p class="product-description collapsed">
-                  Dầu nhờn xe số SL MA 10W-30 Pro Honda: Là dầu gốc khoáng đặc
-                  chế chuyên biệt cho các dòng xe số Honda giúp bảo vệ động cơ
-                  tối ưu và tiết kiệm nhiên liệu. Honda VIệt Nam khuyến cáo sử
-                  dụng: Thay lần đầu sau 1,000km. Các lần sau thay mỗi
-                  2,000km-2,500km
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 84.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Dầu Nhờn Xe Số 4T SL 10W-30 MA</div>
+                <div class="card-desc">
+                  Dầu gốc khoáng đặc chế cho xe số Honda. Bảo vệ động cơ tối ưu,
+                  tiết kiệm nhiên liệu. Thay lần đầu sau 1.000km.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 84.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 3 -->
-            <div class="product-card">
-              <div class="product-badge">Dầu Nhờn</div>
-              <div class="product-image">
-                <img src="image/DAUNHON/3.png" alt="Dầu nhờn xe ga 4T" />
+            <div class="prod-card">
+              <div class="card-badge">Dầu Nhờn</div>
+              <div class="card-img">
+                <img src="image/DAUNHON/3.png" alt="Dầu nhờn xe ga" />
               </div>
-              <div class="product-info">
-                <h3>Dầu nhờn xe ga 4T SL 10W-30 MB Pro Honda</h3>
-                <p class="product-description collapsed">
-                  Dầu nhờn xe ga 4T SL 10W-30 MB Pro Honda: Là dầu gốc khoáng
-                  đặc chế chuyên biệt cho các dòng xe ga Honda giúp bảo vệ động
-                  cơ tối ưu và tiết kiệm nhiên liệu. Honda VIệt Nam khuyến cáo
-                  sử dụng: Thay lần đầu sau 1,000km. Các lần sau thay mỗi
-                  2,000km-2,500km.
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 89.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Dầu Nhờn Xe Ga 4T SL 10W-30 MB</div>
+                <div class="card-desc">
+                  Dầu gốc khoáng đặc chế cho xe ga Honda. Bảo vệ động cơ, tiết
+                  kiệm nhiên liệu. Thay lần đầu sau 1.000km, các lần sau mỗi
+                  2.000–2.500km.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 89.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 4 -->
-            <div class="product-card">
-              <div class="product-badge">Dầu Nhờn</div>
-              <div class="product-image">
+            <div class="prod-card">
+              <div class="card-badge">Dầu Nhờn</div>
+              <div class="card-img">
                 <img src="image/DAUNHON/4.png" alt="Dầu nhờn xe số 200L" />
               </div>
-              <div class="product-info">
-                <h3>Dầu nhờn xe số 4T SL 10W-30 MA Pro Honda (200L)</h3>
-                <p class="product-description collapsed">
-                  Dầu nhờn xe số 4T SL 10W-30 MA ProHonda (200L): Là dầu nhờn
-                  gốc khoáng đặc chế chuyên biệt cho các dòng xe số Honda giúp
-                  bảo vệ động cơ tối ưu và tiết kiệm nhiên liệu. Nhằm mục tiêu
-                  giảm rác thải nhựa, bảo vệ môi trường sống của chúng ta, Honda
-                  đã phát triển sản phẩm dầu nhờn phuy 200L có chất lượng tương
-                  đương dầu nhờn đóng chai với giá thành tiết kiệm hơn dầu chai
-                  từ 12%-18%. Sản phẩm được phân phối tại các Cửa hàng bán xe
-                  máy và dịch vụ do Honda ủy nhiệm (HEAD) trên toàn quốc. Hãy sử
-                  dụng dầu phuy để bảo vệ môi trường của chúng ta. Honda VIệt
-                  Nam khuyến cáo sử dụng: Thay lần đầu sau 1,000km. Các lần sau
-                  thay mỗi 2,000km-2,500km.
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 91.210 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Dầu Nhờn Xe Số 4T 200L</div>
+                <div class="card-desc">
+                  Dầu phuy 200L chất lượng tương đương dầu chai, tiết kiệm hơn
+                  từ 12–18%. Giảm rác thải nhựa, bảo vệ môi trường.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 91.210 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 5 -->
-            <div class="product-card">
-              <div class="product-badge">Dầu Nhờn</div>
-              <div class="product-image">
+            <div class="prod-card">
+              <div class="card-badge">Dầu Nhờn</div>
+              <div class="card-img">
                 <img src="image/DAUNHON/5.png" alt="Dầu nhờn xe ga 200L" />
               </div>
-              <div class="product-info">
-                <h3>Dầu nhờn xe ga 4T SL 10W-30 MB Pro Honda (200L)</h3>
-                <p class="product-description collapsed">
-                  Dầu nhờn xe ga 4T SL 10W-30 MB Pro Honda (200L): Là dầu gốc
-                  khoáng đặc chế chuyên biệt cho các dòng xe ga Honda giúp bảo
-                  vệ động cơ tối ưu và tiết kiệm nhiên liệu. Nhằm mục tiêu giảm
-                  rác thải nhựa, bảo vệ môi trường sống của chúng ta, Honda đã
-                  phát triển sản phẩm dầu nhờn phuy 200L có chất lượng tương
-                  đương dầu nhờn đóng chai với giá thành tiết kiệm hơn dầu chai
-                  từ 12%-18%. Sản phẩm được phân phối tại các Cửa hàng bán xe
-                  máy và dịch vụ do Honda ủy nhiệm (HEAD) trên toàn quốc. Hãy sử
-                  dụng dầu phuy để bảo vệ môi trường của chúng ta. Honda VIệt
-                  Nam khuyến cáo sử dụng: Thay lần đầu sau 1,000km. Các lần sau
-                  thay mỗi 2,000km-2,500km.
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 108.050 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Dầu Nhờn Xe Ga 4T 200L</div>
+                <div class="card-desc">
+                  Dầu phuy 200L cho xe ga, tiết kiệm hơn dầu chai từ 12–18%.
+                  Thân thiện môi trường, chất lượng đảm bảo.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 108.050 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 6 -->
-            <div class="product-card">
-              <div class="product-badge">Hóa Chất</div>
-              <div class="product-image">
-                <img src="image/HOACHAT/1.png" alt="Dầu làm sạch" />
+            <div class="prod-card">
+              <div class="card-badge">Hóa Chất</div>
+              <div class="card-img">
+                <img src="image/HOACHAT/1.png" alt="Dầu xích" />
               </div>
-              <div class="product-info">
-                <h3>Dầu làm sạch và bôi trơn xích (sên) tải Honda</h3>
-                <p class="product-description collapsed">
-                  Mã số sp: 08CG3075501 Sử dụng cho xe số, xe côn tay . Sản phẩm
-                  kết hợp 2 tính năng quan trọng LÀM SẠCH và BÔI TRƠN, giúp bộ
-                  xích (sên) tải luôn được bảo vệ: Chống rỉ sét, hạn chế bám
-                  nước và bụi, chịu tải cao, không gây biến dạng tới nhựa và cao
-                  su. Sản phẩm này không chứa chất Barium, an toàn cho sức khỏe
-                  người sử dụng và thân thiện với môi trường. Lợi thế bổ sung:
-                  Sản phẩm được thiết kế đặc biệt với vòi xịt bằng kim loại gắn
-                  liền trên chai, có thể xịt ngược và xoay vòi xịt 360 độ Xuất
-                  xứ: Thái Lan
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 199.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Dầu Làm Sạch & Bôi Trơn Xích Honda</div>
+                <div class="card-desc">
+                  Kết hợp 2 tính năng: LÀM SẠCH và BÔI TRƠN. Chống rỉ sét, không
+                  gây biến dạng nhựa/cao su. Vòi xịt kim loại xoay 360°.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 199.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 7 -->
-            <div class="product-card">
-              <div class="product-badge">Hóa Chất</div>
-              <div class="product-image">
+            <div class="prod-card">
+              <div class="card-badge">Hóa Chất</div>
+              <div class="card-img">
                 <img src="image/HOACHAT/2.png" alt="Nước làm mát" />
               </div>
-              <div class="product-info">
-                <h3>Nước làm mát</h3>
-                <p class="product-description collapsed">
-                  Sử dụng cho xe máy. Giúp ngăn chặn gỉ bên trong, ngăn ngừa
-                  hiệu ứng gia tăng nhiệt và tạo khả năng tản nhiệt tốt cho động
-                  cơ. Honda khuyến caó nên thay thế sản phẩm sau 2 năm sử dụng.
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 38.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Nước Làm Mát Honda</div>
+                <div class="card-desc">
+                  Ngăn chặn gỉ bên trong, ngăn hiệu ứng gia tăng nhiệt, tản
+                  nhiệt tốt cho động cơ. Thay sau 2 năm sử dụng.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 38.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 8 -->
-            <div class="product-card">
-              <div class="product-badge">Hóa Chất</div>
-              <div class="product-image">
-                <img src="image/HOACHAT/3.jpg" alt="Kim phun" />
+            <div class="prod-card">
+              <div class="card-badge">Hóa Chất</div>
+              <div class="card-img">
+                <img src="image/HOACHAT/3.jpg" alt="Vệ sinh kim phun" />
               </div>
-              <div class="product-info">
-                <h3>Dung dịch vệ sinh kim phun và buồng đốt xe máy</h3>
-                <p class="product-description collapsed">
-                  Sử dụng cho xe tay ga, xe số, xe côn tay với khả năng: Làm
-                  sạch hoàn hảo carbon đóng cặn tích tụ trong buồng đốt, đầu
-                  piston; Tiết kiệm nhiên liệu; Giảm tiếng ồn động cơ; Giúp bảo
-                  vệ toàn diện hệ thống đốt nhiên liệu của xe máy. Honda khuyến
-                  cáo nên thay thế sản phẩm sau mỗi 3000km để đạt hiệu quả tốt
-                  nhất.
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 52.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">
+                  Dung Dịch Vệ Sinh Kim Phun & Buồng Đốt
+                </div>
+                <div class="card-desc">
+                  Làm sạch carbon đóng cặn trong buồng đốt, đầu piston. Tiết
+                  kiệm nhiên liệu, giảm tiếng ồn. Dùng mỗi 3000km.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 52.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 9 -->
-            <div class="product-card">
-              <div class="product-badge">Hóa Chất</div>
-              <div class="product-image">
+            <div class="prod-card">
+              <div class="card-badge">Hóa Chất</div>
+              <div class="card-img">
                 <img src="image/HOACHAT/4.jpg" alt="Dầu giảm xóc" />
               </div>
-              <div class="product-info">
-                <h3>Dầu giảm xóc</h3>
-                <p class="product-description collapsed">
-                  Dầu giảm xóc: Thích hợp cho tất cả các loại giảm xóc xe máy.
-                  Giúp xe vận hành êm ái, chống mài mòn và kéo dài tuổi thọ cho
-                  xe.
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 35.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Dầu Giảm Xóc Honda</div>
+                <div class="card-desc">
+                  Thích hợp cho tất cả các loại giảm xóc xe máy. Giúp xe vận
+                  hành êm ái, chống mài mòn và kéo dài tuổi thọ.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 35.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 10 -->
-            <div class="product-card">
-              <div class="product-badge">Hóa Chất</div>
-              <div class="product-image">
+            <div class="prod-card">
+              <div class="card-badge">Hóa Chất</div>
+              <div class="card-img">
                 <img src="image/HOACHAT/5.jpg" alt="Dầu hộp số" />
               </div>
-              <div class="product-info">
-                <h3>Dầu hộp số</h3>
-                <p class="product-description collapsed">
-                  Dầu hộp số dùng cho hộp số xe tay ga. Giúp nâng cao hiệu quả
-                  hệ thống truyền dẫn. Bảo vệ hộp số, chống hao mòn vượt trội.
-                  Honda khuyến cáo nên thay thế sau 2 năm sử dụng
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 36.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Dầu Hộp Số Xe Tay Ga</div>
+                <div class="card-desc">
+                  Nâng cao hiệu quả hệ thống truyền dẫn. Bảo vệ hộp số, chống
+                  hao mòn. Thay sau 2 năm sử dụng.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 36.000 VNĐ</div>
               </div>
             </div>
-
-            <!-- Product 11 -->
-            <div class="product-card">
-              <div class="product-badge">Hóa Chất</div>
-              <div class="product-image">
+            <div class="prod-card">
+              <div class="card-badge">Hóa Chất</div>
+              <div class="card-img">
                 <img src="image/HOACHAT/6.jpg" alt="Dầu phanh" />
               </div>
-              <div class="product-info">
-                <h3>Dầu phanh</h3>
-                <p class="product-description collapsed">
-                  Dầu phanh là sản phẩm dầu bôi trơn chuyên dùng trong bộ phận
-                  phanh giúp bảo vệ, chống ăn mòn hệ thống phanh. Dầu phanh được
-                  thay thế sau khi sử dụng 2 năm. Ngoài ra 4000 km cần kiểm tra
-                  và thay thế nếu dầu biến thành màu vàng sậm.
-                </p>
-                <button class="read-more-btn">Xem thêm</button>
-                <div class="product-price">Từ 50.000 VNĐ</div>
+              <div class="card-body">
+                <div class="card-name">Dầu Phanh Honda</div>
+                <div class="card-desc">
+                  Chuyên dùng cho bộ phận phanh, chống ăn mòn. Thay sau 2 năm
+                  hoặc khi dầu biến màu vàng sậm.
+                </div>
+                <button class="read-more">
+                  <i class="fas fa-chevron-down"></i>Xem thêm
+                </button>
+                <div class="card-price">Từ 50.000 VNĐ</div>
               </div>
             </div>
           </div>
@@ -1828,225 +2057,272 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <img
-              src="/sanphamxemay/image/banner/Logo_HEAD.png"
-              alt="Honda Logo"
-              class="footer-logo"
-            />
-            <p>Công Ty TNHH TM&DV Hùng Mạnh</p>
-            <div class="social-links">
-              <a href="https://www.facebook.com/hethongheadtrunghung"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="https://www.youtube.com/@HethongHEADTrungHung"
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a href="https://www.instagram.com/hethongheadtrunghung"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="https://www.tiktok.com/@hethongheadtrunghung"
-                ><i class="fab fa-tiktok"></i
-              ></a>
-            </div>
-          </div>
+    <!-- ============================================================ PROMO STRIP -->
+    <div class="promo-strip">
+      <div class="ps-inner">
+        <div class="ps-text">
+          <h2>PHỤ TÙNG CHÍNH HÃNG<br />GIÁ TỐT NHẤT</h2>
+          <p>
+            Cam kết 100% chính hãng Honda Việt Nam — bảo hành đầy đủ, giá minh
+            bạch tại tất cả 12 cửa hàng.
+          </p>
+        </div>
+        <div class="ps-btns">
+          <a href="/cuahang/" class="ps-btn-pri"
+            ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a
+          >
+          <a href="tel:1900636712" class="ps-btn-sec"
+            ><i class="fas fa-phone-alt"></i> 1900 636 712</a
+          >
+        </div>
+      </div>
+    </div>
 
-          <div class="footer-col">
-            <h3>Liên kết nhanh</h3>
-            <ul>
-              <li><a href="/Trangchu/">Trang chủ</a></li>
-              <li><a href="/sanphamxemay/">Sản phẩm</a></li>
-              <li><a href="/dichvu/">Dịch vụ</a></li>
-              <li><a href="/khuyenmai/">Khuyến mãi</a></li>
-              <li><a href="/lienhe/">Liên hệ</a></li>
-            </ul>
+    <!-- ============================================================ FOOTER -->
+    <footer>
+      <div class="ft-grid">
+        <div>
+          <img
+            src="/sanphamxemay/image/banner/Logo_HEAD.png"
+            alt="HEAD Logo"
+            class="ft-logo-img"
+          />
+          <div class="ft-logo-name">HỆ THỐNG HEAD TRUNG HÙNG</div>
+          <div class="ft-logo-sub">
+            Cửa Hàng Bán Xe & Dịch Vụ Do Honda Ủy Nhiệm
           </div>
-
-          <div class="footer-col">
-            <h3>Sản phẩm</h3>
-            <ul>
-              <li><a href="#">Mũ bảo hiểm</a></li>
-              <li><a href="#">Trang phục</a></li>
-              <li><a href="#">Phụ kiện</a></li>
-              <li><a href="#">Phụ tùng</a></li>
-              <li><a href="#">Dầu nhớt</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h3>Liên hệ</h3>
-            <ul class="contact-info">
-              <li></li>
-              <li><i class="fas fa-phone"></i> 1900 636 712</li>
-              <li><i class="fas fa-envelope"></i> cr@hungmanh.com.vn</li>
-              <li><i class="fas fa-envelope"></i> cr_mt@hungmanh.com.vn</li>
-              <li><i class="fas fa-clock"></i> Thứ 2 - CN: 7:30 - 17:30</li>
-            </ul>
+          <div class="ft-socs">
+            <a
+              href="https://www.facebook.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@HethongHEADTrungHung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.tiktok.com/@hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-tiktok"></i
+            ></a>
           </div>
         </div>
-
-        <div class="footer-bottom">
-          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        <div class="ft-col">
+          <h5>Liên kết</h5>
+          <ul>
+            <li><a href="/Trangchu/">Trang chủ</a></li>
+            <li><a href="/sanphamxemay/">Sản phẩm xe</a></li>
+            <li><a href="/dichvu/">Dịch vụ</a></li>
+            <li><a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a></li>
+            <li><a href="/lienhe/">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Sản phẩm</h5>
+          <ul>
+            <li><a href="#">Mũ bảo hiểm</a></li>
+            <li><a href="#">Trang phục</a></li>
+            <li><a href="#">Phụ kiện</a></li>
+            <li><a href="#">Phụ tùng</a></li>
+            <li><a href="#">Dầu nhớt</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Liên hệ</h5>
+          <ul class="ft-contact">
+            <li>
+              <i class="fas fa-phone-alt"></i
+              ><a href="tel:1900636712">1900 636 712</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i
+              ><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i
+              ><a href="mailto:cr_mt@hungmanh.com.vn">cr_mt@hungmanh.com.vn</a>
+            </li>
+            <li><i class="fas fa-clock"></i>7:30 – 17:30 (T2 – CN)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-btm">
+        <p>© 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        <div class="ft-badge">
+          <i class="fas fa-certificate"></i> Honda Authorised Dealer
         </div>
       </div>
     </footer>
 
-    <!-- Mobile Bottom Navigation -->
-    <nav class="mobile-bottom-nav">
-      <div class="container">
-        <a href="index.html" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-home"></i>
-          </div>
-          <div class="mobile-nav-label">Trang chủ</div>
-        </a>
-        <a href="/sanphamxemay/" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-motorcycle"></i>
-          </div>
-          <div class="mobile-nav-label">Sản phẩm</div>
-        </a>
-        <a href="/tintuc/tintuckhuyenmai/" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fa-solid fa-gift"></i>
-          </div>
-          <div class="mobile-nav-label">Khuyến mãi</div>
-        </a>
-        <a href="/cuahang/" class="mobile-nav-item active">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
-          <div class="mobile-nav-label">Đại lý</div>
-        </a>
-        <a href="/lienhe/" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-phone-alt"></i>
-          </div>
-          <div class="mobile-nav-label">Liên hệ</div>
-        </a>
+    <!-- MOBILE NAV -->
+    <nav class="mob-nav">
+      <div class="mnb">
+        <a href="/Trangchu/" class="mnb-a"
+          ><i class="fas fa-home"></i><span>Trang chủ</span></a
+        >
+        <a href="/sanphamxemay/" class="mnb-a"
+          ><i class="fas fa-motorcycle"></i><span>Sản phẩm</span></a
+        >
+        <a href="/tintuc/tintuckhuyenmai/" class="mnb-a"
+          ><i class="fas fa-gift"></i><span>Khuyến mãi</span></a
+        >
+        <a href="/cuahang/" class="mnb-a on"
+          ><i class="fas fa-map-marker-alt"></i><span>Đại lý</span></a
+        >
+        <a href="/lienhe/" class="mnb-a"
+          ><i class="fas fa-phone-alt"></i><span>Liên hệ</span></a
+        >
       </div>
     </nav>
 
-    <!-------Messenger Chat Button----------->
     <a
       href="https://m.me/hethongheadtrunghung"
-      class="messenger-chat"
+      class="messenger-float"
       target="_blank"
-    >
-      <i class="fab fa-facebook-messenger"></i>
-    </a>
+      ><i class="fab fa-facebook-messenger"></i
+    ></a>
+    <a href="#" class="back-top" id="backTop"
+      ><i class="fas fa-arrow-up"></i
+    ></a>
 
-    <!-- Back to Top -->
-    <a href="#" class="back-to-top" id="backToTop">
-      <i class="fas fa-arrow-up"></i>
-    </a>
-
+    <!-- ============================================================ SCRIPTS -->
     <script>
-      // Mobile Menu Toggle
-      const mobileMenu = document.getElementById("mobile-menu");
-      const mainNav = document.querySelector(".main-nav");
+      (function () {
+        /* HEADER */
+        const hdr = document.getElementById("siteHeader");
+        window.addEventListener(
+          "scroll",
+          () => {
+            hdr.classList.toggle("lifted", scrollY > 40);
+            document
+              .getElementById("backTop")
+              .classList.toggle("on", scrollY > 400);
+          },
+          { passive: true },
+        );
 
-      mobileMenu.addEventListener("click", function () {
-        this.classList.toggle("active");
-        mainNav.classList.toggle("active");
-      });
-
-      // Tab Switching
-      const tabBtns = document.querySelectorAll(".tab-btn");
-      const tabContents = document.querySelectorAll(".tab-content");
-
-      tabBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          // Remove active class from all buttons and contents
-          tabBtns.forEach((btn) => btn.classList.remove("active"));
-          tabContents.forEach((content) => content.classList.remove("active"));
-
-          // Add active class to clicked button
-          btn.classList.add("active");
-
-          // Show corresponding content
-          const tabId = btn.getAttribute("data-tab");
-          document.getElementById(tabId).classList.add("active");
-        });
-      });
-
-      // Header Scroll Effect
-      const header = document.querySelector(".main-header");
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 100) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
+        /* DRAWER */
+        const ham = document.getElementById("ham");
+        const dov = document.getElementById("dov");
+        const sdraw = document.getElementById("sdraw");
+        const sdx = document.getElementById("sdx");
+        function openD() {
+          ham.classList.add("open");
+          dov.classList.add("on");
+          sdraw.classList.add("on");
+          document.body.style.overflow = "hidden";
         }
-      });
-
-      // Back to Top Button
-      const backToTop = document.getElementById("backToTop");
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 300) {
-          backToTop.classList.add("active");
-        } else {
-          backToTop.classList.remove("active");
+        function closeD() {
+          ham.classList.remove("open");
+          dov.classList.remove("on");
+          sdraw.classList.remove("on");
+          document.body.style.overflow = "";
         }
-      });
+        ham.addEventListener("click", openD);
+        dov.addEventListener("click", closeD);
+        sdx.addEventListener("click", closeD);
+        sdraw
+          .querySelectorAll("a")
+          .forEach((a) => a.addEventListener("click", closeD));
 
-      backToTop.addEventListener("click", (e) => {
-        e.preventDefault();
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      });
-
-      // Read More Functionality
-      const readMoreBtns = document.querySelectorAll(".read-more-btn");
-      readMoreBtns.forEach((btn) => {
-        btn.addEventListener("click", function () {
-          const description = this.previousElementSibling;
-          if (description.classList.contains("collapsed")) {
-            description.classList.remove("collapsed");
-            description.classList.add("expanded");
-            this.textContent = "Thu gọn";
-          } else {
-            description.classList.remove("expanded");
-            description.classList.add("collapsed");
-            this.textContent = "Xem thêm";
-          }
-        });
-      });
-
-      // Color Selection Functionality
-      const colorItems = document.querySelectorAll(".color-item");
-      colorItems.forEach((item) => {
-        item.addEventListener("click", function () {
-          const productCard = this.closest(".product-card");
-          const color = this.getAttribute("data-color");
-
-          // Remove active class from all color items in this product
-          const colorList = this.closest(".color-list");
-          colorList.querySelectorAll(".color-item").forEach((item) => {
-            item.classList.remove("active");
+        /* CATEGORY TABS */
+        document.querySelectorAll(".ctab").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            document
+              .querySelectorAll(".ctab")
+              .forEach((b) => b.classList.remove("active"));
+            document
+              .querySelectorAll(".tab-panel")
+              .forEach((p) => p.classList.remove("active"));
+            this.classList.add("active");
+            const panel = document.getElementById(this.dataset.tab);
+            if (panel) panel.classList.add("active");
+            // scroll to top of section
+            const sec = document.querySelector(".products-section");
+            if (sec)
+              window.scrollTo({
+                top:
+                  sec.getBoundingClientRect().top +
+                  scrollY -
+                  hdr.offsetHeight -
+                  10,
+                behavior: "smooth",
+              });
           });
+        });
 
-          // Add active class to clicked color item
-          this.classList.add("active");
+        /* READ MORE */
+        document.querySelectorAll(".read-more").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const desc = this.previousElementSibling;
+            const open = desc.classList.toggle("open");
+            this.innerHTML = open
+              ? '<i class="fas fa-chevron-up"></i>Thu gọn'
+              : '<i class="fas fa-chevron-down"></i>Xem thêm';
+          });
+        });
 
-          // Hide all images and show the one with matching color
-          const productImages =
-            productCard.querySelectorAll(".product-image img");
-          productImages.forEach((img) => {
-            if (img.getAttribute("data-color") === color) {
-              img.style.display = "block";
-            } else {
-              img.style.display = "none";
+        /* COLOR SWATCH — change image */
+        document.querySelectorAll(".cc-dot").forEach((dot) => {
+          dot.addEventListener("click", function () {
+            // update active swatch in this cc-list
+            this.closest(".cc-list")
+              .querySelectorAll(".cc-dot")
+              .forEach((d) => d.classList.remove("active"));
+            this.classList.add("active");
+            // update image
+            const targetId = this.dataset.target;
+            const newSrc = this.dataset.img;
+            if (targetId && newSrc) {
+              const imgWrap = document.getElementById(targetId);
+              if (imgWrap) {
+                const img = imgWrap.querySelector("img");
+                if (img) img.src = newSrc;
+              }
             }
           });
         });
-      });
+
+        /* SCROLL REVEAL */
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e, i) => {
+              if (e.isIntersecting)
+                setTimeout(() => e.target.classList.add("in"), i * 65);
+            });
+          },
+          { threshold: 0.1 },
+        );
+        document.querySelectorAll(".rv").forEach((el) => obs.observe(el));
+
+        /* SMOOTH SCROLL */
+        document.querySelectorAll('a[href^="#"]').forEach((a) => {
+          a.addEventListener("click", (e) => {
+            const t = a.getAttribute("href");
+            if (t === "#") return;
+            const el = document.querySelector(t);
+            if (el) {
+              e.preventDefault();
+              window.scrollTo({
+                top:
+                  el.getBoundingClientRect().top + scrollY - hdr.offsetHeight,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      })();
     </script>
   </body>
 </html>
