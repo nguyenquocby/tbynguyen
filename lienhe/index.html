@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Liên Hệ</title>
+    <title>Liên Hệ – HEAD Trung Hùng Honda</title>
     <link
       rel="icon"
       href="/sanphamxemay/image/banner/Logo_HEAD.png"
@@ -14,1240 +14,1904 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Barlow:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* Reset & Base Styles */
+      /* ======================================================
+   TOKENS
+====================================================== */
+      :root {
+        --red: #d10017;
+        --red-mid: #a5000e;
+        --red-soft: rgba(209, 0, 23, 0.09);
+        --red-glow: rgba(209, 0, 23, 0.22);
+        --ink: #0f0f10;
+        --ink2: #222225;
+        --paper: #f8f6f3;
+        --paper2: #efecea;
+        --white: #ffffff;
+        --border: rgba(15, 15, 16, 0.09);
+        --muted: #7a7570;
+        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
-      :root {
-        --primary-color: #e40521;
-        --secondary-color: #333;
-        --light-color: #f8f9fa;
-        --dark-color: #212529;
-        --gray-color: #6c757d;
-        --light-gray: #e9ecef;
-        --transition: all 0.3s ease;
+      html {
+        font-size: 62.5%;
+        scroll-behavior: smooth;
       }
-
       body {
-        font-family: "Montserrat", sans-serif;
-        line-height: 1.6;
-        color: var(--secondary-color);
+        font-family: "Barlow", sans-serif;
+        background: var(--paper);
+        color: var(--ink);
         overflow-x: hidden;
-        background-color: #f5f5f5;
+        line-height: 1.6;
       }
-
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 15px;
-      }
-
       img {
         max-width: 100%;
-        height: auto;
-        object-fit: cover;
+        display: block;
       }
-
       a {
         text-decoration: none;
         color: inherit;
-        transition: var(--transition);
       }
-
       ul {
         list-style: none;
       }
-
-      .btn {
-        display: inline-block;
-        padding: 10px 25px;
-        border-radius: 25px;
-        font-weight: 500;
-        text-align: center;
-        transition: var(--transition);
+      button {
+        border: none;
+        background: none;
         cursor: pointer;
-        border: 2px solid transparent;
+        font-family: inherit;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--red);
       }
 
-      .btn-primary {
-        background-color: var(--primary-color);
-        color: white;
-        border-color: var(--primary-color);
+      /* ======================================================
+   HEADER
+====================================================== */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 500;
+        background: rgba(248, 246, 243, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition: box-shadow 0.35s;
       }
-
-      .btn-primary:hover {
-        background-color: #c0041d;
-        border-color: #c0041d;
+      .site-header.lifted {
+        box-shadow: 0 2px 24px rgba(15, 15, 16, 0.07);
       }
-
-      .btn-outline {
-        background-color: transparent;
-        color: var(--primary-color);
-        border-color: var(--primary-color);
-      }
-
-      .btn-outline:hover {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 50px;
-      }
-
-      .section-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: var(--dark-color);
-      }
-
-      .section-subtitle {
-        font-size: 1.1rem;
-        color: var(--gray-color);
-        margin-bottom: 20px;
-      }
-
-      .divider {
-        width: 80px;
-        height: 3px;
-        background-color: var(--primary-color);
+      .hdr {
+        max-width: 1340px;
         margin: 0 auto;
-      }
-
-      /* Header */
-      .main-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 20px 0;
-        background-color: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        transition: var(--transition);
-      }
-
-      .main-header.scrolled {
-        padding: 15px 0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      }
-
-      .main-header .container {
+        padding: 0 3rem;
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
+        height: 72px;
+        gap: 2rem;
       }
-
-      .logo img {
-        height: 40px;
+      /* Logo */
+      .logo-wrap {
+        display: flex;
+        align-items: center;
+        gap: 1.3rem;
+        flex-shrink: 0;
       }
-
-      /* Mobile Menu Toggle */
-      .menu-toggle {
-        display: none;
-        width: 30px;
-        height: 24px;
+      .logo-img {
+        height: 44px;
+        width: auto;
+        transition: opacity 0.25s;
+      }
+      .logo-wrap:hover .logo-img {
+        opacity: 0.85;
+      }
+      .logo-text-block {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+      .logo-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.95rem;
+        font-weight: 800;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      .logo-sub {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+        margin-top: 0.2rem;
+      }
+      /* Nav */
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0;
+      }
+      .main-nav a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        padding: 0.7rem 1.4rem;
         position: relative;
-        cursor: pointer;
-        z-index: 1001;
+        transition: color 0.2s;
       }
-
-      .menu-toggle .bar {
+      .main-nav a::after {
+        content: "";
         position: absolute;
-        width: 100%;
-        height: 3px;
-        background-color: var(--dark-color);
-        transition: all 0.3s ease;
-        left: 0;
-      }
-
-      .menu-toggle .bar:nth-child(1) {
-        top: 0;
-      }
-
-      .menu-toggle .bar:nth-child(2) {
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      .menu-toggle .bar:nth-child(3) {
         bottom: 0;
+        left: 1.4rem;
+        right: 1.4rem;
+        height: 2px;
+        background: var(--red);
+        transform: scaleX(0);
+        transition: transform 0.3s var(--ease);
       }
-
-      .menu-toggle.active .bar:nth-child(1) {
-        top: 50%;
-        transform: translateY(-50%) rotate(45deg);
-        background-color: var(--primary-color);
+      .main-nav a:hover,
+      .main-nav a.active {
+        color: var(--red);
       }
-
-      .menu-toggle.active .bar:nth-child(2) {
+      .main-nav a:hover::after,
+      .main-nav a.active::after {
+        transform: scaleX(1);
+      }
+      .hdr-cta {
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.85rem 2.2rem;
+        border-radius: 4px;
+        flex-shrink: 0;
+        transition: all 0.3s;
+      }
+      .hdr-cta:hover {
+        background: var(--red-mid);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px var(--red-glow);
+      }
+      /* Hamburger */
+      .ham {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 4px;
+      }
+      .ham span {
+        width: 22px;
+        height: 2px;
+        background: var(--ink);
+        transition: all 0.3s;
+        border-radius: 1px;
+      }
+      .ham.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .ham.open span:nth-child(2) {
         opacity: 0;
       }
-
-      .menu-toggle.active .bar:nth-child(3) {
-        bottom: 50%;
-        transform: translateY(50%) rotate(-45deg);
-        background-color: var(--primary-color);
+      .ham.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
       }
-
-      .main-nav ul {
-        display: flex;
-      }
-
-      .main-nav li {
-        margin-left: 30px;
-      }
-
-      .main-nav a {
-        font-weight: 500;
-        color: var(--dark-color);
-        position: relative;
-      }
-
-      .main-nav a:after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: var(--primary-color);
-        transition: var(--transition);
-      }
-
-      .main-nav a:hover:after,
-      .main-nav a.active:after {
-        width: 100%;
-      }
-
-      .main-nav a.active {
-        color: var(--primary-color);
-        font-weight: 600;
-      }
-
-      /* Hero Banner */
-      .contact-hero {
-        height: 50vh;
-        min-height: 300px;
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-          url("/lienhe/image/KETNOI.jpg") no-repeat center center/cover;
-        display: flex;
-        align-items: center;
-        margin-top: 80px;
-        color: white;
-        text-align: center;
-      }
-
-      .hero-content {
-        width: 100%;
-      }
-
-      .hero-content h1 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-      }
-
-      /* Contact Form */
-      .contact-section {
-        padding: 80px 0;
-        background-color: white;
-      }
-
-      .contact-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 50px;
-      }
-
-      .contact-info {
-        margin-bottom: 30px;
-      }
-
-      .contact-info h3 {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-        color: var(--primary-color);
-      }
-
-      .contact-details {
-        margin-bottom: 30px;
-      }
-
-      .contact-item {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 15px;
-      }
-
-      .contact-item i {
-        color: var(--primary-color);
-        margin-right: 15px;
-        margin-top: 3px;
-        font-size: 1.1rem;
-        width: 20px;
-        text-align: center;
-      }
-
-      .social-links {
-        display: flex;
-        gap: 15px;
-      }
-
-      .social-links a {
-        width: 40px;
-        height: 40px;
-        background-color: var(--light-color);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: var(--transition);
-      }
-
-      .social-links a:hover {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      .contact-form {
-        background-color: var(--light-color);
-        padding: 30px;
-        border-radius: 25px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      }
-
-      .form-group {
-        margin-bottom: 20px;
-      }
-
-      .form-label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 500;
-      }
-
-      .form-control {
-        width: 100%;
-        padding: 12px 15px;
-        border: 1px solid var(--light-gray);
-        border-radius: 25px;
-        font-size: 1rem;
-        transition: var(--transition);
-      }
-
-      .form-control:focus {
-        border-color: var(--primary-color);
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(228, 5, 33, 0.1);
-      }
-
-      textarea.form-control {
-        min-height: 150px;
-        resize: vertical;
-      }
-
-      /* Branches Section */
-      .branches-section {
-        padding: 60px 0;
-        background-color: var(--light-color);
-      }
-
-      .branches-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        margin-top: 40px;
-      }
-
-      .branch-card {
-        background-color: white;
-        border-radius: 25px;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        transition: var(--transition);
-      }
-
-      .branch-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      }
-
-      .branch-image {
-        height: 200px;
-        overflow: hidden;
-      }
-
-      .branch-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: var(--transition);
-      }
-
-      .branch-card:hover .branch-image img {
-        transform: scale(1.05);
-      }
-
-      .branch-content {
-        padding: 20px;
-      }
-
-      .branch-title {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-        color: var(--dark-color);
-      }
-
-      .branch-address {
-        color: var(--gray-color);
-        margin-bottom: 15px;
-        display: flex;
-        align-items: flex-start;
-      }
-
-      .branch-address i {
-        margin-right: 10px;
-        color: var(--primary-color);
-      }
-
-      .branch-contact {
-        margin-bottom: 15px;
-      }
-
-      .branch-contact-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 8px;
-      }
-
-      .branch-contact-item i {
-        margin-right: 10px;
-        color: var(--primary-color);
-        width: 20px;
-        text-align: center;
-      }
-
-      /* Map Section */
-      .map-section {
-        padding: 60px 0;
-        background-color: white;
-      }
-
-      .map-container {
-        height: 500px;
-        margin-top: 40px;
-        border-radius: 25px;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      }
-
-      .map-container iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-      }
-
-      /* Working Hours */
-      .hours-section {
-        padding: 60px 0;
-        background-color: var(--light-color);
-      }
-
-      .hours-table {
-        width: 100%;
-        max-width: 600px;
-        margin: 0 auto;
-        border-collapse: collapse;
-      }
-
-      .hours-table th,
-      .hours-table td {
-        padding: 15px;
-        text-align: left;
-        border-bottom: 1px solid var(--light-gray);
-      }
-
-      .hours-table th {
-        background-color: var(--primary-color);
-        color: white;
-        font-weight: 500;
-      }
-
-      .hours-table tr:nth-child(even) {
-        background-color: white;
-      }
-
-      /* Footer */
-      .main-footer {
-        background-color: var(--dark-color);
-        color: white;
-        padding: 60px 0 20px;
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 30px;
-        margin-bottom: 40px;
-      }
-
-      .footer-col h3 {
-        font-size: 1.2rem;
-        margin-bottom: 20px;
-        position: relative;
-        padding-bottom: 10px;
-      }
-
-      .footer-col h3:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 40px;
-        height: 2px;
-        background-color: var(--primary-color);
-      }
-
-      .footer-logo {
-        margin-bottom: 20px;
-        display: block;
-        max-width: 150px;
-      }
-
-      .footer-social-links {
-        display: flex;
-        gap: 15px;
-      }
-
-      .footer-social-links a {
-        width: 35px;
-        height: 35px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: var(--transition);
-      }
-
-      .footer-social-links a:hover {
-        background-color: var(--primary-color);
-        transform: translateY(-3px);
-      }
-
-      .footer-col ul li {
-        margin-bottom: 10px;
-      }
-
-      .footer-col ul a {
-        color: #adb5bd;
-        transition: var(--transition);
-      }
-
-      .footer-col ul a:hover {
-        color: var(--primary-color);
-        padding-left: 5px;
-      }
-
-      .footer-contact-info li {
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-      }
-
-      .footer-contact-info i {
-        margin-right: 10px;
-        color: var(--primary-color);
-        width: 20px;
-        text-align: center;
-      }
-
-      .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 20px 0;
-        text-align: center;
-        color: #adb5bd;
-        font-size: 0.9rem;
-      }
-
-      /* Back to Top */
-      .back-to-top {
+      /* Drawer */
+      .dov {
         position: fixed;
-        bottom: 180px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background-color: var(--primary-color);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 1.2rem;
+        inset: 0;
+        background: rgba(15, 15, 16, 0.55);
+        z-index: 498;
         opacity: 0;
         visibility: hidden;
-        transition: var(--transition);
-        z-index: 999;
-        box-shadow: 0 4px 15px rgba(228, 5, 33, 0.3);
+        transition: all 0.3s;
       }
-
-      .back-to-top.active {
+      .dov.on {
         opacity: 1;
         visibility: visible;
       }
-
-      .back-to-top:hover {
-        background-color: #c0041d;
-        transform: translateY(-5px);
-        box-shadow: 0 6px 20px rgba(228, 5, 33, 0.4);
-      }
-
-      /* Messenger Chat Button */
-      .messenger-chat {
+      .sdraw {
         position: fixed;
-        bottom: 100px;
-        right: 25px;
-        width: 60px;
-        height: 60px;
-        background-color: #0084ff;
-        color: white;
+        top: 0;
+        right: -100%;
+        width: min(330px, 90vw);
+        height: 100%;
+        background: var(--white);
+        z-index: 499;
+        padding: 6rem 2.8rem 3rem;
+        transition: right 0.38s var(--ease);
+        border-left: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+      }
+      .sdraw.on {
+        right: 0;
+      }
+      .sdx {
+        position: absolute;
+        top: 1.6rem;
+        right: 1.6rem;
+        width: 36px;
+        height: 36px;
+        background: var(--paper2);
         border-radius: 50%;
         display: flex;
-        justify-content: center;
         align-items: center;
-        font-size: 28px;
-        box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
-        z-index: 999;
-        transition: all 0.3s ease;
-        animation: pulse 2s infinite;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--muted);
+        transition: all 0.2s;
+      }
+      .sdx:hover {
+        background: var(--red);
+        color: #fff;
+      }
+      .dnav {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .dnav a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        padding: 1.4rem 0;
+        border-bottom: 1px solid var(--border);
+        transition: color 0.2s;
+      }
+      .dnav a:hover,
+      .dnav a.active {
+        color: var(--red);
+      }
+      .dcta {
+        background: var(--red);
+        color: #fff;
+        text-align: center;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.3rem;
+        border-radius: 4px;
+        margin-top: auto;
+        transition: background 0.3s;
+      }
+      .dcta:hover {
+        background: var(--red-mid);
       }
 
-      .messenger-chat:hover {
-        background-color: #0066cc;
-        transform: scale(1.1);
-        box-shadow: 0 6px 20px rgba(0, 132, 255, 0.4);
+      /* ======================================================
+   PAGE HERO
+====================================================== */
+      .page-hero {
+        background: var(--ink);
+        position: relative;
+        overflow: hidden;
+        padding: 7rem 3rem 6rem;
+      }
+      .ph-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(209, 0, 23, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(209, 0, 23, 0.06) 1px, transparent 1px);
+        background-size: 50px 50px;
+        mask-image: radial-gradient(
+          ellipse 80% 90% at 50% 50%,
+          black 20%,
+          transparent 100%
+        );
+      }
+      .ph-glow {
+        position: absolute;
+        right: -200px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 700px;
+        height: 700px;
+        border-radius: 50%;
+        background: radial-gradient(
+          ellipse,
+          rgba(209, 0, 23, 0.15) 0%,
+          transparent 70%
+        );
+      }
+      .ph-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .ph-crumb {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.3rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.3);
+        margin-bottom: 2.5rem;
+      }
+      .ph-crumb a {
+        color: rgba(255, 255, 255, 0.5);
+        transition: color 0.2s;
+      }
+      .ph-crumb a:hover {
+        color: #fff;
+      }
+      .ph-crumb .sep {
+        color: rgba(255, 255, 255, 0.18);
+      }
+      .ph-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 1.8rem;
+      }
+      .ph-kicker::before {
+        content: "";
+        width: 20px;
+        height: 1.5px;
+        background: var(--red);
+      }
+      .ph-h1 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(6rem, 10vw, 11rem);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        line-height: 0.88;
+        color: #fff;
+        margin-bottom: 2rem;
+      }
+      .ph-sub {
+        font-size: 1.7rem;
+        color: rgba(255, 255, 255, 0.4);
+        max-width: 520px;
+        line-height: 1.65;
+        font-weight: 300;
       }
 
-      /* Hiệu ứng lan tỏa */
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
-        }
-        70% {
-          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
-        }
+      /* ======================================================
+   CONTACT SECTION
+====================================================== */
+      .contact-section {
+        padding: 8rem 3rem;
+        background: var(--white);
+      }
+      .cs-wrap {
+        max-width: 1340px;
+        margin: 0 auto;
+      }
+      .sec-eyebrow {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--red);
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 1.6rem;
+      }
+      .sec-eyebrow::before {
+        content: "";
+        width: 20px;
+        height: 1.5px;
+        background: var(--red);
+      }
+      .sec-h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 5.2rem;
+        font-weight: 900;
+        letter-spacing: 0.03em;
+        line-height: 0.95;
+        margin-bottom: 5rem;
       }
 
-      /* Điều chỉnh vị trí khi có cả 2 nút */
-      .back-to-top.active ~ .messenger-chat {
-        bottom: 100px;
+      /* Two-col layout */
+      .contact-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 6rem;
+        align-items: start;
       }
 
-      /* Mobile Bottom Navigation Bar */
-      .mobile-bottom-nav {
+      /* Info side */
+      .ci-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.8rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        margin-bottom: 3rem;
+      }
+      .ci-items {
+        display: flex;
+        flex-direction: column;
+        gap: 1.8rem;
+        margin-bottom: 4rem;
+      }
+      .ci-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.8rem;
+        padding: 2rem;
+        background: var(--paper);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        transition: all 0.3s;
+      }
+      .ci-item:hover {
+        border-color: rgba(209, 0, 23, 0.22);
+        box-shadow: 0 6px 24px rgba(15, 15, 16, 0.06);
+      }
+      .ci-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--red);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .ci-icon i {
+        color: #fff;
+        font-size: 1.8rem;
+      }
+      .ci-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.4rem;
+      }
+      .ci-value {
+        font-size: 1.55rem;
+        color: var(--ink);
+        font-weight: 500;
+        line-height: 1.5;
+      }
+      .ci-value a {
+        color: var(--ink);
+        transition: color 0.2s;
+      }
+      .ci-value a:hover {
+        color: var(--red);
+      }
+
+      /* Social block */
+      .social-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        margin-bottom: 1.5rem;
+      }
+      .socials {
+        display: flex;
+        gap: 1rem;
+      }
+      .soc-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: var(--paper2);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 1.6rem;
+        transition: all 0.25s;
+        text-decoration: none;
+      }
+      .soc-btn:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+        transform: translateY(-3px);
+      }
+
+      /* Form side */
+      .form-box {
+        background: var(--paper);
+        border-radius: 18px;
+        padding: 4rem;
+        border: 1px solid var(--border);
+      }
+      .form-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 3rem;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.6rem;
+      }
+      .form-sub {
+        font-size: 1.4rem;
+        color: var(--muted);
+        margin-bottom: 3rem;
+      }
+      .form-group {
+        margin-bottom: 2rem;
+      }
+      .form-group label {
+        display: block;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.8rem;
+      }
+      .form-control {
+        width: 100%;
+        padding: 1.3rem 1.6rem;
+        border: 1.5px solid var(--border);
+        border-radius: 8px;
+        font-size: 1.45rem;
+        font-family: "Barlow", sans-serif;
+        color: var(--ink);
+        background: var(--white);
+        transition: all 0.25s;
+        outline: none;
+        appearance: none;
+      }
+      .form-control::placeholder {
+        color: rgba(15, 15, 16, 0.3);
+      }
+      .form-control:focus {
+        border-color: var(--red);
+        background: var(--white);
+        box-shadow: 0 0 0 4px var(--red-soft);
+      }
+      textarea.form-control {
+        min-height: 130px;
+        resize: vertical;
+      }
+      select.form-control {
+        cursor: pointer;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23D10017' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1.5rem center;
+        background-size: 12px;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.6rem;
+      }
+      .btn-submit {
+        width: 100%;
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.6rem;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        transition: all 0.3s;
+      }
+      .btn-submit:hover {
+        background: var(--red-mid);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px var(--red-glow);
+      }
+
+      /* ======================================================
+   BRANCHES SECTION
+====================================================== */
+      .branches-section {
+        padding: 8rem 3rem;
+        background: var(--paper);
+      }
+      .branches-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.4rem;
+        margin-top: 2rem;
+      }
+      .branch-card {
+        background: var(--white);
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        transition: all 0.4s var(--ease);
+        display: flex;
+        flex-direction: column;
+      }
+      .branch-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 55px rgba(15, 15, 16, 0.1);
+        border-color: rgba(209, 0, 23, 0.18);
+      }
+      .bc-img {
+        height: 200px;
+        overflow: hidden;
+        background: var(--paper2);
+      }
+      .bc-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s var(--ease);
+      }
+      .branch-card:hover .bc-img img {
+        transform: scale(1.06);
+      }
+      .bc-body {
+        padding: 2.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .bc-region {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--red);
+        background: var(--red-soft);
+        display: inline-block;
+        padding: 0.35rem 1rem;
+        border-radius: 4px;
+        margin-bottom: 1.4rem;
+      }
+      .bc-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+        color: var(--ink);
+        margin-bottom: 1.8rem;
+        line-height: 1.1;
+        transition: color 0.2s;
+      }
+      .branch-card:hover .bc-name {
+        color: var(--red);
+      }
+      .bc-rows {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex: 1;
+      }
+      .bc-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .bc-icon {
+        width: 30px;
+        height: 30px;
+        background: var(--paper2);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .bc-icon i {
+        font-size: 1.1rem;
+        color: var(--red);
+      }
+      .bc-info {
+        font-size: 1.35rem;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .bc-info strong {
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .bc-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--red);
+        padding: 0.85rem 2rem;
+        border-radius: 6px;
+        border: 1.5px solid var(--red);
+        background: transparent;
+        transition: all 0.25s;
+        cursor: pointer;
+      }
+      .bc-btn:hover {
+        background: var(--red);
+        color: #fff;
+      }
+
+      /* ======================================================
+   WORKING HOURS SECTION
+====================================================== */
+      .hours-section {
+        padding: 8rem 3rem;
+        background: var(--white);
+      }
+      .hours-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 6rem;
+        align-items: start;
+      }
+      .hours-table-wrap {
+        overflow-x: auto;
+      }
+      .hours-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+      .hours-table th {
+        background: var(--ink);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.45rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.4rem 2rem;
+        text-align: left;
+      }
+      .hours-table td {
+        padding: 1.3rem 2rem;
+        font-size: 1.4rem;
+        border-bottom: 1px solid var(--border);
+        color: var(--ink2);
+      }
+      .hours-table tr:last-child td {
+        border-bottom: none;
+      }
+      .hours-table tr:nth-child(even) td {
+        background: var(--paper);
+      }
+      .hours-open {
+        color: var(--red);
+        font-weight: 600;
+      }
+
+      /* Quick contact cards */
+      .quick-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+      }
+      .qc {
+        background: var(--paper);
+        border-radius: 12px;
+        padding: 2.2rem 2.5rem;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        transition: all 0.3s;
+      }
+      .qc:hover {
+        border-color: rgba(209, 0, 23, 0.22);
+        box-shadow: 0 8px 28px rgba(15, 15, 16, 0.07);
+      }
+      .qc-icon {
+        width: 52px;
+        height: 52px;
+        background: var(--red);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .qc-icon i {
+        color: #fff;
+        font-size: 2rem;
+      }
+      .qc-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.3rem;
+      }
+      .qc-val {
+        font-size: 1.7rem;
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .qc-val a {
+        color: var(--ink);
+        transition: color 0.2s;
+      }
+      .qc-val a:hover {
+        color: var(--red);
+      }
+
+      /* ======================================================
+   FOOTER
+====================================================== */
+      footer {
+        background: #050505;
+        padding: 6.5rem 3rem 3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .ft-grid {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 5rem;
+        margin-bottom: 5rem;
+        padding-bottom: 5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .ft-logo-img {
+        height: 38px;
+        width: auto;
+        opacity: 0.8;
+        margin-bottom: 1.5rem;
+      }
+      .ft-brand-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 0.8rem;
+      }
+      .ft-brand-sub {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.2);
+        margin-bottom: 2.5rem;
+      }
+      .ft-socs {
+        display: flex;
+        gap: 1rem;
+      }
+      .ft-soc {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 1.3rem;
+        transition: all 0.25s;
+        text-decoration: none;
+      }
+      .ft-soc:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+      .ft-col h5 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.2);
+        margin-bottom: 1.8rem;
+      }
+      .ft-col li {
+        margin-bottom: 1.1rem;
+      }
+      .ft-col a {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        transition: color 0.2s;
+      }
+      .ft-col a:hover {
+        color: #fff;
+      }
+      .ft-contact li {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        margin-bottom: 1.2rem;
+      }
+      .ft-contact i {
+        color: var(--red);
+        font-size: 1.2rem;
+        margin-top: 0.2rem;
+        flex-shrink: 0;
+      }
+      .ft-btm {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .ft-btm p {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.18);
+      }
+      .ft-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.18);
+      }
+      .ft-badge i {
+        color: var(--red);
+      }
+
+      /* ======================================================
+   MOBILE NAV
+====================================================== */
+      .mob-nav {
         display: none;
         position: fixed;
         bottom: 0;
         left: 0;
-        width: 100%;
-        background-color: white;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 998;
-        padding: 10px 0;
+        right: 0;
+        background: rgba(248, 246, 243, 0.97);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid var(--border);
+        z-index: 400;
+        padding: 0.8rem 0;
       }
-
-      .mobile-bottom-nav .container {
+      .mnb {
         display: flex;
         justify-content: space-around;
-        align-items: center;
       }
-
-      .mobile-nav-item {
+      .mnb-a {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 0.35rem;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        transition: color 0.2s;
+      }
+      .mnb-a.on,
+      .mnb-a:hover {
+        color: var(--red);
+      }
+      .mnb-a i {
+        font-size: 2rem;
+      }
+      .mnb-a span {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* ======================================================
+   FLOATS
+====================================================== */
+      .messenger-float {
+        position: fixed;
+        bottom: 9rem;
+        right: 2.5rem;
+        width: 50px;
+        height: 50px;
+        background: #0084ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
         justify-content: center;
-        flex: 1;
-        padding: 5px 0;
-        transition: var(--transition);
+        font-size: 2.1rem;
+        color: #fff;
+        text-decoration: none;
+        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.3);
+        z-index: 300;
+        animation: mpulse 2.5s infinite;
+        transition: transform 0.3s;
       }
-
-      .mobile-nav-item.active {
-        color: var(--primary-color);
+      .messenger-float:hover {
+        transform: scale(1.1);
       }
-
-      .mobile-nav-icon {
-        font-size: 1.2rem;
-        margin-bottom: 4px;
-      }
-
-      .mobile-nav-label {
-        font-size: 0.7rem;
-        font-weight: 500;
-      }
-
-      /* Responsive */
-      @media (max-width: 992px) {
-        .section-title {
-          font-size: 2rem;
+      @keyframes mpulse {
+        0%,
+        100% {
+          box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
         }
-
-        .hero-content h1 {
-          font-size: 2rem;
+        50% {
+          box-shadow: 0 4px 36px rgba(0, 132, 255, 0.55);
         }
       }
+      .back-top {
+        position: fixed;
+        bottom: 2.5rem;
+        right: 2.5rem;
+        width: 44px;
+        height: 44px;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        color: #fff;
+        text-decoration: none;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+        z-index: 300;
+      }
+      .back-top.on {
+        opacity: 1;
+        visibility: visible;
+      }
+      .back-top:hover {
+        background: var(--red-mid);
+        transform: translateY(-3px);
+      }
 
-      @media (max-width: 768px) {
-        .menu-toggle {
-          display: block;
-        }
+      /* ======================================================
+   REVEAL
+====================================================== */
+      .rv {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
+      .rv-l {
+        opacity: 0;
+        transform: translateX(-22px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv-l.in {
+        opacity: 1;
+        transform: none;
+      }
+      .rv-r {
+        opacity: 0;
+        transform: translateX(22px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv-r.in {
+        opacity: 1;
+        transform: none;
+      }
 
-        .main-nav {
-          position: fixed;
-          top: 0;
-          right: -100%;
-          width: 80%;
-          max-width: 300px;
-          height: 100vh;
-          background-color: white;
-          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-          transition: var(--transition);
-          padding: 80px 20px 20px;
-          overflow-y: auto;
-          z-index: 1000;
-        }
-
-        .main-nav.active {
-          right: 0;
-        }
-
-        .main-nav ul {
-          flex-direction: column;
-        }
-
-        .main-nav li {
-          margin: 15px 0;
-        }
-
-        .main-nav a {
-          font-size: 1.1rem;
-        }
-
-        .contact-container {
+      /* ======================================================
+   RESPONSIVE
+====================================================== */
+      @media (max-width: 1200px) {
+        .contact-layout {
           grid-template-columns: 1fr;
         }
-
-        .map-container {
-          height: 350px;
+        .hours-layout {
+          grid-template-columns: 1fr;
         }
-
-        /* Hiển thị thanh menu mobile ở chân trang */
-        .mobile-bottom-nav {
-          display: block;
-        }
-
-        /* Điều chỉnh padding cho footer để tránh bị che bởi menu mobile */
-        .main-footer {
-          padding-bottom: 70px;
+        .ft-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
         }
       }
-
-      @media (max-width: 576px) {
-        .contact-hero {
-          min-height: 250px;
+      @media (max-width: 900px) {
+        .branches-grid {
+          grid-template-columns: 1fr 1fr;
         }
-
-        .hero-content h1 {
-          font-size: 1.8rem;
+      }
+      @media (max-width: 768px) {
+        .main-nav,
+        .hdr-cta {
+          display: none;
         }
-
-        .section-title {
-          font-size: 1.8rem;
+        .ham {
+          display: flex;
         }
-
-        .contact-form {
-          padding: 20px;
+        .hdr {
+          padding: 0 2rem;
         }
-
-        /* Điều chỉnh mobile bottom nav cho màn hình nhỏ */
-        .mobile-nav-icon {
-          font-size: 1.2rem;
+        .logo-sub {
+          display: none;
         }
-
-        .mobile-nav-label {
-          font-size: 0.7rem;
+        .page-hero {
+          padding: 5rem 2rem 4.5rem;
+        }
+        .ph-h1 {
+          font-size: clamp(5rem, 18vw, 8rem);
+        }
+        .contact-section,
+        .branches-section,
+        .hours-section {
+          padding: 6rem 2rem;
+        }
+        .branches-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .form-box {
+          padding: 2.5rem 2rem;
+        }
+        .ft-grid {
+          grid-template-columns: 1fr;
+          gap: 3.5rem;
+        }
+        footer {
+          padding: 5rem 2rem 3rem;
+        }
+        .ft-btm {
+          flex-direction: column;
+          text-align: center;
+        }
+        .mob-nav {
+          display: block;
+        }
+        footer {
+          padding-bottom: 8rem;
+        }
+        .messenger-float {
+          bottom: 8.5rem;
+          right: 1.8rem;
+        }
+        .back-top {
+          bottom: 8.5rem;
+          right: 1.8rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .sec-h2 {
+          font-size: 4rem;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Header -->
-    <header class="main-header">
-      <div class="container">
-        <a href="/Trangchu/" class="logo">
+    <!-- ============================================================ HEADER -->
+    <header class="site-header" id="siteHeader">
+      <div class="hdr">
+        <a href="/Trangchu/" class="logo-wrap">
           <img
             src="/sanphamxemay/image/banner/Logo_HEAD.png"
-            alt="Honda Logo"
+            alt="HEAD Logo"
+            class="logo-img"
           />
+          <div class="logo-text-block">
+            <span class="logo-name">HỆ THỐNG HEAD TRUNG HÙNG</span>
+            <span class="logo-sub"
+              >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
+            >
+          </div>
         </a>
-        <h3>HEAD TRUNG HÙNG</h3>
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-
         <nav class="main-nav">
+          <a href="/Trangchu/">Trang chủ</a>
+          <a href="/gioithieu/">Giới thiệu</a>
+          <a href="/sanphamxemay/">Sản phẩm</a>
+          <a href="/cuahang/">Đại lý</a>
+          <a href="/lienhe/" class="active">Liên hệ</a>
+        </nav>
+        <a href="tel:1900636712" class="hdr-cta"
+          ><i class="fas fa-phone-alt"></i> Gọi ngay</a
+        >
+        <div class="ham" id="ham"><span></span><span></span><span></span></div>
+      </div>
+    </header>
+
+    <!-- Drawer -->
+    <div class="dov" id="dov"></div>
+    <div class="sdraw" id="sdraw">
+      <button class="sdx" id="sdx"><i class="fas fa-times"></i></button>
+      <nav class="dnav">
+        <a href="/Trangchu/">Trang chủ</a>
+        <a href="/gioithieu/">Giới thiệu</a>
+        <a href="/sanphamxemay/">Sản phẩm</a>
+        <a href="/dichvu/">Dịch vụ</a>
+        <a href="/cuahang/">Đại lý</a>
+        <a href="/lienhe/" class="active">Liên hệ</a>
+      </nav>
+      <a href="tel:1900636712" class="dcta"
+        ><i class="fas fa-phone-alt"></i> 1900 636 712</a
+      >
+    </div>
+
+    <!-- ============================================================ PAGE HERO -->
+    <section class="page-hero">
+      <div class="ph-grid"></div>
+      <div class="ph-glow"></div>
+      <div class="ph-inner">
+        <div class="ph-crumb">
+          <a href="/Trangchu/">Trang chủ</a>
+          <span class="sep">/</span>
+          <span style="color: rgba(255, 255, 255, 0.7)">Liên hệ</span>
+        </div>
+        <div class="ph-kicker">Hỗ trợ khách hàng</div>
+        <h1 class="ph-h1">LIÊN HỆ<br />VỚI CHÚNG TÔI</h1>
+        <p class="ph-sub">
+          Chúng tôi luôn sẵn sàng hỗ trợ và giải đáp mọi thắc mắc của bạn — từ
+          thứ 2 đến chủ nhật, 7:30 – 17:30.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================ CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+      <div class="cs-wrap">
+        <div class="contact-layout">
+          <!-- Info -->
+          <div>
+            <div class="sec-eyebrow rv">Thông tin liên hệ</div>
+            <div class="ci-title rv">CÁCH THỨC<br />LIÊN LẠC</div>
+            <div class="ci-items">
+              <div class="ci-item rv">
+                <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div>
+                  <div class="ci-label">Trụ sở chính</div>
+                  <div class="ci-value">
+                    135 Chu Văn Thịnh, Tổ 1, P. Tô Hiệu, Tỉnh Sơn La
+                  </div>
+                </div>
+              </div>
+              <div class="ci-item rv">
+                <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div>
+                  <div class="ci-label">Chi nhánh Gia Lai</div>
+                  <div class="ci-value">
+                    288-290-292 Lê Hồng Phong, P. Quy Nhơn, Tỉnh Gia Lai
+                  </div>
+                </div>
+              </div>
+              <div class="ci-item rv">
+                <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div>
+                  <div class="ci-label">Chi nhánh Hà Nội</div>
+                  <div class="ci-value">
+                    319 Nguyễn Văn Cừ, P. Bồ Đề, TP. Hà Nội
+                  </div>
+                </div>
+              </div>
+              <div class="ci-item rv">
+                <div class="ci-icon"><i class="fas fa-headset"></i></div>
+                <div>
+                  <div class="ci-label">Tổng đài hỗ trợ</div>
+                  <div class="ci-value">
+                    <a href="tel:1900636712">1900 636 712</a>
+                  </div>
+                </div>
+              </div>
+              <div class="ci-item rv">
+                <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+                <div>
+                  <div class="ci-label">Email</div>
+                  <div class="ci-value">
+                    <a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a
+                    ><br />
+                    <a href="mailto:cr_mt@hungmanh.com.vn"
+                      >cr_mt@hungmanh.com.vn</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="ci-item rv">
+                <div class="ci-icon"><i class="fas fa-clock"></i></div>
+                <div>
+                  <div class="ci-label">Giờ làm việc</div>
+                  <div class="ci-value">Thứ 2 – Chủ Nhật: 7:30 – 17:30</div>
+                </div>
+              </div>
+            </div>
+            <div class="social-title rv">Kết nối mạng xã hội</div>
+            <div class="socials rv">
+              <a
+                href="https://www.facebook.com/hethongheadtrunghung"
+                class="soc-btn"
+                target="_blank"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="https://www.youtube.com/@HethongHEADTrungHung"
+                class="soc-btn"
+                target="_blank"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/hethongheadtrunghung"
+                class="soc-btn"
+                target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.tiktok.com/@hethongheadtrunghung"
+                class="soc-btn"
+                target="_blank"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+              <a
+                href="https://m.me/hethongheadtrunghung"
+                class="soc-btn"
+                target="_blank"
+                ><i class="fab fa-facebook-messenger"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <div class="form-box rv-r">
+            <div class="form-title">Gửi yêu cầu</div>
+            <div class="form-sub">
+              Điền thông tin để chúng tôi hỗ trợ bạn tốt nhất — phản hồi trong
+              24 giờ.
+            </div>
+            <form id="contactForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Họ và tên</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nguyễn Văn A"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Số điện thoại</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    placeholder="0912 345 678"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="email@example.com"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Chủ đề</label>
+                <select class="form-control" required>
+                  <option value="" disabled selected>Chọn chủ đề</option>
+                  <option>Thông tin sản phẩm</option>
+                  <option>Bảo hành – Bảo dưỡng</option>
+                  <option>Đại lý – Nhà phân phối</option>
+                  <option>Tuyển dụng</option>
+                  <option>Khác</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Nội dung</label>
+                <textarea
+                  class="form-control"
+                  placeholder="Bạn cần hỗ trợ gì?"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn-submit">
+                Gửi yêu cầu <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ BRANCHES -->
+    <section class="branches-section">
+      <div class="cs-wrap">
+        <div class="sec-eyebrow rv">Mạng lưới phân phối</div>
+        <h2 class="sec-h2 rv">HỆ THỐNG<br />CHI NHÁNH</h2>
+        <div class="branches-grid">
+          <!-- Hà Nội -->
+          <div class="branch-card rv">
+            <div class="bc-img">
+              <img
+                src="image/HANOI.jpg"
+                alt="Chi nhánh Hà Nội"
+                loading="lazy"
+                onerror="
+                  this.style.background = 'var(--paper2)';
+                  this.style.height = '200px';
+                "
+              />
+            </div>
+            <div class="bc-body">
+              <div class="bc-region">Hà Nội</div>
+              <div class="bc-name">HEAD Hùng Mạnh 7</div>
+              <div class="bc-rows">
+                <div class="bc-row">
+                  <div class="bc-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="bc-info">
+                    319 Nguyễn Văn Cừ, P. Bồ Đề, TP. Hà Nội
+                  </div>
+                </div>
+                <div class="bc-row">
+                  <div class="bc-icon"><i class="fas fa-phone-alt"></i></div>
+                  <div class="bc-info">
+                    <strong>0243 8732 863</strong> · 08566 14054
+                  </div>
+                </div>
+                <div class="bc-row">
+                  <div class="bc-icon"><i class="fas fa-envelope"></i></div>
+                  <div class="bc-info">cr@hungmanh.com.vn</div>
+                </div>
+                <div class="bc-row">
+                  <div class="bc-icon"><i class="fas fa-clock"></i></div>
+                  <div class="bc-info">7:30 – 17:30 · Thứ 2 – CN</div>
+                </div>
+              </div>
+              <a
+                href="https://www.google.com/maps/place/Honda+H%C3%B9ng+M%E1%BA%A1nh+7/@21.0458397,105.8730269,720m"
+                target="_blank"
+                class="bc-btn"
+              >
+                <i class="fas fa-map-marker-alt"></i> Xem chỉ đường
+              </a>
+            </div>
+          </div>
+
+          <!-- Gia Lai -->
+          <div class="branch-card rv">
+            <div class="bc-img">
+              <img
+                src="image/BINHDINH.jpg"
+                alt="Chi nhánh Gia Lai"
+                loading="lazy"
+                onerror="
+                  this.style.background = 'var(--paper2)';
+                  this.style.height = '200px';
+                "
+              />
+            </div>
+            <div class="bc-body">
+              <div class="bc-region">Gia Lai</div>
+              <div class="bc-name">HEAD Trung Hùng 1</div>
+              <div class="bc-rows">
+                <div class="bc-row">
+                  <div class="bc-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="bc-info">
+                    288-292 Lê Hồng Phong, P. Quy Nhơn, Tỉnh Gia Lai
+                  </div>
+                </div>
+                <div class="bc-row">
+                  <div class="bc-icon"><i class="fas fa-phone-alt"></i></div>
+                  <div class="bc-info">
+                    <strong>0256 3824 471</strong> · 08468 30015
+                  </div>
+                </div>
+                <div class="bc-row">
+                  <div class="bc-icon"><i class="fas fa-envelope"></i></div>
+                  <div class="bc-info">cr_mt@hungmanh.com.vn</div>
+                </div>
+                <div class="bc-row">
+                  <div class="bc-icon"><i class="fas fa-clock"></i></div>
+                  <div class="bc-info">7:30 – 17:30 · Thứ 2 – CN</div>
+                </div>
+              </div>
+              <a
+                href="https://www.google.com/maps/place/HONDA+TRUNG+H%C3%99NG+1/@13.7758146,109.2243526,750m"
+                target="_blank"
+                class="bc-btn"
+              >
+                <i class="fas fa-map-marker-alt"></i> Xem chỉ đường
+              </a>
+            </div>
+          </div>
+
+          <!-- Sơn La -->
+          <div class="branch-card rv">
+            <div class="bc-img">
+              <img
+                src="image/SONLA.jpg"
+                alt="Chi nhánh Sơn La"
+                loading="lazy"
+                onerror="
+                  this.style.background = 'var(--paper2)';
+                  this.style.height = '200px';
+                "
+              />
+            </div>
+            <div class="bc-body">
+              <div class="bc-region">Sơn La</div>
+              <div class="bc-name">HEAD Hùng Mạnh 3</div>
+              <div class="bc-rows">
+                <div class="bc-row">
+                  <div class="bc-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="bc-info">
+                    135 Chu Văn Thịnh, P. Tô Hiệu, Tỉnh Sơn La
+                  </div>
+                </div>
+                <div class="bc-row">
+                  <div class="bc-icon"><i class="fas fa-phone-alt"></i></div>
+                  <div class="bc-info"><strong>08157 12001</strong></div>
+                </div>
+                <div class="bc-row">
+                  <div class="bc-icon"><i class="fas fa-envelope"></i></div>
+                  <div class="bc-info">cr@hungmanh.com.vn</div>
+                </div>
+                <div class="bc-row">
+                  <div class="bc-icon"><i class="fas fa-clock"></i></div>
+                  <div class="bc-info">7:30 – 17:30 · Thứ 2 – CN</div>
+                </div>
+              </div>
+              <a
+                href="https://www.google.com/maps/place/Head+H%C3%B9ng+M%E1%BA%A1nh+3/@21.3312788,103.9098181,719m"
+                target="_blank"
+                class="bc-btn"
+              >
+                <i class="fas fa-map-marker-alt"></i> Xem chỉ đường
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ WORKING HOURS -->
+    <section class="hours-section">
+      <div class="cs-wrap">
+        <div class="hours-layout">
+          <div>
+            <div class="sec-eyebrow rv">Thời gian phục vụ</div>
+            <h2 class="sec-h2 rv">GIỜ<br />LÀM VIỆC</h2>
+            <div class="hours-table-wrap rv">
+              <table class="hours-table">
+                <thead>
+                  <tr>
+                    <th>Thời gian</th>
+                    <th>Giờ mở cửa</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Thứ 2 – Thứ 6</td>
+                    <td class="hours-open">7:30 – 17:30</td>
+                  </tr>
+                  <tr>
+                    <td>Thứ 7</td>
+                    <td class="hours-open">7:30 – 17:30</td>
+                  </tr>
+                  <tr>
+                    <td>Chủ Nhật</td>
+                    <td class="hours-open">7:30 – 17:30</td>
+                  </tr>
+                  <tr>
+                    <td>Ngày Lễ</td>
+                    <td style="color: var(--muted)">Theo thông báo</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div>
+            <div class="sec-eyebrow rv" style="margin-top: 0.5rem">
+              Liên hệ nhanh
+            </div>
+            <div
+              class="ci-title rv"
+              style="font-size: 2.4rem; margin-bottom: 2.5rem"
+            >
+              HỖ TRỢ NGAY
+            </div>
+            <div class="quick-cards">
+              <a href="tel:1900636712" class="qc rv">
+                <div class="qc-icon"><i class="fas fa-phone-alt"></i></div>
+                <div>
+                  <div class="qc-label">Tổng đài miễn phí</div>
+                  <div class="qc-val">1900 636 712</div>
+                </div>
+              </a>
+              <a href="mailto:cr@hungmanh.com.vn" class="qc rv">
+                <div class="qc-icon"><i class="fas fa-envelope"></i></div>
+                <div>
+                  <div class="qc-label">Email hỗ trợ</div>
+                  <div class="qc-val">cr@hungmanh.com.vn</div>
+                </div>
+              </a>
+              <a
+                href="https://m.me/hethongheadtrunghung"
+                target="_blank"
+                class="qc rv"
+              >
+                <div class="qc-icon" style="background: #0084ff">
+                  <i class="fab fa-facebook-messenger"></i>
+                </div>
+                <div>
+                  <div class="qc-label">Facebook Messenger</div>
+                  <div class="qc-val">Nhắn tin ngay</div>
+                </div>
+              </a>
+              <a href="/cuahang/" class="qc rv">
+                <div class="qc-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div>
+                  <div class="qc-label">Hệ thống cửa hàng</div>
+                  <div class="qc-val">12 cửa hàng toàn quốc</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ FOOTER -->
+    <footer>
+      <div class="ft-grid">
+        <div>
+          <img
+            src="/sanphamxemay/image/banner/Logo_HEAD.png"
+            alt="HEAD Logo"
+            class="ft-logo-img"
+          />
+          <div class="ft-brand-name">HỆ THỐNG HEAD TRUNG HÙNG</div>
+          <div class="ft-brand-sub">
+            Cửa Hàng Bán Xe & Dịch Vụ Do Honda Ủy Nhiệm
+          </div>
+          <div class="ft-socs">
+            <a
+              href="https://www.facebook.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@HethongHEADTrungHung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.tiktok.com/@hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-tiktok"></i
+            ></a>
+          </div>
+        </div>
+        <div class="ft-col">
+          <h5>Liên kết</h5>
           <ul>
             <li><a href="/Trangchu/">Trang chủ</a></li>
             <li><a href="/gioithieu/">Giới thiệu</a></li>
             <li><a href="/sanphamxemay/">Sản phẩm</a></li>
             <li><a href="/dichvu/">Dịch vụ</a></li>
-            <li><a href="/dangnhap/">Đăng nhập</a></li>
-            <li><a href="/cuahang/">Hệ thống đại lý</a></li>
-            <li><a href="/lienhe/" class="active">Liên hệ</a></li>
+            <li><a href="/tintuc/">Tin tức</a></li>
+            <li><a href="/lienhe/">Liên hệ</a></li>
           </ul>
-        </nav>
-      </div>
-    </header>
-
-    <!-- Hero Banner -->
-    <section class="contact-hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1>Liên Hệ Với Chúng Tôi</h1>
-          <p>Chúng tôi luôn sẵn sàng hỗ trợ và giải đáp mọi thắc mắc của bạn</p>
+        </div>
+        <div class="ft-col">
+          <h5>Dịch vụ</h5>
+          <ul>
+            <li><a href="/dichvu/baoduong/">Bảo Dưỡng & Sửa Chữa</a></li>
+            <li><a href="/dichvu/baohanh/">Bảo Hành Xe Máy</a></li>
+            <li><a href="/dichvu/sanphamphutung/">Phụ Tùng Chính Hãng</a></li>
+            <li><a href="/cuahang/">Hệ Thống Đại Lý</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Liên hệ</h5>
+          <ul class="ft-contact">
+            <li>
+              <i class="fas fa-phone-alt"></i
+              ><a href="tel:1900636712">1900 636 712</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i
+              ><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i
+              ><a href="mailto:cr_mt@hungmanh.com.vn">cr_mt@hungmanh.com.vn</a>
+            </li>
+            <li><i class="fas fa-clock"></i>7:30 – 17:30 (T2 – CN)</li>
+          </ul>
         </div>
       </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Gửi Yêu Cầu</h2>
-          <p class="section-subtitle">
-            Điền thông tin để chúng tôi có thể hỗ trợ bạn tốt nhất
-          </p>
-          <div class="divider"></div>
-        </div>
-
-        <div class="contact-container">
-          <div class="contact-info">
-            <h3>Thông Tin Liên Hệ</h3>
-
-            <div class="contact-details">
-              <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                  <h4>Trụ sở chính</h4>
-                  <p>135 Chu Văn Thịnh, Tổ 1, P. Tô Hiệu, Tỉnh Sơn La</p>
-                </div>
-              </div>
-              <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                  <h4>CN Gia Lai</h4>
-                  <p>290-292 Lê Hồng Phong, P. Quy Nhơn, Tỉnh Gia Lai</p>
-                </div>
-              </div>
-              <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                  <h4>CN Hà Nội</h4>
-                  <p>319 Nguyễn Văn Cừ, P. Bồ Đề, TP. Hà Nội</p>
-                </div>
-              </div>
-
-              <div class="contact-item">
-                <i class="fas fa-phone-alt"></i>
-                <div>
-                  <h4>Điện thoại</h4>
-                  <p>1900 636 712</p>
-                </div>
-              </div>
-
-              <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <div>
-                  <h4>Email</h4>
-                  <p>cr@hungmanh.com.vn</p>
-                </div>
-              </div>
-
-              <div class="contact-item">
-                <i class="fas fa-clock"></i>
-                <div>
-                  <h4>Giờ làm việc</h4>
-                  <p>Thứ 2 - CN: 7:30 - 17:30</p>
-                </div>
-              </div>
-            </div>
-
-            <h3 style="margin-top: 30px">Kết Nối Với Chúng Tôi</h3>
-            <div class="social-links">
-              <a
-                href="https://www.facebook.com/hethongheadtrunghung"
-                target="_blank"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a
-                href="https://www.youtube.com/@HethongHEADTrungHung"
-                target="_blank"
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a
-                href="https://www.instagram.com/hethongheadtrunghung"
-                target="_blank"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a
-                href="https://www.tiktok.com/@hethongheadtrunghung"
-                target="_blank"
-                ><i class="fab fa-tiktok"></i
-              ></a>
-            </div>
-          </div>
-
-          <form class="contact-form">
-            <div class="form-group">
-              <label for="name" class="form-label">Họ và tên</label>
-              <input type="text" id="name" class="form-control" required />
-            </div>
-
-            <div class="form-group">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" id="email" class="form-control" required />
-            </div>
-
-            <div class="form-group">
-              <label for="phone" class="form-label">Số điện thoại</label>
-              <input type="tel" id="phone" class="form-control" required />
-            </div>
-
-            <div class="form-group">
-              <label for="subject" class="form-label">Chủ đề</label>
-              <select id="subject" class="form-control" required>
-                <option value="">Chọn chủ đề</option>
-                <option value="product">Thông tin sản phẩm</option>
-                <option value="warranty">Bảo hành - Bảo dưỡng</option>
-                <option value="dealer">Đại lý - Nhà phân phối</option>
-                <option value="career">Tuyển dụng</option>
-                <option value="other">Khác</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="message" class="form-label">Nội dung</label>
-              <textarea id="message" class="form-control" required></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Gửi yêu cầu</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- Branches Section -->
-    <section class="branches-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Hệ Thống Chi Nhánh</h2>
-          <p class="section-subtitle">
-            Mạng lưới đại lý và trung tâm dịch vụ trên toàn quốc
-          </p>
-          <div class="divider"></div>
-        </div>
-
-        <div class="branches-grid">
-          <!-- Hanoi Branch -->
-          <div class="branch-card">
-            <div class="branch-image">
-              <img src="image/HANOI.jpg" alt="Chi nhánh Hà Nội" />
-            </div>
-            <div class="branch-content">
-              <h3 class="branch-title">Chi Nhánh Hà Nội</h3>
-              <div class="branch-address">
-                <i class="fas fa-map-marker-alt"></i>
-                <p>319 Nguyễn Văn Cừ, P. Bồ Đề, Hà Nội</p>
-              </div>
-              <div class="branch-contact">
-                <div class="branch-contact-item">
-                  <i class="fas fa-phone-alt"></i>
-                  <span>1900 636 712</span>
-                </div>
-                <div class="branch-contact-item">
-                  <i class="fas fa-envelope"></i>
-                  <span>cr@hungmanh.com.vn</span>
-                </div>
-                <div class="branch-contact-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Thứ 2 - CN: 7:30 - 17:30</span>
-                </div>
-              </div>
-              <a
-                href="https://www.google.com/maps/place/Honda+H%C3%B9ng+M%E1%BA%A1nh+7/@21.0458397,105.8730269,720m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3135abd5fc29275f:0x62992c006999cd20!8m2!3d21.0458347!4d105.8756018!16s%2Fg%2F11gdqqqfsd?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
-                class="btn btn-outline"
-                target="_blank"
-                >Chỉ đường</a
-              >
-            </div>
-          </div>
-
-          <!-- Gia Lai Branch -->
-          <div class="branch-card">
-            <div class="branch-image">
-              <img src="image/BINHDINH.jpg" alt="Chi nhánh Gia Lai" />
-            </div>
-            <div class="branch-content">
-              <h3 class="branch-title">Chi Nhánh Gia Lai</h3>
-              <div class="branch-address">
-                <i class="fas fa-map-marker-alt"></i>
-                <p>290-292 Lê Hồng Phong, P. Quy Nhơn, Gia Lai</p>
-              </div>
-              <div class="branch-contact">
-                <div class="branch-contact-item">
-                  <i class="fas fa-phone-alt"></i>
-                  <span>0256 3824 471</span>
-                </div>
-                <div class="branch-contact-item">
-                  <i class="fas fa-envelope"></i>
-                  <span>cr_mt@hungmanh.com.vn</span>
-                </div>
-                <div class="branch-contact-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Thứ 2 - CN: 7:30 - 17:30</span>
-                </div>
-              </div>
-              <a
-                href="https://www.google.com/maps/place/HONDA+TRUNG+H%C3%99NG+1/@13.7758146,109.2243526,750m/data=!3m2!1e3!4b1!4m6!3m5!1s0x316f6c85a6d6924d:0xa455acdefd4d31d7!8m2!3d13.7758094!4d109.2269275!16s%2Fg%2F11btrs8zjy?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
-                class="btn btn-outline"
-                target="_blank"
-                >Chỉ đường</a
-              >
-            </div>
-          </div>
-
-          <!-- Son La Branch -->
-          <div class="branch-card">
-            <div class="branch-image">
-              <img src="image/SONLA.jpg" alt="Chi nhánh Sơn La" />
-            </div>
-            <div class="branch-content">
-              <h3 class="branch-title">Chi Nhánh Sơn La</h3>
-              <div class="branch-address">
-                <i class="fas fa-map-marker-alt"></i>
-                <p>Số 135 Chu Văn Thịnh, P. Tô Hiệu, Sơn La</p>
-              </div>
-              <div class="branch-contact">
-                <div class="branch-contact-item">
-                  <i class="fas fa-phone-alt"></i>
-                  <span>081 5712 001</span>
-                </div>
-                <div class="branch-contact-item">
-                  <i class="fas fa-envelope"></i>
-                  <span>cr@hungmanh.com.vn</span>
-                </div>
-                <div class="branch-contact-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Thứ 2 - CN: 7:30 - 17:30</span>
-                </div>
-              </div>
-              <a
-                href="https://www.google.com/maps/place/Head+H%C3%B9ng+M%E1%BA%A1nh+3/@21.3312788,103.9098181,719m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31328b2d6f538d19:0xcba4b60a29410ff1!8m2!3d21.3312738!4d103.912393!16s%2Fg%2F11b67txg1z?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
-                class="btn btn-outline"
-                target="_blank"
-                >Chỉ đường</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <img
-              src="/sanphamxemay/image/banner/Logo_HEAD.png"
-              alt="Honda Logo"
-              class="footer-logo"
-            />
-            <p>Công ty TNHH TM&DV Hùng Mạnh</p>
-            <div class="footer-social-links">
-              <a
-                href="https://www.facebook.com/hethongheadtrunghung"
-                target="_blank"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a
-                href="https://www.youtube.com/@HethongHEADTrungHung"
-                target="_blank"
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a
-                href="https://www.instagram.com/hethongheadtrunghung"
-                target="_blank"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a
-                href="https://www.tiktok.com/@hethongheadtrunghung"
-                target="_blank"
-                ><i class="fab fa-tiktok"></i
-              ></a>
-            </div>
-          </div>
-
-          <div class="footer-col">
-            <h3>Liên kết nhanh</h3>
-            <ul>
-              <li><a href="/Trangchu/">Trang chủ</a></li>
-              <li><a href="/sanphamxemay/">Sản phẩm</a></li>
-              <li><a href="/tintuc/">Tin tức</a></li>
-              <li><a href="/dichvu/">Dịch vụ</a></li>
-              <li><a href="/lienhe/">Liên hệ</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h3>Liên hệ</h3>
-            <ul class="footer-contact-info">
-              <li><i class="fas fa-phone"></i> 1900 636 712</li>
-              <li><i class="fas fa-envelope"></i> cr@hungmanh.com.vn</li>
-              <li><i class="fas fa-envelope"></i> cr_mt@hungmanh.com.vn</li>
-              <li><i class="fas fa-clock"></i> Thứ 2 - CN: 7:30 - 17:30</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+      <div class="ft-btm">
+        <p>© 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        <div class="ft-badge">
+          <i class="fas fa-certificate"></i> Honda Authorised Dealer
         </div>
       </div>
     </footer>
 
-    <!-- Mobile Bottom Navigation -->
-    <nav class="mobile-bottom-nav">
-      <div class="container">
-        <a href="/Trangchu/" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-home"></i>
-          </div>
-          <div class="mobile-nav-label">Trang chủ</div>
-        </a>
-        <a href="/sanphamxemay/" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-motorcycle"></i>
-          </div>
-          <div class="mobile-nav-label">Sản phẩm</div>
-        </a>
-        <a href="/tintuc/tintuckhuyenmai/" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fa-solid fa-gift"></i>
-          </div>
-          <div class="mobile-nav-label">Khuyến mãi</div>
-        </a>
-        <a href="/cuahang/" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
-          <div class="mobile-nav-label">Đại lý</div>
-        </a>
-        <a href="/lienhe/" class="mobile-nav-item active">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-phone-alt"></i>
-          </div>
-          <div class="mobile-nav-label">Liên hệ</div>
-        </a>
+    <!-- MOBILE NAV -->
+    <nav class="mob-nav">
+      <div class="mnb">
+        <a href="/Trangchu/" class="mnb-a"
+          ><i class="fas fa-home"></i><span>Trang chủ</span></a
+        >
+        <a href="/sanphamxemay/" class="mnb-a"
+          ><i class="fas fa-motorcycle"></i><span>Sản phẩm</span></a
+        >
+        <a href="/tintuc/tintuckhuyenmai/" class="mnb-a"
+          ><i class="fas fa-gift"></i><span>Khuyến mãi</span></a
+        >
+        <a href="/cuahang/" class="mnb-a"
+          ><i class="fas fa-map-marker-alt"></i><span>Đại lý</span></a
+        >
+        <a href="/lienhe/" class="mnb-a on"
+          ><i class="fas fa-phone-alt"></i><span>Liên hệ</span></a
+        >
       </div>
     </nav>
 
-    <!-------Messenger Chat Button----------->
     <a
       href="https://m.me/hethongheadtrunghung"
-      class="messenger-chat"
+      class="messenger-float"
       target="_blank"
-    >
-      <i class="fab fa-facebook-messenger"></i>
-    </a>
+      ><i class="fab fa-facebook-messenger"></i
+    ></a>
+    <a href="#" class="back-top" id="backTop"
+      ><i class="fas fa-arrow-up"></i
+    ></a>
 
-    <!-- Back to Top -->
-    <a href="#" class="back-to-top" id="backToTop">
-      <i class="fas fa-arrow-up"></i>
-    </a>
+    <!-- ============================================================ SCRIPTS -->
     <script>
-      // Mobile Menu Toggle
-      const mobileMenu = document.getElementById("mobile-menu");
-      const mainNav = document.querySelector(".main-nav");
+      (function () {
+        /* HEADER */
+        const hdr = document.getElementById("siteHeader");
+        window.addEventListener(
+          "scroll",
+          () => {
+            hdr.classList.toggle("lifted", scrollY > 50);
+            document
+              .getElementById("backTop")
+              .classList.toggle("on", scrollY > 400);
+          },
+          { passive: true },
+        );
 
-      mobileMenu.addEventListener("click", function () {
-        this.classList.toggle("active");
-        mainNav.classList.toggle("active");
-      });
+        /* DRAWER */
+        const ham = document.getElementById("ham"),
+          dov = document.getElementById("dov"),
+          sdraw = document.getElementById("sdraw"),
+          sdx = document.getElementById("sdx");
+        const openD = () => {
+          ham.classList.add("open");
+          dov.classList.add("on");
+          sdraw.classList.add("on");
+          document.body.style.overflow = "hidden";
+        };
+        const closeD = () => {
+          ham.classList.remove("open");
+          dov.classList.remove("on");
+          sdraw.classList.remove("on");
+          document.body.style.overflow = "";
+        };
+        ham.addEventListener("click", openD);
+        dov.addEventListener("click", closeD);
+        sdx.addEventListener("click", closeD);
+        sdraw
+          .querySelectorAll("a")
+          .forEach((a) => a.addEventListener("click", closeD));
 
-      // Header Scroll Effect
-      const header = document.querySelector(".main-header");
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 100) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
-        }
-      });
-
-      // Back to Top Button
-      const backToTop = document.getElementById("backToTop");
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 300) {
-          backToTop.classList.add("active");
-        } else {
-          backToTop.classList.remove("active");
-        }
-      });
-
-      backToTop.addEventListener("click", (e) => {
-        e.preventDefault();
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
+        /* SMOOTH SCROLL */
+        document.querySelectorAll('a[href^="#"]').forEach((a) => {
+          a.addEventListener("click", (e) => {
+            const t = a.getAttribute("href");
+            if (t === "#") return;
+            const el = document.querySelector(t);
+            if (el) {
+              e.preventDefault();
+              window.scrollTo({
+                top:
+                  el.getBoundingClientRect().top + scrollY - hdr.offsetHeight,
+                behavior: "smooth",
+              });
+            }
+          });
         });
-      });
 
-      // Contact Form Submission
-      const contactForm = document.querySelector(".contact-form");
-      if (contactForm) {
-        contactForm.addEventListener("submit", (e) => {
-          e.preventDefault();
-          alert(
-            "Cảm ơn bạn đã gửi yêu cầu! Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất."
-          );
-          contactForm.reset();
-        });
-      }
+        /* CONTACT FORM */
+        document
+          .getElementById("contactForm")
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector(".btn-submit");
+            btn.innerHTML = '<i class="fas fa-check"></i> Đã gửi thành công!';
+            btn.style.background = "#16a34a";
+            setTimeout(() => {
+              btn.innerHTML = 'Gửi yêu cầu <i class="fas fa-paper-plane"></i>';
+              btn.style.background = "";
+              e.target.reset();
+            }, 3000);
+          });
 
-      // Close mobile menu when clicking on a link
-      const navLinks = document.querySelectorAll(".main-nav a");
-      navLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenu.classList.remove("active");
-          mainNav.classList.remove("active");
-        });
-      });
+        /* SCROLL REVEAL */
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e, i) => {
+              if (e.isIntersecting)
+                setTimeout(() => e.target.classList.add("in"), i * 65);
+            });
+          },
+          { threshold: 0.1 },
+        );
+        document
+          .querySelectorAll(".rv,.rv-l,.rv-r")
+          .forEach((el) => obs.observe(el));
+      })();
     </script>
   </body>
 </html>
