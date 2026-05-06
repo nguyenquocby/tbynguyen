@@ -14,7 +14,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Barlow:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -22,24 +22,20 @@
    TOKENS
 ====================================================== */
       :root {
-        --red: #dc0020;
-        --red-mid: #b5001a;
-        --red-soft: rgba(220, 0, 32, 0.08);
-        --red-glow: rgba(220, 0, 32, 0.22);
-        --ink: #0e0e0f;
-        --ink2: #2a2a2c;
-        --paper: #faf9f7;
-        --paper2: #f2f0ec;
-        --border: rgba(14, 14, 15, 0.09);
-        --muted: #7b7872;
+        --red: #d10017;
+        --red-mid: #a5000e;
+        --red-soft: rgba(209, 0, 23, 0.09);
+        --red-glow: rgba(209, 0, 23, 0.22);
+        --ink: #0f0f10;
+        --ink2: #222225;
+        --paper: #f8f6f3;
+        --paper2: #efecea;
         --white: #ffffff;
+        --border: rgba(15, 15, 16, 0.09);
+        --muted: #7a7570;
         --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
       }
-
-      /* ======================================================
-   RESET
-====================================================== */
       * {
         margin: 0;
         padding: 0;
@@ -50,7 +46,7 @@
         scroll-behavior: smooth;
       }
       body {
-        font-family: "Instrument Sans", sans-serif;
+        font-family: "Barlow", sans-serif;
         background: var(--paper);
         color: var(--ink);
         overflow-x: hidden;
@@ -76,484 +72,489 @@
       input {
         font-family: inherit;
       }
-
-      /* ======================================================
-   SCROLLBAR
-====================================================== */
       ::-webkit-scrollbar {
-        width: 4px;
-      }
-      ::-webkit-scrollbar-track {
-        background: var(--paper);
+        width: 3px;
       }
       ::-webkit-scrollbar-thumb {
         background: var(--red);
-        border-radius: 2px;
       }
 
       /* ======================================================
    HEADER
 ====================================================== */
       .site-header {
-        position: fixed;
+        position: sticky;
         top: 0;
-        left: 0;
-        right: 0;
         z-index: 500;
+        background: rgba(248, 246, 243, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition: box-shadow 0.35s;
+      }
+      .site-header.lifted {
+        box-shadow: 0 2px 24px rgba(15, 15, 16, 0.07);
+      }
+      .hdr {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 3rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 2.2rem 5rem;
-        transition: all 0.4s var(--ease);
-      }
-      .site-header.solid {
-        background: rgba(250, 249, 247, 0.96);
-        backdrop-filter: blur(20px);
-        padding: 1.5rem 5rem;
-        border-bottom: 1px solid var(--border);
-        box-shadow: 0 1px 0 var(--border);
+        height: 72px;
+        gap: 2rem;
       }
 
-      /* Logo */
+      /* Logo: image + text */
       .logo-wrap {
         display: flex;
         align-items: center;
-        gap: 1.2rem;
+        gap: 1.3rem;
+        flex-shrink: 0;
       }
-      .logo-mark {
-        width: 42px;
-        height: 42px;
-        /*background: var(--red);*/
-        border-radius: 6px;
+      .logo-img {
+        height: 44px;
+        width: auto;
+        transition: opacity 0.25s;
+      }
+      .logo-wrap:hover .logo-img {
+        opacity: 0.85;
+      }
+      .logo-text-block {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.3s var(--ease-spring);
-      }
-      .logo-mark:hover {
-        transform: rotate(-6deg) scale(1.08);
-      }
-      .logo-mark i {
-        color: #fff;
-        font-size: 1.8rem;
+        flex-direction: column;
+        line-height: 1;
       }
       .logo-name {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 2rem;
-        letter-spacing: 0.12em;
+        font-size: 1.95rem;
+        font-weight: 800;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
         color: var(--ink);
-        line-height: 1;
+        white-space: nowrap;
       }
-      .logo-name small {
-        display: block;
-        font-family: "Instrument Sans", sans-serif;
-        font-size: 0.95rem;
-        letter-spacing: 0.2em;
+      .logo-sub {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
         color: var(--muted);
-        font-weight: 400;
+        white-space: nowrap;
         margin-top: 0.2rem;
       }
 
       /* Nav */
-      nav.main-nav {
+      .main-nav {
         display: flex;
         align-items: center;
-        gap: 3.5rem;
+        gap: 0;
       }
-      nav.main-nav a {
-        font-size: 1.35rem;
+      .main-nav a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
         font-weight: 600;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
         color: var(--ink2);
+        padding: 0.7rem 1.4rem;
         position: relative;
-        transition: color 0.25s;
+        transition: color 0.2s;
       }
-      nav.main-nav a::after {
+      .main-nav a::after {
         content: "";
         position: absolute;
-        bottom: -3px;
-        left: 0;
-        right: 100%;
-        height: 1.5px;
+        bottom: 0;
+        left: 1.4rem;
+        right: 1.4rem;
+        height: 2px;
         background: var(--red);
-        transition: right 0.3s var(--ease);
+        transform: scaleX(0);
+        transition: transform 0.3s var(--ease);
       }
-      nav.main-nav a:hover {
+      .main-nav a:hover,
+      .main-nav a.active {
         color: var(--red);
       }
-      nav.main-nav a:hover::after {
-        right: 0;
+      .main-nav a:hover::after,
+      .main-nav a.active::after {
+        transform: scaleX(1);
       }
-      nav.main-nav a.active {
-        color: var(--red);
-      }
-      nav.main-nav a.active::after {
-        right: 0;
-      }
-
       .nav-cta {
         background: var(--red);
         color: #fff;
-        font-size: 1.3rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
         font-weight: 700;
-        letter-spacing: 0.07em;
-        padding: 0.9rem 2.4rem;
-        border-radius: 40px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.85rem 2.2rem;
+        border-radius: 4px;
+        margin-left: 1rem;
+        flex-shrink: 0;
         transition: all 0.3s;
       }
       .nav-cta:hover {
         background: var(--red-mid);
-        box-shadow: 0 6px 24px var(--red-glow);
         transform: translateY(-2px);
+        box-shadow: 0 6px 20px var(--red-glow);
       }
 
       /* Hamburger */
-      .hamburger {
+      .ham {
         display: none;
         flex-direction: column;
         gap: 5px;
         padding: 4px;
       }
-      .hamburger span {
+      .ham span {
         width: 22px;
         height: 2px;
         background: var(--ink);
         transition: all 0.3s;
         border-radius: 1px;
       }
-      .hamburger.open span:nth-child(1) {
+      .ham.open span:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
       }
-      .hamburger.open span:nth-child(2) {
+      .ham.open span:nth-child(2) {
         opacity: 0;
       }
-      .hamburger.open span:nth-child(3) {
+      .ham.open span:nth-child(3) {
         transform: translateY(-7px) rotate(-45deg);
       }
 
       /* Drawer */
-      .drawer-overlay {
+      .dov {
         position: fixed;
         inset: 0;
-        background: rgba(14, 14, 15, 0.5);
+        background: rgba(15, 15, 16, 0.55);
         z-index: 498;
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s;
-        backdrop-filter: blur(4px);
       }
-      .drawer-overlay.open {
+      .dov.on {
         opacity: 1;
         visibility: visible;
       }
-      .site-drawer {
+      .sdraw {
         position: fixed;
         top: 0;
         right: -100%;
-        width: min(320px, 90vw);
+        width: min(330px, 90vw);
         height: 100%;
         background: var(--white);
         z-index: 499;
-        padding: 7rem 3rem 3rem;
+        padding: 6rem 2.8rem 3rem;
         transition: right 0.38s var(--ease);
         border-left: 1px solid var(--border);
         display: flex;
         flex-direction: column;
       }
-      .site-drawer.open {
+      .sdraw.on {
         right: 0;
       }
-      .drawer-close {
+      .sdx {
         position: absolute;
-        top: 1.8rem;
-        right: 1.8rem;
-        width: 38px;
-        height: 38px;
+        top: 1.6rem;
+        right: 1.6rem;
+        width: 36px;
+        height: 36px;
         background: var(--paper2);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         color: var(--muted);
         transition: all 0.2s;
       }
-      .drawer-close:hover {
+      .sdx:hover {
         background: var(--red);
         color: #fff;
       }
-      .drawer-nav {
+      .dnav {
         display: flex;
         flex-direction: column;
-        gap: 0;
-        margin-bottom: 3rem;
+        flex: 1;
       }
-      .drawer-nav a {
-        font-size: 1.7rem;
-        font-weight: 600;
+      .dnav a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
         color: var(--ink2);
-        padding: 1.6rem 0;
+        padding: 1.4rem 0;
         border-bottom: 1px solid var(--border);
         transition: color 0.2s;
       }
-      .drawer-nav a:hover,
-      .drawer-nav a.active {
+      .dnav a:hover,
+      .dnav a.active {
         color: var(--red);
       }
-      .drawer-cta {
+      .dcta {
         background: var(--red);
         color: #fff;
         text-align: center;
-        font-size: 1.4rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
         font-weight: 700;
-        letter-spacing: 0.07em;
-        padding: 1.4rem 2.4rem;
-        border-radius: 40px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.3rem;
+        border-radius: 4px;
         margin-top: auto;
-        transition: all 0.3s;
+        transition: background 0.3s;
       }
-      .drawer-cta:hover {
+      .dcta:hover {
         background: var(--red-mid);
       }
 
       /* ======================================================
-   HERO SLIDER
+   PAGE HERO (static, no slider)
 ====================================================== */
-      .hero-slider {
+      .page-hero {
+        background: var(--ink);
         position: relative;
-        height: 100vh;
-        min-height: 700px;
         overflow: hidden;
-        margin-top: 0;
+        padding: 7rem 3rem 6rem;
       }
-      .slides-track {
-        position: relative;
-        width: 100%;
-        height: 100%;
-      }
-
-      .slide {
+      .ph-grid {
         position: absolute;
         inset: 0;
-        opacity: 0;
-        transition: opacity 0.9s var(--ease);
-        display: flex;
-        align-items: flex-end;
-        background-size: cover;
-        background-position: center;
+        background-image:
+          linear-gradient(rgba(209, 0, 23, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(209, 0, 23, 0.06) 1px, transparent 1px);
+        background-size: 50px 50px;
+        mask-image: radial-gradient(
+          ellipse 80% 90% at 30% 50%,
+          black 20%,
+          transparent 100%
+        );
       }
-      .slide.active {
-        opacity: 1;
+      .ph-glow-r {
+        position: absolute;
+        right: -200px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 700px;
+        height: 700px;
+        border-radius: 50%;
+        background: radial-gradient(
+          ellipse,
+          rgba(209, 0, 23, 0.14) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      /* Animated rings right side */
+      .ph-rings {
+        position: absolute;
+        right: -150px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .ph-ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(209, 0, 23, 0.18);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: ring-spin 22s linear infinite;
+      }
+      .ph-ring:nth-child(1) {
+        width: 480px;
+        height: 480px;
+      }
+      .ph-ring:nth-child(2) {
+        width: 320px;
+        height: 320px;
+        animation-direction: reverse;
+        animation-duration: 15s;
+      }
+      .ph-ring:nth-child(3) {
+        width: 180px;
+        height: 180px;
+        border-color: rgba(209, 0, 23, 0.35);
+      }
+      @keyframes ring-spin {
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+
+      .ph-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        position: relative;
         z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
       }
 
-      .slide-overlay {
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(
-            to right,
-            rgba(14, 14, 15, 0.72) 0%,
-            rgba(14, 14, 15, 0.35) 55%,
-            transparent 100%
-          ),
-          linear-gradient(to top, rgba(14, 14, 15, 0.6) 0%, transparent 45%);
-      }
-
-      .slide-content {
-        position: relative;
-        z-index: 2;
-        padding: 0 5rem 8rem;
-        max-width: 680px;
-        transform: translateY(30px);
-        opacity: 0;
-        transition:
-          transform 0.8s var(--ease) 0.3s,
-          opacity 0.8s ease 0.3s;
-      }
-      .slide.active .slide-content {
-        transform: none;
-        opacity: 1;
-      }
-
-      .slide-tag {
+      .ph-kicker {
         display: inline-flex;
         align-items: center;
         gap: 0.8rem;
-        font-size: 1.15rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.2rem;
         font-weight: 700;
-        letter-spacing: 0.22em;
+        letter-spacing: 0.28em;
         text-transform: uppercase;
         color: var(--red);
-        margin-bottom: 1.8rem;
+        margin-bottom: 2rem;
       }
-      .slide-tag::before {
+      .ph-kicker::before {
         content: "";
-        width: 24px;
+        width: 20px;
         height: 1.5px;
         background: var(--red);
       }
-
-      .slide-title {
+      .ph-h1 {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(5.5rem, 10vw, 11rem);
-        line-height: 0.9;
+        font-size: clamp(6rem, 10vw, 12rem);
+        font-weight: 900;
         letter-spacing: 0.02em;
+        line-height: 0.88;
         color: #fff;
-        margin-bottom: 1.8rem;
+        margin-bottom: 2.5rem;
       }
-      .slide-sub {
+      .ph-h1 em {
+        color: var(--red);
+        font-style: normal;
+        display: block;
+      }
+      .ph-sub {
         font-size: 1.7rem;
-        color: rgba(255, 255, 255, 0.6);
-        margin-bottom: 3.5rem;
+        color: rgba(255, 255, 255, 0.42);
+        line-height: 1.65;
+        margin-bottom: 4rem;
+        font-weight: 300;
         max-width: 440px;
-        line-height: 1.5;
       }
-      .slide-btn {
+      .ph-btns {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+      .btn-ph-pri {
         display: inline-flex;
         align-items: center;
-        gap: 1rem;
+        gap: 0.9rem;
         background: var(--red);
         color: #fff;
-        font-size: 1.4rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
         font-weight: 700;
-        letter-spacing: 0.07em;
-        padding: 1.4rem 3.2rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.3rem 3rem;
         border-radius: 4px;
         transition: all 0.3s;
       }
-      .slide-btn:hover {
+      .btn-ph-pri:hover {
         background: var(--red-mid);
         transform: translateY(-2px);
         box-shadow: 0 8px 28px var(--red-glow);
       }
-
-      /* Slide counter */
-      .slide-counter-wrap {
-        position: absolute;
-        right: 5rem;
-        bottom: 8rem;
-        z-index: 3;
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-      }
-      .sc-current {
+      .btn-ph-ghost {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 6rem;
-        line-height: 1;
-        color: #fff;
-        letter-spacing: 0.05em;
-      }
-      .sc-sep {
-        width: 40px;
-        height: 1px;
-        background: rgba(255, 255, 255, 0.3);
-      }
-      .sc-total {
-        font-size: 1.3rem;
-        color: rgba(255, 255, 255, 0.4);
-        letter-spacing: 0.12em;
-      }
-
-      /* Slider controls */
-      .slider-controls {
-        position: absolute;
-        bottom: 3rem;
-        left: 5rem;
-        z-index: 3;
-        display: flex;
-        align-items: center;
-        gap: 1.2rem;
-      }
-      .ctrl-btn {
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        border: 1.5px solid rgba(255, 255, 255, 0.25);
-        color: rgba(255, 255, 255, 0.7);
         font-size: 1.4rem;
-        display: flex;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.52);
+        display: inline-flex;
         align-items: center;
-        justify-content: center;
+        gap: 0.7rem;
+        border-bottom: 1.5px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 0.3rem;
         transition: all 0.25s;
-        backdrop-filter: blur(4px);
-        background: rgba(255, 255, 255, 0.06);
       }
-      .ctrl-btn:hover {
-        background: var(--red);
-        border-color: var(--red);
+      .btn-ph-ghost:hover {
         color: #fff;
+        border-bottom-color: #fff;
       }
 
-      .slider-dots-row {
-        display: flex;
-        gap: 0.8rem;
-        align-items: center;
-        margin-left: 0.8rem;
+      /* Right stat grid */
+      .ph-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
       }
-      .sdot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.3);
-        cursor: pointer;
-        transition: all 0.3s;
+      .ph-stat {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 2.5rem;
+        transition: all 0.35s;
       }
-      .sdot.active {
-        background: var(--red);
-        transform: scale(1.3);
+      .ph-stat:hover {
+        background: rgba(255, 255, 255, 0.09);
+        border-color: rgba(209, 0, 23, 0.28);
       }
-
-      /* Progress bar */
-      .hero-progress {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: rgba(255, 255, 255, 0.12);
-        z-index: 4;
-        overflow: hidden;
+      .ps-val {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 4.8rem;
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 0.4rem;
       }
-      .hero-progress-fill {
-        height: 100%;
-        background: var(--red);
-        width: 0%;
-        transition: width 5s linear;
+      .ps-val em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .ps-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.3);
       }
 
       /* ======================================================
-   MARQUEE STRIP
+   MARQUEE
 ====================================================== */
       .marquee-strip {
-        background: var(--ink);
+        background: var(--red);
         padding: 1.2rem 0;
         overflow: hidden;
       }
-      .marquee-track {
+      .mq-track {
         display: flex;
         width: max-content;
-        animation: marquee 22s linear infinite;
+        animation: mq 22s linear infinite;
       }
-      .marquee-item {
+      .mq-item {
         font-family: "Barlow Condensed", sans-serif;
         font-size: 1.8rem;
         letter-spacing: 0.18em;
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.65);
         padding: 0 2.5rem;
         display: inline-flex;
         align-items: center;
         gap: 2rem;
+        white-space: nowrap;
       }
-      .marquee-item .dot {
+      .mq-dot {
         width: 5px;
         height: 5px;
-        background: var(--red);
+        background: #fff;
         border-radius: 50%;
         display: inline-block;
+        opacity: 0.5;
       }
-      @keyframes marquee {
+      @keyframes mq {
         from {
           transform: translateX(0);
         }
@@ -566,39 +567,43 @@
    PRODUCTS SECTION
 ====================================================== */
       .products-section {
-        padding: 9rem 5rem;
+        padding: 8rem 3rem;
       }
-
-      /* Section header */
+      .ps-wrap {
+        max-width: 1340px;
+        margin: 0 auto;
+      }
       .sec-eyebrow {
-        font-size: 1.15rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.2rem;
         font-weight: 700;
-        letter-spacing: 0.25em;
+        letter-spacing: 0.28em;
         text-transform: uppercase;
         color: var(--red);
         display: flex;
         align-items: center;
-        gap: 1rem;
-        margin-bottom: 1.6rem;
+        gap: 0.8rem;
+        margin-bottom: 1.5rem;
       }
       .sec-eyebrow::before {
         content: "";
-        width: 26px;
+        width: 20px;
         height: 1.5px;
         background: var(--red);
       }
-      .sec-title {
+      .sec-h2 {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 5.8rem;
-        letter-spacing: 0.04em;
-        line-height: 1;
-        margin-bottom: 1rem;
+        font-size: 5.5rem;
+        font-weight: 900;
+        letter-spacing: 0.03em;
+        line-height: 0.95;
+        margin-bottom: 1.2rem;
       }
       .sec-sub {
         font-size: 1.6rem;
         color: var(--muted);
         max-width: 480px;
-        margin-bottom: 5rem;
+        margin-bottom: 4.5rem;
         line-height: 1.55;
       }
 
@@ -606,24 +611,29 @@
       .action-row {
         display: flex;
         align-items: center;
-        gap: 1.5rem;
-        margin-bottom: 4rem;
+        gap: 1.2rem;
+        margin-bottom: 3.5rem;
         flex-wrap: wrap;
       }
       .action-pill {
         display: inline-flex;
         align-items: center;
-        gap: 0.9rem;
-        font-size: 1.3rem;
-        font-weight: 600;
-        letter-spacing: 0.05em;
+        gap: 0.8rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
         color: var(--ink2);
-        padding: 1.1rem 2.4rem;
+        padding: 1rem 2.2rem;
         border: 1.5px solid var(--border);
-        border-radius: 40px;
+        border-radius: 5px;
         background: var(--white);
-        transition: all 0.28s;
-        box-shadow: 0 2px 8px rgba(14, 14, 15, 0.04);
+        transition: all 0.25s;
+      }
+      .action-pill i {
+        font-size: 1.3rem;
+        color: var(--red);
       }
       .action-pill:hover {
         border-color: var(--red);
@@ -631,22 +641,22 @@
         box-shadow: 0 4px 16px var(--red-glow);
         transform: translateY(-2px);
       }
-      .action-pill i {
-        font-size: 1.4rem;
-      }
 
       /* Search */
       .search-wrap {
         position: relative;
         max-width: 420px;
-        margin-bottom: 3.5rem;
+        margin-bottom: 3rem;
       }
       .search-input {
         width: 100%;
         padding: 1.3rem 5rem 1.3rem 1.8rem;
         border: 1.5px solid var(--border);
-        border-radius: 12px;
-        font-size: 1.45rem;
+        border-radius: 8px;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.55rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
         color: var(--ink);
         background: var(--white);
         outline: none;
@@ -694,11 +704,13 @@
         margin-bottom: 2rem;
       }
       .ftab {
-        font-size: 1.25rem;
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        padding: 0.85rem 2rem;
-        border-radius: 8px;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        padding: 0.85rem 2.2rem;
+        border-radius: 5px;
         border: 1.5px solid var(--border);
         color: var(--muted);
         background: var(--white);
@@ -715,7 +727,7 @@
         transform-origin: bottom;
         transition: transform 0.3s var(--ease);
         z-index: 0;
-        border-radius: 7px;
+        border-radius: 4px;
       }
       .ftab span {
         position: relative;
@@ -733,7 +745,10 @@
 
       /* Counter */
       .products-counter {
-        font-size: 1.35rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
         color: var(--muted);
         margin-bottom: 3rem;
         display: flex;
@@ -741,21 +756,21 @@
         gap: 0.5rem;
       }
       .products-counter strong {
-        color: var(--ink);
-        font-weight: 700;
+        color: var(--red);
+        font-size: 2rem;
       }
 
       /* Grid */
       .products-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-        gap: 2.4rem;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2.2rem;
       }
 
       /* Card */
       .product-card {
         background: var(--white);
-        border-radius: 16px;
+        border-radius: 14px;
         border: 1px solid var(--border);
         overflow: hidden;
         transition: all 0.4s var(--ease);
@@ -774,7 +789,7 @@
       .product-card.in {
         opacity: 1;
         transform: none;
-        animation: cardIn 0.5s var(--ease-spring) both;
+        animation: cardIn 0.5s var(--spring) both;
       }
       @keyframes cardIn {
         from {
@@ -788,21 +803,22 @@
       }
       .product-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 20px 50px rgba(14, 14, 15, 0.1);
-        border-color: rgba(220, 0, 32, 0.18);
+        box-shadow: 0 20px 50px rgba(15, 15, 16, 0.1);
+        border-color: rgba(209, 0, 23, 0.18);
       }
 
       /* Badge */
       .card-badge {
         position: absolute;
-        top: 1.4rem;
-        left: 1.4rem;
+        top: 1.3rem;
+        left: 1.3rem;
+        font-family: "Barlow Condensed", sans-serif;
         font-size: 1.05rem;
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        padding: 0.45rem 1.2rem;
-        border-radius: 20px;
+        padding: 0.4rem 1.1rem;
+        border-radius: 4px;
         z-index: 2;
       }
       .badge-xe-ga {
@@ -826,15 +842,15 @@
         color: #0b7a3e;
       }
 
-      /* Image area */
+      /* Image */
       .card-image {
         height: 200px;
         overflow: hidden;
         background: var(--paper2);
-        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
       }
       .card-image img {
         width: 100%;
@@ -847,19 +863,25 @@
         transform: scale(1.07);
       }
 
-      /* Card body */
+      /* Body */
       .card-body {
-        padding: 2rem 2.2rem;
+        padding: 1.8rem 2rem;
         flex: 1;
         display: flex;
         flex-direction: column;
       }
       .card-name {
-        font-size: 1.75rem;
-        font-weight: 700;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 0.03em;
         color: var(--ink);
         margin-bottom: 1rem;
-        line-height: 1.25;
+        line-height: 1.2;
+        transition: color 0.2s;
+      }
+      .product-card:hover .card-name {
+        color: var(--red);
       }
       .card-specs {
         display: flex;
@@ -878,24 +900,23 @@
         color: var(--red);
         font-size: 1.1rem;
       }
-
       .card-price {
         font-size: 1.3rem;
         color: var(--muted);
-        margin-bottom: 2rem;
-        /*font-style: italic;*/
         margin-top: auto;
-        padding-top: 1rem;
+        padding-top: 1.2rem;
         border-top: 1px solid var(--border);
+        margin-bottom: 1.5rem;
       }
-
       .card-link {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        font-size: 1.3rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
         font-weight: 700;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
         color: var(--red);
         padding: 0.8rem 0;
         border-top: 1px solid var(--border);
@@ -928,7 +949,9 @@
         margin-bottom: 2rem;
       }
       .empty-state h3 {
-        font-size: 2.2rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.8rem;
+        font-weight: 800;
         color: var(--muted);
         margin-bottom: 1rem;
       }
@@ -941,83 +964,89 @@
    CTA BANNER
 ====================================================== */
       .cta-banner {
-        margin: 0 5rem 9rem;
         background: var(--ink);
-        border-radius: 20px;
+        border-radius: 18px;
         padding: 5rem;
-        overflow: hidden;
+        margin: 0 3rem 8rem;
         position: relative;
+        overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 3rem;
+        max-width: 1340px;
       }
       .cta-banner::before {
         content: "HONDA";
         position: absolute;
         right: -2rem;
-        top: 50%;
-        transform: translateY(-50%);
+        bottom: -3rem;
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 18rem;
-        color: rgba(255, 255, 255, 0.04);
-        letter-spacing: 0.05em;
+        font-size: 20rem;
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.025);
+        letter-spacing: 0.04em;
         line-height: 1;
         pointer-events: none;
         white-space: nowrap;
       }
       .cta-text h2 {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 4.5rem;
-        letter-spacing: 0.04em;
-        line-height: 1;
+        font-size: 4.8rem;
+        font-weight: 900;
+        letter-spacing: 0.03em;
         color: #fff;
-        margin-bottom: 0.8rem;
+        line-height: 0.95;
+        margin-bottom: 1rem;
       }
       .cta-text p {
         font-size: 1.6rem;
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.45);
       }
-      .cta-buttons {
+      .cta-btns {
         display: flex;
         gap: 1.2rem;
-        flex-shrink: 0;
         flex-wrap: wrap;
+        flex-shrink: 0;
       }
-      .btn-cta-pri {
+      .cta-btn-pri {
         background: var(--red);
         color: #fff;
-        font-size: 1.35rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.45rem;
         font-weight: 700;
-        letter-spacing: 0.07em;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
         padding: 1.3rem 3rem;
-        border-radius: 8px;
+        border-radius: 5px;
         display: inline-flex;
         align-items: center;
         gap: 1rem;
         transition: all 0.3s;
       }
-      .btn-cta-pri:hover {
+      .cta-btn-pri:hover {
         background: var(--red-mid);
         transform: translateY(-2px);
         box-shadow: 0 8px 28px var(--red-glow);
       }
-      .btn-cta-sec {
-        background: rgba(255, 255, 255, 0.08);
+      .cta-btn-sec {
+        background: rgba(255, 255, 255, 0.07);
         color: #fff;
-        font-size: 1.35rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.45rem;
         font-weight: 600;
-        letter-spacing: 0.07em;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
         padding: 1.3rem 3rem;
-        border-radius: 8px;
+        border-radius: 5px;
         border: 1px solid rgba(255, 255, 255, 0.12);
         display: inline-flex;
         align-items: center;
         gap: 1rem;
         transition: all 0.3s;
       }
-      .btn-cta-sec:hover {
-        background: rgba(255, 255, 255, 0.15);
+      .cta-btn-sec:hover {
+        background: rgba(255, 255, 255, 0.14);
       }
 
       /* ======================================================
@@ -1025,107 +1054,121 @@
 ====================================================== */
       footer {
         background: #050505;
-        padding: 7rem 5rem 3rem;
+        padding: 6.5rem 3rem 3rem;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
       }
-      .footer-top {
+      .ft-grid {
+        max-width: 1340px;
+        margin: 0 auto;
         display: grid;
-        grid-template-columns: 2.2fr 1fr 1fr 1fr;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
         gap: 5rem;
         margin-bottom: 5rem;
         padding-bottom: 5rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       }
-      .fb-brand {
+      .ft-logo-img {
+        height: 38px;
+        width: auto;
+        opacity: 0.8;
+        margin-bottom: 1.5rem;
+      }
+      .ft-brand-name {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 2.8rem;
-        letter-spacing: 0.1em;
-        color: #fff;
-        margin-bottom: 1rem;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 0.8rem;
       }
-      .fb-sub {
-        font-size: 1.4rem;
-        color: rgba(255, 255, 255, 0.3);
+      .ft-brand-sub {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.2);
         margin-bottom: 2.5rem;
-        line-height: 1.65;
-        max-width: 280px;
       }
-      .socials {
+      .ft-socs {
         display: flex;
         gap: 1rem;
       }
-      .soc {
-        width: 38px;
-        height: 38px;
+      .ft-soc {
+        width: 36px;
+        height: 36px;
         border-radius: 8px;
-        background: rgba(255, 255, 255, 0.07);
+        background: rgba(255, 255, 255, 0.06);
         border: 1px solid rgba(255, 255, 255, 0.08);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: rgba(255, 255, 255, 0.4);
-        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 1.3rem;
         transition: all 0.25s;
         text-decoration: none;
       }
-      .soc:hover {
+      .ft-soc:hover {
         background: var(--red);
         border-color: var(--red);
         color: #fff;
-        transform: translateY(-3px);
+        transform: translateY(-2px);
       }
-      .fc h5 {
-        font-size: 1.1rem;
+      .ft-col h5 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
         font-weight: 700;
-        letter-spacing: 0.2em;
-        color: rgba(255, 255, 255, 0.22);
+        letter-spacing: 0.22em;
         text-transform: uppercase;
-        margin-bottom: 2rem;
+        color: rgba(255, 255, 255, 0.2);
+        margin-bottom: 1.8rem;
       }
-      .fc ul li {
-        margin-bottom: 1.2rem;
+      .ft-col li {
+        margin-bottom: 1.1rem;
       }
-      .fc a {
+      .ft-col a {
         font-size: 1.4rem;
-        color: rgba(255, 255, 255, 0.4);
+        color: rgba(255, 255, 255, 0.38);
         transition: color 0.2s;
-        text-decoration: none;
       }
-      .fc a:hover {
+      .ft-col a:hover {
         color: #fff;
       }
-      .footer-btm {
+      .ft-btm {
+        max-width: 1340px;
+        margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
         flex-wrap: wrap;
         gap: 1.5rem;
       }
-      .footer-btm p {
-        font-size: 1.3rem;
+      .ft-btm p {
+        font-size: 1.25rem;
         color: rgba(255, 255, 255, 0.18);
       }
-      .footer-badge {
+      .ft-badge {
         display: flex;
         align-items: center;
         gap: 0.6rem;
-        font-size: 1.2rem;
+        font-size: 1.15rem;
         color: rgba(255, 255, 255, 0.18);
       }
-      .footer-badge i {
+      .ft-badge i {
         color: var(--red);
       }
 
       /* ======================================================
    MOBILE NAV
 ====================================================== */
-      .mobile-nav-bar {
+      .mob-nav {
         display: none;
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(250, 249, 247, 0.96);
+        background: rgba(248, 246, 243, 0.97);
         backdrop-filter: blur(16px);
         border-top: 1px solid var(--border);
         z-index: 400;
@@ -1135,70 +1178,71 @@
         display: flex;
         justify-content: space-around;
       }
-      .mnb-item {
+      .mnb-a {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.4rem;
+        gap: 0.35rem;
         color: var(--muted);
         text-decoration: none;
-        padding: 0.5rem 1.2rem;
+        padding: 0.5rem 1rem;
         transition: color 0.2s;
       }
-      .mnb-item.active,
-      .mnb-item:hover {
+      .mnb-a.on,
+      .mnb-a:hover {
         color: var(--red);
       }
-      .mnb-item i {
-        font-size: 1.9rem;
+      .mnb-a i {
+        font-size: 2rem;
       }
-      .mnb-item span {
-        font-size: 0.95rem;
+      .mnb-a span {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
         font-weight: 600;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
       }
 
       /* ======================================================
-   FLOAT BUTTONS
+   FLOATS
 ====================================================== */
       .messenger-float {
         position: fixed;
         bottom: 9rem;
         right: 2.5rem;
-        width: 52px;
-        height: 52px;
+        width: 50px;
+        height: 50px;
         background: #0084ff;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2.2rem;
+        font-size: 2.1rem;
         color: #fff;
         text-decoration: none;
-        box-shadow: 0 4px 20px rgba(0, 132, 255, 0.3);
+        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.3);
         z-index: 300;
-        animation: mPulse 2.5s infinite;
+        animation: mpulse 2.5s infinite;
         transition: transform 0.3s;
       }
       .messenger-float:hover {
         transform: scale(1.1);
       }
-      @keyframes mPulse {
+      @keyframes mpulse {
         0%,
         100% {
-          box-shadow: 0 4px 20px rgba(0, 132, 255, 0.3);
+          box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
         }
         50% {
           box-shadow: 0 4px 36px rgba(0, 132, 255, 0.55);
         }
       }
-
       .back-top {
         position: fixed;
         bottom: 2.5rem;
         right: 2.5rem;
-        width: 46px;
-        height: 46px;
+        width: 44px;
+        height: 44px;
         background: var(--red);
         border-radius: 50%;
         display: flex;
@@ -1212,7 +1256,7 @@
         transition: all 0.3s;
         z-index: 300;
       }
-      .back-top.show {
+      .back-top.on {
         opacity: 1;
         visibility: visible;
       }
@@ -1222,16 +1266,16 @@
       }
 
       /* ======================================================
-   SCROLL REVEAL
+   REVEAL
 ====================================================== */
-      .reveal {
+      .rv {
         opacity: 0;
-        transform: translateY(24px);
+        transform: translateY(22px);
         transition:
           opacity 0.65s var(--ease),
           transform 0.65s var(--ease);
       }
-      .reveal.in {
+      .rv.in {
         opacity: 1;
         transform: none;
       }
@@ -1239,72 +1283,68 @@
       /* ======================================================
    RESPONSIVE
 ====================================================== */
-      @media (max-width: 1100px) {
-        .footer-top {
-          grid-template-columns: 1fr 1fr;
+      @media (max-width: 1200px) {
+        .ph-inner {
+          grid-template-columns: 1fr;
         }
-        .slide-counter-wrap {
+        .ph-stats {
           display: none;
         }
-        .products-section {
-          padding: 7rem 3rem;
-        }
         .cta-banner {
-          margin: 0 3rem 7rem;
+          margin: 0 2rem 6rem;
         }
-        footer {
-          padding: 6rem 3rem 3rem;
+        .ft-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
         }
       }
       @media (max-width: 768px) {
-        .site-header {
-          padding: 1.6rem 2.2rem;
-        }
-        .site-header.solid {
-          padding: 1.2rem 2.2rem;
-        }
-        nav.main-nav {
+        .main-nav,
+        .nav-cta {
           display: none;
         }
-        .hamburger {
+        .ham {
           display: flex;
         }
-        .slide-content {
-          padding: 0 2.5rem 10rem;
+        .hdr {
+          padding: 0 2rem;
         }
-        .slide-title {
-          font-size: clamp(4.5rem, 14vw, 8rem);
+        .logo-sub {
+          display: none;
         }
-        .slider-controls {
-          left: 2.5rem;
-          bottom: 2.5rem;
+        .page-hero {
+          padding: 5rem 2rem 4.5rem;
+        }
+        .ph-h1 {
+          font-size: clamp(5rem, 18vw, 8.5rem);
         }
         .products-section {
           padding: 6rem 2rem;
         }
-        .sec-title {
-          font-size: 4.2rem;
-        }
-        .products-grid {
-          grid-template-columns: 1fr;
-        }
         .cta-banner {
-          margin: 0 2rem 6rem;
-          padding: 3.5rem 2.5rem;
+          flex-direction: column;
+          padding: 3rem 2rem;
+          margin: 0 0 6rem;
+        }
+        .cta-btns {
           flex-direction: column;
         }
-        footer {
-          padding: 5rem 2rem 2rem;
+        .cta-btn-pri,
+        .cta-btn-sec {
+          justify-content: center;
         }
-        .footer-top {
+        .ft-grid {
           grid-template-columns: 1fr;
           gap: 3.5rem;
         }
-        .footer-btm {
+        footer {
+          padding: 5rem 2rem 3rem;
+        }
+        .ft-btm {
           flex-direction: column;
           text-align: center;
         }
-        .mobile-nav-bar {
+        .mob-nav {
           display: block;
         }
         footer {
@@ -1318,24 +1358,20 @@
           bottom: 8.5rem;
           right: 1.8rem;
         }
-        .cta-buttons {
-          flex-direction: column;
-        }
-        .btn-cta-pri,
-        .btn-cta-sec {
-          justify-content: center;
+        .sec-h2 {
+          font-size: 4.2rem;
         }
       }
       @media (max-width: 480px) {
-        .hero-slider {
-          min-height: 580px;
-        }
         .filter-tabs {
           gap: 0.6rem;
         }
         .ftab {
-          font-size: 1.15rem;
-          padding: 0.75rem 1.4rem;
+          font-size: 1.25rem;
+          padding: 0.75rem 1.5rem;
+        }
+        .products-grid {
+          grid-template-columns: 1fr;
         }
       }
     </style>
@@ -1343,845 +1379,799 @@
   <body>
     <!-- ============================================================ HEADER -->
     <header class="site-header" id="siteHeader">
-      <a href="/Trangchu/" class="logo-wrap">
-        <div class="logo-mark">
+      <div class="hdr">
+        <a href="/Trangchu/" class="logo-wrap">
           <img
             src="/sanphamxemay/image/banner/Logo_HEAD.png"
-            alt="HEAD Trung Hùng"
+            alt="HEAD Logo"
+            class="logo-img"
           />
-        </div>
-        <div class="logo-name">
-          HEAD TRUNG HÙNG<small>HONDA CHÍNH HÃNG</small>
-        </div>
-      </a>
-      <nav class="main-nav">
-        <a href="/Trangchu/">Trang chủ</a>
-        <a href="#products" class="active">Sản phẩm</a>
-        <a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a>
-        <a href="/lienhe/">Liên hệ</a>
-        <a href="/cuahang/" class="nav-cta">Tìm cửa hàng</a>
-      </nav>
-      <div class="hamburger" id="hamburger">
-        <span></span><span></span><span></span>
+          <div class="logo-text-block">
+            <span class="logo-name">HỆ THỐNG HEAD TRUNG HÙNG</span>
+            <span class="logo-sub"
+              >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
+            >
+          </div>
+        </a>
+        <nav class="main-nav">
+          <a href="/Trangchu/">Trang chủ</a>
+          <a href="#products" class="active">Sản phẩm</a>
+          <a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a>
+          <a href="/lienhe/">Liên hệ</a>
+        </nav>
+        <a href="/cuahang/" class="nav-cta"
+          ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a
+        >
+        <div class="ham" id="ham"><span></span><span></span><span></span></div>
       </div>
     </header>
 
     <!-- Drawer -->
-    <div class="drawer-overlay" id="drawerOverlay"></div>
-    <div class="site-drawer" id="siteDrawer">
-      <button class="drawer-close" id="drawerClose">
-        <i class="fas fa-times"></i>
-      </button>
-      <nav class="drawer-nav">
+    <div class="dov" id="dov"></div>
+    <div class="sdraw" id="sdraw">
+      <button class="sdx" id="sdx"><i class="fas fa-times"></i></button>
+      <nav class="dnav">
         <a href="/Trangchu/">Trang chủ</a>
         <a href="#products" class="active">Sản phẩm</a>
         <a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a>
         <a href="/lienhe/">Liên hệ</a>
       </nav>
-      <a href="/cuahang/" class="drawer-cta">Tìm cửa hàng gần nhất</a>
+      <a href="/cuahang/" class="dcta">Tìm cửa hàng gần nhất</a>
     </div>
 
-    <!-- ============================================================ HERO SLIDER -->
-    <section class="hero-slider" id="heroSlider">
-      <div class="slides-track" id="slidesTrack">
-        <div
-          class="slide active"
-          style="
-            background-image: url(&quot;/sanphamxemay/AB160/AB160/picture/3.jpg&quot;);
-          "
-        >
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <div class="slide-tag">Xe Ga Thể Thao</div>
-            <div class="slide-title">AIR BLADE 160</div>
-            <div class="slide-sub">
-              Phong cách thể thao, sức mạnh vượt trội — lựa chọn hàng đầu cho
-              mọi hành trình.
-            </div>
-            <a href="#products" class="slide-btn"
-              >Khám phá ngay <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div
-          class="slide"
-          style="
-            background-image: url(&quot;/sanphamxemay/SH160/SH160/picture/2.jpg&quot;);
-          "
-        >
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <div class="slide-tag">Xe Ga Cao Cấp</div>
-            <div class="slide-title">HONDA SH160</div>
-            <div class="slide-sub">
-              Biểu tượng đẳng cấp — kết hợp hoàn hảo giữa thiết kế sang trọng và
-              công nghệ hiện đại.
-            </div>
-            <a href="#products" class="slide-btn"
-              >Khám phá ngay <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div
-          class="slide"
-          style="
-            background-image: url(&quot;/sanphamxemay/Vision2026/Vision2026/picture/1.jpg&quot;);
-          "
-        >
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <div class="slide-tag">Xe Ga Thời Trang</div>
-            <div class="slide-title">VISION 2026</div>
-            <div class="slide-sub">
-              Tinh tế, trẻ trung — người bạn đồng hành hoàn hảo cho phong cách
-              đô thị hiện đại.
-            </div>
-            <a href="#products" class="slide-btn"
-              >Khám phá ngay <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div
-          class="slide"
-          style="
-            background-image: url(&quot;/sanphamxemay/CB350Hness/CB350Hness/picture/3.jpg&quot;);
-          "
-        >
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <div class="slide-tag">Phân Khối Lớn</div>
-            <div class="slide-title">CB350 H'NESS</div>
-            <div class="slide-sub">
-              Hoài niệm và đẳng cấp trong từng chi tiết — dành cho những tâm hồn
-              yêu xe đích thực.
-            </div>
-            <a href="#products" class="slide-btn"
-              >Khám phá ngay <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
+    <!-- ============================================================ PAGE HERO (no slider) -->
+    <section class="page-hero" id="home">
+      <div class="ph-grid"></div>
+      <div class="ph-glow-r"></div>
+      <div class="ph-rings">
+        <div class="ph-ring"></div>
+        <div class="ph-ring"></div>
+        <div class="ph-ring"></div>
       </div>
-      <!-- /slides-track -->
-
-      <!-- Counter -->
-      <div class="slide-counter-wrap">
-        <div class="sc-current" id="scCurrent">01</div>
-        <div class="sc-sep"></div>
-        <div class="sc-total" id="scTotal">04</div>
-      </div>
-
-      <!-- Controls -->
-      <div class="slider-controls">
-        <button class="ctrl-btn" id="prevSlide">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="ctrl-btn" id="nextSlide">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-        <div class="slider-dots-row" id="sliderDots"></div>
-      </div>
-
-      <!-- Progress -->
-      <div class="hero-progress">
-        <div class="hero-progress-fill" id="heroPF"></div>
+      <div class="ph-inner">
+        <div class="ph-left">
+          <div class="ph-kicker">Honda Chính Hãng 2026</div>
+          <h1 class="ph-h1">DÒNG XE<br />HONDA<br /><em>2026</em></h1>
+          <p class="ph-sub">
+            Khám phá toàn bộ dòng xe máy Honda chính hãng — chọn chiếc xe phù
+            hợp với phong cách của bạn.
+          </p>
+          <div class="ph-btns">
+            <a href="#products" class="btn-ph-pri"
+              ><i class="fas fa-motorcycle"></i> Xem tất cả xe</a
+            >
+            <a href="/cuahang/" class="btn-ph-ghost"
+              >Tìm cửa hàng <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+        <div class="ph-stats">
+          <div class="ph-stat">
+            <div class="ps-val">20<em>+</em></div>
+            <div class="ps-label">Dòng xe</div>
+          </div>
+          <div class="ph-stat">
+            <div class="ps-val">12<em></em></div>
+            <div class="ps-label">Cửa hàng</div>
+          </div>
+          <div class="ph-stat">
+            <div class="ps-val">3<em></em></div>
+            <div class="ps-label">Tỉnh thành</div>
+          </div>
+          <div class="ph-stat">
+            <div class="ps-val">100<em>%</em></div>
+            <div class="ps-label">Chính hãng</div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- ============================================================ MARQUEE -->
     <div class="marquee-strip">
-      <div class="marquee-track">
-        <div class="marquee-item">XE GA <span class="dot"></span></div>
-        <div class="marquee-item">XE SỐ <span class="dot"></span></div>
-        <div class="marquee-item">XE CÔN TAY <span class="dot"></span></div>
-        <div class="marquee-item">PHÂN KHỐI LỚN <span class="dot"></span></div>
-        <div class="marquee-item">XE ĐIỆN <span class="dot"></span></div>
-        <div class="marquee-item">
-          HONDA CHÍNH HÃNG <span class="dot"></span>
-        </div>
-        <div class="marquee-item">
-          BẢO HÀNH ĐẦY ĐỦ <span class="dot"></span>
-        </div>
-        <div class="marquee-item">XE GA <span class="dot"></span></div>
-        <div class="marquee-item">XE SỐ <span class="dot"></span></div>
-        <div class="marquee-item">XE CÔN TAY <span class="dot"></span></div>
-        <div class="marquee-item">PHÂN KHỐI LỚN <span class="dot"></span></div>
-        <div class="marquee-item">XE ĐIỆN <span class="dot"></span></div>
-        <div class="marquee-item">
-          HONDA CHÍNH HÃNG <span class="dot"></span>
-        </div>
-        <div class="marquee-item">
-          BẢO HÀNH ĐẦY ĐỦ <span class="dot"></span>
-        </div>
+      <div class="mq-track">
+        <div class="mq-item">XE GA <span class="mq-dot"></span></div>
+        <div class="mq-item">XE SỐ <span class="mq-dot"></span></div>
+        <div class="mq-item">XE CÔN TAY <span class="mq-dot"></span></div>
+        <div class="mq-item">PHÂN KHỐI LỚN <span class="mq-dot"></span></div>
+        <div class="mq-item">XE ĐIỆN <span class="mq-dot"></span></div>
+        <div class="mq-item">HONDA CHÍNH HÃNG <span class="mq-dot"></span></div>
+        <div class="mq-item">BẢO HÀNH ĐẦY ĐỦ <span class="mq-dot"></span></div>
+        <div class="mq-item">XE GA <span class="mq-dot"></span></div>
+        <div class="mq-item">XE SỐ <span class="mq-dot"></span></div>
+        <div class="mq-item">XE CÔN TAY <span class="mq-dot"></span></div>
+        <div class="mq-item">PHÂN KHỐI LỚN <span class="mq-dot"></span></div>
+        <div class="mq-item">XE ĐIỆN <span class="mq-dot"></span></div>
+        <div class="mq-item">HONDA CHÍNH HÃNG <span class="mq-dot"></span></div>
+        <div class="mq-item">BẢO HÀNH ĐẦY ĐỦ <span class="mq-dot"></span></div>
       </div>
     </div>
 
     <!-- ============================================================ PRODUCTS -->
     <section id="products" class="products-section">
-      <div class="sec-eyebrow reveal">Danh mục sản phẩm</div>
-      <h2 class="sec-title reveal">DÒNG XE<br />HONDA 2026</h2>
-      <p class="sec-sub reveal">
-        Khám phá toàn bộ dòng xe máy Honda chính hãng — chọn chiếc xe phù hợp
-        với phong cách của bạn.
-      </p>
+      <div class="ps-wrap">
+        <div class="sec-eyebrow rv">Danh mục sản phẩm</div>
+        <h2 class="sec-h2 rv">TOÀN BỘ<br />DÒNG XE</h2>
+        <p class="sec-sub rv">
+          Khám phá toàn bộ dòng xe máy Honda chính hãng — chọn chiếc xe phù hợp
+          với phong cách của bạn.
+        </p>
 
-      <!-- Action row -->
-      <div class="action-row reveal">
-        <a href="banggia.html" class="action-pill"
-          ><i class="fas fa-file-invoice-dollar"></i> Bảng Giá</a
-        >
-        <a href="tragop.html" class="action-pill"
-          ><i class="fas fa-hand-holding-usd"></i> Hỗ Trợ Trả Góp</a
-        >
-        <a href="/cuahang/" class="action-pill"
-          ><i class="fas fa-map-marker-alt"></i> Tìm Cửa Hàng</a
-        >
+        <!-- Action row -->
+        <div class="action-row rv">
+          <a href="banggia.html" class="action-pill"
+            ><i class="fas fa-file-invoice-dollar"></i> Bảng Giá</a
+          >
+          <a href="tragop.html" class="action-pill"
+            ><i class="fas fa-hand-holding-usd"></i> Hỗ Trợ Trả Góp</a
+          >
+          <a href="/cuahang/" class="action-pill"
+            ><i class="fas fa-map-marker-alt"></i> Tìm Cửa Hàng</a
+          >
+        </div>
+
+        <!-- Search -->
+        <div class="search-wrap rv">
+          <input
+            type="text"
+            class="search-input"
+            id="productSearch"
+            placeholder="Tìm kiếm sản phẩm..."
+          />
+          <button class="search-clear" id="searchClear">
+            <i class="fas fa-times"></i>
+          </button>
+          <div class="search-icon-wrap"><i class="fas fa-search"></i></div>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="filter-tabs rv" id="filterTabs">
+          <button class="ftab active" data-cat="all">
+            <span>Tất cả</span>
+          </button>
+          <button class="ftab" data-cat="xe-ga"><span>Xe Ga</span></button>
+          <button class="ftab" data-cat="xe-so"><span>Xe Số</span></button>
+          <button class="ftab" data-cat="xe-con-tay">
+            <span>Xe Côn Tay</span>
+          </button>
+          <button class="ftab" data-cat="pkl">
+            <span>Phân Khối Lớn</span>
+          </button>
+          <button class="ftab" data-cat="xe-dien"><span>Xe Điện</span></button>
+        </div>
+
+        <!-- Counter -->
+        <div class="products-counter">
+          Hiển thị <strong id="visibleCount">0</strong> /
+          <strong id="totalCount">0</strong> sản phẩm
+        </div>
+
+        <!-- Grid -->
+        <div class="products-grid" id="productsGrid">
+          <!-- XE GA -->
+          <div class="product-card" data-cat="xe-ga" data-name="honda sh350i">
+            <div class="card-badge badge-xe-ga">Xe Ga</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/SH350/SH350/Phiên bản Thể Thao - XANH ĐEN/6.png"
+                alt="Honda SH350i"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda SH350i</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>330cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>3.52L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/SH350/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="product-card" data-cat="xe-ga" data-name="honda sh160">
+            <div class="card-badge badge-xe-ga">Xe Ga</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/SH160/SH160/Phiên bản thể thao - XÁM ĐEN ĐỎ/6.png"
+                alt="Honda SH160"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda SH160</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>160cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>2.34L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/SH160/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="product-card" data-cat="xe-ga" data-name="honda sh125">
+            <div class="card-badge badge-xe-ga">Xe Ga</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/SH125/SH125/Phiên bản đặc biệt - XÁM ĐEN/6.png"
+                alt="Honda SH125"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda SH125</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>125cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>2.33L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/SH125/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="product-card" data-cat="xe-ga" data-name="honda shmode">
+            <div class="card-badge badge-xe-ga">Xe Ga</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/Shmode/Shmode/Phiên bản đặc biệt - BẠC ĐEN/6.png"
+                alt="Honda SHmode"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda SHmode</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>125cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>2.52L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/Shmode/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="product-card"
+            data-cat="xe-ga"
+            data-name="honda air blade 160"
+          >
+            <div class="card-badge badge-xe-ga">Xe Ga</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/AB160/AB160/AB160 - phiên bản thể thao - TRẮNG ĐỎ ĐEN/6.png"
+                alt="Honda Air Blade 160"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda Air Blade 160</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>160cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>2.23L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/AB160/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="product-card"
+            data-cat="xe-ga"
+            data-name="honda air blade 125 marvel spider-man"
+          >
+            <div class="card-badge badge-xe-ga">Xe Ga</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/AB125/AB125/AB125 - phiên bản Marvel Spider-Man/6.png"
+                alt="Honda Air Blade 125"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda Air Blade 125</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>125cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>2.12L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/AB125/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="product-card"
+            data-cat="xe-ga"
+            data-name="honda vario 160"
+          >
+            <div class="card-badge badge-xe-ga">Xe Ga</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/Vario160/VARIO160/Phiên bản cao cấp - XANH ĐEN BẠC/6.png"
+                alt="Honda Vario 160"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda Vario 160</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>160cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>2.20L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/Vario160/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="product-card"
+            data-cat="xe-ga"
+            data-name="honda vario 125"
+          >
+            <div class="card-badge badge-xe-ga">Xe Ga</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/Vario125/VARIO125/Phiên bản thể thao - XANH ĐEN/6.png"
+                alt="Honda Vario 125"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda Vario 125</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>125cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>2.16L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/Vario125/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="product-card"
+            data-cat="xe-ga"
+            data-name="honda vision 2026"
+          >
+            <div class="card-badge badge-xe-ga">Xe Ga</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/Vision2026/Vision2026/Phiên bản thể thao - BẠC ĐEN/6.png"
+                alt="Honda Vision 2026"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda Vision 2026</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>110cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>1.85L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/Vision2026/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="product-card" data-cat="xe-ga" data-name="honda lead abs">
+            <div class="card-badge badge-xe-ga">Xe Ga</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/LEAD/LEAD/Phiên bản Đặc Biệt - BẠC ĐEN/6.png"
+                alt="Honda LEAD ABS"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda LEAD ABS</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>125cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>2.1L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/LEAD/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- XE SỐ -->
+          <div
+            class="product-card"
+            data-cat="xe-so"
+            data-name="honda super cub c125"
+          >
+            <div class="card-badge badge-xe-so">Xe Số</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/CUB/Super Cub/Phiên bản tiêu chuẩn - XANH DƯƠNG/6.png"
+                alt="Honda Super Cub C125"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda Super Cub C125</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>125cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>1.5L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/CUB/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="product-card" data-cat="xe-so" data-name="honda wave rsx">
+            <div class="card-badge badge-xe-so">Xe Số</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/WaveRSX/Wave RSX/Phiên bản thể thao - ĐỎ ĐEN/6.png"
+                alt="Honda Wave RSX"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda Wave RSX</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>110cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>1.56L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/WaveRSX/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="product-card"
+            data-cat="xe-so"
+            data-name="honda wave alpha"
+          >
+            <div class="card-badge badge-xe-so">Xe Số</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/WaveAlpha/Wave Alpha/Phiên bản tiêu chuẩn - TRẮNG/6.png"
+                alt="Honda Wave Alpha"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda Wave Alpha</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>110cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>1.72L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/WaveAlpha/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="product-card"
+            data-cat="xe-so"
+            data-name="honda wave alpha cổ điển retro"
+          >
+            <div class="card-badge badge-xe-so">Xe Số</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/WaveAlpha Retro/Wave Alpha - retro/Phiên bản cổ điển - XÁM TRẮNG/6.png"
+                alt="Honda Wave Alpha Cổ Điển"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda Wave Alpha Cổ Điển</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>110cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>1.72L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/WaveAlpha Retro/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="product-card" data-cat="xe-so" data-name="honda future">
+            <div class="card-badge badge-xe-so">Xe Số</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/Future/Future/Phiên bản đặc biệt - BẠC ĐEN XÁM/6.png"
+                alt="Honda Future"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda Future</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>125cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>1.47L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/Future/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="product-card" data-cat="xe-so" data-name="honda blade">
+            <div class="card-badge badge-xe-so">Xe Số</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/BLADE/Blade/Phiên bản thể thao - ĐEN ĐỎ/6.png"
+                alt="Honda BLADE"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda BLADE</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>110cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>1.85L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/BLADE/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- XE CÔN TAY -->
+          <div
+            class="product-card"
+            data-cat="xe-con-tay"
+            data-name="honda winner r"
+          >
+            <div class="card-badge badge-xe-con-tay">Xe Côn Tay</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/WinnerR/Winner R/Phiên bản Đặc Biệt - Xanh Đen/6.png"
+                alt="Honda Winner R"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda Winner R</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>150cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>2.59L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/WinnerR/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="product-card"
+            data-cat="xe-con-tay"
+            data-name="honda cb150r cbr150r"
+          >
+            <div class="card-badge badge-xe-con-tay">Xe Côn Tay</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/CBR150R/CBR150R/6.png"
+                alt="Honda CB150R"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda CB150R</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>150cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>2.91L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/CBR150R/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- PKL -->
+          <div
+            class="product-card"
+            data-cat="pkl"
+            data-name="honda cb350 hness"
+          >
+            <div class="card-badge badge-pkl">PKL</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/CB350Hness/CB350Hness/XÁM ĐEN/6.png"
+                alt="Honda CB350 H'ness"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda CB350 H'ness</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>350cc
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-gas-pump"></i>2.59L/100km
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/CB350Hness/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- XE ĐIỆN -->
+          <div
+            class="product-card"
+            data-cat="xe-dien"
+            data-name="honda icon e điện"
+          >
+            <div class="card-badge badge-xe-dien">Xe Điện</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/ICONe/ICONe/Phiên bản cao cấp - ĐỎ XÁM/6.png"
+                alt="Honda ICON e"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda ICON e</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-battery-full"></i>Pin Lithium
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-road"></i>71km / lần sạc
+                </div>
+              </div>
+              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
+              <a href="/sanphamxemay/ICONe/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="product-card"
+            data-cat="xe-dien"
+            data-name="honda cuv e điện"
+          >
+            <div class="card-badge badge-xe-dien">Xe Điện</div>
+            <div class="card-image">
+              <img
+                src="/sanphamxemay/CUVe/CUV e/Trắng ngọc trai/6.png"
+                alt="Honda CUV e"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <div class="card-name">Honda CUV e</div>
+              <div class="card-specs">
+                <div class="card-spec">
+                  <i class="fas fa-battery-full"></i>Pin Lithium
+                </div>
+                <div class="card-spec">
+                  <i class="fas fa-tachometer-alt"></i>Tối đa 80km/h
+                </div>
+              </div>
+              <div class="card-price">Giá thuê: 1.472.727 VNĐ/tháng</div>
+              <a href="/sanphamxemay/CUVe/" class="card-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Empty State -->
+          <div class="empty-state" id="emptyState">
+            <i class="fas fa-search"></i>
+            <h3>Không tìm thấy sản phẩm</h3>
+            <p>Thử tìm kiếm với từ khóa khác hoặc chọn danh mục khác.</p>
+          </div>
+        </div>
+        <!-- /products-grid -->
       </div>
-
-      <!-- Search -->
-      <div class="search-wrap reveal">
-        <input
-          type="text"
-          class="search-input"
-          id="productSearch"
-          placeholder="Tìm kiếm sản phẩm..."
-        />
-        <button class="search-clear" id="searchClear">
-          <i class="fas fa-times"></i>
-        </button>
-        <div class="search-icon-wrap"><i class="fas fa-search"></i></div>
-      </div>
-
-      <!-- Filter tabs -->
-      <div class="filter-tabs reveal" id="filterTabs">
-        <button class="ftab active" data-cat="all"><span>Tất cả</span></button>
-        <button class="ftab" data-cat="xe-ga"><span>Xe Ga</span></button>
-        <button class="ftab" data-cat="xe-so"><span>Xe Số</span></button>
-        <button class="ftab" data-cat="xe-con-tay">
-          <span>Xe Côn Tay</span>
-        </button>
-        <button class="ftab" data-cat="pkl"><span>Phân Khối Lớn</span></button>
-        <button class="ftab" data-cat="xe-dien"><span>Xe Điện</span></button>
-      </div>
-
-      <!-- Counter -->
-      <div class="products-counter">
-        Hiển thị <strong id="visibleCount">0</strong> /
-        <strong id="totalCount">0</strong> sản phẩm
-      </div>
-
-      <!-- Grid -->
-      <div class="products-grid" id="productsGrid">
-        <!-- XE GA -->
-        <div class="product-card" data-cat="xe-ga" data-name="honda sh350i">
-          <div class="card-badge badge-xe-ga">Xe Ga</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/SH350/SH350/Phiên bản Thể Thao - XANH ĐEN/6.png"
-              alt="Honda SH350i"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda SH350i</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>330cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>3.52L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/SH350/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="xe-ga" data-name="honda sh160">
-          <div class="card-badge badge-xe-ga">Xe Ga</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/SH160/SH160/Phiên bản thể thao - XÁM ĐEN ĐỎ/6.png"
-              alt="Honda SH160"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda SH160</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>160cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>2.34L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/SH160/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="xe-ga" data-name="honda sh125">
-          <div class="card-badge badge-xe-ga">Xe Ga</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/SH125/SH125/Phiên bản đặc biệt - XÁM ĐEN/6.png"
-              alt="Honda SH125"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda SH125</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>125cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>2.33L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/SH125/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="xe-ga" data-name="honda shmode">
-          <div class="card-badge badge-xe-ga">Xe Ga</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/Shmode/Shmode/Phiên bản đặc biệt - BẠC ĐEN/6.png"
-              alt="Honda Shmode"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda SHmode</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>125cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>2.52L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/Shmode/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div
-          class="product-card"
-          data-cat="xe-ga"
-          data-name="honda air blade 160"
-        >
-          <div class="card-badge badge-xe-ga">Xe Ga</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/AB160/AB160/AB160 - phiên bản thể thao - TRẮNG ĐỎ ĐEN/6.png"
-              alt="Honda Air Blade 160"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda Air Blade 160</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>160cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>2.23L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/AB160/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div
-          class="product-card"
-          data-cat="xe-ga"
-          data-name="honda air blade 125 marvel spider-man"
-        >
-          <div class="card-badge badge-xe-ga">Xe Ga</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/AB125/AB125/AB125 - phiên bản Marvel Spider-Man/6.png"
-              alt="Honda Air Blade 125"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda Air Blade 125</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>125cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>2.12L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/AB125/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="xe-ga" data-name="honda vario 160">
-          <div class="card-badge badge-xe-ga">Xe Ga</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/Vario160/VARIO160/Phiên bản cao cấp - XANH ĐEN BẠC/6.png"
-              alt="Honda Vario 160"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda Vario 160</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>160cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>2.20L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/Vario160/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="xe-ga" data-name="honda vario 125">
-          <div class="card-badge badge-xe-ga">Xe Ga</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/Vario125/VARIO125/Phiên bản thể thao - XANH ĐEN/6.png"
-              alt="Honda Vario 125"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda Vario 125</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>125cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>2.16L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/Vario125/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div
-          class="product-card"
-          data-cat="xe-ga"
-          data-name="honda vision 2026"
-        >
-          <div class="card-badge badge-xe-ga">Xe Ga</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/Vision2026/Vision2026/Phiên bản thể thao - BẠC ĐEN/6.png"
-              alt="Honda Vision 2026"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda Vision 2026</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>110cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>1.85L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/Vision2026/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="xe-ga" data-name="honda lead abs">
-          <div class="card-badge badge-xe-ga">Xe Ga</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/LEAD/LEAD/Phiên bản Đặc Biệt - BẠC ĐEN/6.png"
-              alt="Honda LEAD ABS"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda LEAD ABS</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>125cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>2.1L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/LEAD/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <!-- XE SỐ -->
-        <div
-          class="product-card"
-          data-cat="xe-so"
-          data-name="honda super cub c125"
-        >
-          <div class="card-badge badge-xe-so">Xe Số</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/CUB/Super Cub/Phiên bản tiêu chuẩn - XANH DƯƠNG/6.png"
-              alt="Honda Super Cub C125"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda Super Cub C125</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>125cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>1.5L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/CUB/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="xe-so" data-name="honda wave rsx">
-          <div class="card-badge badge-xe-so">Xe Số</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/WaveRSX/Wave RSX/Phiên bản thể thao - ĐỎ ĐEN/6.png"
-              alt="Honda Wave RSX"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda Wave RSX</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>110cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>1.56L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/WaveRSX/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="xe-so" data-name="honda wave alpha">
-          <div class="card-badge badge-xe-so">Xe Số</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/WaveAlpha/Wave Alpha/Phiên bản tiêu chuẩn - TRẮNG/6.png"
-              alt="Honda Wave Alpha"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda Wave Alpha</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>110cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>1.72L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/WaveAlpha/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div
-          class="product-card"
-          data-cat="xe-so"
-          data-name="honda wave alpha cổ điển retro"
-        >
-          <div class="card-badge badge-xe-so">Xe Số</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/WaveAlpha Retro/Wave Alpha - retro/Phiên bản cổ điển - XÁM TRẮNG/6.png"
-              alt="Honda Wave Alpha Cổ Điển"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda Wave Alpha Cổ Điển</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>110cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>1.72L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/WaveAlpha Retro/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="xe-so" data-name="honda future">
-          <div class="card-badge badge-xe-so">Xe Số</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/Future/Future/Phiên bản đặc biệt - BẠC ĐEN XÁM/6.png"
-              alt="Honda Future"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda Future</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>125cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>1.47L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/Future/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="xe-so" data-name="honda blade">
-          <div class="card-badge badge-xe-so">Xe Số</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/BLADE/Blade/Phiên bản thể thao - ĐEN ĐỎ/6.png"
-              alt="Honda BLADE"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda BLADE</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>110cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>1.85L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/BLADE/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <!-- XE CÔN TAY -->
-        <div
-          class="product-card"
-          data-cat="xe-con-tay"
-          data-name="honda winner r"
-        >
-          <div class="card-badge badge-xe-con-tay">Xe Côn Tay</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/WinnerR/Winner R/Phiên bản Đặc Biệt - Xanh Đen/6.png"
-              alt="Honda Winner R"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda Winner R</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>150cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>2.59L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/WinnerR/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div
-          class="product-card"
-          data-cat="xe-con-tay"
-          data-name="honda cb150r cbr150r"
-        >
-          <div class="card-badge badge-xe-con-tay">Xe Côn Tay</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/CBR150R/CBR150R/6.png"
-              alt="Honda CB150R"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda CB150R</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>150cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>2.91L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/CBR150R/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <!-- PKL -->
-        <div class="product-card" data-cat="pkl" data-name="honda cb350 hness">
-          <div class="card-badge badge-pkl">PKL</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/CB350Hness/CB350Hness/XÁM ĐEN/6.png"
-              alt="Honda CB350 H'ness"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda CB350 H'ness</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>350cc
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-gas-pump"></i>2.59L/100km
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/CB350Hness/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <!-- XE ĐIỆN -->
-        <div
-          class="product-card"
-          data-cat="xe-dien"
-          data-name="honda icon e điện"
-        >
-          <div class="card-badge badge-xe-dien">Xe Điện</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/ICONe/ICONe/Phiên bản cao cấp - ĐỎ XÁM/6.png"
-              alt="Honda ICON e"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda ICON e</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-battery-full"></i>Pin Lithium
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-road"></i>71km / lần sạc
-              </div>
-            </div>
-            <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-            <a href="/sanphamxemay/ICONe/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <div
-          class="product-card"
-          data-cat="xe-dien"
-          data-name="honda cuv e điện"
-        >
-          <div class="card-badge badge-xe-dien">Xe Điện</div>
-          <div class="card-image">
-            <img
-              src="/sanphamxemay/CUVe/CUV e/Trắng ngọc trai/6.png"
-              alt="Honda CUV e"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-body">
-            <div class="card-name">Honda CUV e</div>
-            <div class="card-specs">
-              <div class="card-spec">
-                <i class="fas fa-battery-full"></i>Pin Lithium
-              </div>
-              <div class="card-spec">
-                <i class="fas fa-tachometer-alt"></i>Tối đa 80km/h
-              </div>
-            </div>
-            <div class="card-price">Giá thuê: 1.472.727 VNĐ/tháng</div>
-            <a href="/sanphamxemay/CUVe/" class="card-link"
-              >Xem chi tiết <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <!-- Empty State -->
-        <div class="empty-state" id="emptyState">
-          <i class="fas fa-search"></i>
-          <h3>Không tìm thấy sản phẩm</h3>
-          <p>Thử tìm kiếm với từ khóa khác hoặc chọn danh mục khác.</p>
-        </div>
-      </div>
-      <!-- /products-grid -->
     </section>
 
     <!-- ============================================================ CTA BANNER -->
-    <div class="cta-banner">
+    <div class="cta-banner rv">
       <div class="cta-text">
         <h2>ĐẾN GẶP CHÚNG TÔI<br />HÔM NAY</h2>
         <p>Lái thử miễn phí · Tư vấn tận tâm · Bảo hành chính hãng</p>
       </div>
-      <div class="cta-buttons">
-        <a href="/cuahang/" class="btn-cta-pri"
+      <div class="cta-btns">
+        <a href="/cuahang/" class="cta-btn-pri"
           ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a
         >
-        <a href="tel:1900636712" class="btn-cta-sec"
+        <a href="tel:1900636712" class="cta-btn-sec"
           ><i class="fas fa-phone-alt"></i> 1900 636 712</a
         >
       </div>
@@ -2189,41 +2179,45 @@
 
     <!-- ============================================================ FOOTER -->
     <footer>
-      <div class="footer-top">
+      <div class="ft-grid">
         <div>
-          <div class="fb-brand">HEAD TRUNG HÙNG</div>
-          <p class="fb-sub">
-            Hệ thống đại lý Honda chính hãng tại Gia Lai, Hà Nội và Sơn La —
-            phục vụ tận tâm mỗi ngày.
-          </p>
-          <div class="socials">
+          <img
+            src="/sanphamxemay/image/banner/Logo_HEAD.png"
+            alt="HEAD Logo"
+            class="ft-logo-img"
+          />
+          <div class="ft-brand-name">HỆ THỐNG HEAD TRUNG HÙNG</div>
+          <div class="ft-brand-sub">
+            Cửa Hàng Bán Xe & Dịch Vụ Do Honda Ủy Nhiệm
+          </div>
+          <div class="ft-socs">
             <a
               href="https://www.facebook.com/hethongheadtrunghung"
-              class="soc"
+              class="ft-soc"
               target="_blank"
               ><i class="fab fa-facebook-f"></i
             ></a>
             <a
               href="https://www.youtube.com/@HethongHEADTrungHung"
-              class="soc"
+              class="ft-soc"
               target="_blank"
               ><i class="fab fa-youtube"></i
             ></a>
             <a
               href="https://www.instagram.com/hethongheadtrunghung"
-              class="soc"
+              class="ft-soc"
               target="_blank"
               ><i class="fab fa-instagram"></i
             ></a>
             <a
               href="https://www.tiktok.com/@hethongheadtrunghung"
-              class="soc"
+              class="ft-soc"
               target="_blank"
               ><i class="fab fa-tiktok"></i
             ></a>
           </div>
         </div>
-        <div class="fc">
+        <div class="ft-col">
           <h5>Điều hướng</h5>
           <ul>
             <li><a href="/Trangchu/">Trang chủ</a></li>
@@ -2234,7 +2228,7 @@
             <li><a href="/lienhe/">Liên hệ</a></li>
           </ul>
         </div>
-        <div class="fc">
+        <div class="ft-col">
           <h5>Dòng xe</h5>
           <ul>
             <li><a href="#" onclick="filterBycat('xe-ga')">Xe Ga</a></li>
@@ -2246,7 +2240,7 @@
             <li><a href="#" onclick="filterBycat('xe-dien')">Xe Điện</a></li>
           </ul>
         </div>
-        <div class="fc">
+        <div class="ft-col">
           <h5>Liên hệ</h5>
           <ul>
             <li><a href="tel:1900636712">1900 636 712</a></li>
@@ -2258,30 +2252,30 @@
           </ul>
         </div>
       </div>
-      <div class="footer-btm">
+      <div class="ft-btm">
         <p>© 2025 HEAD Trung Hùng. All Rights Reserved.</p>
-        <div class="footer-badge">
+        <div class="ft-badge">
           <i class="fas fa-certificate"></i> Honda Authorised Dealer
         </div>
       </div>
     </footer>
 
     <!-- MOBILE NAV -->
-    <nav class="mobile-nav-bar">
+    <nav class="mob-nav">
       <div class="mnb">
-        <a href="/Trangchu/" class="mnb-item"
+        <a href="/Trangchu/" class="mnb-a"
           ><i class="fas fa-home"></i><span>Trang chủ</span></a
         >
-        <a href="/sanphamxemay/" class="mnb-item active"
+        <a href="/sanphamxemay/" class="mnb-a on"
           ><i class="fas fa-motorcycle"></i><span>Sản phẩm</span></a
         >
-        <a href="/tintuc/tintuckhuyenmai/" class="mnb-item"
+        <a href="/tintuc/tintuckhuyenmai/" class="mnb-a"
           ><i class="fas fa-gift"></i><span>Khuyến mãi</span></a
         >
-        <a href="/cuahang/" class="mnb-item"
+        <a href="/cuahang/" class="mnb-a"
           ><i class="fas fa-map-marker-alt"></i><span>Đại lý</span></a
         >
-        <a href="/lienhe/" class="mnb-item"
+        <a href="/lienhe/" class="mnb-a"
           ><i class="fas fa-phone-alt"></i><span>Liên hệ</span></a
         >
       </div>
@@ -2302,119 +2296,42 @@
       (function () {
         /* ── HEADER ── */
         const hdr = document.getElementById("siteHeader");
-        function onScroll() {
-          hdr.classList.toggle("solid", scrollY > 60);
-          document
-            .getElementById("backTop")
-            .classList.toggle("show", scrollY > 400);
-        }
-        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener(
+          "scroll",
+          () => {
+            hdr.classList.toggle("lifted", scrollY > 60);
+            document
+              .getElementById("backTop")
+              .classList.toggle("on", scrollY > 400);
+          },
+          { passive: true },
+        );
 
         /* ── DRAWER ── */
-        const ham = document.getElementById("hamburger");
-        const dov = document.getElementById("drawerOverlay");
-        const drw = document.getElementById("siteDrawer");
-        const dclose = document.getElementById("drawerClose");
-        function openD() {
+        const ham = document.getElementById("ham"),
+          dov = document.getElementById("dov"),
+          sdraw = document.getElementById("sdraw"),
+          sdx = document.getElementById("sdx");
+        const openD = () => {
           ham.classList.add("open");
-          drw.classList.add("open");
-          dov.classList.add("open");
+          dov.classList.add("on");
+          sdraw.classList.add("on");
           document.body.style.overflow = "hidden";
-        }
-        function closeD() {
+        };
+        const closeD = () => {
           ham.classList.remove("open");
-          drw.classList.remove("open");
-          dov.classList.remove("open");
+          dov.classList.remove("on");
+          sdraw.classList.remove("on");
           document.body.style.overflow = "";
-        }
+        };
         ham.addEventListener("click", openD);
         dov.addEventListener("click", closeD);
-        dclose.addEventListener("click", closeD);
-        drw
+        sdx.addEventListener("click", closeD);
+        sdraw
           .querySelectorAll("a")
           .forEach((a) => a.addEventListener("click", closeD));
 
-        /* ── HERO SLIDER ── */
-        const slides = document.querySelectorAll(".slide");
-        const total = slides.length;
-        let cur = 0;
-        let timer = null;
-        const DURATION = 5000;
-        const pf = document.getElementById("heroPF");
-        const scCur = document.getElementById("scCurrent");
-        const scTot = document.getElementById("scTotal");
-        scTot.textContent = String(total).padStart(2, "0");
-
-        // build dots
-        const dotsRow = document.getElementById("sliderDots");
-        slides.forEach((_, i) => {
-          const d = document.createElement("div");
-          d.className = "sdot" + (i === 0 ? " active" : "");
-          d.addEventListener("click", () => goTo(i));
-          dotsRow.appendChild(d);
-        });
-
-        function goTo(n) {
-          slides[cur].classList.remove("active");
-          dotsRow.children[cur].classList.remove("active");
-          cur = (n + total) % total;
-          slides[cur].classList.add("active");
-          dotsRow.children[cur].classList.add("active");
-          scCur.textContent = String(cur + 1).padStart(2, "0");
-          // reset progress
-          pf.style.transition = "none";
-          pf.style.width = "0%";
-          requestAnimationFrame(() =>
-            requestAnimationFrame(() => {
-              pf.style.transition = `width ${DURATION}ms linear`;
-              pf.style.width = "100%";
-            }),
-          );
-        }
-        function startTimer() {
-          clearInterval(timer);
-          timer = setInterval(() => goTo(cur + 1), DURATION);
-        }
-        document.getElementById("prevSlide").addEventListener("click", () => {
-          goTo(cur - 1);
-          startTimer();
-        });
-        document.getElementById("nextSlide").addEventListener("click", () => {
-          goTo(cur + 1);
-          startTimer();
-        });
-        document
-          .getElementById("heroSlider")
-          .addEventListener("mouseenter", () => clearInterval(timer));
-        document
-          .getElementById("heroSlider")
-          .addEventListener("mouseleave", startTimer);
-
-        // touch swipe on hero
-        let tx = 0;
-        document.getElementById("heroSlider").addEventListener(
-          "touchstart",
-          (e) => {
-            tx = e.touches[0].clientX;
-          },
-          { passive: true },
-        );
-        document.getElementById("heroSlider").addEventListener(
-          "touchend",
-          (e) => {
-            const dx = tx - e.changedTouches[0].clientX;
-            if (Math.abs(dx) > 40) {
-              goTo(cur + (dx > 0 ? 1 : -1));
-              startTimer();
-            }
-          },
-          { passive: true },
-        );
-
-        goTo(0);
-        startTimer();
-
-        /* ── PRODUCT FILTER + SEARCH ── */
+        /* ── FILTER + SEARCH ── */
         const cards = [...document.querySelectorAll(".product-card[data-cat]")];
         const totalEl = document.getElementById("totalCount");
         const visEl = document.getElementById("visibleCount");
@@ -2424,8 +2341,8 @@
         const searchClear = document.getElementById("searchClear");
 
         totalEl.textContent = cards.length;
-        let activeCat = "all";
-        let searchTerm = "";
+        let activeCat = "all",
+          searchTerm = "";
 
         function applyFilters() {
           let count = 0;
@@ -2474,7 +2391,7 @@
           applyFilters();
         });
 
-        // URL param support
+        // URL params
         const params = new URLSearchParams(location.search);
         const catParam = params.get("category") || "all";
         const srchParam = params.get("search") || "";
@@ -2484,17 +2401,17 @@
           searchClear.classList.add("visible");
         }
         if (catParam !== "all") {
-          const match = ftabs.find((b) => b.dataset.cat === catParam);
-          if (match) {
+          const m = ftabs.find((b) => b.dataset.cat === catParam);
+          if (m) {
             ftabs.forEach((b) => b.classList.remove("active"));
-            match.classList.add("active");
+            m.classList.add("active");
             activeCat = catParam;
           }
         }
         applyFilters();
 
         /* ── SCROLL REVEAL ── */
-        const revObs = new IntersectionObserver(
+        const obs = new IntersectionObserver(
           (entries) => {
             entries.forEach((e, i) => {
               if (e.isIntersecting)
@@ -2503,9 +2420,7 @@
           },
           { threshold: 0.1 },
         );
-        document
-          .querySelectorAll(".reveal")
-          .forEach((el) => revObs.observe(el));
+        document.querySelectorAll(".rv").forEach((el) => obs.observe(el));
 
         /* ── SMOOTH SCROLL ── */
         document.querySelectorAll('a[href^="#"]').forEach((a) => {
@@ -2523,7 +2438,7 @@
             }
           });
         });
-      })(); // end IIFE
+      })();
 
       /* footer filter helper */
       function filterBycat(cat) {
@@ -2534,7 +2449,11 @@
           const sec = document.getElementById("products");
           if (sec)
             window.scrollTo({
-              top: sec.getBoundingClientRect().top + scrollY - 80,
+              top:
+                sec.getBoundingClientRect().top +
+                scrollY -
+                document.getElementById("siteHeader").offsetHeight -
+                10,
               behavior: "smooth",
             });
         }
