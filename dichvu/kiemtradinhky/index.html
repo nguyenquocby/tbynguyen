@@ -1,0 +1,2492 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tra Cứu Lịch Bảo Dưỡng Định Kỳ – HỆ THỐNG HEAD TRUNG HÙNG</title>
+    <link
+      rel="icon"
+      href="/sanphamxemay/image/banner/Logo_HEAD.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ============================================================ TOKENS */
+      :root {
+        --red: #cc0000;
+        --red-dark: #990000;
+        --red-glow: rgba(204, 0, 0, 0.28);
+        --red-soft: rgba(204, 0, 0, 0.07);
+        --ink: #0a0a0b;
+        --ink2: #1a1a1c;
+        --paper: #f5f3f0;
+        --paper2: #eceae6;
+        --white: #ffffff;
+        --border: rgba(10, 10, 11, 0.08);
+        --border2: rgba(10, 10, 11, 0.14);
+        --muted: #7a7672;
+        --green: #1a7a3c;
+        --green-soft: rgba(26, 122, 60, 0.08);
+        --orange: #c96a00;
+        --orange-soft: rgba(201, 106, 0, 0.08);
+        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --snap: cubic-bezier(0.16, 1, 0.3, 1);
+        --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      /* ============================================================ RESET */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 62.5%;
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Barlow", sans-serif;
+        background: var(--white);
+        color: var(--ink);
+        overflow-x: hidden;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      ul {
+        list-style: none;
+      }
+      button {
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-family: inherit;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--red);
+        border-radius: 2px;
+      }
+
+      /* ============================================================ PRELOADER */
+      .preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 9000;
+        background: var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 2.4rem;
+        transition:
+          opacity 0.7s var(--ease),
+          visibility 0.7s;
+      }
+      .preloader.out {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .pl-logo {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        animation: plFade 0.6s var(--snap) 0.2s both;
+      }
+      .pl-logo img {
+        width: 44px;
+        height: 44px;
+        object-fit: contain;
+      }
+      .pl-brand {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 1;
+      }
+      .pl-brand span {
+        color: var(--red);
+      }
+      .pl-brand small {
+        display: block;
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.3);
+        margin-top: 0.3rem;
+      }
+      .pl-dots {
+        display: flex;
+        gap: 1rem;
+        animation: plFade 0.5s ease 0.5s both;
+      }
+      .pl-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--red);
+        border-radius: 50%;
+        animation: plBounce 1.2s ease-in-out infinite;
+      }
+      .pl-dot:nth-child(2) {
+        animation-delay: 0.15s;
+      }
+      .pl-dot:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .pl-dot:nth-child(4) {
+        animation-delay: 0.45s;
+      }
+      @keyframes plFade {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes plBounce {
+        0%,
+        100% {
+          transform: scale(0.7);
+          opacity: 0.4;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+      }
+
+      /* ============================================================ TOP BAR */
+      .top-bar {
+        background: var(--ink);
+        padding: 0.9rem 0;
+        position: relative;
+        z-index: 600;
+        transition: transform 0.35s var(--ease);
+      }
+      .top-bar.hidden {
+        transform: translateY(-100%);
+      }
+      .tb-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .tb-links {
+        display: flex;
+        gap: 2.4rem;
+      }
+      .tb-links a {
+        font-size: 1.2rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        color: rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: color 0.2s;
+      }
+      .tb-links a:hover {
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .tb-links a i {
+        font-size: 0.95rem;
+        color: var(--red);
+      }
+      .tb-contact {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+      .tb-contact a {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: color 0.2s;
+      }
+      .tb-contact a:hover {
+        color: #fff;
+      }
+      .tb-contact i {
+        color: var(--red);
+        font-size: 0.95rem;
+      }
+      .tb-divider {
+        width: 1px;
+        height: 12px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* ============================================================ HEADER */
+      .site-header {
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 500;
+        background: rgba(245, 243, 240, 0.96);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border-bottom: 1px solid var(--border);
+        transition: all 0.4s var(--ease);
+      }
+      .site-header.lifted {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow:
+          0 1px 0 var(--border),
+          0 4px 24px rgba(10, 10, 11, 0.07);
+      }
+      .hdr-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+      }
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+      }
+      .logo-img-wrap {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+        transition: transform 0.4s var(--spring);
+      }
+      .logo-img-wrap:hover {
+        transform: rotate(-5deg) scale(1.08);
+      }
+      .logo-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .logo-text-wrap {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+      .logo-main {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 2rem;
+        letter-spacing: 0.1em;
+        color: var(--ink);
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .logo-main span {
+        color: var(--red);
+      }
+      .logo-sub {
+        font-family: "Barlow", sans-serif;
+        font-size: 0.92rem;
+        font-weight: 500;
+        letter-spacing: 0.07em;
+        color: var(--muted);
+        margin-top: 0.3rem;
+        text-transform: uppercase;
+      }
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0;
+      }
+      .main-nav > li {
+        position: relative;
+      }
+      .main-nav > li > a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.55rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        padding: 0 1.6rem;
+        height: 72px;
+        transition: color 0.22s;
+        position: relative;
+      }
+      .main-nav > li > a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 1.6rem;
+        right: 1.6rem;
+        height: 2px;
+        background: var(--red);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s var(--ease);
+      }
+      .main-nav > li > a:hover,
+      .main-nav > li > a.active {
+        color: var(--red);
+      }
+      .main-nav > li > a:hover::after,
+      .main-nav > li > a.active::after {
+        transform: scaleX(1);
+      }
+      .main-nav > li > a i {
+        font-size: 0.9rem;
+        opacity: 0.4;
+        transition: transform 0.25s;
+      }
+      .main-nav > li:hover > a i {
+        transform: rotate(180deg);
+      }
+      .dropdown-panel {
+        position: absolute;
+        top: calc(100% + 2px);
+        left: 0;
+        min-width: 250px;
+        background: var(--white);
+        border: 1px solid var(--border2);
+        border-radius: 14px;
+        padding: 0.8rem 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px) scale(0.98);
+        transition: all 0.28s var(--ease);
+        z-index: 100;
+        box-shadow:
+          0 16px 48px rgba(10, 10, 11, 0.14),
+          0 4px 12px rgba(10, 10, 11, 0.06);
+      }
+      .main-nav > li:hover .dropdown-panel {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+      }
+      .dropdown-panel li a {
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
+        padding: 1.1rem 2rem;
+        font-family: "Barlow", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 500;
+        color: var(--ink2);
+        border-left: 2.5px solid transparent;
+        transition: all 0.2s;
+      }
+      .dropdown-panel li a:hover {
+        background: var(--paper);
+        color: var(--red);
+        border-left-color: var(--red);
+        padding-left: 2.6rem;
+      }
+      .dropdown-panel li a i {
+        width: 17px;
+        text-align: center;
+        color: var(--red);
+        font-size: 1.15rem;
+      }
+      .hdr-cta {
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.9rem 2.4rem;
+        border-radius: 7px;
+        margin-left: 1.6rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        transition: all 0.3s;
+      }
+      .hdr-cta:hover {
+        background: var(--red-dark);
+        box-shadow: 0 6px 24px var(--red-glow);
+        transform: translateY(-2px);
+      }
+      .ham {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 6px;
+        border-radius: 6px;
+        transition: background 0.2s;
+      }
+      .ham:hover {
+        background: var(--paper2);
+      }
+      .ham span {
+        width: 22px;
+        height: 2px;
+        background: var(--ink);
+        transition: all 0.32s var(--ease);
+        border-radius: 1px;
+        display: block;
+      }
+      .ham.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .ham.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .ham.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .draw-ov {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 10, 11, 0.6);
+        z-index: 498;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.32s;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+      }
+      .draw-ov.on {
+        opacity: 1;
+        visibility: visible;
+      }
+      .site-draw {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: min(360px, 92vw);
+        height: 100%;
+        background: var(--white);
+        z-index: 499;
+        padding: 7.5rem 3rem 3rem;
+        transition: right 0.38s var(--snap);
+        border-left: 1px solid var(--border);
+        overflow-y: auto;
+      }
+      .site-draw.on {
+        right: 0;
+      }
+      .draw-x {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        width: 38px;
+        height: 38px;
+        background: var(--paper2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        color: var(--muted);
+        transition: all 0.2s;
+      }
+      .draw-x:hover {
+        background: var(--red);
+        color: #fff;
+        transform: rotate(90deg);
+      }
+      .draw-nav {
+        display: flex;
+        flex-direction: column;
+      }
+      .draw-nav > li {
+        border-bottom: 1px solid var(--border);
+      }
+      .draw-nav > li > a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink);
+        padding: 1.6rem 0;
+        transition: color 0.2s;
+      }
+      .draw-nav > li > a:hover {
+        color: var(--red);
+      }
+      .draw-nav > li > a i {
+        font-size: 1rem;
+        opacity: 0.4;
+        transition: transform 0.25s;
+      }
+      .draw-sub {
+        padding-left: 1.2rem;
+        display: none;
+        padding-bottom: 0.6rem;
+      }
+      .draw-sub.open {
+        display: block;
+      }
+      .draw-sub a {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1.45rem;
+        color: var(--muted);
+        padding: 0.9rem 0.5rem;
+        transition: color 0.2s;
+        border-radius: 6px;
+      }
+      .draw-sub a:hover {
+        color: var(--red);
+      }
+      .draw-sub a i {
+        color: var(--red);
+        font-size: 1.1rem;
+        width: 16px;
+        text-align: center;
+      }
+      .draw-cta {
+        background: var(--red);
+        color: #fff;
+        text-align: center;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.5rem 2rem;
+        border-radius: 10px;
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        transition: background 0.3s;
+      }
+      .draw-cta:hover {
+        background: var(--red-dark);
+      }
+
+      /* ============================================================ PAGE HERO */
+      .page-hero {
+        background: var(--ink);
+        position: relative;
+        overflow: hidden;
+        padding: 7rem 4rem 6rem;
+      }
+      .page-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 70% 80% at 10% 50%,
+            rgba(204, 0, 0, 0.15),
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 50% 60% at 90% 20%,
+            rgba(204, 0, 0, 0.08),
+            transparent
+          );
+        pointer-events: none;
+      }
+      .page-hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 5px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          var(--red),
+          transparent
+        );
+        opacity: 0.7;
+      }
+      /* Grid lines */
+      .page-hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: 64px 64px;
+        mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          black,
+          transparent
+        );
+        pointer-events: none;
+      }
+      .page-hero-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 1.2rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 1.8rem;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: var(--red);
+      }
+      .page-hero-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(5rem, 9vw, 11rem);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 0.87;
+        margin-bottom: 2rem;
+      }
+      .page-hero-title em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .page-hero-sub {
+        font-size: 1.6rem;
+        color: rgba(255, 255, 255, 0.42);
+        max-width: 560px;
+        line-height: 1.7;
+        font-weight: 400;
+      }
+
+      /* ============================================================ BREADCRUMB */
+      .breadcrumb {
+        background: var(--paper);
+        border-bottom: 1px solid var(--border);
+        padding: 1.4rem 0;
+      }
+      .breadcrumb-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-size: 1.3rem;
+        color: var(--muted);
+      }
+      .breadcrumb-inner a {
+        color: var(--red);
+        transition: opacity 0.2s;
+      }
+      .breadcrumb-inner a:hover {
+        opacity: 0.75;
+      }
+      .breadcrumb-inner i {
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      .breadcrumb-inner span {
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      /* ============================================================ MAIN SECTION */
+      .main-section {
+        padding: 6rem 4rem 8rem;
+        background: var(--paper);
+      }
+      .main-inner {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      /* ============================================================ LOOKUP CARD */
+      .lookup-card {
+        background: var(--white);
+        border-radius: 24px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        margin-bottom: 4rem;
+        box-shadow: 0 4px 24px rgba(10, 10, 11, 0.06);
+      }
+      .lookup-header {
+        background: var(--ink);
+        padding: 3.5rem 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .lookup-header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 60% 100% at 80% 50%,
+          rgba(204, 0, 0, 0.12),
+          transparent
+        );
+        pointer-events: none;
+      }
+      .lookup-header::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 4px;
+        background: var(--red);
+      }
+      .lh-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 1.2rem;
+      }
+      .lh-eyebrow::before {
+        content: "";
+        width: 22px;
+        height: 2px;
+        background: var(--red);
+      }
+      .lh-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 3.6rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 1rem;
+      }
+      .lh-sub {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.4);
+        font-weight: 400;
+        line-height: 1.6;
+      }
+
+      .lookup-body {
+        padding: 4rem;
+      }
+
+      /* Date input */
+      .input-group {
+        margin-bottom: 3rem;
+      }
+      .input-label {
+        display: block;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 1.2rem;
+      }
+      .input-label i {
+        color: var(--red);
+        margin-right: 0.6rem;
+      }
+      .date-row {
+        display: flex;
+        gap: 1.4rem;
+        flex-wrap: wrap;
+      }
+      .date-sel-wrap {
+        flex: 1;
+        min-width: 120px;
+        position: relative;
+      }
+      .date-sel {
+        width: 100%;
+        padding: 1.4rem 4rem 1.4rem 1.8rem;
+        border: 1.5px solid var(--border2);
+        border-radius: 12px;
+        background: var(--white);
+        color: var(--ink);
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.7rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        appearance: none;
+        -webkit-appearance: none;
+        cursor: pointer;
+        transition:
+          border-color 0.25s,
+          box-shadow 0.25s;
+        outline: none;
+      }
+      .date-sel:focus {
+        border-color: var(--red);
+        box-shadow: 0 0 0 3px var(--red-glow);
+      }
+      .date-sel-wrap::after {
+        content: "\f078";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        right: 1.6rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--muted);
+        font-size: 1.1rem;
+        pointer-events: none;
+      }
+      .date-sel-label {
+        display: block;
+        font-size: 1.1rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 0.7rem;
+        text-align: center;
+      }
+
+      /* Submit button */
+      .submit-btn {
+        width: 100%;
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 1.8rem 4rem;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.2rem;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .submit-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateX(-101%);
+        transition: transform 0.4s var(--ease);
+      }
+      .submit-btn:hover::before {
+        transform: translateX(0);
+      }
+      .submit-btn:hover {
+        background: var(--red-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 32px var(--red-glow);
+      }
+      .submit-btn:active {
+        transform: translateY(0);
+      }
+      .submit-btn i {
+        font-size: 1.8rem;
+        transition: transform 0.3s;
+      }
+      .submit-btn:hover i {
+        transform: translateX(5px) rotate(0deg);
+      }
+
+      /* ============================================================ RESULTS */
+      .results-section {
+        display: none;
+      }
+      .results-section.show {
+        display: block;
+        animation: fadeUp 0.5s var(--snap);
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* Result header info */
+      .result-info-bar {
+        background: var(--ink);
+        border-radius: 16px;
+        padding: 2.4rem 3rem;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+      }
+      .rib-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--red);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: #fff;
+        flex-shrink: 0;
+      }
+      .rib-text {
+        flex: 1;
+      }
+      .rib-label {
+        font-size: 1.2rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.35);
+      }
+      .rib-val {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        color: #fff;
+        line-height: 1;
+        margin-top: 0.3rem;
+      }
+      .rib-val span {
+        color: var(--red);
+      }
+      .rib-badge {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 1rem 1.6rem;
+      }
+      .rib-badge-label {
+        font-size: 1.1rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.3);
+        margin-bottom: 0.2rem;
+      }
+      .rib-badge-val {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 0.06em;
+      }
+
+      /* Results label */
+      .results-label {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        margin-bottom: 2.4rem;
+      }
+      .results-label-text {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 3rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .results-label-count {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: var(--paper2);
+        padding: 0.5rem 1.4rem;
+        border-radius: 20px;
+      }
+
+      /* Schedule timeline */
+      .schedule-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+      }
+
+      .schedule-item {
+        background: var(--white);
+        border-radius: 18px;
+        border: 1.5px solid var(--border);
+        overflow: hidden;
+        transition: all 0.35s var(--ease);
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      .schedule-item.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .schedule-item:hover {
+        border-color: rgba(204, 0, 0, 0.22);
+        box-shadow: 0 12px 36px rgba(10, 10, 11, 0.09);
+        transform: translateY(-3px);
+      }
+
+      .schedule-item.past {
+        opacity: 0.55;
+      }
+      .schedule-item.past:hover {
+        opacity: 0.75;
+      }
+      .schedule-item.current {
+        border-color: var(--red);
+        box-shadow: 0 0 0 3px var(--red-glow);
+      }
+      .schedule-item.upcoming {
+        border-color: rgba(26, 122, 60, 0.35);
+      }
+
+      .si-inner {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 0;
+      }
+
+      /* Step number */
+      .si-step {
+        width: 72px;
+        background: var(--paper);
+        padding: 2rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid var(--border);
+        flex-shrink: 0;
+        min-height: 100%;
+      }
+      .si-step-num {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 3.6rem;
+        font-weight: 900;
+        color: var(--paper2);
+        line-height: 1;
+      }
+      .si-step-label {
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 0.2rem;
+      }
+      .schedule-item.current .si-step {
+        background: var(--red);
+        border-right-color: var(--red-dark);
+      }
+      .schedule-item.current .si-step-num {
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .schedule-item.current .si-step-label {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .schedule-item.upcoming .si-step {
+        background: var(--green-soft);
+      }
+      .schedule-item.upcoming .si-step-num {
+        color: rgba(26, 122, 60, 0.2);
+      }
+
+      /* Main content */
+      .si-body {
+        padding: 2.2rem 2.8rem;
+      }
+      .si-top {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        margin-bottom: 1.2rem;
+        flex-wrap: wrap;
+      }
+      .si-badge {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 0.4rem 1.2rem;
+        border-radius: 20px;
+      }
+      .badge-past {
+        background: var(--paper2);
+        color: var(--muted);
+      }
+      .badge-current {
+        background: var(--red);
+        color: #fff;
+      }
+      .badge-upcoming {
+        background: var(--green-soft);
+        color: var(--green);
+      }
+      .badge-future {
+        background: var(--paper2);
+        color: var(--muted);
+      }
+
+      .si-dates {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+      /*.si-date-item {
+      }*/
+      .si-date-label {
+        font-size: 1.15rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .si-date-label i {
+        color: var(--red);
+        font-size: 1.05rem;
+      }
+      .si-date-val {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        color: var(--ink);
+        line-height: 1;
+      }
+      .si-date-val.highlight {
+        color: var(--red);
+      }
+      .si-date-val.green {
+        color: var(--green);
+      }
+      .si-date-sub {
+        font-size: 1.2rem;
+        color: var(--muted);
+        margin-top: 0.4rem;
+        font-style: italic;
+      }
+
+      .si-or {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+        position: relative;
+        margin: 1.6rem 0;
+      }
+      .si-or::before,
+      .si-or::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border2);
+      }
+      .si-or span {
+        padding: 0 1.6rem;
+        background: var(--white);
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Right side status indicator */
+      .si-status {
+        padding: 2.2rem 2.2rem 2.2rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        min-width: 80px;
+      }
+      .si-status-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.7rem;
+      }
+      .icon-past {
+        background: var(--paper2);
+        color: var(--muted);
+      }
+      .icon-current {
+        background: var(--red);
+        color: #fff;
+        animation: pulse 2s ease-in-out infinite;
+      }
+      .icon-upcoming {
+        background: var(--green-soft);
+        color: var(--green);
+      }
+      .icon-future {
+        background: var(--paper2);
+        color: var(--muted);
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 var(--red-glow);
+        }
+        50% {
+          box-shadow: 0 0 0 8px rgba(204, 0, 0, 0);
+        }
+      }
+      .si-status-text {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-align: center;
+        line-height: 1.2;
+      }
+
+      /* Notes box */
+      .note-box {
+        background: var(--orange-soft);
+        border: 1px solid rgba(201, 106, 0, 0.2);
+        border-radius: 14px;
+        padding: 2rem 2.4rem;
+        margin-top: 3rem;
+        display: flex;
+        gap: 1.6rem;
+        align-items: flex-start;
+      }
+      .note-icon {
+        font-size: 2rem;
+        color: var(--orange);
+        margin-top: 0.2rem;
+        flex-shrink: 0;
+      }
+      /*.note-content {
+      }*/
+      .note-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 0.6rem;
+      }
+      .note-text {
+        font-size: 1.35rem;
+        color: #5a3e00;
+        line-height: 1.7;
+      }
+
+      /* ============================================================ INFO CARD */
+      .info-card {
+        background: var(--white);
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        padding: 4rem;
+        margin-top: 4rem;
+      }
+      .info-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.8rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin-bottom: 2.4rem;
+        padding-bottom: 1.4rem;
+        border-bottom: 2px solid var(--border);
+        position: relative;
+      }
+      .info-title::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 44px;
+        height: 2px;
+        background: var(--red);
+      }
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+      .info-item {
+        display: flex;
+        gap: 1.6rem;
+        padding: 2rem;
+        background: var(--paper);
+        border-radius: 14px;
+        border: 1px solid var(--border);
+      }
+      .info-item-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--red-soft);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        color: var(--red);
+        flex-shrink: 0;
+      }
+      /*.info-item-text {
+      }*/
+      .info-item-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.7rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 0.4rem;
+      }
+      .info-item-sub {
+        font-size: 1.3rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* ============================================================ FOOTER */
+      footer {
+        background: #060606;
+        padding: 7rem 4rem 3rem;
+        border-top: 3px solid var(--red);
+      }
+      .ft-top {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2.2fr 1fr 1fr 1fr 1.5fr;
+        gap: 5rem;
+        margin-bottom: 5rem;
+        padding-bottom: 5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .ft-logo-row {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      .ft-logo-img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        opacity: 0.9;
+      }
+      .ft-brand-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.2rem;
+        letter-spacing: 0.1em;
+        color: #fff;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+      .ft-brand-name span {
+        color: var(--red);
+      }
+      .ft-brand-tag {
+        font-size: 1.35rem;
+        color: rgba(255, 255, 255, 0.22);
+        margin-bottom: 2.8rem;
+        line-height: 1.75;
+        max-width: 290px;
+      }
+      .ft-socials {
+        display: flex;
+        gap: 0.9rem;
+      }
+      .ft-soc {
+        width: 40px;
+        height: 40px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 1.4rem;
+        transition: all 0.26s;
+      }
+      .ft-soc:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+        transform: translateY(-3px);
+      }
+      .ft-col h5 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        color: rgba(255, 255, 255, 0.22);
+        text-transform: uppercase;
+        margin-bottom: 2.2rem;
+      }
+      .ft-col ul li {
+        margin-bottom: 1.3rem;
+      }
+      .ft-col a {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        transition: color 0.2s;
+      }
+      .ft-col a:hover {
+        color: #fff;
+      }
+      .ft-contact li {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.1rem;
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        margin-bottom: 1.5rem;
+      }
+      .ft-contact i {
+        color: var(--red);
+        font-size: 1.2rem;
+        margin-top: 0.2rem;
+        flex-shrink: 0;
+      }
+      .ft-contact a {
+        color: rgba(255, 255, 255, 0.38);
+        transition: color 0.2s;
+      }
+      .ft-contact a:hover {
+        color: #fff;
+      }
+      .ft-btm {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .ft-btm p {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.16);
+      }
+      .ft-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.16);
+      }
+      .ft-badge i {
+        color: var(--red);
+      }
+
+      .mob-nav {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(245, 243, 240, 0.97);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid var(--border);
+        z-index: 400;
+        padding: 0.6rem 0;
+      }
+      .mnb {
+        display: flex;
+        justify-content: space-around;
+      }
+      .mnb-a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        transition: color 0.2s;
+      }
+      .mnb-a:hover {
+        color: var(--red);
+      }
+      .mnb-a i {
+        font-size: 1.9rem;
+      }
+      .mnb-a span {
+        font-size: 0.92rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+
+      .messenger-float {
+        position: fixed;
+        bottom: 9.5rem;
+        right: 2.5rem;
+        width: 52px;
+        height: 52px;
+        background: #0084ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.2rem;
+        color: #fff;
+        z-index: 300;
+        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.32);
+        animation: mpulse 2.5s ease-in-out infinite;
+        transition: transform 0.3s;
+      }
+      .messenger-float:hover {
+        transform: scale(1.12);
+      }
+      @keyframes mpulse {
+        0%,
+        100% {
+          box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
+        }
+        50% {
+          box-shadow: 0 4px 38px rgba(0, 132, 255, 0.58);
+        }
+      }
+      .back-top {
+        position: fixed;
+        bottom: 2.5rem;
+        right: 2.5rem;
+        width: 46px;
+        height: 46px;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        color: #fff;
+        z-index: 300;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+      }
+      .back-top.on {
+        opacity: 1;
+        visibility: visible;
+      }
+      .back-top:hover {
+        background: var(--red-dark);
+        transform: translateY(-3px);
+      }
+
+      /* ============================================================ RESPONSIVE */
+      @media (max-width: 992px) {
+        .main-nav,
+        .hdr-cta {
+          display: none;
+        }
+        .ham {
+          display: flex;
+        }
+        .hdr-inner {
+          padding: 0 2.5rem;
+        }
+        .tb-inner {
+          padding: 0 2.5rem;
+        }
+      }
+      @media (max-width: 768px) {
+        .top-bar {
+          display: none;
+        }
+        .main-section {
+          padding: 4rem 2.5rem 6rem;
+        }
+        .breadcrumb-inner {
+          padding: 0 2.5rem;
+        }
+        .page-hero {
+          padding: 5rem 2.5rem 4rem;
+        }
+        .lookup-body,
+        .info-card {
+          padding: 2.8rem 2.4rem;
+        }
+        .lookup-header {
+          padding: 2.8rem 2.4rem;
+        }
+        .si-dates {
+          grid-template-columns: 1fr;
+        }
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+        .ft-top {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+        .ft-btm {
+          flex-direction: column;
+          text-align: center;
+        }
+        .mob-nav {
+          display: block;
+        }
+        footer {
+          padding-bottom: 8rem;
+        }
+        .rib-badge {
+          display: none;
+        }
+        .date-row {
+          flex-direction: column;
+        }
+      }
+      @media (max-width: 480px) {
+        .page-hero-title {
+          font-size: clamp(4rem, 14vw, 7rem);
+        }
+        .si-inner {
+          grid-template-columns: 60px 1fr auto;
+        }
+        .si-step {
+          width: 60px;
+        }
+        .si-step-num {
+          font-size: 3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- PRELOADER -->
+    <div class="preloader" id="preloader">
+      <div class="pl-logo">
+        <img src="/sanphamxemay/image/banner/Logo_HEAD.png" alt="HEAD" />
+        <div class="pl-brand">
+          HỆ THỐNG HEAD <span>TRUNG HÙNG</span><small>Honda Chính Hãng</small>
+        </div>
+      </div>
+      <div class="pl-dots">
+        <div class="pl-dot"></div>
+        <div class="pl-dot"></div>
+        <div class="pl-dot"></div>
+        <div class="pl-dot"></div>
+      </div>
+    </div>
+
+    <!-- TOP BAR -->
+    <div class="top-bar" id="topBar">
+      <div class="tb-inner">
+        <div class="tb-links">
+          <a href="/question/"
+            ><i class="fas fa-question-circle"></i>Câu hỏi thường gặp</a
+          >
+          <a href="/cuahang/"
+            ><i class="fas fa-location-dot"></i>Hệ thống đại lý</a
+          >
+        </div>
+        <div class="tb-contact">
+          <a href="tel:1900636712"
+            ><i class="fas fa-phone-alt"></i>1900 636 712</a
+          >
+          <div class="tb-divider"></div>
+          <a href="mailto:cr_mt@hungmanh.com.vn"
+            ><i class="fas fa-envelope"></i>cr_mt@hungmanh.com.vn</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="site-header" id="siteHeader">
+      <div class="hdr-inner">
+        <a href="/" class="logo-area">
+          <div class="logo-img-wrap">
+            <img
+              src="/sanphamxemay/image/banner/Logo_HEAD.png"
+              alt="HEAD Trung Hùng"
+            />
+          </div>
+          <div class="logo-text-wrap">
+            <span class="logo-main">HỆ THỐNG HEAD <span>TRUNG HÙNG</span></span>
+            <span class="logo-sub"
+              >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
+            >
+          </div>
+        </a>
+        <ul class="main-nav">
+          <li><a href="/Trangchu/">Trang chủ</a></li>
+          <li><a href="/gioithieu/">Giới thiệu</a></li>
+          <li class="dropdown">
+            <a href="/sanphamxemay/"
+              >Sản phẩm <i class="fas fa-chevron-down"></i
+            ></a>
+            <ul class="dropdown-panel">
+              <li>
+                <a href="/sanphamxemay/?category=xe-ga"
+                  ><i class="fas fa-motorcycle"></i>Xe Ga</a
+                >
+              </li>
+              <li>
+                <a href="/sanphamxemay/?category=xe-so"
+                  ><i class="fas fa-bicycle"></i>Xe Số</a
+                >
+              </li>
+              <li>
+                <a href="/sanphamxemay/?category=xe-con-tay"
+                  ><i class="fas fa-cog"></i>Xe Côn Tay</a
+                >
+              </li>
+              <li>
+                <a href="/sanphamxemay/?category=pkl"
+                  ><i class="fas fa-tachometer-alt"></i>Phân Khối Lớn</a
+                >
+              </li>
+              <li>
+                <a href="/sanphamxemay/?category=xe-dien"
+                  ><i class="fas fa-bolt"></i>Xe Điện</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="/dichvu/">Dịch Vụ <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-panel">
+              <li>
+                <a href="/dichvu/sanphamphutung/"
+                  ><i class="fas fa-gear"></i>Phụ Tùng Chính Hãng</a
+                >
+              </li>
+              <li>
+                <a href="/dichvu/baoduong/"
+                  ><i class="fas fa-tools"></i>Bảo Dưỡng & Sửa Chữa</a
+                >
+              </li>
+              <li>
+                <a href="/dichvu/baohanh/"
+                  ><i class="fas fa-shield-alt"></i>Bảo Hành Xe Máy</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="/tintuc/">Tin tức <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-panel">
+              <li>
+                <a href="/tintuc/tintucxemay/"
+                  ><i class="fas fa-newspaper"></i>Tin Tức Xe Máy</a
+                >
+              </li>
+              <li>
+                <a href="/tintuc/tintucsukien/"
+                  ><i class="fas fa-calendar-alt"></i>Sự Kiện</a
+                >
+              </li>
+              <li>
+                <a href="/tintuc/tintuckhuyenmai/"
+                  ><i class="fas fa-gift"></i>Khuyến Mãi</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li><a href="/cuahang/">Hệ thống đại lý</a></li>
+          <li><a href="/dichvu/baoduong/" class="active">Bảo dưỡng</a></li>
+        </ul>
+        <a href="tel:1900636712" class="hdr-cta"
+          ><i class="fas fa-phone-alt"></i> Gọi ngay</a
+        >
+        <div class="ham" id="ham"><span></span><span></span><span></span></div>
+      </div>
+    </header>
+
+    <!-- Drawer -->
+    <div class="draw-ov" id="drawOv"></div>
+    <div class="site-draw" id="siteDraw">
+      <button class="draw-x" id="drawX"><i class="fas fa-times"></i></button>
+      <ul class="draw-nav">
+        <li><a href="/">Trang chủ</a></li>
+        <li><a href="/gioithieu/">Giới thiệu</a></li>
+        <li>
+          <a href="/sanphamxemay/" class="draw-toggle" data-target="draw-sp"
+            >Sản phẩm <i class="fas fa-chevron-down"></i
+          ></a>
+          <div class="draw-sub" id="draw-sp">
+            <a href="/sanphamxemay/?category=xe-ga"
+              ><i class="fas fa-motorcycle"></i>Xe Ga</a
+            >
+            <a href="/sanphamxemay/?category=xe-so"
+              ><i class="fas fa-bicycle"></i>Xe Số</a
+            >
+            <a href="/sanphamxemay/?category=xe-con-tay"
+              ><i class="fas fa-cog"></i>Xe Côn Tay</a
+            >
+            <a href="/sanphamxemay/?category=pkl"
+              ><i class="fas fa-tachometer-alt"></i>Phân Khối Lớn</a
+            >
+          </div>
+        </li>
+        <li>
+          <a href="/dichvu/" class="draw-toggle" data-target="draw-dv"
+            >Dịch Vụ <i class="fas fa-chevron-down"></i
+          ></a>
+          <div class="draw-sub" id="draw-dv">
+            <a href="/dichvu/sanphamphutung/"
+              ><i class="fas fa-gear"></i>Phụ Tùng Chính Hãng</a
+            >
+            <a href="/dichvu/baoduong/"
+              ><i class="fas fa-tools"></i>Bảo Dưỡng & Sửa Chữa</a
+            >
+            <a href="/dichvu/baohanh/"
+              ><i class="fas fa-shield-alt"></i>Bảo Hành</a
+            >
+          </div>
+        </li>
+        <li><a href="/cuahang/">Hệ thống đại lý</a></li>
+        <li><a href="/lienhe/">Liên hệ</a></li>
+      </ul>
+      <a href="tel:1900636712" class="draw-cta"
+        ><i class="fas fa-phone-alt"></i> Gọi ngay: 1900 636 712</a
+      >
+    </div>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="page-hero-grid"></div>
+      <div class="page-hero-inner">
+        <div class="hero-eyebrow">Dịch vụ bảo dưỡng · Honda Chính Hãng</div>
+        <h1 class="page-hero-title">LỊCH BẢO DƯỠNG<br /><em>ĐỊNH KỲ</em></h1>
+        <p class="page-hero-sub">
+          Nhập ngày mua xe để tra cứu lịch bảo dưỡng định kỳ theo tiêu chuẩn
+          Honda — giúp xe luôn vận hành tối ưu và bảo đảm an toàn.
+        </p>
+      </div>
+    </section>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      <div class="breadcrumb-inner">
+        <a href="/Trangchu/">Trang chủ</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="/dichvu/">Dịch vụ</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Lịch bảo dưỡng định kỳ</span>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <section class="main-section">
+      <div class="main-inner">
+        <!-- LOOKUP CARD -->
+        <div class="lookup-card">
+          <div class="lookup-header">
+            <div class="lh-eyebrow">Tra cứu nhanh</div>
+            <h2 class="lh-title">Nhập ngày mua xe</h2>
+            <p class="lh-sub">
+              Hệ thống sẽ tự động tính toán và hiển thị 7 mốc bảo dưỡng định kỳ
+              theo chuẩn Honda.
+            </p>
+          </div>
+          <div class="lookup-body">
+            <div class="input-group">
+              <label class="input-label"
+                ><i class="fas fa-calendar-alt"></i>Chọn ngày mua xe</label
+              >
+              <div class="date-row">
+                <div class="date-sel-wrap">
+                  <select class="date-sel" id="selDay">
+                    <option value="">Ngày</option>
+                  </select>
+                  <span class="date-sel-label">Ngày</span>
+                </div>
+                <div class="date-sel-wrap">
+                  <select class="date-sel" id="selMonth">
+                    <option value="">Tháng</option>
+                    <option value="1">Tháng 1</option>
+                    <option value="2">Tháng 2</option>
+                    <option value="3">Tháng 3</option>
+                    <option value="4">Tháng 4</option>
+                    <option value="5">Tháng 5</option>
+                    <option value="6">Tháng 6</option>
+                    <option value="7">Tháng 7</option>
+                    <option value="8">Tháng 8</option>
+                    <option value="9">Tháng 9</option>
+                    <option value="10">Tháng 10</option>
+                    <option value="11">Tháng 11</option>
+                    <option value="12">Tháng 12</option>
+                  </select>
+                  <span class="date-sel-label">Tháng</span>
+                </div>
+                <div class="date-sel-wrap">
+                  <select class="date-sel" id="selYear">
+                    <option value="">Năm</option>
+                  </select>
+                  <span class="date-sel-label">Năm</span>
+                </div>
+              </div>
+            </div>
+
+            <button class="submit-btn" id="btnLookup">
+              <i class="fas fa-search"></i>
+              Tra Cứu Lịch Bảo Dưỡng
+            </button>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="results-section" id="resultsSection">
+          <!-- Info bar -->
+          <div class="result-info-bar">
+            <div class="rib-icon"><i class="fas fa-motorcycle"></i></div>
+            <div class="rib-text">
+              <div class="rib-label">Ngày mua xe</div>
+              <div class="rib-val">
+                Xe Honda — Mua ngày <span id="ribDate"></span>
+              </div>
+            </div>
+            <div class="rib-badge">
+              <div class="rib-badge-label">Đã sở hữu</div>
+              <div class="rib-badge-val" id="ribOwned"></div>
+            </div>
+          </div>
+
+          <div class="results-label">
+            <span class="results-label-text">Lịch bảo dưỡng</span>
+            <span class="results-label-count">7 lần kiểm tra</span>
+          </div>
+
+          <div class="schedule-list" id="scheduleList"></div>
+
+          <!-- Note -->
+          <div class="note-box">
+            <i class="fas fa-exclamation-triangle note-icon"></i>
+            <div class="note-content">
+              <div class="note-title">Lưu ý quan trọng</div>
+              <div class="note-text">
+                Bảo dưỡng khi đến mốc thời gian <strong>HOẶC</strong> km — tùy
+                điều kiện nào đến trước. Vui lòng mang xe đến cửa hàng HEAD
+                Trung Hùng gần nhất để được phục vụ tốt nhất. Hotline:
+                <strong>1900 636 712</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INFO CARD -->
+        <div class="info-card">
+          <h3 class="info-title">Tại sao cần bảo dưỡng đúng định kỳ?</h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-item-icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <div class="info-item-text">
+                <div class="info-item-title">Bảo hành chính hãng</div>
+                <div class="info-item-sub">
+                  Bảo dưỡng đúng lịch giúp duy trì quyền bảo hành 3 năm /
+                  30.000km từ Honda Việt Nam.
+                </div>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-icon">
+                <i class="fas fa-tachometer-alt"></i>
+              </div>
+              <div class="info-item-text">
+                <div class="info-item-title">Hiệu suất tối ưu</div>
+                <div class="info-item-sub">
+                  Động cơ và các bộ phận luôn hoạt động ở trạng thái tốt nhất,
+                  tiết kiệm nhiên liệu.
+                </div>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-icon"><i class="fas fa-road"></i></div>
+              <div class="info-item-text">
+                <div class="info-item-title">An toàn hành trình</div>
+                <div class="info-item-sub">
+                  Hệ thống phanh, lốp, đèn được kiểm tra kỹ lưỡng đảm bảo an
+                  toàn tuyệt đối.
+                </div>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-icon"><i class="fas fa-tools"></i></div>
+              <div class="info-item-text">
+                <div class="info-item-title">Kỹ thuật viên chuyên nghiệp</div>
+                <div class="info-item-sub">
+                  Đội ngũ được đào tạo bởi Honda, sử dụng 100% phụ tùng chính
+                  hãng.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="ft-top">
+        <div>
+          <div class="ft-logo-row">
+            <img
+              src="/sanphamxemay/image/banner/Logo_HEAD.png"
+              alt="HEAD"
+              class="ft-logo-img"
+            />
+            <div class="ft-brand-name">
+              HỆ THỐNG HEAD <span>TRUNG HÙNG</span>
+            </div>
+          </div>
+          <p class="ft-brand-tag">
+            Công Ty TNHH Thương Mại Và Dịch Vụ Hùng Mạnh — đại lý Honda chính
+            hãng tại Gia Lai, Hà Nội và Sơn La.
+          </p>
+          <div class="ft-socials">
+            <a
+              href="https://www.facebook.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@HethongHEADTrungHung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.tiktok.com/@hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-tiktok"></i
+            ></a>
+          </div>
+        </div>
+        <div class="ft-col">
+          <h5>Sản Phẩm</h5>
+          <ul>
+            <li><a href="/sanphamxemay/?category=xe-ga">Xe Ga</a></li>
+            <li><a href="/sanphamxemay/?category=xe-so">Xe Số</a></li>
+            <li><a href="/sanphamxemay/?category=xe-con-tay">Xe Côn Tay</a></li>
+            <li><a href="/sanphamxemay/?category=pkl">Phân Khối Lớn</a></li>
+            <li><a href="/sanphamxemay/?category=xe-dien">Xe Điện</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Dịch Vụ</h5>
+          <ul>
+            <li><a href="/dichvu/baoduong/">Bảo Dưỡng & Sửa Chữa</a></li>
+            <li><a href="/dichvu/baohanh/">Bảo Hành Xe Máy</a></li>
+            <li><a href="/dichvu/sanphamphutung/">Phụ Tùng Chính Hãng</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Hỗ Trợ</h5>
+          <ul>
+            <li><a href="/lienhe/">Liên hệ</a></li>
+            <li><a href="/question/">Câu hỏi thường gặp</a></li>
+            <li><a href="/huongdanmuahang/">Hướng dẫn mua hàng</a></li>
+            <li><a href="/dichvu/baohanh/">Chính sách bảo hành</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Liên Hệ</h5>
+          <ul class="ft-contact">
+            <li>
+              <i class="fas fa-phone-alt"></i
+              ><a href="tel:1900636712">1900 636 712</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i
+              ><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a>
+            </li>
+            <li><i class="fas fa-clock"></i>7:30 – 17:30 (T2 – CN)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-btm">
+        <p>© 2025 HỆ THỐNG HEAD TRUNG HÙNG. Bảo lưu mọi quyền.</p>
+        <div class="ft-badge">
+          <i class="fas fa-certificate"></i> Honda Authorised Dealer
+        </div>
+      </div>
+    </footer>
+
+    <nav class="mob-nav">
+      <div class="mnb">
+        <a href="/" class="mnb-a"
+          ><i class="fas fa-home"></i><span>Trang chủ</span></a
+        >
+        <a href="/sanphamxemay/" class="mnb-a"
+          ><i class="fas fa-motorcycle"></i><span>Sản phẩm</span></a
+        >
+        <a href="/tintuc/tintuckhuyenmai/" class="mnb-a"
+          ><i class="fas fa-gift"></i><span>Khuyến mãi</span></a
+        >
+        <a href="/cuahang/" class="mnb-a"
+          ><i class="fas fa-map-marker-alt"></i><span>Đại lý</span></a
+        >
+        <a href="/lienhe/" class="mnb-a"
+          ><i class="fas fa-phone-alt"></i><span>Liên hệ</span></a
+        >
+      </div>
+    </nav>
+    <a
+      href="https://m.me/hethongheadtrunghung"
+      class="messenger-float"
+      target="_blank"
+      rel="noopener"
+      aria-label="Messenger"
+      ><i class="fab fa-facebook-messenger"></i
+    ></a>
+    <a href="#" class="back-top" id="backTop" aria-label="Lên đầu"
+      ><i class="fas fa-arrow-up"></i
+    ></a>
+
+    <script>
+      (function () {
+        "use strict";
+
+        /* ── Preloader ── */
+        window.addEventListener("load", () => {
+          setTimeout(
+            () => document.getElementById("preloader").classList.add("out"),
+            700,
+          );
+        });
+
+        /* ── Header ── */
+        const tb = document.getElementById("topBar");
+        const hdr = document.getElementById("siteHeader");
+        window.addEventListener(
+          "scroll",
+          () => {
+            const y = window.scrollY;
+            tb.classList.toggle("hidden", y > 80);
+            hdr.classList.toggle("lifted", y > 40);
+            document.getElementById("backTop").classList.toggle("on", y > 400);
+          },
+          { passive: true },
+        );
+
+        /* ── Hamburger ── */
+        const ham = document.getElementById("ham");
+        const drawOv = document.getElementById("drawOv");
+        const draw = document.getElementById("siteDraw");
+        const drawX = document.getElementById("drawX");
+        function openDraw() {
+          ham.classList.add("open");
+          drawOv.classList.add("on");
+          draw.classList.add("on");
+          document.body.style.overflow = "hidden";
+        }
+        function closeDraw() {
+          ham.classList.remove("open");
+          drawOv.classList.remove("on");
+          draw.classList.remove("on");
+          document.body.style.overflow = "";
+        }
+        ham.addEventListener("click", openDraw);
+        drawOv.addEventListener("click", closeDraw);
+        drawX.addEventListener("click", closeDraw);
+        document.querySelectorAll(".draw-toggle").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const t = document.getElementById(btn.dataset.target);
+            if (!t) return;
+            const isOpen = t.classList.contains("open");
+            document
+              .querySelectorAll(".draw-sub")
+              .forEach((s) => s.classList.remove("open"));
+            document
+              .querySelectorAll(".draw-toggle i")
+              .forEach((i) => (i.style.transform = ""));
+            if (!isOpen) {
+              t.classList.add("open");
+              btn.querySelector("i").style.transform = "rotate(180deg)";
+            }
+          });
+        });
+
+        /* ── Populate selects ── */
+        const selDay = document.getElementById("selDay");
+        const selMonth = document.getElementById("selMonth");
+        const selYear = document.getElementById("selYear");
+
+        for (let d = 1; d <= 31; d++) {
+          const o = document.createElement("option");
+          o.value = d;
+          o.textContent = d < 10 ? "0" + d : d;
+          selDay.appendChild(o);
+        }
+        const curYear = new Date().getFullYear();
+        for (let y = curYear; y >= 2010; y--) {
+          const o = document.createElement("option");
+          o.value = y;
+          o.textContent = y;
+          selYear.appendChild(o);
+        }
+
+        /* ── Schedule config ── */
+        // [label, months, km]
+        const SCHEDULE = [
+          { label: "Lần 1", months: 2, km: 1500 },
+          { label: "Lần 2", months: 6, km: 5000 },
+          { label: "Lần 3", months: 12, km: 10000 },
+          { label: "Lần 4", months: 18, km: 15000 },
+          { label: "Lần 5", months: 24, km: 20000 },
+          { label: "Lần 6", months: 30, km: 25000 },
+          { label: "Lần 7", months: 36, km: 30000 },
+        ];
+
+        /* ── Helpers ── */
+        function addMonths(date, months) {
+          const d = new Date(date);
+          d.setMonth(d.getMonth() + months);
+          return d;
+        }
+        function formatDate(d) {
+          const day = String(d.getDate()).padStart(2, "0");
+          const mon = String(d.getMonth() + 1).padStart(2, "0");
+          return `${day}/${mon}/${d.getFullYear()}`;
+        }
+        function formatKm(km) {
+          return km.toLocaleString("vi-VN");
+        }
+        function monthDiff(d1, d2) {
+          let months = (d2.getFullYear() - d1.getFullYear()) * 12;
+          months += d2.getMonth() - d1.getMonth();
+          return months;
+        }
+        function diffText(buyDate, now) {
+          const totalDays = Math.floor((now - buyDate) / (1000 * 60 * 60 * 24));
+          if (totalDays < 0) return "";
+          const years = Math.floor(totalDays / 365);
+          const months = Math.floor((totalDays % 365) / 30);
+          const days = totalDays % 30;
+          let parts = [];
+          if (years > 0) parts.push(`${years} năm`);
+          if (months > 0) parts.push(`${months} tháng`);
+          if (days > 0 && years === 0) parts.push(`${days} ngày`);
+          return parts.join(" ") || "0 ngày";
+        }
+
+        /* ── Main lookup ── */
+        document
+          .getElementById("btnLookup")
+          .addEventListener("click", function () {
+            const d = selDay.value,
+              m = selMonth.value,
+              y = selYear.value;
+            if (!d || !m || !y) {
+              alert("Vui lòng chọn đầy đủ ngày, tháng và năm mua xe.");
+              return;
+            }
+
+            const buyDate = new Date(y, m - 1, d);
+            if (isNaN(buyDate.getTime())) {
+              alert("Ngày không hợp lệ. Vui lòng chọn lại.");
+              return;
+            }
+            if (buyDate > new Date()) {
+              alert("Ngày mua xe không thể là ngày trong tương lai.");
+              return;
+            }
+
+            const now = new Date();
+
+            /* Update info bar */
+            document.getElementById("ribDate").textContent =
+              formatDate(buyDate);
+            document.getElementById("ribOwned").textContent = diffText(
+              buyDate,
+              now,
+            );
+
+            /* Build schedule items */
+            const list = document.getElementById("scheduleList");
+            list.innerHTML = "";
+
+            SCHEDULE.forEach((item, idx) => {
+              const dueDate = addMonths(buyDate, item.months);
+
+              /* Determine status */
+              let status = "future";
+              if (dueDate < now) {
+                // check if next one is also past
+                if (idx < SCHEDULE.length - 1) {
+                  const nextDue = addMonths(buyDate, SCHEDULE[idx + 1].months);
+                  status = nextDue < now ? "past" : "current";
+                } else {
+                  status = "past";
+                }
+              } else {
+                // upcoming = next one after all past
+                const prevAllPast =
+                  idx === 0
+                    ? true
+                    : addMonths(buyDate, SCHEDULE[idx - 1].months) < now;
+                status = prevAllPast ? "upcoming" : "future";
+              }
+
+              /* Badge text */
+              const badgeMap = {
+                past: "Đã qua",
+                current: "Đến hạn ngay!",
+                upcoming: "Tiếp theo",
+                future: "Sắp tới",
+              };
+              const badgeClass = {
+                past: "badge-past",
+                current: "badge-current",
+                upcoming: "badge-upcoming",
+                future: "badge-future",
+              };
+              const iconMap = {
+                past: "fas fa-check",
+                current: "fas fa-bell",
+                upcoming: "fas fa-clock",
+                future: "far fa-clock",
+              };
+              const iconClass = {
+                past: "icon-past",
+                current: "icon-current",
+                upcoming: "icon-upcoming",
+                future: "icon-future",
+              };
+              const statusText = {
+                past: "Đã qua",
+                current: "Đến hạn",
+                upcoming: "Sắp đến",
+                future: "Chưa đến",
+              };
+
+              const dateValClass =
+                status === "current"
+                  ? "si-date-val highlight"
+                  : status === "upcoming"
+                    ? "si-date-val green"
+                    : "si-date-val";
+              const numClass =
+                status === "current" ? "si-step-num" : "si-step-num";
+
+              const el = document.createElement("div");
+              el.className = `schedule-item ${status}`;
+              el.innerHTML = `
+          <div class="si-inner">
+            <div class="si-step">
+              <span class="${numClass}">${idx + 1}</span>
+              <span class="si-step-label">Lần</span>
+            </div>
+            <div class="si-body">
+              <div class="si-top">
+                <span class="si-badge ${badgeClass[status]}">${badgeMap[status]}</span>
+              </div>
+              <div class="si-dates">
+                <div class="si-date-item">
+                  <div class="si-date-label"><i class="far fa-calendar-alt"></i>Ngày mua xe</div>
+                  <div class="si-date-val">${formatDate(buyDate)}</div>
+                  <div class="si-date-sub">Ngày bắt đầu tính</div>
+                </div>
+                <div class="si-date-item">
+                  <div class="si-date-label"><i class="fas fa-calendar-check"></i>Hạn bảo dưỡng</div>
+                  <div class="${dateValClass}">${formatDate(dueDate)}</div>
+                  <div class="si-date-sub">Sau ${item.months} tháng kể từ mua xe</div>
+                </div>
+              </div>
+              <div class="si-or"><span>HOẶC</span></div>
+              <div class="si-date-item">
+                <div class="si-date-label"><i class="fas fa-tachometer-alt"></i>Theo số km</div>
+                <div class="${dateValClass}">${formatKm(item.km)} km</div>
+                <div class="si-date-sub">Tùy điều kiện nào đến trước</div>
+              </div>
+            </div>
+            <div class="si-status">
+              <div class="si-status-icon ${iconClass[status]}"><i class="${iconMap[status]}"></i></div>
+              <div class="si-status-text">${statusText[status]}</div>
+            </div>
+          </div>`;
+              list.appendChild(el);
+
+              /* Stagger animation */
+              setTimeout(() => el.classList.add("visible"), idx * 80 + 100);
+            });
+
+            /* Show results */
+            const res = document.getElementById("resultsSection");
+            res.classList.add("show");
+            setTimeout(() => {
+              res.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 200);
+          });
+      })();
+    </script>
+  </body>
+</html>
