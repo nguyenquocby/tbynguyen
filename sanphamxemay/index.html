@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sản Phẩm Xe Máy Honda – HEAD TRUNG HÙNG</title>
+    <title>Sản Phẩm Xe Máy Honda – HỆ THỐNG HEAD TRUNG HÙNG</title>
     <link
       rel="icon"
       href="/sanphamxemay/image/banner/Logo_HEAD.png"
@@ -14,29 +14,33 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Barlow:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+
     <style>
-      /* ======================================================
-   TOKENS
-====================================================== */
+      /* ============================================================ TOKENS */
       :root {
-        --red: #d10017;
-        --red-mid: #a5000e;
-        --red-soft: rgba(209, 0, 23, 0.09);
-        --red-glow: rgba(209, 0, 23, 0.22);
-        --ink: #0f0f10;
-        --ink2: #222225;
-        --paper: #f8f6f3;
-        --paper2: #efecea;
+        --red: #cc0000;
+        --red-dark: #990000;
+        --red-glow: rgba(204, 0, 0, 0.28);
+        --red-soft: rgba(204, 0, 0, 0.07);
+        --ink: #0a0a0b;
+        --ink2: #1a1a1c;
+        --paper: #f5f3f0;
+        --paper2: #eceae6;
         --white: #ffffff;
-        --border: rgba(15, 15, 16, 0.09);
-        --muted: #7a7570;
+        --border: rgba(10, 10, 11, 0.08);
+        --border2: rgba(10, 10, 11, 0.14);
+        --muted: #7a7672;
         --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --snap: cubic-bezier(0.16, 1, 0.3, 1);
         --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
       }
-      * {
+
+      *,
+      *::before,
+      *::after {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -51,6 +55,7 @@
         color: var(--ink);
         overflow-x: hidden;
         line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
       }
       img {
         max-width: 100%;
@@ -77,27 +82,100 @@
       }
       ::-webkit-scrollbar-thumb {
         background: var(--red);
+        border-radius: 2px;
       }
 
-      /* ======================================================
-   HEADER
-====================================================== */
+      /* ============================================================ TOP BAR */
+      .top-bar {
+        background: var(--ink);
+        padding: 0.9rem 0;
+        position: relative;
+        z-index: 600;
+        transition: transform 0.35s var(--ease);
+      }
+      .top-bar.hidden {
+        transform: translateY(-100%);
+      }
+      .tb-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .tb-links {
+        display: flex;
+        gap: 2.4rem;
+      }
+      .tb-links a {
+        font-size: 1.2rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        color: rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: color 0.2s;
+      }
+      .tb-links a:hover {
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .tb-links a i {
+        font-size: 0.95rem;
+        color: var(--red);
+      }
+      .tb-contact {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+      .tb-contact a {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: color 0.2s;
+      }
+      .tb-contact a:hover {
+        color: #fff;
+      }
+      .tb-contact i {
+        color: var(--red);
+        font-size: 0.95rem;
+      }
+      .tb-divider {
+        width: 1px;
+        height: 12px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* ============================================================ HEADER */
       .site-header {
         position: sticky;
         top: 0;
+        left: 0;
+        right: 0;
         z-index: 500;
-        background: rgba(248, 246, 243, 0.97);
-        backdrop-filter: blur(20px);
+        background: rgba(245, 243, 240, 0.96);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
         border-bottom: 1px solid var(--border);
-        transition: box-shadow 0.35s;
+        transition: all 0.4s var(--ease);
       }
       .site-header.lifted {
-        box-shadow: 0 2px 24px rgba(15, 15, 16, 0.07);
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow:
+          0 1px 0 var(--border),
+          0 4px 24px rgba(10, 10, 11, 0.07);
       }
-      .hdr {
+      .hdr-inner {
         max-width: 1340px;
         margin: 0 auto;
-        padding: 0 3rem;
+        padding: 0 4rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -105,163 +183,248 @@
         gap: 2rem;
       }
 
-      /* Logo: image + text */
-      .logo-wrap {
+      /* Logo */
+      .logo-area {
         display: flex;
         align-items: center;
-        gap: 1.3rem;
+        gap: 1.4rem;
         flex-shrink: 0;
       }
-      .logo-img {
+      .logo-img-wrap {
+        width: 44px;
         height: 44px;
-        width: auto;
-        transition: opacity 0.25s;
+        flex-shrink: 0;
+        transition: transform 0.4s var(--spring);
       }
-      .logo-wrap:hover .logo-img {
-        opacity: 0.85;
+      .logo-img-wrap:hover {
+        transform: rotate(-5deg) scale(1.08);
       }
-      .logo-text-block {
+      .logo-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .logo-text-wrap {
         display: flex;
         flex-direction: column;
         line-height: 1;
       }
-      .logo-name {
+      .logo-main {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.95rem;
         font-weight: 800;
-        letter-spacing: 0.09em;
-        text-transform: uppercase;
+        font-size: 2rem;
+        letter-spacing: 0.1em;
         color: var(--ink);
-        white-space: nowrap;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .logo-main span {
+        color: var(--red);
       }
       .logo-sub {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1rem;
+        font-family: "Barlow", sans-serif;
+        font-size: 0.92rem;
         font-weight: 500;
-        letter-spacing: 0.11em;
-        text-transform: uppercase;
+        letter-spacing: 0.07em;
         color: var(--muted);
-        white-space: nowrap;
-        margin-top: 0.2rem;
+        margin-top: 0.3rem;
+        text-transform: uppercase;
       }
 
-      /* Nav */
+      /* Desktop Nav */
       .main-nav {
         display: flex;
         align-items: center;
         gap: 0;
       }
-      .main-nav a {
+      .main-nav > li {
+        position: relative;
+      }
+      .main-nav > li > a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.5rem;
+        font-size: 1.55rem;
         font-weight: 600;
-        letter-spacing: 0.07em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--ink2);
-        padding: 0.7rem 1.4rem;
+        padding: 0 1.6rem;
+        height: 72px;
+        transition: color 0.22s;
         position: relative;
-        transition: color 0.2s;
       }
-      .main-nav a::after {
+      .main-nav > li > a::after {
         content: "";
         position: absolute;
         bottom: 0;
-        left: 1.4rem;
-        right: 1.4rem;
+        left: 1.6rem;
+        right: 1.6rem;
         height: 2px;
         background: var(--red);
         transform: scaleX(0);
+        transform-origin: left;
         transition: transform 0.3s var(--ease);
       }
-      .main-nav a:hover,
-      .main-nav a.active {
+      .main-nav > li > a:hover,
+      .main-nav > li > a.active {
         color: var(--red);
       }
-      .main-nav a:hover::after,
-      .main-nav a.active::after {
+      .main-nav > li > a:hover::after,
+      .main-nav > li > a.active::after {
         transform: scaleX(1);
       }
-      .nav-cta {
+      .main-nav > li > a i {
+        font-size: 0.9rem;
+        opacity: 0.4;
+        transition: transform 0.25s;
+      }
+      .main-nav > li:hover > a i {
+        transform: rotate(180deg);
+      }
+      .dropdown-panel {
+        position: absolute;
+        top: calc(100% + 2px);
+        left: 0;
+        min-width: 250px;
+        background: var(--white);
+        border: 1px solid var(--border2);
+        border-radius: 14px;
+        padding: 0.8rem 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px) scale(0.98);
+        transition: all 0.28s var(--ease);
+        z-index: 100;
+        box-shadow:
+          0 16px 48px rgba(10, 10, 11, 0.14),
+          0 4px 12px rgba(10, 10, 11, 0.06);
+      }
+      .main-nav > li:hover .dropdown-panel {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+      }
+      .dropdown-panel li a {
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
+        padding: 1.1rem 2rem;
+        font-family: "Barlow", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 500;
+        color: var(--ink2);
+        border-left: 2.5px solid transparent;
+        transition: all 0.2s;
+      }
+      .dropdown-panel li a:hover {
+        background: var(--paper);
+        color: var(--red);
+        border-left-color: var(--red);
+        padding-left: 2.6rem;
+      }
+      .dropdown-panel li a i {
+        width: 17px;
+        text-align: center;
+        color: var(--red);
+        font-size: 1.15rem;
+      }
+
+      .hdr-cta {
         background: var(--red);
         color: #fff;
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        padding: 0.85rem 2.2rem;
-        border-radius: 4px;
-        margin-left: 1rem;
-        flex-shrink: 0;
+        padding: 0.9rem 2.4rem;
+        border-radius: 7px;
+        margin-left: 1.6rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
         transition: all 0.3s;
+        flex-shrink: 0;
       }
-      .nav-cta:hover {
-        background: var(--red-mid);
+      .hdr-cta:hover {
+        background: var(--red-dark);
+        box-shadow: 0 6px 24px var(--red-glow);
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px var(--red-glow);
       }
 
-      /* Hamburger */
       .ham {
         display: none;
         flex-direction: column;
         gap: 5px;
-        padding: 4px;
+        padding: 6px;
+        border-radius: 6px;
+        transition: background 0.2s;
+        cursor: pointer;
+      }
+      .ham:hover {
+        background: var(--paper2);
       }
       .ham span {
         width: 22px;
         height: 2px;
         background: var(--ink);
-        transition: all 0.3s;
+        transition: all 0.32s var(--ease);
         border-radius: 1px;
+        display: block;
       }
       .ham.open span:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
       }
       .ham.open span:nth-child(2) {
         opacity: 0;
+        transform: scaleX(0);
       }
       .ham.open span:nth-child(3) {
         transform: translateY(-7px) rotate(-45deg);
       }
 
       /* Drawer */
-      .dov {
+      .draw-ov {
         position: fixed;
         inset: 0;
-        background: rgba(15, 15, 16, 0.55);
+        background: rgba(10, 10, 11, 0.6);
         z-index: 498;
         opacity: 0;
         visibility: hidden;
-        transition: all 0.3s;
+        transition: all 0.32s;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
       }
-      .dov.on {
+      .draw-ov.on {
         opacity: 1;
         visibility: visible;
       }
-      .sdraw {
+      .site-draw {
         position: fixed;
         top: 0;
         right: -100%;
-        width: min(330px, 90vw);
+        width: min(360px, 92vw);
         height: 100%;
         background: var(--white);
         z-index: 499;
-        padding: 6rem 2.8rem 3rem;
-        transition: right 0.38s var(--ease);
+        padding: 7.5rem 3rem 3rem;
+        transition: right 0.38s var(--snap);
         border-left: 1px solid var(--border);
-        display: flex;
-        flex-direction: column;
+        overflow-y: auto;
       }
-      .sdraw.on {
+      .site-draw.on {
         right: 0;
       }
-      .sdx {
+
+      /* ✅ FIX: draw-x uses button element properly, pointer-events:all guaranteed */
+      .draw-x {
         position: absolute;
-        top: 1.6rem;
-        right: 1.6rem;
-        width: 36px;
-        height: 36px;
+        top: 2rem;
+        right: 2rem;
+        width: 40px;
+        height: 40px;
         background: var(--paper2);
         border-radius: 50%;
         display: flex;
@@ -270,71 +433,118 @@
         font-size: 1.5rem;
         color: var(--muted);
         transition: all 0.2s;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        z-index: 10; /* ensure above any content */
       }
-      .sdx:hover {
+      .draw-x:hover {
         background: var(--red);
         color: #fff;
+        transform: rotate(90deg);
       }
-      .dnav {
+
+      .draw-nav {
         display: flex;
         flex-direction: column;
-        flex: 1;
       }
-      .dnav a {
+      .draw-nav > li {
+        border-bottom: 1px solid var(--border);
+      }
+      .draw-nav > li > a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         font-family: "Barlow Condensed", sans-serif;
         font-size: 1.8rem;
         font-weight: 700;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: var(--ink2);
-        padding: 1.4rem 0;
-        border-bottom: 1px solid var(--border);
+        color: var(--ink);
+        padding: 1.6rem 0;
         transition: color 0.2s;
       }
-      .dnav a:hover,
-      .dnav a.active {
+      .draw-nav > li > a:hover,
+      .draw-nav > li > a.active {
         color: var(--red);
       }
-      .dcta {
+      .draw-nav > li > a i {
+        font-size: 1rem;
+        opacity: 0.4;
+        transition: transform 0.25s;
+      }
+      .draw-sub {
+        padding-left: 1.2rem;
+        display: none;
+        padding-bottom: 0.6rem;
+      }
+      .draw-sub.open {
+        display: block;
+      }
+      .draw-sub a {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1.45rem;
+        color: var(--muted);
+        padding: 0.9rem 0.5rem;
+        transition: color 0.2s;
+        border-radius: 6px;
+      }
+      .draw-sub a:hover {
+        color: var(--red);
+      }
+      .draw-sub a i {
+        color: var(--red);
+        font-size: 1.1rem;
+        width: 16px;
+        text-align: center;
+      }
+      .draw-cta {
         background: var(--red);
         color: #fff;
         text-align: center;
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        padding: 1.3rem;
-        border-radius: 4px;
-        margin-top: auto;
+        padding: 1.5rem 2rem;
+        border-radius: 10px;
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
         transition: background 0.3s;
       }
-      .dcta:hover {
-        background: var(--red-mid);
+      .draw-cta:hover {
+        background: var(--red-dark);
       }
 
-      /* ======================================================
-   PAGE HERO (static, no slider)
-====================================================== */
+      /* ============================================================ PAGE HERO */
       .page-hero {
         background: var(--ink);
         position: relative;
         overflow: hidden;
-        padding: 7rem 3rem 6rem;
+        padding: 7.5rem 4rem 7rem;
       }
+      /* Grid lines */
       .ph-grid {
         position: absolute;
         inset: 0;
         background-image:
-          linear-gradient(rgba(209, 0, 23, 0.06) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(209, 0, 23, 0.06) 1px, transparent 1px);
-        background-size: 50px 50px;
+          linear-gradient(rgba(204, 0, 0, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(204, 0, 0, 0.06) 1px, transparent 1px);
+        background-size: 52px 52px;
         mask-image: radial-gradient(
           ellipse 80% 90% at 30% 50%,
           black 20%,
           transparent 100%
         );
+        pointer-events: none;
       }
+      /* Glow & rings */
       .ph-glow-r {
         position: absolute;
         right: -200px;
@@ -345,46 +555,67 @@
         border-radius: 50%;
         background: radial-gradient(
           ellipse,
-          rgba(209, 0, 23, 0.14) 0%,
+          rgba(204, 0, 0, 0.16) 0%,
           transparent 65%
         );
         pointer-events: none;
       }
-      /* Animated rings right side */
       .ph-rings {
         position: absolute;
         right: -150px;
         top: 50%;
         transform: translateY(-50%);
+        pointer-events: none;
       }
       .ph-ring {
         position: absolute;
         border-radius: 50%;
-        border: 1px solid rgba(209, 0, 23, 0.18);
+        border: 1px solid rgba(204, 0, 0, 0.18);
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         animation: ring-spin 22s linear infinite;
       }
       .ph-ring:nth-child(1) {
-        width: 480px;
-        height: 480px;
+        width: 500px;
+        height: 500px;
       }
       .ph-ring:nth-child(2) {
-        width: 320px;
-        height: 320px;
+        width: 340px;
+        height: 340px;
         animation-direction: reverse;
         animation-duration: 15s;
       }
       .ph-ring:nth-child(3) {
-        width: 180px;
-        height: 180px;
-        border-color: rgba(209, 0, 23, 0.35);
+        width: 190px;
+        height: 190px;
+        border-color: rgba(204, 0, 0, 0.38);
+      }
+      .ph-ring:nth-child(4) {
+        width: 80px;
+        height: 80px;
+        background: rgba(204, 0, 0, 0.06);
       }
       @keyframes ring-spin {
         to {
           transform: translate(-50%, -50%) rotate(360deg);
         }
+      }
+      /* Red left line */
+      .page-hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 5px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          var(--red),
+          transparent
+        );
+        opacity: 0.7;
       }
 
       .ph-inner {
@@ -394,34 +625,33 @@
         z-index: 1;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 5rem;
+        gap: 6rem;
         align-items: center;
       }
-
       .ph-kicker {
         display: inline-flex;
         align-items: center;
-        gap: 0.8rem;
+        gap: 1.2rem;
         font-family: "Barlow Condensed", sans-serif;
         font-size: 1.2rem;
         font-weight: 700;
-        letter-spacing: 0.28em;
+        letter-spacing: 0.3em;
         text-transform: uppercase;
         color: var(--red);
         margin-bottom: 2rem;
       }
       .ph-kicker::before {
         content: "";
-        width: 20px;
-        height: 1.5px;
+        width: 28px;
+        height: 2px;
         background: var(--red);
       }
       .ph-h1 {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(6rem, 10vw, 12rem);
+        font-size: clamp(6rem, 10vw, 13rem);
         font-weight: 900;
         letter-spacing: 0.02em;
-        line-height: 0.88;
+        line-height: 0.87;
         color: #fff;
         margin-bottom: 2.5rem;
       }
@@ -431,12 +661,12 @@
         display: block;
       }
       .ph-sub {
-        font-size: 1.7rem;
+        font-size: 1.65rem;
         color: rgba(255, 255, 255, 0.42);
-        line-height: 1.65;
+        line-height: 1.68;
         margin-bottom: 4rem;
-        font-weight: 300;
         max-width: 440px;
+        font-weight: 400;
       }
       .ph-btns {
         display: flex;
@@ -447,7 +677,7 @@
       .btn-ph-pri {
         display: inline-flex;
         align-items: center;
-        gap: 0.9rem;
+        gap: 1rem;
         background: var(--red);
         color: #fff;
         font-family: "Barlow Condensed", sans-serif;
@@ -455,12 +685,12 @@
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        padding: 1.3rem 3rem;
-        border-radius: 4px;
+        padding: 1.3rem 3.2rem;
+        border-radius: 7px;
         transition: all 0.3s;
       }
       .btn-ph-pri:hover {
-        background: var(--red-mid);
+        background: var(--red-dark);
         transform: translateY(-2px);
         box-shadow: 0 8px 28px var(--red-glow);
       }
@@ -473,7 +703,7 @@
         color: rgba(255, 255, 255, 0.52);
         display: inline-flex;
         align-items: center;
-        gap: 0.7rem;
+        gap: 0.8rem;
         border-bottom: 1.5px solid rgba(255, 255, 255, 0.2);
         padding-bottom: 0.3rem;
         transition: all 0.25s;
@@ -481,9 +711,10 @@
       .btn-ph-ghost:hover {
         color: #fff;
         border-bottom-color: #fff;
+        gap: 1.2rem;
       }
 
-      /* Right stat grid */
+      /* Stats grid */
       .ph-stats {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -492,22 +723,22 @@
       .ph-stat {
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 12px;
-        padding: 2.5rem;
+        border-radius: 14px;
+        padding: 2.8rem;
         transition: all 0.35s;
       }
       .ph-stat:hover {
         background: rgba(255, 255, 255, 0.09);
-        border-color: rgba(209, 0, 23, 0.28);
+        border-color: rgba(204, 0, 0, 0.28);
       }
       .ps-val {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 4.8rem;
+        font-size: 5.2rem;
         font-weight: 900;
         letter-spacing: 0.02em;
         color: #fff;
         line-height: 1;
-        margin-bottom: 0.4rem;
+        margin-bottom: 0.5rem;
       }
       .ps-val em {
         color: var(--red);
@@ -516,43 +747,41 @@
       .ps-label {
         font-family: "Barlow Condensed", sans-serif;
         font-size: 1.15rem;
-        font-weight: 600;
-        letter-spacing: 0.15em;
+        font-weight: 700;
+        letter-spacing: 0.16em;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.3);
+        color: rgba(255, 255, 255, 0.28);
       }
 
-      /* ======================================================
-   MARQUEE
-====================================================== */
+      /* ============================================================ MARQUEE */
       .marquee-strip {
         background: var(--red);
-        padding: 1.2rem 0;
+        padding: 1.3rem 0;
         overflow: hidden;
       }
       .mq-track {
         display: flex;
         width: max-content;
-        animation: mq 22s linear infinite;
+        animation: mq 24s linear infinite;
       }
       .mq-item {
         font-family: "Barlow Condensed", sans-serif;
         font-size: 1.8rem;
-        letter-spacing: 0.18em;
-        color: rgba(255, 255, 255, 0.65);
-        padding: 0 2.5rem;
+        letter-spacing: 0.2em;
+        color: rgba(255, 255, 255, 0.7);
+        padding: 0 2.8rem;
         display: inline-flex;
         align-items: center;
-        gap: 2rem;
+        gap: 2.2rem;
         white-space: nowrap;
       }
       .mq-dot {
         width: 5px;
         height: 5px;
-        background: #fff;
+        background: rgba(255, 255, 255, 0.5);
         border-radius: 50%;
         display: inline-block;
-        opacity: 0.5;
+        flex-shrink: 0;
       }
       @keyframes mq {
         from {
@@ -563,11 +792,9 @@
         }
       }
 
-      /* ======================================================
-   PRODUCTS SECTION
-====================================================== */
+      /* ============================================================ PRODUCTS SECTION */
       .products-section {
-        padding: 8rem 3rem;
+        padding: 8rem 4rem;
       }
       .ps-wrap {
         max-width: 1340px;
@@ -575,36 +802,36 @@
       }
       .sec-eyebrow {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.2rem;
+        font-size: 1.15rem;
         font-weight: 700;
         letter-spacing: 0.28em;
         text-transform: uppercase;
         color: var(--red);
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        gap: 0.8rem;
-        margin-bottom: 1.5rem;
+        gap: 1rem;
+        margin-bottom: 1.4rem;
       }
       .sec-eyebrow::before {
         content: "";
-        width: 20px;
-        height: 1.5px;
+        width: 24px;
+        height: 2px;
         background: var(--red);
       }
       .sec-h2 {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 5.5rem;
+        font-size: 5.8rem;
         font-weight: 900;
         letter-spacing: 0.03em;
-        line-height: 0.95;
-        margin-bottom: 1.2rem;
+        line-height: 0.92;
+        margin-bottom: 1.4rem;
       }
       .sec-sub {
         font-size: 1.6rem;
         color: var(--muted);
         max-width: 480px;
-        margin-bottom: 4.5rem;
-        line-height: 1.55;
+        margin-bottom: 5rem;
+        line-height: 1.6;
       }
 
       /* Action row */
@@ -612,22 +839,22 @@
         display: flex;
         align-items: center;
         gap: 1.2rem;
-        margin-bottom: 3.5rem;
+        margin-bottom: 3rem;
         flex-wrap: wrap;
       }
       .action-pill {
         display: inline-flex;
         align-items: center;
-        gap: 0.8rem;
+        gap: 0.9rem;
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.35rem;
+        font-size: 1.4rem;
         font-weight: 700;
-        letter-spacing: 0.07em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--ink2);
         padding: 1rem 2.2rem;
-        border: 1.5px solid var(--border);
-        border-radius: 5px;
+        border: 1.5px solid var(--border2);
+        border-radius: 8px;
         background: var(--white);
         transition: all 0.25s;
       }
@@ -645,14 +872,14 @@
       /* Search */
       .search-wrap {
         position: relative;
-        max-width: 420px;
+        max-width: 440px;
         margin-bottom: 3rem;
       }
       .search-input {
         width: 100%;
-        padding: 1.3rem 5rem 1.3rem 1.8rem;
-        border: 1.5px solid var(--border);
-        border-radius: 8px;
+        padding: 1.4rem 5.5rem 1.4rem 2rem;
+        border: 1.5px solid var(--border2);
+        border-radius: 12px;
         font-family: "Barlow Condensed", sans-serif;
         font-size: 1.55rem;
         font-weight: 500;
@@ -669,9 +896,9 @@
         border-color: var(--red);
         box-shadow: 0 0 0 4px var(--red-soft);
       }
-      .search-icon-wrap {
+      .search-icon {
         position: absolute;
-        right: 1.8rem;
+        right: 2rem;
         top: 50%;
         transform: translateY(-50%);
         color: var(--muted);
@@ -680,7 +907,7 @@
       }
       .search-clear {
         position: absolute;
-        right: 4.5rem;
+        right: 4.6rem;
         top: 50%;
         transform: translateY(-50%);
         color: var(--muted);
@@ -688,6 +915,9 @@
         display: none;
         cursor: pointer;
         transition: color 0.2s;
+        background: none;
+        border: none;
+        padding: 0.3rem;
       }
       .search-clear:hover {
         color: var(--red);
@@ -701,22 +931,23 @@
         display: flex;
         gap: 0.8rem;
         flex-wrap: wrap;
-        margin-bottom: 2rem;
+        margin-bottom: 2.4rem;
       }
       .ftab {
         font-family: "Barlow Condensed", sans-serif;
         font-size: 1.4rem;
         font-weight: 700;
-        letter-spacing: 0.07em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        padding: 0.85rem 2.2rem;
-        border-radius: 5px;
-        border: 1.5px solid var(--border);
+        padding: 0.9rem 2.2rem;
+        border-radius: 8px;
+        border: 1.5px solid var(--border2);
         color: var(--muted);
         background: var(--white);
         transition: all 0.25s;
         position: relative;
         overflow: hidden;
+        cursor: pointer;
       }
       .ftab::before {
         content: "";
@@ -727,7 +958,7 @@
         transform-origin: bottom;
         transition: transform 0.3s var(--ease);
         z-index: 0;
-        border-radius: 4px;
+        border-radius: 7px;
       }
       .ftab span {
         position: relative;
@@ -760,17 +991,17 @@
         font-size: 2rem;
       }
 
-      /* Grid */
+      /* Products grid */
       .products-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 2.2rem;
+        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+        gap: 2.4rem;
       }
 
-      /* Card */
+      /* Product card */
       .product-card {
         background: var(--white);
-        border-radius: 14px;
+        border-radius: 18px;
         border: 1px solid var(--border);
         overflow: hidden;
         transition: all 0.4s var(--ease);
@@ -783,7 +1014,7 @@
       }
       .product-card.out {
         opacity: 0;
-        transform: scale(0.93) translateY(10px);
+        transform: scale(0.94) translateY(10px);
         pointer-events: none;
       }
       .product-card.in {
@@ -803,48 +1034,48 @@
       }
       .product-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 20px 50px rgba(15, 15, 16, 0.1);
-        border-color: rgba(209, 0, 23, 0.18);
+        box-shadow: 0 22px 56px rgba(10, 10, 11, 0.11);
+        border-color: rgba(204, 0, 0, 0.2);
       }
 
       /* Badge */
       .card-badge {
         position: absolute;
-        top: 1.3rem;
-        left: 1.3rem;
+        top: 1.4rem;
+        left: 1.4rem;
         font-family: "Barlow Condensed", sans-serif;
         font-size: 1.05rem;
         font-weight: 700;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        padding: 0.4rem 1.1rem;
-        border-radius: 4px;
+        padding: 0.4rem 1.2rem;
+        border-radius: 20px;
         z-index: 2;
       }
       .badge-xe-ga {
-        background: #fff0e6;
-        color: #c04f0a;
+        background: rgba(234, 118, 10, 0.12);
+        color: #c45c00;
       }
       .badge-xe-so {
-        background: #ebf5ff;
-        color: #1254c4;
+        background: rgba(26, 95, 204, 0.1);
+        color: #1460c4;
       }
       .badge-xe-con-tay {
-        background: #fff4e0;
-        color: #b06b00;
+        background: rgba(150, 80, 10, 0.1);
+        color: #8a4e08;
       }
       .badge-pkl {
-        background: #f0e8ff;
-        color: #6b22c4;
+        background: rgba(80, 40, 160, 0.1);
+        color: #5028a0;
       }
       .badge-xe-dien {
-        background: #e6f7ee;
-        color: #0b7a3e;
+        background: rgba(20, 140, 60, 0.1);
+        color: #0d8038;
       }
 
-      /* Image */
+      /* Card image */
       .card-image {
-        height: 200px;
+        height: 210px;
         overflow: hidden;
         background: var(--paper2);
         display: flex;
@@ -857,27 +1088,28 @@
         height: 100%;
         object-fit: contain;
         padding: 1.5rem;
-        transition: transform 0.5s var(--ease);
+        transition: transform 0.55s var(--ease);
       }
       .product-card:hover .card-image img {
-        transform: scale(1.07);
+        transform: scale(1.09);
       }
 
-      /* Body */
+      /* Card body */
       .card-body {
-        padding: 1.8rem 2rem;
+        padding: 2rem 2.2rem;
         flex: 1;
         display: flex;
         flex-direction: column;
       }
       .card-name {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 2rem;
+        font-size: 2.1rem;
         font-weight: 800;
         letter-spacing: 0.03em;
+        text-transform: uppercase;
         color: var(--ink);
         margin-bottom: 1rem;
-        line-height: 1.2;
+        line-height: 1.15;
         transition: color 0.2s;
       }
       .product-card:hover .card-name {
@@ -885,15 +1117,15 @@
       }
       .card-specs {
         display: flex;
-        gap: 1.5rem;
+        gap: 1.6rem;
         flex-wrap: wrap;
         margin-bottom: 1.4rem;
       }
       .card-spec {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
-        font-size: 1.25rem;
+        gap: 0.6rem;
+        font-size: 1.3rem;
         color: var(--muted);
       }
       .card-spec i {
@@ -902,31 +1134,31 @@
       }
       .card-price {
         font-size: 1.3rem;
+        font-style: italic;
         color: var(--muted);
         margin-top: auto;
         padding-top: 1.2rem;
         border-top: 1px solid var(--border);
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.6rem;
       }
       .card-link {
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.4rem;
+        font-size: 1.45rem;
         font-weight: 700;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--red);
-        padding: 0.8rem 0;
+        padding-top: 1rem;
         border-top: 1px solid var(--border);
-        transition: all 0.25s;
+        transition: opacity 0.2s;
       }
       .card-link:hover {
-        color: var(--red-mid);
+        opacity: 0.72;
       }
       .card-link i {
-        font-size: 1.2rem;
         transition: transform 0.25s;
       }
       .card-link:hover i {
@@ -945,7 +1177,8 @@
       }
       .empty-state i {
         font-size: 5rem;
-        color: var(--border);
+        color: var(--paper2);
+        display: block;
         margin-bottom: 2rem;
       }
       .empty-state h3 {
@@ -960,21 +1193,19 @@
         color: var(--muted);
       }
 
-      /* ======================================================
-   CTA BANNER
-====================================================== */
+      /* ============================================================ CTA BANNER */
       .cta-banner {
         background: var(--ink);
-        border-radius: 18px;
-        padding: 5rem;
-        margin: 0 3rem 8rem;
+        border-radius: 20px;
+        padding: 5.5rem;
+        margin: 0 4rem 8rem;
+        max-width: 1340px;
         position: relative;
         overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 3rem;
-        max-width: 1340px;
       }
       .cta-banner::before {
         content: "HONDA";
@@ -990,22 +1221,32 @@
         pointer-events: none;
         white-space: nowrap;
       }
+      .cta-banner::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--red);
+      }
       .cta-text h2 {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 4.8rem;
+        font-size: 5rem;
         font-weight: 900;
         letter-spacing: 0.03em;
         color: #fff;
-        line-height: 0.95;
+        line-height: 0.92;
         margin-bottom: 1rem;
       }
       .cta-text p {
         font-size: 1.6rem;
-        color: rgba(255, 255, 255, 0.45);
+        color: rgba(255, 255, 255, 0.42);
+        line-height: 1.6;
       }
       .cta-btns {
         display: flex;
-        gap: 1.2rem;
+        gap: 1.4rem;
         flex-wrap: wrap;
         flex-shrink: 0;
       }
@@ -1013,33 +1254,33 @@
         background: var(--red);
         color: #fff;
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.45rem;
+        font-size: 1.5rem;
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        padding: 1.3rem 3rem;
-        border-radius: 5px;
+        padding: 1.4rem 3.2rem;
+        border-radius: 7px;
         display: inline-flex;
         align-items: center;
         gap: 1rem;
         transition: all 0.3s;
       }
       .cta-btn-pri:hover {
-        background: var(--red-mid);
+        background: var(--red-dark);
         transform: translateY(-2px);
         box-shadow: 0 8px 28px var(--red-glow);
       }
       .cta-btn-sec {
         background: rgba(255, 255, 255, 0.07);
         color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.12);
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.45rem;
+        font-size: 1.5rem;
         font-weight: 600;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        padding: 1.3rem 3rem;
-        border-radius: 5px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 1.4rem 3.2rem;
+        border-radius: 7px;
         display: inline-flex;
         align-items: center;
         gap: 1rem;
@@ -1049,83 +1290,86 @@
         background: rgba(255, 255, 255, 0.14);
       }
 
-      /* ======================================================
-   FOOTER
-====================================================== */
+      /* ============================================================ FOOTER */
       footer {
-        background: #050505;
-        padding: 6.5rem 3rem 3rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        background: #060606;
+        padding: 7rem 4rem 3rem;
+        border-top: 3px solid var(--red);
       }
-      .ft-grid {
+      .ft-top {
         max-width: 1340px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: 2fr 1fr 1fr 1fr;
+        grid-template-columns: 2.2fr 1fr 1fr 1fr;
         gap: 5rem;
         margin-bottom: 5rem;
         padding-bottom: 5rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       }
+      .ft-logo-row {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        margin-bottom: 1rem;
+      }
       .ft-logo-img {
-        height: 38px;
-        width: auto;
-        opacity: 0.8;
-        margin-bottom: 1.5rem;
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        opacity: 0.9;
       }
       .ft-brand-name {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.6rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
+        font-size: 2.2rem;
+        letter-spacing: 0.1em;
+        color: #fff;
+        font-weight: 800;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.55);
-        margin-bottom: 0.8rem;
       }
-      .ft-brand-sub {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1rem;
-        font-weight: 500;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.2);
-        margin-bottom: 2.5rem;
+      .ft-brand-name span {
+        color: var(--red);
       }
-      .ft-socs {
+      .ft-brand-tag {
+        font-size: 1.35rem;
+        color: rgba(255, 255, 255, 0.22);
+        margin-bottom: 2.8rem;
+        line-height: 1.75;
+        max-width: 290px;
+      }
+      .ft-socials {
         display: flex;
-        gap: 1rem;
+        gap: 0.9rem;
       }
       .ft-soc {
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.06);
+        width: 40px;
+        height: 40px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.08);
         display: flex;
         align-items: center;
         justify-content: center;
         color: rgba(255, 255, 255, 0.38);
-        font-size: 1.3rem;
-        transition: all 0.25s;
-        text-decoration: none;
+        font-size: 1.4rem;
+        transition: all 0.26s;
       }
       .ft-soc:hover {
         background: var(--red);
         border-color: var(--red);
         color: #fff;
-        transform: translateY(-2px);
+        transform: translateY(-3px);
       }
       .ft-col h5 {
         font-family: "Barlow Condensed", sans-serif;
         font-size: 1.15rem;
         font-weight: 700;
         letter-spacing: 0.22em;
+        color: rgba(255, 255, 255, 0.22);
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.2);
-        margin-bottom: 1.8rem;
+        margin-bottom: 2.2rem;
       }
-      .ft-col li {
-        margin-bottom: 1.1rem;
+      .ft-col ul li {
+        margin-bottom: 1.3rem;
       }
       .ft-col a {
         font-size: 1.4rem;
@@ -1145,34 +1389,32 @@
         gap: 1.5rem;
       }
       .ft-btm p {
-        font-size: 1.25rem;
-        color: rgba(255, 255, 255, 0.18);
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.16);
       }
       .ft-badge {
         display: flex;
         align-items: center;
-        gap: 0.6rem;
-        font-size: 1.15rem;
-        color: rgba(255, 255, 255, 0.18);
+        gap: 0.7rem;
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.16);
       }
       .ft-badge i {
         color: var(--red);
       }
 
-      /* ======================================================
-   MOBILE NAV
-====================================================== */
+      /* Mobile nav */
       .mob-nav {
         display: none;
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(248, 246, 243, 0.97);
+        background: rgba(245, 243, 240, 0.97);
         backdrop-filter: blur(16px);
         border-top: 1px solid var(--border);
         z-index: 400;
-        padding: 0.8rem 0;
+        padding: 0.6rem 0;
       }
       .mnb {
         display: flex;
@@ -1182,7 +1424,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.35rem;
+        gap: 0.4rem;
         color: var(--muted);
         text-decoration: none;
         padding: 0.5rem 1rem;
@@ -1193,40 +1435,34 @@
         color: var(--red);
       }
       .mnb-a i {
-        font-size: 2rem;
+        font-size: 1.9rem;
       }
       .mnb-a span {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1rem;
+        font-size: 0.92rem;
         font-weight: 600;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
+        letter-spacing: 0.04em;
       }
 
-      /* ======================================================
-   FLOATS
-====================================================== */
       .messenger-float {
         position: fixed;
-        bottom: 9rem;
+        bottom: 9.5rem;
         right: 2.5rem;
-        width: 50px;
-        height: 50px;
+        width: 52px;
+        height: 52px;
         background: #0084ff;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2.1rem;
+        font-size: 2.2rem;
         color: #fff;
-        text-decoration: none;
-        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.3);
         z-index: 300;
-        animation: mpulse 2.5s infinite;
+        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.32);
+        animation: mpulse 2.5s ease-in-out infinite;
         transition: transform 0.3s;
       }
       .messenger-float:hover {
-        transform: scale(1.1);
+        transform: scale(1.12);
       }
       @keyframes mpulse {
         0%,
@@ -1234,15 +1470,15 @@
           box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
         }
         50% {
-          box-shadow: 0 4px 36px rgba(0, 132, 255, 0.55);
+          box-shadow: 0 4px 38px rgba(0, 132, 255, 0.58);
         }
       }
       .back-top {
         position: fixed;
         bottom: 2.5rem;
         right: 2.5rem;
-        width: 44px;
-        height: 44px;
+        width: 46px;
+        height: 46px;
         background: var(--red);
         border-radius: 50%;
         display: flex;
@@ -1250,24 +1486,21 @@
         justify-content: center;
         font-size: 1.6rem;
         color: #fff;
-        text-decoration: none;
+        z-index: 300;
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s;
-        z-index: 300;
       }
       .back-top.on {
         opacity: 1;
         visibility: visible;
       }
       .back-top:hover {
-        background: var(--red-mid);
+        background: var(--red-dark);
         transform: translateY(-3px);
       }
 
-      /* ======================================================
-   REVEAL
-====================================================== */
+      /* Reveal */
       .rv {
         opacity: 0;
         transform: translateY(22px);
@@ -1280,9 +1513,7 @@
         transform: none;
       }
 
-      /* ======================================================
-   RESPONSIVE
-====================================================== */
+      /* ============================================================ RESPONSIVE */
       @media (max-width: 1200px) {
         .ph-inner {
           grid-template-columns: 1fr;
@@ -1291,39 +1522,44 @@
           display: none;
         }
         .cta-banner {
-          margin: 0 2rem 6rem;
+          margin: 0 0 6rem;
         }
-        .ft-grid {
+        .ft-top {
           grid-template-columns: 1fr 1fr;
           gap: 4rem;
         }
       }
-      @media (max-width: 768px) {
+      @media (max-width: 992px) {
         .main-nav,
-        .nav-cta {
+        .hdr-cta {
           display: none;
         }
         .ham {
           display: flex;
         }
-        .hdr {
-          padding: 0 2rem;
+        .hdr-inner {
+          padding: 0 2.5rem;
         }
-        .logo-sub {
+        .tb-inner {
+          padding: 0 2.5rem;
+        }
+      }
+      @media (max-width: 768px) {
+        .top-bar {
           display: none;
         }
         .page-hero {
-          padding: 5rem 2rem 4.5rem;
+          padding: 5rem 2.5rem 4.5rem;
         }
         .ph-h1 {
           font-size: clamp(5rem, 18vw, 8.5rem);
         }
         .products-section {
-          padding: 6rem 2rem;
+          padding: 6rem 2.5rem;
         }
         .cta-banner {
           flex-direction: column;
-          padding: 3rem 2rem;
+          padding: 3rem 2.5rem;
           margin: 0 0 6rem;
         }
         .cta-btns {
@@ -1333,30 +1569,20 @@
         .cta-btn-sec {
           justify-content: center;
         }
-        .ft-grid {
+        .ft-top {
           grid-template-columns: 1fr;
           gap: 3.5rem;
-        }
-        footer {
-          padding: 5rem 2rem 3rem;
         }
         .ft-btm {
           flex-direction: column;
           text-align: center;
         }
-        .mob-nav {
-          display: block;
-        }
         footer {
+          padding: 5rem 2.5rem 3rem;
           padding-bottom: 8rem;
         }
-        .messenger-float {
-          bottom: 8.5rem;
-          right: 1.8rem;
-        }
-        .back-top {
-          bottom: 8.5rem;
-          right: 1.8rem;
+        .mob-nav {
+          display: block;
         }
         .sec-h2 {
           font-size: 4.2rem;
@@ -1377,29 +1603,79 @@
     </style>
   </head>
   <body>
-    <!-- ============================================================ HEADER -->
+    <!-- TOP BAR -->
+    <div class="top-bar" id="topBar">
+      <div class="tb-inner">
+        <div class="tb-links">
+          <a href="/question/"
+            ><i class="fas fa-question-circle"></i>Câu hỏi thường gặp</a
+          >
+          <a href="/cuahang/"
+            ><i class="fas fa-location-dot"></i>Hệ thống đại lý</a
+          >
+        </div>
+        <div class="tb-contact">
+          <a href="tel:1900636712"
+            ><i class="fas fa-phone-alt"></i>1900 636 712</a
+          >
+          <div class="tb-divider"></div>
+          <a href="mailto:cr_mt@hungmanh.com.vn"
+            ><i class="fas fa-envelope"></i>cr_mt@hungmanh.com.vn</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
     <header class="site-header" id="siteHeader">
-      <div class="hdr">
-        <a href="/Trangchu/" class="logo-wrap">
-          <img
-            src="/sanphamxemay/image/banner/Logo_HEAD.png"
-            alt="HEAD Logo"
-            class="logo-img"
-          />
-          <div class="logo-text-block">
-            <span class="logo-name">HỆ THỐNG HEAD TRUNG HÙNG</span>
+      <div class="hdr-inner">
+        <a href="/Trangchu/" class="logo-area">
+          <div class="logo-img-wrap">
+            <img
+              src="/sanphamxemay/image/banner/Logo_HEAD.png"
+              alt="HEAD Trung Hùng"
+            />
+          </div>
+          <div class="logo-text-wrap">
+            <span class="logo-main">HỆ THỐNG HEAD <span>TRUNG HÙNG</span></span>
             <span class="logo-sub"
               >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
             >
           </div>
         </a>
-        <nav class="main-nav">
-          <a href="/Trangchu/">Trang chủ</a>
-          <a href="#products" class="active">Sản phẩm</a>
-          <a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a>
-          <a href="/lienhe/">Liên hệ</a>
-        </nav>
-        <a href="/cuahang/" class="nav-cta"
+        <ul class="main-nav">
+          <li><a href="/Trangchu/">Trang chủ</a></li>
+          <li><a href="/sanphamxemay/" class="active">Sản phẩm</a></li>
+          <li class="dropdown">
+            <a href="/dichvu/">Dịch Vụ <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-panel">
+              <li>
+                <a href="/dichvu/sanphamphutung/"
+                  ><i class="fas fa-gear"></i>Phụ Tùng Chính Hãng</a
+                >
+              </li>
+              <li>
+                <a href="/dichvu/baoduong/"
+                  ><i class="fas fa-tools"></i>Bảo Dưỡng & Sửa Chữa</a
+                >
+              </li>
+              <li>
+                <a href="/dichvu/baohanh/"
+                  ><i class="fas fa-shield-alt"></i>Bảo Hành Xe Máy</a
+                >
+              </li>
+              <li>
+                <a href="/dichvu/kiemtradinhky/"
+                  ><i class="fas fa-calendar-alt"></i>Tra Cứu Lịch KTĐK</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li><a href="/banggia/">Bảng Giá</a></li>
+          <li><a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a></li>
+          <li><a href="/lienhe/">Liên hệ</a></li>
+        </ul>
+        <a href="/cuahang/" class="hdr-cta"
           ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a
         >
         <div class="ham" id="ham"><span></span><span></span><span></span></div>
@@ -1407,23 +1683,46 @@
     </header>
 
     <!-- Drawer -->
-    <div class="dov" id="dov"></div>
-    <div class="sdraw" id="sdraw">
-      <button class="sdx" id="sdx"><i class="fas fa-times"></i></button>
-      <nav class="dnav">
-        <a href="/Trangchu/">Trang chủ</a>
-        <a href="#products" class="active">Sản phẩm</a>
-        <a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a>
-        <a href="/lienhe/">Liên hệ</a>
-      </nav>
-      <a href="/cuahang/" class="dcta">Tìm cửa hàng gần nhất</a>
+    <div class="draw-ov" id="drawOv"></div>
+    <div class="site-draw" id="siteDraw">
+      <!-- ✅ FIX: button element với id riêng, không dùng thẻ button lồng trong div -->
+      <button class="draw-x" id="drawX" type="button" aria-label="Đóng menu">
+        <i class="fas fa-times"></i>
+      </button>
+      <ul class="draw-nav">
+        <li><a href="/Trangchu/">Trang chủ</a></li>
+        <li><a href="/sanphamxemay/" class="active">Sản phẩm</a></li>
+        <li>
+          <a href="/dichvu/" class="draw-toggle" data-target="draw-dv"
+            >Dịch Vụ <i class="fas fa-chevron-down"></i
+          ></a>
+          <div class="draw-sub" id="draw-dv">
+            <a href="/dichvu/sanphamphutung/"
+              ><i class="fas fa-gear"></i>Phụ Tùng Chính Hãng</a
+            >
+            <a href="/dichvu/baoduong/"
+              ><i class="fas fa-tools"></i>Bảo Dưỡng & Sửa Chữa</a
+            >
+            <a href="/dichvu/baohanh/"
+              ><i class="fas fa-shield-alt"></i>Bảo Hành</a
+            >
+          </div>
+        </li>
+        <li><a href="/banggia/">Bảng Giá</a></li>
+        <li><a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a></li>
+        <li><a href="/lienhe/">Liên hệ</a></li>
+      </ul>
+      <a href="/cuahang/" class="draw-cta"
+        ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng gần nhất</a
+      >
     </div>
 
-    <!-- ============================================================ PAGE HERO (no slider) -->
+    <!-- PAGE HERO -->
     <section class="page-hero" id="home">
       <div class="ph-grid"></div>
       <div class="ph-glow-r"></div>
       <div class="ph-rings">
+        <div class="ph-ring"></div>
         <div class="ph-ring"></div>
         <div class="ph-ring"></div>
         <div class="ph-ring"></div>
@@ -1451,12 +1750,12 @@
             <div class="ps-label">Dòng xe</div>
           </div>
           <div class="ph-stat">
-            <div class="ps-val">12<em></em></div>
-            <div class="ps-label">Cửa hàng</div>
+            <div class="ps-val">3</div>
+            <div class="ps-label">Tỉnh thành</div>
           </div>
           <div class="ph-stat">
-            <div class="ps-val">3<em></em></div>
-            <div class="ps-label">Tỉnh thành</div>
+            <div class="ps-val">50K<em>+</em></div>
+            <div class="ps-label">Khách hàng</div>
           </div>
           <div class="ph-stat">
             <div class="ps-val">100<em>%</em></div>
@@ -1466,7 +1765,7 @@
       </div>
     </section>
 
-    <!-- ============================================================ MARQUEE -->
+    <!-- MARQUEE -->
     <div class="marquee-strip">
       <div class="mq-track">
         <div class="mq-item">XE GA <span class="mq-dot"></span></div>
@@ -1475,18 +1774,22 @@
         <div class="mq-item">PHÂN KHỐI LỚN <span class="mq-dot"></span></div>
         <div class="mq-item">XE ĐIỆN <span class="mq-dot"></span></div>
         <div class="mq-item">HONDA CHÍNH HÃNG <span class="mq-dot"></span></div>
-        <div class="mq-item">BẢO HÀNH ĐẦY ĐỦ <span class="mq-dot"></span></div>
+        <div class="mq-item">
+          BẢO HÀNH CHÍNH THỨC <span class="mq-dot"></span>
+        </div>
         <div class="mq-item">XE GA <span class="mq-dot"></span></div>
         <div class="mq-item">XE SỐ <span class="mq-dot"></span></div>
         <div class="mq-item">XE CÔN TAY <span class="mq-dot"></span></div>
         <div class="mq-item">PHÂN KHỐI LỚN <span class="mq-dot"></span></div>
         <div class="mq-item">XE ĐIỆN <span class="mq-dot"></span></div>
         <div class="mq-item">HONDA CHÍNH HÃNG <span class="mq-dot"></span></div>
-        <div class="mq-item">BẢO HÀNH ĐẦY ĐỦ <span class="mq-dot"></span></div>
+        <div class="mq-item">
+          BẢO HÀNH CHÍNH THỨC <span class="mq-dot"></span>
+        </div>
       </div>
     </div>
 
-    <!-- ============================================================ PRODUCTS -->
+    <!-- PRODUCTS -->
     <section id="products" class="products-section">
       <div class="ps-wrap">
         <div class="sec-eyebrow rv">Danh mục sản phẩm</div>
@@ -1496,12 +1799,11 @@
           với phong cách của bạn.
         </p>
 
-        <!-- Action row -->
         <div class="action-row rv">
-          <a href="banggia.html" class="action-pill"
+          <a href="/banggia/" class="action-pill"
             ><i class="fas fa-file-invoice-dollar"></i> Bảng Giá</a
           >
-          <a href="tragop.html" class="action-pill"
+          <a href="/tragop/" class="action-pill"
             ><i class="fas fa-hand-holding-usd"></i> Hỗ Trợ Trả Góp</a
           >
           <a href="/cuahang/" class="action-pill"
@@ -1509,7 +1811,6 @@
           >
         </div>
 
-        <!-- Search -->
         <div class="search-wrap rv">
           <input
             type="text"
@@ -1517,35 +1818,38 @@
             id="productSearch"
             placeholder="Tìm kiếm sản phẩm..."
           />
-          <button class="search-clear" id="searchClear">
+          <button class="search-clear" id="searchClear" type="button">
             <i class="fas fa-times"></i>
           </button>
-          <div class="search-icon-wrap"><i class="fas fa-search"></i></div>
+          <div class="search-icon"><i class="fas fa-search"></i></div>
         </div>
 
-        <!-- Filter tabs -->
         <div class="filter-tabs rv" id="filterTabs">
-          <button class="ftab active" data-cat="all">
+          <button class="ftab active" data-cat="all" type="button">
             <span>Tất cả</span>
           </button>
-          <button class="ftab" data-cat="xe-ga"><span>Xe Ga</span></button>
-          <button class="ftab" data-cat="xe-so"><span>Xe Số</span></button>
-          <button class="ftab" data-cat="xe-con-tay">
+          <button class="ftab" data-cat="xe-ga" type="button">
+            <span>Xe Ga</span>
+          </button>
+          <button class="ftab" data-cat="xe-so" type="button">
+            <span>Xe Số</span>
+          </button>
+          <button class="ftab" data-cat="xe-con-tay" type="button">
             <span>Xe Côn Tay</span>
           </button>
-          <button class="ftab" data-cat="pkl">
+          <button class="ftab" data-cat="pkl" type="button">
             <span>Phân Khối Lớn</span>
           </button>
-          <button class="ftab" data-cat="xe-dien"><span>Xe Điện</span></button>
+          <button class="ftab" data-cat="xe-dien" type="button">
+            <span>Xe Điện</span>
+          </button>
         </div>
 
-        <!-- Counter -->
-        <div class="products-counter">
+        <div class="products-counter rv">
           Hiển thị <strong id="visibleCount">0</strong> /
           <strong id="totalCount">0</strong> sản phẩm
         </div>
 
-        <!-- Grid -->
         <div class="products-grid" id="productsGrid">
           <!-- XE GA -->
           <div class="product-card" data-cat="xe-ga" data-name="honda sh350i">
@@ -1955,7 +2259,7 @@
               />
             </div>
             <div class="card-body">
-              <div class="card-name">Honda Future</div>
+              <div class="card-name">Honda Future 125</div>
               <div class="card-specs">
                 <div class="card-spec">
                   <i class="fas fa-tachometer-alt"></i>125cc
@@ -2031,18 +2335,18 @@
           <div
             class="product-card"
             data-cat="xe-con-tay"
-            data-name="honda cb150r cbr150r"
+            data-name="honda cbr150r cb150r"
           >
             <div class="card-badge badge-xe-con-tay">Xe Côn Tay</div>
             <div class="card-image">
               <img
                 src="/sanphamxemay/CBR150R/CBR150R/6.png"
-                alt="Honda CB150R"
+                alt="Honda CBR150R"
                 loading="lazy"
               />
             </div>
             <div class="card-body">
-              <div class="card-name">Honda CB150R</div>
+              <div class="card-name">Honda CBR150R</div>
               <div class="card-specs">
                 <div class="card-spec">
                   <i class="fas fa-tachometer-alt"></i>150cc
@@ -2062,9 +2366,9 @@
           <div
             class="product-card"
             data-cat="pkl"
-            data-name="honda cb350 hness"
+            data-name="honda cb350 hness phân khối lớn"
           >
-            <div class="card-badge badge-pkl">PKL</div>
+            <div class="card-badge badge-pkl">Phân Khối Lớn</div>
             <div class="card-image">
               <img
                 src="/sanphamxemay/CB350Hness/CB350Hness/XÁM ĐEN/6.png"
@@ -2093,7 +2397,7 @@
           <div
             class="product-card"
             data-cat="xe-dien"
-            data-name="honda icon e điện"
+            data-name="honda icon e điện xanh"
           >
             <div class="card-badge badge-xe-dien">Xe Điện</div>
             <div class="card-image">
@@ -2104,13 +2408,13 @@
               />
             </div>
             <div class="card-body">
-              <div class="card-name">Honda ICON e</div>
+              <div class="card-name">Honda ICON e:</div>
               <div class="card-specs">
                 <div class="card-spec">
                   <i class="fas fa-battery-full"></i>Pin Lithium
                 </div>
                 <div class="card-spec">
-                  <i class="fas fa-road"></i>71km / lần sạc
+                  <i class="fas fa-road"></i>71km/lần sạc
                 </div>
               </div>
               <div class="card-price">Giá bán: liên hệ trực tiếp</div>
@@ -2123,7 +2427,7 @@
           <div
             class="product-card"
             data-cat="xe-dien"
-            data-name="honda cuv e điện"
+            data-name="honda cuv e điện xe máy"
           >
             <div class="card-badge badge-xe-dien">Xe Điện</div>
             <div class="card-image">
@@ -2134,7 +2438,7 @@
               />
             </div>
             <div class="card-body">
-              <div class="card-name">Honda CUV e</div>
+              <div class="card-name">Honda CUV e:</div>
               <div class="card-specs">
                 <div class="card-spec">
                   <i class="fas fa-battery-full"></i>Pin Lithium
@@ -2161,8 +2465,8 @@
       </div>
     </section>
 
-    <!-- ============================================================ CTA BANNER -->
-    <div class="cta-banner rv">
+    <!-- CTA BANNER -->
+    <div class="cta-banner rv" style="margin-left: auto; margin-right: auto">
       <div class="cta-text">
         <h2>ĐẾN GẶP CHÚNG TÔI<br />HÔM NAY</h2>
         <p>Lái thử miễn phí · Tư vấn tận tâm · Bảo hành chính hãng</p>
@@ -2177,42 +2481,51 @@
       </div>
     </div>
 
-    <!-- ============================================================ FOOTER -->
+    <!-- FOOTER -->
     <footer>
-      <div class="ft-grid">
+      <div class="ft-top">
         <div>
-          <img
-            src="/sanphamxemay/image/banner/Logo_HEAD.png"
-            alt="HEAD Logo"
-            class="ft-logo-img"
-          />
-          <div class="ft-brand-name">HỆ THỐNG HEAD TRUNG HÙNG</div>
-          <div class="ft-brand-sub">
-            Cửa Hàng Bán Xe & Dịch Vụ Do Honda Ủy Nhiệm
+          <div class="ft-logo-row">
+            <img
+              src="/sanphamxemay/image/banner/Logo_HEAD.png"
+              alt="HEAD"
+              class="ft-logo-img"
+            />
+            <div class="ft-brand-name">
+              HỆ THỐNG HEAD <span>TRUNG HÙNG</span>
+            </div>
           </div>
-          <div class="ft-socs">
+          <p class="ft-brand-tag">
+            Công Ty TNHH Thương Mại Và Dịch Vụ Hùng Mạnh — đại lý Honda chính
+            hãng tại Gia Lai, Hà Nội và Sơn La.
+          </p>
+          <div class="ft-socials">
             <a
               href="https://www.facebook.com/hethongheadtrunghung"
               class="ft-soc"
               target="_blank"
+              rel="noopener"
               ><i class="fab fa-facebook-f"></i
             ></a>
             <a
               href="https://www.youtube.com/@HethongHEADTrungHung"
               class="ft-soc"
               target="_blank"
+              rel="noopener"
               ><i class="fab fa-youtube"></i
             ></a>
             <a
               href="https://www.instagram.com/hethongheadtrunghung"
               class="ft-soc"
               target="_blank"
+              rel="noopener"
               ><i class="fab fa-instagram"></i
             ></a>
             <a
               href="https://www.tiktok.com/@hethongheadtrunghung"
               class="ft-soc"
               target="_blank"
+              rel="noopener"
               ><i class="fab fa-tiktok"></i
             ></a>
           </div>
@@ -2222,8 +2535,8 @@
           <ul>
             <li><a href="/Trangchu/">Trang chủ</a></li>
             <li><a href="/sanphamxemay/">Sản phẩm</a></li>
-            <li><a href="banggia.html">Bảng giá</a></li>
-            <li><a href="tragop.html">Trả góp</a></li>
+            <li><a href="/banggia/">Bảng giá</a></li>
+            <li><a href="/tragop/">Trả góp</a></li>
             <li><a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a></li>
             <li><a href="/lienhe/">Liên hệ</a></li>
           </ul>
@@ -2231,13 +2544,11 @@
         <div class="ft-col">
           <h5>Dòng xe</h5>
           <ul>
-            <li><a href="#" onclick="filterBycat('xe-ga')">Xe Ga</a></li>
-            <li><a href="#" onclick="filterBycat('xe-so')">Xe Số</a></li>
-            <li>
-              <a href="#" onclick="filterBycat('xe-con-tay')">Xe Côn Tay</a>
-            </li>
-            <li><a href="#" onclick="filterBycat('pkl')">Phân Khối Lớn</a></li>
-            <li><a href="#" onclick="filterBycat('xe-dien')">Xe Điện</a></li>
+            <li><a href="/sanphamxemay/?category=xe-ga">Xe Ga</a></li>
+            <li><a href="/sanphamxemay/?category=xe-so">Xe Số</a></li>
+            <li><a href="/sanphamxemay/?category=xe-con-tay">Xe Côn Tay</a></li>
+            <li><a href="/sanphamxemay/?category=pkl">Phân Khối Lớn</a></li>
+            <li><a href="/sanphamxemay/?category=xe-dien">Xe Điện</a></li>
           </ul>
         </div>
         <div class="ft-col">
@@ -2253,14 +2564,14 @@
         </div>
       </div>
       <div class="ft-btm">
-        <p>© 2025 HEAD Trung Hùng. All Rights Reserved.</p>
+        <p>© 2025 HỆ THỐNG HEAD TRUNG HÙNG. All Rights Reserved.</p>
         <div class="ft-badge">
           <i class="fas fa-certificate"></i> Honda Authorised Dealer
         </div>
       </div>
     </footer>
 
-    <!-- MOBILE NAV -->
+    <!-- Mobile Nav -->
     <nav class="mob-nav">
       <div class="mnb">
         <a href="/Trangchu/" class="mnb-a"
@@ -2285,51 +2596,83 @@
       href="https://m.me/hethongheadtrunghung"
       class="messenger-float"
       target="_blank"
+      rel="noopener"
+      aria-label="Messenger"
       ><i class="fab fa-facebook-messenger"></i
     ></a>
-    <a href="#" class="back-top" id="backTop"
+    <a href="#" class="back-top" id="backTop" aria-label="Lên đầu"
       ><i class="fas fa-arrow-up"></i
     ></a>
 
-    <!-- ============================================================ SCRIPTS -->
     <script>
       (function () {
-        /* ── HEADER ── */
+        "use strict";
+
+        /* ── HEADER + TOP BAR ── */
+        const tb = document.getElementById("topBar");
         const hdr = document.getElementById("siteHeader");
         window.addEventListener(
           "scroll",
           () => {
-            hdr.classList.toggle("lifted", scrollY > 60);
-            document
-              .getElementById("backTop")
-              .classList.toggle("on", scrollY > 400);
+            const y = window.scrollY;
+            if (tb) tb.classList.toggle("hidden", y > 80);
+            hdr.classList.toggle("lifted", y > 60);
+            document.getElementById("backTop").classList.toggle("on", y > 400);
           },
           { passive: true },
         );
 
-        /* ── DRAWER ── */
-        const ham = document.getElementById("ham"),
-          dov = document.getElementById("dov"),
-          sdraw = document.getElementById("sdraw"),
-          sdx = document.getElementById("sdx");
-        const openD = () => {
+        /* ── DRAWER ── 
+     ✅ FIX: getElementById on the button itself, not querySelector on a nested element
+     Root cause of original bug: sdx was found but its parent's overflow:hidden may clip events,
+     or the button type was missing. Here we use correct IDs and type="button" to prevent any form submission.
+  */
+        const ham = document.getElementById("ham");
+        const drawOv = document.getElementById("drawOv");
+        const draw = document.getElementById("siteDraw");
+        const drawX = document.getElementById("drawX"); // ← grabs the <button> directly
+
+        function openDraw() {
           ham.classList.add("open");
-          dov.classList.add("on");
-          sdraw.classList.add("on");
+          drawOv.classList.add("on");
+          draw.classList.add("on");
           document.body.style.overflow = "hidden";
-        };
-        const closeD = () => {
+        }
+        function closeDraw() {
           ham.classList.remove("open");
-          dov.classList.remove("on");
-          sdraw.classList.remove("on");
+          drawOv.classList.remove("on");
+          draw.classList.remove("on");
           document.body.style.overflow = "";
-        };
-        ham.addEventListener("click", openD);
-        dov.addEventListener("click", closeD);
-        sdx.addEventListener("click", closeD);
-        sdraw
+        }
+
+        ham.addEventListener("click", openDraw);
+        drawOv.addEventListener("click", closeDraw);
+        drawX.addEventListener("click", closeDraw); // ← direct click on <button id="drawX">
+
+        /* Drawer sub-menus */
+        document.querySelectorAll(".draw-toggle").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const t = document.getElementById(btn.dataset.target);
+            if (!t) return;
+            const isOpen = t.classList.contains("open");
+            document
+              .querySelectorAll(".draw-sub")
+              .forEach((s) => s.classList.remove("open"));
+            document
+              .querySelectorAll(".draw-toggle i")
+              .forEach((i) => (i.style.transform = ""));
+            if (!isOpen) {
+              t.classList.add("open");
+              btn.querySelector("i").style.transform = "rotate(180deg)";
+            }
+          });
+        });
+
+        /* Close drawer when any nav link is clicked */
+        draw
           .querySelectorAll("a")
-          .forEach((a) => a.addEventListener("click", closeD));
+          .forEach((a) => a.addEventListener("click", closeDraw));
 
         /* ── FILTER + SEARCH ── */
         const cards = [...document.querySelectorAll(".product-card[data-cat]")];
@@ -2389,9 +2732,10 @@
           searchTerm = "";
           searchClear.classList.remove("visible");
           applyFilters();
+          searchInput.focus();
         });
 
-        // URL params
+        /* URL params */
         const params = new URLSearchParams(location.search);
         const catParam = params.get("category") || "all";
         const srchParam = params.get("search") || "";
@@ -2415,14 +2759,14 @@
           (entries) => {
             entries.forEach((e, i) => {
               if (e.isIntersecting)
-                setTimeout(() => e.target.classList.add("in"), i * 60);
+                setTimeout(() => e.target.classList.add("in"), i * 65);
             });
           },
           { threshold: 0.1 },
         );
         document.querySelectorAll(".rv").forEach((el) => obs.observe(el));
 
-        /* ── SMOOTH SCROLL ── */
+        /* ── SMOOTH SCROLL for anchor links ── */
         document.querySelectorAll('a[href^="#"]').forEach((a) => {
           a.addEventListener("click", (e) => {
             const t = a.getAttribute("href");
@@ -2432,7 +2776,9 @@
               e.preventDefault();
               window.scrollTo({
                 top:
-                  el.getBoundingClientRect().top + scrollY - hdr.offsetHeight,
+                  el.getBoundingClientRect().top +
+                  window.scrollY -
+                  hdr.offsetHeight,
                 behavior: "smooth",
               });
             }
@@ -2440,9 +2786,9 @@
         });
       })();
 
-      /* footer filter helper */
+      /* Footer filter helper — global scope */
       function filterBycat(cat) {
-        event.preventDefault();
+        if (event) event.preventDefault();
         const tab = document.querySelector(`.ftab[data-cat="${cat}"]`);
         if (tab) {
           tab.click();
@@ -2451,7 +2797,7 @@
             window.scrollTo({
               top:
                 sec.getBoundingClientRect().top +
-                scrollY -
+                window.scrollY -
                 document.getElementById("siteHeader").offsetHeight -
                 10,
               behavior: "smooth",
