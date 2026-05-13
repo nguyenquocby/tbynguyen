@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bảo Dưỡng & Sửa Chữa</title>
+    <title>Bảo Dưỡng & Sửa Chữa – HỆ THỐNG HEAD TRUNG HÙNG</title>
     <link
       rel="icon"
       href="/sanphamxemay/image/banner/Logo_HEAD.png"
@@ -14,1534 +14,2588 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+
     <style>
-      /* Reset & Base Styles */
-      * {
+      /* ============================================================ TOKENS */
+      :root {
+        --red: #cc0000;
+        --red-dark: #990000;
+        --red-glow: rgba(204, 0, 0, 0.28);
+        --red-soft: rgba(204, 0, 0, 0.07);
+        --ink: #0a0a0b;
+        --ink2: #1a1a1c;
+        --paper: #f5f3f0;
+        --paper2: #eceae6;
+        --white: #ffffff;
+        --border: rgba(10, 10, 11, 0.08);
+        --border2: rgba(10, 10, 11, 0.14);
+        --muted: #7a7672;
+        --green: #1a7a3c;
+        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --snap: cubic-bezier(0.16, 1, 0.3, 1);
+        --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
-      :root {
-        --primary-color: #e40521;
-        --secondary-color: #333;
-        --light-color: #f8f9fa;
-        --dark-color: #212529;
-        --gray-color: #6c757d;
-        --light-gray: #e9ecef;
-        --transition: all 0.3s ease;
+      html {
+        font-size: 62.5%;
+        scroll-behavior: smooth;
       }
-
       body {
-        font-family: "Montserrat", sans-serif;
-        line-height: 1.6;
-        color: var(--secondary-color);
+        font-family: "Barlow", sans-serif;
+        background: var(--paper);
+        color: var(--ink);
         overflow-x: hidden;
-        background-color: #f5f5f5;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
       }
-
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 15px;
-      }
-
       img {
         max-width: 100%;
-        height: auto;
-        object-fit: cover;
+        display: block;
       }
-
       a {
         text-decoration: none;
         color: inherit;
-        transition: var(--transition);
       }
-
       ul {
         list-style: none;
       }
-
-      .btn {
-        display: inline-block;
-        padding: 10px 25px;
-        border-radius: 25px;
-        font-weight: 500;
-        text-align: center;
-        transition: var(--transition);
+      button {
+        border: none;
+        background: none;
         cursor: pointer;
-        border: 2px solid transparent;
+        font-family: inherit;
+      }
+      input,
+      select,
+      textarea {
+        font-family: inherit;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--red);
+        border-radius: 2px;
       }
 
-      .btn-primary {
-        background-color: var(--primary-color);
-        color: white;
-        border-color: var(--primary-color);
-      }
-
-      .btn-primary:hover {
-        background-color: #c0041d;
-        border-color: #c0041d;
-      }
-
-      .btn-outline {
-        background-color: transparent;
-        color: var(--primary-color);
-        border-color: var(--primary-color);
-      }
-
-      .btn-outline:hover {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 50px;
-      }
-
-      .section-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: var(--dark-color);
-      }
-
-      .section-subtitle {
-        font-size: 1.1rem;
-        color: var(--gray-color);
-        margin-bottom: 20px;
-      }
-
-      .divider {
-        width: 80px;
-        height: 3px;
-        background-color: var(--primary-color);
-        margin: 0 auto;
-      }
-
-      /* Header */
-      .main-header {
+      /* ============================================================ PRELOADER */
+      .preloader {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 20px 0;
-        background-color: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        transition: var(--transition);
-      }
-
-      .main-header.scrolled {
-        padding: 15px 0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      }
-
-      .main-header .container {
+        inset: 0;
+        z-index: 9000;
+        background: var(--ink);
         display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 2.4rem;
+        transition:
+          opacity 0.7s var(--ease),
+          visibility 0.7s;
+      }
+      .preloader.out {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .pl-logo {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        animation: plFade 0.6s var(--snap) 0.2s both;
+      }
+      .pl-logo img {
+        width: 44px;
+        height: 44px;
+        object-fit: contain;
+      }
+      .pl-brand {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 1;
+      }
+      .pl-brand span {
+        color: var(--red);
+      }
+      .pl-brand small {
+        display: block;
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.3);
+        margin-top: 0.3rem;
+      }
+      .pl-dots {
+        display: flex;
+        gap: 1rem;
+        animation: plFade 0.5s ease 0.5s both;
+      }
+      .pl-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--red);
+        border-radius: 50%;
+        animation: plBounce 1.2s ease-in-out infinite;
+      }
+      .pl-dot:nth-child(2) {
+        animation-delay: 0.15s;
+      }
+      .pl-dot:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .pl-dot:nth-child(4) {
+        animation-delay: 0.45s;
+      }
+      @keyframes plFade {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes plBounce {
+        0%,
+        100% {
+          transform: scale(0.7);
+          opacity: 0.4;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+      }
+
+      /* ============================================================ TOP BAR */
+      .top-bar {
+        background: var(--ink);
+        padding: 0.9rem 0;
+        position: relative;
+        z-index: 600;
+        transition: transform 0.35s var(--ease);
+      }
+      .top-bar.hidden {
+        transform: translateY(-100%);
+      }
+      .tb-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
+        display: flex;
+        align-items: center;
         justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .tb-links {
+        display: flex;
+        gap: 2.4rem;
+      }
+      .tb-links a {
+        font-size: 1.2rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        color: rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: color 0.2s;
+      }
+      .tb-links a:hover {
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .tb-links a i {
+        font-size: 0.95rem;
+        color: var(--red);
+      }
+      .tb-contact {
+        display: flex;
+        gap: 2rem;
         align-items: center;
       }
-
-      .logo img {
-        height: 40px;
-      }
-
-      /* Mobile Menu Toggle */
-      .menu-toggle {
-        display: none;
-        width: 30px;
-        height: 24px;
-        position: relative;
-        cursor: pointer;
-        z-index: 1001;
-      }
-
-      .menu-toggle .bar {
-        position: absolute;
-        width: 100%;
-        height: 3px;
-        background-color: var(--dark-color);
-        transition: all 0.3s ease;
-        left: 0;
-      }
-
-      .menu-toggle .bar:nth-child(1) {
-        top: 0;
-      }
-
-      .menu-toggle .bar:nth-child(2) {
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      .menu-toggle .bar:nth-child(3) {
-        bottom: 0;
-      }
-
-      .menu-toggle.active .bar:nth-child(1) {
-        top: 50%;
-        transform: translateY(-50%) rotate(45deg);
-        background-color: var(--primary-color);
-      }
-
-      .menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-      }
-
-      .menu-toggle.active .bar:nth-child(3) {
-        bottom: 50%;
-        transform: translateY(50%) rotate(-45deg);
-        background-color: var(--primary-color);
-      }
-
-      .main-nav ul {
+      .tb-contact a {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.4);
         display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: color 0.2s;
+      }
+      .tb-contact a:hover {
+        color: #fff;
+      }
+      .tb-contact i {
+        color: var(--red);
+        font-size: 0.95rem;
+      }
+      .tb-divider {
+        width: 1px;
+        height: 12px;
+        background: rgba(255, 255, 255, 0.1);
       }
 
-      .main-nav li {
-        margin-left: 30px;
+      /* ============================================================ HEADER */
+      .site-header {
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 500;
+        background: rgba(245, 243, 240, 0.96);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border-bottom: 1px solid var(--border);
+        transition: all 0.4s var(--ease);
       }
-
-      .main-nav a {
+      .site-header.lifted {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow:
+          0 1px 0 var(--border),
+          0 4px 24px rgba(10, 10, 11, 0.07);
+      }
+      .hdr-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+      }
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+      }
+      .logo-img-wrap {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+        transition: transform 0.4s var(--spring);
+      }
+      .logo-img-wrap:hover {
+        transform: rotate(-5deg) scale(1.08);
+      }
+      .logo-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .logo-text-wrap {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+      .logo-main {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 2rem;
+        letter-spacing: 0.1em;
+        color: var(--ink);
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .logo-main span {
+        color: var(--red);
+      }
+      .logo-sub {
+        font-family: "Barlow", sans-serif;
+        font-size: 0.92rem;
         font-weight: 500;
-        color: var(--dark-color);
+        letter-spacing: 0.07em;
+        color: var(--muted);
+        margin-top: 0.3rem;
+        text-transform: uppercase;
+      }
+      .main-nav {
+        display: flex;
+        align-items: center;
+      }
+      .main-nav > li {
         position: relative;
       }
-
-      .main-nav a:after {
+      .main-nav > li > a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.55rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        padding: 0 1.6rem;
+        height: 72px;
+        transition: color 0.22s;
+        position: relative;
+      }
+      .main-nav > li > a::after {
         content: "";
         position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
+        bottom: 0;
+        left: 1.6rem;
+        right: 1.6rem;
         height: 2px;
-        background-color: var(--primary-color);
-        transition: var(--transition);
+        background: var(--red);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s var(--ease);
       }
-
-      .main-nav a:hover:after,
-      .main-nav a.active:after {
-        width: 100%;
+      .main-nav > li > a:hover,
+      .main-nav > li > a.active {
+        color: var(--red);
       }
-
-      .main-nav a.active {
-        color: var(--primary-color);
-        font-weight: 600;
+      .main-nav > li > a:hover::after,
+      .main-nav > li > a.active::after {
+        transform: scaleX(1);
       }
-
-      /* Hero Banner */
-      .service-hero {
-        height: 50vh;
-        min-height: 300px;
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-          url("/gioithieu/image/SAUBANHANG.JPG") no-repeat center center/cover;
+      .main-nav > li > a i {
+        font-size: 0.9rem;
+        opacity: 0.4;
+        transition: transform 0.25s;
+      }
+      .main-nav > li:hover > a i {
+        transform: rotate(180deg);
+      }
+      .dropdown-panel {
+        position: absolute;
+        top: calc(100% + 2px);
+        left: 0;
+        min-width: 250px;
+        background: var(--white);
+        border: 1px solid var(--border2);
+        border-radius: 14px;
+        padding: 0.8rem 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px) scale(0.98);
+        transition: all 0.28s var(--ease);
+        z-index: 100;
+        box-shadow: 0 16px 48px rgba(10, 10, 11, 0.14);
+      }
+      .main-nav > li:hover .dropdown-panel {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+      }
+      .dropdown-panel li a {
         display: flex;
         align-items: center;
-        margin-top: 80px;
-        color: white;
+        gap: 1.1rem;
+        padding: 1.1rem 2rem;
+        font-family: "Barlow", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 500;
+        color: var(--ink2);
+        border-left: 2.5px solid transparent;
+        transition: all 0.2s;
+      }
+      .dropdown-panel li a:hover {
+        background: var(--paper);
+        color: var(--red);
+        border-left-color: var(--red);
+        padding-left: 2.6rem;
+      }
+      .dropdown-panel li a i {
+        width: 17px;
+        text-align: center;
+        color: var(--red);
+        font-size: 1.15rem;
+      }
+      .hdr-cta {
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.9rem 2.4rem;
+        border-radius: 7px;
+        margin-left: 1.6rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        transition: all 0.3s;
+      }
+      .hdr-cta:hover {
+        background: var(--red-dark);
+        box-shadow: 0 6px 24px var(--red-glow);
+        transform: translateY(-2px);
+      }
+      .ham {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 6px;
+        border-radius: 6px;
+        transition: background 0.2s;
+        cursor: pointer;
+      }
+      .ham:hover {
+        background: var(--paper2);
+      }
+      .ham span {
+        width: 22px;
+        height: 2px;
+        background: var(--ink);
+        transition: all 0.32s var(--ease);
+        border-radius: 1px;
+        display: block;
+      }
+      .ham.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .ham.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .ham.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .draw-ov {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 10, 11, 0.6);
+        z-index: 498;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.32s;
+        backdrop-filter: blur(6px);
+      }
+      .draw-ov.on {
+        opacity: 1;
+        visibility: visible;
+      }
+      .site-draw {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: min(360px, 92vw);
+        height: 100%;
+        background: var(--white);
+        z-index: 499;
+        padding: 7.5rem 3rem 3rem;
+        transition: right 0.38s var(--snap);
+        border-left: 1px solid var(--border);
+        overflow-y: auto;
+      }
+      .site-draw.on {
+        right: 0;
+      }
+      .draw-x {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        width: 40px;
+        height: 40px;
+        background: var(--paper2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--muted);
+        transition: all 0.2s;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        z-index: 10;
+      }
+      .draw-x:hover {
+        background: var(--red);
+        color: #fff;
+        transform: rotate(90deg);
+      }
+      .draw-nav {
+        display: flex;
+        flex-direction: column;
+      }
+      .draw-nav > li {
+        border-bottom: 1px solid var(--border);
+      }
+      .draw-nav > li > a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink);
+        padding: 1.6rem 0;
+        transition: color 0.2s;
+      }
+      .draw-nav > li > a:hover {
+        color: var(--red);
+      }
+      .draw-sub {
+        padding-left: 1.2rem;
+        display: none;
+        padding-bottom: 0.6rem;
+      }
+      .draw-sub.open {
+        display: block;
+      }
+      .draw-sub a {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1.45rem;
+        color: var(--muted);
+        padding: 0.9rem 0.5rem;
+        transition: color 0.2s;
+        border-radius: 6px;
+      }
+      .draw-sub a:hover {
+        color: var(--red);
+      }
+      .draw-sub a i {
+        color: var(--red);
+        font-size: 1.1rem;
+        width: 16px;
         text-align: center;
       }
+      .draw-cta {
+        background: var(--red);
+        color: #fff;
+        text-align: center;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.5rem 2rem;
+        border-radius: 10px;
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        transition: background 0.3s;
+      }
+      .draw-cta:hover {
+        background: var(--red-dark);
+      }
 
-      .hero-content {
+      /* ============================================================ PAGE HERO */
+      .page-hero {
+        position: relative;
+        height: 52vh;
+        min-height: 380px;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        background: url("/gioithieu/image/SAUBANHANG.JPG") center/cover
+          no-repeat;
+      }
+      .page-hero-ov {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            105deg,
+            rgba(10, 10, 11, 0.88) 0%,
+            rgba(10, 10, 11, 0.55) 55%,
+            rgba(10, 10, 11, 0.3) 100%
+          ),
+          linear-gradient(to top, rgba(10, 10, 11, 0.8) 0%, transparent 55%);
+      }
+      .page-hero-ov::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 5px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          var(--red),
+          transparent
+        );
+        opacity: 0.85;
+      }
+      .page-hero-body {
+        position: relative;
+        z-index: 2;
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem 5rem;
         width: 100%;
       }
-
-      .hero-content h1 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 1.2rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 1.6rem;
+        animation: fadeUp 0.7s var(--snap) 0.1s both;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: var(--red);
+      }
+      .hero-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(5rem, 9vw, 12rem);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 0.87;
+        margin-bottom: 1.8rem;
+        animation: fadeUp 0.85s var(--snap) 0.2s both;
+      }
+      .hero-title em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .hero-sub {
+        font-size: 1.65rem;
+        color: rgba(255, 255, 255, 0.45);
+        max-width: 520px;
+        line-height: 1.65;
+        animation: fadeUp 0.7s var(--snap) 0.35s both;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
       }
 
-      /* Service Tabs */
-      .service-tabs {
+      /* ============================================================ BREADCRUMB */
+      .breadcrumb {
+        background: var(--paper2);
+        border-bottom: 1px solid var(--border);
+        padding: 1.4rem 0;
+      }
+      .breadcrumb-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
         display: flex;
-        justify-content: center;
-        margin-bottom: 40px;
-        border-bottom: 1px solid var(--light-gray);
+        align-items: center;
+        gap: 0.8rem;
+        font-size: 1.3rem;
+        color: var(--muted);
+      }
+      .breadcrumb-inner a {
+        color: var(--red);
+        transition: opacity 0.2s;
+      }
+      .breadcrumb-inner a:hover {
+        opacity: 0.75;
+      }
+      .breadcrumb-inner i {
+        font-size: 0.9rem;
+      }
+      .breadcrumb-inner span {
+        font-weight: 600;
+        color: var(--ink);
       }
 
+      /* ============================================================ TAB SECTION */
+      .tab-section {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
+      }
+      .tab-bar {
+        display: flex;
+        gap: 0;
+        border-bottom: 2px solid var(--border);
+        margin: 5rem 0 0;
+        overflow-x: auto;
+      }
+      .tab-bar::-webkit-scrollbar {
+        height: 3px;
+      }
+      .tab-bar::-webkit-scrollbar-thumb {
+        background: var(--red);
+      }
       .tab-btn {
-        padding: 15px 30px;
-        background-color: transparent;
-        border: none;
-        border-bottom: 3px solid transparent;
-        cursor: pointer;
-        transition: var(--transition);
-        font-weight: 500;
-        font-size: 1.1rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.65rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.8rem 3.5rem;
+        color: var(--muted);
+        border-bottom: 2.5px solid transparent;
         position: relative;
+        bottom: -2px;
+        white-space: nowrap;
+        transition: all 0.25s;
+        cursor: pointer;
+        background: none;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
       }
-
+      .tab-btn i {
+        font-size: 1.5rem;
+      }
+      .tab-btn:hover {
+        color: var(--red);
+      }
       .tab-btn.active {
-        color: var(--primary-color);
-        border-bottom-color: var(--primary-color);
+        color: var(--red);
+        border-bottom-color: var(--red);
       }
-
       .tab-content {
         display: none;
-        padding: 30px 0;
+        padding: 5rem 0 7rem;
       }
-
       .tab-content.active {
         display: block;
       }
 
-      /* Maintenance Schedule */
-      .schedule-section {
-        padding: 60px 0;
-        background-color: white;
+      /* ============================================================ SEC HEADER */
+      .sec-hdr {
+        margin-bottom: 4.5rem;
+      }
+      .sec-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 1.2rem;
+      }
+      .sec-eyebrow::before {
+        content: "";
+        width: 24px;
+        height: 2px;
+        background: var(--red);
+      }
+      .sec-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 4.8rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        line-height: 1;
+        margin-bottom: 1rem;
+      }
+      .sec-sub {
+        font-size: 1.55rem;
+        color: var(--muted);
+        max-width: 580px;
+        line-height: 1.7;
       }
 
+      /* ============================================================ MAINTENANCE TABLE */
+      .schedule-wrap {
+        background: var(--white);
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        box-shadow: 0 4px 24px rgba(10, 10, 11, 0.06);
+      }
       .schedule-table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 30px;
       }
-
-      .schedule-table th,
-      .schedule-table td {
-        padding: 15px;
-        text-align: left;
-        border-bottom: 1px solid var(--light-gray);
+      .schedule-table thead tr {
+        background: var(--ink);
       }
-
       .schedule-table th {
-        background-color: var(--primary-color);
-        color: white;
-        font-weight: 500;
+        padding: 2rem 2.4rem;
+        text-align: left;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .schedule-table th:last-child {
+        border-right: none;
+      }
+      .schedule-table th.th-milestone {
+        text-align: center;
+      }
+      .schedule-table td {
+        padding: 1.6rem 2.4rem;
+        border-bottom: 1px solid var(--border);
+        font-size: 1.45rem;
+        vertical-align: middle;
+        transition: background 0.2s;
+      }
+      .schedule-table tr:last-child td {
+        border-bottom: none;
+      }
+      .schedule-table tbody tr:hover td {
+        background: var(--red-soft);
+      }
+      .schedule-table td.tc-center {
+        text-align: center;
+      }
+      .check-yes {
+        color: var(--green);
+        font-size: 1.5rem;
+      }
+      .check-no {
+        color: var(--paper2);
+        font-size: 1.3rem;
+      }
+      .milestone-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+      }
+      .item-name {
+        font-weight: 600;
+        color: var(--ink2);
       }
 
-      .schedule-table tr:nth-child(even) {
-        background-color: var(--light-color);
-      }
-
-      .schedule-table tr:hover {
-        background-color: rgba(228, 5, 33, 0.05);
-      }
-
-      /* Repair Services */
-      .repair-section {
-        padding: 60px 0;
-        background-color: var(--light-color);
-      }
-
+      /* ============================================================ SERVICE CARDS */
       .services-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-        gap: 30px;
-        margin-top: 40px;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 2.4rem;
       }
-
       .service-card {
-        background-color: white;
-        border-radius: 25px;
+        background: var(--white);
+        border-radius: 18px;
+        border: 1px solid var(--border);
         overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        transition: var(--transition);
+        transition: all 0.4s var(--ease);
       }
-
       .service-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transform: translateY(-7px);
+        box-shadow: 0 20px 50px rgba(10, 10, 11, 0.1);
+        border-color: rgba(204, 0, 0, 0.18);
       }
-
-      .service-image {
-        height: 200px;
+      .sc-img {
+        height: 210px;
         overflow: hidden;
+        background: var(--paper2);
       }
-
-      .service-image img {
+      .sc-img img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: var(--transition);
+        transition: transform 0.55s var(--ease);
+      }
+      .service-card:hover .sc-img img {
+        transform: scale(1.07);
+      }
+      .sc-body {
+        padding: 2.4rem 2.8rem;
+      }
+      .sc-icon-wrap {
+        width: 50px;
+        height: 50px;
+        background: var(--red-soft);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.2rem;
+        color: var(--red);
+        margin-bottom: 1.8rem;
+        transition: all 0.3s;
+      }
+      .service-card:hover .sc-icon-wrap {
+        background: var(--red);
+        color: #fff;
+        transform: rotate(-8deg) scale(1.06);
+      }
+      .sc-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 1rem;
+        line-height: 1.1;
+        transition: color 0.2s;
+      }
+      .service-card:hover .sc-title {
+        color: var(--red);
+      }
+      .sc-desc {
+        font-size: 1.4rem;
+        color: var(--muted);
+        line-height: 1.7;
       }
 
-      .service-card:hover .service-image img {
-        transform: scale(1.05);
+      /* ============================================================ BOOKING FORM */
+      .booking-wrap {
+        background: var(--white);
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        box-shadow: 0 4px 24px rgba(10, 10, 11, 0.06);
+        max-width: 860px;
       }
-
-      .service-content {
-        padding: 20px;
+      .bk-header {
+        background: var(--ink);
+        padding: 3.5rem 4rem;
+        position: relative;
+        overflow: hidden;
       }
-
-      .service-title {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-        color: var(--dark-color);
+      .bk-header::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--red);
       }
-
-      .service-description {
-        color: var(--gray-color);
-        margin-bottom: 20px;
+      .bk-header h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 3.6rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 0.8rem;
+      }
+      .bk-header p {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
         line-height: 1.6;
       }
-
-      .service-price {
-        font-weight: 700;
-        color: var(--primary-color);
-        margin-bottom: 15px;
-        font-size: 1.1rem;
+      .bk-body {
+        padding: 4rem;
       }
-
-      /* Booking Form */
-      .booking-section {
-        padding: 80px 0;
-        background-color: white;
-      }
-
-      .booking-form {
-        max-width: 800px;
-        margin: 0 auto;
-        background-color: var(--light-color);
-        padding: 40px;
-        border-radius: 25px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      }
-
-      .form-group {
-        margin-bottom: 20px;
-      }
-
       .form-row {
-        display: flex;
-        gap: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
       }
-
-      .form-row .form-group {
-        flex: 1;
+      .form-group {
+        margin-bottom: 2.4rem;
       }
-
+      .form-group:last-child {
+        margin-bottom: 0;
+      }
       .form-label {
         display: block;
-        margin-bottom: 8px;
-        font-weight: 500;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.9rem;
       }
-
       .form-control {
         width: 100%;
-        padding: 12px 15px;
-        border: 1px solid var(--light-gray);
-        border-radius: 25px;
-        font-size: 1rem;
-        transition: var(--transition);
-      }
-
-      .form-control:focus {
-        border-color: var(--primary-color);
+        padding: 1.3rem 1.8rem;
+        border: 1.5px solid var(--border2);
+        border-radius: 12px;
+        font-size: 1.45rem;
+        color: var(--ink);
+        background: var(--white);
+        transition: all 0.25s;
         outline: none;
-        box-shadow: 0 0 0 3px rgba(228, 5, 33, 0.1);
+        appearance: none;
+        -webkit-appearance: none;
       }
-
+      .form-control::placeholder {
+        color: rgba(10, 10, 11, 0.3);
+      }
+      .form-control:focus {
+        border-color: var(--red);
+        box-shadow: 0 0 0 3px var(--red-soft);
+      }
+      select.form-control {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7672' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1.6rem center;
+        padding-right: 3.8rem;
+        cursor: pointer;
+      }
       textarea.form-control {
         min-height: 120px;
         resize: vertical;
       }
-
-      /* Service Centers */
-      .centers-section {
-        padding: 60px 0;
-        background-color: var(--light-color);
-      }
-
-      .centers-map {
-        height: 400px;
-        background-color: #ddd;
-        margin-top: 40px;
-        border-radius: 25px;
-        overflow: hidden;
-      }
-
-      /* FAQ Section */
-      .faq-section {
-        padding: 60px 0;
-        background-color: white;
-      }
-
-      .faq-item {
-        margin-bottom: 15px;
-        border: 1px solid var(--light-gray);
-        border-radius: 25px;
-        overflow: hidden;
-      }
-
-      .faq-question {
-        padding: 15px 20px;
-        background-color: var(--light-color);
-        font-weight: 500;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
+      .btn-submit {
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.6rem 4rem;
+        border-radius: 10px;
+        display: inline-flex;
         align-items: center;
-        transition: var(--transition);
+        gap: 1rem;
+        transition: all 0.3s;
+        cursor: pointer;
+        border: none;
+      }
+      .btn-submit:hover {
+        background: var(--red-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px var(--red-glow);
+      }
+      .btn-submit.success {
+        background: var(--green);
       }
 
-      .faq-question:hover {
-        background-color: rgba(228, 5, 33, 0.05);
+      /* ============================================================ FAQ */
+      .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        max-width: 860px;
       }
-
-      .faq-question i {
-        transition: var(--transition);
-      }
-
-      .faq-answer {
-        padding: 0 20px;
-        max-height: 0;
+      .faq-item {
+        background: var(--white);
+        border-radius: 16px;
+        border: 1.5px solid var(--border);
         overflow: hidden;
-        transition: var(--transition);
+        transition: border-color 0.25s;
       }
-
-      .faq-item.active .faq-question {
-        background-color: var(--primary-color);
-        color: white;
+      .faq-item.open {
+        border-color: rgba(204, 0, 0, 0.22);
       }
-
-      .faq-item.active .faq-question i {
+      .faq-q {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2.2rem 2.8rem;
+        cursor: pointer;
+        gap: 2rem;
+        transition: background 0.2s;
+      }
+      .faq-q:hover {
+        background: var(--paper);
+      }
+      .faq-item.open .faq-q {
+        background: var(--ink);
+      }
+      .faq-q-text {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.9rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: var(--ink);
+        line-height: 1.2;
+        transition: color 0.2s;
+      }
+      .faq-item.open .faq-q-text {
+        color: #fff;
+      }
+      .faq-q-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--paper2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: var(--muted);
+        flex-shrink: 0;
+        transition: all 0.3s;
+      }
+      .faq-item.open .faq-q-icon {
+        background: var(--red);
+        color: #fff;
         transform: rotate(180deg);
       }
-
-      .faq-item.active .faq-answer {
-        padding: 20px;
+      .faq-a {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s var(--ease);
+      }
+      .faq-item.open .faq-a {
         max-height: 500px;
       }
-
-      /* Newsletter */
-      .newsletter-section {
-        padding: 60px 0;
-        background-color: var(--primary-color);
-        color: white;
-        text-align: center;
+      .faq-a-inner {
+        padding: 2.4rem 2.8rem;
+        font-size: 1.5rem;
+        color: #2c2c2e;
+        line-height: 1.8;
+        border-top: 1px solid var(--border);
       }
 
-      .newsletter-form {
-        max-width: 600px;
-        margin: 0 auto;
-        display: flex;
-      }
-
-      .newsletter-form input {
-        flex: 1;
-        padding: 12px 15px;
-        border: none;
-        border-radius: 4px 0 0 4px;
-        font-size: 1rem;
-      }
-
-      .newsletter-form button {
-        border-radius: 0 4px 4px 0;
-        border: none;
-      }
-
-      /* Footer */
-      .main-footer {
-        background-color: var(--dark-color);
-        color: white;
-        padding: 60px 0 20px;
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 30px;
-        margin-bottom: 40px;
-      }
-
-      .footer-col h3 {
-        font-size: 1.2rem;
-        margin-bottom: 20px;
+      /* ============================================================ CTA BANNER */
+      .cta-banner {
+        background: var(--red);
+        padding: 6rem 4rem;
         position: relative;
-        padding-bottom: 10px;
+        overflow: hidden;
       }
-
-      .footer-col h3:after {
+      .cta-banner::before {
+        content: "HONDA";
+        position: absolute;
+        right: -2rem;
+        bottom: -3rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 20rem;
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.05);
+        pointer-events: none;
+        line-height: 1;
+      }
+      .cta-banner::after {
         content: "";
         position: absolute;
-        bottom: 0;
+        top: 0;
         left: 0;
-        width: 40px;
-        height: 2px;
-        background-color: var(--primary-color);
+        right: 0;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.25);
       }
-
-      .footer-logo {
-        margin-bottom: 20px;
-        display: block;
-        max-width: 150px;
-      }
-
-      .social-links {
+      .cta-inner {
+        max-width: 1340px;
+        margin: 0 auto;
         display: flex;
-        gap: 15px;
-      }
-
-      .social-links a {
-        width: 35px;
-        height: 35px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
         align-items: center;
-        transition: var(--transition);
+        justify-content: space-between;
+        gap: 3rem;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+      .cta-left h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 5rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 0.9;
+        margin-bottom: 1.2rem;
+      }
+      .cta-left p {
+        font-size: 1.7rem;
+        color: rgba(255, 255, 255, 0.62);
+        max-width: 460px;
+        line-height: 1.65;
+      }
+      .cta-btns {
+        display: flex;
+        gap: 1.4rem;
+        flex-wrap: wrap;
+      }
+      .cta-btn-pri {
+        background: #fff;
+        color: var(--red);
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.4rem 3.2rem;
+        border-radius: 7px;
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s;
+      }
+      .cta-btn-pri:hover {
+        background: var(--ink);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+      .cta-btn-sec {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.4rem 3.2rem;
+        border-radius: 7px;
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s;
+      }
+      .cta-btn-sec:hover {
+        background: rgba(255, 255, 255, 0.22);
       }
 
-      .social-links a:hover {
-        background-color: var(--primary-color);
+      /* ============================================================ FOOTER */
+      footer {
+        background: #060606;
+        padding: 7rem 4rem 3rem;
+        border-top: 3px solid var(--red);
+      }
+      .ft-top {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2.2fr 1fr 1fr 1fr 1.5fr;
+        gap: 5rem;
+        margin-bottom: 5rem;
+        padding-bottom: 5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .ft-logo-row {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      .ft-logo-img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        opacity: 0.9;
+      }
+      .ft-brand-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.2rem;
+        letter-spacing: 0.1em;
+        color: #fff;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+      .ft-brand-name span {
+        color: var(--red);
+      }
+      .ft-brand-tag {
+        font-size: 1.35rem;
+        color: rgba(255, 255, 255, 0.22);
+        margin-bottom: 2.8rem;
+        line-height: 1.75;
+        max-width: 290px;
+      }
+      .ft-socials {
+        display: flex;
+        gap: 0.9rem;
+      }
+      .ft-soc {
+        width: 40px;
+        height: 40px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 1.4rem;
+        transition: all 0.26s;
+      }
+      .ft-soc:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
         transform: translateY(-3px);
       }
-
-      .footer-col ul li {
-        margin-bottom: 10px;
+      .ft-col h5 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        color: rgba(255, 255, 255, 0.22);
+        text-transform: uppercase;
+        margin-bottom: 2.2rem;
       }
-
-      .footer-col ul a {
-        color: #adb5bd;
-        transition: var(--transition);
+      .ft-col ul li {
+        margin-bottom: 1.3rem;
       }
-
-      .footer-col ul a:hover {
-        color: var(--primary-color);
-        padding-left: 5px;
+      .ft-col a {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        transition: color 0.2s;
       }
-
-      .contact-info li {
-        margin-bottom: 15px;
+      .ft-col a:hover {
+        color: #fff;
+      }
+      .ft-contact li {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
+        gap: 1.1rem;
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        margin-bottom: 1.5rem;
       }
-
-      .contact-info i {
-        margin-right: 10px;
-        color: var(--primary-color);
-        width: 20px;
-        text-align: center;
-      }
-
-      .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 20px 0;
-        text-align: center;
-        color: #adb5bd;
-        font-size: 0.9rem;
-      }
-
-      /* Back to Top */
-      .back-to-top {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background-color: var(--primary-color);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      .ft-contact i {
+        color: var(--red);
         font-size: 1.2rem;
-        opacity: 0;
-        visibility: hidden;
-        transition: var(--transition);
-        z-index: 999;
-        box-shadow: 0 4px 15px rgba(228, 5, 33, 0.3);
+        margin-top: 0.2rem;
+        flex-shrink: 0;
       }
-
-      .back-to-top.active {
-        opacity: 1;
-        visibility: visible;
+      .ft-contact a {
+        color: rgba(255, 255, 255, 0.38);
+        transition: color 0.2s;
       }
-
-      .back-to-top:hover {
-        background-color: #c0041d;
-        transform: translateY(-5px);
-        box-shadow: 0 6px 20px rgba(228, 5, 33, 0.4);
+      .ft-contact a:hover {
+        color: #fff;
       }
-
-      /* Messenger Chat Button */
-      .messenger-chat {
-        position: fixed;
-        bottom: 100px;
-        right: 25px;
-        width: 60px;
-        height: 60px;
-        background-color: #0084ff;
-        color: white;
-        border-radius: 50%;
+      .ft-btm {
+        max-width: 1340px;
+        margin: 0 auto;
         display: flex;
-        justify-content: center;
         align-items: center;
-        font-size: 28px;
-        box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
-        z-index: 999;
-        transition: all 0.3s ease;
-        animation: pulse 2s infinite;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .ft-btm p {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.16);
+      }
+      .ft-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.16);
+      }
+      .ft-badge i {
+        color: var(--red);
       }
 
-      .messenger-chat:hover {
-        background-color: #0066cc;
-        transform: scale(1.1);
-        box-shadow: 0 6px 20px rgba(0, 132, 255, 0.4);
-      }
-
-      /* Hiệu ứng lan tỏa */
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
-        }
-        70% {
-          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
-        }
-      }
-
-      /* Điều chỉnh vị trí khi có cả 2 nút */
-      .back-to-top.active ~ .messenger-chat {
-        bottom: 100px;
-      }
-
-      /* Mobile Bottom Navigation Bar */
-      .mobile-bottom-nav {
+      .mob-nav {
         display: none;
         position: fixed;
         bottom: 0;
         left: 0;
-        width: 100%;
-        background-color: white;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 998;
-        padding: 10px 0;
+        right: 0;
+        background: rgba(245, 243, 240, 0.97);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid var(--border);
+        z-index: 400;
+        padding: 0.6rem 0;
       }
-
-      .mobile-bottom-nav .container {
+      .mnb {
         display: flex;
         justify-content: space-around;
-        align-items: center;
       }
-
-      .mobile-nav-item {
+      .mnb-a {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 0.4rem;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        transition: color 0.2s;
+      }
+      .mnb-a.on,
+      .mnb-a:hover {
+        color: var(--red);
+      }
+      .mnb-a i {
+        font-size: 1.9rem;
+      }
+      .mnb-a span {
+        font-size: 0.92rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+      .messenger-float {
+        position: fixed;
+        bottom: 9.5rem;
+        right: 2.5rem;
+        width: 52px;
+        height: 52px;
+        background: #0084ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
         justify-content: center;
-        flex: 1;
-        padding: 5px 0;
-        transition: var(--transition);
+        font-size: 2.2rem;
+        color: #fff;
+        z-index: 300;
+        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.32);
+        animation: mpulse 2.5s ease-in-out infinite;
+        transition: transform 0.3s;
+      }
+      .messenger-float:hover {
+        transform: scale(1.12);
+      }
+      @keyframes mpulse {
+        0%,
+        100% {
+          box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
+        }
+        50% {
+          box-shadow: 0 4px 38px rgba(0, 132, 255, 0.58);
+        }
+      }
+      .back-top {
+        position: fixed;
+        bottom: 2.5rem;
+        right: 2.5rem;
+        width: 46px;
+        height: 46px;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        color: #fff;
+        z-index: 300;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+      }
+      .back-top.on {
+        opacity: 1;
+        visibility: visible;
+      }
+      .back-top:hover {
+        background: var(--red-dark);
+        transform: translateY(-3px);
+      }
+      .rv {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv-l {
+        opacity: 0;
+        transform: translateX(-22px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv-r {
+        opacity: 0;
+        transform: translateX(22px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv.in,
+      .rv-l.in,
+      .rv-r.in {
+        opacity: 1;
+        transform: none;
       }
 
-      .mobile-nav-item.active {
-        color: var(--primary-color);
+      /* ============================================================ RESPONSIVE */
+      @media (max-width: 1100px) {
+        .ft-top {
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+        }
       }
-
-      .mobile-nav-icon {
-        font-size: 1.2rem;
-        margin-bottom: 4px;
-      }
-
-      .mobile-nav-label {
-        font-size: 0.7rem;
-        font-weight: 500;
-      }
-
-      /* Responsive */
       @media (max-width: 992px) {
-        .section-title {
-          font-size: 2rem;
+        .main-nav,
+        .hdr-cta {
+          display: none;
         }
-
-        .hero-content h1 {
-          font-size: 2rem;
+        .ham {
+          display: flex;
         }
-
-        .services-grid {
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        .hdr-inner {
+          padding: 0 2.5rem;
         }
-
+        .tb-inner {
+          padding: 0 2.5rem;
+        }
         .form-row {
-          flex-direction: column;
-          gap: 0;
+          grid-template-columns: 1fr;
         }
       }
-
       @media (max-width: 768px) {
-        .menu-toggle {
-          display: block;
+        .top-bar {
+          display: none;
         }
-
-        .main-nav {
-          position: fixed;
-          top: 0;
-          right: -100%;
-          width: 80%;
-          max-width: 300px;
-          height: 100vh;
-          background-color: white;
-          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-          transition: var(--transition);
-          padding: 80px 20px 20px;
-          overflow-y: auto;
+        .page-hero-body {
+          padding: 0 2.5rem 4rem;
         }
-
-        .main-nav.active {
-          right: 0;
+        .breadcrumb-inner {
+          padding: 0 2.5rem;
         }
-
-        .main-nav ul {
+        .tab-section {
+          padding: 0 2.5rem;
+        }
+        .bk-header {
+          padding: 2.8rem 2.4rem;
+        }
+        .bk-body {
+          padding: 2.8rem 2.4rem;
+        }
+        .cta-banner {
+          padding: 5rem 2.5rem;
+        }
+        .cta-left h2 {
+          font-size: 3.6rem;
+        }
+        .cta-inner {
           flex-direction: column;
         }
-
-        .main-nav li {
-          margin: 15px 0;
-        }
-
-        .main-nav a {
-          font-size: 1.1rem;
-        }
-
-        .service-tabs {
-          flex-wrap: wrap;
-        }
-
-        .tab-btn {
-          padding: 10px 15px;
-          font-size: 1rem;
-        }
-
-        .newsletter-form {
+        .cta-btns {
           flex-direction: column;
         }
-
-        .newsletter-form input,
-        .newsletter-form button {
-          width: 100%;
-          border-radius: 4px;
-        }
-
-        .newsletter-form button {
-          margin-top: 10px;
-        }
-        .back-to-top {
-          width: 45px;
-          height: 45px;
-          font-size: 1rem;
-          right: 20px;
-          bottom: 180px;
-        }
-
-        .messenger-chat {
-          width: 50px;
-          height: 50px;
-          font-size: 24px;
-          right: 18px;
-          bottom: 110px;
-        }
-
-        .back-to-top.active ~ .messenger-chat {
-          bottom: 80px;
-        }
-        /* Hiển thị thanh menu mobile ở chân trang */
-        .mobile-bottom-nav {
-          display: block;
-        }
-
-        /* Điều chỉnh padding cho footer để tránh bị che bởi menu mobile */
-        .main-footer {
-          padding-bottom: 70px;
-        }
-        .menu-toggle {
-          display: block;
-        }
-
-        .menu-toggle.active .bar:nth-child(1) {
-          transform: translateY(8px) rotate(45deg);
-        }
-
-        .menu-toggle.active .bar:nth-child(2) {
-          opacity: 0;
-        }
-
-        .menu-toggle.active .bar:nth-child(3) {
-          transform: translateY(-8px) rotate(-45deg);
-        }
-      }
-
-      @media (max-width: 576px) {
-        .service-hero {
-          min-height: 250px;
-        }
-
-        .hero-content h1 {
-          font-size: 1.8rem;
-        }
-
-        .section-title {
-          font-size: 1.8rem;
-        }
-
         .services-grid {
           grid-template-columns: 1fr;
         }
-
-        .booking-form {
-          padding: 20px;
+        .ft-top {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+        .ft-btm {
+          flex-direction: column;
+          text-align: center;
+        }
+        footer {
+          padding-bottom: 8rem;
+        }
+        .mob-nav {
+          display: block;
+        }
+        .schedule-table th,
+        .schedule-table td {
+          padding: 1.2rem 1.4rem;
+          font-size: 1.3rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: clamp(4.5rem, 15vw, 7.5rem);
+        }
+        .tab-btn {
+          font-size: 1.4rem;
+          padding: 1.6rem 2.4rem;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Header -->
-    <header class="main-header">
-      <div class="container">
-        <a href="/Trangchu/" class="logo">
-          <img
-            src="/sanphamxemay/image/banner/Logo_HEAD.png"
-            alt="Honda Logo"
-          />
-        </a>
-        <h3>HEAD TRUNG HÙNG</h3>
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
+    <!-- PRELOADER -->
+    <div class="preloader" id="preloader">
+      <div class="pl-logo">
+        <img src="/sanphamxemay/image/banner/Logo_HEAD.png" alt="HEAD" />
+        <div class="pl-brand">
+          HỆ THỐNG HEAD <span>TRUNG HÙNG</span><small>Honda Chính Hãng</small>
         </div>
+      </div>
+      <div class="pl-dots">
+        <div class="pl-dot"></div>
+        <div class="pl-dot"></div>
+        <div class="pl-dot"></div>
+        <div class="pl-dot"></div>
+      </div>
+    </div>
 
-        <nav class="main-nav">
-          <ul>
-            <li><a href="/Trangchu/">Trang chủ</a></li>
-            <li><a href="/dichvu/sanphamphutung/">Phụ Tùng</a></li>
-            <li><a href="/dichvu/" class="active">Dịch vụ</a></li>
-            <li><a href="/tintuc/">Tin tức</a></li>
-            <li><a href="/lienhe/">Liên hệ</a></li>
-          </ul>
-        </nav>
+    <!-- TOP BAR -->
+    <div class="top-bar" id="topBar">
+      <div class="tb-inner">
+        <div class="tb-links">
+          <a href="/question/"
+            ><i class="fas fa-question-circle"></i>Câu hỏi thường gặp</a
+          >
+          <a href="/cuahang/"
+            ><i class="fas fa-location-dot"></i>Hệ thống đại lý</a
+          >
+        </div>
+        <div class="tb-contact">
+          <a href="tel:1900636712"
+            ><i class="fas fa-phone-alt"></i>1900 636 712</a
+          >
+          <div class="tb-divider"></div>
+          <a href="mailto:cr_mt@hungmanh.com.vn"
+            ><i class="fas fa-envelope"></i>cr_mt@hungmanh.com.vn</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="site-header" id="siteHeader">
+      <div class="hdr-inner">
+        <a href="/Trangchu/" class="logo-area">
+          <div class="logo-img-wrap">
+            <img
+              src="/sanphamxemay/image/banner/Logo_HEAD.png"
+              alt="HEAD Trung Hùng"
+            />
+          </div>
+          <div class="logo-text-wrap">
+            <span class="logo-main">HỆ THỐNG HEAD <span>TRUNG HÙNG</span></span>
+            <span class="logo-sub"
+              >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
+            >
+          </div>
+        </a>
+        <ul class="main-nav">
+          <li><a href="/Trangchu/">Trang chủ</a></li>
+          <li><a href="/gioithieu/">Giới thiệu</a></li>
+          <li><a href="/sanphamxemay/">Sản phẩm</a></li>
+          <li class="dropdown">
+            <a href="/dichvu/" class="active"
+              >Dịch Vụ <i class="fas fa-chevron-down"></i
+            ></a>
+            <ul class="dropdown-panel">
+              <li>
+                <a href="/dichvu/baoduong/"
+                  ><i class="fas fa-tools"></i>Bảo Dưỡng & Sửa Chữa</a
+                >
+              </li>
+              <li>
+                <a href="/dichvu/baohanh/"
+                  ><i class="fas fa-shield-alt"></i>Bảo Hành Xe Máy</a
+                >
+              </li>
+              <li>
+                <a href="/dichvu/sanphamphutung/"
+                  ><i class="fas fa-gear"></i>Phụ Tùng Chính Hãng</a
+                >
+              </li>
+              <li>
+                <a href="/dichvu/kiemtradinhky/"
+                  ><i class="fas fa-calendar-alt"></i>Tra Cứu Lịch KTĐK</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li><a href="/tintuc/">Tin tức</a></li>
+          <li><a href="/cuahang/">Hệ THỐNG ĐẠI LÝ</a></li>
+          <li><a href="/lienhe/">Liên hệ</a></li>
+        </ul>
+        <a href="tel:1900636712" class="hdr-cta"
+          ><i class="fas fa-phone-alt"></i> Gọi ngay</a
+        >
+        <div class="ham" id="ham"><span></span><span></span><span></span></div>
       </div>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="service-hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1>Bảo Dưỡng & Sửa Chữa</h1>
-          <p>Dịch vụ chuyên nghiệp - Chất lượng hàng đầu - Bảo hành dài hạn</p>
-        </div>
+    <!-- Drawer -->
+    <div class="draw-ov" id="drawOv"></div>
+    <div class="site-draw" id="siteDraw">
+      <button class="draw-x" id="drawX" type="button">
+        <i class="fas fa-times"></i>
+      </button>
+      <ul class="draw-nav">
+        <li><a href="/Trangchu/">Trang chủ</a></li>
+        <li><a href="/sanphamxemay/">Sản phẩm</a></li>
+        <li>
+          <a href="/dichvu/" class="draw-toggle" data-target="draw-dv"
+            >Dịch Vụ <i class="fas fa-chevron-down"></i
+          ></a>
+          <div class="draw-sub" id="draw-dv">
+            <a href="/dichvu/baoduong/"
+              ><i class="fas fa-tools"></i>Bảo Dưỡng & Sửa Chữa</a
+            >
+            <a href="/dichvu/baohanh/"
+              ><i class="fas fa-shield-alt"></i>Bảo Hành</a
+            >
+            <a href="/dichvu/sanphamphutung/"
+              ><i class="fas fa-gear"></i>Phụ Tùng</a
+            >
+          </div>
+        </li>
+        <li><a href="/tintuc/">Tin tức</a></li>
+        <li><a href="/lienhe/">Liên hệ</a></li>
+      </ul>
+      <a href="tel:1900636712" class="draw-cta"
+        ><i class="fas fa-phone-alt"></i> Gọi ngay: 1900 636 712</a
+      >
+    </div>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="page-hero-ov"></div>
+      <div class="page-hero-body">
+        <div class="hero-eyebrow">Honda Authorised Service</div>
+        <h1 class="hero-title">BẢO DƯỠNG<br />&amp; <em>SỬA CHỮA</em></h1>
+        <p class="hero-sub">
+          Dịch vụ chuyên nghiệp — Kỹ thuật viên được đào tạo bởi Honda — Phụ
+          tùng chính hãng — Bảo hành dài hạn.
+        </p>
       </div>
     </section>
 
-    <!-- Service Tabs -->
-    <section class="container">
-      <div class="service-tabs">
-        <button class="tab-btn active" data-tab="maintenance">
-          Bảo dưỡng định kỳ
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      <div class="breadcrumb-inner">
+        <a href="/Trangchu/">Trang chủ</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="/dichvu/">Dịch vụ</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Bảo dưỡng & Sửa chữa</span>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tab-section">
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="maintenance" type="button">
+          <i class="fas fa-calendar-check"></i>Lịch bảo dưỡng
         </button>
-        <button class="tab-btn" data-tab="repair">Sửa chữa</button>
-        <button class="tab-btn" data-tab="booking">Đặt lịch hẹn</button>
+        <button class="tab-btn" data-tab="repair" type="button">
+          <i class="fas fa-wrench"></i>Dịch vụ sửa chữa
+        </button>
+        <button class="tab-btn" data-tab="booking" type="button">
+          <i class="fas fa-calendar-plus"></i>Đặt lịch hẹn
+        </button>
+        <button class="tab-btn" data-tab="faq" type="button">
+          <i class="fas fa-circle-question"></i>Câu hỏi thường gặp
+        </button>
       </div>
 
-      <!-- Maintenance Tab -->
+      <!-- ── TAB 1: BẢO DƯỠNG ── -->
       <div id="maintenance" class="tab-content active">
-        <section class="schedule-section">
-          <div class="container">
-            <div class="section-header">
-              <h2 class="section-title">Lịch Bảo Dưỡng Định Kỳ</h2>
-              <p class="section-subtitle">
-                Bảo dưỡng đúng hạn để đảm bảo hiệu suất và độ bền cho xe
-              </p>
-              <div class="divider"></div>
-            </div>
-
+        <div class="sec-hdr rv">
+          <div class="sec-eyebrow">Theo tiêu chuẩn Honda</div>
+          <h2 class="sec-title">LỊCH BẢO DƯỠNG ĐỊNH KỲ</h2>
+          <p class="sec-sub">
+            Bảo dưỡng đúng hạn để đảm bảo hiệu suất và độ bền tối đa cho xe
+            Honda của bạn.
+          </p>
+        </div>
+        <div class="schedule-wrap rv">
+          <div style="overflow-x: auto">
             <table class="schedule-table">
               <thead>
                 <tr>
-                  <th>Hạng mục</th>
-                  <th>1,000 km</th>
-                  <th>5,000 km</th>
-                  <th>10,000 km</th>
-                  <th>20,000 km</th>
+                  <th style="width: 240px">Hạng mục</th>
+                  <th class="th-milestone" style="width: 140px">1.000 km</th>
+                  <th class="th-milestone" style="width: 140px">5.000 km</th>
+                  <th class="th-milestone" style="width: 140px">10.000 km</th>
+                  <th class="th-milestone" style="width: 140px">20.000 km</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Thay dầu động cơ</td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
+                  <td class="item-name">Thay dầu động cơ</td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Thay lọc dầu</td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
+                  <td class="item-name">Thay lọc dầu</td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Thay lọc gió</td>
-                  <td></td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td></td>
-                  <td><i class="fas fa-check"></i></td>
+                  <td class="item-name">Thay lọc gió</td>
+                  <td class="tc-center">
+                    <i class="fas fa-minus check-no"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-minus check-no"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Kiểm tra phanh</td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
+                  <td class="item-name">Kiểm tra hệ thống phanh</td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Kiểm tra hệ thống điện</td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
+                  <td class="item-name">Kiểm tra hệ thống điện</td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Kiểm tra lốp</td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
+                  <td class="item-name">Kiểm tra lốp xe</td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Thay dầu phanh</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td><i class="fas fa-check"></i></td>
+                  <td class="item-name">Thay dầu phanh</td>
+                  <td class="tc-center">
+                    <i class="fas fa-minus check-no"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-minus check-no"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-minus check-no"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Thay nước làm mát</td>
-                  <td></td>
-                  <td></td>
-                  <td><i class="fas fa-check"></i></td>
-                  <td><i class="fas fa-check"></i></td>
+                  <td class="item-name">Thay nước làm mát</td>
+                  <td class="tc-center">
+                    <i class="fas fa-minus check-no"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-minus check-no"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="item-name">Kiểm tra bu-gi</td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="item-name">Điều chỉnh xích/đai</td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
+                  <td class="tc-center">
+                    <i class="fas fa-check check-yes"></i>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
-        </section>
+        </div>
       </div>
 
-      <!-- Repair Tab -->
+      <!-- ── TAB 2: SỬA CHỮA ── -->
       <div id="repair" class="tab-content">
-        <section class="repair-section">
-          <div class="container">
-            <div class="section-header">
-              <h2 class="section-title">Dịch Vụ Sửa Chữa</h2>
-              <p class="section-subtitle">
-                Đội ngũ kỹ thuật viên chuyên nghiệp với trang thiết bị hiện đại
-              </p>
-              <div class="divider"></div>
+        <div class="sec-hdr rv">
+          <div class="sec-eyebrow">Kỹ thuật viên Honda</div>
+          <h2 class="sec-title">DỊCH VỤ SỬA CHỮA</h2>
+          <p class="sec-sub">
+            Đội ngũ kỹ thuật viên được đào tạo bài bản bởi Honda — trang thiết
+            bị hiện đại — phụ tùng chính hãng 100%.
+          </p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card rv">
+            <div class="sc-img">
+              <img
+                src="/gioithieu/image/SAUBANHANG.JPG"
+                alt="Sửa chữa động cơ"
+                loading="lazy"
+              />
             </div>
-
-            <div class="services-grid">
-              <!-- Service 1 -->
-              <div class="service-card">
-                <div class="service-image">
-                  <img
-                    src="/gioithieu/image/SAUBANHANG.JPG"
-                    alt="Sửa chữa động cơ"
-                  />
-                </div>
-                <div class="service-content">
-                  <h3 class="service-title">Sửa chữa động cơ</h3>
-                  <p class="service-description">
-                    Chẩn đoán và sửa chữa các vấn đề về động cơ, đảm bảo hiệu
-                    suất hoạt động tối ưu.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Service 2 -->
-              <div class="service-card">
-                <div class="service-image">
-                  <img
-                    src="/gioithieu/image/BAOHANH.JPG"
-                    alt="Hệ thống phanh"
-                  />
-                </div>
-                <div class="service-content">
-                  <h3 class="service-title">Hệ thống phanh</h3>
-                  <p class="service-description">
-                    Kiểm tra, bảo dưỡng và thay thế phanh đĩa, má phanh, dầu
-                    phanh.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Service 3 -->
-              <div class="service-card">
-                <div class="service-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1627637817936-ad6e2a1c42f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
-                    alt="Hệ thống điện"
-                  />
-                </div>
-                <div class="service-content">
-                  <h3 class="service-title">Hệ thống điện</h3>
-                  <p class="service-description">
-                    Sửa chữa các vấn đề về hệ thống điện, ắc quy, đèn chiếu
-                    sáng.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Service 4 -->
-              <div class="service-card">
-                <div class="service-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1627637817936-ad6e2a1c42f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
-                    alt="Hệ thống treo"
-                  />
-                </div>
-                <div class="service-content">
-                  <h3 class="service-title">Hệ thống treo</h3>
-                  <p class="service-description">
-                    Kiểm tra và thay thế giảm xóc, thanh cân bằng, bạc đạn.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Service 5 -->
-              <div class="service-card">
-                <div class="service-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1627637817936-ad6e2a1c42f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
-                    alt="Hệ thống làm mát"
-                  />
-                </div>
-                <div class="service-content">
-                  <h3 class="service-title">Hệ thống làm mát</h3>
-                  <p class="service-description">
-                    Vệ sinh két nước, thay nước làm mát, kiểm tra bơm nước.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Service 6 -->
-              <div class="service-card">
-                <div class="service-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1627637817936-ad6e2a1c42f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
-                    alt="Bảo dưỡng tổng thể"
-                  />
-                </div>
-                <div class="service-content">
-                  <h3 class="service-title">Bảo dưỡng tổng thể</h3>
-                  <p class="service-description">
-                    Kiểm tra toàn bộ hệ thống, thay thế phụ tùng cần thiết.
-                  </p>
-                </div>
+            <div class="sc-body">
+              <div class="sc-icon-wrap"><i class="fas fa-cog"></i></div>
+              <div class="sc-title">Sửa chữa động cơ</div>
+              <div class="sc-desc">
+                Chẩn đoán và sửa chữa toàn diện các vấn đề động cơ — tối ưu hóa
+                hiệu suất và tiêu hao nhiên liệu.
               </div>
             </div>
           </div>
-        </section>
+          <div class="service-card rv">
+            <div class="sc-img">
+              <img
+                src="/gioithieu/image/BAOHANH.JPG"
+                alt="Hệ thống phanh"
+                loading="lazy"
+              />
+            </div>
+            <div class="sc-body">
+              <div class="sc-icon-wrap"><i class="fas fa-circle-stop"></i></div>
+              <div class="sc-title">Hệ thống phanh</div>
+              <div class="sc-desc">
+                Kiểm tra, hiệu chỉnh và thay thế phanh đĩa, má phanh, dầu phanh
+                — đảm bảo an toàn tuyệt đối.
+              </div>
+            </div>
+          </div>
+          <div class="service-card rv">
+            <div class="sc-img">
+              <img
+                src="/gioithieu/image/SAUBANHANG.JPG"
+                alt="Hệ thống điện"
+                loading="lazy"
+              />
+            </div>
+            <div class="sc-body">
+              <div class="sc-icon-wrap"><i class="fas fa-bolt"></i></div>
+              <div class="sc-title">Hệ thống điện</div>
+              <div class="sc-desc">
+                Sửa chữa mạch điện, thay thế ắc quy, kiểm tra hệ thống đèn chiếu
+                sáng và cảm biến điện tử.
+              </div>
+            </div>
+          </div>
+          <div class="service-card rv">
+            <div class="sc-img">
+              <img
+                src="/gioithieu/image/SAUBANHANG.JPG"
+                alt="Hệ thống treo"
+                loading="lazy"
+              />
+            </div>
+            <div class="sc-body">
+              <div class="sc-icon-wrap">
+                <i class="fas fa-arrows-up-down"></i>
+              </div>
+              <div class="sc-title">Hệ thống treo</div>
+              <div class="sc-desc">
+                Kiểm tra và thay thế giảm xóc, thanh cân bằng, bạc đạn — cải
+                thiện độ bám đường và êm ái.
+              </div>
+            </div>
+          </div>
+          <div class="service-card rv">
+            <div class="sc-img">
+              <img
+                src="/gioithieu/image/BAOHANH.JPG"
+                alt="Hệ thống làm mát"
+                loading="lazy"
+              />
+            </div>
+            <div class="sc-body">
+              <div class="sc-icon-wrap"><i class="fas fa-droplet"></i></div>
+              <div class="sc-title">Hệ thống làm mát</div>
+              <div class="sc-desc">
+                Vệ sinh két nước, thay nước làm mát Honda chính hãng, kiểm tra
+                bơm nước và van hằng nhiệt.
+              </div>
+            </div>
+          </div>
+          <div class="service-card rv">
+            <div class="sc-img">
+              <img
+                src="/gioithieu/image/SAUBANHANG.JPG"
+                alt="Bảo dưỡng tổng thể"
+                loading="lazy"
+              />
+            </div>
+            <div class="sc-body">
+              <div class="sc-icon-wrap"><i class="fas fa-star"></i></div>
+              <div class="sc-title">Bảo dưỡng tổng thể</div>
+              <div class="sc-desc">
+                Kiểm tra toàn diện mọi hệ thống trên xe, thay thế các phụ tùng
+                cần thiết theo đúng tiêu chuẩn Honda.
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Booking Tab -->
+      <!-- ── TAB 3: ĐẶT LỊCH ── -->
       <div id="booking" class="tab-content">
-        <section class="booking-section">
-          <div class="container">
-            <div class="section-header">
-              <h2 class="section-title">Đặt Lịch Hẹn Dịch Vụ</h2>
-              <p class="section-subtitle">
-                Điền thông tin để đặt lịch hẹn bảo dưỡng/sửa chữa
-              </p>
-              <div class="divider"></div>
-            </div>
-
-            <form class="booking-form">
+        <div class="sec-hdr rv">
+          <div class="sec-eyebrow">Nhanh chóng và tiện lợi</div>
+          <h2 class="sec-title">ĐẶT LỊCH HẸN DỊCH VỤ</h2>
+          <p class="sec-sub">
+            Điền thông tin bên dưới để đặt lịch bảo dưỡng hoặc sửa chữa — chúng
+            tôi sẽ xác nhận trong vòng 2 giờ.
+          </p>
+        </div>
+        <div class="booking-wrap rv">
+          <div class="bk-header">
+            <h2>GỬI YÊU CẦU ĐẶT LỊCH</h2>
+            <p>
+              Chúng tôi sẽ liên hệ xác nhận lịch hẹn trong thời gian sớm nhất —
+              thường trong ngày làm việc.
+            </p>
+          </div>
+          <div class="bk-body">
+            <form id="bookingForm">
               <div class="form-row">
                 <div class="form-group">
-                  <label for="name" class="form-label">Họ và tên</label>
-                  <input type="text" id="name" class="form-control" required />
-                </div>
-                <div class="form-group">
-                  <label for="phone" class="form-label">Số điện thoại</label>
-                  <input type="tel" id="phone" class="form-control" required />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="email" class="form-label">Email</label>
+                  <label class="form-label">Họ và tên</label>
                   <input
-                    type="email"
-                    id="email"
+                    type="text"
                     class="form-control"
+                    placeholder="Nguyễn Văn A"
                     required
                   />
                 </div>
                 <div class="form-group">
-                  <label for="model" class="form-label">Dòng xe</label>
-                  <select id="model" class="form-control" required>
-                    <option value="">Chọn dòng xe</option>
-                    <option value="vision">Vision</option>
-                    <option value="airblade">Air Blade</option>
-                    <option value="sh">SH</option>
-                    <option value="winner">Winner</option>
-                    <option value="wave">Wave</option>
-                    <option value="other">Khác</option>
-                  </select>
+                  <label class="form-label">Số điện thoại</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    placeholder="0912 345 678"
+                    required
+                  />
                 </div>
               </div>
-
               <div class="form-row">
                 <div class="form-group">
-                  <label for="date" class="form-label">Ngày hẹn</label>
-                  <input type="date" id="date" class="form-control" required />
+                  <label class="form-label">Dòng xe</label>
+                  <select class="form-control" required>
+                    <option value="" disabled selected>Chọn dòng xe</option>
+                    <option>Honda Vision</option>
+                    <option>Honda Air Blade</option>
+                    <option>Honda SH125i</option>
+                    <option>Honda SH160i</option>
+                    <option>Honda Vario 160</option>
+                    <option>Honda Winner R</option>
+                    <option>Honda Wave Alpha</option>
+                    <option>Honda Future</option>
+                    <option>Honda CB350 H'ness</option>
+                    <option>Honda ICON e:</option>
+                    <option>Dòng xe khác</option>
+                  </select>
                 </div>
                 <div class="form-group">
-                  <label for="time" class="form-label">Giờ hẹn</label>
-                  <select id="time" class="form-control" required>
-                    <option value="">Chọn khung giờ</option>
-                    <option value="8-9">8:00 - 9:00</option>
-                    <option value="9-10">9:00 - 10:00</option>
-                    <option value="10-11">10:00 - 11:00</option>
-                    <option value="13-14">13:00 - 14:00</option>
-                    <option value="14-15">14:00 - 15:00</option>
-                    <option value="15-16">15:00 - 16:00</option>
+                  <label class="form-label">Cửa hàng</label>
+                  <select class="form-control" required>
+                    <option value="" disabled selected>Chọn cửa hàng</option>
+                    <optgroup label="Gia Lai">
+                      <option>HEAD Trung Hùng 1 – Pleiku</option>
+                      <option>HEAD Trung Hùng 2 – Bồng Sơn</option>
+                      <option>HEAD Trung Hùng 3 – Quy Nhơn Nam</option>
+                      <option>HEAD Trung Hùng 4 – Tam Quan</option>
+                    </optgroup>
+                    <optgroup label="Hà Nội">
+                      <option>HEAD Hùng Mạnh 7 – Bồ Đề</option>
+                    </optgroup>
+                    <optgroup label="Sơn La">
+                      <option>HEAD Hùng Mạnh 1 – Mai Sơn</option>
+                      <option>HEAD Hùng Mạnh 2 – Tô Hiệu</option>
+                      <option>HEAD Hùng Mạnh 3 – Tô Hiệu</option>
+                    </optgroup>
                   </select>
                 </div>
               </div>
-
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Ngày hẹn</label>
+                  <input type="date" class="form-control" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Khung giờ</label>
+                  <select class="form-control" required>
+                    <option value="" disabled selected>Chọn khung giờ</option>
+                    <option>8:00 – 9:00</option>
+                    <option>9:00 – 10:00</option>
+                    <option>10:00 – 11:00</option>
+                    <option>13:00 – 14:00</option>
+                    <option>14:00 – 15:00</option>
+                    <option>15:00 – 16:00</option>
+                    <option>16:00 – 17:00</option>
+                  </select>
+                </div>
+              </div>
               <div class="form-group">
-                <label for="service" class="form-label"
-                  >Dịch vụ cần thực hiện</label
-                >
-                <select id="service" class="form-control" required>
-                  <option value="">Chọn dịch vụ</option>
-                  <option value="maintenance">Bảo dưỡng định kỳ</option>
-                  <option value="engine">Sửa chữa động cơ</option>
-                  <option value="brake">Hệ thống phanh</option>
-                  <option value="electrical">Hệ thống điện</option>
-                  <option value="suspension">Hệ thống treo</option>
-                  <option value="cooling">Hệ thống làm mát</option>
-                  <option value="full">Bảo dưỡng tổng thể</option>
-                  <option value="other">Khác</option>
+                <label class="form-label">Dịch vụ cần thực hiện</label>
+                <select class="form-control" required>
+                  <option value="" disabled selected>Chọn dịch vụ</option>
+                  <option>Bảo dưỡng định kỳ</option>
+                  <option>Sửa chữa động cơ</option>
+                  <option>Hệ thống phanh</option>
+                  <option>Hệ thống điện</option>
+                  <option>Hệ thống treo</option>
+                  <option>Hệ thống làm mát</option>
+                  <option>Bảo dưỡng tổng thể</option>
+                  <option>Thay phụ tùng</option>
+                  <option>Khác</option>
                 </select>
               </div>
-
               <div class="form-group">
-                <label for="note" class="form-label">Ghi chú</label>
-                <textarea id="note" class="form-control"></textarea>
+                <label class="form-label">Ghi chú thêm</label>
+                <textarea
+                  class="form-control"
+                  placeholder="Mô tả sự cố hoặc yêu cầu đặc biệt..."
+                  rows="4"
+                ></textarea>
               </div>
-
-              <button type="submit" class="btn btn-primary">
-                Đặt lịch ngay
+              <button type="submit" class="btn-submit" id="submitBtn">
+                <i class="fas fa-calendar-plus"></i> Đặt lịch ngay
               </button>
             </form>
           </div>
-        </section>
+        </div>
       </div>
 
-      <!-- Centers Tab -->
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Câu Hỏi Thường Gặp</h2>
-          <p class="section-subtitle">
-            Giải đáp các thắc mắc về dịch vụ bảo dưỡng và sửa chữa
+      <!-- ── TAB 4: FAQ ── -->
+      <div id="faq" class="tab-content">
+        <div class="sec-hdr rv">
+          <div class="sec-eyebrow">Giải đáp thắc mắc</div>
+          <h2 class="sec-title">CÂU HỎI THƯỜNG GẶP</h2>
+          <p class="sec-sub">
+            Những câu hỏi phổ biến về dịch vụ bảo dưỡng và sửa chữa xe máy
+            Honda.
           </p>
-          <div class="divider"></div>
         </div>
-
         <div class="faq-list">
-          <!-- FAQ 1 -->
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>Xe tôi nên bảo dưỡng định kỳ bao lâu một lần?</span>
-              <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-              <p>
-                Theo khuyến cáo của Honda, bạn nên bảo dưỡng xe định kỳ mỗi
-                3.000 km hoặc 6 tháng một lần (tùy điều kiện nào đến trước). Đối
-                với các dòng xe mới, lần bảo dưỡng đầu tiên nên được thực hiện
-                sau 1.000 km.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ 2 -->
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>Tôi có thể tự thay dầu nhớt tại nhà không?</span>
-              <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-              <p>
-                Bạn có thể tự thay dầu nhớt tại nhà nếu có đủ dụng cụ và kiến
-                thức. Tuy nhiên, chúng tôi khuyến khích bạn đến các trung tâm
-                dịch vụ ủy quyền của Honda để đảm bảo sử dụng đúng loại dầu nhớt
-                và được kiểm tra toàn diện các hệ thống khác trên xe.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ 3 -->
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>Thời gian bảo hành dịch vụ tại Honda là bao lâu?</span>
-              <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-              <p>
-                Honda Việt Nam áp dụng chính sách bảo hành 36 tháng hoặc 30.000
-                km (tùy điều kiện nào đến trước) đối với xe mới. Đối với dịch vụ
-                sửa chữa, phụ tùng thay thế chính hãng được bảo hành 6 tháng
-                hoặc 10.000 km.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ 4 -->
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>Làm sao để biết xe cần bảo dưỡng?</span>
-              <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-              <p>
-                Một số dấu hiệu cho thấy xe cần bảo dưỡng: tiếng ồn bất thường
-                từ động cơ, xe ì, khó khởi động, đèn cảnh báo trên bảng đồng hồ
-                sáng, rung lắc bất thường khi vận hành. Bạn cũng nên theo dõi
-                lịch bảo dưỡng định kỳ theo hướng dẫn của nhà sản xuất.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ 5 -->
-          <div class="faq-item">
-            <div class="faq-question">
-              <span
-                >Tôi có cần đặt lịch hẹn trước khi đến bảo dưỡng không?</span
+          <div class="faq-item rv">
+            <div class="faq-q">
+              <span class="faq-q-text"
+                >Xe Honda nên bảo dưỡng định kỳ bao lâu một lần?</span
               >
-              <i class="fas fa-chevron-down"></i>
+              <div class="faq-q-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
-            <div class="faq-answer">
-              <p>
-                Việc đặt lịch hẹn trước là không bắt buộc nhưng được khuyến
-                khích để tiết kiệm thời gian chờ đợi. Bạn có thể đặt lịch qua
-                website, ứng dụng hoặc gọi điện trực tiếp đến trung tâm dịch vụ
-                gần nhất.
-              </p>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Theo khuyến cáo của Honda, bạn nên bảo dưỡng xe định kỳ mỗi
+                <strong>3.000 km hoặc 6 tháng</strong> (tùy điều kiện nào đến
+                trước). Đối với xe mới, lần bảo dưỡng đầu tiên nên thực hiện sau
+                1.000 km đầu tiên để đảm bảo động cơ được vận hành đúng chuẩn.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item rv">
+            <div class="faq-q">
+              <span class="faq-q-text"
+                >Sử dụng dầu nhớt không chính hãng có ảnh hưởng gì không?</span
+              >
+              <div class="faq-q-icon"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Sử dụng dầu nhớt không đúng chủng loại có thể làm giảm hiệu suất
+                động cơ, tăng mài mòn các chi tiết bên trong và thậm chí làm mất
+                hiệu lực bảo hành. HEAD Trung Hùng chỉ sử dụng dầu nhớt chính
+                hãng Honda để đảm bảo chất lượng tối ưu cho xe của bạn.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item rv">
+            <div class="faq-q">
+              <span class="faq-q-text"
+                >Thời gian bảo hành dịch vụ tại HEAD Trung Hùng là bao
+                lâu?</span
+              >
+              <div class="faq-q-icon"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Honda Việt Nam áp dụng bảo hành
+                <strong>36 tháng hoặc 30.000 km</strong> (tùy điều kiện nào đến
+                trước) đối với xe mới. Đối với dịch vụ sửa chữa, phụ tùng thay
+                thế chính hãng được bảo hành
+                <strong>6 tháng hoặc 10.000 km</strong>.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item rv">
+            <div class="faq-q">
+              <span class="faq-q-text"
+                >Làm sao biết xe cần bảo dưỡng khẩn cấp?</span
+              >
+              <div class="faq-q-icon"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Một số dấu hiệu cần chú ý: tiếng ồn bất thường từ động cơ, xe ì
+                máy hoặc khó khởi động, đèn cảnh báo trên bảng đồng hồ sáng,
+                rung lắc bất thường khi vận hành, xe tiêu hao nhiên liệu nhiều
+                hơn bình thường, hoặc phanh có cảm giác yếu/ăn không đều. Hãy
+                đến HEAD Trung Hùng ngay khi phát hiện những dấu hiệu này.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item rv">
+            <div class="faq-q">
+              <span class="faq-q-text"
+                >Tôi có cần đặt lịch trước khi đến bảo dưỡng không?</span
+              >
+              <div class="faq-q-icon"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Đặt lịch trước không bắt buộc nhưng được khuyến khích để
+                <strong>tiết kiệm thời gian chờ</strong> và đảm bảo bạn được
+                phục vụ nhanh nhất. Bạn có thể đặt lịch qua tab "Đặt lịch hẹn"
+                trên trang này, hoặc gọi điện trực tiếp đến
+                <strong>1900 636 712</strong>.
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner" style="margin-top: 7rem">
+      <div class="cta-inner">
+        <div class="cta-left rv-l">
+          <h2>CẦN HỖ TRỢ<br />NGAY HÔM NAY?</h2>
+          <p>
+            Kỹ thuật viên HEAD Trung Hùng luôn sẵn sàng — liên hệ ngay để được
+            tư vấn và đặt lịch nhanh nhất.
+          </p>
+        </div>
+        <div class="cta-btns rv-r">
+          <a href="tel:1900636712" class="cta-btn-pri"
+            ><i class="fas fa-phone-alt"></i> 1900 636 712</a
+          >
+          <a href="/cuahang/" class="cta-btn-sec"
+            ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a
+          >
+        </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
+    <!-- FOOTER -->
+    <footer>
+      <div class="ft-top">
+        <div>
+          <div class="ft-logo-row">
             <img
               src="/sanphamxemay/image/banner/Logo_HEAD.png"
-              alt="Honda Logo"
-              class="footer-logo"
+              alt="HEAD"
+              class="ft-logo-img"
             />
-            <p>Công Ty TNHH TM&DV Hùng Mạnh</p>
-            <div class="social-links">
-              <a href="https://www.facebook.com/hethongheadtrunghung"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="https://www.youtube.com/@HethongHEADTrungHung"
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a href="https://www.instagram.com/hethongheadtrunghung"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="https://www.tiktok.com/@hethongheadtrunghung"
-                ><i class="fab fa-tiktok"></i
-              ></a>
+            <div class="ft-brand-name">
+              HỆ THỐNG HEAD <span>TRUNG HÙNG</span>
             </div>
           </div>
-
-          <div class="footer-col">
-            <h3>Liên kết nhanh</h3>
-            <ul>
-              <li><a href="/Trangchu/">Trang chủ</a></li>
-              <li><a href="/dichvu/sanphamphutung/">Phụ Tùng</a></li>
-              <li><a href="/tintuc/">Tin tức</a></li>
-              <li><a href="/dichvu/">Dịch vụ</a></li>
-              <li><a href="/lienhe/">Liên hệ</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h3>Dịch vụ</h3>
-            <ul>
-              <li><a href="/dichvu/baoduong/">Bảo dưỡng định kỳ</a></li>
-              <li><a href="/cuahang/">Trung tâm dịch vụ</a></li>
-              <li><a href="/dichvu/baohanh/">Chính sách bảo hành</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h3>Liên hệ</h3>
-            <ul class="contact-info">
-              <li><i class="fas fa-phone"></i> 1900 636 712</li>
-              <li><i class="fas fa-envelope"></i> cr@hungmanh.com.vn</li>
-              <li><i class="fas fa-envelope"></i> cr_mt@hungmanh.com.vn</li>
-              <li><i class="fas fa-clock"></i> Thứ 2 - CN: 7:30 - 17:30</li>
-            </ul>
+          <p class="ft-brand-tag">
+            Công Ty TNHH Thương Mại Và Dịch Vụ Hùng Mạnh — đại lý Honda chính
+            hãng tại Gia Lai, Hà Nội và Sơn La.
+          </p>
+          <div class="ft-socials">
+            <a
+              href="https://www.facebook.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@HethongHEADTrungHung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.tiktok.com/@hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-tiktok"></i
+            ></a>
           </div>
         </div>
-
-        <div class="footer-bottom">
-          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        <div class="ft-col">
+          <h5>Điều hướng</h5>
+          <ul>
+            <li><a href="/Trangchu/">Trang chủ</a></li>
+            <li><a href="/sanphamxemay/">Sản phẩm</a></li>
+            <li><a href="/banggia/">Bảng giá</a></li>
+            <li><a href="/tintuc/">Tin tức</a></li>
+            <li><a href="/lienhe/">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Dịch Vụ</h5>
+          <ul>
+            <li><a href="/dichvu/baoduong/">Bảo Dưỡng & Sửa Chữa</a></li>
+            <li><a href="/dichvu/baohanh/">Bảo Hành Xe Máy</a></li>
+            <li><a href="/dichvu/sanphamphutung/">Phụ Tùng Chính Hãng</a></li>
+            <li><a href="/lichbaoduong/">Lịch Bảo Dưỡng</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Hỗ Trợ</h5>
+          <ul>
+            <li><a href="/lienhe/">Liên hệ</a></li>
+            <li><a href="/question/">Câu hỏi thường gặp</a></li>
+            <li><a href="/cuahang/">Hệ thống cửa hàng</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Liên Hệ</h5>
+          <ul class="ft-contact">
+            <li>
+              <i class="fas fa-phone-alt"></i
+              ><a href="tel:1900636712">1900 636 712</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i
+              ><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a>
+            </li>
+            <li><i class="fas fa-clock"></i>7:30 – 17:30 (T2 – CN)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-btm">
+        <p>© 2025 HỆ THỐNG HEAD TRUNG HÙNG. Bảo lưu mọi quyền.</p>
+        <div class="ft-badge">
+          <i class="fas fa-certificate"></i> Honda Authorised Dealer
         </div>
       </div>
     </footer>
 
-    <!-- Mobile Bottom Navigation -->
-    <nav class="mobile-bottom-nav">
-      <div class="container">
-        <a href="index.html" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-home"></i>
-          </div>
-          <div class="mobile-nav-label">Trang chủ</div>
-        </a>
-        <a href="/sanphamxemay/" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-motorcycle"></i>
-          </div>
-          <div class="mobile-nav-label">Sản phẩm</div>
-        </a>
-        <a href="/tintuc/tintuckhuyenmai/" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fa-solid fa-gift"></i>
-          </div>
-          <div class="mobile-nav-label">Khuyến mãi</div>
-        </a>
-        <a href="/cuahang/" class="mobile-nav-item active">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
-          <div class="mobile-nav-label">Đại lý</div>
-        </a>
-        <a href="/lienhe/" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-phone-alt"></i>
-          </div>
-          <div class="mobile-nav-label">Liên hệ</div>
-        </a>
+    <nav class="mob-nav">
+      <div class="mnb">
+        <a href="/Trangchu/" class="mnb-a"
+          ><i class="fas fa-home"></i><span>Trang chủ</span></a
+        >
+        <a href="/sanphamxemay/" class="mnb-a"
+          ><i class="fas fa-motorcycle"></i><span>Sản phẩm</span></a
+        >
+        <a href="/tintuc/tintuckhuyenmai/" class="mnb-a"
+          ><i class="fas fa-gift"></i><span>Khuyến mãi</span></a
+        >
+        <a href="/cuahang/" class="mnb-a"
+          ><i class="fas fa-map-marker-alt"></i><span>Đại lý</span></a
+        >
+        <a href="/lienhe/" class="mnb-a"
+          ><i class="fas fa-phone-alt"></i><span>Liên hệ</span></a
+        >
       </div>
     </nav>
 
-    <!-------Messenger Chat Button----------->
     <a
       href="https://m.me/hethongheadtrunghung"
-      class="messenger-chat"
+      class="messenger-float"
       target="_blank"
-    >
-      <i class="fab fa-facebook-messenger"></i>
-    </a>
-
-    <!-- Back to Top -->
-    <a href="#" class="back-to-top" id="backToTop">
-      <i class="fas fa-arrow-up"></i>
-    </a>
+      rel="noopener"
+      aria-label="Messenger"
+      ><i class="fab fa-facebook-messenger"></i
+    ></a>
+    <a href="#" class="back-top" id="backTop" aria-label="Lên đầu"
+      ><i class="fas fa-arrow-up"></i
+    ></a>
 
     <script>
-      // Mobile Menu Toggle
-      const mobileMenu = document.getElementById("mobile-menu");
-      const mainNav = document.querySelector(".main-nav");
+      (function () {
+        "use strict";
 
-      mobileMenu.addEventListener("click", function () {
-        this.classList.toggle("active");
-        mainNav.classList.toggle("active");
-      });
+        /* Preloader */
+        window.addEventListener("load", () =>
+          setTimeout(
+            () => document.getElementById("preloader").classList.add("out"),
+            700,
+          ),
+        );
 
-      // Tab Switching
-      const tabBtns = document.querySelectorAll(".tab-btn");
-      const tabContents = document.querySelectorAll(".tab-content");
+        /* Header + top bar */
+        const tb = document.getElementById("topBar"),
+          hdr = document.getElementById("siteHeader");
+        window.addEventListener(
+          "scroll",
+          () => {
+            const y = window.scrollY;
+            if (tb) tb.classList.toggle("hidden", y > 80);
+            hdr.classList.toggle("lifted", y > 40);
+            document.getElementById("backTop").classList.toggle("on", y > 400);
+          },
+          { passive: true },
+        );
 
-      tabBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          // Remove active class from all buttons and contents
-          tabBtns.forEach((btn) => btn.classList.remove("active"));
-          tabContents.forEach((content) => content.classList.remove("active"));
-
-          // Add active class to clicked button
-          btn.classList.add("active");
-
-          // Show corresponding content
-          const tabId = btn.getAttribute("data-tab");
-          document.getElementById(tabId).classList.add("active");
-        });
-      });
-
-      // FAQ Accordion
-      const faqItems = document.querySelectorAll(".faq-item");
-      faqItems.forEach((item) => {
-        const question = item.querySelector(".faq-question");
-        question.addEventListener("click", () => {
-          item.classList.toggle("active");
-        });
-      });
-
-      // Header Scroll Effect
-      const header = document.querySelector(".main-header");
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 100) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
+        /* Hamburger / Drawer */
+        const ham = document.getElementById("ham"),
+          drawOv = document.getElementById("drawOv"),
+          draw = document.getElementById("siteDraw"),
+          drawX = document.getElementById("drawX");
+        function openDraw() {
+          ham.classList.add("open");
+          drawOv.classList.add("on");
+          draw.classList.add("on");
+          document.body.style.overflow = "hidden";
         }
-      });
-
-      // Back to Top Button
-      const backToTop = document.getElementById("backToTop");
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 300) {
-          backToTop.classList.add("active");
-        } else {
-          backToTop.classList.remove("active");
+        function closeDraw() {
+          ham.classList.remove("open");
+          drawOv.classList.remove("on");
+          draw.classList.remove("on");
+          document.body.style.overflow = "";
         }
-      });
-
-      backToTop.addEventListener("click", (e) => {
-        e.preventDefault();
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
+        ham.addEventListener("click", openDraw);
+        drawOv.addEventListener("click", closeDraw);
+        drawX.addEventListener("click", closeDraw);
+        document.querySelectorAll(".draw-toggle").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const t = document.getElementById(btn.dataset.target);
+            if (!t) return;
+            const open = t.classList.contains("open");
+            document
+              .querySelectorAll(".draw-sub")
+              .forEach((s) => s.classList.remove("open"));
+            document
+              .querySelectorAll(".draw-toggle i")
+              .forEach((i) => (i.style.transform = ""));
+            if (!open) {
+              t.classList.add("open");
+              btn.querySelector("i").style.transform = "rotate(180deg)";
+            }
+          });
         });
-      });
+        draw
+          .querySelectorAll("a")
+          .forEach((a) => a.addEventListener("click", closeDraw));
 
-      // Booking Form Submission
-      const bookingForm = document.querySelector(".booking-form");
-      if (bookingForm) {
-        bookingForm.addEventListener("submit", (e) => {
-          e.preventDefault();
-          alert(
-            "Đã gửi yêu cầu đặt lịch thành công! Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất."
-          );
-          bookingForm.reset();
+        /* Tabs */
+        const tabBtns = [...document.querySelectorAll(".tab-btn")];
+        const tabContents = [...document.querySelectorAll(".tab-content")];
+        tabBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            tabBtns.forEach((b) => b.classList.remove("active"));
+            tabContents.forEach((c) => c.classList.remove("active"));
+            btn.classList.add("active");
+            document.getElementById(btn.dataset.tab).classList.add("active");
+          });
         });
-      }
 
-      // Newsletter Form Submission
-      const newsletterForm = document.querySelector(".newsletter-form");
-      if (newsletterForm) {
-        newsletterForm.addEventListener("submit", (e) => {
-          e.preventDefault();
-          alert("Cảm ơn bạn đã đăng ký nhận tin!");
-          newsletterForm.reset();
+        /* FAQ */
+        document.querySelectorAll(".faq-item").forEach((item) => {
+          item.querySelector(".faq-q").addEventListener("click", () => {
+            const isOpen = item.classList.contains("open");
+            document
+              .querySelectorAll(".faq-item")
+              .forEach((i) => i.classList.remove("open"));
+            if (!isOpen) item.classList.add("open");
+          });
         });
-      }
+
+        /* Booking form */
+        document
+          .getElementById("bookingForm")
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+            const btn = document.getElementById("submitBtn");
+            btn.innerHTML =
+              '<i class="fas fa-check"></i> Đã đặt lịch thành công!';
+            btn.classList.add("success");
+            setTimeout(() => {
+              btn.innerHTML =
+                '<i class="fas fa-calendar-plus"></i> Đặt lịch ngay';
+              btn.classList.remove("success");
+              e.target.reset();
+            }, 3500);
+          });
+
+        /* Reveal */
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e, i) => {
+              if (e.isIntersecting)
+                setTimeout(() => e.target.classList.add("in"), i * 65);
+            });
+          },
+          { threshold: 0.1 },
+        );
+        document
+          .querySelectorAll(".rv,.rv-l,.rv-r")
+          .forEach((el) => obs.observe(el));
+
+        /* Smooth scroll anchors */
+        document.querySelectorAll('a[href^="#"]').forEach((a) => {
+          a.addEventListener("click", (e) => {
+            const t = a.getAttribute("href");
+            if (t === "#") return;
+            const el = document.querySelector(t);
+            if (el) {
+              e.preventDefault();
+              window.scrollTo({
+                top:
+                  el.getBoundingClientRect().top +
+                  window.scrollY -
+                  hdr.offsetHeight,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      })();
     </script>
   </body>
 </html>
