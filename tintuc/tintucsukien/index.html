@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tin Tức Sự Kiện</title>
-
+    <title>Tin Tức Sự Kiện – HỆ THỐNG HEAD TRUNG HÙNG</title>
     <link
       rel="icon"
       href="/sanphamxemay/image/banner/Logo_HEAD.png"
@@ -15,207 +14,160 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
     <style>
-      /* CSS Variables */
+      /* ============================================================ TOKENS */
       :root {
-        --primary-color: #e11931;
-        --secondary-color: #004225;
-        --dark-color: #1a1a1a;
-        --light-color: #f8f9fa;
-        --gray-color: #6c757d;
-        --transition: all 0.3s ease;
-        --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        --border-radius: 25px;
-        --header-height: 80px;
-        --header-shrink-height: 70px;
+        --red: #cc0000;
+        --red-dark: #990000;
+        --red-glow: rgba(204, 0, 0, 0.28);
+        --red-soft: rgba(204, 0, 0, 0.07);
+        --ink: #0a0a0b;
+        --ink2: #1a1a1c;
+        --paper: #f5f3f0;
+        --paper2: #eceae6;
+        --white: #ffffff;
+        --border: rgba(10, 10, 11, 0.08);
+        --border2: rgba(10, 10, 11, 0.14);
+        --muted: #7a7672;
+        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --snap: cubic-bezier(0.16, 1, 0.3, 1);
+        --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
       }
 
-      /* Base Styles */
-      * {
+      *,
+      *::before,
+      *::after {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
       html {
-        scroll-behavior: smooth;
         font-size: 62.5%;
+        scroll-behavior: smooth;
       }
-
       body {
-        font-family: "Montserrat", sans-serif;
-        line-height: 1.6;
-        color: var(--dark-color);
+        font-family: "Barlow", sans-serif;
+        background: var(--paper);
+        color: var(--ink);
         overflow-x: hidden;
-        background-color: #fff;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
       }
-
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
-      }
-
       img {
         max-width: 100%;
-        height: auto;
         display: block;
       }
-
       a {
         text-decoration: none;
         color: inherit;
       }
-
       ul {
         list-style: none;
       }
-
-      .btn {
-        display: inline-block;
-        padding: 1.2rem 2.4rem;
-        border-radius: 30px;
-        font-weight: 600;
-        font-size: 1.4rem;
-        text-align: center;
-        transition: var(--transition);
-        cursor: pointer;
+      button {
         border: none;
+        background: none;
+        cursor: pointer;
+        font-family: inherit;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--red);
+        border-radius: 2px;
       }
 
-      .btn-primary {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      .btn-primary:hover {
-        background-color: #c01027;
-        transform: translateY(-3px);
-        box-shadow: var(--box-shadow);
-      }
-
-      .btn-outline {
-        background-color: transparent;
-        border: 2px solid var(--primary-color);
-        color: var(--primary-color);
-      }
-
-      .btn-outline:hover {
-        background-color: var(--primary-color);
-        color: white;
-        transform: translateY(-3px);
-      }
-
-      .btn-lg {
-        padding: 1.5rem 3rem;
-        font-size: 1.6rem;
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 6rem;
-      }
-
-      .section-title {
-        font-size: 3.6rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        color: var(--dark-color);
-        position: relative;
-        display: inline-block;
-      }
-
-      .section-title::after {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 3px;
-        background-color: var(--primary-color);
-      }
-
-      .section-subtitle {
-        font-size: 1.8rem;
-        color: var(--gray-color);
-        margin-bottom: 2rem;
-      }
-
-      .divider {
-        height: 1px;
-        background-color: #eee;
-        margin: 3rem auto;
-        width: 100px;
-      }
-
-      /* Preloader */
+      /* ============================================================ PRELOADER */
       .preloader {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: white;
+        inset: 0;
+        z-index: 9000;
+        background: var(--ink);
         display: flex;
-        justify-content: center;
         align-items: center;
-        z-index: 9999;
-        transition: opacity 0.5s ease;
+        justify-content: center;
+        flex-direction: column;
+        gap: 2.4rem;
+        transition:
+          opacity 0.7s var(--ease),
+          visibility 0.7s;
       }
-
-      .preloader.fade-out {
+      .preloader.out {
         opacity: 0;
+        visibility: hidden;
       }
-
-      .loader {
+      .pl-logo {
         display: flex;
-        justify-content: center;
         align-items: center;
-        height: 100px;
+        gap: 1.4rem;
+        animation: plFade 0.6s var(--snap) 0.2s both;
       }
-
-      .loader-square {
-        width: 16px;
-        height: 16px;
+      .pl-logo img {
+        width: 44px;
+        height: 44px;
+        object-fit: contain;
+      }
+      .pl-brand {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 1;
+      }
+      .pl-brand span {
+        color: var(--red);
+      }
+      .pl-brand small {
+        display: block;
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.3);
+        margin-top: 0.3rem;
+      }
+      .pl-dots {
+        display: flex;
+        gap: 1rem;
+        animation: plFade 0.5s ease 0.5s both;
+      }
+      .pl-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--red);
         border-radius: 50%;
-        margin: 0 8px;
-        background-color: var(--primary-color);
-        animation: loaderAnimation 1.5s infinite ease-in-out;
+        animation: plBounce 1.2s ease-in-out infinite;
       }
-
-      .loader-square:nth-child(1) {
-        animation-delay: 0s;
+      .pl-dot:nth-child(2) {
+        animation-delay: 0.15s;
       }
-      .loader-square:nth-child(2) {
-        animation-delay: 0.2s;
+      .pl-dot:nth-child(3) {
+        animation-delay: 0.3s;
       }
-      .loader-square:nth-child(3) {
-        animation-delay: 0.4s;
+      .pl-dot:nth-child(4) {
+        animation-delay: 0.45s;
       }
-      .loader-square:nth-child(4) {
-        animation-delay: 0.6s;
+      @keyframes plFade {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
       }
-      .loader-square:nth-child(5) {
-        animation-delay: 0.8s;
-      }
-      .loader-square:nth-child(6) {
-        animation-delay: 1s;
-      }
-      .loader-square:nth-child(7) {
-        animation-delay: 1.2s;
-      }
-
-      @keyframes loaderAnimation {
+      @keyframes plBounce {
         0%,
         100% {
-          transform: scale(0.8);
-          opacity: 0.5;
+          transform: scale(0.7);
+          opacity: 0.4;
         }
         50% {
           transform: scale(1.2);
@@ -223,1445 +175,2087 @@
         }
       }
 
-      /* Header */
-      .main-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 2rem 0;
-        z-index: 1000;
-        transition: all 0.3s ease;
+      /* ============================================================ TOP BAR */
+      .top-bar {
+        background: var(--ink);
+        padding: 0.9rem 0;
+        transition: transform 0.35s var(--ease);
       }
-
-      .main-header.scrolled {
-        background-color: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        padding: 1.5rem 0;
+      .top-bar.hidden {
+        transform: translateY(-100%);
       }
-
-      .main-header .container {
+      .tb-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
         display: flex;
+        align-items: center;
         justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .tb-links {
+        display: flex;
+        gap: 2.4rem;
+      }
+      .tb-links a {
+        font-size: 1.2rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        color: rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: color 0.2s;
+      }
+      .tb-links a:hover {
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .tb-links a i {
+        font-size: 0.95rem;
+        color: var(--red);
+      }
+      .tb-contact {
+        display: flex;
+        gap: 2rem;
         align-items: center;
       }
-
-      .logo img {
-        height: 40px;
-        transition: var(--transition);
-      }
-
-      .main-header.scrolled .logo img {
-        height: 35px;
-      }
-
-      .main-nav ul {
+      .tb-contact a {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.4);
         display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: color 0.2s;
+      }
+      .tb-contact a:hover {
+        color: #fff;
+      }
+      .tb-contact i {
+        color: var(--red);
+        font-size: 0.95rem;
+      }
+      .tb-div {
+        width: 1px;
+        height: 12px;
+        background: rgba(255, 255, 255, 0.1);
       }
 
-      .main-nav li {
-        margin-left: 3rem;
+      /* ============================================================ HEADER */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 500;
+        background: rgba(245, 243, 240, 0.96);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border-bottom: 1px solid var(--border);
+        transition: all 0.4s var(--ease);
       }
-
-      .main-nav a {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: rgb(0, 0, 0);
-        position: relative;
-        transition: var(--transition);
+      .site-header.lifted {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow:
+          0 1px 0 var(--border),
+          0 4px 24px rgba(10, 10, 11, 0.07);
       }
-
-      .main-nav a::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: white;
-        transition: var(--transition);
+      .hdr-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
       }
-
-      .main-nav a:hover::after,
-      .main-nav a.active::after {
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        flex-shrink: 0;
+      }
+      .logo-img-wrap {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+        transition: transform 0.4s var(--spring);
+      }
+      .logo-img-wrap:hover {
+        transform: rotate(-5deg) scale(1.08);
+      }
+      .logo-img-wrap img {
         width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
-
-      .main-header.scrolled .main-nav a {
-        color: var(--dark-color);
-      }
-
-      .main-header.scrolled .main-nav a::after {
-        background-color: var(--primary-color);
-      }
-
-      .menu-toggle {
-        display: none;
-        cursor: pointer;
-        z-index: 1001;
-      }
-
-      .bar {
-        display: block;
-        width: 25px;
-        height: 3px;
-        margin: 5px auto;
-        background-color: rgb(0, 0, 0);
-        transition: all 0.3s ease;
-      }
-
-      .main-header.scrolled .bar {
-        background-color: var(--dark-color);
-      }
-
-      /* Hero Section */
-      .news-hero-section {
-        position: relative;
-        height: 60vh;
-        min-height: 400px;
-        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-          url("/tintuc/tintucsukien/image/tintuccuahang/HVN.jpg") no-repeat
-            center center/cover;
+      .logo-text-wrap {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        color: white;
-        margin-top: var(--header-height);
+        line-height: 1;
       }
-
-      .news-hero-content {
+      .logo-main {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 2rem;
+        letter-spacing: 0.1em;
+        color: var(--ink);
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .logo-main span {
+        color: var(--red);
+      }
+      .logo-sub {
+        font-family: "Barlow", sans-serif;
+        font-size: 0.92rem;
+        font-weight: 500;
+        letter-spacing: 0.07em;
+        color: var(--muted);
+        margin-top: 0.3rem;
+        text-transform: uppercase;
+      }
+      .main-nav {
+        display: flex;
+        align-items: center;
+      }
+      .main-nav > li {
         position: relative;
-        z-index: 1;
+      }
+      .main-nav > li > a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.55rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        padding: 0 1.6rem;
+        height: 72px;
+        transition: color 0.22s;
+        position: relative;
+      }
+      .main-nav > li > a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 1.6rem;
+        right: 1.6rem;
+        height: 2px;
+        background: var(--red);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s var(--ease);
+      }
+      .main-nav > li > a:hover,
+      .main-nav > li > a.active {
+        color: var(--red);
+      }
+      .main-nav > li > a:hover::after,
+      .main-nav > li > a.active::after {
+        transform: scaleX(1);
+      }
+      .main-nav > li > a i {
+        font-size: 0.9rem;
+        opacity: 0.4;
+        transition: transform 0.25s;
+      }
+      .main-nav > li:hover > a i {
+        transform: rotate(180deg);
+      }
+      .dropdown-panel {
+        position: absolute;
+        top: calc(100% + 2px);
+        left: 0;
+        min-width: 250px;
+        background: var(--white);
+        border: 1px solid var(--border2);
+        border-radius: 14px;
+        padding: 0.8rem 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px) scale(0.98);
+        transition: all 0.28s var(--ease);
+        z-index: 100;
+        box-shadow: 0 16px 48px rgba(10, 10, 11, 0.14);
+      }
+      .main-nav > li:hover .dropdown-panel {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+      }
+      .dropdown-panel li a {
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
+        padding: 1.1rem 2rem;
+        font-family: "Barlow", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 500;
+        color: var(--ink2);
+        border-left: 2.5px solid transparent;
+        transition: all 0.2s;
+      }
+      .dropdown-panel li a:hover {
+        background: var(--paper);
+        color: var(--red);
+        border-left-color: var(--red);
+        padding-left: 2.6rem;
+      }
+      .dropdown-panel li a i {
+        width: 17px;
+        text-align: center;
+        color: var(--red);
+        font-size: 1.15rem;
+      }
+      .hdr-cta {
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.9rem 2.4rem;
+        border-radius: 7px;
+        margin-left: 1.6rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        transition: all 0.3s;
+        flex-shrink: 0;
+      }
+      .hdr-cta:hover {
+        background: var(--red-dark);
+        box-shadow: 0 6px 24px var(--red-glow);
+        transform: translateY(-2px);
+      }
+      .ham {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 6px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .ham:hover {
+        background: var(--paper2);
+      }
+      .ham span {
+        width: 22px;
+        height: 2px;
+        background: var(--ink);
+        transition: all 0.32s var(--ease);
+        border-radius: 1px;
+        display: block;
+      }
+      .ham.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .ham.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .ham.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .draw-ov {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 10, 11, 0.6);
+        z-index: 498;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.32s;
+        backdrop-filter: blur(6px);
+      }
+      .draw-ov.on {
+        opacity: 1;
+        visibility: visible;
+      }
+      .site-draw {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: min(360px, 92vw);
+        height: 100%;
+        background: var(--white);
+        z-index: 499;
+        padding: 7.5rem 3rem 3rem;
+        transition: right 0.38s var(--snap);
+        border-left: 1px solid var(--border);
+        overflow-y: auto;
+      }
+      .site-draw.on {
+        right: 0;
+      }
+      .draw-x {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        width: 40px;
+        height: 40px;
+        background: var(--paper2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--muted);
+        transition: all 0.2s;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        z-index: 10;
+      }
+      .draw-x:hover {
+        background: var(--red);
+        color: #fff;
+        transform: rotate(90deg);
+      }
+      .draw-nav {
+        display: flex;
+        flex-direction: column;
+      }
+      .draw-nav > li {
+        border-bottom: 1px solid var(--border);
+      }
+      .draw-nav > li > a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink);
+        padding: 1.6rem 0;
+        transition: color 0.2s;
+      }
+      .draw-nav > li > a:hover,
+      .draw-nav > li > a.active {
+        color: var(--red);
+      }
+      .draw-sub {
+        padding-left: 1.2rem;
+        display: none;
+        padding-bottom: 0.6rem;
+      }
+      .draw-sub.open {
+        display: block;
+      }
+      .draw-sub a {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1.45rem;
+        color: var(--muted);
+        padding: 0.9rem 0.5rem;
+        transition: color 0.2s;
+        border-radius: 6px;
+      }
+      .draw-sub a:hover {
+        color: var(--red);
+      }
+      .draw-sub a i {
+        color: var(--red);
+        font-size: 1.1rem;
+        width: 16px;
         text-align: center;
       }
-
-      .news-hero-title {
-        font-size: 4.5rem;
-        font-weight: 800;
-        margin-bottom: 1.5rem;
-        letter-spacing: 2px;
-        animation: fadeInUp 1s ease;
+      .draw-cta {
+        background: var(--red);
+        color: #fff;
+        text-align: center;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.5rem 2rem;
+        border-radius: 10px;
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        transition: background 0.3s;
+      }
+      .draw-cta:hover {
+        background: var(--red-dark);
       }
 
-      .news-hero-subtitle {
-        font-size: 1.8rem;
-        margin-bottom: 3rem;
-        font-weight: 400;
-        animation: fadeInUp 1s ease 0.2s both;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
+      /* ============================================================ PAGE HERO */
+      .page-hero {
+        position: relative;
+        height: 55vh;
+        min-height: 400px;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        background: url("/tintuc/tintucsukien/image/tintuccuahang/HVN.jpg")
+          center/cover no-repeat;
       }
-
-      @keyframes fadeInUp {
+      .page-hero-ov {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            110deg,
+            rgba(10, 10, 11, 0.9) 0%,
+            rgba(10, 10, 11, 0.55) 55%,
+            rgba(10, 10, 11, 0.3) 100%
+          ),
+          linear-gradient(to top, rgba(10, 10, 11, 0.85) 0%, transparent 55%);
+      }
+      .page-hero-ov::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 5px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          var(--red),
+          transparent
+        );
+        opacity: 0.85;
+      }
+      .page-hero-body {
+        position: relative;
+        z-index: 2;
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem 5rem;
+        width: 100%;
+      }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 1.2rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 1.6rem;
+        animation: fadeUp 0.7s var(--snap) 0.1s both;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: var(--red);
+      }
+      .hero-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(5rem, 9vw, 12rem);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 0.87;
+        margin-bottom: 1.8rem;
+        animation: fadeUp 0.85s var(--snap) 0.2s both;
+      }
+      .hero-title em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .hero-sub {
+        font-size: 1.65rem;
+        color: rgba(255, 255, 255, 0.45);
+        max-width: 520px;
+        line-height: 1.65;
+        animation: fadeUp 0.7s var(--snap) 0.35s both;
+      }
+      @keyframes fadeUp {
         from {
           opacity: 0;
-          transform: translateY(20px);
+          transform: translateY(22px);
         }
         to {
           opacity: 1;
-          transform: translateY(0);
+          transform: none;
         }
       }
 
-      /* Breadcrumb */
+      /* ============================================================ BREADCRUMB */
       .breadcrumb {
-        background-color: #f9f9f9;
-        padding: 1.5rem 0;
-        margin-bottom: 4rem;
+        background: var(--paper2);
+        border-bottom: 1px solid var(--border);
+        padding: 1.4rem 0;
       }
-
-      .breadcrumb-content {
+      .breadcrumb-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
         display: flex;
         align-items: center;
-        font-size: 1.4rem;
+        gap: 0.8rem;
+        font-size: 1.3rem;
+        color: var(--muted);
       }
-
-      .breadcrumb a {
-        color: var(--primary-color);
-        transition: var(--transition);
+      .breadcrumb-inner a {
+        color: var(--red);
+        transition: opacity 0.2s;
       }
-
-      .breadcrumb a:hover {
-        text-decoration: underline;
+      .breadcrumb-inner a:hover {
+        opacity: 0.75;
       }
-
-      .breadcrumb span {
-        margin: 0 1rem;
-        color: var(--gray-color);
+      .breadcrumb-inner i {
+        font-size: 0.9rem;
       }
-
-      /* News Section */
-      .news-section {
-        padding: 6rem 0;
-        background-color: #f9f9f9;
-      }
-
-      .news-container {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 4rem;
-      }
-
-      /* Featured News */
-      .featured-news {
-        margin-bottom: 4rem;
-      }
-
-      .featured-news-card {
-        background-color: white;
-        border-radius: var(--border-radius);
-        overflow: hidden;
-        box-shadow: var(--box-shadow);
-        transition: var(--transition);
-      }
-
-      .featured-news-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-      }
-
-      .featured-news-image {
-        height: 400px;
-        overflow: hidden;
-      }
-
-      .featured-news-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-
-      .featured-news-card:hover .featured-news-image img {
-        transform: scale(1.05);
-      }
-
-      .featured-news-content {
-        padding: 3rem;
-      }
-
-      .news-category {
-        display: inline-block;
-        background-color: var(--primary-color);
-        color: white;
-        padding: 0.5rem 1.5rem;
-        border-radius: 30px;
-        font-size: 1.2rem;
+      .breadcrumb-inner span {
         font-weight: 600;
-        margin-bottom: 1.5rem;
+        color: var(--ink);
       }
 
-      .featured-news-title {
-        font-size: 2.4rem;
-        margin-bottom: 1.5rem;
-        line-height: 1.3;
-      }
-
-      .featured-news-excerpt {
-        font-size: 1.6rem;
-        color: var(--gray-color);
-        margin-bottom: 2rem;
-        line-height: 1.6;
-      }
-
-      .news-meta {
-        display: flex;
-        align-items: center;
-        font-size: 1.4rem;
-        color: var(--gray-color);
-        margin-bottom: 2rem;
-      }
-
-      .news-meta span {
-        display: flex;
-        align-items: center;
-        margin-right: 2rem;
-      }
-
-      .news-meta i {
-        margin-right: 0.5rem;
-        color: var(--primary-color);
-      }
-
-      /* News Grid */
-      .news-grid {
+      /* ============================================================ CONTENT LAYOUT */
+      .content-wrap {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 6rem 4rem 8rem;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 3rem;
-        margin-bottom: 4rem;
+        grid-template-columns: 1fr 360px;
+        gap: 4.5rem;
+        align-items: start;
       }
 
-      .news-card {
-        background-color: white;
-        border-radius: var(--border-radius);
-        overflow: hidden;
-        box-shadow: var(--box-shadow);
-        transition: var(--transition);
-      }
-
-      .news-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      }
-
-      .news-card-image {
-        height: 200px;
-        overflow: hidden;
-      }
-
-      .news-card-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-
-      .news-card:hover .news-card-image img {
-        transform: scale(1.05);
-      }
-
-      .news-card-content {
-        padding: 2rem;
-      }
-
-      .news-card-title {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-        line-height: 1.4;
-      }
-
-      .news-card-excerpt {
-        font-size: 1.4rem;
-        color: var(--gray-color);
-        margin-bottom: 1.5rem;
-        line-height: 1.5;
-      }
-
-      .read-more {
-        color: var(--primary-color);
-        font-weight: 600;
-        font-size: 1.4rem;
+      /* ============================================================ FEATURED */
+      .featured-label {
         display: inline-flex;
         align-items: center;
-        transition: var(--transition);
+        gap: 1rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 2.4rem;
       }
-
-      .read-more i {
-        margin-left: 0.5rem;
-        transition: var(--transition);
+      .featured-label::before {
+        content: "";
+        width: 24px;
+        height: 2px;
+        background: var(--red);
       }
-
-      .read-more:hover {
-        color: #c01027;
+      .fp-card {
+        background: var(--white);
+        border-radius: 22px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        transition: all 0.4s var(--ease);
+        margin-bottom: 5rem;
+        display: block;
       }
-
-      .read-more:hover i {
+      .fp-card:hover {
+        box-shadow: 0 28px 64px rgba(10, 10, 11, 0.12);
+        transform: translateY(-5px);
+        border-color: rgba(204, 0, 0, 0.22);
+      }
+      .fp-img {
+        overflow: hidden;
+        height: 380px;
+        background: var(--paper2);
+        position: relative;
+      }
+      .fp-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.65s var(--ease);
+      }
+      .fp-card:hover .fp-img img {
+        transform: scale(1.06);
+      }
+      .fp-hot {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 0.5rem 1.4rem;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .fp-body {
+        padding: 3.5rem;
+      }
+      .fp-cat {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        background: var(--red-soft);
+        color: var(--red);
+        padding: 0.5rem 1.4rem;
+        border-radius: 20px;
+        margin-bottom: 1.8rem;
+      }
+      .fp-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 3rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink);
+        line-height: 1.1;
+        margin-bottom: 1.4rem;
+        transition: color 0.2s;
+      }
+      .fp-card:hover .fp-title {
+        color: var(--red);
+      }
+      .fp-excerpt {
+        font-size: 1.5rem;
+        color: var(--muted);
+        line-height: 1.75;
+        margin-bottom: 2rem;
+      }
+      .fp-meta {
+        display: flex;
+        gap: 2rem;
+        font-size: 1.3rem;
+        color: var(--muted);
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+      }
+      .fp-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .fp-meta i {
+        color: var(--red);
+        font-size: 1.1rem;
+      }
+      .fp-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #fff;
+        background: var(--red);
+        padding: 1.2rem 2.8rem;
+        border-radius: 8px;
+        transition: all 0.3s;
+        width: fit-content;
+      }
+      .fp-link:hover {
+        background: var(--red-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px var(--red-glow);
+      }
+      .fp-link i {
+        transition: transform 0.25s;
+      }
+      .fp-link:hover i {
         transform: translateX(5px);
       }
 
-      /* Sidebar */
-      .news-sidebar {
-        background-color: white;
-        border-radius: var(--border-radius);
-        padding: 3rem;
-        box-shadow: var(--box-shadow);
-        height: fit-content;
-        position: sticky;
-        top: 100px;
+      /* ============================================================ GRID HEADER */
+      .grid-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        padding-bottom: 2rem;
+        border-bottom: 2px solid var(--border);
+      }
+      .grid-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 3.4rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .grid-count {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        color: var(--muted);
+        background: var(--paper2);
+        padding: 0.7rem 1.6rem;
+        border-radius: 20px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
       }
 
-      .sidebar-widget {
+      /* ============================================================ NEWS GRID */
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.4rem;
         margin-bottom: 4rem;
       }
-
-      .sidebar-widget:last-child {
-        margin-bottom: 0;
+      .news-card {
+        background: var(--white);
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        transition: all 0.4s var(--ease);
       }
-
-      .widget-title {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-        padding-bottom: 1rem;
-        border-bottom: 2px solid var(--primary-color);
+      .news-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 24px 56px rgba(10, 10, 11, 0.1);
+        border-color: rgba(204, 0, 0, 0.2);
+      }
+      .nc-img {
+        height: 200px;
+        overflow: hidden;
+        background: var(--paper2);
         position: relative;
       }
+      .nc-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.65s var(--ease);
+      }
+      .news-card:hover .nc-img img {
+        transform: scale(1.08);
+      }
+      .nc-cat {
+        position: absolute;
+        top: 1.4rem;
+        left: 1.4rem;
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.4rem 1.2rem;
+        border-radius: 20px;
+      }
+      .nc-body {
+        padding: 2.2rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .nc-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.85rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        line-height: 1.2;
+        color: var(--ink);
+        margin-bottom: 1rem;
+        transition: color 0.2s;
+        display: -webkit-box;
+        /*-webkit-line-clamp: 2;*/
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .news-card:hover .nc-title {
+        color: var(--red);
+      }
+      .nc-excerpt {
+        font-size: 1.35rem;
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 1.8rem;
+        flex: 1;
+        display: -webkit-box;
+        /*-webkit-line-clamp: 3;*/
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .nc-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .nc-meta {
+        display: flex;
+        gap: 1.4rem;
+        font-size: 1.2rem;
+        color: var(--muted);
+        flex-wrap: wrap;
+      }
+      .nc-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .nc-meta i {
+        color: var(--red);
+        font-size: 1.05rem;
+      }
+      .nc-read {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--red);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: gap 0.2s;
+      }
+      .nc-read:hover {
+        gap: 1.1rem;
+      }
 
-      .widget-title::after {
+      /* ============================================================ PAGINATION */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+      }
+      .pg-btn,
+      .pg-num {
+        width: 46px;
+        height: 46px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.7rem;
+        font-weight: 700;
+        border: 1.5px solid var(--border2);
+        background: var(--white);
+        color: var(--ink2);
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .pg-btn:hover,
+      .pg-num:hover {
+        border-color: var(--red);
+        color: var(--red);
+      }
+      .pg-num.active {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+      }
+      .pg-btn:disabled {
+        opacity: 0.3;
+        pointer-events: none;
+      }
+
+      /* ============================================================ SIDEBAR */
+      .sidebar {
+        position: sticky;
+        top: 88px;
+        display: flex;
+        flex-direction: column;
+        gap: 2.8rem;
+      }
+
+      /* Recent posts widget */
+      .sw {
+        background: var(--white);
+        border-radius: 18px;
+        padding: 2.8rem;
+        border: 1px solid var(--border);
+      }
+      .sw-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+        padding-bottom: 1.2rem;
+        border-bottom: 2px solid var(--border);
+        position: relative;
+        line-height: 1;
+      }
+      .sw-title::after {
         content: "";
         position: absolute;
         bottom: -2px;
         left: 0;
-        width: 50px;
+        width: 40px;
         height: 2px;
-        background-color: var(--primary-color);
+        background: var(--red);
       }
 
-      /* Categories Widget */
-      .categories-list li {
-        margin-bottom: 1rem;
-      }
-
-      .categories-list a {
+      /* Categories */
+      .cat-list li a {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding: 1rem 0;
-        font-size: 1.5rem;
-        color: var(--dark-color);
-        transition: var(--transition);
-        border-bottom: 1px solid #eee;
+        justify-content: space-between;
+        padding: 1.1rem 1rem;
+        border-radius: 10px;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: var(--ink2);
+        transition: all 0.22s;
+        border: 1px solid transparent;
       }
-
-      .categories-list a:hover {
-        color: var(--primary-color);
-        padding-left: 1rem;
+      .cat-list li a:hover {
+        background: var(--red-soft);
+        border-color: rgba(204, 0, 0, 0.15);
+        color: var(--red);
+        padding-left: 1.4rem;
       }
-
-      .categories-list span {
-        background-color: #f5f5f5;
-        padding: 0.3rem 0.8rem;
-        border-radius: 20px;
+      .cat-list li a.active-cat {
+        background: var(--red);
+        color: #fff;
+      }
+      .cat-list li a span:first-child {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .cat-list li a span i {
+        color: var(--red);
         font-size: 1.2rem;
       }
+      .cat-list li a.active-cat span i {
+        color: #fff;
+      }
+      .cat-badge {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        background: var(--paper2);
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+      }
+      .cat-list li a.active-cat .cat-badge {
+        background: rgba(255, 255, 255, 0.25);
+        color: #fff;
+      }
 
-      /* Recent Posts Widget */
-      .recent-posts li {
+      /* Recent posts */
+      .rp-item {
         display: flex;
-        margin-bottom: 2rem;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid #eee;
+        gap: 1.4rem;
+        padding: 1.6rem 0;
+        border-bottom: 1px solid var(--border);
+        transition: opacity 0.2s;
       }
-
-      .recent-posts li:last-child {
-        margin-bottom: 0;
-        padding-bottom: 0;
+      .rp-item:last-child {
         border-bottom: none;
+        padding-bottom: 0;
       }
-
-      .recent-post-image {
-        width: 80px;
-        height: 80px;
+      .rp-item:hover {
+        opacity: 0.75;
+      }
+      .rp-img {
+        width: 72px;
+        height: 72px;
         border-radius: 10px;
         overflow: hidden;
-        margin-right: 1.5rem;
         flex-shrink: 0;
+        background: var(--paper2);
       }
-
-      .recent-post-image img {
+      .rp-img img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
-
-      .recent-post-content h4 {
-        font-size: 1.4rem;
-        margin-bottom: 0.5rem;
-        line-height: 1.4;
-      }
-
-      .recent-post-content .news-meta {
-        margin-bottom: 0;
-        font-size: 1.2rem;
-      }
-
-      /* Tags Widget */
-      .tags-list {
+      .rp-content {
+        flex: 1;
         display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
-
-      .tags-list a {
-        display: inline-block;
-        padding: 0.7rem 1.5rem;
-        background-color: #f5f5f5;
-        border-radius: 30px;
-        font-size: 1.3rem;
-        color: var(--dark-color);
-        transition: var(--transition);
-      }
-
-      .tags-list a:hover {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      /* Pagination */
-      .pagination {
-        display: flex;
+        flex-direction: column;
         justify-content: center;
-        margin-top: 4rem;
+        gap: 0.5rem;
       }
-
-      .pagination-list {
+      .rp-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        line-height: 1.25;
+        color: var(--ink);
+        transition: color 0.2s;
+        display: -webkit-box;
+        /*-webkit-line-clamp: 2;*/
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .rp-item:hover .rp-title {
+        color: var(--red);
+      }
+      .rp-date {
+        font-size: 1.2rem;
+        color: var(--muted);
         display: flex;
-        gap: 1rem;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .rp-date i {
+        color: var(--red);
+        font-size: 1rem;
       }
 
-      .pagination-item a {
+      /* Highlight box */
+      .highlight-box {
+        background: var(--ink);
+        border-radius: 18px;
+        padding: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .highlight-box::before {
+        content: "SỰ KIỆN";
+        position: absolute;
+        right: -1rem;
+        bottom: -1.5rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 10rem;
+        color: rgba(255, 255, 255, 0.03);
+        font-weight: 900;
+        line-height: 1;
+        pointer-events: none;
+      }
+      .highlight-box::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--red);
+      }
+      .highlight-box h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.6rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+      .highlight-box h3 em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .highlight-box p {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        margin-bottom: 2.2rem;
+        position: relative;
+        z-index: 1;
+        line-height: 1.65;
+      }
+      .highlight-btn {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        background-color: white;
+        gap: 0.9rem;
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
         font-size: 1.5rem;
-        font-weight: 600;
-        box-shadow: var(--box-shadow);
-        transition: var(--transition);
-      }
-
-      .pagination-item a:hover,
-      .pagination-item a.active {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      /* Footer */
-      .main-footer {
-        background-color: var(--dark-color);
-        color: white;
-        padding: 6rem 0 0;
-      }
-
-      .footer-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 4rem;
-        margin-bottom: 4rem;
-      }
-
-      .footer-logo img {
-        height: 40px;
-        margin-bottom: 2rem;
-      }
-
-      .footer-logo p {
-        font-size: 1.4rem;
-        color: #aaa;
-        margin-bottom: 2rem;
-      }
-
-      .footer-links h4 {
-        font-size: 1.8rem;
-        margin-bottom: 2rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.3rem;
+        border-radius: 10px;
+        transition: all 0.3s;
         position: relative;
-        padding-bottom: 1rem;
+        z-index: 1;
+      }
+      .highlight-btn:hover {
+        background: var(--red-dark);
+        transform: translateY(-2px);
       }
 
-      .footer-links h4::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 40px;
-        height: 2px;
-        background-color: var(--primary-color);
+      /* ============================================================ FOOTER */
+      footer {
+        background: #060606;
+        padding: 7rem 4rem 3rem;
+        border-top: 3px solid var(--red);
       }
-
-      .footer-links ul li {
+      .ft-top {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2.2fr 1fr 1fr 1fr;
+        gap: 5rem;
+        margin-bottom: 5rem;
+        padding-bottom: 5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .ft-logo-row {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
         margin-bottom: 1rem;
       }
-
-      .footer-links ul li a {
-        font-size: 1.4rem;
-        color: #aaa;
-        transition: var(--transition);
-      }
-
-      .footer-links ul li a:hover {
-        color: white;
-        padding-left: 5px;
-      }
-
-      .footer-social h4 {
-        font-size: 1.8rem;
-        margin-bottom: 2rem;
-        position: relative;
-        padding-bottom: 1rem;
-      }
-
-      .footer-social h4::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
+      .ft-logo-img {
         width: 40px;
-        height: 2px;
-        background-color: var(--primary-color);
+        height: 40px;
+        object-fit: contain;
+        opacity: 0.9;
       }
-
-      .social-icons {
+      .ft-brand-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.2rem;
+        letter-spacing: 0.1em;
+        color: #fff;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+      .ft-brand-name span {
+        color: var(--red);
+      }
+      .ft-brand-tag {
+        font-size: 1.35rem;
+        color: rgba(255, 255, 255, 0.22);
+        margin-bottom: 2.8rem;
+        line-height: 1.75;
+        max-width: 290px;
+      }
+      .ft-socials {
         display: flex;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
+        gap: 0.9rem;
       }
-
-      .social-icons a {
+      .ft-soc {
+        width: 40px;
+        height: 40px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        color: white;
-        font-size: 1.6rem;
-        transition: var(--transition);
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 1.4rem;
+        transition: all 0.26s;
       }
-
-      .social-icons a:hover {
-        background-color: var(--primary-color);
+      .ft-soc:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
         transform: translateY(-3px);
       }
-
-      .footer-social p {
+      .ft-col h5 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        color: rgba(255, 255, 255, 0.22);
+        text-transform: uppercase;
+        margin-bottom: 2.2rem;
+      }
+      .ft-col ul li {
+        margin-bottom: 1.3rem;
+      }
+      .ft-col a {
         font-size: 1.4rem;
-        color: #aaa;
-        margin-bottom: 1rem;
+        color: rgba(255, 255, 255, 0.38);
+        transition: color 0.2s;
       }
-
-      .newsletter-form {
+      .ft-col a:hover {
+        color: #fff;
+      }
+      .ft-btm {
+        max-width: 1340px;
+        margin: 0 auto;
         display: flex;
-      }
-
-      .newsletter-form input {
-        flex: 1;
-        padding: 1rem 1.5rem;
-        border: none;
-        border-radius: 30px 0 0 30px;
-        font-size: 1.4rem;
-      }
-
-      .newsletter-form button {
-        width: 50px;
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        border-radius: 0 30px 30px 0;
-        cursor: pointer;
-        transition: var(--transition);
-      }
-
-      .newsletter-form button:hover {
-        background-color: #c01027;
-      }
-
-      .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding-top: 3rem;
-        display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
       }
-
-      .footer-bottom p {
+      .ft-btm p {
         font-size: 1.3rem;
-        color: #aaa;
+        color: rgba(255, 255, 255, 0.16);
       }
-
-      .legal-links {
+      .ft-badge {
         display: flex;
-        gap: 2rem;
+        align-items: center;
+        gap: 0.7rem;
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.16);
+      }
+      .ft-badge i {
+        color: var(--red);
       }
 
-      .legal-links a {
-        font-size: 1.3rem;
-        color: #aaa;
-        transition: var(--transition);
-      }
-
-      .legal-links a:hover {
-        color: white;
-      }
-
-      /* Back to Top */
-      .back-to-top {
+      .mob-nav {
+        display: none;
         position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background-color: var(--primary-color);
-        color: white;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(245, 243, 240, 0.97);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid var(--border);
+        z-index: 400;
+        padding: 0.6rem 0;
+      }
+      .mnb {
+        display: flex;
+        justify-content: space-around;
+      }
+      .mnb-a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        transition: color 0.2s;
+      }
+      .mnb-a.on,
+      .mnb-a:hover {
+        color: var(--red);
+      }
+      .mnb-a i {
+        font-size: 1.9rem;
+      }
+      .mnb-a span {
+        font-size: 0.92rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+      .messenger-float {
+        position: fixed;
+        bottom: 9.5rem;
+        right: 2.5rem;
+        width: 52px;
+        height: 52px;
+        background: #0084ff;
         border-radius: 50%;
         display: flex;
-        justify-content: center;
         align-items: center;
-        font-size: 1.8rem;
+        justify-content: center;
+        font-size: 2.2rem;
+        color: #fff;
+        z-index: 300;
+        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.32);
+        animation: mpulse 2.5s ease-in-out infinite;
+        transition: transform 0.3s;
+      }
+      .messenger-float:hover {
+        transform: scale(1.12);
+      }
+      @keyframes mpulse {
+        0%,
+        100% {
+          box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
+        }
+        50% {
+          box-shadow: 0 4px 38px rgba(0, 132, 255, 0.58);
+        }
+      }
+      .back-top {
+        position: fixed;
+        bottom: 2.5rem;
+        right: 2.5rem;
+        width: 46px;
+        height: 46px;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        color: #fff;
+        z-index: 300;
         opacity: 0;
         visibility: hidden;
-        transition: var(--transition);
-        z-index: 999;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
       }
-
-      .back-to-top.active {
+      .back-top.on {
         opacity: 1;
         visibility: visible;
       }
-
-      .back-to-top:hover {
-        background-color: #c01027;
-        transform: translateY(-5px);
+      .back-top:hover {
+        background: var(--red-dark);
+        transform: translateY(-3px);
+      }
+      .rv {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv.in {
+        opacity: 1;
+        transform: none;
       }
 
-      /* Messenger Chat Button */
-      .messenger-chat {
-        position: fixed;
-        bottom: 100px;
-        right: 25px;
-        width: 60px;
-        height: 60px;
-        background-color: #0084ff;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 28px;
-        box-shadow: 0 4px 12px rgba(0, 132, 255, 0.3);
-        z-index: 999;
-        transition: all 0.3s ease;
-        animation: pulse 2s infinite;
-      }
-
-      .messenger-chat:hover {
-        background-color: #0066cc;
-        transform: scale(1.1);
-      }
-
-      /* Hiệu ứng lan tỏa */
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
-        }
-        70% {
-          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
-        }
-      }
-
-      /* Điều chỉnh vị trí khi có cả 2 nút */
-      .back-to-top.active ~ .messenger-chat {
-        bottom: 100px;
-      }
-
-      /* Responsive Styles */
-      @media (max-width: 1024px) {
-        .news-container {
+      /* ============================================================ RESPONSIVE */
+      @media (max-width: 1200px) {
+        .content-wrap {
           grid-template-columns: 1fr;
         }
-
-        .news-sidebar {
+        .sidebar {
           position: static;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .ft-top {
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
         }
       }
-
+      @media (max-width: 992px) {
+        .main-nav,
+        .hdr-cta {
+          display: none;
+        }
+        .ham {
+          display: flex;
+        }
+        .hdr-inner {
+          padding: 0 2.5rem;
+        }
+        .tb-inner {
+          padding: 0 2.5rem;
+        }
+      }
       @media (max-width: 768px) {
-        html {
-          font-size: 56.25%;
+        .top-bar {
+          display: none;
         }
-
-        .menu-toggle {
-          display: block;
+        .page-hero-body {
+          padding: 0 2.5rem 4rem;
         }
-
-        .menu-toggle.active .bar:nth-child(1) {
-          transform: translateY(8px) rotate(45deg);
+        .breadcrumb-inner {
+          padding: 0 2.5rem;
         }
-
-        .menu-toggle.active .bar:nth-child(2) {
-          opacity: 0;
+        .content-wrap {
+          padding: 4rem 2.5rem 6rem;
         }
-
-        .menu-toggle.active .bar:nth-child(3) {
-          transform: translateY(-8px) rotate(-45deg);
-        }
-
-        .main-nav {
-          position: fixed;
-          top: 0;
-          right: -100%;
-          width: 80%;
-          max-width: 300px;
-          height: 100vh;
-          background-color: white;
-          padding: 8rem 3rem;
-          transition: var(--transition);
-          z-index: 1000;
-        }
-
-        .main-nav.active {
-          right: 0;
-          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .main-nav ul {
-          flex-direction: column;
-        }
-
-        .main-nav li {
-          margin: 1.5rem 0;
-        }
-
-        .main-nav a {
-          color: var(--dark-color);
-          font-size: 1.8rem;
-        }
-
-        .news-hero-title {
-          font-size: 3.5rem;
-        }
-
-        .news-hero-subtitle {
-          font-size: 1.6rem;
-        }
-
-        .featured-news-image {
-          height: 300px;
-        }
-
         .news-grid {
           grid-template-columns: 1fr;
         }
-      }
-
-      @media (max-width: 576px) {
-        html {
-          font-size: 50%;
+        .fp-img {
+          height: 240px;
         }
-
-        .section-title {
-          font-size: 3rem;
+        .ft-top {
+          grid-template-columns: 1fr;
+          gap: 3rem;
         }
-
-        .news-hero-title {
-          font-size: 3rem;
-        }
-
-        .news-hero-subtitle {
-          font-size: 1.4rem;
-        }
-
-        .featured-news-content {
-          padding: 2rem;
-        }
-
-        .featured-news-title {
-          font-size: 2rem;
-        }
-
-        .news-sidebar {
-          padding: 2rem;
-        }
-
-        .footer-bottom {
+        .ft-btm {
           flex-direction: column;
-          gap: 2rem;
           text-align: center;
+        }
+        footer {
+          padding-bottom: 8rem;
+        }
+        .mob-nav {
+          display: block;
+        }
+        .sidebar {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: clamp(4.5rem, 14vw, 7.5rem);
         }
       }
     </style>
   </head>
   <body>
-    <!-- Preloader -->
-    <div class="preloader">
-      <div class="loader">
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
+    <!-- PRELOADER -->
+    <div class="preloader" id="preloader">
+      <div class="pl-logo">
+        <img src="/sanphamxemay/image/banner/Logo_HEAD.png" alt="HEAD" />
+        <div class="pl-brand">
+          HỆ THỐNG HEAD <span>TRUNG HÙNG</span><small>Honda Chính Hãng</small>
+        </div>
+      </div>
+      <div class="pl-dots">
+        <div class="pl-dot"></div>
+        <div class="pl-dot"></div>
+        <div class="pl-dot"></div>
+        <div class="pl-dot"></div>
       </div>
     </div>
 
-    <!-- Header -->
-    <header class="main-header">
-      <div class="container">
-        <a href="/Trangchu/" class="logo">
-          <img
-            src="/sanphamxemay/image/banner/Logo_HEAD.png"
-            alt="Honda Logo"
-          />
-        </a>
-        <h1>HEAD TRUNG HÙNG</h1>
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
+    <!-- TOP BAR -->
+    <div class="top-bar" id="topBar">
+      <div class="tb-inner">
+        <div class="tb-links">
+          <a href="/question/"
+            ><i class="fas fa-question-circle"></i>Câu hỏi thường gặp</a
+          >
+          <a href="/cuahang/"
+            ><i class="fas fa-location-dot"></i>Hệ thống đại lý</a
+          >
         </div>
+        <div class="tb-contact">
+          <a href="tel:1900636712"
+            ><i class="fas fa-phone-alt"></i>1900 636 712</a
+          >
+          <div class="tb-div"></div>
+          <a href="mailto:cr_mt@hungmanh.com.vn"
+            ><i class="fas fa-envelope"></i>cr_mt@hungmanh.com.vn</a
+          >
+        </div>
+      </div>
+    </div>
 
-        <nav class="main-nav">
-          <ul>
-            <li><a href="/Trangchu/">Trang chủ</a></li>
-            <li><a href="/sanpham/">Sản phẩm</a></li>
-            <li><a href="/tintuc/" class="active">Tin tức</a></li>
-            <li><a href="/dichvu/">Dịch vụ</a></li>
-            <li><a href="/lienhe/">Liên hệ</a></li>
-          </ul>
-        </nav>
+    <!-- HEADER -->
+    <header class="site-header" id="siteHeader">
+      <div class="hdr-inner">
+        <a href="/Trangchu/" class="logo-area">
+          <div class="logo-img-wrap">
+            <img
+              src="/sanphamxemay/image/banner/Logo_HEAD.png"
+              alt="HEAD Trung Hùng"
+            />
+          </div>
+          <div class="logo-text-wrap">
+            <span class="logo-main">HỆ THỐNG HEAD <span>TRUNG HÙNG</span></span>
+            <span class="logo-sub"
+              >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
+            >
+          </div>
+        </a>
+        <ul class="main-nav">
+          <li><a href="/Trangchu/">Trang chủ</a></li>
+          <li><a href="/sanphamxemay/">Sản phẩm</a></li>
+          <li class="dropdown">
+            <a href="/dichvu/">Dịch Vụ <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-panel">
+              <li>
+                <a href="/dichvu/baoduong/"
+                  ><i class="fas fa-tools"></i>Bảo Dưỡng & Sửa Chữa</a
+                >
+              </li>
+              <li>
+                <a href="/dichvu/baohanh/"
+                  ><i class="fas fa-shield-alt"></i>Bảo Hành Xe Máy</a
+                >
+              </li>
+              <li>
+                <a href="/dichvu/sanphamphutung/"
+                  ><i class="fas fa-gear"></i>Phụ Tùng Chính Hãng</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="/tintuc/" class="active"
+              >Tin tức <i class="fas fa-chevron-down"></i
+            ></a>
+            <ul class="dropdown-panel">
+              <li>
+                <a href="/tintuc/tintucxemay/"
+                  ><i class="fas fa-newspaper"></i>Tin Tức Xe Máy</a
+                >
+              </li>
+              <li>
+                <a href="/tintuc/tintucsukien/"
+                  ><i class="fas fa-calendar-alt"></i>Sự Kiện</a
+                >
+              </li>
+              <li>
+                <a href="/tintuc/tintuckhuyenmai/"
+                  ><i class="fas fa-gift"></i>Khuyến Mãi</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li><a href="/lienhe/">Liên hệ</a></li>
+        </ul>
+        <a href="tel:1900636712" class="hdr-cta"
+          ><i class="fas fa-phone-alt"></i> Gọi ngay</a
+        >
+        <div class="ham" id="ham"><span></span><span></span><span></span></div>
       </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="news-hero-section">
-      <div class="container">
-        <div class="news-hero-content">
-          <h1 class="news-hero-title" data-aos="fade-up">TIN TỨC SỰ KIỆN</h1>
-          <p
-            class="news-hero-subtitle"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          ></p>
-        </div>
+    <!-- Drawer -->
+    <div class="draw-ov" id="drawOv"></div>
+    <div class="site-draw" id="siteDraw">
+      <button class="draw-x" id="drawX" type="button">
+        <i class="fas fa-times"></i>
+      </button>
+      <ul class="draw-nav">
+        <li><a href="/Trangchu/">Trang chủ</a></li>
+        <li><a href="/sanphamxemay/">Sản phẩm</a></li>
+        <li>
+          <a href="/tintuc/" class="draw-toggle active" data-target="draw-tn"
+            >Tin tức <i class="fas fa-chevron-down"></i
+          ></a>
+          <div class="draw-sub open" id="draw-tn">
+            <a href="/tintuc/tintucxemay/"
+              ><i class="fas fa-newspaper"></i>Tin Tức Xe Máy</a
+            >
+            <a href="/tintuc/tintucsukien/"
+              ><i class="fas fa-calendar-alt"></i>Sự Kiện</a
+            >
+            <a href="/tintuc/tintuckhuyenmai/"
+              ><i class="fas fa-gift"></i>Khuyến Mãi</a
+            >
+          </div>
+        </li>
+        <li><a href="/dichvu/">Dịch Vụ</a></li>
+        <li><a href="/lienhe/">Liên hệ</a></li>
+      </ul>
+      <a href="tel:1900636712" class="draw-cta"
+        ><i class="fas fa-phone-alt"></i> Gọi ngay: 1900 636 712</a
+      >
+    </div>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="page-hero-ov"></div>
+      <div class="page-hero-body">
+        <div class="hero-eyebrow">Honda Authorised Dealer</div>
+        <h1 class="hero-title">TIN TỨC<br /><em>SỰ KIỆN</em></h1>
+        <p class="hero-sub">
+          Cập nhật những hoạt động, sự kiện nổi bật nhất từ hệ thống HEAD Trung
+          Hùng và Honda Việt Nam.
+        </p>
       </div>
     </section>
 
-    <!-- Breadcrumb -->
+    <!-- BREADCRUMB -->
     <div class="breadcrumb">
-      <div class="container">
-        <div class="breadcrumb-content">
-          <a href="/Trangchu/">Trang chủ</a>
-          <span>/</span>
-          <a href="/tintuc/">Tin tức</a>
-        </div>
+      <div class="breadcrumb-inner">
+        <a href="/Trangchu/">Trang chủ</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="/tintuc/">Tin tức</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Sự kiện</span>
       </div>
     </div>
 
-    <!-- News Section -->
-    <section class="news-section">
-      <div class="container">
-        <div class="news-container">
-          <!-- Main Content -->
-          <div class="news-main">
-            <!-- Featured News -->
-            <div class="featured-news">
-              <div class="featured-news-card" data-aos="fade-up">
-                <div class="featured-news-image">
-                  <img
-                    src="/tintuc/tintucsukien/image/tintuccuahang/17122025/4.jpg"
-                    alt=""
-                    loading="lazy"
-                  />
-                </div>
-                <div class="featured-news-content">
-                  <span class="news-category">Sự Kiện</span>
-                  <h2 class="featured-news-title">
-                    HEAD Trung Hùng tiếp đón Tổng giám đốc Honda Việt Nam - Bà
-                    Sayaka Arai
-                  </h2>
-                  <p class="featured-news-excerpt">
-                    Ngày 17/12/2025 không chỉ là một dấu mốc đáng nhớ, mà còn là
-                    lời nhắc về niềm tin, sự đồng hành và khát vọng phát triển
-                    bền vững....
-                  </p>
-                  <div class="news-meta">
-                    <span><i class="far fa-calendar"></i> 17/12/2025</span>
-                    <span><i class="far fa-eye"></i> 7.839 lượt xem</span>
-                  </div>
-                  <a
-                    href="/tintuc/tintucsukien/tintucsukien/17122025.html"
-                    class="read-more"
-                  >
-                    Đọc tiếp <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
+    <!-- CONTENT -->
+    <div class="content-wrap">
+      <main>
+        <!-- Featured -->
+        <div class="featured-label rv">Sự kiện nổi bật</div>
+        <a
+          href="/tintuc/tintucsukien/tintucsukien/17122025.html"
+          class="fp-card rv"
+        >
+          <div class="fp-img">
+            <img
+              src="/tintuc/tintucsukien/image/tintuccuahang/17122025/4.jpg"
+              alt="HEAD Trung Hùng tiếp đón Tổng giám đốc Honda Việt Nam"
+              loading="lazy"
+            />
+            <div class="fp-hot"><i class="fas fa-star"></i> Nổi bật</div>
+          </div>
+          <div class="fp-body">
+            <span class="fp-cat"
+              ><i class="fas fa-calendar-alt"></i>Sự Kiện</span
+            >
+            <h2 class="fp-title">
+              HEAD TRUNG HÙNG TIẾP ĐÓN TỔNG GIÁM ĐỐC HONDA VIỆT NAM
+            </h2>
+            <p class="fp-excerpt">
+              Ngày 17/12/2025 không chỉ là một dấu mốc đáng nhớ, mà còn là lời
+              nhắc về niềm tin, sự đồng hành và khát vọng phát triển bền vững
+              của hệ thống HEAD Trung Hùng.
+            </p>
+            <div class="fp-meta">
+              <span><i class="far fa-calendar"></i>17/12/2025</span>
+              <span><i class="far fa-eye"></i>7.839 lượt xem</span>
             </div>
+            <span class="fp-link"
+              >Xem chi tiết <i class="fas fa-arrow-right"></i
+            ></span>
+          </div>
+        </a>
 
-            <!-- News Grid -->
-            <div class="news-grid" id="newsGrid">
-              <!-- News cards will be dynamically inserted here -->
+        <div class="grid-header rv">
+          <h2 class="grid-title">Tất cả sự kiện</h2>
+          <span class="grid-count" id="countBadge">1–4 / 4 bài</span>
+        </div>
+
+        <div class="news-grid" id="newsGrid"></div>
+        <div class="pagination" id="pagination"></div>
+      </main>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="highlight-box rv">
+          <h3>SỰ KIỆN<br /><em>MỚI NHẤT</em></h3>
+          <p>
+            Đừng bỏ lỡ những hoạt động và sự kiện đặc sắc từ HEAD Trung Hùng và
+            Honda Việt Nam.
+          </p>
+          <a href="/tintuc/tintuckhuyenmai/" class="highlight-btn"
+            ><i class="fas fa-gift"></i> Xem khuyến mãi</a
+          >
+        </div>
+
+        <div class="sw rv">
+          <div class="sw-title">Danh mục tin tức</div>
+          <ul class="cat-list">
+            <li>
+              <a href="/tintuc/tintucxemay/"
+                ><span><i class="fas fa-motorcycle"></i>Sản phẩm mới</span
+                ><span class="cat-badge">Chi tiết</span></a
+              >
+            </li>
+            <li>
+              <a href="/tintuc/tintuckhuyenmai/"
+                ><span><i class="fas fa-gift"></i>Khuyến mãi</span
+                ><span class="cat-badge">Chi tiết</span></a
+              >
+            </li>
+            <li>
+              <a href="/tintuc/tintucsukien/" class="active-cat"
+                ><span><i class="fas fa-calendar-alt"></i>Sự kiện</span
+                ><span class="cat-badge">Đang xem</span></a
+              >
+            </li>
+            <li>
+              <a href="/tintuc/tintuclxat/"
+                ><span><i class="fas fa-shield-alt"></i>Hoạt động LXAT</span
+                ><span class="cat-badge">Chi tiết</span></a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="sw rv">
+          <div class="sw-title">Bài viết gần đây</div>
+          <a href="/tintuc/tintucxemay/" class="rp-item">
+            <div class="rp-img">
+              <img
+                src="/sanphamxemay/Vision2026/Vision2026/picture/6.jpg"
+                alt=""
+                loading="lazy"
+              />
             </div>
+            <div class="rp-content">
+              <span class="rp-title">Honda Việt Nam giới thiệu Vision 2026</span
+              ><span class="rp-date"
+                ><i class="far fa-calendar"></i>05/11/2025</span
+              >
+            </div>
+          </a>
+          <a href="/tintuc/tintucxemay/" class="rp-item">
+            <div class="rp-img">
+              <img
+                src="/sanphamxemay/SH160/SH160/picture/4.jpg"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="rp-content">
+              <span class="rp-title"
+                >Air Blade 125/160, SH125/160, LEAD 2026</span
+              ><span class="rp-date"
+                ><i class="far fa-calendar"></i>05/11/2025</span
+              >
+            </div>
+          </a>
+          <a href="/tintuc/tintucxemay/" class="rp-item">
+            <div class="rp-img">
+              <img
+                src="/sanphamxemay/image/banner/FUTURE.png"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="rp-content">
+              <span class="rp-title"
+                >Honda Future 125 FI 2026 — Đậm phong thái</span
+              ><span class="rp-date"
+                ><i class="far fa-calendar"></i>28/10/2025</span
+              >
+            </div>
+          </a>
+          <a href="/tintuc/tintucxemay/" class="rp-item">
+            <div class="rp-img">
+              <img
+                src="/sanphamxemay/image/banner/CB350.jpg"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="rp-content">
+              <span class="rp-title">Honda CB350 H'ness phiên bản 2025 mới</span
+              ><span class="rp-date"
+                ><i class="far fa-calendar"></i>02/10/2025</span
+              >
+            </div>
+          </a>
+        </div>
+      </aside>
+    </div>
 
-            <!-- Pagination -->
-            <div class="pagination">
-              <ul class="pagination-list" id="paginationList">
-                <!-- Pagination will be dynamically generated -->
-              </ul>
+    <!-- FOOTER -->
+    <footer>
+      <div class="ft-top">
+        <div>
+          <div class="ft-logo-row">
+            <img
+              src="/sanphamxemay/image/banner/Logo_HEAD.png"
+              alt="HEAD"
+              class="ft-logo-img"
+            />
+            <div class="ft-brand-name">
+              HỆ THỐNG HEAD <span>TRUNG HÙNG</span>
             </div>
           </div>
-
-          <!-- Sidebar -->
-          <div class="news-sidebar">
-            <!-- Categories Widget -->
-            <div class="sidebar-widget">
-              <h3 class="widget-title">Danh mục</h3>
-              <ul class="categories-list">
-                <li>
-                  <a href="/tintuc/tintucxemay/">
-                    Sản phẩm mới
-                    <span>chi tiết</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/tintuc/tintuckhuyenmai/">
-                    Khuyến mãi
-                    <span>chi tiết</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/tintuc/tintucsukien/">
-                    Sự kiện
-                    <span>chi tiết</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/tintuc/tintuclxat/">
-                    Hoạt động LXAT
-                    <span>chi tiết</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Recent Posts Widget -->
-            <div class="sidebar-widget">
-              <h3 class="widget-title">Bài viết gần đây</h3>
-              <ul class="recent-posts">
-                <li>
-                  <div class="recent-post-image">
-                    <img
-                      src="/sanphamxemay/Vision2026/Vision2026/picture/6.jpg"
-                      alt="Bài viết gần đây"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="recent-post-content">
-                    <h4>
-                      Honda Việt Nam giới thiệu phiên bản mới mẫu xe Vision 2026
-                    </h4>
-                    <div class="news-meta">
-                      <span><i class="far fa-calendar"></i> 05/11/2025</span>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="recent-post-image">
-                    <img
-                      src="/sanphamxemay/SH160/SH160/picture/4.jpg"
-                      alt="Bài viết gần đây"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="recent-post-content">
-                    <h4>
-                      Honda Việt Nam giới thiệu Air Blade 125/160, SH125/160,
-                      LEAD 2026
-                    </h4>
-                    <div class="news-meta">
-                      <span><i class="far fa-calendar"></i> 05/11/2025</span>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="recent-post-image">
-                    <img
-                      src="/sanphamxemay/image/banner/FUTURE.png"
-                      alt="Bài viết gần đây"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="recent-post-content">
-                    <h4>
-                      Honda Việt Nam ra mắt Future 125 FI 2026 mới - Đậm phong
-                      thái, lái vững bền-
-                    </h4>
-                    <div class="news-meta">
-                      <span><i class="far fa-calendar"></i> 28/10/2025</span>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="recent-post-image">
-                    <img
-                      src="/sanphamxemay/image/banner/CB350.jpg"
-                      alt="Bài viết gần đây"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="recent-post-content">
-                    <h4>
-                      Honda CB350 H'ness chính thức ra mắt phiên bản 2025 với
-                      nhiều cải tiến đột phá
-                    </h4>
-                    <div class="news-meta">
-                      <span><i class="far fa-calendar"></i> 02/10/2025</span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
+          <p class="ft-brand-tag">
+            Công Ty TNHH Thương Mại Và Dịch Vụ Hùng Mạnh — đại lý Honda chính
+            hãng tại Gia Lai, Hà Nội và Sơn La.
+          </p>
+          <div class="ft-socials">
+            <a
+              href="https://www.facebook.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@HethongHEADTrungHung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.tiktok.com/@hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-tiktok"></i
+            ></a>
           </div>
+        </div>
+        <div class="ft-col">
+          <h5>Điều hướng</h5>
+          <ul>
+            <li><a href="/Trangchu/">Trang chủ</a></li>
+            <li><a href="/sanphamxemay/">Sản phẩm</a></li>
+            <li><a href="/tintuc/">Tin tức</a></li>
+            <li><a href="/dichvu/">Dịch vụ</a></li>
+            <li><a href="/lienhe/">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Tin tức</h5>
+          <ul>
+            <li><a href="/tintuc/tintucxemay/">Sản phẩm mới</a></li>
+            <li><a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a></li>
+            <li><a href="/tintuc/tintucsukien/">Sự kiện</a></li>
+            <li><a href="/tintuc/tintuclxat/">Hoạt động LXAT</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Liên hệ</h5>
+          <ul>
+            <li><a href="tel:1900636712">1900 636 712</a></li>
+            <li><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a></li>
+            <li><a href="/cuahang/">Hệ thống cửa hàng</a></li>
+          </ul>
         </div>
       </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-links">
-            <h4>Liên Kết Nhanh</h4>
-            <ul>
-              <li><a href="/Trangchu/">Trang đầu</a></li>
-              <li><a href="/sanpham/">Sản phẩm</a></li>
-              <li><a href="/tintuc/">Tin tức</a></li>
-              <li><a href="/dichvu/">Dịch vụ</a></li>
-              <li><a href="/lienhe/">Liên hệ</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-social">
-            <h4>Theo Dõi Chúng Tôi</h4>
-            <div class="social-icons">
-              <a
-                href="https://www.facebook.com/hethongheadtrunghung"
-                aria-label="Facebook"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a
-                href="https://www.youtube.com/@HethongHEADTrungHung"
-                aria-label="YouTube"
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a
-                href="https://www.instagram.com/hethongheadtrunghung"
-                aria-label="Instagram"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a
-                href="https://www.tiktok.com/@hethongheadtrunghung"
-                aria-label="TikTok"
-                ><i class="fab fa-tiktok"></i
-              ></a>
-            </div>
-            <p>Đăng ký nhận bản tin</p>
-            <form class="newsletter-form">
-              <input type="email" placeholder="Nhập email của bạn" />
-              <button type="submit" aria-label="Subscribe">
-                <i class="fas fa-paper-plane"></i>
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <p>&copy; 2025 HEAD Trung Hung. All Rights Reserved.</p>
-          <div class="legal-links">
-            <a href="#">Chính sách bảo mật</a>
-            <a href="#">Điều khoản sử dụng</a>
-          </div>
+      <div class="ft-btm">
+        <p>© 2025 HỆ THỐNG HEAD TRUNG HÙNG. Bảo lưu mọi quyền.</p>
+        <div class="ft-badge">
+          <i class="fas fa-certificate"></i> Honda Authorised Dealer
         </div>
       </div>
     </footer>
 
-    <!-- Messenger Chat Button -->
+    <nav class="mob-nav">
+      <div class="mnb">
+        <a href="/Trangchu/" class="mnb-a"
+          ><i class="fas fa-home"></i><span>Trang chủ</span></a
+        >
+        <a href="/sanphamxemay/" class="mnb-a"
+          ><i class="fas fa-motorcycle"></i><span>Sản phẩm</span></a
+        >
+        <a href="/tintuc/" class="mnb-a on"
+          ><i class="fas fa-newspaper"></i><span>Tin tức</span></a
+        >
+        <a href="/cuahang/" class="mnb-a"
+          ><i class="fas fa-map-marker-alt"></i><span>Đại lý</span></a
+        >
+        <a href="/lienhe/" class="mnb-a"
+          ><i class="fas fa-phone-alt"></i><span>Liên hệ</span></a
+        >
+      </div>
+    </nav>
+
     <a
       href="https://m.me/hethongheadtrunghung"
-      class="messenger-chat"
+      class="messenger-float"
       target="_blank"
-    >
-      <i class="fab fa-facebook-messenger"></i>
-    </a>
+      rel="noopener"
+      aria-label="Messenger"
+      ><i class="fab fa-facebook-messenger"></i
+    ></a>
+    <a href="#" class="back-top" id="backTop" aria-label="Lên đầu"
+      ><i class="fas fa-arrow-up"></i
+    ></a>
 
-    <!-- Back to Top -->
-    <a href="#" class="back-to-top" aria-label="Back to top">
-      <i class="fas fa-arrow-up"></i>
-    </a>
-
-    <!-- JavaScript Libraries -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      // News data - you can add more news items here
-      const newsData = [
-        {
-          id: 1,
-          image: "/tintuc/tintucsukien/image/tintuccuahang/17082025/3.JPG",
-          category: "Sự kiện cộng đồng",
-          title: "+84 Honda Bikers – Hành trình Quy Nhơn – Phù Mỹ",
-          excerpt:
-            "Ngày 17/08/2025, cộng đồng +84 Honda Bikers đã cùng nhau thực hiện hành trình Quy Nhơn – Phù Mỹ,...",
-          date: "17/08/2025",
-          views: "5.319",
-          link: "/tintuc/tintucsukien/tintucsukien/17082025.html",
-        },
-        {
-          id: 1,
-          image: "/tintuc/tintucsukien/image/tintuccuahang/18012025.jpg",
-          category: "Sự kiện cộng đồng",
-          title: "TRẢI NGHIỆM KHÓ QUÊN CÙNG +84 Honda Bikers BÌNH ĐỊNH",
-          excerpt:
-            "Bạn đã bỏ lỡ sự kiện +84 Honda Bikers vào ngày 12/01/2025? Đừng lo, video này sẽ đưa bạn đến với những trải nghiệm tuyệt vời mà anh em +84 Honda Bikers Bình Định đã cùng nhau tận hưởng trong Trạm Hội Ngộ vừa qua...",
-          date: "18/01/2025",
-          views: "3.221",
-          link: "/tintuc/tintucsukien/tintucsukien/18012025.html",
-        },
-        {
-          id: 1,
-          image: "/tintuc/tintucsukien/image/tintuccuahang/29092024.jpg",
-          category: "Sản phẩm mới",
-          title: "Sự Kiện Honda Đồng Hành",
-          excerpt:
-            "Thời gian: 07:00 – 17:00, Chủ nhật, ngày 29/09/2024 - Địa điểm: Quảng Trường Chiến Thắng, TP. Quy Nhơn, Bình Định....",
-          date: "29/09/2024",
-          views: "6.593",
-          link: "/tintuc/tintucsukien/tintucsukien/29042024.html",
-        },
-        {
-          id: 1,
-          image: "/tintuc/tintucsukien/image/tintuccuahang/01082024.jpg",
-          category: "Sản phẩm mới",
-          title:
-            "Ông Koji Sugita - Tổng Giám đốc Honda Việt Nam - vừa có chuyến thăm đầy ý nghĩa tại HEAD",
-          excerpt:
-            "Ngày 04/08/2024, Tổng Giám đốc Công ty Honda Việt Nam – ông Koji Sugita đã có chuyến thăm và làm việc tại một cửa hàng xe máy HEAD tại Việt Nam....",
-          date: "13/09/2025",
-          views: "2.355",
-          link: "/tintuc/tintucsukien/tintucsukien/04082024.html",
-        },
-      ];
+      (function () {
+        "use strict";
 
-      // Pagination variables
-      const itemsPerPage = 6;
-      let currentPage = 1;
+        /* Preloader */
+        window.addEventListener("load", () =>
+          setTimeout(
+            () => document.getElementById("preloader").classList.add("out"),
+            700,
+          ),
+        );
 
-      document.addEventListener("DOMContentLoaded", function () {
-        // Preloader
-        const preloader = document.querySelector(".preloader");
+        /* Header + top bar */
+        const tb = document.getElementById("topBar"),
+          hdr = document.getElementById("siteHeader");
+        window.addEventListener(
+          "scroll",
+          () => {
+            const y = window.scrollY;
+            tb.classList.toggle("hidden", y > 80);
+            hdr.classList.toggle("lifted", y > 40);
+            document.getElementById("backTop").classList.toggle("on", y > 400);
+          },
+          { passive: true },
+        );
 
-        window.addEventListener("load", function () {
-          setTimeout(function () {
-            preloader.classList.add("fade-out");
-            setTimeout(function () {
-              preloader.style.display = "none";
-            }, 500);
-          }, 1000);
+        /* Drawer */
+        const ham = document.getElementById("ham"),
+          drawOv = document.getElementById("drawOv"),
+          draw = document.getElementById("siteDraw"),
+          drawX = document.getElementById("drawX");
+        function openDraw() {
+          ham.classList.add("open");
+          drawOv.classList.add("on");
+          draw.classList.add("on");
+          document.body.style.overflow = "hidden";
+        }
+        function closeDraw() {
+          ham.classList.remove("open");
+          drawOv.classList.remove("on");
+          draw.classList.remove("on");
+          document.body.style.overflow = "";
+        }
+        ham.addEventListener("click", openDraw);
+        drawOv.addEventListener("click", closeDraw);
+        drawX.addEventListener("click", closeDraw);
+        document.querySelectorAll(".draw-toggle").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const t = document.getElementById(btn.dataset.target);
+            if (!t) return;
+            const isOpen = t.classList.contains("open");
+            document
+              .querySelectorAll(".draw-sub")
+              .forEach((s) => s.classList.remove("open"));
+            document
+              .querySelectorAll(".draw-toggle i")
+              .forEach((i) => (i.style.transform = ""));
+            if (!isOpen) {
+              t.classList.add("open");
+              btn.querySelector("i").style.transform = "rotate(180deg)";
+            }
+          });
         });
+        draw
+          .querySelectorAll("a")
+          .forEach((a) => a.addEventListener("click", closeDraw));
 
-        // Mobile Menu Toggle
-        const menuToggle = document.querySelector(".menu-toggle");
-        const mainNav = document.querySelector(".main-nav");
-        const bars = document.querySelectorAll(".bar");
-
-        menuToggle.addEventListener("click", function () {
-          this.classList.toggle("active");
-          mainNav.classList.toggle("active");
-
-          // Change menu icon color when scrolled
-          if (window.scrollY > 100) {
-            bars.forEach((bar) => {
-              bar.style.backgroundColor = this.classList.contains("active")
-                ? "black"
-                : "var(--dark-color)";
+        /* Reveal */
+        const revObs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e, i) => {
+              if (e.isIntersecting)
+                setTimeout(() => e.target.classList.add("in"), i * 65);
             });
-          }
-        });
+          },
+          { threshold: 0.1 },
+        );
+        document.querySelectorAll(".rv").forEach((el) => revObs.observe(el));
 
-        // Close mobile menu when clicking a link
-        const navLinks = document.querySelectorAll(".main-nav a");
-        navLinks.forEach((link) => {
-          link.addEventListener("click", function () {
-            if (mainNav.classList.contains("active")) {
-              menuToggle.classList.remove("active");
-              mainNav.classList.remove("active");
-            }
-          });
-        });
+        /* News data */
+        const newsData = [
+          {
+            img: "/tintuc/tintucsukien/image/tintuccuahang/17082025/3.JPG",
+            cat: "Sự kiện cộng đồng",
+            title: "+84 Honda Bikers — Hành trình Quy Nhơn – Phù Mỹ",
+            excerpt:
+              "Ngày 17/08/2025, cộng đồng +84 Honda Bikers đã cùng nhau thực hiện hành trình Quy Nhơn – Phù Mỹ đầy cảm xúc và ý nghĩa...",
+            date: "17/08/2025",
+            views: "5.319",
+            link: "/tintuc/tintucsukien/tintucsukien/17082025.html",
+          },
+          {
+            img: "/tintuc/tintucsukien/image/tintuccuahang/18012025.jpg",
+            cat: "Sự kiện cộng đồng",
+            title: "TRẢI NGHIỆM KHÓ QUÊN CÙNG +84 Honda Bikers BÌNH ĐỊNH",
+            excerpt:
+              "Bạn đã bỏ lỡ sự kiện +84 Honda Bikers vào ngày 12/01/2025? Đừng lo, video này sẽ đưa bạn đến với những trải nghiệm tuyệt vời...",
+            date: "18/01/2025",
+            views: "3.221",
+            link: "/tintuc/tintucsukien/tintucsukien/18012025.html",
+          },
+          {
+            img: "/tintuc/tintucsukien/image/tintuccuahang/29092024.jpg",
+            cat: "Sự kiện",
+            title: "Sự Kiện Honda Đồng Hành 2024",
+            excerpt:
+              "Thời gian: 07:00 – 17:00, Chủ nhật, ngày 29/09/2024 — Địa điểm: Quảng Trường Chiến Thắng, TP. Quy Nhơn, Bình Định...",
+            date: "29/09/2024",
+            views: "6.593",
+            link: "/tintuc/tintucsukien/tintucsukien/29042024.html",
+          },
+          {
+            img: "/tintuc/tintucsukien/image/tintuccuahang/01082024.jpg",
+            cat: "Sự kiện",
+            title: "Tổng Giám đốc Honda Việt Nam thăm HEAD Trung Hùng",
+            excerpt:
+              "Ngày 04/08/2024, Tổng Giám đốc Honda Việt Nam – ông Koji Sugita đã có chuyến thăm và làm việc tại cửa hàng HEAD...",
+            date: "04/08/2024",
+            views: "2.355",
+            link: "/tintuc/tintucsukien/tintucsukien/04082024.html",
+          },
+        ];
 
-        // Header Scroll Effect
-        const header = document.querySelector(".main-header");
+        const PER_PAGE = 6;
+        let curPage = 1;
+        const grid = document.getElementById("newsGrid");
+        const pagEl = document.getElementById("pagination");
+        const countBadge = document.getElementById("countBadge");
 
-        window.addEventListener("scroll", function () {
-          if (window.scrollY > 100) {
-            header.classList.add("scrolled");
-          } else {
-            header.classList.remove("scrolled");
-          }
+        function renderPage(page) {
+          curPage = page;
+          const start = (page - 1) * PER_PAGE;
+          const end = Math.min(start + PER_PAGE, newsData.length);
+          const total = newsData.length;
+          const totalPages = Math.ceil(total / PER_PAGE);
+          countBadge.textContent = `${start + 1}–${end} / ${total} bài`;
+          grid.innerHTML = "";
 
-          // Back to Top Button
-          const backToTop = document.querySelector(".back-to-top");
-          if (window.scrollY > 300) {
-            backToTop.classList.add("active");
-          } else {
-            backToTop.classList.remove("active");
-          }
-        });
-
-        // Smooth Scrolling for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute("href");
-            if (targetId === "#") return;
-
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              const headerHeight =
-                document.querySelector(".main-header").offsetHeight;
-              const targetPosition =
-                targetElement.getBoundingClientRect().top +
-                window.pageYOffset -
-                headerHeight;
-
-              window.scrollTo({
-                top: targetPosition,
-                behavior: "smooth",
-              });
-            }
-          });
-        });
-
-        // Newsletter subscription
-        function initNewsletter() {
-          const newsletterForm = document.querySelector(".newsletter-form");
-
-          newsletterForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            const emailInput = this.querySelector("input");
-
-            if (emailInput.value) {
-              alert("Cảm ơn bạn đã đăng ký nhận bản tin!");
-              emailInput.value = "";
-            }
-          });
-        }
-
-        // Initialize components
-        initNewsletter();
-
-        // Initialize AOS (Animate On Scroll)
-        AOS.init({
-          duration: 800,
-          easing: "ease-in-out",
-          once: true,
-          offset: 100,
-        });
-
-        // Initialize news grid and pagination
-        initNewsGrid();
-      });
-
-      // News Grid and Pagination Functions
-      function initNewsGrid() {
-        // Get URL parameters to determine current page
-        const urlParams = new URLSearchParams(window.location.search);
-        const pageParam = urlParams.get("page");
-        currentPage = pageParam ? parseInt(pageParam) : 1;
-
-        // Calculate total pages
-        const totalPages = Math.ceil(newsData.length / itemsPerPage);
-
-        // Ensure current page is within valid range
-        if (currentPage < 1) currentPage = 1;
-        if (currentPage > totalPages) currentPage = totalPages;
-
-        // Display news for current page
-        displayNewsForPage(currentPage);
-
-        // Generate pagination
-        generatePagination(totalPages, currentPage);
-      }
-
-      function displayNewsForPage(page) {
-        const newsGrid = document.getElementById("newsGrid");
-        newsGrid.innerHTML = "";
-
-        // Calculate start and end index for current page
-        const startIndex = (page - 1) * itemsPerPage;
-        const endIndex = Math.min(startIndex + itemsPerPage, newsData.length);
-
-        // Create news cards for current page
-        for (let i = startIndex; i < endIndex; i++) {
-          const news = newsData[i];
-          const delay = (i % itemsPerPage) * 100;
-
-          const newsCard = document.createElement("div");
-          newsCard.className = "news-card";
-          newsCard.setAttribute("data-aos", "fade-up");
-          newsCard.setAttribute("data-aos-delay", delay);
-
-          newsCard.innerHTML = `
-            <div class="news-card-image">
-              <img
-                src="${news.image}"
-                alt="${news.title}"
-                loading="lazy"
-              />
+          for (let i = start; i < end; i++) {
+            const n = newsData[i];
+            const card = document.createElement("a");
+            card.href = n.link;
+            card.className = "news-card rv";
+            card.innerHTML = `
+        <div class="nc-img">
+          <img src="${n.img}" alt="${n.title}" loading="lazy" />
+          <span class="nc-cat">${n.cat}</span>
+        </div>
+        <div class="nc-body">
+          <div class="nc-title">${n.title}</div>
+          <div class="nc-excerpt">${n.excerpt}</div>
+          <div class="nc-footer">
+            <div class="nc-meta">
+              <span><i class="far fa-calendar"></i>${n.date}</span>
+              <span><i class="far fa-eye"></i>${n.views}</span>
             </div>
-            <div class="news-card-content">
-              <span class="news-category">${news.category}</span>
-              <h3 class="news-card-title">${news.title}</h3>
-              <p class="news-card-excerpt">${news.excerpt}</p>
-              <div class="news-meta">
-                <span><i class="far fa-calendar"></i> ${news.date}</span>
-                <span><i class="far fa-eye"></i> ${news.views} lượt xem</span>
-              </div>
-              <a href="${news.link}" class="read-more">
-                Đọc tiếp <i class="fas fa-arrow-right"></i>
-              </a>
-            </div>
-          `;
-
-          newsGrid.appendChild(newsCard);
-        }
-
-        // Re-initialize AOS for new elements
-        AOS.refresh();
-      }
-
-      function generatePagination(totalPages, currentPage) {
-        const paginationList = document.getElementById("paginationList");
-        paginationList.innerHTML = "";
-
-        // Previous button
-        if (currentPage > 1) {
-          const prevItem = document.createElement("li");
-          prevItem.className = "pagination-item";
-          prevItem.innerHTML = `
-            <a href="?page=${currentPage - 1}">
-              <i class="fas fa-chevron-left"></i>
-            </a>
-          `;
-          paginationList.appendChild(prevItem);
-        }
-
-        // Page numbers
-        for (let i = 1; i <= totalPages; i++) {
-          const pageItem = document.createElement("li");
-          pageItem.className = "pagination-item";
-
-          const pageLink = document.createElement("a");
-          pageLink.href = `?page=${i}`;
-          pageLink.textContent = i;
-
-          if (i === currentPage) {
-            pageLink.classList.add("active");
+            <span class="nc-read">Đọc tiếp <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </div>`;
+            grid.appendChild(card);
           }
 
-          pageItem.appendChild(pageLink);
-          paginationList.appendChild(pageItem);
+          grid.querySelectorAll(".rv").forEach((el, i) => {
+            el.classList.remove("in");
+            setTimeout(() => el.classList.add("in"), i * 55);
+          });
+
+          /* Pagination – only show if > 1 page */
+          pagEl.innerHTML = "";
+          if (totalPages <= 1) return;
+
+          const prev = document.createElement("button");
+          prev.className = "pg-btn";
+          prev.disabled = page <= 1;
+          prev.innerHTML = '<i class="fas fa-chevron-left"></i>';
+          prev.addEventListener("click", () => {
+            renderPage(page - 1);
+            scrollToGrid();
+          });
+          pagEl.appendChild(prev);
+
+          for (let p = 1; p <= totalPages; p++) {
+            const btn = document.createElement("button");
+            btn.className = "pg-num" + (p === page ? " active" : "");
+            btn.textContent = p;
+            btn.addEventListener("click", () => {
+              renderPage(p);
+              scrollToGrid();
+            });
+            pagEl.appendChild(btn);
+          }
+
+          const next = document.createElement("button");
+          next.className = "pg-btn";
+          next.disabled = page >= totalPages;
+          next.innerHTML = '<i class="fas fa-chevron-right"></i>';
+          next.addEventListener("click", () => {
+            renderPage(page + 1);
+            scrollToGrid();
+          });
+          pagEl.appendChild(next);
         }
 
-        // Next button
-        if (currentPage < totalPages) {
-          const nextItem = document.createElement("li");
-          nextItem.className = "pagination-item";
-          nextItem.innerHTML = `
-            <a href="?page=${currentPage + 1}">
-              <i class="fas fa-chevron-right"></i>
-            </a>
-          `;
-          paginationList.appendChild(nextItem);
+        function scrollToGrid() {
+          const el = document.querySelector(".grid-header");
+          if (el)
+            window.scrollTo({
+              top:
+                el.getBoundingClientRect().top +
+                window.scrollY -
+                hdr.offsetHeight -
+                20,
+              behavior: "smooth",
+            });
         }
-      }
+
+        const urlP = new URLSearchParams(location.search);
+        const initPage = parseInt(urlP.get("page") || "1") || 1;
+        renderPage(Math.max(1, initPage));
+      })();
     </script>
   </body>
 </html>
