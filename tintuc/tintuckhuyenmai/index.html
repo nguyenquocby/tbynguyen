@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Khuyến Mãi – HEAD Trung Hùng Honda</title>
+    <title>Khuyến Mãi – HỆ THỐNG HEAD TRUNG HÙNG</title>
     <link
       rel="icon"
       href="/sanphamxemay/image/banner/Logo_HEAD.png"
@@ -14,33 +14,33 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&family=Bebas+Neue&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+
     <style>
-      /* ======================================================
-   TOKENS
-====================================================== */
+      /* ============================================================ TOKENS */
       :root {
-        --red: #d90018;
-        --red-mid: #a8000f;
-        --red-soft: rgba(217, 0, 24, 0.1);
-        --red-glow: rgba(217, 0, 24, 0.25);
-        --ink: #111113;
-        --ink2: #27272a;
-        --paper: #fafaf9;
-        --paper2: #f3f1ee;
+        --red: #cc0000;
+        --red-dark: #990000;
+        --red-glow: rgba(204, 0, 0, 0.28);
+        --red-soft: rgba(204, 0, 0, 0.07);
+        --ink: #0a0a0b;
+        --ink2: #1a1a1c;
+        --paper: #f5f3f0;
+        --paper2: #eceae6;
         --white: #ffffff;
-        --border: rgba(17, 17, 19, 0.08);
-        --muted: #78716c;
+        --border: rgba(10, 10, 11, 0.08);
+        --border2: rgba(10, 10, 11, 0.14);
+        --muted: #7a7672;
         --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --snap: cubic-bezier(0.16, 1, 0.3, 1);
         --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
       }
 
-      /* ======================================================
-   RESET
-====================================================== */
-      * {
+      *,
+      *::before,
+      *::after {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -50,11 +50,12 @@
         scroll-behavior: smooth;
       }
       body {
-        font-family: "Lexend Deca", sans-serif;
+        font-family: "Barlow", sans-serif;
         background: var(--paper);
         color: var(--ink);
         overflow-x: hidden;
         line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
       }
       img {
         max-width: 100%;
@@ -81,165 +82,325 @@
         border-radius: 2px;
       }
 
-      /* ======================================================
-   HEADER
-====================================================== */
+      /* ============================================================ TOP BAR */
+      .top-bar {
+        background: var(--ink);
+        padding: 0.9rem 0;
+        transition: transform 0.35s var(--ease);
+      }
+      .top-bar.hidden {
+        transform: translateY(-100%);
+      }
+      .tb-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .tb-links {
+        display: flex;
+        gap: 2.4rem;
+      }
+      .tb-links a {
+        font-size: 1.2rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        color: rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: color 0.2s;
+      }
+      .tb-links a:hover {
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .tb-links a i {
+        font-size: 0.95rem;
+        color: var(--red);
+      }
+      .tb-contact {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+      .tb-contact a {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: color 0.2s;
+      }
+      .tb-contact a:hover {
+        color: #fff;
+      }
+      .tb-contact i {
+        color: var(--red);
+        font-size: 0.95rem;
+      }
+      .tb-div {
+        width: 1px;
+        height: 12px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* ============================================================ HEADER */
       .site-header {
         position: sticky;
         top: 0;
         z-index: 500;
-        background: rgba(250, 250, 249, 0.96);
-        backdrop-filter: blur(20px);
+        background: rgba(245, 243, 240, 0.96);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
         border-bottom: 1px solid var(--border);
-        transition: box-shadow 0.3s;
+        transition: all 0.4s var(--ease);
       }
       .site-header.lifted {
-        box-shadow: 0 2px 20px rgba(17, 17, 19, 0.07);
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow:
+          0 1px 0 var(--border),
+          0 4px 24px rgba(10, 10, 11, 0.07);
       }
-      .hdr {
-        max-width: 1280px;
+      .hdr-inner {
+        max-width: 1340px;
         margin: 0 auto;
-        padding: 0 3.5rem;
+        padding: 0 4rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 66px;
+        height: 72px;
       }
-      .logo {
+      .logo-area {
         display: flex;
         align-items: center;
-        gap: 1.2rem;
+        gap: 1.4rem;
+        flex-shrink: 0;
       }
-      .logo-mark {
-        width: 38px;
-        height: 38px;
-        /*background: var(--red);*/
-        border-radius: 6px;
+      .logo-img-wrap {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+        transition: transform 0.4s var(--spring);
+      }
+      .logo-img-wrap:hover {
+        transform: rotate(-5deg) scale(1.08);
+      }
+      .logo-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .logo-text-wrap {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.3s var(--spring);
-      }
-      .logo-mark:hover {
-        transform: rotate(-7deg) scale(1.1);
-      }
-      .logo-mark i {
-        color: #fff;
-        font-size: 1.7rem;
-      }
-      .logo-text {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.9rem;
-        letter-spacing: 0.12em;
+        flex-direction: column;
         line-height: 1;
       }
-      .logo-text small {
-        display: block;
-        font-family: "Lexend Deca", sans-serif;
-        font-size: 0.88rem;
-        letter-spacing: 0.2em;
+      .logo-main {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 2rem;
+        letter-spacing: 0.1em;
+        color: var(--ink);
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .logo-main span {
+        color: var(--red);
+      }
+      .logo-sub {
+        font-family: "Barlow", sans-serif;
+        font-size: 0.92rem;
+        font-weight: 500;
+        letter-spacing: 0.07em;
         color: var(--muted);
-        font-weight: 300;
-        margin-top: 0.2rem;
+        margin-top: 0.3rem;
+        text-transform: uppercase;
       }
       .main-nav {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
       }
-      .main-nav a {
-        font-size: 1.3rem;
-        font-weight: 500;
-        letter-spacing: 0.04em;
+      .main-nav > li {
+        position: relative;
+      }
+      .main-nav > li > a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.55rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
         color: var(--ink2);
-        padding: 0.7rem 1.4rem;
-        border-radius: 6px;
+        padding: 0 1.6rem;
+        height: 72px;
+        transition: color 0.22s;
+        position: relative;
+      }
+      .main-nav > li > a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 1.6rem;
+        right: 1.6rem;
+        height: 2px;
+        background: var(--red);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s var(--ease);
+      }
+      .main-nav > li > a:hover,
+      .main-nav > li > a.active {
+        color: var(--red);
+      }
+      .main-nav > li > a:hover::after,
+      .main-nav > li > a.active::after {
+        transform: scaleX(1);
+      }
+      .main-nav > li > a i {
+        font-size: 0.9rem;
+        opacity: 0.4;
+        transition: transform 0.25s;
+      }
+      .main-nav > li:hover > a i {
+        transform: rotate(180deg);
+      }
+      .dropdown-panel {
+        position: absolute;
+        top: calc(100% + 2px);
+        left: 0;
+        min-width: 250px;
+        background: var(--white);
+        border: 1px solid var(--border2);
+        border-radius: 14px;
+        padding: 0.8rem 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px) scale(0.98);
+        transition: all 0.28s var(--ease);
+        z-index: 100;
+        box-shadow: 0 16px 48px rgba(10, 10, 11, 0.14);
+      }
+      .main-nav > li:hover .dropdown-panel {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+      }
+      .dropdown-panel li a {
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
+        padding: 1.1rem 2rem;
+        font-family: "Barlow", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 500;
+        color: var(--ink2);
+        border-left: 2.5px solid transparent;
         transition: all 0.2s;
       }
-      .main-nav a:hover {
-        background: var(--paper2);
+      .dropdown-panel li a:hover {
+        background: var(--paper);
         color: var(--red);
+        border-left-color: var(--red);
+        padding-left: 2.6rem;
       }
-      .main-nav a.active {
+      .dropdown-panel li a i {
+        width: 17px;
+        text-align: center;
         color: var(--red);
-        background: var(--red-soft);
+        font-size: 1.15rem;
       }
       .hdr-cta {
         background: var(--red);
         color: #fff;
-        font-size: 1.25rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
         font-weight: 700;
-        letter-spacing: 0.06em;
-        padding: 0.85rem 2rem;
-        border-radius: 6px;
-        margin-left: 1rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.9rem 2.4rem;
+        border-radius: 7px;
+        margin-left: 1.6rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
         transition: all 0.3s;
       }
       .hdr-cta:hover {
-        background: var(--red-mid);
+        background: var(--red-dark);
+        box-shadow: 0 6px 24px var(--red-glow);
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px var(--red-glow);
       }
       .ham {
         display: none;
         flex-direction: column;
         gap: 5px;
-        padding: 4px;
+        padding: 6px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .ham:hover {
+        background: var(--paper2);
       }
       .ham span {
-        width: 21px;
+        width: 22px;
         height: 2px;
         background: var(--ink);
-        transition: all 0.3s;
+        transition: all 0.32s var(--ease);
         border-radius: 1px;
+        display: block;
       }
       .ham.open span:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
       }
       .ham.open span:nth-child(2) {
         opacity: 0;
+        transform: scaleX(0);
       }
       .ham.open span:nth-child(3) {
         transform: translateY(-7px) rotate(-45deg);
       }
-
-      /* Drawer */
-      .dov {
+      .draw-ov {
         position: fixed;
         inset: 0;
-        background: rgba(17, 17, 19, 0.5);
+        background: rgba(10, 10, 11, 0.6);
         z-index: 498;
         opacity: 0;
         visibility: hidden;
-        transition: all 0.3s;
+        transition: all 0.32s;
+        backdrop-filter: blur(6px);
       }
-      .dov.on {
+      .draw-ov.on {
         opacity: 1;
         visibility: visible;
       }
-      .sdraw {
+      .site-draw {
         position: fixed;
         top: 0;
         right: -100%;
-        width: min(320px, 90vw);
+        width: min(360px, 92vw);
         height: 100%;
         background: var(--white);
         z-index: 499;
-        padding: 6.5rem 2.8rem 3rem;
-        transition: right 0.38s var(--ease);
+        padding: 7.5rem 3rem 3rem;
+        transition: right 0.38s var(--snap);
         border-left: 1px solid var(--border);
-        display: flex;
-        flex-direction: column;
+        overflow-y: auto;
       }
-      .sdraw.on {
+      .site-draw.on {
         right: 0;
       }
-      .sdx {
+      .draw-x {
         position: absolute;
-        top: 1.6rem;
-        right: 1.6rem;
-        width: 36px;
-        height: 36px;
+        top: 2rem;
+        right: 2rem;
+        width: 40px;
+        height: 40px;
         background: var(--paper2);
         border-radius: 50%;
         display: flex;
@@ -248,51 +409,95 @@
         font-size: 1.5rem;
         color: var(--muted);
         transition: all 0.2s;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        z-index: 10;
       }
-      .sdx:hover {
+      .draw-x:hover {
         background: var(--red);
         color: #fff;
+        transform: rotate(90deg);
       }
-      .dnav {
+      .draw-nav {
         display: flex;
         flex-direction: column;
       }
-      .dnav a {
-        font-size: 1.6rem;
-        font-weight: 500;
-        color: var(--ink2);
-        padding: 1.4rem 0;
+      .draw-nav > li {
         border-bottom: 1px solid var(--border);
+      }
+      .draw-nav > li > a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink);
+        padding: 1.6rem 0;
         transition: color 0.2s;
       }
-      .dnav a:hover,
-      .dnav a.active {
+      .draw-nav > li > a:hover,
+      .draw-nav > li > a.active {
         color: var(--red);
       }
-      .dcta {
+      .draw-sub {
+        padding-left: 1.2rem;
+        display: none;
+        padding-bottom: 0.6rem;
+      }
+      .draw-sub.open {
+        display: block;
+      }
+      .draw-sub a {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1.45rem;
+        color: var(--muted);
+        padding: 0.9rem 0.5rem;
+        transition: color 0.2s;
+        border-radius: 6px;
+      }
+      .draw-sub a:hover {
+        color: var(--red);
+      }
+      .draw-sub a i {
+        color: var(--red);
+        font-size: 1.1rem;
+        width: 16px;
+        text-align: center;
+      }
+      .draw-cta {
         background: var(--red);
         color: #fff;
         text-align: center;
-        font-size: 1.4rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.6rem;
         font-weight: 700;
-        letter-spacing: 0.06em;
-        padding: 1.3rem;
-        border-radius: 6px;
-        margin-top: auto;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.5rem 2rem;
+        border-radius: 10px;
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
         transition: background 0.3s;
       }
-      .dcta:hover {
-        background: var(--red-mid);
+      .draw-cta:hover {
+        background: var(--red-dark);
       }
 
-      /* ======================================================
-   PAGE HERO
-====================================================== */
+      /* ============================================================ PAGE HERO */
       .page-hero {
         background: var(--ink);
         position: relative;
         overflow: hidden;
-        padding: 6rem 3.5rem 5rem;
+        padding: 8rem 4rem 7rem;
       }
       .page-hero::before {
         content: "";
@@ -300,43 +505,63 @@
         inset: 0;
         background:
           radial-gradient(
-            ellipse 60% 80% at 80% 50%,
-            rgba(217, 0, 24, 0.18),
-            transparent
+            ellipse 70% 80% at 80% 50%,
+            rgba(204, 0, 0, 0.16),
+            transparent 60%
           ),
           radial-gradient(
             ellipse 50% 60% at 10% 80%,
-            rgba(217, 0, 24, 0.08),
+            rgba(204, 0, 0, 0.08),
             transparent
           );
+        pointer-events: none;
       }
-      .page-hero-grid {
+      .ph-grid {
         position: absolute;
         inset: 0;
         background-image:
-          linear-gradient(rgba(217, 0, 24, 0.06) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(217, 0, 24, 0.06) 1px, transparent 1px);
-        background-size: 50px 50px;
+          linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: 64px 64px;
         mask-image: radial-gradient(
           ellipse 80% 80% at 50% 50%,
-          black 30%,
-          transparent 100%
+          black,
+          transparent
         );
+        pointer-events: none;
+      }
+      .page-hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 5px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          var(--red),
+          transparent
+        );
+        opacity: 0.7;
       }
       .ph-inner {
-        max-width: 1280px;
+        max-width: 1340px;
         margin: 0 auto;
         position: relative;
         z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 4rem;
+        align-items: end;
       }
       .ph-crumb {
         display: flex;
         align-items: center;
         gap: 0.8rem;
         font-size: 1.25rem;
-        color: rgba(255, 255, 255, 0.35);
-        margin-bottom: 2.5rem;
-        letter-spacing: 0.05em;
+        color: rgba(255, 255, 255, 0.32);
+        margin-bottom: 2.8rem;
       }
       .ph-crumb a {
         color: rgba(255, 255, 255, 0.5);
@@ -345,165 +570,221 @@
       .ph-crumb a:hover {
         color: #fff;
       }
-      .ph-crumb .sep {
+      .ph-crumb i {
+        font-size: 0.85rem;
         color: rgba(255, 255, 255, 0.2);
+      }
+      .ph-crumb span {
+        color: rgba(255, 255, 255, 0.65);
       }
       .ph-eyebrow {
         display: inline-flex;
         align-items: center;
-        gap: 0.8rem;
-        font-size: 1.1rem;
+        gap: 1.2rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
         font-weight: 700;
-        letter-spacing: 0.25em;
+        letter-spacing: 0.3em;
         text-transform: uppercase;
         color: var(--red);
         margin-bottom: 1.8rem;
       }
       .ph-eyebrow::before {
         content: "";
-        width: 20px;
-        height: 1.5px;
+        width: 28px;
+        height: 2px;
         background: var(--red);
       }
       .ph-title {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(5.5rem, 9vw, 10rem);
-        line-height: 0.9;
+        font-size: clamp(6rem, 10vw, 14rem);
+        font-weight: 900;
         letter-spacing: 0.02em;
+        text-transform: uppercase;
         color: #fff;
+        line-height: 0.85;
         margin-bottom: 2rem;
       }
+      .ph-title em {
+        color: var(--red);
+        font-style: normal;
+      }
       .ph-sub {
-        font-size: 1.6rem;
-        color: rgba(255, 255, 255, 0.45);
+        font-size: 1.65rem;
+        color: rgba(255, 255, 255, 0.42);
         max-width: 520px;
-        line-height: 1.6;
+        line-height: 1.7;
+        margin-bottom: 4rem;
       }
       .ph-stats {
         display: flex;
         gap: 4rem;
-        margin-top: 4rem;
         flex-wrap: wrap;
       }
-      .ph-stat .val {
+      .ph-stat-val {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 4rem;
-        letter-spacing: 0.04em;
+        font-size: 4.4rem;
+        font-weight: 900;
         color: #fff;
+        letter-spacing: 0.04em;
         line-height: 1;
+        display: block;
       }
-      .ph-stat .val em {
+      .ph-stat-val em {
         color: var(--red);
         font-style: normal;
       }
-      .ph-stat .lbl {
+      .ph-stat-lbl {
         font-size: 1.15rem;
-        color: rgba(255, 255, 255, 0.35);
-        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.3);
+        letter-spacing: 0.16em;
         text-transform: uppercase;
+        font-weight: 500;
+        display: block;
+        margin-top: 0.4rem;
+      }
+      /* Right panel with featured badge */
+      .ph-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 2rem;
+        flex-shrink: 0;
+      }
+      .ph-badge-big {
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        padding: 1.2rem 2.4rem;
+        border-radius: 60px;
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
       }
 
-      /* ======================================================
-   MAIN CONTENT LAYOUT
-====================================================== */
+      /* ============================================================ LAYOUT */
       .content-wrap {
-        max-width: 1280px;
+        max-width: 1340px;
         margin: 0 auto;
-        padding: 5rem 3.5rem 7rem;
+        padding: 6rem 4rem 8rem;
         display: grid;
-        grid-template-columns: 1fr 340px;
-        gap: 4rem;
+        grid-template-columns: 1fr 360px;
+        gap: 4.5rem;
         align-items: start;
       }
 
-      /* ======================================================
-   FEATURED POST
-====================================================== */
-      .featured-post {
-        margin-bottom: 4.5rem;
+      /* ============================================================ FEATURED */
+      .featured-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 2.4rem;
+      }
+      .featured-label::before {
+        content: "";
+        width: 24px;
+        height: 2px;
+        background: var(--red);
       }
       .fp-card {
         background: var(--white);
-        border-radius: 18px;
+        border-radius: 22px;
         overflow: hidden;
         border: 1px solid var(--border);
         display: grid;
         grid-template-columns: 1.2fr 1fr;
         transition: all 0.4s var(--ease);
+        margin-bottom: 5rem;
       }
       .fp-card:hover {
-        box-shadow: 0 20px 55px rgba(17, 17, 19, 0.1);
-        transform: translateY(-4px);
-        border-color: rgba(217, 0, 24, 0.18);
+        box-shadow: 0 28px 64px rgba(10, 10, 11, 0.12);
+        transform: translateY(-5px);
+        border-color: rgba(204, 0, 0, 0.22);
       }
       .fp-img {
         overflow: hidden;
         min-height: 360px;
         background: var(--paper2);
+        position: relative;
       }
       .fp-img img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.6s var(--ease);
+        transition: transform 0.65s var(--ease);
       }
       .fp-card:hover .fp-img img {
-        transform: scale(1.05);
+        transform: scale(1.07);
+      }
+      .fp-hot {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 0.5rem 1.4rem;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
       }
       .fp-body {
-        padding: 3.5rem;
+        padding: 4rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
       }
-      .fp-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6rem;
-        background: var(--red);
-        color: #fff;
-        font-size: 1.05rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        padding: 0.5rem 1.4rem;
-        border-radius: 20px;
-        margin-bottom: 2rem;
-        width: fit-content;
-      }
-      .fp-badge i {
-        font-size: 0.9rem;
-      }
       .fp-title {
-        font-family: "Playfair Display", serif;
-        font-size: 2.6rem;
-        line-height: 1.3;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 3.2rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
         color: var(--ink);
-        margin-bottom: 1.5rem;
+        line-height: 1.1;
+        margin-bottom: 1.6rem;
         transition: color 0.2s;
       }
       .fp-card:hover .fp-title {
         color: var(--red);
       }
       .fp-excerpt {
-        font-size: 1.4rem;
+        font-size: 1.45rem;
         color: var(--muted);
-        line-height: 1.7;
+        line-height: 1.75;
         margin-bottom: 2rem;
+        display: -webkit-box;
+
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
       .fp-meta {
         display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        font-size: 1.25rem;
+        gap: 1.8rem;
+        font-size: 1.3rem;
         color: var(--muted);
-        margin-bottom: 2.5rem;
+        margin-bottom: 2.8rem;
         flex-wrap: wrap;
       }
       .fp-meta span {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.6rem;
       }
       .fp-meta i {
         color: var(--red);
@@ -512,78 +793,84 @@
       .fp-link {
         display: inline-flex;
         align-items: center;
-        gap: 0.8rem;
-        font-size: 1.3rem;
+        gap: 1rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
         font-weight: 700;
-        letter-spacing: 0.05em;
-        color: var(--red);
-        padding: 0.8rem 2rem;
-        border-radius: 6px;
-        background: var(--red-soft);
-        border: 1.5px solid rgba(217, 0, 24, 0.18);
-        transition: all 0.25s;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #fff;
+        background: var(--red);
+        padding: 1.2rem 2.8rem;
+        border-radius: 8px;
+        transition: all 0.3s;
         width: fit-content;
       }
       .fp-link:hover {
-        background: var(--red);
-        color: #fff;
-        border-color: var(--red);
+        background: var(--red-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px var(--red-glow);
       }
       .fp-link i {
         transition: transform 0.25s;
       }
       .fp-link:hover i {
-        transform: translateX(4px);
+        transform: translateX(5px);
       }
 
-      /* Section label */
-      .sec-label-row {
+      /* ============================================================ GRID HEADER */
+      .grid-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 3rem;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 1.5rem;
+        padding-bottom: 2rem;
+        border-bottom: 2px solid var(--border);
       }
-      .sec-label {
+      .grid-title {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 3rem;
-        letter-spacing: 0.06em;
+        font-size: 3.4rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        line-height: 1;
       }
-      .count-badge {
-        font-size: 1.2rem;
+      .grid-count {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
         color: var(--muted);
         background: var(--paper2);
-        padding: 0.5rem 1.2rem;
+        padding: 0.7rem 1.6rem;
         border-radius: 20px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
       }
 
-      /* ======================================================
-   NEWS GRID
-====================================================== */
+      /* ============================================================ NEWS GRID */
       .news-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        gap: 2.4rem;
         margin-bottom: 4rem;
       }
       .news-card {
         background: var(--white);
-        border-radius: 14px;
+        border-radius: 18px;
         overflow: hidden;
         border: 1px solid var(--border);
         display: flex;
         flex-direction: column;
         transition: all 0.4s var(--ease);
-        opacity: 1;
       }
       .news-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 16px 40px rgba(17, 17, 19, 0.09);
-        border-color: rgba(217, 0, 24, 0.15);
+        transform: translateY(-8px);
+        box-shadow: 0 24px 56px rgba(10, 10, 11, 0.1);
+        border-color: rgba(204, 0, 0, 0.2);
       }
       .nc-img {
-        height: 185px;
+        height: 200px;
         overflow: hidden;
         background: var(--paper2);
         position: relative;
@@ -592,69 +879,72 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.6s var(--ease);
+        transition: transform 0.65s var(--ease);
       }
       .news-card:hover .nc-img img {
-        transform: scale(1.06);
+        transform: scale(1.08);
       }
       .nc-cat {
         position: absolute;
-        top: 1.2rem;
-        left: 1.2rem;
+        top: 1.4rem;
+        left: 1.4rem;
         background: var(--red);
         color: #fff;
-        font-size: 1rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.05rem;
         font-weight: 700;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        padding: 0.38rem 1.1rem;
-        border-radius: 16px;
+        padding: 0.4rem 1.2rem;
+        border-radius: 20px;
       }
       .nc-body {
-        padding: 1.8rem;
+        padding: 2.2rem;
         flex: 1;
         display: flex;
         flex-direction: column;
       }
       .nc-title {
-        font-size: 1.5rem;
-        font-weight: 600;
-        line-height: 1.4;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.85rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        line-height: 1.2;
         color: var(--ink);
         margin-bottom: 1rem;
+        transition: color 0.2s;
         display: -webkit-box;
-        /*-webkit-line-clamp: 2;*/
+
         -webkit-box-orient: vertical;
         overflow: hidden;
-        transition: color 0.2s;
       }
       .news-card:hover .nc-title {
         color: var(--red);
       }
       .nc-excerpt {
-        font-size: 1.3rem;
+        font-size: 1.35rem;
         color: var(--muted);
-        line-height: 1.6;
+        line-height: 1.7;
+        margin-bottom: 1.8rem;
+        flex: 1;
         display: -webkit-box;
-        /*-webkit-line-clamp: 2;*/
+
         -webkit-box-orient: vertical;
         overflow: hidden;
-        margin-bottom: 1.5rem;
-        flex: 1;
       }
       .nc-footer {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-top: 1.3rem;
+        padding-top: 1.5rem;
         border-top: 1px solid var(--border);
         flex-wrap: wrap;
         gap: 0.8rem;
       }
       .nc-meta {
         display: flex;
-        align-items: center;
-        gap: 1.2rem;
+        gap: 1.4rem;
         font-size: 1.2rem;
         color: var(--muted);
         flex-wrap: wrap;
@@ -662,29 +952,29 @@
       .nc-meta span {
         display: flex;
         align-items: center;
-        gap: 0.4rem;
+        gap: 0.5rem;
       }
       .nc-meta i {
         color: var(--red);
-        font-size: 1rem;
+        font-size: 1.05rem;
       }
       .nc-read {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--red);
         display: flex;
         align-items: center;
-        gap: 0.5rem;
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: var(--red);
+        gap: 0.6rem;
         transition: gap 0.2s;
-        flex-shrink: 0;
       }
       .nc-read:hover {
-        gap: 0.9rem;
+        gap: 1.1rem;
       }
 
-      /* ======================================================
-   PAGINATION
-====================================================== */
+      /* ============================================================ PAGINATION */
       .pagination {
         display: flex;
         justify-content: center;
@@ -692,108 +982,224 @@
         gap: 0.8rem;
         flex-wrap: wrap;
       }
-      .pag-btn,
-      .pag-num {
-        width: 42px;
-        height: 42px;
-        border-radius: 8px;
+      .pg-btn,
+      .pg-num {
+        width: 46px;
+        height: 46px;
+        border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.3rem;
-        font-weight: 600;
-        border: 1.5px solid var(--border);
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.7rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        border: 1.5px solid var(--border2);
         background: var(--white);
         color: var(--ink2);
         cursor: pointer;
         transition: all 0.25s;
       }
-      .pag-btn:hover,
-      .pag-num:hover {
+      .pg-btn:hover,
+      .pg-num:hover {
         border-color: var(--red);
         color: var(--red);
       }
-      .pag-num.active {
+      .pg-num.active {
         background: var(--red);
         border-color: var(--red);
         color: #fff;
       }
-      .pag-btn:disabled {
-        opacity: 0.35;
+      .pg-btn:disabled {
+        opacity: 0.3;
         pointer-events: none;
       }
+      .pg-btn i {
+        font-size: 1.2rem;
+      }
 
-      /* ======================================================
-   SIDEBAR
-====================================================== */
+      /* ============================================================ SIDEBAR */
       .sidebar {
         position: sticky;
-        top: 82px;
+        top: 88px;
         display: flex;
         flex-direction: column;
-        gap: 2.5rem;
+        gap: 2.8rem;
       }
+
+      /* Promo box */
+      .promo-box {
+        background: var(--ink);
+        border-radius: 18px;
+        padding: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .promo-box::before {
+        content: "%";
+        position: absolute;
+        right: -1rem;
+        bottom: -2rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 16rem;
+        color: rgba(255, 255, 255, 0.03);
+        line-height: 1;
+        pointer-events: none;
+        font-weight: 900;
+      }
+      .promo-box::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--red);
+      }
+      .promo-box h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.8rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+      .promo-box h3 em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .promo-box p {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        margin-bottom: 2.4rem;
+        position: relative;
+        z-index: 1;
+        line-height: 1.65;
+      }
+      .promo-box-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.9rem;
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.3rem;
+        border-radius: 10px;
+        transition: all 0.3s;
+        position: relative;
+        z-index: 1;
+      }
+      .promo-box-btn:hover {
+        background: var(--red-dark);
+        transform: translateY(-2px);
+      }
+
+      /* Sidebar widget */
       .sw {
         background: var(--white);
-        border-radius: 14px;
-        padding: 2.5rem;
+        border-radius: 18px;
+        padding: 2.8rem;
         border: 1px solid var(--border);
       }
       .sw-title {
         font-family: "Barlow Condensed", sans-serif;
         font-size: 2.2rem;
+        font-weight: 800;
         letter-spacing: 0.06em;
+        text-transform: uppercase;
         margin-bottom: 2rem;
         padding-bottom: 1.2rem;
-        border-bottom: 2px solid var(--red);
+        border-bottom: 2px solid var(--border);
         position: relative;
+        line-height: 1;
       }
+      .sw-title::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: var(--red);
+      }
+
       /* Categories */
       .cat-list li a {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 1.2rem 0;
-        border-bottom: 1px solid var(--border);
-        font-size: 1.35rem;
+        padding: 1.1rem 1rem;
+        border-radius: 10px;
+        font-size: 1.4rem;
         font-weight: 500;
         color: var(--ink2);
-        transition: all 0.2s;
-      }
-      .cat-list li:last-child a {
-        border-bottom: none;
+        transition: all 0.22s;
+        border: 1px solid transparent;
       }
       .cat-list li a:hover {
+        background: var(--red-soft);
+        border-color: rgba(204, 0, 0, 0.15);
         color: var(--red);
-        padding-left: 0.8rem;
+        padding-left: 1.4rem;
       }
-      .cat-list li a i {
-        font-size: 1rem;
-        opacity: 0.5;
+      .cat-list li a.active-cat {
+        background: var(--red);
+        color: #fff;
+      }
+      .cat-list li a span {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .cat-list li a span i {
+        color: var(--red);
+        font-size: 1.2rem;
+      }
+      .cat-list li a.active-cat span i {
+        color: #fff;
       }
       .cat-badge {
-        background: var(--paper2);
-        color: var(--muted);
+        font-family: "Barlow Condensed", sans-serif;
         font-size: 1.1rem;
-        padding: 0.3rem 0.9rem;
-        border-radius: 14px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        background: var(--paper2);
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
       }
-      /* Recent Posts */
+      .cat-list li a.active-cat .cat-badge {
+        background: rgba(255, 255, 255, 0.25);
+        color: #fff;
+      }
+
+      /* Recent posts */
       .rp-item {
         display: flex;
         gap: 1.4rem;
-        padding-bottom: 1.8rem;
-        margin-bottom: 1.8rem;
+        padding: 1.6rem 0;
         border-bottom: 1px solid var(--border);
+        transition: opacity 0.2s;
       }
       .rp-item:last-child {
         border-bottom: none;
         padding-bottom: 0;
-        margin-bottom: 0;
+      }
+      .rp-item:hover {
+        opacity: 0.75;
       }
       .rp-img {
-        width: 72px;
-        height: 72px;
+        width: 70px;
+        height: 70px;
         border-radius: 10px;
         overflow: hidden;
         flex-shrink: 0;
@@ -806,159 +1212,123 @@
       }
       .rp-content {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.5rem;
       }
       .rp-title {
-        font-size: 1.3rem;
-        font-weight: 600;
-        line-height: 1.4;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        line-height: 1.25;
         color: var(--ink);
-        margin-bottom: 0.6rem;
+        transition: color 0.2s;
         display: -webkit-box;
-        /*-webkit-line-clamp: 2;*/
+
         -webkit-box-orient: vertical;
         overflow: hidden;
-        transition: color 0.2s;
       }
       .rp-item:hover .rp-title {
         color: var(--red);
       }
       .rp-date {
-        font-size: 1.15rem;
+        font-size: 1.2rem;
         color: var(--muted);
         display: flex;
         align-items: center;
-        gap: 0.4rem;
+        gap: 0.5rem;
       }
       .rp-date i {
         color: var(--red);
         font-size: 1rem;
       }
 
-      /* Promo Box */
-      .promo-box {
-        background: var(--ink);
-        border-radius: 14px;
-        padding: 2.5rem;
-        overflow: hidden;
-        position: relative;
-      }
-      .promo-box::before {
-        content: "%";
-        position: absolute;
-        right: -1rem;
-        bottom: -2rem;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 14rem;
-        color: rgba(255, 255, 255, 0.04);
-        line-height: 1;
-        pointer-events: none;
-      }
-      .promo-box h3 {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 2.4rem;
-        letter-spacing: 0.04em;
-        color: #fff;
-        line-height: 1;
-        margin-bottom: 1rem;
-        position: relative;
-        z-index: 1;
-      }
-      .promo-box p {
-        font-size: 1.35rem;
-        color: rgba(255, 255, 255, 0.4);
-        margin-bottom: 2rem;
-        position: relative;
-        z-index: 1;
-      }
-      .promo-box a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.8rem;
-        background: var(--red);
-        color: #fff;
-        font-size: 1.3rem;
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        padding: 1.2rem;
-        border-radius: 8px;
-        transition: all 0.3s;
-        position: relative;
-        z-index: 1;
-      }
-      .promo-box a:hover {
-        background: var(--red-mid);
-      }
-
-      /* ======================================================
-   FOOTER
-====================================================== */
+      /* ============================================================ FOOTER */
       footer {
-        background: #050505;
-        padding: 6rem 3.5rem 3rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        background: #060606;
+        padding: 7rem 4rem 3rem;
+        border-top: 3px solid var(--red);
       }
-      .ft-grid {
-        max-width: 1280px;
+      .ft-top {
+        max-width: 1340px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: 2fr 1fr 1fr 1fr;
+        grid-template-columns: 2.2fr 1fr 1fr 1fr;
         gap: 5rem;
         margin-bottom: 5rem;
         padding-bottom: 5rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       }
-      .ft-brand {
+      .ft-logo-row {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      .ft-logo-img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        opacity: 0.9;
+      }
+      .ft-brand-name {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 2.6rem;
+        font-size: 2.2rem;
         letter-spacing: 0.1em;
         color: #fff;
-        margin-bottom: 0.8rem;
+        font-weight: 800;
+        text-transform: uppercase;
       }
-      .ft-desc {
+      .ft-brand-name span {
+        color: var(--red);
+      }
+      .ft-brand-tag {
         font-size: 1.35rem;
-        color: rgba(255, 255, 255, 0.25);
-        margin-bottom: 2.5rem;
-        line-height: 1.7;
-        max-width: 270px;
+        color: rgba(255, 255, 255, 0.22);
+        margin-bottom: 2.8rem;
+        line-height: 1.75;
+        max-width: 290px;
       }
-      .ft-socs {
+      .ft-socials {
         display: flex;
-        gap: 1rem;
+        gap: 0.9rem;
       }
       .ft-soc {
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.06);
+        width: 40px;
+        height: 40px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.08);
         display: flex;
         align-items: center;
         justify-content: center;
         color: rgba(255, 255, 255, 0.38);
-        font-size: 1.3rem;
-        transition: all 0.25s;
-        text-decoration: none;
+        font-size: 1.4rem;
+        transition: all 0.26s;
       }
       .ft-soc:hover {
         background: var(--red);
         border-color: var(--red);
         color: #fff;
-        transform: translateY(-2px);
+        transform: translateY(-3px);
       }
       .ft-col h5 {
-        font-size: 1.1rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
         font-weight: 700;
-        letter-spacing: 0.2em;
-        color: rgba(255, 255, 255, 0.2);
+        letter-spacing: 0.22em;
+        color: rgba(255, 255, 255, 0.22);
         text-transform: uppercase;
-        margin-bottom: 1.8rem;
+        margin-bottom: 2.2rem;
       }
-      .ft-col li {
-        margin-bottom: 1.1rem;
+      .ft-col ul li {
+        margin-bottom: 1.3rem;
       }
       .ft-col a {
-        font-size: 1.35rem;
+        font-size: 1.4rem;
         color: rgba(255, 255, 255, 0.38);
         transition: color 0.2s;
       }
@@ -966,7 +1336,7 @@
         color: #fff;
       }
       .ft-btm {
-        max-width: 1280px;
+        max-width: 1340px;
         margin: 0 auto;
         display: flex;
         align-items: center;
@@ -975,34 +1345,31 @@
         gap: 1.5rem;
       }
       .ft-btm p {
-        font-size: 1.25rem;
-        color: rgba(255, 255, 255, 0.18);
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.16);
       }
       .ft-badge {
         display: flex;
         align-items: center;
-        gap: 0.6rem;
-        font-size: 1.15rem;
-        color: rgba(255, 255, 255, 0.18);
+        gap: 0.7rem;
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.16);
       }
       .ft-badge i {
         color: var(--red);
       }
 
-      /* ======================================================
-   MOBILE NAV
-====================================================== */
       .mob-nav {
         display: none;
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(250, 250, 249, 0.96);
+        background: rgba(245, 243, 240, 0.97);
         backdrop-filter: blur(16px);
         border-top: 1px solid var(--border);
         z-index: 400;
-        padding: 0.8rem 0;
+        padding: 0.6rem 0;
       }
       .mnb {
         display: flex;
@@ -1012,7 +1379,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.3rem;
+        gap: 0.4rem;
         color: var(--muted);
         text-decoration: none;
         padding: 0.5rem 1rem;
@@ -1023,38 +1390,33 @@
         color: var(--red);
       }
       .mnb-a i {
-        font-size: 2rem;
+        font-size: 1.9rem;
       }
       .mnb-a span {
-        font-size: 0.95rem;
-        font-weight: 500;
+        font-size: 0.92rem;
+        font-weight: 600;
         letter-spacing: 0.04em;
       }
-
-      /* ======================================================
-   FLOATS
-====================================================== */
       .messenger-float {
         position: fixed;
-        bottom: 9rem;
+        bottom: 9.5rem;
         right: 2.5rem;
-        width: 50px;
-        height: 50px;
+        width: 52px;
+        height: 52px;
         background: #0084ff;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2.1rem;
+        font-size: 2.2rem;
         color: #fff;
-        text-decoration: none;
-        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.3);
         z-index: 300;
-        animation: mpulse 2.5s infinite;
+        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.32);
+        animation: mpulse 2.5s ease-in-out infinite;
         transition: transform 0.3s;
       }
       .messenger-float:hover {
-        transform: scale(1.1);
+        transform: scale(1.12);
       }
       @keyframes mpulse {
         0%,
@@ -1062,15 +1424,15 @@
           box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
         }
         50% {
-          box-shadow: 0 4px 36px rgba(0, 132, 255, 0.55);
+          box-shadow: 0 4px 38px rgba(0, 132, 255, 0.58);
         }
       }
       .back-top {
         position: fixed;
         bottom: 2.5rem;
         right: 2.5rem;
-        width: 44px;
-        height: 44px;
+        width: 46px;
+        height: 46px;
         background: var(--red);
         border-radius: 50%;
         display: flex;
@@ -1078,63 +1440,53 @@
         justify-content: center;
         font-size: 1.6rem;
         color: #fff;
-        text-decoration: none;
+        z-index: 300;
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s;
-        z-index: 300;
       }
       .back-top.on {
         opacity: 1;
         visibility: visible;
       }
       .back-top:hover {
-        background: var(--red-mid);
+        background: var(--red-dark);
         transform: translateY(-3px);
       }
-
-      /* ======================================================
-   REVEAL ANIMATION
-====================================================== */
       .rv {
         opacity: 0;
         transform: translateY(22px);
         transition:
-          opacity 0.6s var(--ease),
-          transform 0.6s var(--ease);
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
       }
       .rv.in {
         opacity: 1;
         transform: none;
       }
 
-      /* ======================================================
-   RESPONSIVE
-====================================================== */
-      @media (max-width: 1100px) {
+      /* ============================================================ RESPONSIVE */
+      @media (max-width: 1200px) {
         .content-wrap {
           grid-template-columns: 1fr;
         }
         .sidebar {
           position: static;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
         }
-        .ft-grid {
+        .ft-top {
           grid-template-columns: 1fr 1fr;
           gap: 4rem;
         }
-      }
-      @media (max-width: 900px) {
-        .fp-card {
+        .ph-inner {
           grid-template-columns: 1fr;
         }
-        .fp-img {
-          min-height: 240px;
-        }
-        .news-grid {
-          grid-template-columns: 1fr;
+        .ph-right {
+          display: none;
         }
       }
-      @media (max-width: 768px) {
+      @media (max-width: 992px) {
         .main-nav,
         .hdr-cta {
           display: none;
@@ -1142,47 +1494,53 @@
         .ham {
           display: flex;
         }
-        .hdr {
-          padding: 0 2rem;
+        .hdr-inner {
+          padding: 0 2.5rem;
+        }
+        .tb-inner {
+          padding: 0 2.5rem;
+        }
+      }
+      @media (max-width: 768px) {
+        .top-bar {
+          display: none;
         }
         .page-hero {
-          padding: 4.5rem 2rem 4rem;
-        }
-        .ph-title {
-          font-size: clamp(4.5rem, 16vw, 7.5rem);
+          padding: 5rem 2.5rem 4rem;
         }
         .content-wrap {
-          padding: 4rem 2rem 5rem;
+          padding: 4rem 2.5rem 6rem;
         }
-        .ft-grid {
+        .news-grid {
+          grid-template-columns: 1fr;
+        }
+        .fp-card {
+          grid-template-columns: 1fr;
+        }
+        .fp-img {
+          min-height: 240px;
+        }
+        .ft-top {
           grid-template-columns: 1fr;
           gap: 3rem;
-        }
-        footer {
-          padding: 5rem 2rem 3rem;
         }
         .ft-btm {
           flex-direction: column;
           text-align: center;
         }
-        .mob-nav {
-          display: block;
-        }
         footer {
           padding-bottom: 8rem;
         }
-        .messenger-float {
-          bottom: 8.5rem;
-          right: 1.6rem;
+        .mob-nav {
+          display: block;
         }
-        .back-top {
-          bottom: 8.5rem;
-          right: 1.6rem;
+        .sidebar {
+          grid-template-columns: 1fr;
         }
       }
       @media (max-width: 480px) {
-        .news-grid {
-          grid-template-columns: 1fr;
+        .ph-title {
+          font-size: clamp(5rem, 18vw, 9rem);
         }
         .ph-stats {
           gap: 2.5rem;
@@ -1191,289 +1549,347 @@
     </style>
   </head>
   <body>
-    <!-- ============================================================ HEADER -->
+    <!-- TOP BAR -->
+    <div class="top-bar" id="topBar">
+      <div class="tb-inner">
+        <div class="tb-links">
+          <a href="/question/"
+            ><i class="fas fa-question-circle"></i>Câu hỏi thường gặp</a
+          >
+          <a href="/cuahang/"
+            ><i class="fas fa-location-dot"></i>Hệ thống đại lý</a
+          >
+        </div>
+        <div class="tb-contact">
+          <a href="tel:1900636712"
+            ><i class="fas fa-phone-alt"></i>1900 636 712</a
+          >
+          <div class="tb-div"></div>
+          <a href="mailto:cr_mt@hungmanh.com.vn"
+            ><i class="fas fa-envelope"></i>cr_mt@hungmanh.com.vn</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
     <header class="site-header" id="siteHeader">
-      <div class="hdr">
-        <a href="/Trangchu/" class="logo">
-          <div class="logo-mark">
+      <div class="hdr-inner">
+        <a href="/Trangchu/" class="logo-area">
+          <div class="logo-img-wrap">
             <img
               src="/sanphamxemay/image/banner/Logo_HEAD.png"
               alt="HEAD Trung Hùng"
             />
           </div>
-          <div class="logo-text">
-            HỆ THỐNG HEAD TRUNG HÙNG
-            <small>Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</small>
+          <div class="logo-text-wrap">
+            <span class="logo-main">HỆ THỐNG HEAD <span>TRUNG HÙNG</span></span>
+            <span class="logo-sub"
+              >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
+            >
           </div>
         </a>
-        <nav class="main-nav">
-          <a href="/Trangchu/">Trang chủ</a>
-          <a href="/sanphamxemay/">Sản phẩm</a>
-          <a href="/tintuc/" class="active">Tin tức</a>
-          <a href="/dichvu/">Dịch vụ</a>
-          <a href="/lienhe/">Liên hệ</a>
-        </nav>
-        <a href="tel:1900636712" class="hdr-cta">
-          <i class="fas fa-phone-alt"></i> Gọi ngay
-        </a>
+        <ul class="main-nav">
+          <li><a href="/Trangchu/">Trang chủ</a></li>
+          <li><a href="/gioithieu/">Giới thiệu</a></li>
+          <li><a href="/sanphamxemay/">Sản phẩm</a></li>
+          <li class="dropdown">
+            <a href="/dichvu/">Dịch Vụ <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-panel">
+              <li>
+                <a href="/dichvu/baoduong/"
+                  ><i class="fas fa-tools"></i>Bảo Dưỡng & Sửa Chữa</a
+                >
+              </li>
+              <li>
+                <a href="/dichvu/baohanh/"
+                  ><i class="fas fa-shield-alt"></i>Bảo Hành</a
+                >
+              </li>
+              <li>
+                <a href="/dichvu/sanphamphutung/"
+                  ><i class="fas fa-gear"></i>Phụ Tùng</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li><a href="/tintuc/" class="active">Tin tức</a></li>
+          <li><a href="/cuahang/">Hệ thống đại lý</a></li>
+          <li><a href="/lienhe/">Liên hệ</a></li>
+        </ul>
+        <a href="tel:1900636712" class="hdr-cta"
+          ><i class="fas fa-phone-alt"></i> Gọi ngay</a
+        >
         <div class="ham" id="ham"><span></span><span></span><span></span></div>
       </div>
     </header>
 
     <!-- Drawer -->
-    <div class="dov" id="dov"></div>
-    <div class="sdraw" id="sdraw">
-      <button class="sdx" id="sdx"><i class="fas fa-times"></i></button>
-      <nav class="dnav">
-        <a href="/Trangchu/">Trang chủ</a>
-        <a href="/sanphamxemay/">Sản phẩm</a>
-        <a href="/tintuc/" class="active">Tin tức</a>
-        <a href="/dichvu/">Dịch vụ</a>
-        <a href="/lienhe/">Liên hệ</a>
-      </nav>
-      <a href="tel:1900636712" class="dcta">Gọi ngay: 1900 636 712</a>
+    <div class="draw-ov" id="drawOv"></div>
+    <div class="site-draw" id="siteDraw">
+      <button class="draw-x" id="drawX" type="button">
+        <i class="fas fa-times"></i>
+      </button>
+      <ul class="draw-nav">
+        <li><a href="/Trangchu/">Trang chủ</a></li>
+        <li><a href="/sanphamxemay/">Sản phẩm</a></li>
+        <li>
+          <a href="/dichvu/" class="draw-toggle" data-target="draw-dv"
+            >Dịch Vụ <i class="fas fa-chevron-down"></i
+          ></a>
+          <div class="draw-sub" id="draw-dv">
+            <a href="/dichvu/baoduong/"
+              ><i class="fas fa-tools"></i>Bảo Dưỡng</a
+            >
+            <a href="/dichvu/baohanh/"
+              ><i class="fas fa-shield-alt"></i>Bảo Hành</a
+            >
+            <a href="/dichvu/sanphamphutung/"
+              ><i class="fas fa-gear"></i>Phụ Tùng</a
+            >
+          </div>
+        </li>
+        <li><a href="/tintuc/" class="active">Tin tức</a></li>
+        <li><a href="/lienhe/">Liên hệ</a></li>
+      </ul>
+      <a href="tel:1900636712" class="draw-cta"
+        ><i class="fas fa-phone-alt"></i> Gọi ngay: 1900 636 712</a
+      >
     </div>
 
-    <!-- ============================================================ PAGE HERO -->
+    <!-- PAGE HERO -->
     <section class="page-hero">
-      <div class="page-hero-grid"></div>
+      <div class="ph-grid"></div>
       <div class="ph-inner">
-        <div class="ph-crumb">
-          <a href="/Trangchu/">Trang chủ</a>
-          <span class="sep">/</span>
-          <a href="/tintuc/">Tin tức</a>
-          <span class="sep">/</span>
-          <span style="color: rgba(255, 255, 255, 0.7)">Khuyến mãi</span>
+        <div>
+          <div class="ph-crumb">
+            <a href="/Trangchu/">Trang chủ</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="/tintuc/">Tin tức</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Khuyến mãi</span>
+          </div>
+          <div class="ph-eyebrow">Ưu đãi đặc biệt · Cập nhật hàng tuần</div>
+          <h1 class="ph-title">KHUYẾN<br /><em>MÃI</em></h1>
+          <p class="ph-sub">
+            Toàn bộ chương trình ưu đãi mới nhất từ Honda Việt Nam và hệ thống
+            HEAD Trung Hùng — ưu đãi lên đến 7 triệu đồng.
+          </p>
+          <div class="ph-stats">
+            <div>
+              <span class="ph-stat-val" id="totalCount">18<em>+</em></span
+              ><span class="ph-stat-lbl">Chương trình</span>
+            </div>
+            <div>
+              <span class="ph-stat-val">7<em>tr</em></span
+              ><span class="ph-stat-lbl">Ưu đãi tối đa</span>
+            </div>
+            <div>
+              <span class="ph-stat-val">3</span
+              ><span class="ph-stat-lbl">Chi nhánh</span>
+            </div>
+          </div>
         </div>
-        <div class="ph-eyebrow">Ưu đãi đặc biệt</div>
-        <h1 class="ph-title">KHUYẾN<br />MÃI</h1>
-        <p class="ph-sub">
-          Cập nhật toàn bộ chương trình ưu đãi mới nhất từ Honda Việt Nam và hệ
-          thống HEAD Trung Hùng.
-        </p>
-        <div class="ph-stats">
-          <div class="ph-stat">
-            <div class="val" id="totalCount">18<em>+</em></div>
-            <div class="lbl">Bài viết</div>
-          </div>
-          <div class="ph-stat">
-            <div class="val">7<em>tr</em></div>
-            <div class="lbl">Ưu đãi tối đa</div>
-          </div>
-          <div class="ph-stat">
-            <div class="val">12<em>CH</em></div>
-            <div class="lbl">Cửa hàng</div>
+        <div class="ph-right">
+          <div class="ph-badge-big">
+            <i class="fas fa-fire"></i> Đang diễn ra
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============================================================ CONTENT -->
+    <!-- CONTENT -->
     <div class="content-wrap">
-      <!-- MAIN -->
       <main>
-        <!-- Featured post -->
-        <div class="featured-post rv">
-          <a
-            href="/tintuc/tintuckhuyenmai/khuyenmai/01042026HEADE.html"
-            class="fp-card"
-          >
-            <div class="fp-img">
-              <img
-                src="/khuyenmai/image/MXNQ042026.jpg"
-                alt="MUA XE NGAY - QUÀ TRAO TAY"
-                loading="lazy"
-              />
+        <!-- Featured -->
+        <div class="featured-label rv">Nổi bật tháng này</div>
+        <a
+          href="/tintuc/tintuckhuyenmai/khuyenmai/01042026HEADE.html"
+          class="fp-card rv"
+        >
+          <div class="fp-img">
+            <img
+              src="/khuyenmai/image/MXNQ042026.jpg"
+              alt="MUA XE NGAY - QUÀ TRAO TAY"
+              loading="lazy"
+            />
+            <div class="fp-hot"><i class="fas fa-fire"></i> Nổi bật</div>
+          </div>
+          <div class="fp-body">
+            <h2 class="fp-title">MUA XE NGAY —<br />QUÀ TRAO TAY</h2>
+            <p class="fp-excerpt">
+              Hệ thống HEAD Trung Hùng mang đến chương trình ưu đãi hấp dẫn dành
+              cho tất cả khách hàng mua xe máy Honda trong thời gian khuyến mãi.
+              Đừng bỏ lỡ cơ hội vàng này!
+            </p>
+            <div class="fp-meta">
+              <span><i class="far fa-calendar"></i>01/04 – 31/05/2026</span>
+              <span><i class="far fa-eye"></i>447 lượt xem</span>
             </div>
-            <div class="fp-body">
-              <div class="fp-badge"><i class="fas fa-star"></i> Nổi bật</div>
-              <div class="fp-title">MUA XE NGAY — QUÀ TRAO TAY</div>
-              <p class="fp-excerpt">
-                Hệ thống HEAD Trung Hùng mang đến chương trình ưu đãi hấp dẫn
-                dành cho tất cả khách hàng mua xe máy Honda trong thời gian
-                khuyến mãi. Đừng bỏ lỡ cơ hội vàng này!
-              </p>
-              <div class="fp-meta">
-                <span><i class="far fa-calendar"></i>01/04 – 31/05/2026</span>
-                <span><i class="far fa-eye"></i>447 lượt xem</span>
-              </div>
-              <span class="fp-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></span>
-            </div>
-          </a>
+            <span class="fp-link"
+              >Xem chi tiết <i class="fas fa-arrow-right"></i
+            ></span>
+          </div>
+        </a>
+
+        <div class="grid-header rv">
+          <h2 class="grid-title">Tất cả khuyến mãi</h2>
+          <span class="grid-count" id="countBadge">1–6 / 18 bài</span>
         </div>
 
-        <!-- News grid -->
-        <div class="sec-label-row rv">
-          <div class="sec-label">Tất cả khuyến mãi</div>
-          <div class="count-badge" id="countBadge">Hiển thị 1–6 / 18</div>
-        </div>
-
-        <div class="news-grid" id="newsGrid">
-          <!-- Populated by JS -->
-        </div>
-
-        <!-- Pagination -->
+        <div class="news-grid" id="newsGrid"></div>
         <div class="pagination" id="pagination"></div>
       </main>
 
       <!-- SIDEBAR -->
       <aside class="sidebar">
-        <!-- Promo box -->
         <div class="promo-box rv">
-          <h3>ƯU ĐÃI LÊN ĐẾN 7 TRIỆU</h3>
+          <h3>ƯU ĐÃI<br />LÊN ĐẾN <em>7TR</em></h3>
           <p>
-            Mua xe Honda ngay hôm nay để nhận ưu đãi độc quyền tại cửa hàng.
+            Mua xe Honda ngay hôm nay để nhận ưu đãi độc quyền tại cửa hàng gần
+            nhất.
           </p>
-          <a href="/cuahang/"
-            ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng ngay</a
+          <a href="/cuahang/" class="promo-box-btn"
+            ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a
           >
         </div>
 
-        <!-- Categories -->
         <div class="sw rv">
           <div class="sw-title">Danh mục tin tức</div>
           <ul class="cat-list">
             <li>
-              <a href="/tintuc/tintucxemay/">
-                <span><i class="fas fa-motorcycle"></i>&ensp;Sản phẩm mới</span>
-                <span class="cat-badge">Chi tiết</span>
-              </a>
+              <a href="/tintuc/tintucxemay/"
+                ><span><i class="fas fa-motorcycle"></i>Sản phẩm mới</span
+                ><span class="cat-badge">Chi tiết</span></a
+              >
             </li>
             <li>
-              <a href="/tintuc/tintuckhuyenmai/" style="color: var(--red)">
-                <span><i class="fas fa-gift"></i>&ensp;Khuyến mãi</span>
-                <span
-                  class="cat-badge"
-                  style="background: var(--red-soft); color: var(--red)"
-                  >Đang xem</span
-                >
-              </a>
+              <a href="/tintuc/tintuckhuyenmai/" class="active-cat"
+                ><span><i class="fas fa-gift"></i>Khuyến mãi</span
+                ><span class="cat-badge">Đang xem</span></a
+              >
             </li>
             <li>
-              <a href="/tintuc/tintucsukien/">
-                <span><i class="fas fa-calendar-alt"></i>&ensp;Sự kiện</span>
-                <span class="cat-badge">Chi tiết</span>
-              </a>
+              <a href="/tintuc/tintucsukien/"
+                ><span><i class="fas fa-calendar-alt"></i>Sự kiện</span
+                ><span class="cat-badge">Chi tiết</span></a
+              >
             </li>
             <li>
-              <a href="/tintuc/tintuclxat/">
-                <span
-                  ><i class="fas fa-shield-alt"></i>&ensp;Hoạt động LXAT</span
-                >
-                <span class="cat-badge">Chi tiết</span>
-              </a>
+              <a href="/tintuc/tintuclxat/"
+                ><span><i class="fas fa-shield-alt"></i>Hoạt động LXAT</span
+                ><span class="cat-badge">Chi tiết</span></a
+              >
             </li>
           </ul>
         </div>
 
-        <!-- Recent posts -->
         <div class="sw rv">
           <div class="sw-title">Bài viết gần đây</div>
-          <div class="rp-item">
-            <a
-              href="/tintuc/tintuckhuyenmai/khuyenmai/01122025HVN.html"
-              class="rp-img"
-            >
+          <a
+            href="/tintuc/tintuckhuyenmai/khuyenmai/01122025HVN.html"
+            class="rp-item"
+          >
+            <div class="rp-img">
               <img
                 src="/khuyenmai/image/HVN01122025.png"
                 alt=""
                 loading="lazy"
               />
-            </a>
-            <div class="rp-content">
-              <a
-                href="/tintuc/tintuckhuyenmai/khuyenmai/01122025HVN.html"
-                class="rp-title"
-                >Rinh Lộc Năm Mới, Hứng Khởi Du Xuân</a
-              >
-              <div class="rp-date">
-                <i class="far fa-calendar"></i>01/12/2025
-              </div>
             </div>
-          </div>
-          <div class="rp-item">
-            <a
-              href="/tintuc/tintuckhuyenmai/khuyenmai/01122025HEAD.html"
-              class="rp-img"
-            >
+            <div class="rp-content">
+              <span class="rp-title">Rinh Lộc Năm Mới, Hứng Khởi Du Xuân</span
+              ><span class="rp-date"
+                ><i class="far fa-calendar"></i>01/12/2025</span
+              >
+            </div>
+          </a>
+          <a
+            href="/tintuc/tintuckhuyenmai/khuyenmai/01122025HEAD.html"
+            class="rp-item"
+          >
+            <div class="rp-img">
               <img
                 src="/khuyenmai/image/HEAD01122025.jpg"
                 alt=""
                 loading="lazy"
               />
-            </a>
-            <div class="rp-content">
-              <a
-                href="/tintuc/tintuckhuyenmai/khuyenmai/01122025HEAD.html"
-                class="rp-title"
-                >Ưu Đãi Bất Tận, Bứt Tốc Mọi Chặng</a
-              >
-              <div class="rp-date">
-                <i class="far fa-calendar"></i>01/12/2025
-              </div>
             </div>
-          </div>
-          <div class="rp-item">
-            <a
-              href="/tintuc/tintucxemay/tintucxe/trang1/ABSHLEAD04112025.html"
-              class="rp-img"
-            >
+            <div class="rp-content">
+              <span class="rp-title">Ưu Đãi Bất Tận, Bứt Tốc Mọi Chặng</span
+              ><span class="rp-date"
+                ><i class="far fa-calendar"></i>01/12/2025</span
+              >
+            </div>
+          </a>
+          <a
+            href="/tintuc/tintucxemay/tintucxe/trang1/ABSHLEAD04112025.html"
+            class="rp-item"
+          >
+            <div class="rp-img">
               <img
                 src="/sanphamxemay/SH160/SH160/picture/3.jpg"
                 alt=""
                 loading="lazy"
               />
-            </a>
-            <div class="rp-content">
-              <a
-                href="/tintuc/tintucxemay/tintucxe/trang1/ABSHLEAD04112025.html"
-                class="rp-title"
-                >Honda ra mắt SH160/125, Air Blade, LEAD 2026</a
-              >
-              <div class="rp-date">
-                <i class="far fa-calendar"></i>04/11/2025
-              </div>
             </div>
-          </div>
+            <div class="rp-content">
+              <span class="rp-title"
+                >Honda ra mắt SH160/125, Air Blade, LEAD 2026</span
+              ><span class="rp-date"
+                ><i class="far fa-calendar"></i>04/11/2025</span
+              >
+            </div>
+          </a>
         </div>
       </aside>
     </div>
-    <!-- /content-wrap -->
 
-    <!-- ============================================================ FOOTER -->
+    <!-- FOOTER -->
     <footer>
-      <div class="ft-grid">
+      <div class="ft-top">
         <div>
-          <div class="ft-brand">HEAD TRUNG HÙNG</div>
-          <p class="ft-desc">
+          <div class="ft-logo-row">
+            <img
+              src="/sanphamxemay/image/banner/Logo_HEAD.png"
+              alt="HEAD"
+              class="ft-logo-img"
+            />
+            <div class="ft-brand-name">
+              HỆ THỐNG HEAD <span>TRUNG HÙNG</span>
+            </div>
+          </div>
+          <p class="ft-brand-tag">
             Công Ty TNHH Thương Mại Và Dịch Vụ Hùng Mạnh — đại lý Honda chính
             hãng tại Gia Lai, Hà Nội và Sơn La.
           </p>
-          <div class="ft-socs">
+          <div class="ft-socials">
             <a
               href="https://www.facebook.com/hethongheadtrunghung"
               class="ft-soc"
               target="_blank"
+              rel="noopener"
               ><i class="fab fa-facebook-f"></i
             ></a>
             <a
               href="https://www.youtube.com/@HethongHEADTrungHung"
               class="ft-soc"
               target="_blank"
+              rel="noopener"
               ><i class="fab fa-youtube"></i
             ></a>
             <a
               href="https://www.instagram.com/hethongheadtrunghung"
               class="ft-soc"
               target="_blank"
+              rel="noopener"
               ><i class="fab fa-instagram"></i
             ></a>
             <a
               href="https://www.tiktok.com/@hethongheadtrunghung"
               class="ft-soc"
               target="_blank"
+              rel="noopener"
               ><i class="fab fa-tiktok"></i
             ></a>
           </div>
@@ -1507,14 +1923,13 @@
         </div>
       </div>
       <div class="ft-btm">
-        <p>© 2025 HEAD Trung Hùng. All Rights Reserved.</p>
+        <p>© 2025 HỆ THỐNG HEAD TRUNG HÙNG. Bảo lưu mọi quyền.</p>
         <div class="ft-badge">
           <i class="fas fa-certificate"></i> Honda Authorised Dealer
         </div>
       </div>
     </footer>
 
-    <!-- MOBILE NAV -->
     <nav class="mob-nav">
       <div class="mnb">
         <a href="/Trangchu/" class="mnb-a"
@@ -1539,90 +1954,92 @@
       href="https://m.me/hethongheadtrunghung"
       class="messenger-float"
       target="_blank"
+      rel="noopener"
+      aria-label="Messenger"
       ><i class="fab fa-facebook-messenger"></i
     ></a>
-    <a href="#" class="back-top" id="backTop"
+    <a href="#" class="back-top" id="backTop" aria-label="Lên đầu"
       ><i class="fas fa-arrow-up"></i
     ></a>
 
-    <!-- ============================================================ SCRIPTS -->
     <script>
       (function () {
-        /* ── HEADER ── */
-        const hdr = document.getElementById("siteHeader");
+        "use strict";
+
+        /* Top bar + header */
+        const tb = document.getElementById("topBar"),
+          hdr = document.getElementById("siteHeader");
         window.addEventListener(
           "scroll",
           () => {
-            hdr.classList.toggle("lifted", scrollY > 40);
-            document
-              .getElementById("backTop")
-              .classList.toggle("on", scrollY > 400);
+            const y = window.scrollY;
+            tb.classList.toggle("hidden", y > 80);
+            hdr.classList.toggle("lifted", y > 40);
+            document.getElementById("backTop").classList.toggle("on", y > 400);
           },
           { passive: true },
         );
 
-        /* ── DRAWER ── */
-        const ham = document.getElementById("ham");
-        const dov = document.getElementById("dov");
-        const sdraw = document.getElementById("sdraw");
-        const sdx = document.getElementById("sdx");
-        function openD() {
+        /* Drawer */
+        const ham = document.getElementById("ham"),
+          drawOv = document.getElementById("drawOv"),
+          draw = document.getElementById("siteDraw"),
+          drawX = document.getElementById("drawX");
+        function openDraw() {
           ham.classList.add("open");
-          dov.classList.add("on");
-          sdraw.classList.add("on");
+          drawOv.classList.add("on");
+          draw.classList.add("on");
           document.body.style.overflow = "hidden";
         }
-        function closeD() {
+        function closeDraw() {
           ham.classList.remove("open");
-          dov.classList.remove("on");
-          sdraw.classList.remove("on");
+          drawOv.classList.remove("on");
+          draw.classList.remove("on");
           document.body.style.overflow = "";
         }
-        ham.addEventListener("click", openD);
-        dov.addEventListener("click", closeD);
-        sdx.addEventListener("click", closeD);
-        sdraw
-          .querySelectorAll("a")
-          .forEach((a) => a.addEventListener("click", closeD));
-
-        /* ── SMOOTH SCROLL ── */
-        document.querySelectorAll('a[href^="#"]').forEach((a) => {
-          a.addEventListener("click", (e) => {
-            const t = a.getAttribute("href");
-            if (t === "#") return;
-            const el = document.querySelector(t);
-            if (el) {
-              e.preventDefault();
-              window.scrollTo({
-                top:
-                  el.getBoundingClientRect().top + scrollY - hdr.offsetHeight,
-                behavior: "smooth",
-              });
+        ham.addEventListener("click", openDraw);
+        drawOv.addEventListener("click", closeDraw);
+        drawX.addEventListener("click", closeDraw);
+        document.querySelectorAll(".draw-toggle").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const t = document.getElementById(btn.dataset.target);
+            if (!t) return;
+            const isOpen = t.classList.contains("open");
+            document
+              .querySelectorAll(".draw-sub")
+              .forEach((s) => s.classList.remove("open"));
+            document
+              .querySelectorAll(".draw-toggle i")
+              .forEach((i) => (i.style.transform = ""));
+            if (!isOpen) {
+              t.classList.add("open");
+              btn.querySelector("i").style.transform = "rotate(180deg)";
             }
           });
         });
+        draw
+          .querySelectorAll("a")
+          .forEach((a) => a.addEventListener("click", closeDraw));
 
-        /* ── REVEAL ── */
-        const obs = new IntersectionObserver(
+        /* Reveal */
+        const revObs = new IntersectionObserver(
           (entries) => {
             entries.forEach((e, i) => {
               if (e.isIntersecting)
-                setTimeout(() => e.target.classList.add("in"), i * 70);
+                setTimeout(() => e.target.classList.add("in"), i * 65);
             });
           },
           { threshold: 0.1 },
         );
-        document.querySelectorAll(".rv").forEach((el) => obs.observe(el));
+        document.querySelectorAll(".rv").forEach((el) => revObs.observe(el));
 
-        /* ================================================================
-   NEWS DATA
-================================================================ */
+        /* News data */
         const newsData = [
           {
-            image: "/khuyenmai/image/HVN17022026.jpg",
-            category: "Khuyến mãi",
-            title:
-              "Lì xì đầu xuân — Honda Việt Nam ưu đãi đặc biệt 5 triệu đồng cho xe điện Honda ICON e:",
+            img: "/khuyenmai/image/HVN17022026.jpg",
+            cat: "Khuyến mãi",
+            title: "Lì xì đầu xuân — Honda ICON e: ưu đãi 5 triệu đồng",
             excerpt:
               "Một năm mới với nhiều khởi đầu tích cực đang mở ra, mang theo kỳ vọng về những hành trình trọn vẹn và ý nghĩa...",
             date: "17/02 – 31/03/2026",
@@ -1630,18 +2047,18 @@
             link: "/tintuc/tintuckhuyenmai/khuyenmai/17022026HVN.html",
           },
           {
-            image: "/khuyenmai/image/MXNQ032026.jpg",
-            category: "Khuyến mãi",
+            img: "/khuyenmai/image/MXNQ032026.jpg",
+            cat: "Khuyến mãi",
             title: "DU XUÂN CÓ XE, TẾT THÊM ĐỦ ĐẦY",
             excerpt:
-              "Nhằm mang đến nhiều niềm vui và trải nghiệm trọn vẹn cho khách hàng trong dịp đầu năm, Hệ Thống HEAD Trung Hùng triển khai chương trình...",
+              "Nhằm mang đến nhiều niềm vui và trải nghiệm trọn vẹn cho khách hàng trong dịp đầu năm, Hệ Thống HEAD Trung Hùng triển khai chương trình ưu đãi đặc biệt...",
             date: "22/02 – 31/03/2026",
             views: "352",
             link: "/tintuc/tintuckhuyenmai/khuyenmai/22022026HEADE.html",
           },
           {
-            image: "/khuyenmai/image/HVN01122025.png",
-            category: "Khuyến mãi",
+            img: "/khuyenmai/image/HVN01122025.png",
+            cat: "Khuyến mãi",
             title: "RINH LỘC NĂM MỚI, HỨNG KHỞI DU XUÂN",
             excerpt:
               "Không khí cuối năm đang về rất gần – và đây chính là thời điểm tuyệt vời để nâng cấp chiếc xe mới, nhận quà giá trị trước thềm năm mới!",
@@ -1650,8 +2067,8 @@
             link: "/tintuc/tintuckhuyenmai/khuyenmai/01122025HVN.html",
           },
           {
-            image: "/khuyenmai/image/01022026HEAD.jpg",
-            category: "Khuyến mãi",
+            img: "/khuyenmai/image/01022026HEAD.jpg",
+            cat: "Khuyến mãi",
             title: "RƯỚC XE ĐẲNG CẤP — NHẬN BIA PHÁT TÀI",
             excerpt:
               "Ưu đãi đầu năm hấp dẫn tại Hệ Thống HEAD Trung Hùng dành cho khách hàng mua xe trong dịp Tết...",
@@ -1660,21 +2077,19 @@
             link: "/tintuc/tintuckhuyenmai/khuyenmai/01022026HEAD.html",
           },
           {
-            image: "/khuyenmai/image/01012026HEAD01.jpg",
-            category: "Khuyến mãi",
-            title:
-              "HONDA VARIO 160 ƯU ĐÃI LÊN ĐẾN 7 TRIỆU ĐỒNG TẠI HEAD TRUNG HÙNG",
+            img: "/khuyenmai/image/01012026HEAD01.jpg",
+            cat: "Khuyến mãi",
+            title: "HONDA VARIO 160 ƯU ĐÃI LÊN ĐẾN 7 TRIỆU ĐỒNG",
             excerpt:
-              "Bước sang năm 2026, thị trường xe máy khởi động sôi động với nhiều chương trình ưu đãi hấp dẫn. Nổi bật trong đó...",
+              "Bước sang năm 2026, thị trường xe máy khởi động sôi động với nhiều chương trình ưu đãi hấp dẫn. Nổi bật trong đó là chương trình đặc biệt cho Vario 160...",
             date: "01/01 – 16/02/2026",
             views: "2.952",
             link: "/tintuc/tintuckhuyenmai/khuyenmai/01012026HEAD01.html",
           },
           {
-            image: "/khuyenmai/image/HVN01012026.jpg",
-            category: "Khuyến mãi",
-            title:
-              "CẬP NHẬT CHÍNH SÁCH BẢO HÀNH – TĂNG QUYỀN LỢI, AN TÂM DÀI LÂU",
+            img: "/khuyenmai/image/HVN01012026.jpg",
+            cat: "Khuyến mãi",
+            title: "CẬP NHẬT CHÍNH SÁCH BẢO HÀNH — TĂNG QUYỀN LỢI",
             excerpt:
               "Honda Việt Nam chính thức cập nhật chính sách bảo hành nhằm mang đến sự an tâm tối đa cho khách hàng...",
             date: "Từ ngày 01/01/2026",
@@ -1682,8 +2097,8 @@
             link: "/tintuc/tintuckhuyenmai/khuyenmai/01012026HVN.html",
           },
           {
-            image: "/khuyenmai/image/MXNQ012026.jpg",
-            category: "Khuyến mãi",
+            img: "/khuyenmai/image/MXNQ012026.jpg",
+            cat: "Khuyến mãi",
             title: "SỞ HỮU DỄ DÀNG, ƯU ĐÃI NGẬP TRÀN",
             excerpt:
               "Chương trình ưu đãi hấp dẫn dành cho tất cả khách hàng mua xe máy Honda trong tháng 1/2026...",
@@ -1692,8 +2107,8 @@
             link: "/tintuc/tintuckhuyenmai/khuyenmai/01012026HEADE.html",
           },
           {
-            image: "/khuyenmai/image/HEAD01122025.jpg",
-            category: "Khuyến mãi",
+            img: "/khuyenmai/image/HEAD01122025.jpg",
+            cat: "Khuyến mãi",
             title: "ƯU ĐÃI BẤT TẬN — BỨT TỐC MỌI CHẶNG",
             excerpt:
               "Nhằm mang đến cho khách hàng cơ hội trải nghiệm mẫu xe thể thao côn tay cao cấp với mức giá hấp dẫn...",
@@ -1702,50 +2117,49 @@
             link: "/tintuc/tintuckhuyenmai/khuyenmai/01122025HEAD.html",
           },
           {
-            image: "/khuyenmai/image/HVN01112025.png",
-            category: "Khuyến mãi",
-            title:
-              "Honda Việt Nam tri ân khách hàng — Sh mode LÊN ĐỜI ĐẲNG CẤP, KHÔNG LO LÃI SUẤT",
+            img: "/khuyenmai/image/HVN01112025.png",
+            cat: "Khuyến mãi",
+            title: "Honda tri ân khách hàng — SH MODE LÊN ĐỜI ĐẲNG CẤP",
             excerpt:
-              "Nhằm nâng cao cơ hội trải nghiệm và sử dụng mẫu xe Sh mode cho khách hàng...",
+              "Nhằm nâng cao cơ hội trải nghiệm và sử dụng mẫu xe SH mode cho khách hàng yêu thích phong cách sang trọng...",
             date: "01/11 – 30/11/2025",
             views: "2.992",
             link: "/tintuc/tintuckhuyenmai/khuyenmai/01112025HVN.html",
           },
           {
-            image: "/khuyenmai/image/HEAD21112025.jpg",
-            category: "Khuyến mãi",
+            img: "/khuyenmai/image/HEAD21112025.jpg",
+            cat: "Khuyến mãi",
             title:
               "HEAD TRUNG HÙNG ĐỒNG HÀNH CÙNG KHÁCH HÀNG ẢNH HƯỞNG BỞI MƯA LŨ",
             excerpt:
-              "Trong những ngày thời tiết diễn biến phức tạp, mưa lớn kéo dài gây ngập lụt tại nhiều khu vực ở Gia Lai (Bình Định)...",
+              "Trong những ngày thời tiết diễn biến phức tạp, mưa lớn kéo dài gây ngập lụt tại nhiều khu vực ở Gia Lai...",
             date: "21/11 – 23/11/2025",
             views: "1.682",
             link: "/tintuc/tintuckhuyenmai/khuyenmai/21112025HEADE.html",
           },
           {
-            image: "/khuyenmai/image/HEADE30112025.jpg",
-            category: "Khuyến mãi",
+            img: "/khuyenmai/image/HEADE30112025.jpg",
+            cat: "Khuyến mãi",
             title: "NHỊP ĐIỆN LÊN NGÔI, ƯU ĐÃI BÙNG NỔ",
             excerpt:
-              "Từ nay đến 30/11/2025, Hệ Thống HEAD Trung Hùng chính thức triển khai chương trình ưu đãi lớn...",
+              "Từ nay đến 30/11/2025, Hệ Thống HEAD Trung Hùng chính thức triển khai chương trình ưu đãi lớn dành cho xe điện...",
             date: "18/11 – 30/11/2025",
             views: "1.326",
             link: "/tintuc/tintuckhuyenmai/khuyenmai/18112025HEADE.html",
           },
           {
-            image: "/khuyenmai/image/HEAD112025.jpg",
-            category: "Khuyến mãi",
+            img: "/khuyenmai/image/HEAD112025.jpg",
+            cat: "Khuyến mãi",
             title: "CHIẾN MÃ ĐỒNG HÀNH, CHINH PHỤC VÙNG TRỜI",
             excerpt:
-              "Tháng 11 này, Hệ thống HEAD Trung Hùng gửi đến anh em đam mê tốc độ ưu đãi đặc biệt...",
+              "Tháng 11 này, Hệ thống HEAD Trung Hùng gửi đến anh em đam mê tốc độ ưu đãi đặc biệt không thể bỏ lỡ...",
             date: "01/11 – 30/11/2025",
             views: "2.836",
             link: "/tintuc/tintuckhuyenmai/khuyenmai/01112025HEAD.html",
           },
           {
-            image: "/khuyenmai/image/MXNQ112025.jpg",
-            category: "Khuyến mãi",
+            img: "/khuyenmai/image/MXNQ112025.jpg",
+            cat: "Khuyến mãi",
             title: "SỞ HỮU DỄ DÀNG, ƯU ĐÃI TRAO NGAY",
             excerpt:
               "Chương trình ưu đãi hấp dẫn dành cho tất cả khách hàng mua xe máy Honda tháng 11...",
@@ -1754,18 +2168,18 @@
             link: "/tintuc/tintuckhuyenmai/khuyenmai/01112025HEADE.html",
           },
           {
-            image: "/khuyenmai/image/EVENT01102025.jpg",
-            category: "Khuyến mãi",
+            img: "/khuyenmai/image/EVENT01102025.jpg",
+            cat: "Khuyến mãi",
             title: "BẬT CHÌA NỔ MÁY, ƯU ĐÃI TRAO NGAY",
             excerpt:
-              "Chỉ trong tháng 10 – Cơ hội không lặp lại! Mua xe Honda nhận ngay ưu đãi hấp dẫn...",
+              "Chỉ trong tháng 10 — Cơ hội không lặp lại! Mua xe Honda nhận ngay ưu đãi hấp dẫn tại HEAD Trung Hùng...",
             date: "01/10 – 31/10/2025",
             views: "2.931",
             link: "/tintuc/tintuckhuyenmai/khuyenmai/01102025HEAD.html",
           },
           {
-            image: "/khuyenmai/image/MXNQ092025.jpg",
-            category: "Khuyến mãi",
+            img: "/khuyenmai/image/MXNQ092025.jpg",
+            cat: "Khuyến mãi",
             title: "CHỌN XE CHẤT, NHẬN QUÀ THẬT",
             excerpt:
               "Ưu đãi đặc biệt khi mua xe bất kỳ tại Hệ Thống HEAD Trung Hùng trong tháng 9/2025...",
@@ -1774,8 +2188,8 @@
             link: "/tintuc/tintuckhuyenmai/khuyenmai/01092025HEADE.html",
           },
           {
-            image: "/khuyenmai/image/EVENT0108CB.jpg",
-            category: "Khuyến mãi",
+            img: "/khuyenmai/image/EVENT0108CB.jpg",
+            cat: "Khuyến mãi",
             title: "LƯỚT CB350 H'NESS, ƯU ĐÃI TRAO NGAY",
             excerpt:
               "Chương trình khuyến mãi dành riêng cho dòng xe phân khối lớn CB350 H'ness...",
@@ -1784,8 +2198,8 @@
             link: "/tintuc/tintuckhuyenmai/khuyenmai/01082025HEADC.html",
           },
           {
-            image: "/khuyenmai/image/EVENT01082025.jpg",
-            category: "Khuyến mãi",
+            img: "/khuyenmai/image/EVENT01082025.jpg",
+            cat: "Khuyến mãi",
             title: "RƯỚC XE NGAY, RINH TRỌN ƯU ĐÃI",
             excerpt:
               "Ưu đãi đặc biệt khi mua xe Honda Vario 160, Winner X, CBR150R tại HEAD Trung Hùng...",
@@ -1794,8 +2208,8 @@
             link: "/tintuc/tintuckhuyenmai/khuyenmai/01092025HEADE.html",
           },
           {
-            image: "/khuyenmai/image/15072025.jpg",
-            category: "Khuyến mãi",
+            img: "/khuyenmai/image/15072025.jpg",
+            cat: "Khuyến mãi",
             title: "CHỐT ĐƠN HONDA, SĂN QUÀ CỰC ĐÃ",
             excerpt:
               "Honda Việt Nam tri ân khách hàng với loạt ưu đãi hấp dẫn chào hè trong chương trình khuyến mại khủng...",
@@ -1808,7 +2222,6 @@
         document.getElementById("totalCount").innerHTML =
           newsData.length + "<em>+</em>";
 
-        /* ── PAGINATION ── */
         const PER_PAGE = 6;
         let curPage = 1;
         const grid = document.getElementById("newsGrid");
@@ -1821,21 +2234,18 @@
           const end = Math.min(start + PER_PAGE, newsData.length);
           const total = newsData.length;
           const totalPages = Math.ceil(total / PER_PAGE);
-
-          countBadge.textContent = `Hiển thị ${start + 1}–${end} / ${total}`;
-
-          // render cards
+          countBadge.textContent = `${start + 1}–${end} / ${total} bài`;
           grid.innerHTML = "";
+
           for (let i = start; i < end; i++) {
             const n = newsData[i];
-            const d = document.createElement("div");
-            d.className = "news-card rv";
-            d.style.animationDelay = `${(i - start) * 55}ms`;
-            d.innerHTML = `
-      <a href="${n.link}" style="display:contents;">
+            const card = document.createElement("a");
+            card.href = n.link;
+            card.className = "news-card rv";
+            card.innerHTML = `
         <div class="nc-img">
-          <img src="${n.image}" alt="${n.title}" loading="lazy"/>
-          <div class="nc-cat">${n.category}</div>
+          <img src="${n.img}" alt="${n.title}" loading="lazy" />
+          <span class="nc-cat">${n.cat}</span>
         </div>
         <div class="nc-body">
           <div class="nc-title">${n.title}</div>
@@ -1847,33 +2257,29 @@
             </div>
             <span class="nc-read">Đọc tiếp <i class="fas fa-arrow-right"></i></span>
           </div>
-        </div>
-      </a>`;
-            grid.appendChild(d);
+        </div>`;
+            grid.appendChild(card);
           }
 
-          // re-observe new elements
-          grid.querySelectorAll(".rv").forEach((el) => {
+          grid.querySelectorAll(".rv").forEach((el, i) => {
             el.classList.remove("in");
-            obs.observe(el);
+            setTimeout(() => el.classList.add("in"), i * 55);
           });
 
-          // render pagination
           pagEl.innerHTML = "";
-          // prev
           const prev = document.createElement("button");
-          prev.className = "pag-btn";
-          prev.innerHTML = '<i class="fas fa-chevron-left"></i>';
+          prev.className = "pg-btn";
           prev.disabled = page <= 1;
+          prev.innerHTML = '<i class="fas fa-chevron-left"></i>';
           prev.addEventListener("click", () => {
             renderPage(page - 1);
             scrollToGrid();
           });
           pagEl.appendChild(prev);
-          // pages
+
           for (let p = 1; p <= totalPages; p++) {
             const btn = document.createElement("button");
-            btn.className = "pag-num" + (p === page ? " active" : "");
+            btn.className = "pg-num" + (p === page ? " active" : "");
             btn.textContent = p;
             btn.addEventListener("click", () => {
               renderPage(p);
@@ -1881,11 +2287,11 @@
             });
             pagEl.appendChild(btn);
           }
-          // next
+
           const next = document.createElement("button");
-          next.className = "pag-btn";
-          next.innerHTML = '<i class="fas fa-chevron-right"></i>';
+          next.className = "pg-btn";
           next.disabled = page >= totalPages;
+          next.innerHTML = '<i class="fas fa-chevron-right"></i>';
           next.addEventListener("click", () => {
             renderPage(page + 1);
             scrollToGrid();
@@ -1894,19 +2300,18 @@
         }
 
         function scrollToGrid() {
-          const el = document.querySelector(".sec-label-row");
+          const el = document.querySelector(".grid-header");
           if (el)
             window.scrollTo({
               top:
                 el.getBoundingClientRect().top +
-                scrollY -
+                window.scrollY -
                 hdr.offsetHeight -
                 20,
               behavior: "smooth",
             });
         }
 
-        // read URL param
         const urlP = new URLSearchParams(location.search);
         const initPage = parseInt(urlP.get("page") || "1") || 1;
         renderPage(Math.max(1, initPage));
