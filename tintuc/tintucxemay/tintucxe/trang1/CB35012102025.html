@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tin Tức & sự kiện</title>
-
+    <title>Tin tức xe máy – HỆ THỐNG HEAD TRUNG HÙNG</title>
     <link
       rel="icon"
       href="/sanphamxemay/image/banner/Logo_HEAD.png"
@@ -15,1529 +14,1291 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
     <style>
-      /* CSS Variables */
       :root {
-        --primary-color: #e11931;
-        --secondary-color: #004225;
-        --dark-color: #1a1a1a;
-        --light-color: #f8f9fa;
-        --gray-color: #6c757d;
-        --transition: all 0.3s ease;
-        --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        --border-radius: 25px;
-        --header-height: 80px;
-        --header-shrink-height: 70px;
+        --red: #cc0000;
+        --ink: #0a0a0b;
+        --paper: #f5f3f0;
+        --paper2: #eceae6;
+        --white: #ffffff;
+        --border: rgba(10, 10, 11, 0.08);
+        --muted: #7a7672;
+        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
 
-      /* Base Styles */
-      * {
+      *,
+      *::before,
+      *::after {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
       html {
-        scroll-behavior: smooth;
         font-size: 62.5%;
+        scroll-behavior: smooth;
       }
-
       body {
-        font-family: "Montserrat", sans-serif;
-        line-height: 1.6;
-        color: var(--dark-color);
-        overflow-x: hidden;
-        background-color: #fff;
+        font-family: "Barlow", sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
       }
-
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
-      }
-
       img {
         max-width: 100%;
-        height: auto;
         display: block;
       }
       a {
         text-decoration: none;
         color: inherit;
       }
-
       ul {
         list-style: none;
       }
-
-      .btn {
-        display: inline-block;
-        padding: 1.2rem 2.4rem;
-        border-radius: 30px;
-        font-weight: 600;
-        font-size: 1.4rem;
-        text-align: center;
-        transition: var(--transition);
-        cursor: pointer;
-        border: none;
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--red);
+        border-radius: 2px;
       }
 
-      .btn-primary {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      .btn-primary:hover {
-        background-color: #c01027;
-        transform: translateY(-3px);
-        box-shadow: var(--box-shadow);
-      }
-
-      .btn-outline {
-        background-color: transparent;
-        border: 2px solid var(--primary-color);
-        color: var(--primary-color);
-      }
-
-      .btn-outline:hover {
-        background-color: var(--primary-color);
-        color: white;
-        transform: translateY(-3px);
-      }
-
-      .btn-lg {
-        padding: 1.5rem 3rem;
-        font-size: 1.6rem;
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 6rem;
-      }
-
-      .section-title {
-        font-size: 3.6rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        color: var(--dark-color);
-        position: relative;
-        display: inline-block;
-      }
-
-      .section-title::after {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 3px;
-        background-color: var(--primary-color);
-      }
-
-      .section-subtitle {
-        font-size: 1.8rem;
-        color: var(--gray-color);
-        margin-bottom: 2rem;
-      }
-
-      .divider {
-        height: 1px;
-        background-color: #eee;
-        margin: 3rem auto;
-        width: 100px;
-      }
-
-      /* Preloader */
-      .preloader {
-        position: fixed;
+      /* ── HEADER ── */
+      .site-header {
+        position: sticky;
         top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: white;
+        z-index: 500;
+        background: rgba(245, 243, 240, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition: box-shadow 0.3s;
+      }
+      .site-header.lifted {
+        box-shadow: 0 2px 20px rgba(10, 10, 11, 0.08);
+      }
+      .hdr {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 3rem;
         display: flex;
-        justify-content: center;
         align-items: center;
-        z-index: 9999;
-        transition: opacity 0.5s ease;
-      }
-
-      .preloader.fade-out {
-        opacity: 0;
-      }
-
-      .loader {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100px;
-      }
-
-      .loader-square {
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        margin: 0 8px;
-        background-color: var(--primary-color);
-        animation: loaderAnimation 1.5s infinite ease-in-out;
-      }
-
-      .loader-square:nth-child(1) {
-        animation-delay: 0s;
-      }
-      .loader-square:nth-child(2) {
-        animation-delay: 0.2s;
-      }
-      .loader-square:nth-child(3) {
-        animation-delay: 0.4s;
-      }
-      .loader-square:nth-child(4) {
-        animation-delay: 0.6s;
-      }
-      .loader-square:nth-child(5) {
-        animation-delay: 0.8s;
-      }
-      .loader-square:nth-child(6) {
-        animation-delay: 1s;
-      }
-      .loader-square:nth-child(7) {
-        animation-delay: 1.2s;
-      }
-
-      @keyframes loaderAnimation {
-        0%,
-        100% {
-          transform: scale(0.8);
-          opacity: 0.5;
-        }
-        50% {
-          transform: scale(1.2);
-          opacity: 1;
-        }
-      }
-
-      /* Header */
-      .main-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 2rem 0;
-        z-index: 1000;
-        transition: all 0.3s ease;
-      }
-
-      .main-header.scrolled {
-        background-color: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        padding: 1.5rem 0;
-      }
-
-      .main-header .container {
-        display: flex;
         justify-content: space-between;
-        align-items: center;
+        height: 68px;
       }
-
-      .logo img {
-        height: 40px;
-        transition: var(--transition);
-      }
-
-      .main-header.scrolled .logo img {
-        height: 35px;
-      }
-
-      .main-nav ul {
+      .logo-area {
         display: flex;
+        align-items: center;
+        gap: 1.2rem;
       }
-
-      .main-nav li {
-        margin-left: 3rem;
+      .logo-img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
       }
-
-      .main-nav a {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: rgb(0, 0, 0);
-        position: relative;
-        transition: var(--transition);
-      }
-
-      .main-nav a::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: white;
-        transition: var(--transition);
-      }
-
-      .main-nav a:hover::after,
-      .main-nav a.active::after {
-        width: 100%;
-      }
-
-      .main-header.scrolled .main-nav a {
-        color: var(--dark-color);
-      }
-
-      .main-header.scrolled .main-nav a::after {
-        background-color: var(--primary-color);
-      }
-
-      .menu-toggle {
-        display: none;
-        cursor: pointer;
-        z-index: 1001;
-      }
-
-      .bar {
-        display: block;
-        width: 25px;
-        height: 3px;
-        margin: 5px auto;
-        background-color: rgb(0, 0, 0);
-        transition: all 0.3s ease;
-      }
-
-      .main-header.scrolled .bar {
-        background-color: var(--dark-color);
-      }
-
-      /* Hero Section */
-      .news-hero-section {
-        position: relative;
-        height: 60vh;
-        min-height: 400px;
-        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-          url("/sanphamxemay/image/banner/CB350.jpg") no-repeat center
-            center/cover;
+      .logo-text {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        color: white;
-        margin-top: var(--header-height);
+        line-height: 1;
       }
-
-      .news-hero-content {
-        position: relative;
-        z-index: 1;
-        text-align: center;
-      }
-
-      .news-hero-title {
-        font-size: 4.5rem;
+      .logo-name {
+        font-family: "Barlow Condensed", sans-serif;
         font-weight: 800;
-        margin-bottom: 1.5rem;
-        letter-spacing: 2px;
-        animation: fadeInUp 1s ease;
+        font-size: 1.85rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink);
       }
-
-      .news-hero-subtitle {
-        font-size: 1.8rem;
-        margin-bottom: 3rem;
-        font-weight: 400;
-        animation: fadeInUp 1s ease 0.2s both;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
+      .logo-name span {
+        color: var(--red);
       }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .logo-sub {
+        font-size: 0.88rem;
+        font-weight: 500;
+        letter-spacing: 0.07em;
+        color: var(--muted);
+        margin-top: 0.25rem;
+        text-transform: uppercase;
       }
-
-      /* Breadcrumb */
-      .breadcrumb {
-        background-color: #f9f9f9;
-        padding: 1.5rem 0;
-        margin-bottom: 4rem;
-      }
-
-      .breadcrumb-content {
-        display: flex;
-        align-items: center;
-        font-size: 1.4rem;
-      }
-
-      .breadcrumb a {
-        color: var(--primary-color);
-        transition: var(--transition);
-      }
-
-      .breadcrumb a:hover {
-        text-decoration: underline;
-      }
-
-      .breadcrumb span {
-        margin: 0 1rem;
-        color: var(--gray-color);
-      }
-
-      /* News Section */
-      .news-section {
-        padding: 6rem 0;
-        background-color: #f9f9f9;
-      }
-
-      .news-container {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 4rem;
-      }
-
-      /* Featured News */
-      .featured-news {
-        margin-bottom: 4rem;
-      }
-
-      .featured-news-card {
-        background-color: white;
-        border-radius: var(--border-radius);
-        overflow: hidden;
-        box-shadow: var(--box-shadow);
-        transition: var(--transition);
-      }
-
-      .featured-news-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-      }
-
-      .featured-news-image {
-        height: 400px;
-        overflow: hidden;
-      }
-
-      .featured-news-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-
-      .featured-news-card:hover .featured-news-image img {
-        transform: scale(1.05);
-      }
-
-      .featured-news-content {
-        padding: 3rem;
-      }
-
-      .news-category {
-        display: inline-block;
-        background-color: var(--primary-color);
-        color: white;
-        padding: 0.5rem 1.5rem;
-        border-radius: 30px;
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-      }
-
-      .featured-news-title {
-        font-size: 2.4rem;
-        margin-bottom: 1.5rem;
-        line-height: 1.3;
-      }
-
-      .featured-news-excerpt {
-        font-size: 1.6rem;
-        color: var(--gray-color);
-        margin-bottom: 2rem;
-        line-height: 1.6;
-      }
-
-      .news-meta {
-        display: flex;
-        align-items: center;
-        font-size: 1.4rem;
-        color: var(--gray-color);
-        margin-bottom: 2rem;
-      }
-
-      .news-meta span {
-        display: flex;
-        align-items: center;
-        margin-right: 2rem;
-      }
-
-      .news-meta i {
-        margin-right: 0.5rem;
-        color: var(--primary-color);
-      }
-
-      /* News Grid */
-      .news-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 3rem;
-        margin-bottom: 4rem;
-      }
-
-      .news-card {
-        background-color: white;
-        border-radius: var(--border-radius);
-        overflow: hidden;
-        box-shadow: var(--box-shadow);
-        transition: var(--transition);
-      }
-
-      .news-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      }
-
-      .news-card-image {
-        height: 200px;
-        overflow: hidden;
-      }
-
-      .news-card-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-
-      .news-card:hover .news-card-image img {
-        transform: scale(1.05);
-      }
-
-      .news-card-content {
-        padding: 2rem;
-      }
-
-      .news-card-title {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-        line-height: 1.4;
-      }
-
-      .news-card-excerpt {
-        font-size: 1.4rem;
-        color: var(--gray-color);
-        margin-bottom: 1.5rem;
-        line-height: 1.5;
-      }
-
-      .read-more {
-        color: var(--primary-color);
-        font-weight: 600;
-        font-size: 1.4rem;
+      .nav-cta {
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.45rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.85rem 2.2rem;
+        border-radius: 7px;
         display: inline-flex;
         align-items: center;
-        transition: var(--transition);
+        gap: 0.8rem;
+        transition: opacity 0.2s;
+      }
+      .nav-cta:hover {
+        opacity: 0.88;
       }
 
-      .read-more i {
-        margin-left: 0.5rem;
-        transition: var(--transition);
+      /* ── BREADCRUMB ── */
+      .breadcrumb {
+        background: var(--paper2);
+        border-bottom: 1px solid var(--border);
+        padding: 1.3rem 0;
+      }
+      .bc-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-size: 1.3rem;
+        color: var(--muted);
+        flex-wrap: wrap;
+      }
+      .bc-inner a {
+        color: var(--red);
+        transition: opacity 0.2s;
+      }
+      .bc-inner a:hover {
+        opacity: 0.75;
+      }
+      .bc-inner i {
+        font-size: 0.85rem;
+      }
+      .bc-inner span {
+        font-weight: 600;
+        color: var(--ink);
       }
 
-      .read-more:hover {
-        color: #c01027;
+      /* ── ARTICLE LAYOUT ── */
+      .article-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 5rem 3rem 8rem;
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 4rem;
+        align-items: start;
       }
 
-      .read-more:hover i {
-        transform: translateX(5px);
+      /* ── ARTICLE MAIN ── */
+      article {
+        background: var(--white);
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        overflow: hidden;
       }
 
-      /* Sidebar */
-      .news-sidebar {
-        background-color: white;
-        border-radius: var(--border-radius);
-        padding: 3rem;
-        box-shadow: var(--box-shadow);
-        height: fit-content;
-        position: sticky;
-        top: 100px;
+      /* Hero image */
+      .art-hero {
+        width: 100%;
+        aspect-ratio: 16/7;
+        overflow: hidden;
+        background: var(--paper2);
+      }
+      .art-hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
-      .sidebar-widget {
-        margin-bottom: 4rem;
+      .art-body {
+        padding: 4rem;
       }
 
-      .sidebar-widget:last-child {
+      /* Category badge */
+      .art-cat {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 0.5rem 1.4rem;
+        border-radius: 20px;
+        margin-bottom: 2rem;
+      }
+
+      /* Title */
+      .art-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(3rem, 5vw, 4.8rem);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        line-height: 1.05;
+        color: var(--ink);
+        margin-bottom: 2rem;
+      }
+
+      /* Meta */
+      .art-meta {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        font-size: 1.3rem;
+        color: var(--muted);
+        padding-bottom: 2.5rem;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 3.5rem;
+        flex-wrap: wrap;
+      }
+      .art-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .art-meta i {
+        color: var(--red);
+        font-size: 1.1rem;
+      }
+
+      /* Content – điền bài viết vào đây */
+      .art-content {
+        font-size: 1.6rem;
+        line-height: 1.85;
+        color: #2c2c2e;
+      }
+      .art-content p {
+        margin-bottom: 2rem;
+      }
+      .art-content h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.8rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin: 3.5rem 0 1.5rem;
+        padding-left: 1.6rem;
+        border-left: 4px solid var(--red);
+      }
+      .art-content h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.2rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin: 2.5rem 0 1.2rem;
+      }
+      .art-content ul,
+      .art-content ol {
+        padding-left: 2.5rem;
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .art-content ul li {
+        list-style: disc;
+        color: var(--muted);
+      }
+      .art-content ol li {
+        list-style: decimal;
+        color: var(--muted);
+      }
+      .art-content strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .art-content em {
+        color: var(--red);
+        font-style: normal;
+        font-weight: 600;
+      }
+      .art-content a {
+        color: var(--red);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .art-content blockquote {
+        background: var(--paper);
+        border-left: 4px solid var(--red);
+        border-radius: 0 10px 10px 0;
+        padding: 2rem 2.5rem;
+        margin: 2.5rem 0;
+        font-style: italic;
+        color: var(--muted);
+        font-size: 1.55rem;
+      }
+      .art-content .highlight-box {
+        background: var(--red);
+        border-radius: 14px;
+        padding: 2.5rem 3rem;
+        margin: 3rem 0;
+      }
+      .art-content .highlight-box p {
+        color: rgba(255, 255, 255, 0.88);
         margin-bottom: 0;
       }
-
-      .widget-title {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-        padding-bottom: 1rem;
-        border-bottom: 2px solid var(--primary-color);
-        position: relative;
+      .art-content .highlight-box strong {
+        color: #fff;
+      }
+      .art-content figure {
+        margin: 3rem 0;
+      }
+      .art-content figure img {
+        width: 100%;
+        border-radius: 12px;
+      }
+      .art-content figcaption {
+        font-size: 1.3rem;
+        color: var(--muted);
+        text-align: center;
+        margin-top: 1rem;
+        font-style: italic;
+      }
+      .art-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2.5rem 0;
+        font-size: 1.45rem;
+      }
+      .art-content table th {
+        background: var(--ink);
+        color: #fff;
+        padding: 1.4rem 1.8rem;
+        text-align: left;
+        font-family: "Barlow Condensed", sans-serif;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 1.3rem;
+      }
+      .art-content table td {
+        padding: 1.3rem 1.8rem;
+        border-bottom: 1px solid var(--border);
+        color: #2c2c2e;
+      }
+      .art-content table tr:nth-child(even) td {
+        background: var(--paper);
       }
 
-      .widget-title::after {
+      /* Share bar */
+      .art-share {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        padding-top: 3rem;
+        border-top: 1px solid var(--border);
+        margin-top: 4rem;
+        flex-wrap: wrap;
+      }
+      .art-share-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .share-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.85rem 2rem;
+        border-radius: 8px;
+        border: 1.5px solid var(--border);
+        background: var(--white);
+        color: var(--ink2, #1a1a1c);
+        cursor: pointer;
+        transition: all 0.22s;
+      }
+      .share-btn:hover {
+        border-color: var(--red);
+        color: var(--red);
+      }
+      .share-btn.fb i {
+        color: #1877f2;
+      }
+      .share-btn.copy i {
+        color: var(--red);
+      }
+
+      /* ── SIDEBAR ── */
+      .sidebar {
+        position: sticky;
+        top: 84px;
+        display: flex;
+        flex-direction: column;
+        gap: 2.4rem;
+      }
+      .sw {
+        background: var(--white);
+        border-radius: 16px;
+        padding: 2.5rem;
+        border: 1px solid var(--border);
+      }
+      .sw-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 1.8rem;
+        padding-bottom: 1.2rem;
+        border-bottom: 2px solid var(--border);
+        position: relative;
+      }
+      .sw-title::after {
         content: "";
         position: absolute;
         bottom: -2px;
         left: 0;
-        width: 50px;
+        width: 36px;
         height: 2px;
-        background-color: var(--primary-color);
+        background: var(--red);
       }
 
-      /* Categories Widget */
-      .categories-list li {
-        margin-bottom: 1rem;
-      }
-
-      .categories-list a {
+      /* Related posts */
+      .rp-item {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 0;
-        font-size: 1.5rem;
-        color: var(--dark-color);
-        transition: var(--transition);
-        border-bottom: 1px solid #eee;
+        gap: 1.3rem;
+        padding: 1.4rem 0;
+        border-bottom: 1px solid var(--border);
+        transition: opacity 0.2s;
       }
-
-      .categories-list a:hover {
-        color: var(--primary-color);
-        padding-left: 1rem;
-      }
-
-      .categories-list span {
-        background-color: #f5f5f5;
-        padding: 0.3rem 0.8rem;
-        border-radius: 20px;
-        font-size: 1.2rem;
-      }
-
-      /* Recent Posts Widget */
-      .recent-posts li {
-        display: flex;
-        margin-bottom: 2rem;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid #eee;
-      }
-
-      .recent-posts li:last-child {
-        margin-bottom: 0;
-        padding-bottom: 0;
+      .rp-item:last-child {
         border-bottom: none;
+        padding-bottom: 0;
       }
-
-      .recent-post-image {
-        width: 80px;
-        height: 80px;
-        border-radius: 10px;
+      .rp-item:hover {
+        opacity: 0.72;
+      }
+      .rp-thumb {
+        width: 68px;
+        height: 68px;
+        border-radius: 9px;
         overflow: hidden;
-        margin-right: 1.5rem;
         flex-shrink: 0;
+        background: var(--paper2);
       }
-
-      .recent-post-image img {
+      .rp-thumb img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
-
-      .recent-post-content h4 {
-        font-size: 1.4rem;
-        margin-bottom: 0.5rem;
-        line-height: 1.4;
+      .rp-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      .rp-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        line-height: 1.2;
+        color: var(--ink);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .rp-date {
+        font-size: 1.2rem;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .rp-date i {
+        color: var(--red);
+        font-size: 1rem;
       }
 
-      .recent-post-content .news-meta {
-        margin-bottom: 0;
+      /* Category list */
+      .cat-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1rem;
+        border-radius: 9px;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: var(--ink);
+        border: 1px solid transparent;
+        transition: all 0.2s;
+      }
+      .cat-item:hover {
+        background: rgba(204, 0, 0, 0.06);
+        border-color: rgba(204, 0, 0, 0.14);
+        color: var(--red);
+        padding-left: 1.4rem;
+      }
+      .cat-item span:first-child {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .cat-item i {
+        color: var(--red);
         font-size: 1.2rem;
       }
-
-      /* Tags Widget */
-      .tags-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
-
-      .tags-list a {
-        display: inline-block;
-        padding: 0.7rem 1.5rem;
-        background-color: #f5f5f5;
-        border-radius: 30px;
-        font-size: 1.3rem;
-        color: var(--dark-color);
-        transition: var(--transition);
-      }
-
-      .tags-list a:hover {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      /* Pagination */
-      .pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 4rem;
-      }
-
-      .pagination-list {
-        display: flex;
-        gap: 1rem;
-      }
-
-      .pagination-item a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        background-color: white;
-        font-size: 1.5rem;
-        font-weight: 600;
-        box-shadow: var(--box-shadow);
-        transition: var(--transition);
-      }
-
-      .pagination-item a:hover,
-      .pagination-item a.active {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      /* Article Content */
-      .article-content {
-        background-color: white;
-        border-radius: var(--border-radius);
-        padding: 4rem;
-        box-shadow: var(--box-shadow);
-        margin-bottom: 4rem;
-      }
-
-      .article-content h1 {
-        font-size: 3rem;
-        margin-bottom: 2rem;
-        color: #cc0000;
-      }
-
-      .article-content p {
-        font-size: 1.6rem;
-        margin-bottom: 2rem;
-        line-height: 1.7;
-        color: var(--dark-color);
-      }
-
-      .article-content b {
+      .cat-badge {
+        font-size: 1.1rem;
+        color: var(--muted);
+        background: var(--paper2);
+        padding: 0.2rem 0.9rem;
+        border-radius: 14px;
+        font-family: "Barlow Condensed", sans-serif;
         font-weight: 700;
-        color: var(--dark-color);
+        letter-spacing: 0.08em;
       }
 
-      /* Footer */
-      .main-footer {
-        background-color: var(--dark-color);
-        color: white;
-        padding: 6rem 0 0;
-      }
-
-      .footer-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 4rem;
-        margin-bottom: 4rem;
-      }
-
-      .footer-logo img {
-        height: 40px;
-        margin-bottom: 2rem;
-      }
-
-      .footer-logo p {
-        font-size: 1.4rem;
-        color: #aaa;
-        margin-bottom: 2rem;
-      }
-
-      .footer-links h4 {
-        font-size: 1.8rem;
-        margin-bottom: 2rem;
+      /* CTA box */
+      .cta-box {
+        background: var(--ink);
+        border-radius: 16px;
+        padding: 2.8rem;
         position: relative;
-        padding-bottom: 1rem;
+        overflow: hidden;
       }
-
-      .footer-links h4::after {
+      .cta-box::after {
         content: "";
         position: absolute;
-        bottom: 0;
+        top: 0;
         left: 0;
-        width: 40px;
-        height: 2px;
-        background-color: var(--primary-color);
+        right: 0;
+        height: 3px;
+        background: var(--red);
       }
-
-      .footer-links ul li {
-        margin-bottom: 1rem;
+      .cta-box h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.6rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 0.8rem;
+        position: relative;
+        z-index: 1;
       }
-
-      .footer-links ul li a {
+      .cta-box h3 em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .cta-box p {
         font-size: 1.4rem;
-        color: #aaa;
-        transition: var(--transition);
-      }
-
-      .footer-links ul li a:hover {
-        color: white;
-        padding-left: 5px;
-      }
-
-      .footer-social h4 {
-        font-size: 1.8rem;
+        color: rgba(255, 255, 255, 0.38);
         margin-bottom: 2rem;
         position: relative;
-        padding-bottom: 1rem;
+        z-index: 1;
+        line-height: 1.6;
       }
-
-      .footer-social h4::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 40px;
-        height: 2px;
-        background-color: var(--primary-color);
-      }
-
-      .social-icons {
-        display: flex;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-      }
-
-      .social-icons a {
+      .cta-box a {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        color: white;
-        font-size: 1.6rem;
-        transition: var(--transition);
+        gap: 0.8rem;
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.2rem;
+        border-radius: 9px;
+        transition: opacity 0.2s;
+        position: relative;
+        z-index: 1;
+      }
+      .cta-box a:hover {
+        opacity: 0.88;
       }
 
-      .social-icons a:hover {
-        background-color: var(--primary-color);
-        transform: translateY(-3px);
+      /* ── FOOTER ── */
+      footer {
+        background: #060606;
+        padding: 6rem 3rem 3rem;
+        border-top: 3px solid var(--red);
       }
-
-      .footer-social p {
-        font-size: 1.4rem;
-        color: #aaa;
+      .ft-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 4rem;
+        padding-bottom: 4rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        margin-bottom: 3rem;
+      }
+      .ft-logo-row {
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
         margin-bottom: 1rem;
       }
-
-      .newsletter-form {
+      .ft-logo-img {
+        width: 38px;
+        height: 38px;
+        object-fit: contain;
+      }
+      .ft-brand {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        color: #fff;
+        text-transform: uppercase;
+      }
+      .ft-brand span {
+        color: var(--red);
+      }
+      .ft-desc {
+        font-size: 1.35rem;
+        color: rgba(255, 255, 255, 0.22);
+        margin-bottom: 2.5rem;
+        line-height: 1.7;
+        max-width: 270px;
+      }
+      .ft-socs {
         display: flex;
+        gap: 0.9rem;
       }
-
-      .newsletter-form input {
-        flex: 1;
-        padding: 1rem 1.5rem;
-        border: none;
-        border-radius: 30px 0 0 30px;
-        font-size: 1.4rem;
-      }
-
-      .newsletter-form button {
-        width: 50px;
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        border-radius: 0 30px 30px 0;
-        cursor: pointer;
-        transition: var(--transition);
-      }
-
-      .newsletter-form button:hover {
-        background-color: #c01027;
-      }
-
-      .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding-top: 3rem;
+      .ft-soc {
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         display: flex;
-        justify-content: space-between;
         align-items: center;
-      }
-
-      .footer-bottom p {
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.38);
         font-size: 1.3rem;
-        color: #aaa;
+        transition: all 0.25s;
       }
-
-      .legal-links {
+      .ft-soc:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+      .ft-col h5 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        color: rgba(255, 255, 255, 0.22);
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+      }
+      .ft-col ul li {
+        margin-bottom: 1.2rem;
+      }
+      .ft-col a {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        transition: color 0.2s;
+      }
+      .ft-col a:hover {
+        color: #fff;
+      }
+      .ft-btm {
+        max-width: 1200px;
+        margin: 0 auto;
         display: flex;
-        gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
       }
-
-      .legal-links a {
+      .ft-btm p {
         font-size: 1.3rem;
-        color: #aaa;
-        transition: var(--transition);
+        color: rgba(255, 255, 255, 0.16);
+      }
+      .ft-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.16);
+      }
+      .ft-badge i {
+        color: var(--red);
       }
 
-      .legal-links a:hover {
-        color: white;
-      }
-
-      /* Back to Top */
-      .back-to-top {
+      /* Floats */
+      .messenger-float {
         position: fixed;
-        bottom: 30px;
-        right: 30px;
+        bottom: 9rem;
+        right: 2.5rem;
         width: 50px;
         height: 50px;
-        background-color: var(--primary-color);
-        color: white;
+        background: #0084ff;
         border-radius: 50%;
         display: flex;
-        justify-content: center;
         align-items: center;
-        font-size: 1.8rem;
+        justify-content: center;
+        font-size: 2.1rem;
+        color: #fff;
+        z-index: 300;
+        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.32);
+        animation: mpulse 2.5s ease-in-out infinite;
+        transition: transform 0.3s;
+      }
+      .messenger-float:hover {
+        transform: scale(1.1);
+      }
+      @keyframes mpulse {
+        0%,
+        100% {
+          box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
+        }
+        50% {
+          box-shadow: 0 4px 36px rgba(0, 132, 255, 0.55);
+        }
+      }
+      .back-top {
+        position: fixed;
+        bottom: 2.5rem;
+        right: 2.5rem;
+        width: 44px;
+        height: 44px;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        color: #fff;
+        z-index: 300;
         opacity: 0;
         visibility: hidden;
-        transition: var(--transition);
-        z-index: 999;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
       }
-
-      .back-to-top.active {
+      .back-top.on {
         opacity: 1;
         visibility: visible;
       }
-
-      .back-to-top:hover {
-        background-color: #c01027;
-        transform: translateY(-5px);
+      .back-top:hover {
+        opacity: 0.82;
+        transform: translateY(-3px);
       }
 
-      /* Messenger Chat Button */
-      .messenger-chat {
-        position: fixed;
-        bottom: 100px;
-        right: 25px;
-        width: 60px;
-        height: 60px;
-        background-color: #0084ff;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 28px;
-        box-shadow: 0 4px 12px rgba(0, 132, 255, 0.3);
-        z-index: 999;
-        transition: all 0.3s ease;
-        animation: pulse 2s infinite;
-      }
-
-      .messenger-chat:hover {
-        background-color: #0066cc;
-        transform: scale(1.1);
-      }
-
-      /* Hiệu ứng lan tỏa */
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
-        }
-        70% {
-          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
-        }
-      }
-
-      /* Điều chỉnh vị trí khi có cả 2 nút */
-      .back-to-top.active ~ .messenger-chat {
-        bottom: 100px;
-      }
-
-      /* Responsive Styles */
-      @media (max-width: 1024px) {
-        .news-container {
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        .article-wrap {
           grid-template-columns: 1fr;
         }
-
-        .news-sidebar {
+        .sidebar {
           position: static;
         }
       }
-
-      @media (max-width: 768px) {
-        html {
-          font-size: 56.25%;
+      @media (max-width: 640px) {
+        .hdr {
+          padding: 0 2rem;
         }
-
-        .menu-toggle {
-          display: block;
+        .art-body {
+          padding: 2.5rem 2rem;
         }
-
-        .menu-toggle.active .bar:nth-child(1) {
-          transform: translateY(8px) rotate(45deg);
+        .bc-inner {
+          padding: 0 2rem;
         }
-
-        .menu-toggle.active .bar:nth-child(2) {
-          opacity: 0;
+        .article-wrap {
+          padding: 3rem 2rem 6rem;
         }
-
-        .menu-toggle.active .bar:nth-child(3) {
-          transform: translateY(-8px) rotate(-45deg);
+        .ft-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 3rem;
         }
-
-        .main-nav {
-          position: fixed;
-          top: 0;
-          right: -100%;
-          width: 80%;
-          max-width: 300px;
-          height: 100vh;
-          background-color: rgb(255, 255, 255);
-          padding: 8rem 3rem;
-          transition: var(--transition);
-          z-index: 1000;
+        footer {
+          padding: 5rem 2rem 3rem;
         }
-
-        .main-nav.active {
-          right: 0;
-          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .main-nav ul {
+        .ft-btm {
           flex-direction: column;
-        }
-
-        .main-nav li {
-          margin: 1.5rem 0;
-        }
-
-        .main-nav a {
-          color: var(--dark-color);
-          font-size: 1.8rem;
-        }
-
-        .news-hero-title {
-          font-size: 3.5rem;
-        }
-
-        .news-hero-subtitle {
-          font-size: 1.6rem;
-        }
-
-        .featured-news-image {
-          height: 300px;
-        }
-
-        .news-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .article-content {
-          padding: 2.5rem;
-        }
-
-        .article-content h1 {
-          font-size: 2.5rem;
+          text-align: center;
         }
       }
-
-      @media (max-width: 576px) {
-        html {
-          font-size: 50%;
-        }
-
-        .section-title {
+      @media (max-width: 480px) {
+        .art-title {
           font-size: 3rem;
         }
-
-        .news-hero-title {
-          font-size: 3rem;
-        }
-
-        .news-hero-subtitle {
-          font-size: 1.4rem;
-        }
-
-        .featured-news-content {
-          padding: 2rem;
-        }
-
-        .featured-news-title {
-          font-size: 2rem;
-        }
-
-        .news-sidebar {
-          padding: 2rem;
-        }
-
-        .article-content {
-          padding: 2rem;
-        }
-
-        .article-content h1 {
-          font-size: 2.2rem;
-        }
-
-        .footer-bottom {
-          flex-direction: column;
-          gap: 2rem;
-          text-align: center;
+        .ft-grid {
+          grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Preloader -->
-
-    <!-- Header -->
-    <header class="main-header">
-      <div class="container">
-        <a href="/Trangchu/" class="logo">
+    <!-- HEADER -->
+    <header class="site-header" id="siteHeader">
+      <div class="hdr">
+        <a href="/Trangchu/" class="logo-area">
           <img
             src="/sanphamxemay/image/banner/Logo_HEAD.png"
-            alt="Honda Logo"
+            alt="HEAD"
+            class="logo-img"
           />
+          <div class="logo-text">
+            <span class="logo-name">HỆ THỐNG HEAD <span>TRUNG HÙNG</span></span>
+            <span class="logo-sub"
+              >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
+            >
+          </div>
         </a>
-        <h1>HEAD TRUNG HÙNG</h1>
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-
-        <nav class="main-nav">
-          <ul>
-            <li><a href="/Trangchu/">Trang chủ</a></li>
-            <li><a href="/sanpham/">Sản phẩm</a></li>
-            <li><a href="/tintuc/" class="active">Tin tức</a></li>
-            <li><a href="/dichvu/">Dịch vụ</a></li>
-            <li><a href="/lienhe/">Liên hệ</a></li>
-          </ul>
-        </nav>
+        <a href="tel:1900636712" class="nav-cta"
+          ><i class="fas fa-phone-alt"></i> 1900 636 712</a
+        >
       </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="news-hero-section">
-      <div class="container">
-        <div class="news-hero-content">
-          <h1 class="news-hero-title" data-aos="fade-up">Tin Tức Xe Máy</h1>
-          <p
-            class="news-hero-subtitle"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          ></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Breadcrumb -->
+    <!-- BREADCRUMB -->
     <div class="breadcrumb">
-      <div class="container">
-        <div class="breadcrumb-content">
-          <a href="/Trangchu/">Trang chủ</a>
-          <span>/</span>
-          <a href="/tintuc/">Tin tức</a>
-        </div>
+      <div class="bc-inner">
+        <a href="/Trangchu/">Trang chủ</a>
+        <i class="fas fa-chevron-right"></i>
+        <!-- ✏️ Thay "Khuyến mãi" bằng danh mục phù hợp -->
+        <a href="/tintuc/tintucxemay/">Tin tức xe máy</a>
+        <i class="fas fa-chevron-right"></i>
+        <!-- ✏️ Thay bằng tiêu đề rút gọn của bài -->
+        <span>CB350 H'ness với các màu sắc mới</span>
       </div>
     </div>
 
-    <!-- News Section -->
-    <section class="news-section">
-      <div class="container">
-        <div class="news-container">
-          <!-- Main Content -->
-          <div class="news-main">
-            <!-- Article Content -->
-            <div class="article-content" data-aos="fade-up">
-              <h1>
-                Honda Việt Nam giới thiệu mẫu xe CB350 H'ness với các màu sắc
-                mới
-              </h1>
-              <p>
-                Phú Thọ, ngày 2 tháng 10 năm 2025, Công ty Honda Việt Nam (HVN)
-                chính thức giới thiệu mẫu xe CB350 H'ness với các màu sắc mới.
-                Với sự cập nhật này, mẫu xe không chỉ giữ trọn vẻ đẹp cổ điển và
-                phong cách lịch lãm, mà còn mang đến nhiều lựa chọn đa dạng hơn
-                cho khách hàng, giúp người lái thể hiện cá tính và phong cách
-                riêng trên mọi hành trình.
-              </p>
-              <p>
-                • Hai màu sắc mới mang đến phong thái cá tính, đậm chất đường
-                phố; sự dung hòa giữa nét tinh tế nhẹ nhàng và sự nổi bật đúng
-                lúc giúp chiếc xe trở thành tâm điểm trong mọi ánh nhìn.<br />
-                • Sở hữu công nghệ hiện đại, động cơ mạnh mẽ nhưng không kém
-                phần linh hoạt, góp phần tạo nên trải nghiệm lái phấn khích
-                nhưng vẫn mượt mà và ổn định nhờ động cơ 350cc xi-lanh đơn, 4
-                kỳ, làm mát bằng không khí, vận hành êm ái và bứt tốc mạnh mẽ,…
-                <br />• Công nghệ an toàn & tiện ích hàng đầu phân khúc: bộ ly
-                hợp hỗ trợ và chống trượt hai chiều, hệ thống phanh ABS 2 kênh,
-                hệ thống kiểm soát lực kéo (HSTC) và hệ thống cảnh báo dừng khẩn
-                cấp (ESS),…
-              </p>
-              <p>
-                <b
-                  >Phong cách thiết kế khẳng định chất riêng trên mọi hành
-                  trình</b
-                >
-              </p>
-              <p>
-                Ra đời từ năm 1959, dòng xe CB nhanh chóng ghi dấu với khả năng
-                vận hành mạnh mẽ và công nghệ tiên phong. Trải qua hơn nửa thế
-                kỷ, tinh thần ấy vẫn được nối dài qua nhiều thế hệ. Tại Việt
-                Nam, CB350 H’ness lần đầu tiên được giới thiệu vào năm 2024, mở
-                ra lựa chọn khác biệt cho những tay lái trẻ yêu phong cách. Và
-                nay, bước sang năm 2025, CB350 H’ness tiếp tục trở lại với diện
-                mạo cuốn hút, giữ trọn tinh thần biểu tượng và đồng thời khẳng
-                định vị thế đặc biệt trong phân khúc.
-              </p>
+    <!-- ARTICLE + SIDEBAR -->
+    <div class="article-wrap">
+      <!-- ===== ARTICLE ===== -->
+      <article>
+        <!-- ✏️ Ảnh bìa bài viết -->
+        <div class="art-hero">
+          <img
+            src="/sanphamxemay/CB350Hness/CB350Hness/picture/1.jpg"
+            alt="Ảnh bìa bài viết"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="art-body">
+          <!-- ✏️ Badge danh mục -->
+          <span class="art-cat"
+            ><i class="fas fa-gift"></i> Tin Tức Xe Máy</span
+          >
+
+          <!-- ✏️ TIÊU ĐỀ BÀI VIẾT -->
+          <h1 class="art-title">
+            Honda Việt Nam giới thiệu mẫu xe CB350 H'ness với các màu sắc mới
+          </h1>
+
+          <!-- ✏️ Meta thông tin -->
+          <div class="art-meta">
+            <span><i class="far fa-calendar"></i> 02/10/2025</span>
+          </div>
+
+          <!-- ================================================
+           ✏️ NỘI DUNG BÀI VIẾT — ĐIỀN VÀO ĐÂY
+           ================================================ -->
+          <div class="art-content">
+            <!-- Đoạn mở đầu -->
+            <p>
+              Phú Thọ, ngày 2 tháng 10 năm 2025, Công ty Honda Việt Nam (HVN)
+              chính thức giới thiệu mẫu xe CB350 H'ness với các màu sắc mới. Với
+              sự cập nhật này, mẫu xe không chỉ giữ trọn vẻ đẹp cổ điển và phong
+              cách lịch lãm, mà còn mang đến nhiều lựa chọn đa dạng hơn cho
+              khách hàng, giúp người lái thể hiện cá tính và phong cách riêng
+              trên mọi hành trình.
+            </p>
+            <p>
+              • Hai màu sắc mới mang đến phong thái cá tính, đậm chất đường phố;
+              sự dung hòa giữa nét tinh tế nhẹ nhàng và sự nổi bật đúng lúc giúp
+              chiếc xe trở thành tâm điểm trong mọi ánh nhìn.<br />
+              • Sở hữu công nghệ hiện đại, động cơ mạnh mẽ nhưng không kém phần
+              linh hoạt, góp phần tạo nên trải nghiệm lái phấn khích nhưng vẫn
+              mượt mà và ổn định nhờ động cơ 350cc xi-lanh đơn, 4 kỳ, làm mát
+              bằng không khí, vận hành êm ái và bứt tốc mạnh mẽ,…<br />
+              • Công nghệ an toàn & tiện ích hàng đầu phân khúc: bộ ly hợp hỗ
+              trợ và chống trượt hai chiều, hệ thống phanh ABS 2 kênh, hệ thống
+              kiểm soát lực kéo (HSTC) và hệ thống cảnh báo dừng khẩn cấp
+              (ESS),…
+            </p>
+            <p>
+              <b
+                >Phong cách thiết kế khẳng định chất riêng trên mọi hành
+                trình</b
+              >
+            </p>
+            <p>
+              Ra đời từ năm 1959, dòng xe CB nhanh chóng ghi dấu với khả năng
+              vận hành mạnh mẽ và công nghệ tiên phong. Trải qua hơn nửa thế kỷ,
+              tinh thần ấy vẫn được nối dài qua nhiều thế hệ. Tại Việt Nam,
+              CB350 H’ness lần đầu tiên được giới thiệu vào năm 2024, mở ra lựa
+              chọn khác biệt cho những tay lái trẻ yêu phong cách. Và nay, bước
+              sang năm 2025, CB350 H’ness tiếp tục trở lại với diện mạo cuốn
+              hút, giữ trọn tinh thần biểu tượng và đồng thời khẳng định vị thế
+              đặc biệt trong phân khúc.
+            </p>
+            <!-- Hình ảnh trong bài -->
+            <figure>
               <img
-                src="/sanphamxemay/image/banner/CB350.jpg"
-                alt="Honda Logo"
+                src="/sanphamxemay/CB350Hness/CB350Hness/picture/3.jpg"
+                alt="Mô tả hình ảnh"
+                loading="lazy"
               />
+            </figure>
+            <p>
+              CB350 H’ness được tạo hình như một bản phối tinh tế giữa nét hoài
+              cổ và chất đường phố hiện đại. Khối động cơ đặt thẳng hàng tạo cảm
+              giác hầm hố, khung xe cấu trúc dạng nôi kép chắc chắn bao trọn
+              toàn bộ cụm động cơ, cùng với ống xả mạ chrome sáng bóng làm nổi
+              bật vẻ sang trọng. Cụm đèn pha dạng tròn cổ điển được nâng cấp
+              bằng công nghệ LED, đi kèm xi-nhan LED vòng lửa trẻ trung, bình
+              xăng lớn bo tròn hai bên mang nét cổ điển lịch lãm. Vành đúc 14
+              chấu kết hợp lốp không săm to bản, nhiều rãnh thoát nước không chỉ
+              tăng tính ổn định khi vận hành mà còn góp phần tôn lên phong cách
+              mạnh mẽ, ấn tượng. Cụm đồng hồ LCD đa chức năng trên CB350 H’ness
+              mang đến sự hòa quyện giữa cổ điển và hiện đại, với kim cơ hiển
+              thị tốc độ kết hợp màn hình LCD đa chức năng, cung cấp đầy đủ
+              thông tin từ lượng xăng và giờ, vị trí cấp số, mức tiêu thụ nhiên
+              liệu trung bình, mức tiêu thụ nhiên liệu theo thời gian thực, điện
+              áp ắc quy và quãng đường đi được với lượng xăng còn lại trong
+              bình.
+            </p>
+            <p>
+              Mẫu xe mới năm nay, còn đặt sự thoải mái của người trải nghiệm lên
+              hàng đầu với yên xe phẳng, rộng rãi, mang lại tư thế ngồi êm ái
+              trong suốt hành trình. CB350 H’ness tiếp tục chinh phục người yêu
+              xe nhờ âm thanh ống xả trầm ấm, uy lực; thiết kế miệng thoát khí
+              đường kính lớn tạo nên tiếng nổ giòn giã, đầy phấn khích.
+            </p>
+            <p>
+              <b>Màu sắc mới đầy khác biệt</b>
+            </p>
+            <p>
+              CB350 H’ness năm nay được làm mới với hai tùy chọn màu sắc độc
+              đáo: Đỏ đen và Xám Đen. Sự kết hợp hài hòa giữa gam màu mới và các
+              chi tiết mạ chrome tạo nên diện mạo vừa cổ điển, vừa hiện đại. Bên
+              cạnh đó, logo CB được thiết kế dập nổi, tinh xảo trên thân xe, như
+              một tuyên ngôn khẳng định đẳng cấp và giá trị biểu tượng mà dòng
+              xe CB đã xây dựng qua nhiều thập kỷ.
+            </p>
+            <p><b>Động cơ mạnh mẽ mang tới trải nghiệm lái hứng khởi</b></p>
+            <p>
+              CB350 H’ness mang trong mình một “trái tim” 350cc, xi-lanh đơn, 4
+              kỳ, làm mát bằng không khí, với công suất cực đại đạt 15,5 kW tại
+              5.500 vòng/phút và mô-men xoắn 30 Nm ở 3.000 vòng/phút - cho mỗi
+              cú vặn ga, mang lại cảm giác phấn khích nhưng vẫn mượt mà, dễ kiểm
+              soát. Bên cạnh đó, trục chính của hộp số được tích hợp tạ đối
+              trọng đóng vai trò như một trục cân bằng nằm phía sau của xi lanh,
+              hoạt động kết hợp với trục cân bằng phía trước xi lanh nhằm triệt
+              tiêu rung chấn hiệu quả, từ đó mang lại khả năng vận hành êm ái,
+              tăng tốc nhẹ nhàng, sự linh hoạt tuyệt vời cho người lái khi di
+              chuyển trong nội đô cũng như những chuyến đi dài dịp cuối tuần.
+            </p>
+            <p><b>Tiện ích thông minh, an toàn vượt trội</b></p>
+            <p>
+              CB350 H’ness giống như một “trợ thủ” thông minh, sẵn sàng đồng
+              hành cùng người lái trên mọi hành trình, dù là tay lái mới làm
+              quen với xe phân khối lớn hay những biker giàu kinh nghiệm. Những
+              công nghệ tiên tiến được trang bị không chỉ nâng cao độ an toàn,
+              mà còn mang lại sự tự tin và cảm giác kiểm soát tuyệt đối.
+            </p>
+            <p>
+              Mẫu xe cũng được trang bị hệ thống ly hợp hỗ trợ và chống trượt
+              hai chiều, giúp giảm hiện tượng khóa bánh sau khi về số gấp, đồng
+              thời mang lại cảm giác bóp côn nhẹ nhàng và vận hành mượt mà hơn.
+              Xe sử dụng phanh đĩa trước 310mm và sau 240mm đi kèm hệ thống
+              phanh ABS 2 kênh, đóng vai trò như “lá chắn” an toàn, hỗ trợ kiểm
+              soát khi phanh gấp. Bên cạnh đó, hệ thống kiểm soát lực kéo (HSTC)
+              duy trì độ bám giữa bánh sau và mặt đường, tự động điều chỉnh công
+              suất động cơ khi phát hiện bánh bị trượt. Hệ thống cảnh báo dừng
+              khẩn cấp (ESS) cũng được tích hợp, giúp xe an toàn hơn bằng cách
+              tự động nháy đèn xi-nhan khi xe giảm tốc đột ngột, cảnh báo kịp
+              thời cho các phương tiện phía sau.
+            </p>
+            <p>
+              Phiên bản năm nay tiếp tục được trang bị nhiều tiện ích nâng cao
+              trải nghiệm người lái. Chắn bùn trước kéo dài giúp hạn chế bắn bẩn
+              khi di chuyển trên đường ướt. Công tắc tắt động cơ tích hợp nút
+              khởi động mang lại sự tiện lợi khi dừng đỗ trong đô thị. Bên cạnh
+              đó, đèn cảnh báo nguy hiểm với tín hiệu nhấp nháy 4 xi-nhan cùng
+              lúc giúp tăng cường an toàn trong tình huống khẩn cấp hoặc khi di
+              chuyển trong điều kiện tầm nhìn kém.
+            </p>
+            <p>
+              Mẫu xe CB350 H’ness được mở bán vào ngày 12/10/2025 tại hệ thống
+              Cửa hàng CB ủy nhiệm với chế độ bảo hành 3 năm hoặc 30.000 kilomet
+              (tùy theo điều kiện nào đến trước).
+            </p>
+            <p>
+              Với thiết kế cổ điển pha chất đường phố cá tính, động cơ mạnh mẽ
+              cùng loạt công nghệ và tiện ích hiện đại, CB350 H’ness không chỉ
+              mang đến trải nghiệm lái đầy hứng khởi mà còn khẳng định phong
+              cách riêng cho những ai yêu thích sự khác biệt. Mẫu xe hứa hẹn sẽ
+              trở thành lựa chọn mới mẻ, cuốn hút trong phân khúc, tiếp tục ghi
+              dấu ấn Honda trên hành trình chinh phục trái tim khách hàng.
+            </p>
+            <!-- Hộp nổi bật 
+            <div class="highlight-box">
               <p>
-                CB350 H’ness được tạo hình như một bản phối tinh tế giữa nét
-                hoài cổ và chất đường phố hiện đại. Khối động cơ đặt thẳng hàng
-                tạo cảm giác hầm hố, khung xe cấu trúc dạng nôi kép chắc chắn
-                bao trọn toàn bộ cụm động cơ, cùng với ống xả mạ chrome sáng
-                bóng làm nổi bật vẻ sang trọng. Cụm đèn pha dạng tròn cổ điển
-                được nâng cấp bằng công nghệ LED, đi kèm xi-nhan LED vòng lửa
-                trẻ trung, bình xăng lớn bo tròn hai bên mang nét cổ điển lịch
-                lãm. Vành đúc 14 chấu kết hợp lốp không săm to bản, nhiều rãnh
-                thoát nước không chỉ tăng tính ổn định khi vận hành mà còn góp
-                phần tôn lên phong cách mạnh mẽ, ấn tượng. Cụm đồng hồ LCD đa
-                chức năng trên CB350 H’ness mang đến sự hòa quyện giữa cổ điển
-                và hiện đại, với kim cơ hiển thị tốc độ kết hợp màn hình LCD đa
-                chức năng, cung cấp đầy đủ thông tin từ lượng xăng và giờ, vị
-                trí cấp số, mức tiêu thụ nhiên liệu trung bình, mức tiêu thụ
-                nhiên liệu theo thời gian thực, điện áp ắc quy và quãng đường đi
-                được với lượng xăng còn lại trong bình.
+                <strong>Lưu ý quan trọng:</strong> Chương trình áp dụng tại tất
+                cả 12 cửa hàng trong hệ thống HEAD Trung Hùng tại Gia Lai, Hà
+                Nội và Sơn La. Liên hệ <strong>1900 636 712</strong> để được tư
+                vấn chi tiết.
               </p>
-              <p>
-                Mẫu xe mới năm nay, còn đặt sự thoải mái của người trải nghiệm
-                lên hàng đầu với yên xe phẳng, rộng rãi, mang lại tư thế ngồi êm
-                ái trong suốt hành trình. CB350 H’ness tiếp tục chinh phục người
-                yêu xe nhờ âm thanh ống xả trầm ấm, uy lực; thiết kế miệng thoát
-                khí đường kính lớn tạo nên tiếng nổ giòn giã, đầy phấn khích.
-              </p>
-              <p>
-                <b>Màu sắc mới đầy khác biệt</b>
-              </p>
-              <p>
-                CB350 H’ness năm nay được làm mới với hai tùy chọn màu sắc độc
-                đáo: Đỏ đen và Xám Đen. Sự kết hợp hài hòa giữa gam màu mới và
-                các chi tiết mạ chrome tạo nên diện mạo vừa cổ điển, vừa hiện
-                đại. Bên cạnh đó, logo CB được thiết kế dập nổi, tinh xảo trên
-                thân xe, như một tuyên ngôn khẳng định đẳng cấp và giá trị biểu
-                tượng mà dòng xe CB đã xây dựng qua nhiều thập kỷ.
-              </p>
-              <p><b>Động cơ mạnh mẽ mang tới trải nghiệm lái hứng khởi</b></p>
-              <p>
-                CB350 H’ness mang trong mình một “trái tim” 350cc, xi-lanh đơn,
-                4 kỳ, làm mát bằng không khí, với công suất cực đại đạt 15,5 kW
-                tại 5.500 vòng/phút và mô-men xoắn 30 Nm ở 3.000 vòng/phút - cho
-                mỗi cú vặn ga, mang lại cảm giác phấn khích nhưng vẫn mượt mà,
-                dễ kiểm soát. Bên cạnh đó, trục chính của hộp số được tích hợp
-                tạ đối trọng đóng vai trò như một trục cân bằng nằm phía sau của
-                xi lanh, hoạt động kết hợp với trục cân bằng phía trước xi lanh
-                nhằm triệt tiêu rung chấn hiệu quả, từ đó mang lại khả năng vận
-                hành êm ái, tăng tốc nhẹ nhàng, sự linh hoạt tuyệt vời cho người
-                lái khi di chuyển trong nội đô cũng như những chuyến đi dài dịp
-                cuối tuần.
-              </p>
-              <p><b>Tiện ích thông minh, an toàn vượt trội</b></p>
-              <p>
-                CB350 H’ness giống như một “trợ thủ” thông minh, sẵn sàng đồng
-                hành cùng người lái trên mọi hành trình, dù là tay lái mới làm
-                quen với xe phân khối lớn hay những biker giàu kinh nghiệm.
-                Những công nghệ tiên tiến được trang bị không chỉ nâng cao độ an
-                toàn, mà còn mang lại sự tự tin và cảm giác kiểm soát tuyệt đối.
-              </p>
-              <p>
-                Mẫu xe cũng được trang bị hệ thống ly hợp hỗ trợ và chống trượt
-                hai chiều, giúp giảm hiện tượng khóa bánh sau khi về số gấp,
-                đồng thời mang lại cảm giác bóp côn nhẹ nhàng và vận hành mượt
-                mà hơn. Xe sử dụng phanh đĩa trước 310mm và sau 240mm đi kèm hệ
-                thống phanh ABS 2 kênh, đóng vai trò như “lá chắn” an toàn, hỗ
-                trợ kiểm soát khi phanh gấp. Bên cạnh đó, hệ thống kiểm soát lực
-                kéo (HSTC) duy trì độ bám giữa bánh sau và mặt đường, tự động
-                điều chỉnh công suất động cơ khi phát hiện bánh bị trượt. Hệ
-                thống cảnh báo dừng khẩn cấp (ESS) cũng được tích hợp, giúp xe
-                an toàn hơn bằng cách tự động nháy đèn xi-nhan khi xe giảm tốc
-                đột ngột, cảnh báo kịp thời cho các phương tiện phía sau.
-              </p>
-              <p>
-                Phiên bản năm nay tiếp tục được trang bị nhiều tiện ích nâng cao
-                trải nghiệm người lái. Chắn bùn trước kéo dài giúp hạn chế bắn
-                bẩn khi di chuyển trên đường ướt. Công tắc tắt động cơ tích hợp
-                nút khởi động mang lại sự tiện lợi khi dừng đỗ trong đô thị. Bên
-                cạnh đó, đèn cảnh báo nguy hiểm với tín hiệu nhấp nháy 4 xi-nhan
-                cùng lúc giúp tăng cường an toàn trong tình huống khẩn cấp hoặc
-                khi di chuyển trong điều kiện tầm nhìn kém.
-              </p>
-              <p>
-                Mẫu xe CB350 H’ness được mở bán vào ngày 12/10/2025 tại hệ thống
-                Cửa hàng CB ủy nhiệm với chế độ bảo hành 3 năm hoặc 30.000
-                kilomet (tùy theo điều kiện nào đến trước).
-              </p>
-              <p>
-                Với thiết kế cổ điển pha chất đường phố cá tính, động cơ mạnh mẽ
-                cùng loạt công nghệ và tiện ích hiện đại, CB350 H’ness không chỉ
-                mang đến trải nghiệm lái đầy hứng khởi mà còn khẳng định phong
-                cách riêng cho những ai yêu thích sự khác biệt. Mẫu xe hứa hẹn
-                sẽ trở thành lựa chọn mới mẻ, cuốn hút trong phân khúc, tiếp tục
-                ghi dấu ấn Honda trên hành trình chinh phục trái tim khách hàng.
-              </p>
-            </div>
+            </div>-->
           </div>
-          <!-- Sidebar -->
-          <div class="news-sidebar">
-            <!-- Categories Widget -->
-            <div class="sidebar-widget">
-              <h3 class="widget-title">Danh mục</h3>
-              <ul class="categories-list">
-                <li>
-                  <a href="/tintuc/tintucxemay/">
-                    Sản phẩm mới
-                    <span>chi tiết</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/tintuc/tintuckhuyenmai/">
-                    Khuyến mãi
-                    <span>chi tiết</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/tintuc/tintucsukien/">
-                    Sự kiện
-                    <span>chi tiết</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/tintuc/tintuclxat/">
-                    Hoạt động LXAT
-                    <span>chi tiết</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
+          <!-- /art-content -->
+
+          <!-- Share bar -->
+          <div class="art-share">
+            <span class="art-share-label">Chia sẻ:</span>
+            <button
+              class="share-btn fb"
+              onclick="
+                window.open(
+                  'https://www.facebook.com/sharer/sharer.php?u=' +
+                    encodeURIComponent(location.href),
+                  '_blank',
+                )
+              "
+            >
+              <i class="fab fa-facebook-f"></i> Facebook
+            </button>
+            <button class="share-btn copy" id="copyBtn">
+              <i class="fas fa-link"></i> Sao chép link
+            </button>
           </div>
+        </div>
+        <!-- /art-body -->
+      </article>
+
+      <!-- ===== SIDEBAR ===== -->
+      <aside class="sidebar">
+        <!-- CTA box -->
+        <div class="cta-box">
+          <h3>ƯU ĐÃI<br /><em>ĐẾN 5TR</em></h3>
+          <p>
+            Mua xe Honda ngay hôm nay để nhận ưu đãi độc quyền tại cửa hàng gần
+            nhất.
+          </p>
+          <a href="/cuahang/"
+            ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a
+          >
+        </div>
+
+        <!-- Categories -->
+        <div class="sw">
+          <div class="sw-title">Danh mục tin tức</div>
+          <a href="/tintuc/tintucxemay/" class="cat-item"
+            ><span><i class="fas fa-motorcycle"></i>Sản phẩm mới</span
+            ><span class="cat-badge">Chi tiết</span></a
+          >
+          <a href="/tintuc/tintuckhuyenmai/" class="cat-item"
+            ><span><i class="fas fa-gift"></i>Khuyến mãi</span
+            ><span class="cat-badge">Chi tiết</span></a
+          >
+          <a href="/tintuc/tintucsukien/" class="cat-item"
+            ><span><i class="fas fa-calendar-alt"></i>Sự kiện</span
+            ><span class="cat-badge">Chi tiết</span></a
+          >
+          <a href="/tintuc/tintuclxat/" class="cat-item"
+            ><span><i class="fas fa-shield-alt"></i>Hoạt động LXAT</span
+            ><span class="cat-badge">Chi tiết</span></a
+          >
+        </div>
+
+        <!-- ✏️ Bài viết liên quan — thêm/xoá tuỳ ý -->
+        <div class="sw">
+          <div class="sw-title">Bài viết liên quan</div>
+
+          <a
+            href="/tintuc/tintucxemay/tintucxe/trang1/CB35012102025.html"
+            class="rp-item"
+          >
+            <div class="rp-thumb">
+              <img
+                src="/sanphamxemay/CB350Hness/CB350Hness/picture/1.jpg"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="rp-info">
+              <span class="rp-name">Honda CB350 H'ness</span>
+              <span class="rp-date"
+                ><i class="far fa-calendar"></i>13/09/2025</span
+              >
+            </div>
+          </a>
+
+          <a
+            href="/tintuc/tintucxemay/tintucxe/trang1/FUTURE28102025.html"
+            class="rp-item"
+          >
+            <div class="rp-thumb">
+              <img
+                src="/sanphamxemay/Future/Future/picture/1.png"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="rp-info">
+              <span class="rp-name"
+                >Future 125 FI 2026 - Đậm Phong Thái, Lái Vững Bền</span
+              >
+              <span class="rp-date"
+                ><i class="far fa-calendar"></i>28/10/2025</span
+              >
+            </div>
+          </a>
+
+          <a
+            href="/tintuc/tintucxemay/tintucxe/trang1/WINNERR13092025.html"
+            class="rp-item"
+          >
+            <div class="rp-thumb">
+              <img
+                src="/sanphamxemay/WinnerR/Winner R/picture/1.jpg"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="rp-info">
+              <span class="rp-name"
+                >Honda Winner R - Chiến Binh hoàn toàn mới</span
+              >
+              <span class="rp-date"
+                ><i class="far fa-calendar"></i>13/09/2025</span
+              >
+            </div>
+          </a>
+        </div>
+      </aside>
+    </div>
+    <!-- /article-wrap -->
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="ft-grid">
+        <div>
+          <div class="ft-logo-row">
+            <img
+              src="/sanphamxemay/image/banner/Logo_HEAD.png"
+              alt="HEAD"
+              class="ft-logo-img"
+            />
+            <span class="ft-brand">HỆ THỐNG HEAD <span>TRUNG HÙNG</span></span>
+          </div>
+          <p class="ft-desc">
+            Công Ty TNHH Thương Mại Và Dịch Vụ Hùng Mạnh — đại lý Honda chính
+            hãng tại Gia Lai, Hà Nội và Sơn La.
+          </p>
+          <div class="ft-socs">
+            <a
+              href="https://www.facebook.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@HethongHEADTrungHung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.tiktok.com/@hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-tiktok"></i
+            ></a>
+          </div>
+        </div>
+        <div class="ft-col">
+          <h5>Sản Phẩm</h5>
+          <ul>
+            <li><a href="/sanphamxemay/?category=xe-ga">Xe Ga</a></li>
+            <li><a href="/sanphamxemay/?category=xe-so">Xe Số</a></li>
+            <li><a href="/sanphamxemay/?category=xe-con-tay">Xe Côn Tay</a></li>
+            <li><a href="/sanphamxemay/?category=pkl">Phân Khối Lớn</a></li>
+            <li><a href="/sanphamxemay/?category=xe-dien">Xe Điện</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Dịch Vụ</h5>
+          <ul>
+            <li><a href="/dichvu/baoduong/">Bảo Dưỡng</a></li>
+            <li><a href="/dichvu/baohanh/">Bảo Hành</a></li>
+            <li><a href="/dichvu/sanphamphutung/">Phụ Tùng</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Liên Hệ</h5>
+          <ul>
+            <li><a href="tel:1900636712">1900 636 712</a></li>
+            <li><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a></li>
+            <li><a href="/cuahang/">Hệ thống cửa hàng</a></li>
+          </ul>
         </div>
       </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-links">
-            <h4>Liên Kết Nhanh</h4>
-            <ul>
-              <li><a href="/Trangchu/">Trang đầu</a></li>
-              <li><a href="/sanpham/">Sản phẩm</a></li>
-              <li><a href="/tintuc/">Tin tức</a></li>
-              <li><a href="/dichvu/">Dịch vụ</a></li>
-              <li><a href="/lienhe/">Liên hệ</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-social">
-            <h4>Theo Dõi Chúng Tôi</h4>
-            <div class="social-icons">
-              <a
-                href="https://www.facebook.com/hethongheadtrunghung"
-                aria-label="Facebook"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a
-                href="https://www.youtube.com/@HethongHEADTrungHung"
-                aria-label="YouTube"
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a
-                href="https://www.instagram.com/hethongheadtrunghung"
-                aria-label="Instagram"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a
-                href="https://www.tiktok.com/@hethongheadtrunghung"
-                aria-label="TikTok"
-                ><i class="fab fa-tiktok"></i
-              ></a>
-            </div>
-            <p>Đăng ký nhận bản tin</p>
-            <form class="newsletter-form">
-              <input type="email" placeholder="Nhập email của bạn" />
-              <button type="submit" aria-label="Subscribe">
-                <i class="fas fa-paper-plane"></i>
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <p>&copy; 2025 HEAD Trung Hung. All Rights Reserved.</p>
-          <div class="legal-links">
-            <a href="#">Chính sách bảo mật</a>
-            <a href="#">Điều khoản sử dụng</a>
-          </div>
+      <div class="ft-btm">
+        <p>© 2025 HỆ THỐNG HEAD TRUNG HÙNG. Bảo lưu mọi quyền.</p>
+        <div class="ft-badge">
+          <i class="fas fa-certificate"></i> Honda Authorised Dealer
         </div>
       </div>
     </footer>
 
-    <!-- Messenger Chat Button -->
     <a
       href="https://m.me/hethongheadtrunghung"
-      class="messenger-chat"
+      class="messenger-float"
       target="_blank"
-    >
-      <i class="fab fa-facebook-messenger"></i>
-    </a>
+      rel="noopener"
+      aria-label="Messenger"
+      ><i class="fab fa-facebook-messenger"></i
+    ></a>
+    <a href="#" class="back-top" id="backTop" aria-label="Lên đầu"
+      ><i class="fas fa-arrow-up"></i
+    ></a>
 
-    <!-- Back to Top -->
-    <a href="#" class="back-to-top" aria-label="Back to top">
-      <i class="fas fa-arrow-up"></i>
-    </a>
-
-    <!-- JavaScript Libraries -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Preloader
-        const preloader = document.querySelector(".preloader");
+      /* Header lift */
+      const hdr = document.getElementById("siteHeader");
+      window.addEventListener(
+        "scroll",
+        () => {
+          hdr.classList.toggle("lifted", window.scrollY > 40);
+          document
+            .getElementById("backTop")
+            .classList.toggle("on", window.scrollY > 400);
+        },
+        { passive: true },
+      );
 
-        window.addEventListener("load", function () {
-          setTimeout(function () {
-            preloader.classList.add("fade-out");
-            setTimeout(function () {
-              preloader.style.display = "none";
-            }, 500);
-          }, 1000);
-        });
-
-        // Mobile Menu Toggle
-        const menuToggle = document.querySelector(".menu-toggle");
-        const mainNav = document.querySelector(".main-nav");
-        const bars = document.querySelectorAll(".bar");
-
-        menuToggle.addEventListener("click", function () {
-          this.classList.toggle("active");
-          mainNav.classList.toggle("active");
-
-          // Change menu icon color when scrolled
-          if (window.scrollY > 100) {
-            bars.forEach((bar) => {
-              bar.style.backgroundColor = this.classList.contains("active")
-                ? "black"
-                : "var(--dark-color)";
-            });
-          }
-        });
-
-        // Close mobile menu when clicking a link
-        const navLinks = document.querySelectorAll(".main-nav a");
-        navLinks.forEach((link) => {
-          link.addEventListener("click", function () {
-            if (mainNav.classList.contains("active")) {
-              menuToggle.classList.remove("active");
-              mainNav.classList.remove("active");
-            }
-          });
-        });
-
-        // Header Scroll Effect
-        const header = document.querySelector(".main-header");
-
-        window.addEventListener("scroll", function () {
-          if (window.scrollY > 100) {
-            header.classList.add("scrolled");
-          } else {
-            header.classList.remove("scrolled");
-          }
-
-          // Back to Top Button
-          const backToTop = document.querySelector(".back-to-top");
-          if (window.scrollY > 300) {
-            backToTop.classList.add("active");
-          } else {
-            backToTop.classList.remove("active");
-          }
-        });
-
-        // Smooth Scrolling for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute("href");
-            if (targetId === "#") return;
-
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              const headerHeight =
-                document.querySelector(".main-header").offsetHeight;
-              const targetPosition =
-                targetElement.getBoundingClientRect().top +
-                window.pageYOffset -
-                headerHeight;
-
-              window.scrollTo({
-                top: targetPosition,
-                behavior: "smooth",
-              });
-            }
-          });
-        });
-
-        // Newsletter subscription
-        function initNewsletter() {
-          const newsletterForm = document.querySelector(".newsletter-form");
-
-          newsletterForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            const emailInput = this.querySelector("input");
-
-            if (emailInput.value) {
-              alert("Cảm ơn bạn đã đăng ký nhận bản tin!");
-              emailInput.value = "";
-            }
-          });
-        }
-
-        // Initialize components
-        initNewsletter();
-
-        // Initialize AOS (Animate On Scroll)
-        AOS.init({
-          duration: 800,
-          easing: "ease-in-out",
-          once: true,
-          offset: 100,
+      /* Copy link */
+      document.getElementById("copyBtn").addEventListener("click", function () {
+        navigator.clipboard.writeText(location.href).then(() => {
+          this.innerHTML = '<i class="fas fa-check"></i> Đã sao chép!';
+          setTimeout(() => {
+            this.innerHTML = '<i class="fas fa-link"></i> Sao chép link';
+          }, 2000);
         });
       });
     </script>
