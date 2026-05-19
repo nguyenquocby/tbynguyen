@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hoạt động LXAT</title>
+    <title>Hoạt Động LXAT – HỆ THỐNG HEAD TRUNG HÙNG</title>
     <link
       rel="icon"
       href="/sanphamxemay/image/banner/Logo_HEAD.png"
@@ -14,1222 +14,2029 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+
     <style>
-      /* Reset & Base Styles */
-      * {
+      /* ============================================================ TOKENS */
+      :root {
+        --red: #cc0000;
+        --red-dark: #990000;
+        --red-glow: rgba(204, 0, 0, 0.28);
+        --red-soft: rgba(204, 0, 0, 0.07);
+        --ink: #0a0a0b;
+        --ink2: #1a1a1c;
+        --paper: #f5f3f0;
+        --paper2: #eceae6;
+        --white: #ffffff;
+        --border: rgba(10, 10, 11, 0.08);
+        --border2: rgba(10, 10, 11, 0.14);
+        --muted: #7a7672;
+        --green: #1a7a3c;
+        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --snap: cubic-bezier(0.16, 1, 0.3, 1);
+        --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
-      :root {
-        --primary-color: #e40521;
-        --secondary-color: #333;
-        --light-color: #f8f9fa;
-        --dark-color: #212529;
-        --gray-color: #6c757d;
-        --light-gray: #e9ecef;
-        --transition: all 0.3s ease;
+      html {
+        font-size: 62.5%;
+        scroll-behavior: smooth;
       }
-
       body {
-        font-family: "Montserrat", sans-serif;
-        line-height: 1.6;
-        color: var(--secondary-color);
+        font-family: "Barlow", sans-serif;
+        background: var(--paper);
+        color: var(--ink);
         overflow-x: hidden;
-        background-color: #f5f5f5;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
       }
-
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 15px;
-      }
-
       img {
         max-width: 100%;
-        height: auto;
-        object-fit: cover;
+        display: block;
       }
-
       a {
         text-decoration: none;
         color: inherit;
-        transition: var(--transition);
       }
-
       ul {
         list-style: none;
       }
-
-      .btn {
-        display: inline-block;
-        padding: 10px 25px;
-        border-radius: 25px;
-        font-weight: 500;
-        text-align: center;
-        transition: var(--transition);
-        cursor: pointer;
-        border: 2px solid transparent;
-      }
-
-      .btn-primary {
-        background-color: var(--primary-color);
-        color: white;
-        border-color: var(--primary-color);
-      }
-
-      .btn-primary:hover {
-        background-color: #c0041d;
-        border-color: #c0041d;
-      }
-
-      .btn-outline {
-        background-color: transparent;
-        color: var(--primary-color);
-        border-color: var(--primary-color);
-      }
-
-      .btn-outline:hover {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 50px;
-      }
-
-      .section-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: var(--dark-color);
-      }
-
-      .section-subtitle {
-        font-size: 1.1rem;
-        color: var(--gray-color);
-        margin-bottom: 20px;
-      }
-
-      .divider {
-        width: 80px;
-        height: 3px;
-        background-color: var(--primary-color);
-        margin: 0 auto;
-      }
-
-      /* Header */
-      .main-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 20px 0;
-        background-color: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        transition: var(--transition);
-      }
-
-      .main-header.scrolled {
-        padding: 15px 0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      }
-
-      .main-header .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .logo img {
-        height: 40px;
-      }
-
-      /* Mobile Menu Toggle */
-      .menu-toggle {
-        display: none;
-        width: 30px;
-        height: 24px;
-        position: relative;
-        cursor: pointer;
-        z-index: 1001;
-      }
-
-      .menu-toggle .bar {
-        position: absolute;
-        width: 100%;
-        height: 3px;
-        background-color: var(--dark-color);
-        transition: all 0.3s ease;
-        left: 0;
-      }
-
-      .menu-toggle .bar:nth-child(1) {
-        top: 0;
-      }
-
-      .menu-toggle .bar:nth-child(2) {
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      .menu-toggle .bar:nth-child(3) {
-        bottom: 0;
-      }
-
-      .menu-toggle.active .bar:nth-child(1) {
-        top: 50%;
-        transform: translateY(-50%) rotate(45deg);
-        background-color: var(--primary-color);
-      }
-
-      .menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-      }
-
-      .menu-toggle.active .bar:nth-child(3) {
-        bottom: 50%;
-        transform: translateY(50%) rotate(-45deg);
-        background-color: var(--primary-color);
-      }
-
-      .main-nav ul {
-        display: flex;
-      }
-
-      .main-nav li {
-        margin-left: 30px;
-      }
-
-      .main-nav a {
-        font-weight: 500;
-        color: var(--dark-color);
-        position: relative;
-      }
-
-      .main-nav a:after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: var(--primary-color);
-        transition: var(--transition);
-      }
-
-      .main-nav a:hover:after,
-      .main-nav a.active:after {
-        width: 100%;
-      }
-
-      .main-nav a.active {
-        color: var(--primary-color);
-        font-weight: 600;
-      }
-
-      /* Hero Banner */
-      .news-hero {
-        height: 40vh;
-        min-height: 250px;
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-          url("image/COVER.png") no-repeat center center/cover;
-        display: flex;
-        align-items: center;
-        margin-top: 80px;
-        color: white;
-        text-align: center;
-      }
-
-      .hero-content {
-        width: 100%;
-      }
-
-      .hero-content h1 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-      }
-
-      /* News Grid */
-      .news-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-        gap: 30px;
-        margin: 40px 0 50px;
-      }
-
-      .news-card {
-        background-color: white;
-        border-radius: 25px;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        transition: var(--transition);
-      }
-
-      .news-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      }
-
-      .news-image {
-        height: 200px;
-        overflow: hidden;
-      }
-
-      .news-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: var(--transition);
-      }
-
-      .news-card:hover .news-image img {
-        transform: scale(1.05);
-      }
-
-      .news-content {
-        padding: 20px;
-      }
-
-      .news-meta {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-        font-size: 0.9rem;
-        color: var(--gray-color);
-      }
-
-      .news-category {
-        display: inline-block;
-        padding: 3px 10px;
-        background-color: var(--primary-color);
-        color: white;
-        border-radius: 25px;
-        font-size: 0.8rem;
-        margin-right: 15px;
-      }
-
-      .news-date {
-        display: flex;
-        align-items: center;
-      }
-
-      .news-date i {
-        margin-right: 5px;
-      }
-
-      .news-title {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-        color: var(--dark-color);
-      }
-
-      .news-excerpt {
-        color: var(--gray-color);
-        margin-bottom: 15px;
-        font-size: 0.95rem;
-        line-height: 1.6;
-      }
-
-      .news-full-content {
-        display: none;
-        color: var(--gray-color);
-        margin-bottom: 15px;
-        font-size: 0.95rem;
-        line-height: 1.6;
-      }
-
-      .read-more {
-        color: var(--primary-color);
-        font-weight: 500;
-        display: inline-flex;
-        align-items: center;
-        cursor: pointer;
-      }
-
-      .read-more i {
-        margin-left: 5px;
-        transition: var(--transition);
-      }
-
-      .read-more:hover i {
-        transform: translateX(3px);
-      }
-
-      /* Pagination */
-      .pagination {
-        display: flex;
-        justify-content: center;
-        margin: 50px 0;
-      }
-
-      .page-numbers {
-        display: flex;
-        gap: 10px;
-      }
-
-      .page-numbers a {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 25px;
-        background-color: white;
-        color: var(--dark-color);
-        font-weight: 500;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        transition: var(--transition);
-      }
-
-      .page-numbers a:hover,
-      .page-numbers a.active {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      .page-numbers a i {
-        font-size: 0.8rem;
-      }
-
-      /* Newsletter */
-      .newsletter-section {
-        padding: 60px 0;
-        background-color: var(--primary-color);
-        color: white;
-        text-align: center;
-      }
-
-      .newsletter-form {
-        max-width: 600px;
-        margin: 0 auto;
-        display: flex;
-      }
-
-      .newsletter-form input {
-        flex: 1;
-        padding: 12px 15px;
+      button {
         border: none;
-        border-radius: 4px 0 0 4px;
-        font-size: 1rem;
+        background: none;
+        cursor: pointer;
+        font-family: inherit;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--red);
+        border-radius: 2px;
       }
 
-      .newsletter-form button {
-        border-radius: 0 4px 4px 0;
-        border: none;
-      }
-
-      /* Footer */
-      .main-footer {
-        background-color: var(--dark-color);
-        color: white;
-        padding: 60px 0 20px;
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 30px;
-        margin-bottom: 40px;
-      }
-
-      .footer-col h3 {
-        font-size: 1.2rem;
-        margin-bottom: 20px;
-        position: relative;
-        padding-bottom: 10px;
-      }
-
-      .footer-col h3:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 40px;
-        height: 2px;
-        background-color: var(--primary-color);
-      }
-
-      .footer-logo {
-        margin-bottom: 20px;
-        display: block;
-        max-width: 150px;
-      }
-
-      .social-links {
-        display: flex;
-        gap: 15px;
-      }
-
-      .social-links a {
-        width: 35px;
-        height: 35px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: var(--transition);
-      }
-
-      .social-links a:hover {
-        background-color: var(--primary-color);
-        transform: translateY(-3px);
-      }
-
-      .footer-col ul li {
-        margin-bottom: 10px;
-      }
-
-      .footer-col ul a {
-        color: #adb5bd;
-        transition: var(--transition);
-      }
-
-      .footer-col ul a:hover {
-        color: var(--primary-color);
-        padding-left: 5px;
-      }
-
-      .contact-info li {
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-      }
-
-      .contact-info i {
-        margin-right: 10px;
-        color: var(--primary-color);
-        width: 20px;
-        text-align: center;
-      }
-
-      .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 20px 0;
-        text-align: center;
-        color: #adb5bd;
-        font-size: 0.9rem;
-      }
-
-      /* Back to Top */
-      .back-to-top {
+      /* ============================================================ PRELOADER */
+      .preloader {
         position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background-color: var(--primary-color);
-        color: white;
-        border-radius: 50%;
+        inset: 0;
+        z-index: 9000;
+        background: var(--ink);
         display: flex;
-        justify-content: center;
         align-items: center;
-        font-size: 1.2rem;
+        justify-content: center;
+        flex-direction: column;
+        gap: 2.4rem;
+        transition:
+          opacity 0.7s var(--ease),
+          visibility 0.7s;
+      }
+      .preloader.out {
         opacity: 0;
         visibility: hidden;
-        transition: var(--transition);
-        z-index: 999;
+      }
+      .pl-logo {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        animation: plFade 0.6s var(--snap) 0.2s both;
+      }
+      .pl-logo img {
+        width: 44px;
+        height: 44px;
+        object-fit: contain;
+      }
+      .pl-brand {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 1;
+      }
+      .pl-brand span {
+        color: var(--red);
+      }
+      .pl-brand small {
+        display: block;
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.3);
+        margin-top: 0.3rem;
+      }
+      .pl-dots {
+        display: flex;
+        gap: 1rem;
+      }
+      .pl-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--red);
+        border-radius: 50%;
+        animation: plBounce 1.2s ease-in-out infinite;
+      }
+      .pl-dot:nth-child(2) {
+        animation-delay: 0.15s;
+      }
+      .pl-dot:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .pl-dot:nth-child(4) {
+        animation-delay: 0.45s;
+      }
+      @keyframes plFade {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes plBounce {
+        0%,
+        100% {
+          transform: scale(0.7);
+          opacity: 0.4;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
       }
 
-      .back-to-top.active {
+      /* ============================================================ TOP BAR */
+      .top-bar {
+        background: var(--ink);
+        padding: 0.9rem 0;
+        transition: transform 0.35s var(--ease);
+      }
+      .top-bar.hidden {
+        transform: translateY(-100%);
+      }
+      .tb-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .tb-links {
+        display: flex;
+        gap: 2.4rem;
+      }
+      .tb-links a {
+        font-size: 1.2rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        color: rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: color 0.2s;
+      }
+      .tb-links a:hover {
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .tb-links a i {
+        font-size: 0.95rem;
+        color: var(--red);
+      }
+      .tb-contact {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+      .tb-contact a {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: color 0.2s;
+      }
+      .tb-contact a:hover {
+        color: #fff;
+      }
+      .tb-contact i {
+        color: var(--red);
+        font-size: 0.95rem;
+      }
+      .tb-div {
+        width: 1px;
+        height: 12px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* ============================================================ HEADER */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 500;
+        background: rgba(245, 243, 240, 0.96);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border-bottom: 1px solid var(--border);
+        transition: all 0.4s var(--ease);
+      }
+      .site-header.lifted {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow:
+          0 1px 0 var(--border),
+          0 4px 24px rgba(10, 10, 11, 0.07);
+      }
+      .hdr-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+      }
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        flex-shrink: 0;
+      }
+      .logo-img-wrap {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+        transition: transform 0.4s var(--spring);
+      }
+      .logo-img-wrap:hover {
+        transform: rotate(-5deg) scale(1.08);
+      }
+      .logo-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .logo-text-wrap {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+      .logo-main {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 2rem;
+        letter-spacing: 0.1em;
+        color: var(--ink);
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .logo-main span {
+        color: var(--red);
+      }
+      .logo-sub {
+        font-family: "Barlow", sans-serif;
+        font-size: 0.92rem;
+        font-weight: 500;
+        letter-spacing: 0.07em;
+        color: var(--muted);
+        margin-top: 0.3rem;
+        text-transform: uppercase;
+      }
+      .main-nav {
+        display: flex;
+        align-items: center;
+      }
+      .main-nav > li {
+        position: relative;
+      }
+      .main-nav > li > a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.55rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        padding: 0 1.6rem;
+        height: 72px;
+        transition: color 0.22s;
+        position: relative;
+      }
+      .main-nav > li > a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 1.6rem;
+        right: 1.6rem;
+        height: 2px;
+        background: var(--red);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s var(--ease);
+      }
+      .main-nav > li > a:hover,
+      .main-nav > li > a.active {
+        color: var(--red);
+      }
+      .main-nav > li > a:hover::after,
+      .main-nav > li > a.active::after {
+        transform: scaleX(1);
+      }
+      .hdr-cta {
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.9rem 2.4rem;
+        border-radius: 7px;
+        margin-left: 1.6rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        transition: all 0.3s;
+        flex-shrink: 0;
+      }
+      .hdr-cta:hover {
+        background: var(--red-dark);
+        box-shadow: 0 6px 24px var(--red-glow);
+        transform: translateY(-2px);
+      }
+      .ham {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 6px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .ham:hover {
+        background: var(--paper2);
+      }
+      .ham span {
+        width: 22px;
+        height: 2px;
+        background: var(--ink);
+        transition: all 0.32s var(--ease);
+        border-radius: 1px;
+        display: block;
+      }
+      .ham.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .ham.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .ham.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .draw-ov {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 10, 11, 0.6);
+        z-index: 498;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.32s;
+        backdrop-filter: blur(6px);
+      }
+      .draw-ov.on {
         opacity: 1;
         visibility: visible;
       }
-
-      .back-to-top:hover {
-        background-color: #c0041d;
-        transform: translateY(-5px);
+      .site-draw {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: min(360px, 92vw);
+        height: 100%;
+        background: var(--white);
+        z-index: 499;
+        padding: 7.5rem 3rem 3rem;
+        transition: right 0.38s var(--snap);
+        border-left: 1px solid var(--border);
+        overflow-y: auto;
+      }
+      .site-draw.on {
+        right: 0;
+      }
+      .draw-x {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        width: 40px;
+        height: 40px;
+        background: var(--paper2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--muted);
+        transition: all 0.2s;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        z-index: 10;
+      }
+      .draw-x:hover {
+        background: var(--red);
+        color: #fff;
+        transform: rotate(90deg);
+      }
+      .draw-nav {
+        display: flex;
+        flex-direction: column;
+      }
+      .draw-nav > li {
+        border-bottom: 1px solid var(--border);
+      }
+      .draw-nav > li > a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink);
+        padding: 1.6rem 0;
+        transition: color 0.2s;
+      }
+      .draw-nav > li > a:hover,
+      .draw-nav > li > a.active {
+        color: var(--red);
+      }
+      .draw-cta {
+        background: var(--red);
+        color: #fff;
+        text-align: center;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.5rem 2rem;
+        border-radius: 10px;
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        transition: background 0.3s;
+      }
+      .draw-cta:hover {
+        background: var(--red-dark);
       }
 
-      /* Responsive */
+      /* ============================================================ PAGE HERO */
+      .page-hero {
+        background: var(--ink);
+        position: relative;
+        overflow: hidden;
+        padding: 8rem 4rem 7rem;
+      }
+      .page-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 70% 80% at 80% 50%,
+            rgba(204, 0, 0, 0.14),
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 50% 60% at 10% 80%,
+            rgba(204, 0, 0, 0.07),
+            transparent
+          );
+        pointer-events: none;
+      }
+      .ph-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: 64px 64px;
+        mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          black,
+          transparent
+        );
+        pointer-events: none;
+      }
+      .page-hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 5px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          var(--red),
+          transparent
+        );
+        opacity: 0.7;
+      }
+      .ph-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .ph-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 1.2rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 1.8rem;
+      }
+      .ph-eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: var(--red);
+      }
+      .ph-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(5.5rem, 9vw, 13rem);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 0.85;
+        margin-bottom: 2rem;
+      }
+      .ph-title em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .ph-sub {
+        font-size: 1.65rem;
+        color: rgba(255, 255, 255, 0.42);
+        max-width: 580px;
+        line-height: 1.7;
+        margin-bottom: 4.5rem;
+      }
+      .ph-stats {
+        display: flex;
+        gap: 4rem;
+        flex-wrap: wrap;
+      }
+      .ph-stat-val {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 4.4rem;
+        font-weight: 900;
+        color: #fff;
+        letter-spacing: 0.04em;
+        line-height: 1;
+        display: block;
+      }
+      .ph-stat-val em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .ph-stat-lbl {
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.3);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 500;
+        display: block;
+        margin-top: 0.4rem;
+      }
+
+      /* ============================================================ BREADCRUMB */
+      .breadcrumb {
+        background: var(--paper2);
+        border-bottom: 1px solid var(--border);
+        padding: 1.4rem 0;
+      }
+      .breadcrumb-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-size: 1.3rem;
+        color: var(--muted);
+      }
+      .breadcrumb-inner a {
+        color: var(--red);
+        transition: opacity 0.2s;
+      }
+      .breadcrumb-inner a:hover {
+        opacity: 0.75;
+      }
+      .breadcrumb-inner i {
+        font-size: 0.9rem;
+      }
+      .breadcrumb-inner span {
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      /* ============================================================ FILTER BAR */
+      .filter-bar {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 1.8rem 0;
+        position: sticky;
+        top: 72px;
+        z-index: 400;
+      }
+      .filter-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 4rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .filter-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .filter-btn {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.7rem 1.8rem;
+        border-radius: 8px;
+        border: 1.5px solid var(--border2);
+        background: var(--white);
+        color: var(--muted);
+        transition: all 0.22s;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .filter-btn:hover {
+        border-color: var(--red);
+        color: var(--red);
+      }
+      .filter-btn.active {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+      }
+      .count-badge {
+        font-size: 1.3rem;
+        color: var(--muted);
+        background: var(--paper2);
+        padding: 0.6rem 1.4rem;
+        border-radius: 20px;
+        font-weight: 500;
+        margin-left: auto;
+        white-space: nowrap;
+      }
+      .count-badge strong {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      /* ============================================================ MAIN SECTION */
+      .main-section {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 5rem 4rem 8rem;
+      }
+
+      /* ============================================================ NEWS GRID */
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 2.4rem;
+        margin-bottom: 5rem;
+      }
+
+      /* ============================================================ NEWS CARD */
+      .news-card {
+        background: var(--white);
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        transition: all 0.4s var(--ease);
+        display: flex;
+        flex-direction: column;
+      }
+      .news-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 22px 56px rgba(10, 10, 11, 0.1);
+        border-color: rgba(204, 0, 0, 0.2);
+      }
+      .nc-img {
+        height: 210px;
+        overflow: hidden;
+        background: var(--paper2);
+        position: relative;
+        flex-shrink: 0;
+      }
+      .nc-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.65s var(--ease);
+      }
+      .news-card:hover .nc-img img {
+        transform: scale(1.07);
+      }
+      .nc-cat {
+        position: absolute;
+        top: 1.4rem;
+        left: 1.4rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.4rem 1.2rem;
+        border-radius: 20px;
+        color: #fff;
+      }
+      /* Category colors */
+      .cat-tieu-hoc {
+        background: #1a6bcc;
+      }
+      .cat-thcs {
+        background: #1a7a3c;
+      }
+      .cat-thpt {
+        background: #7a3b1a;
+      }
+      .cat-doan {
+        background: #5028a0;
+      }
+      .cat-cac-cap {
+        background: #cc0000;
+      }
+
+      .nc-body {
+        padding: 2.2rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .nc-meta {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        font-size: 1.2rem;
+        color: var(--muted);
+        margin-bottom: 1.2rem;
+        flex-wrap: wrap;
+      }
+      .nc-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .nc-meta i {
+        color: var(--red);
+        font-size: 1.05rem;
+      }
+      .nc-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.85rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        line-height: 1.2;
+        color: var(--ink);
+        margin-bottom: 1.2rem;
+        transition: color 0.2s;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .news-card:hover .nc-title {
+        color: var(--red);
+      }
+      .nc-excerpt {
+        font-size: 1.35rem;
+        color: var(--muted);
+        line-height: 1.7;
+        flex: 1;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .nc-full {
+        font-size: 1.35rem;
+        color: var(--muted);
+        line-height: 1.7;
+        display: none;
+        margin-top: 1rem;
+      }
+      .nc-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-top: 1.6rem;
+        cursor: pointer;
+        transition: gap 0.2s;
+      }
+      .nc-toggle:hover {
+        gap: 1rem;
+      }
+      .nc-toggle i {
+        font-size: 1.1rem;
+        transition: transform 0.3s;
+      }
+      .nc-toggle.expanded i {
+        transform: rotate(180deg);
+      }
+
+      /* ============================================================ PAGINATION */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+      }
+      .pg-btn,
+      .pg-num {
+        width: 46px;
+        height: 46px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.7rem;
+        font-weight: 700;
+        border: 1.5px solid var(--border2);
+        background: var(--white);
+        color: var(--ink2);
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .pg-btn:hover,
+      .pg-num:hover {
+        border-color: var(--red);
+        color: var(--red);
+      }
+      .pg-num.active {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+      }
+      .pg-btn:disabled {
+        opacity: 0.3;
+        pointer-events: none;
+      }
+
+      /* ============================================================ FOOTER */
+      footer {
+        background: #060606;
+        padding: 7rem 4rem 3rem;
+        border-top: 3px solid var(--red);
+      }
+      .ft-top {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2.2fr 1fr 1fr 1fr;
+        gap: 5rem;
+        margin-bottom: 5rem;
+        padding-bottom: 5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .ft-logo-row {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      .ft-logo-img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        opacity: 0.9;
+      }
+      .ft-brand-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.2rem;
+        letter-spacing: 0.1em;
+        color: #fff;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+      .ft-brand-name span {
+        color: var(--red);
+      }
+      .ft-brand-tag {
+        font-size: 1.35rem;
+        color: rgba(255, 255, 255, 0.22);
+        margin-bottom: 2.8rem;
+        line-height: 1.75;
+        max-width: 290px;
+      }
+      .ft-socials {
+        display: flex;
+        gap: 0.9rem;
+      }
+      .ft-soc {
+        width: 40px;
+        height: 40px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 1.4rem;
+        transition: all 0.26s;
+      }
+      .ft-soc:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+        transform: translateY(-3px);
+      }
+      .ft-col h5 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        color: rgba(255, 255, 255, 0.22);
+        text-transform: uppercase;
+        margin-bottom: 2.2rem;
+      }
+      .ft-col ul li {
+        margin-bottom: 1.3rem;
+      }
+      .ft-col a {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        transition: color 0.2s;
+      }
+      .ft-col a:hover {
+        color: #fff;
+      }
+      .ft-btm {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .ft-btm p {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.16);
+      }
+      .ft-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.16);
+      }
+      .ft-badge i {
+        color: var(--red);
+      }
+
+      .mob-nav {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(245, 243, 240, 0.97);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid var(--border);
+        z-index: 400;
+        padding: 0.6rem 0;
+      }
+      .mnb {
+        display: flex;
+        justify-content: space-around;
+      }
+      .mnb-a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        transition: color 0.2s;
+      }
+      .mnb-a.on,
+      .mnb-a:hover {
+        color: var(--red);
+      }
+      .mnb-a i {
+        font-size: 1.9rem;
+      }
+      .mnb-a span {
+        font-size: 0.92rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+      .messenger-float {
+        position: fixed;
+        bottom: 9.5rem;
+        right: 2.5rem;
+        width: 52px;
+        height: 52px;
+        background: #0084ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.2rem;
+        color: #fff;
+        z-index: 300;
+        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.32);
+        animation: mpulse 2.5s ease-in-out infinite;
+        transition: transform 0.3s;
+      }
+      .messenger-float:hover {
+        transform: scale(1.12);
+      }
+      @keyframes mpulse {
+        0%,
+        100% {
+          box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
+        }
+        50% {
+          box-shadow: 0 4px 38px rgba(0, 132, 255, 0.58);
+        }
+      }
+      .back-top {
+        position: fixed;
+        bottom: 2.5rem;
+        right: 2.5rem;
+        width: 46px;
+        height: 46px;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        color: #fff;
+        z-index: 300;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+      }
+      .back-top.on {
+        opacity: 1;
+        visibility: visible;
+      }
+      .back-top:hover {
+        background: var(--red-dark);
+        transform: translateY(-3px);
+      }
+      .rv {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ============================================================ RESPONSIVE */
       @media (max-width: 992px) {
-        .section-title {
-          font-size: 2rem;
+        .main-nav,
+        .hdr-cta {
+          display: none;
         }
-
-        .hero-content h1 {
-          font-size: 2rem;
+        .ham {
+          display: flex;
         }
-
-        .news-grid {
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        .hdr-inner {
+          padding: 0 2.5rem;
+        }
+        .tb-inner {
+          padding: 0 2.5rem;
+        }
+        .filter-inner {
+          padding: 0 2.5rem;
+        }
+        .count-badge {
+          margin-left: 0;
         }
       }
-
       @media (max-width: 768px) {
-        .menu-toggle {
+        .top-bar {
+          display: none;
+        }
+        .page-hero {
+          padding: 5rem 2.5rem 4rem;
+        }
+        .breadcrumb-inner {
+          padding: 0 2.5rem;
+        }
+        .main-section {
+          padding: 4rem 2.5rem 6rem;
+        }
+        .news-grid {
+          grid-template-columns: 1fr;
+        }
+        .ft-top {
+          grid-template-columns: 1fr 1fr;
+          gap: 3rem;
+        }
+        .ft-btm {
+          flex-direction: column;
+          text-align: center;
+        }
+        footer {
+          padding-bottom: 8rem;
+        }
+        .mob-nav {
           display: block;
         }
-
-        .main-nav {
-          position: fixed;
-          top: 0;
-          right: -100%;
-          width: 80%;
-          max-width: 300px;
-          height: 100vh;
-          background-color: white;
-          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-          transition: var(--transition);
-          padding: 80px 20px 20px;
-          overflow-y: auto;
-        }
-
-        .main-nav.active {
-          right: 0;
-        }
-
-        .main-nav ul {
-          flex-direction: column;
-        }
-
-        .main-nav li {
-          margin: 15px 0;
-        }
-
-        .main-nav a {
-          font-size: 1.1rem;
-        }
-
-        .newsletter-form {
-          flex-direction: column;
-        }
-
-        .newsletter-form input,
-        .newsletter-form button {
-          width: 100%;
-          border-radius: 4px;
-        }
-
-        .newsletter-form button {
-          margin-top: 10px;
-        }
       }
-
-      @media (max-width: 576px) {
-        .news-hero {
-          min-height: 200px;
+      @media (max-width: 480px) {
+        .ph-title {
+          font-size: clamp(5rem, 17vw, 8rem);
         }
-
-        .hero-content h1 {
-          font-size: 1.8rem;
+        .ph-stats {
+          gap: 2.5rem;
         }
-
-        .section-title {
-          font-size: 1.8rem;
-        }
-
-        .news-grid {
+        .ft-top {
           grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Header -->
-    <header class="main-header">
-      <div class="container">
-        <a href="/Trangchu/" class="logo">
-          <img
-            src="/sanphamxemay/image/banner/Logo_HEAD.png"
-            alt="Honda Logo"
-          />
-        </a>
-
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
+    <!-- PRELOADER -->
+    <div class="preloader" id="preloader">
+      <div class="pl-logo">
+        <img src="/sanphamxemay/image/banner/Logo_HEAD.png" alt="HEAD" />
+        <div class="pl-brand">
+          HỆ THỐNG HEAD <span>TRUNG HÙNG</span><small>Honda Chính Hãng</small>
         </div>
+      </div>
+      <div class="pl-dots">
+        <div class="pl-dot"></div>
+        <div class="pl-dot"></div>
+        <div class="pl-dot"></div>
+        <div class="pl-dot"></div>
+      </div>
+    </div>
 
-        <nav class="main-nav">
-          <ul>
-            <li><a href="/Trangchu/">Trang chủ</a></li>
-            <li><a href="/gioithieu/">Giới thiệu</a></li>
-            <li><a href="/sanphamxemay/">Sản phẩm</a></li>
-            <li><a href="/dichvu/">Dịch Vụ</a></li>
-            <li><a href="/tintuc/" class="active">Tin tức</a></li>
-            <li><a href="/cuahang/">Hệ thống đại lý</a></li>
-            <li><a href="/lienhe/">Liên hệ</a></li>
-          </ul>
-        </nav>
+    <!-- TOP BAR -->
+    <div class="top-bar" id="topBar">
+      <div class="tb-inner">
+        <div class="tb-links">
+          <a href="/question/"
+            ><i class="fas fa-question-circle"></i>Câu hỏi thường gặp</a
+          >
+          <a href="/cuahang/"
+            ><i class="fas fa-location-dot"></i>Hệ thống đại lý</a
+          >
+        </div>
+        <div class="tb-contact">
+          <a href="tel:1900636712"
+            ><i class="fas fa-phone-alt"></i>1900 636 712</a
+          >
+          <div class="tb-div"></div>
+          <a href="mailto:cr_mt@hungmanh.com.vn"
+            ><i class="fas fa-envelope"></i>cr_mt@hungmanh.com.vn</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="site-header" id="siteHeader">
+      <div class="hdr-inner">
+        <a href="/Trangchu/" class="logo-area">
+          <div class="logo-img-wrap">
+            <img
+              src="/sanphamxemay/image/banner/Logo_HEAD.png"
+              alt="HEAD Trung Hùng"
+            />
+          </div>
+          <div class="logo-text-wrap">
+            <span class="logo-main">HỆ THỐNG HEAD <span>TRUNG HÙNG</span></span>
+            <span class="logo-sub"
+              >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
+            >
+          </div>
+        </a>
+        <ul class="main-nav">
+          <li><a href="/Trangchu/">Trang chủ</a></li>
+          <li><a href="/gioithieu/">Giới thiệu</a></li>
+          <li><a href="/sanphamxemay/">Sản phẩm</a></li>
+          <li><a href="/dichvu/">Dịch vụ</a></li>
+          <li><a href="/tintuc/" class="active">Tin tức</a></li>
+          <li><a href="/cuahang/">Hệ thống đại lý</a></li>
+        </ul>
+        <a href="tel:1900636712" class="hdr-cta"
+          ><i class="fas fa-phone-alt"></i> Gọi ngay</a
+        >
+        <div class="ham" id="ham"><span></span><span></span><span></span></div>
       </div>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="news-hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1>Tin tức về hoạt động LXAT</h1>
-          <p>
-            Cập nhật những tin tức hoạt động mới nhất của hệ thống HEAD Trung
-            Hùng
-          </p>
-        </div>
-      </div>
-    </section>
+    <!-- Drawer -->
+    <div class="draw-ov" id="drawOv"></div>
+    <div class="site-draw" id="siteDraw">
+      <button class="draw-x" id="drawX" type="button">
+        <i class="fas fa-times"></i>
+      </button>
+      <ul class="draw-nav">
+        <li><a href="/Trangchu/">Trang chủ</a></li>
+        <li><a href="/gioithieu/">Giới thiệu</a></li>
+        <li><a href="/sanphamxemay/">Sản phẩm</a></li>
+        <li><a href="/dichvu/">Dịch vụ</a></li>
+        <li><a href="/tintuc/" class="active">Tin tức</a></li>
+        <li><a href="/cuahang/">Hệ thống đại lý</a></li>
+        <li><a href="/lienhe/">Liên hệ</a></li>
+      </ul>
+      <a href="tel:1900636712" class="draw-cta"
+        ><i class="fas fa-phone-alt"></i> Gọi ngay: 1900 636 712</a
+      >
+    </div>
 
-    <!-- News Grid -->
-    <section class="news-section">
-      <div class="container">
-        <div class="news-grid" id="newsContainer">
-          <!-- News items will be loaded here by JavaScript -->
-        </div>
-
-        <!-- Pagination -->
-        <div class="pagination">
-          <div class="page-numbers" id="pagination">
-            <!-- Pagination will be loaded here by JavaScript -->
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="ph-grid"></div>
+      <div class="ph-inner">
+        <div class="ph-eyebrow">Honda · An toàn giao thông</div>
+        <h1 class="ph-title">HOẠT ĐỘNG<br /><em>LXAT</em></h1>
+        <p class="ph-sub">
+          Hệ thống HEAD Trung Hùng phối hợp với cơ quan chức năng tổ chức các
+          chương trình giáo dục an toàn giao thông cho học sinh, sinh viên trên
+          toàn địa bàn.
+        </p>
+        <div class="ph-stats">
+          <div>
+            <span class="ph-stat-val" id="totalCount">26<em>+</em></span
+            ><span class="ph-stat-lbl">Chương trình</span>
+          </div>
+          <div>
+            <span class="ph-stat-val">50K<em>+</em></span
+            ><span class="ph-stat-lbl">Học sinh</span>
+          </div>
+          <div>
+            <span class="ph-stat-val">10<em>+</em></span
+            ><span class="ph-stat-lbl">Năm hoạt động</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      <div class="breadcrumb-inner">
+        <a href="/Trangchu/">Trang chủ</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="/tintuc/">Tin tức</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Hoạt động LXAT</span>
+      </div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <div class="filter-inner">
+        <span class="filter-label">Cấp học</span>
+        <button class="filter-btn active" data-cat="all" type="button">
+          Tất cả
+        </button>
+        <button class="filter-btn" data-cat="tieu-hoc" type="button">
+          Tiểu học
+        </button>
+        <button class="filter-btn" data-cat="thcs" type="button">THCS</button>
+        <button class="filter-btn" data-cat="thpt" type="button">THPT</button>
+        <button class="filter-btn" data-cat="doan" type="button">
+          Đoàn viên
+        </button>
+        <button class="filter-btn" data-cat="cac-cap" type="button">
+          Các cấp
+        </button>
+        <span class="count-badge"
+          ><strong id="countNum">26</strong> hoạt động</span
+        >
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main-section">
+      <div class="news-grid" id="newsGrid"></div>
+      <div class="pagination" id="pagination"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="ft-top">
+        <div>
+          <div class="ft-logo-row">
             <img
               src="/sanphamxemay/image/banner/Logo_HEAD.png"
-              alt="Honda Logo"
-              class="footer-logo"
+              alt="HEAD"
+              class="ft-logo-img"
             />
-            <p>Công Ty TNHH TM&DV Hùng Mạnh</p>
-            <div class="social-links">
-              <a href="https://www.facebook.com/hethongheadtrunghung"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="https://www.youtube.com/@HethongHEADTrungHung"
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a href="https://www.instagram.com/hethongheadtrunghung"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="https://www.tiktok.com/@hethongheadtrunghung"
-                ><i class="fab fa-tiktok"></i
-              ></a>
+            <div class="ft-brand-name">
+              HỆ THỐNG HEAD <span>TRUNG HÙNG</span>
             </div>
           </div>
-
-          <div class="footer-col">
-            <h3>Liên kết nhanh</h3>
-            <ul>
-              <li><a href="/tragop.html">Trang chủ</a></li>
-              <li><a href="/sanphamxemay/">Sản phẩm xe máy</a></li>
-              <li><a href="/tintuc/">Tin tức</a></li>
-              <li><a href="/dichvu/">Dịch vụ</a></li>
-              <li><a href="/lienhe/">Liên hệ</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h3>Danh mục tin</h3>
-            <ul>
-              <li><a href="/tintuc/">Tin Tức</a></li>
-              <li><a href="/tintuc/tintucxemay/">Sản phẩm mới</a></li>
-              <li><a href="/tintuc/tintuclxat/">Hoạt động LXAT</a></li>
-              <li><a href="/khuyenmai/">Khuyến mãi</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h3>Liên hệ</h3>
-            <ul class="contact-info">
-              <li></li>
-              <li><i class="fas fa-phone"></i> 1900 636 712</li>
-              <li><i class="fas fa-envelope"></i> cr@hungmanh.com.vn</li>
-              <li><i class="fas fa-envelope"></i> cr_mt@hungmanh.com.vn</li>
-              <li><i class="fas fa-clock"></i> Thứ 2 - CN: 7:30 - 17:30</li>
-            </ul>
+          <p class="ft-brand-tag">
+            Công Ty TNHH Thương Mại Và Dịch Vụ Hùng Mạnh — đại lý Honda chính
+            hãng tại Gia Lai, Hà Nội và Sơn La.
+          </p>
+          <div class="ft-socials">
+            <a
+              href="https://www.facebook.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@HethongHEADTrungHung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.tiktok.com/@hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-tiktok"></i
+            ></a>
           </div>
         </div>
-
-        <div class="footer-bottom">
-          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        <div class="ft-col">
+          <h5>Liên kết nhanh</h5>
+          <ul>
+            <li><a href="/Trangchu/">Trang chủ</a></li>
+            <li><a href="/sanphamxemay/">Sản phẩm xe máy</a></li>
+            <li><a href="/tintuc/">Tin tức</a></li>
+            <li><a href="/dichvu/">Dịch vụ</a></li>
+            <li><a href="/lienhe/">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Danh mục tin</h5>
+          <ul>
+            <li><a href="/tintuc/tintucxemay/">Sản phẩm mới</a></li>
+            <li><a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a></li>
+            <li><a href="/tintuc/tintucsukien/">Sự kiện</a></li>
+            <li><a href="/tintuc/tintuclxat/">Hoạt động LXAT</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Liên hệ</h5>
+          <ul>
+            <li><a href="tel:1900636712">1900 636 712</a></li>
+            <li><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a></li>
+            <li>
+              <a href="mailto:cr_mt@hungmanh.com.vn">cr_mt@hungmanh.com.vn</a>
+            </li>
+            <li>
+              <span style="color: rgba(255, 255, 255, 0.38)"
+                >T2–CN: 7:30–17:30</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-btm">
+        <p>© 2025 HỆ THỐNG HEAD TRUNG HÙNG. Bảo lưu mọi quyền.</p>
+        <div class="ft-badge">
+          <i class="fas fa-certificate"></i> Honda Authorised Dealer
         </div>
       </div>
     </footer>
 
-    <!-- Back to Top -->
-    <a href="#" class="back-to-top" id="backToTop">
-      <i class="fas fa-arrow-up"></i>
-    </a>
+    <nav class="mob-nav">
+      <div class="mnb">
+        <a href="/Trangchu/" class="mnb-a"
+          ><i class="fas fa-home"></i><span>Trang chủ</span></a
+        >
+        <a href="/sanphamxemay/" class="mnb-a"
+          ><i class="fas fa-motorcycle"></i><span>Sản phẩm</span></a
+        >
+        <a href="/tintuc/" class="mnb-a on"
+          ><i class="fas fa-newspaper"></i><span>Tin tức</span></a
+        >
+        <a href="/cuahang/" class="mnb-a"
+          ><i class="fas fa-map-marker-alt"></i><span>Đại lý</span></a
+        >
+        <a href="/lienhe/" class="mnb-a"
+          ><i class="fas fa-phone-alt"></i><span>Liên hệ</span></a
+        >
+      </div>
+    </nav>
+
+    <a
+      href="https://m.me/hethongheadtrunghung"
+      class="messenger-float"
+      target="_blank"
+      rel="noopener"
+      aria-label="Messenger"
+      ><i class="fab fa-facebook-messenger"></i
+    ></a>
+    <a href="#" class="back-top" id="backTop" aria-label="Lên đầu"
+      ><i class="fas fa-arrow-up"></i
+    ></a>
 
     <script>
-      // Sample news data with full content added
-      const allNews = [
-        {
-          id: 1,
-          title:
-            "Trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025 - 2026 trường tiểu học Lý Thường Kiệt",
-          category: "Cấp Tiểu Học",
-          date: "20/10/2025",
-          excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng phối hợp với Công Anh Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, Phòng Giáo dục & Đào tạo tỉnh Gia Lai, Phòng VHTT tỉnh Gia Lai, Công An Phường Quy Nhơn Nam tổ chức chương trình trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025 - 2026 tại trường tiểu học Lý Thường Kiệt",
-          image: "image/LXAT/20102025S.jpg",
-        },
-        {
-          id: 1,
-          title:
-            "An toàn giao thông cho nụ cười ngày mai tại Trường THCS Lê Hồng Phong",
-          category: "Cấp THCS",
-          date: "29/09/2025",
-          excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng phối hợp với Công Anh Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, tổ chức chương trình an toàn giao tại trường THCS Lê Hồng Phong.",
-          image: "image/LXAT/29092025C.jpg",
-        },
-        {
-          id: 2,
-          title:
-            "Trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025 - 2026 trường tiểu học Nguyễn Văn Cừ",
-          category: "Cấp Tiểu Học",
-          date: "29/09/2025",
-          excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng phối hợp với Công Anh Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, Công An Phường Quy Nhơn Nam tổ chức chương trình trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025 - 2026 tại trường tiểu học Nguyễn Văn Cừ.",
-          image: "image/LXAT/29092025S.jpg",
-        },
-        {
-          id: 3,
-          title:
-            "Trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025 - 2026 trường tiểu học Lê Lợi",
-          category: "Cấp Tiểu Học",
-          date: "22/09/2025",
-          excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng phối hợp với Công Anh Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, tổ chức chương trình trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025 - 2026 tại trường tiểu học Lê Lợi",
-          image: "image/LXAT/22092025CM.jpg",
-        },
-        {
-          id: 4,
-          title:
-            "An toàn giao thông cho nụ cười ngày mai tại Trường THCS Ghềnh Ráng",
-          category: "Cấp THCS",
-          date: "22/09/2025",
-          excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng phối hợp với Công Anh Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, Công An Phường Quy Nhơn Nam tổ chức chương trình an toàn giao tại trường THCS Ghềnh Ráng",
-          image: "image/LXAT/22092025C.jpg",
-        },
-        {
-          id: 5,
-          title:
-            "Trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025 - 2026 trường tiểu học Quang Trung",
-          category: "Cấp Tiểu Học",
-          date: "22/09/2025",
-          excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng phối hợp với Công Anh Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, Công An Phường Quy Nhơn Nam tổ chức chương trình trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025 - 2026 tại trường tiểu học Quang Trung",
-          image: "image/LXAT/22092025S.jpg",
-        },
-        {
-          id: 6,
-          title:
-            "An toàn giao thông cho nụ cười ngày mai tại Trường THCS Lương Thế Vinh",
-          category: "Cấp THCS",
-          date: "15/09/2025",
-          excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng phối hợp với Công Anh Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, Công An Phường Quy Nhơn Nam tổ chức chương trình an toàn giao tại trường THCS Lương Thế Vinh.",
-          image: "image/LXAT/15092025C.jpg",
-        },
-        {
-          id: 7,
-          title:
-            "Đào tạo lái xe gắn máy cho Học sinh cấp THPT & cơ sở Giáo dục nghề nghiệp tại Trường THPT Quy Nhơn",
-          category: "Cấp THPT",
-          date: "12/09/2025",
-          excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng phối hợp với Công Anh Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, Công An Phường Quy Nhơn Nam tổ chức chương trình an toàn và Đào tạo lái xe gắn máy cho Học sinh cấp THPT & cơ sở Giáo dục nghề nghiệp tại trường THPT Quy Nhơn",
-          image: "image/LXAT/12092025C.jpg",
-        },
-        {
-          id: 8,
-          title:
-            "An toàn giao thông cho nụ cười ngày mai tại Trường THCS Lê Lợi",
-          category: "Cấp THCS",
-          date: "06/09/2025",
-          excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng phối hợp với Công Anh Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, tổ chức chương trình an toàn giao tại trường THCS Lê Lợi.",
-          image: "image/LXAT/06092025S.jpg",
-        },
-        {
-          id: 9,
-          title:
-            "An toàn giao thông cho nụ cười ngày mai tại Trường THCS HẢI CẢNG",
-          category: "Cấp THCS",
-          date: "23/09/2024",
-          excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng phối hợp với Cảnh sát giao thông, trật tự công an TP. Quy Nhơn và trường THCS Hải Cảng tổ chức hoạt động tuyên truyền an toàn giao thông.<br>Hãy cùng nhau chung tay xây dựng một nền giao thông văn minh, an toàn bằng cách: luôn đội mũ bảo hiểm, không uống rượu bia khi lái xe, nhường đường cho người đi bộ và chấp hành tín hiệu đèn giao thông.",
-          image: "image/LXAT/25092024S.JPG",
-        },
-        {
-          id: 10,
-          title:
-            "An toàn giao thông cho nụ cười ngày mai tại Trường THCS LÊ LỢI",
-          category: "Cấp THCS",
-          date: "23/09/2024",
-          excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng tổ chức chương trình An toàn giao thông cho nụ cười ngày mai tại trường THCS Lê Lợi <br>Nhìn vào đôi mắt sáng ngời của các bạn học sinh trường THCS Lê Lợi khi được tham gia buổi hướng dẫn, chúng tôi biết rằng những hạt giống về an toàn giao thông đã được gieo mầm",
-          image: "image/LXAT/23092024C.JPG",
-        },
-        {
-          id: 11,
-          title:
-            "An toàn giao thông cho nụ cười ngày mai tại Trường THCS NGÔ VĂN SỞ",
-          category: "Cấp THCS",
-          date: "23/09/2024",
-          excerpt:
-            "Hệ Thống HEAD Trung Hùng phối hợp với Cảnh sát Hình sự Công An TP. Quy Nhơn...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng phối hợp với Cảnh sát Hình sự Công An TP. Quy Nhơn và trường THCS Ngô Văn Sở tổ chức hoạt động tuyên truyền hành vi bạo lực học đường và phòng chống ma túy, an toàn giao thông.<Br>Hãy bắt đầu từ những hành động nhỏ nhất như đội mũ bảo hiểm, tuân thủ luật giao thông để bảo vệ bản thân và những người xung quanh. Cùng nhau chung tay vì một giao thông an toàn!",
-          image: "image/LXAT/23092024S.JPG",
-        },
-        {
-          id: 12,
-          title:
-            "An toàn giao thông cho nụ cười ngày mai tại Trường THPT QUY NHƠN",
-          category: "Cấp THPT",
-          date: "20/09/2024",
-          excerpt:
-            "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông, trật tự công an TP Quy Nhơn và trường THPT Quy Nhơn tổ chức hoạt động an toàn giao thông. <br> Buổi học đặc biệt về an toàn giao thông tại sân trường. Với những hình ảnh sinh động, video minh họa và các trò chơi tương tác, các bạn học sinh đã có một buổi học thật lý thú.",
-          image: "image/LXAT/20092024C.JPG",
-        },
-        {
-          id: 13,
-          title:
-            "An toàn giao thông cho nụ cười ngày mai tại Trường THCS LÊ HỒNG PHONG",
-          category: "Cấp THCS",
-          date: "19/09/2024",
-          excerpt:
-            "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông, trật tự công an TP Quy Nhơn và trường THCS Lê Hồng Phong tổ chức hoạt động an toàn giao thông. <br>Buổi hướng dẫn đã trở nên sinh động hơn bao giờ hết nhờ những câu hỏi, những chia sẻ nhiệt tình của các bạn học sinh. Các em đã chứng tỏ mình là những người bạn đồng hành tuyệt vời trên con đường xây dựng văn hóa giao thông",
-          image: "image/LXAT/19092024C.JPG",
-        },
-        {
-          id: 14,
-          title:
-            "An toàn giao thông cho nụ cười ngày mai tại Trường THPT TRẦN CAO VÂN",
-          category: "Cấp THCS",
-          date: "16/09/2024",
-          excerpt:
-            "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông, trật tự công an TP Quy Nhơn và trường THPT Trần Cao Vân tổ chức hoạt động an toàn giao thông. <br>Kiến thức bổ ích: Qua buổi hướng dẫn, các bạn học sinh trường THPT Trần Cao Vân đã được trang bị những kiến thức cơ bản về luật giao thông, cách bảo vệ bản thân khi tham gia giao thông. Chúng tôi hy vọng những kiến thức này sẽ đồng hành cùng các em trên mọi nẻo đường",
-          image: "image/LXAT/16092024C.JPG",
-        },
-        {
-          id: 15,
-          title:
-            "An toàn giao thông cho nụ cười ngày mai tại Trường THCS LƯƠNG THẾ VINH",
-          category: "Cấp THCS",
-          date: "16/09/2024",
-          excerpt:
-            "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông...",
-          fullContent:
-            "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông, trật tự công an TP Quy Nhơn và trường THCS Lương Thế Vinh tổ chức hoạt động an toàn giao thông. <br>Niềm vui học hỏi: Các bạn nhỏ trường THCS Lương Thế Vinh đã có một buổi sáng thật sôi động khi cùng Hệ Thống HEAD Trung Hùng tìm hiểu về an toàn giao thông. Những nụ cười tươi tắn, những câu hỏi hay đã làm cho không khí buổi học trở nên sôi động và hấp dẫn hơn bao giờ hết.",
-          image: "image/LXAT/16092024S.JPG",
-        },
-        {
-          id: 16,
-          title: "Đào tạo LXAT tại Trường THPT TRẦN CAO VÂN",
-          category: "Cấp THPT",
-          date: "09/10/2023",
-          excerpt:
-            "Chiều ngày 09-10-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
-          fullContent:
-            "Chiều ngày 09-10-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THPT Trần Cao Vân, 72 Trần Cao Vân, P. Trần Hưng Đạo, TP. Quy Nhơn, Bình Định <br>Tạo ra một sân chơi bổ ích cho học sinh, giúp các em tìm hiểu những kiến thức cơ bản về ATGT, trang bị cho các em các kỹ năng LXAT để vận dụng vào thực tế khi tham gia giao thông nhằm bảo vệ cho bản thân và an toàn cho người khác. Phát huy tối đa hiệu quả hoạt động ATGT cho nụ cười ngày mai góp phần xây dựng một xã hội giao thông an toàn  tại Tỉnh Bình Định",
-          image: "image/LXAT/09102023C.jpg",
-        },
-        {
-          id: 17,
-          title: "Đào tạo LXAT tại Trường THPT TRƯNG VƯƠNG",
-          category: "Cấp THPT",
-          date: "09/10/2023",
-          excerpt:
-            "Sáng ngày 09-10-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
-          fullContent:
-            "Sáng ngày 09-10-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THPT Trưng Vương, 26 Nguyễn Huệ, P. Lê Lợi, TP. Quy Nhơn, Bình Định <br>Tạo ra một sân chơi bổ ích cho học sinh, giúp các em tìm hiểu những kiến thức cơ bản về ATGT, trang bị cho các em các kỹ năng LXAT để vận dụng vào thực tế khi tham gia giao thông nhằm bảo vệ cho bản thân và an toàn cho người khác. Phát huy tối đa hiệu quả hoạt động ATGT cho nụ cười ngày mai góp phần xây dựng một xã hội giao thông an toàn  tại Tỉnh Bình Định",
-          image: "image/LXAT/09102023S.jpg",
-        },
-        {
-          id: 18,
-          title: "Đào tạo LXAT tại Trường iSCHOOL QUY NHƠN",
-          category: "Cấp THCS",
-          date: "28/09/2023",
-          excerpt:
-            "Chiều ngày 28-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
-          fullContent:
-            "Chiều ngày 28-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường iSCHOOL Quy Nhơn, Hùng Vương, P. Nhơn Phú, TP. Quy Nhơn, Bình Định <br>Tạo ra một sân chơi bổ ích cho học sinh, giúp các em tìm hiểu những kiến thức cơ bản về ATGT, trang bị cho các em các kỹ năng LXAT để vận dụng vào thực tế khi tham gia giao thông nhằm bảo vệ cho bản thân và an toàn cho người khác. Phát huy tối đa hiệu quả hoạt động ATGT cho nụ cười ngày mai góp phần xây dựng một xã hội giao thông an toàn  tại Tỉnh Bình Định",
-          image: "image/LXAT/28092023C.jpg",
-        },
-        {
-          id: 19,
-          title: "Đào tạo LXAT tại Trường CAO ĐẲNG KỸ THUẬT CÔNG NGHỆ QUY NHƠN",
-          category: "Cấp Đoàn Viên",
-          date: "27/09/2023",
-          excerpt:
-            "Chiều ngày 27-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
-          fullContent:
-            "Chiều ngày 27-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức TẬP HUẤN KIẾN THỨC & KỸ NĂNG LÁI XE AN TOÀN dành cho Đoàn viên thanh niên tại trường Cao Đẳng Kỹ Thuật Công Nghệ Quy Nhơn, 172 An Dương Vương, P. Nguyễn Văn Cừ, TP. Quy Nhơn, Bình Định <br>Tạo ra một sân chơi bổ ích cho sinh viên, giúp các em tìm hiểu những kiến thức cơ bản và kỹ năng lái xe an toàn, trang bị cho các em các kỹ năng khi lái xe để vận dụng vào thực tế khi tham gia giao thông nhằm bảo vệ cho bản thân và an toàn cho người khác. Phát huy tối đa hiệu quả hoạt động tập huấn kiến thức & kỹ năng lái xe an toàn giúp góp phần xây dựng một xã hội giao thông an toàn  tại Tỉnh Bình Định",
-          image: "image/LXAT/27092023C.jpg",
-        },
-        {
-          id: 20,
-          title: "Đào tạo LXAT tại Trường THCS LÊ LỢI",
-          category: "Cấp THCS",
-          date: "25/09/2023",
-          excerpt:
-            "Chiều ngày 25-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
-          fullContent:
-            "Chiều ngày 25-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THCS Lê Lợi, 20 Nguyễn Trãi, TP. Quy Nhơn, Bình Định <br>Tạo ra một sân chơi bổ ích cho học sinh, giúp các em tìm hiểu những kiến thức cơ bản về ATGT, trang bị cho các em các kỹ năng LXAT để vận dụng vào thực tế khi tham gia giao thông nhằm bảo vệ cho bản thân và an toàn cho người khác. Phát huy tối đa hiệu quả hoạt động ATGT cho nụ cười ngày mai góp phần xây dựng một xã hội giao thông an toàn  tại Tỉnh Bình Định",
-          image: "image/LXAT/25092023C.jpg",
-        },
-        {
-          id: 21,
-          title: "Đào tạo LXAT tại Trường THCS NGÔ VĂN SỞ",
-          category: "Cấp THCS",
-          date: "25/09/2023",
-          excerpt:
-            "Sáng ngày 25-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
-          fullContent:
-            "Sáng ngày 25-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THCS Ngô Văn Sở, 14 Ngô Mây, TP. Quy Nhơn, Bình Định <br>Tuy thời tiết mưa nhưng chương trình vẫn diễn ra tốt đẹp nhờ sự nhiệt tình của các em học sinh và sự hỗ trợ của nhà trường. <br>Chương trình Tạo ra một sân chơi bổ ích cho học sinh, giúp các em tìm hiểu những kiến thức cơ bản về ATGT, trang bị cho các em các kỹ năng LXAT để vận dụng vào thực tế khi tham gia giao thông nhằm bảo vệ cho bản thân và an toàn cho người khác. Phát huy tối đa hiệu quả hoạt động ATGT cho nụ cười ngày mai góp phần xây dựng một xã hội giao thông an toàn  tại Tỉnh Bình Định",
-          image: "image/LXAT/25092023S.jpg",
-        },
-        {
-          id: 22,
-          title: "Đào tạo LXAT tại Trường THPT QUY NHƠN",
-          category: "Cấp THPT",
-          date: "19/09/2023",
-          excerpt:
-            "Chiều ngày 19-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
-          fullContent:
-            "Chiều ngày 19-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THPT Quy Nhơn, 325 Nguyễn Thị Minh Khai, P. Nguyễn Văn Cừ, TP. Quy Nhơn, Bình Định <br>Tạo ra một sân chơi bổ ích cho học sinh, giúp các em tìm hiểu những kiến thức cơ bản về ATGT, trang bị cho các em các kỹ năng LXAT để vận dụng vào thực tế khi tham gia giao thông nhằm bảo vệ cho bản thân và an toàn cho người khác. Phát huy tối đa hiệu quả hoạt động ATGT cho nụ cười ngày mai góp phần xây dựng một xã hội giao thông an toàn  tại Tỉnh Bình Định",
-          image: "image/LXAT/19092023C.jpg",
-        },
-        {
-          id: 23,
-          title: "Đào tạo LXAT tại Trường THCS HẢI CẢNG",
-          category: "Cấp THCS",
-          date: "18/09/2023",
-          excerpt:
-            "Chiều ngày 18-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
-          fullContent:
-            "Chiều ngày 18-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THCS Hải Cảng, 82 Trần Hưng Đạo, TP. Quy Nhơn, Bình Định <br>Tạo ra một sân chơi bổ ích cho học sinh, giúp các em tìm hiểu những kiến thức cơ bản về ATGT, trang bị cho các em các kỹ năng LXAT để vận dụng vào thực tế khi tham gia giao thông nhằm bảo vệ cho bản thân và an toàn cho người khác. Phát huy tối đa hiệu quả hoạt động ATGT cho nụ cười ngày mai góp phần xây dựng một xã hội giao thông an toàn  tại Tỉnh Bình Định",
-          image: "image/LXAT/18092023C.jpg",
-        },
-        {
-          id: 24,
-          title: "Đào tạo LXAT tại Trường THCS HẢI CẢNG",
-          category: "Cấp THCS",
-          date: "18/09/2023",
-          excerpt:
-            "Sáng ngày 18-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
-          fullContent:
-            "Sáng ngày 18-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THCS Hải Cảng, 82 Trần Hưng Đạo, TP. Quy Nhơn, Bình Định <br>Tạo ra một sân chơi bổ ích cho học sinh, giúp các em tìm hiểu những kiến thức cơ bản về ATGT, trang bị cho các em các kỹ năng LXAT để vận dụng vào thực tế khi tham gia giao thông nhằm bảo vệ cho bản thân và an toàn cho người khác. Phát huy tối đa hiệu quả hoạt động ATGT cho nụ cười ngày mai góp phần xây dựng một xã hội giao thông an toàn  tại Tỉnh Bình Định",
-          image: "image/LXAT/18092023S.jpg",
-        },
-        {
-          id: 25,
-          title: "Đào tạo LXAT tại Trường THCS LƯƠNG THẾ VINH",
-          category: "Cấp THCS",
-          date: "16/09/2023",
-          excerpt:
-            "Chiều ngày 16-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
-          fullContent:
-            "Chiều ngày 16-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THCS Lương Thế Vinh, P. Lý Thường Kiệt, TP. Quy Nhơn, Bình Định <br>Tạo ra một sân chơi bổ ích cho học sinh, giúp các em tìm hiểu những kiến thức cơ bản về ATGT, trang bị cho các em các kỹ năng LXAT để vận dụng vào thực tế khi tham gia giao thông nhằm bảo vệ cho bản thân và an toàn cho người khác. Phát huy tối đa hiệu quả hoạt động ATGT cho nụ cười ngày mai góp phần xây dựng một xã hội giao thông an toàn  tại Tỉnh Bình Định",
-          image: "image/LXAT/16092023C.jpg",
-        },
-        {
-          id: 26,
-          title:
-            "LỄ PHÁT ĐỘNG HỌC SINH, SINH VIÊN CHẤP HÀNH PHÁP LUẬT VỀ ATGT NĂM HỌC 2023 - 2024",
-          category: "Các cấp",
-          date: "16/09/2023",
-          excerpt:
-            "Sáng ngày 16/09 Hệ Thống HEAD Trung Hùng đã tổ chức hưởng ứng...",
-          fullContent:
-            "Sáng ngày 16/09 Hệ Thống HEAD Trung Hùng đã tổ chức hưởng ứng LỄ PHÁT ĐỘNG HỌC SINH, SINH VIÊN NGHIÊM CHỈNH CHẤP HÀNH PHÁP LUẬT VỀ AN TOÀN GIAO THÔNG NĂM HỌC 2023 - 2024 tại trường PT DTNT THPT Bình Định, P. Nguyễn Văn Cừ, TP. Quy Nhơn, Bình Định <br>Cùng với đó Hệ thống HEAD Trung Hùng củng cố kiến thức ATGT và kỹ năng LXAT cho học sinh, sinh viên để vận dụng vào thực tế khi tham gia giao thông nhằm bảo vệ cho bản thân và an toàn cho người khác. Phát huy tối đa hiệu quả hoạt động ATGT góp phần xây dựng một xã hội giao thông an toàn tại tỉnh Bình Định. Chương trình đã thu hút được rất nhiều sự quan tâm với nhiều hoạt động diễn ra sôi nổi cùng những phần quà giá trị đến từ Hệ Thống HEAD Trung Hùng",
-          image: "image/LXAT/16092023S.jpg",
-        },
-      ];
+      (function () {
+        "use strict";
 
-      // Pagination variables
-      const itemsPerPage = 12;
-      let currentPage = 1;
+        /* Preloader */
+        window.addEventListener("load", () =>
+          setTimeout(
+            () => document.getElementById("preloader").classList.add("out"),
+            700,
+          ),
+        );
 
-      // DOM elements
-      const newsContainer = document.getElementById("newsContainer");
-      const paginationElement = document.getElementById("pagination");
+        /* Header + top bar */
+        const tb = document.getElementById("topBar"),
+          hdr = document.getElementById("siteHeader");
+        window.addEventListener(
+          "scroll",
+          () => {
+            const y = window.scrollY;
+            tb.classList.toggle("hidden", y > 80);
+            hdr.classList.toggle("lifted", y > 40);
+            document.getElementById("backTop").classList.toggle("on", y > 400);
+          },
+          { passive: true },
+        );
 
-      // Display news items for current page
-      function displayNewsItems(page) {
-        const startIndex = (page - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-        const paginatedItems = allNews.slice(startIndex, endIndex);
-
-        newsContainer.innerHTML = "";
-
-        paginatedItems.forEach((news) => {
-          const newsItem = document.createElement("article");
-          newsItem.className = "news-card";
-          newsItem.innerHTML = `
-                                                                <div class="news-image">
-                                                                  <img src="${news.image}" alt="${news.title}">
-                                                                </div>
-                                                                <div class="news-content">
-                                                                  <div class="news-meta">
-                                                                    <span class="news-category">${news.category}</span>
-                                                                    <span class="news-date"><i class="far fa-calendar-alt"></i> ${news.date}</span>
-                                                                  </div>
-                                                                  <h3 class="news-title">${news.title}</h3>
-                                                                  <p class="news-excerpt">${news.excerpt}</p>
-                                                                  <p class="news-full-content" style="display: none;">${news.fullContent}</p>
-                                                                                    <span class="read-more" onclick="toggleReadMore(this)">Xem thêm <i class="fas fa-chevron-down"></i></span>
-                                                                </div>
-                                                              `;
-          newsContainer.appendChild(newsItem);
-        });
-      }
-
-      // Toggle read more/less
-      function toggleReadMore(button) {
-        const newsCard = button.closest(".news-card");
-        const excerpt = newsCard.querySelector(".news-excerpt");
-        const fullContent = newsCard.querySelector(".news-full-content");
-        const icon = button.querySelector("i");
-
-        if (fullContent.style.display === "none") {
-          excerpt.style.display = "none";
-          fullContent.style.display = "block";
-          button.innerHTML = 'Thu gọn <i class="fas fa-chevron-up"></i>';
-        } else {
-          excerpt.style.display = "block";
-          fullContent.style.display = "none";
-          button.innerHTML = 'Xem thêm <i class="fas fa-chevron-down"></i>';
+        /* Drawer */
+        const ham = document.getElementById("ham"),
+          drawOv = document.getElementById("drawOv"),
+          draw = document.getElementById("siteDraw"),
+          drawX = document.getElementById("drawX");
+        function openDraw() {
+          ham.classList.add("open");
+          drawOv.classList.add("on");
+          draw.classList.add("on");
+          document.body.style.overflow = "hidden";
         }
-      }
+        function closeDraw() {
+          ham.classList.remove("open");
+          drawOv.classList.remove("on");
+          draw.classList.remove("on");
+          document.body.style.overflow = "";
+        }
+        ham.addEventListener("click", openDraw);
+        drawOv.addEventListener("click", closeDraw);
+        drawX.addEventListener("click", closeDraw);
+        draw
+          .querySelectorAll("a")
+          .forEach((a) => a.addEventListener("click", closeDraw));
 
-      // Setup pagination
-      function setupPagination() {
-        const pageCount = Math.ceil(allNews.length / itemsPerPage);
-        paginationElement.innerHTML = "";
+        /* Reveal */
+        const revObs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e, i) => {
+              if (e.isIntersecting)
+                setTimeout(() => e.target.classList.add("in"), i * 55);
+            });
+          },
+          { threshold: 0.08 },
+        );
 
-        // Previous button
-        if (currentPage > 1) {
-          const prevButton = document.createElement("a");
-          prevButton.href = "#";
-          prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
-          prevButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            currentPage--;
-            displayNewsItems(currentPage);
-            setupPagination();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          });
-          paginationElement.appendChild(prevButton);
+        /* ── DATA ── */
+        const allNews = [
+          {
+            cat: "thpt",
+            catLabel: "Cấp THPT",
+            date: "18/05/2026",
+            title:
+              "Ngoại khóa an toàn giao thông và đào tạo kỹ năng lái xe gắn máy an toàn cho học sinh THPT - trường THPT Số 1 Trần Cao Vân",
+            excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Công An Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, tổ chức chương trình ngoại khóa an toàn giao thông và đào tạo kỹ năng lái xe gắn máy an toàn cho học sinh THPT Số 1 Trần Cao Vân",
+            img: "image/LXAT/18052026C.jpg",
+          },
+          {
+            cat: "thpt",
+            catLabel: "Cấp THPT",
+            date: "18/05/2026",
+            title:
+              "Ngoại khóa an toàn giao thông và đào tạo kỹ năng lái xe gắn máy an toàn cho học sinh THPT - trường THPT Trưng Vương",
+            excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Công An Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, tổ chức chương trình ngoại khóa an toàn giao thông và đào tạo kỹ năng lái xe gắn máy an toàn cho học sinh THPT Trưng Vương",
+            img: "image/LXAT/18052026S.jpg",
+          },
+          {
+            cat: "thpt",
+            catLabel: "Cấp THPT",
+            date: "09/05/2026",
+            title:
+              "Ngoại khóa an toàn giao thông và đào tạo kỹ năng lái xe gắn máy an toàn cho học sinh THPT - trường THPT Số 1 Nguyễn Thái Học",
+            excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Công An Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, tổ chức chương trình ngoại khóa an toàn giao thông và đào tạo kỹ năng lái xe gắn máy an toàn cho học sinh THPT Số 1 Nguyễn Thái Học",
+            img: "image/LXAT/09052026C.jpg",
+          },
+          {
+            cat: "thpt",
+            catLabel: "Cấp THPT",
+            date: "08/05/2026",
+            title:
+              "Ngoại khóa an toàn giao thông và đào tạo kỹ năng lái xe gắn máy an toàn cho học sinh THPT - trường THPT Quốc Học Quy Nhơn",
+            excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Công An Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, tổ chức chương trình ngoại khóa an toàn giao thông và đào tạo kỹ năng lái xe gắn máy an toàn cho học sinh THPT Quốc Học Quy Nhơn",
+            img: "image/LXAT/08052026S.jpg",
+          },
+          {
+            cat: "thpt",
+            catLabel: "Cấp THPT",
+            date: "30/03/2026",
+            title:
+              "Trao tặng xe ICON e: và đào tạo kỹ năng lái xe gắn máy an toàn cho học sinh THPT - trường THPT Lê Quý Đôn",
+            excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Công An Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, tổ chức chương trình trao tặng xe ICON e và đào tạo kỹ năng lái xe gắn máy an toàn cho học sinh THPT Lê Quý Đôn",
+            img: "image/LXAT/30032026S.jpg",
+          },
+          {
+            cat: "tieu-hoc",
+            catLabel: "Cấp Tiểu Học",
+            date: "20/10/2025",
+            title:
+              "Trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025–2026 trường tiểu học Lý Thường Kiệt",
+            excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Công An Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, Phòng Giáo dục & Đào tạo tỉnh Gia Lai, Phòng VHTT tỉnh Gia Lai, Công An Phường Quy Nhơn Nam tổ chức chương trình trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025–2026 tại trường tiểu học Lý Thường Kiệt.",
+            img: "image/LXAT/20102025S.jpg",
+          },
+          {
+            cat: "thcs",
+            catLabel: "Cấp THCS",
+            date: "29/09/2025",
+            title:
+              "An toàn giao thông cho nụ cười ngày mai tại Trường THCS Lê Hồng Phong",
+            excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Công An Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, tổ chức chương trình an toàn giao thông tại trường THCS Lê Hồng Phong.",
+            img: "image/LXAT/29092025C.jpg",
+          },
+          {
+            cat: "tieu-hoc",
+            catLabel: "Cấp Tiểu Học",
+            date: "29/09/2025",
+            title:
+              "Trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025–2026 trường tiểu học Nguyễn Văn Cừ",
+            excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Công An Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, Công An Phường Quy Nhơn Nam tổ chức chương trình trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025–2026 tại trường tiểu học Nguyễn Văn Cừ.",
+            img: "image/LXAT/29092025S.jpg",
+          },
+          {
+            cat: "tieu-hoc",
+            catLabel: "Cấp Tiểu Học",
+            date: "22/09/2025",
+            title:
+              "Trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025–2026 trường tiểu học Lê Lợi",
+            excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Công An Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, tổ chức chương trình trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025–2026 tại trường tiểu học Lê Lợi.",
+            img: "image/LXAT/22092025CM.jpg",
+          },
+          {
+            cat: "thcs",
+            catLabel: "Cấp THCS",
+            date: "22/09/2025",
+            title:
+              "An toàn giao thông cho nụ cười ngày mai tại Trường THCS Ghềnh Ráng",
+            excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Công An Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, Công An Phường Quy Nhơn Nam tổ chức chương trình an toàn giao thông tại trường THCS Ghềnh Ráng.",
+            img: "image/LXAT/22092025C.jpg",
+          },
+          {
+            cat: "tieu-hoc",
+            catLabel: "Cấp Tiểu Học",
+            date: "22/09/2025",
+            title:
+              "Trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025–2026 trường tiểu học Quang Trung",
+            excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Công An Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, Công An Phường Quy Nhơn Nam tổ chức chương trình trao tặng mũ bảo hiểm cho học sinh lớp 1 năm học 2025–2026 tại trường tiểu học Quang Trung.",
+            img: "image/LXAT/22092025S.jpg",
+          },
+          {
+            cat: "thcs",
+            catLabel: "Cấp THCS",
+            date: "15/09/2025",
+            title:
+              "An toàn giao thông cho nụ cười ngày mai tại Trường THCS Lương Thế Vinh",
+            excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Công An Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, Công An Phường Quy Nhơn Nam tổ chức chương trình an toàn giao thông tại trường THCS Lương Thế Vinh.",
+            img: "image/LXAT/15092025C.jpg",
+          },
+          {
+            cat: "thpt",
+            catLabel: "Cấp THPT",
+            date: "12/09/2025",
+            title:
+              "Đào tạo lái xe gắn máy cho học sinh THPT & cơ sở Giáo dục nghề nghiệp tại Trường THPT Quy Nhơn",
+            excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Công An Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, Công An Phường Quy Nhơn Nam tổ chức chương trình an toàn và Đào tạo lái xe gắn máy cho Học sinh cấp THPT & cơ sở Giáo dục nghề nghiệp tại trường THPT Quy Nhơn.",
+            img: "image/LXAT/12092025C.jpg",
+          },
+          {
+            cat: "thcs",
+            catLabel: "Cấp THCS",
+            date: "06/09/2025",
+            title:
+              "An toàn giao thông cho nụ cười ngày mai tại Trường THCS Lê Lợi",
+            excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Công An Tỉnh Gia Lai - Phòng CSGT, Đội CSGT Đường Bộ 4, tổ chức chương trình an toàn giao thông tại trường THCS Lê Lợi.",
+            img: "image/LXAT/06092025S.jpg",
+          },
+          {
+            cat: "thcs",
+            catLabel: "Cấp THCS",
+            date: "23/09/2024",
+            title:
+              "An toàn giao thông cho nụ cười ngày mai tại Trường THCS HẢI CẢNG",
+            excerpt:
+              "Hệ Thống HEAD Trung Hùng phối hợp với Cảnh sát giao thông...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Cảnh sát giao thông, trật tự công an TP. Quy Nhơn và trường THCS Hải Cảng tổ chức hoạt động tuyên truyền an toàn giao thông. Hãy cùng nhau chung tay xây dựng một nền giao thông văn minh, an toàn bằng cách: luôn đội mũ bảo hiểm, không uống rượu bia khi lái xe, nhường đường cho người đi bộ và chấp hành tín hiệu đèn giao thông.",
+            img: "image/LXAT/25092024S.JPG",
+          },
+          {
+            cat: "thcs",
+            catLabel: "Cấp THCS",
+            date: "23/09/2024",
+            title:
+              "An toàn giao thông cho nụ cười ngày mai tại Trường THCS LÊ LỢI",
+            excerpt: "Hệ Thống HEAD Trung Hùng tổ chức chương trình...",
+            full: "Hệ Thống HEAD Trung Hùng tổ chức chương trình An toàn giao thông cho nụ cười ngày mai tại trường THCS Lê Lợi. Nhìn vào đôi mắt sáng ngời của các bạn học sinh khi được tham gia buổi hướng dẫn, chúng tôi biết rằng những hạt giống về an toàn giao thông đã được gieo mầm.",
+            img: "image/LXAT/23092024C.JPG",
+          },
+          {
+            cat: "thcs",
+            catLabel: "Cấp THCS",
+            date: "23/09/2024",
+            title:
+              "An toàn giao thông cho nụ cười ngày mai tại Trường THCS NGÔ VĂN SỞ",
+            excerpt:
+              "Hệ Thống HEAD Trung Hùng phối hợp với Cảnh sát Hình sự Công An TP. Quy Nhơn...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với Cảnh sát Hình sự Công An TP. Quy Nhơn và trường THCS Ngô Văn Sở tổ chức hoạt động tuyên truyền hành vi bạo lực học đường và phòng chống ma túy, an toàn giao thông. Hãy bắt đầu từ những hành động nhỏ nhất như đội mũ bảo hiểm, tuân thủ luật giao thông để bảo vệ bản thân và những người xung quanh.",
+            img: "image/LXAT/23092024S.JPG",
+          },
+          {
+            cat: "thpt",
+            catLabel: "Cấp THPT",
+            date: "20/09/2024",
+            title:
+              "An toàn giao thông cho nụ cười ngày mai tại Trường THPT QUY NHƠN",
+            excerpt:
+              "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông, trật tự công an TP Quy Nhơn và trường THPT Quy Nhơn tổ chức hoạt động an toàn giao thông. Buổi học đặc biệt về an toàn giao thông tại sân trường với những hình ảnh sinh động, video minh họa và các trò chơi tương tác.",
+            img: "image/LXAT/20092024C.JPG",
+          },
+          {
+            cat: "thcs",
+            catLabel: "Cấp THCS",
+            date: "19/09/2024",
+            title:
+              "An toàn giao thông cho nụ cười ngày mai tại Trường THCS LÊ HỒNG PHONG",
+            excerpt:
+              "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông, trật tự công an TP Quy Nhơn và trường THCS Lê Hồng Phong tổ chức hoạt động an toàn giao thông. Buổi hướng dẫn đã trở nên sinh động hơn bao giờ hết nhờ những câu hỏi, những chia sẻ nhiệt tình của các bạn học sinh.",
+            img: "image/LXAT/19092024C.JPG",
+          },
+          {
+            cat: "thpt",
+            catLabel: "Cấp THPT",
+            date: "16/09/2024",
+            title:
+              "An toàn giao thông cho nụ cười ngày mai tại Trường THPT TRẦN CAO VÂN",
+            excerpt:
+              "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông, trật tự công an TP Quy Nhơn và trường THPT Trần Cao Vân tổ chức hoạt động an toàn giao thông. Qua buổi hướng dẫn, các bạn học sinh được trang bị những kiến thức cơ bản về luật giao thông, cách bảo vệ bản thân khi tham gia giao thông.",
+            img: "image/LXAT/16092024C.JPG",
+          },
+          {
+            cat: "thcs",
+            catLabel: "Cấp THCS",
+            date: "16/09/2024",
+            title:
+              "An toàn giao thông cho nụ cười ngày mai tại Trường THCS LƯƠNG THẾ VINH",
+            excerpt:
+              "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông...",
+            full: "Hệ Thống HEAD Trung Hùng phối hợp với đội cảnh sát giao thông, trật tự công an TP Quy Nhơn và trường THCS Lương Thế Vinh tổ chức hoạt động an toàn giao thông. Các bạn nhỏ đã có một buổi sáng thật sôi động khi cùng tìm hiểu về an toàn giao thông.",
+            img: "image/LXAT/16092024S.JPG",
+          },
+          {
+            cat: "thpt",
+            catLabel: "Cấp THPT",
+            date: "09/10/2023",
+            title: "Đào tạo LXAT tại Trường THPT TRẦN CAO VÂN",
+            excerpt:
+              "Chiều ngày 09-10-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
+            full: "Chiều ngày 09-10-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THPT Trần Cao Vân, 72 Trần Cao Vân, P. Trần Hưng Đạo, TP. Quy Nhơn, Bình Định. Tạo ra một sân chơi bổ ích cho học sinh, giúp các em tìm hiểu những kiến thức cơ bản về ATGT, trang bị cho các em các kỹ năng LXAT để vận dụng vào thực tế.",
+            img: "image/LXAT/09102023C.jpg",
+          },
+          {
+            cat: "thpt",
+            catLabel: "Cấp THPT",
+            date: "09/10/2023",
+            title: "Đào tạo LXAT tại Trường THPT TRƯNG VƯƠNG",
+            excerpt:
+              "Sáng ngày 09-10-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
+            full: "Sáng ngày 09-10-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THPT Trưng Vương, 26 Nguyễn Huệ, P. Lê Lợi, TP. Quy Nhơn, Bình Định. Tạo ra một sân chơi bổ ích cho học sinh, giúp các em tìm hiểu những kiến thức cơ bản về ATGT.",
+            img: "image/LXAT/09102023S.jpg",
+          },
+          {
+            cat: "thcs",
+            catLabel: "Cấp THCS",
+            date: "28/09/2023",
+            title: "Đào tạo LXAT tại Trường iSCHOOL QUY NHƠN",
+            excerpt:
+              "Chiều ngày 28-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
+            full: "Chiều ngày 28-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường iSCHOOL Quy Nhơn, Hùng Vương, P. Nhơn Phú, TP. Quy Nhơn, Bình Định. Tạo ra một sân chơi bổ ích cho học sinh, giúp các em tìm hiểu những kiến thức cơ bản về ATGT.",
+            img: "image/LXAT/28092023C.jpg",
+          },
+          {
+            cat: "doan",
+            catLabel: "Cấp Đoàn Viên",
+            date: "27/09/2023",
+            title:
+              "Đào tạo LXAT tại Trường CAO ĐẲNG KỸ THUẬT CÔNG NGHỆ QUY NHƠN",
+            excerpt:
+              "Chiều ngày 27-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức...",
+            full: "Chiều ngày 27-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức TẬP HUẤN KIẾN THỨC & KỸ NĂNG LÁI XE AN TOÀN dành cho Đoàn viên thanh niên tại trường Cao Đẳng Kỹ Thuật Công Nghệ Quy Nhơn, 172 An Dương Vương, P. Nguyễn Văn Cừ, TP. Quy Nhơn, Bình Định.",
+            img: "image/LXAT/27092023C.jpg",
+          },
+          {
+            cat: "thcs",
+            catLabel: "Cấp THCS",
+            date: "25/09/2023",
+            title: "Đào tạo LXAT tại Trường THCS LÊ LỢI",
+            excerpt:
+              "Chiều ngày 25-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
+            full: "Chiều ngày 25-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THCS Lê Lợi, 20 Nguyễn Trãi, TP. Quy Nhơn, Bình Định. Tạo ra một sân chơi bổ ích cho học sinh, giúp các em tìm hiểu những kiến thức cơ bản về ATGT.",
+            img: "image/LXAT/25092023C.jpg",
+          },
+          {
+            cat: "thcs",
+            catLabel: "Cấp THCS",
+            date: "25/09/2023",
+            title: "Đào tạo LXAT tại Trường THCS NGÔ VĂN SỞ",
+            excerpt:
+              "Sáng ngày 25-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
+            full: "Sáng ngày 25-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THCS Ngô Văn Sở, 14 Ngô Mây, TP. Quy Nhơn, Bình Định. Tuy thời tiết mưa nhưng chương trình vẫn diễn ra tốt đẹp nhờ sự nhiệt tình của các em học sinh và sự hỗ trợ của nhà trường.",
+            img: "image/LXAT/25092023S.jpg",
+          },
+          {
+            cat: "thpt",
+            catLabel: "Cấp THPT",
+            date: "19/09/2023",
+            title: "Đào tạo LXAT tại Trường THPT QUY NHƠN",
+            excerpt:
+              "Chiều ngày 19-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
+            full: "Chiều ngày 19-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THPT Quy Nhơn, 325 Nguyễn Thị Minh Khai, P. Nguyễn Văn Cừ, TP. Quy Nhơn, Bình Định.",
+            img: "image/LXAT/19092023C.jpg",
+          },
+          {
+            cat: "thcs",
+            catLabel: "Cấp THCS",
+            date: "18/09/2023",
+            title: "Đào tạo LXAT tại Trường THCS HẢI CẢNG (Chiều)",
+            excerpt:
+              "Chiều ngày 18-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
+            full: "Chiều ngày 18-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THCS Hải Cảng, 82 Trần Hưng Đạo, TP. Quy Nhơn, Bình Định.",
+            img: "image/LXAT/18092023C.jpg",
+          },
+          {
+            cat: "thcs",
+            catLabel: "Cấp THCS",
+            date: "18/09/2023",
+            title: "Đào tạo LXAT tại Trường THCS HẢI CẢNG (Sáng)",
+            excerpt:
+              "Sáng ngày 18-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
+            full: "Sáng ngày 18-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THCS Hải Cảng, 82 Trần Hưng Đạo, TP. Quy Nhơn, Bình Định.",
+            img: "image/LXAT/18092023S.jpg",
+          },
+          {
+            cat: "thcs",
+            catLabel: "Cấp THCS",
+            date: "16/09/2023",
+            title: "Đào tạo LXAT tại Trường THCS LƯƠNG THẾ VINH",
+            excerpt:
+              "Chiều ngày 16-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình...",
+            full: "Chiều ngày 16-09-2023 Hệ Thống HEAD TRUNG HÙNG đã tổ chức chương trình An Toàn Giao Thông Cho Nụ Cười Ngày Mai tại trường THCS Lương Thế Vinh, P. Lý Thường Kiệt, TP. Quy Nhơn, Bình Định.",
+            img: "image/LXAT/16092023C.jpg",
+          },
+          {
+            cat: "cac-cap",
+            catLabel: "Các cấp",
+            date: "16/09/2023",
+            title:
+              "LỄ PHÁT ĐỘNG HỌC SINH, SINH VIÊN CHẤP HÀNH PHÁP LUẬT VỀ ATGT NĂM HỌC 2023–2024",
+            excerpt:
+              "Sáng ngày 16/09 Hệ Thống HEAD Trung Hùng đã tổ chức hưởng ứng...",
+            full: "Sáng ngày 16/09 Hệ Thống HEAD Trung Hùng đã tổ chức hưởng ứng LỄ PHÁT ĐỘNG HỌC SINH, SINH VIÊN NGHIÊM CHỈNH CHẤP HÀNH PHÁP LUẬT VỀ AN TOÀN GIAO THÔNG NĂM HỌC 2023-2024 tại trường PT DTNT THPT Bình Định, P. Nguyễn Văn Cừ, TP. Quy Nhơn, Bình Định. Chương trình đã thu hút được rất nhiều sự quan tâm với nhiều hoạt động diễn ra sôi nổi và những phần quà giá trị.",
+            img: "image/LXAT/16092023S.jpg",
+          },
+        ];
+
+        /* cat color map */
+        const catColorMap = {
+          "tieu-hoc": "cat-tieu-hoc",
+          thcs: "cat-thcs",
+          thpt: "cat-thpt",
+          doan: "cat-doan",
+          "cac-cap": "cat-cac-cap",
+        };
+
+        document.getElementById("totalCount").innerHTML =
+          allNews.length + "<em>+</em>";
+
+        const PER_PAGE = 12;
+        let activeCat = "all",
+          curPage = 1;
+        const grid = document.getElementById("newsGrid");
+        const pagEl = document.getElementById("pagination");
+        const countEl = document.getElementById("countNum");
+
+        function filtered() {
+          return activeCat === "all"
+            ? allNews
+            : allNews.filter((n) => n.cat === activeCat);
         }
 
-        // Page numbers
-        for (let i = 1; i <= pageCount; i++) {
-          const pageLink = document.createElement("a");
-          pageLink.href = "#";
-          pageLink.textContent = i;
-          if (i === currentPage) {
-            pageLink.classList.add("active");
+        function renderGrid() {
+          const data = filtered();
+          const total = data.length;
+          const totalPages = Math.ceil(total / PER_PAGE);
+          const start = (curPage - 1) * PER_PAGE;
+          const end = Math.min(start + PER_PAGE, total);
+          countEl.textContent = total;
+          grid.innerHTML = "";
+
+          for (let i = start; i < end; i++) {
+            const n = data[i];
+            const card = document.createElement("div");
+            card.className = "news-card rv";
+            card.innerHTML = `
+        <div class="nc-img">
+          <img src="${n.img}" alt="${n.title}" loading="lazy" />
+          <span class="nc-cat ${catColorMap[n.cat] || "cat-cac-cap"}">${n.catLabel}</span>
+        </div>
+        <div class="nc-body">
+          <div class="nc-meta">
+            <span><i class="far fa-calendar"></i>${n.date}</span>
+          </div>
+          <div class="nc-title">${n.title}</div>
+          <div class="nc-excerpt">${n.excerpt}</div>
+          <div class="nc-full">${n.full}</div>
+          <span class="nc-toggle">Xem thêm <i class="fas fa-chevron-down"></i></span>
+        </div>`;
+            /* Toggle */
+            card
+              .querySelector(".nc-toggle")
+              .addEventListener("click", function () {
+                const exc = card.querySelector(".nc-excerpt");
+                const full = card.querySelector(".nc-full");
+                const isOpen = full.style.display === "block";
+                if (isOpen) {
+                  full.style.display = "none";
+                  exc.style.display = "";
+                  this.innerHTML =
+                    'Xem thêm <i class="fas fa-chevron-down"></i>';
+                  this.classList.remove("expanded");
+                } else {
+                  full.style.display = "block";
+                  exc.style.display = "none";
+                  this.innerHTML = 'Thu gọn <i class="fas fa-chevron-up"></i>';
+                  this.classList.add("expanded");
+                }
+              });
+            grid.appendChild(card);
           }
-          pageLink.addEventListener("click", (e) => {
-            e.preventDefault();
-            currentPage = i;
-            displayNewsItems(currentPage);
-            setupPagination();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+          /* Reveal */
+          grid.querySelectorAll(".rv").forEach((el, i) => {
+            el.classList.remove("in");
+            setTimeout(() => el.classList.add("in"), i * 45);
+            revObs.observe(el);
           });
-          paginationElement.appendChild(pageLink);
-        }
 
-        // Next button
-        if (currentPage < pageCount) {
-          const nextButton = document.createElement("a");
-          nextButton.href = "#";
-          nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
-          nextButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            currentPage++;
-            displayNewsItems(currentPage);
-            setupPagination();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+          /* Pagination */
+          pagEl.innerHTML = "";
+          if (totalPages <= 1) return;
+          const prev = document.createElement("button");
+          prev.className = "pg-btn";
+          prev.disabled = curPage <= 1;
+          prev.innerHTML = '<i class="fas fa-chevron-left"></i>';
+          prev.addEventListener("click", () => {
+            curPage--;
+            renderGrid();
+            scrollToGrid();
           });
-          paginationElement.appendChild(nextButton);
-        }
-      }
-
-      // Initialize
-      displayNewsItems(currentPage);
-      setupPagination();
-
-      // Mobile menu toggle
-      const menuToggle = document.getElementById("mobile-menu");
-      const mainNav = document.querySelector(".main-nav");
-
-      menuToggle.addEventListener("click", () => {
-        menuToggle.classList.toggle("active");
-        mainNav.classList.toggle("active");
-      });
-
-      // Header scroll effect
-      const header = document.querySelector(".main-header");
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
-        }
-      });
-
-      // Back to top button
-      const backToTopButton = document.getElementById("backToTop");
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 300) {
-          backToTopButton.classList.add("active");
-        } else {
-          backToTopButton.classList.remove("active");
-        }
-      });
-
-      backToTopButton.addEventListener("click", (e) => {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-
-      // Close mobile menu when clicking on a link
-      const navLinks = document.querySelectorAll(".main-nav a");
-      navLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          if (mainNav.classList.contains("active")) {
-            menuToggle.classList.remove("active");
-            mainNav.classList.remove("active");
+          pagEl.appendChild(prev);
+          for (let p = 1; p <= totalPages; p++) {
+            const btn = document.createElement("button");
+            btn.className = "pg-num" + (p === curPage ? " active" : "");
+            btn.textContent = p;
+            btn.addEventListener("click", () => {
+              curPage = p;
+              renderGrid();
+              scrollToGrid();
+            });
+            pagEl.appendChild(btn);
           }
+          const next = document.createElement("button");
+          next.className = "pg-btn";
+          next.disabled = curPage >= totalPages;
+          next.innerHTML = '<i class="fas fa-chevron-right"></i>';
+          next.addEventListener("click", () => {
+            curPage++;
+            renderGrid();
+            scrollToGrid();
+          });
+          pagEl.appendChild(next);
+        }
+
+        function scrollToGrid() {
+          window.scrollTo({
+            top:
+              grid.getBoundingClientRect().top +
+              window.scrollY -
+              hdr.offsetHeight -
+              20,
+            behavior: "smooth",
+          });
+        }
+
+        /* Filters */
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            document
+              .querySelectorAll(".filter-btn")
+              .forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            activeCat = btn.dataset.cat;
+            curPage = 1;
+            renderGrid();
+          });
         });
-      });
+
+        renderGrid();
+
+        /* Reveal static */
+        document.querySelectorAll(".rv").forEach((el) => revObs.observe(el));
+      })();
     </script>
   </body>
 </html>
