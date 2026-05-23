@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tin Tức</title>
+    <title>Tin Tức – HEAD Trung Hùng Honda</title>
     <link
       rel="icon"
       href="/sanphamxemay/image/banner/Logo_HEAD.png"
@@ -14,1297 +14,1923 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Barlow:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* Reset & Base Styles */
+      /* ======================================================
+   TOKENS
+====================================================== */
+      :root {
+        --red: #d10017;
+        --red-mid: #a5000e;
+        --red-soft: rgba(209, 0, 23, 0.09);
+        --red-glow: rgba(209, 0, 23, 0.22);
+        --ink: #0f0f10;
+        --ink2: #222225;
+        --paper: #f8f6f3;
+        --paper2: #efecea;
+        --white: #ffffff;
+        --border: rgba(15, 15, 16, 0.09);
+        --muted: #7a7570;
+        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
-      :root {
-        --primary-color: #e40521;
-        --secondary-color: #333;
-        --light-color: #f8f9fa;
-        --dark-color: #212529;
-        --gray-color: #6c757d;
-        --light-gray: #e9ecef;
-        --transition: all 0.3s ease;
-      }
-
       html {
+        font-size: 62.5%;
         scroll-behavior: smooth;
       }
-
       body {
-        font-family: "Montserrat", sans-serif;
-        line-height: 1.6;
-        color: var(--secondary-color);
+        font-family: "Barlow", sans-serif;
+        background: var(--paper);
+        color: var(--ink);
         overflow-x: hidden;
+        line-height: 1.6;
       }
-
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 15px;
-      }
-
       img {
         max-width: 100%;
-        height: auto;
+        display: block;
       }
-
       a {
         text-decoration: none;
         color: inherit;
-        transition: var(--transition);
       }
-
       ul {
         list-style: none;
       }
-
-      .btn {
-        display: inline-block;
-        padding: 10px 25px;
-        border-radius: 25px;
-        font-weight: 500;
-        text-align: center;
-        transition: var(--transition);
+      button {
+        border: none;
+        background: none;
         cursor: pointer;
-        border: 2px solid transparent;
+        font-family: inherit;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--red);
       }
 
-      .btn-primary {
-        background-color: var(--primary-color);
-        color: white;
-        border-color: var(--primary-color);
-      }
-
-      .btn-primary:hover {
-        background-color: #c0041d;
-        border-color: #c0041d;
-      }
-
-      .btn-outline {
-        background-color: transparent;
-        color: var(--primary-color);
-        border-color: var(--primary-color);
-      }
-
-      .btn-outline:hover {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 50px;
-      }
-
-      .section-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: var(--dark-color);
-      }
-
-      .section-subtitle {
-        font-size: 1.1rem;
-        color: var(--gray-color);
-        margin-bottom: 20px;
-      }
-
-      .divider {
-        width: 80px;
-        height: 3px;
-        background-color: var(--primary-color);
-        margin: 0 auto;
-      }
-
-      .text-center {
-        text-align: center;
-      }
-
-      /* Preloader */
+      /* ======================================================
+   PRELOADER
+====================================================== */
       .preloader {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: white;
+        inset: 0;
+        background: var(--ink);
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
         z-index: 9999;
-        transition: opacity 0.5s ease;
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
       }
-
-      .preloader.fade-out {
+      .preloader.out {
         opacity: 0;
+        pointer-events: none;
       }
-
-      .loader {
+      .pre-text {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 4.5rem;
+        font-weight: 900;
+        letter-spacing: 0.3em;
+        color: #fff;
+        animation: preIn 0.7s ease both;
+      }
+      .pre-text em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .pre-dots {
         display: flex;
-        gap: 10px;
+        gap: 1rem;
+        margin-top: 2.5rem;
       }
-
-      .loader-square {
-        width: 20px;
-        height: 20px;
-        background-color: var(--primary-color);
-        animation: loaderAnimation 1.2s infinite ease-in-out;
+      .pre-dot {
+        width: 10px;
+        height: 10px;
+        background: var(--red);
         border-radius: 50%;
+        animation: dotPulse 1.4s ease infinite;
       }
-
-      .loader-square:nth-child(1) {
-        animation-delay: 0s;
-      }
-
-      .loader-square:nth-child(2) {
+      .pre-dot:nth-child(2) {
         animation-delay: 0.2s;
       }
-
-      .loader-square:nth-child(3) {
+      .pre-dot:nth-child(3) {
         animation-delay: 0.4s;
       }
-
-      .loader-square:nth-child(4) {
-        animation-delay: 0.6s;
-      }
-
-      @keyframes loaderAnimation {
-        0%,
-        40%,
-        100% {
-          transform: scaleY(0.6);
-        }
-        20% {
-          transform: scaleY(1);
-        }
-      }
-
-      /* Header */
-      .main-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 15px 0;
-        background-color: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        transition: var(--transition);
-      }
-
-      .main-header.scrolled {
-        padding: 15px 0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      }
-
-      .main-header .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .logo img {
-        height: 35px;
-      }
-
-      .main-nav ul {
-        display: flex;
-      }
-
-      .main-nav li {
-        margin-left: 30px;
-      }
-
-      .main-nav a {
-        font-weight: 500;
-        color: var(--dark-color);
-        position: relative;
-      }
-
-      .main-nav a:after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: var(--primary-color);
-        transition: var(--transition);
-      }
-
-      .main-nav a:hover:after,
-      .main-nav a.active:after {
-        width: 100%;
-      }
-
-      .main-nav a.active {
-        color: var(--primary-color);
-        font-weight: 600;
-      }
-
-      /* Mobile Menu Toggle Styles */
-      .menu-toggle {
-        display: none;
-        width: 30px;
-        height: 24px;
-        position: relative;
-        cursor: pointer;
-        z-index: 1001;
-      }
-
-      .menu-toggle .bar {
-        position: absolute;
-        width: 100%;
-        height: 3px;
-        background-color: var(--dark-color);
-        transition: all 0.3s ease;
-        left: 0;
-      }
-      .menu-toggle .bar:nth-child(1) {
-        top: 0;
-      }
-
-      .menu-toggle .bar:nth-child(2) {
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      .menu-toggle .bar:nth-child(3) {
-        bottom: 0;
-      }
-      /* When menu is active */
-      .menu-toggle.active .bar:nth-child(1) {
-        top: 50%;
-        transform: translateY(-50%) rotate(45deg);
-        background-color: var(--primary-color);
-      }
-
-      .menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-      }
-
-      .menu-toggle.active .bar:nth-child(3) {
-        bottom: 50%;
-        transform: translateY(50%) rotate(-45deg);
-        background-color: var(--primary-color);
-      }
-
-      /* Mobile Menu */
-      @media (max-width: 992px) {
-        .menu-toggle {
-          display: block;
-        }
-
-        .menu-toggle.active .bar:nth-child(1) {
-          transform: translateY(8px) rotate(45deg);
-        }
-
-        .menu-toggle.active .bar:nth-child(2) {
+      @keyframes preIn {
+        from {
           opacity: 0;
+          letter-spacing: 0.6em;
         }
-
-        .menu-toggle.active .bar:nth-child(3) {
-          transform: translateY(-8px) rotate(-45deg);
+        to {
+          opacity: 1;
+          letter-spacing: 0.3em;
         }
-
-        .main-nav {
-          position: fixed;
-          top: 0;
-          right: -100%;
-          width: 80%;
-          max-width: 400px;
-          height: 100vh;
-          background-color: white;
-          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-          transition: all 0.4s ease;
-          padding: 100px 30px 30px;
-          overflow-y: auto;
-          z-index: 1000;
+      }
+      @keyframes dotPulse {
+        0%,
+        60%,
+        100% {
+          transform: scale(0.6);
+          opacity: 0.4;
         }
-
-        .main-nav.active {
-          right: 0;
-        }
-
-        .main-nav ul {
-          flex-direction: column;
-        }
-
-        .main-nav li {
-          margin: 15px 0;
-        }
-
-        .main-nav a {
-          font-size: 1.1rem;
-          padding: 8px 0;
-          display: block;
-        }
-        .quick-links .container {
-          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        30% {
+          transform: scale(1.2);
+          opacity: 1;
         }
       }
 
-      /* Hero Banner */
-      .hero-banner {
-        position: relative;
-        height: 100vh;
-        min-height: 600px;
-        background: url("image/BANNERBIKE/SH350.jpg") no-repeat center
-          center/cover;
+      /* ======================================================
+   HEADER
+====================================================== */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 500;
+        background: rgba(248, 246, 243, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition: box-shadow 0.35s;
+      }
+      .site-header.lifted {
+        box-shadow: 0 2px 24px rgba(15, 15, 16, 0.07);
+      }
+      .hdr {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+        gap: 2rem;
+      }
+      .logo-wrap {
+        display: flex;
+        align-items: center;
+        gap: 1.3rem;
+        flex-shrink: 0;
+      }
+      .logo-img {
+        height: 44px;
+        width: auto;
+        transition: opacity 0.25s;
+      }
+      .logo-wrap:hover .logo-img {
+        opacity: 0.85;
+      }
+      .logo-text-block {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        color: white;
-      }
-
-      .hero-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-      }
-
-      .hero-content {
-        position: relative;
-        z-index: 1;
-        color: white;
-        max-width: 600px;
-      }
-
-      .hero-content h1 {
-        font-size: 2.2rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-        line-height: 1.2;
-      }
-
-      .hero-content p {
-        font-size: 1.2rem;
-        margin-bottom: 30px;
-      }
-
-      .hero-buttons {
-        display: flex;
-        gap: 15px;
-      }
-
-      @media (max-width: 768px) {
-        .hero-content h1 {
-          font-size: 2.5rem;
-        }
-
-        .hero-buttons {
-          flex-direction: column;
-        }
-        .quick-links .container {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-
-      /* Quick Links */
-      .quick-links {
-        padding: 60px 0;
-        background-color: #f8f9fa;
-      }
-
-      .quick-links .container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 15px;
-      }
-
-      .quick-link-card {
-        position: relative;
-        border-radius: 25px;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        aspect-ratio: 1/1; /* Giữ tỉ lệ vuông */
-      }
-
-      .quick-link-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      }
-
-      .quick-link-card a {
-        pointer-events: auto !important; /* Đảm bảo thẻ a có thể click */
-        position: relative;
-        z-index: 2; /* Đặt cao hơn các layer khác */
-      }
-      .quick-link-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-      .quick-link-card:hover img {
-        transform: scale(1.05);
-      }
-
-      .quick-link-card span {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 15px;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-        color: white;
-        font-weight: 600;
-        font-size: 1.1rem;
-        text-align: center;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-      }
-      /* Hiệu ứng overlay */
-      .quick-link-card::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(5, 146, 228, 0.3);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      .quick-link-card:hover::after {
-        opacity: 1;
-      }
-      /* Featured Section */
-      .featured-section {
-        padding: 80px 0;
-      }
-
-      .featured-products {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-      }
-
-      .product-card {
-        position: relative;
-        width: 260px; /* hoặc % tuỳ theo responsive */
-        border: 1px solid #eee;
-        border-radius: 12px;
-        overflow: hidden;
-        background: #fff;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        display: flex;
-        flex-direction: column;
-        transition: transform 0.3s ease;
-      }
-
-      .product-card:hover {
-        transform: translateY(-5px);
-      }
-
-      .product-badge {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background-color: var(--primary-color);
-        color: white;
-        padding: 5px 10px;
-        border-radius: 25px;
-        font-size: 0.8rem;
-        font-weight: 500;
-        z-index: 1;
-      }
-
-      .product-image {
-        width: 100%;
-        aspect-ratio: 4 / 3; /* Giữ tỷ lệ khung hình */
-        overflow: hidden;
-        position: relative;
-      }
-
-      .product-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Đảm bảo ảnh không bị méo và không mất góc */
-        object-position: center;
-        transition: var(--transition);
-      }
-
-      .product-card:hover .product-image img {
-        transform: scale(1.05);
-      }
-
-      .product-info {
-        padding: 20px;
-      }
-
-      .product-info h3 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-        color: var(--dark-color);
-      }
-
-      .product-price {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--primary-color);
-        margin-bottom: 15px;
-      }
-
-      /* Promo Banner */
-      .promo-banner {
-        padding: 80px 0;
-        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-          url("../images/promo-banner.jpg") no-repeat center center/cover;
-        color: white;
-        text-align: center;
-      }
-
-      .promo-content h2 {
-        font-size: 2.5rem;
-        margin-bottom: 15px;
-      }
-
-      .promo-content p {
-        font-size: 1.2rem;
-        margin-bottom: 30px;
-      }
-
-      /* News Section */
-      .news-section {
-        padding: 80px 0;
-        background-color: var(--light-color);
-      }
-
-      .news-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 30px;
-        margin-bottom: 40px;
-      }
-
-      .news-card {
-        background-color: white;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        transition: var(--transition);
-      }
-
-      .news-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      }
-
-      .news-image {
-        position: relative;
-        height: 200px;
-        overflow: hidden;
-      }
-
-      .news-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: var(--transition);
-      }
-
-      .news-card:hover .news-image img {
-        transform: scale(1.05);
-      }
-
-      .news-date {
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        background-color: var(--primary-color);
-        color: white;
-        text-align: center;
-        padding: 10px;
-        border-radius: 4px;
         line-height: 1;
       }
-
-      .news-date span:first-child {
-        font-size: 1.5rem;
-        font-weight: 700;
-        display: block;
-      }
-
-      .news-date span:last-child {
-        font-size: 0.9rem;
+      .logo-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.95rem;
+        font-weight: 800;
+        letter-spacing: 0.09em;
         text-transform: uppercase;
+        color: var(--ink);
+        white-space: nowrap;
       }
-
-      .news-content {
-        padding: 20px;
-      }
-
-      .news-content h3 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-      }
-
-      .news-content h3 a:hover {
-        color: var(--primary-color);
-      }
-
-      .news-content p {
-        color: var(--gray-color);
-        margin-bottom: 15px;
-        font-size: 0.95rem;
-      }
-
-      .read-more {
-        color: var(--primary-color);
-        font-weight: 500;
-        font-size: 0.9rem;
-      }
-
-      .read-more i {
-        margin-left: 5px;
-        font-size: 0.8rem;
-      }
-
-      /* Service Section */
-      .service-section {
-        padding: 80px 0;
-      }
-
-      .service-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 30px;
-      }
-
-      .service-card {
-        background-color: white;
-        border-radius: 8px;
-        padding: 30px;
-        text-align: center;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        transition: var(--transition);
-      }
-
-      .service-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-      }
-
-      .service-icon {
-        width: 80px;
-        height: 80px;
-        background-color: var(--light-color);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto 20px;
-        font-size: 2rem;
-        color: var(--primary-color);
-      }
-
-      .service-card h3 {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-        color: var(--dark-color);
-      }
-
-      .service-card p {
-        color: var(--gray-color);
-        margin-bottom: 20px;
-      }
-
-      /* Store Section */
-      .store-section {
-        padding: 80px 0;
-        background: url("../images/store-banner.jpg") no-repeat center
-          center/cover;
-        color: white;
-        text-align: center;
-        position: relative;
-      }
-
-      .store-section:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-      }
-
-      .store-content {
-        position: relative;
-        z-index: 1;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      .store-content h2 {
-        font-size: 2.5rem;
-        margin-bottom: 15px;
-      }
-
-      .store-content p {
-        font-size: 1.1rem;
-        margin-bottom: 30px;
-      }
-
-      .store-search {
-        display: flex;
-        margin-bottom: 20px;
-      }
-
-      .store-search input {
-        flex: 1;
-        padding: 12px 15px;
-        border: none;
-        border-radius: 4px 0 0 4px;
+      .logo-sub {
+        font-family: "Barlow Condensed", sans-serif;
         font-size: 1rem;
-      }
-
-      .store-search button {
-        border-radius: 0 4px 4px 0;
-        border: none;
-      }
-
-      .store-link {
-        color: white;
         font-weight: 500;
-        display: inline-flex;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+        margin-top: 0.2rem;
+      }
+      .main-nav {
+        display: flex;
         align-items: center;
+        gap: 0;
       }
-
-      .store-link:hover {
-        color: var(--primary-color);
-      }
-
-      .store-link i {
-        margin-left: 5px;
-      }
-
-      /* Footer */
-      .main-footer {
-        background-color: var(--dark-color);
-        color: white;
-        padding: 60px 0 0;
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 30px;
-        margin-bottom: 40px;
-      }
-
-      .footer-col h3 {
-        font-size: 1rem;
-        margin-bottom: 20px;
+      .main-nav a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        padding: 0.7rem 1.4rem;
         position: relative;
-        padding-bottom: 10px;
+        transition: color 0.2s;
       }
-
-      .footer-col h3:after {
+      .main-nav a::after {
         content: "";
         position: absolute;
         bottom: 0;
-        left: 0;
-        width: 40px;
+        left: 1.4rem;
+        right: 1.4rem;
         height: 2px;
-        background-color: var(--primary-color);
+        background: var(--red);
+        transform: scaleX(0);
+        transition: transform 0.3s var(--ease);
       }
-
-      .footer-logo {
-        margin-bottom: 20px;
-        display: block;
-        max-width: 100px;
+      .main-nav a:hover,
+      .main-nav a.active {
+        color: var(--red);
       }
-
-      .footer-col p {
-        color: #adb5bd;
-        margin-bottom: 20px;
+      .main-nav a:hover::after,
+      .main-nav a.active::after {
+        transform: scaleX(1);
       }
-
-      .social-links {
-        display: flex;
-        gap: 15px;
+      .hdr-cta {
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.85rem 2.2rem;
+        border-radius: 4px;
+        flex-shrink: 0;
+        transition: all 0.3s;
       }
-
-      .social-links a {
-        width: 35px;
-        height: 35px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: var(--transition);
+      .hdr-cta:hover {
+        background: var(--red-mid);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px var(--red-glow);
       }
-
-      .social-links a:hover {
-        background-color: var(--primary-color);
-        transform: translateY(-3px);
+      .ham {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 4px;
       }
-
-      .footer-col ul li {
-        margin-bottom: 10px;
+      .ham span {
+        width: 22px;
+        height: 2px;
+        background: var(--ink);
+        transition: all 0.3s;
+        border-radius: 1px;
       }
-
-      .footer-col ul a {
-        color: #adb5bd;
-        transition: var(--transition);
+      .ham.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
       }
-
-      .footer-col ul a:hover {
-        color: var(--primary-color);
-        padding-left: 5px;
+      .ham.open span:nth-child(2) {
+        opacity: 0;
       }
-
-      .contact-info li {
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
+      .ham.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
       }
-
-      .contact-info i {
-        margin-right: 10px;
-        color: var(--primary-color);
-        width: 20px;
-        text-align: center;
-      }
-
-      .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 20px 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: #adb5bd;
-        font-size: 0.9rem;
-      }
-
-      .legal-links {
-        display: flex;
-        gap: 20px;
-      }
-
-      .legal-links a {
-        color: #adb5bd;
-        transition: var(--transition);
-      }
-
-      .legal-links a:hover {
-        color: var(--primary-color);
-      }
-
-      /* Back to Top */
-      .back-to-top {
+      .dov {
         position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background-color: var(--primary-color);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 1.2rem;
+        inset: 0;
+        background: rgba(15, 15, 16, 0.55);
+        z-index: 498;
         opacity: 0;
         visibility: hidden;
-        transition: var(--transition);
-        z-index: 999;
+        transition: all 0.3s;
       }
-
-      .back-to-top.active {
+      .dov.on {
         opacity: 1;
         visibility: visible;
       }
-
-      .back-to-top:hover {
-        background-color: #c0041d;
-        transform: translateY(-5px);
+      .sdraw {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: min(330px, 90vw);
+        height: 100%;
+        background: var(--white);
+        z-index: 499;
+        padding: 6rem 2.8rem 3rem;
+        transition: right 0.38s var(--ease);
+        border-left: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+      }
+      .sdraw.on {
+        right: 0;
+      }
+      .sdx {
+        position: absolute;
+        top: 1.6rem;
+        right: 1.6rem;
+        width: 36px;
+        height: 36px;
+        background: var(--paper2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--muted);
+        transition: all 0.2s;
+      }
+      .sdx:hover {
+        background: var(--red);
+        color: #fff;
+      }
+      .dnav {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .dnav a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        padding: 1.4rem 0;
+        border-bottom: 1px solid var(--border);
+        transition: color 0.2s;
+      }
+      .dnav a:hover,
+      .dnav a.active {
+        color: var(--red);
+      }
+      .dcta {
+        background: var(--red);
+        color: #fff;
+        text-align: center;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.3rem;
+        border-radius: 4px;
+        margin-top: auto;
+        transition: background 0.3s;
+      }
+      .dcta:hover {
+        background: var(--red-mid);
       }
 
-      /* Responsive Adjustments */
+      /* ======================================================
+   PAGE HERO
+====================================================== */
+      .page-hero {
+        background: var(--ink);
+        position: relative;
+        overflow: hidden;
+        padding: 7rem 3rem 6rem;
+      }
+      .ph-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(209, 0, 23, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(209, 0, 23, 0.06) 1px, transparent 1px);
+        background-size: 50px 50px;
+        mask-image: radial-gradient(
+          ellipse 90% 90% at 50% 50%,
+          black 20%,
+          transparent 100%
+        );
+      }
+      /* Animated rings */
+      .ph-rings {
+        position: absolute;
+        right: -180px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .ph-ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(209, 0, 23, 0.15);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: ringSpin 22s linear infinite;
+      }
+      .ph-ring:nth-child(1) {
+        width: 520px;
+        height: 520px;
+      }
+      .ph-ring:nth-child(2) {
+        width: 350px;
+        height: 350px;
+        animation-direction: reverse;
+        animation-duration: 16s;
+      }
+      .ph-ring:nth-child(3) {
+        width: 200px;
+        height: 200px;
+        border-color: rgba(209, 0, 23, 0.35);
+      }
+      @keyframes ringSpin {
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+
+      .ph-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .ph-crumb {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.3rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.3);
+        margin-bottom: 2.5rem;
+      }
+      .ph-crumb a {
+        color: rgba(255, 255, 255, 0.5);
+        transition: color 0.2s;
+      }
+      .ph-crumb a:hover {
+        color: #fff;
+      }
+      .ph-crumb .sep {
+        color: rgba(255, 255, 255, 0.18);
+      }
+      .ph-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 2rem;
+      }
+      .ph-kicker::before {
+        content: "";
+        width: 20px;
+        height: 1.5px;
+        background: var(--red);
+      }
+      .ph-h1 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(6rem, 10vw, 12rem);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        line-height: 0.88;
+        color: #fff;
+        margin-bottom: 2rem;
+      }
+      .ph-h1 em {
+        color: var(--red);
+        font-style: normal;
+        display: block;
+      }
+      .ph-sub {
+        font-size: 1.7rem;
+        color: rgba(255, 255, 255, 0.42);
+        max-width: 520px;
+        line-height: 1.65;
+        margin-bottom: 3.5rem;
+        font-weight: 300;
+      }
+      /* Scrolling category pills */
+      .ph-cats {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .ph-cat {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0.7rem 1.6rem;
+        border-radius: 50px;
+        transition: all 0.25s;
+      }
+      .ph-cat:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+      }
+      .ph-cat i {
+        font-size: 1.2rem;
+      }
+
+      /* ======================================================
+   MARQUEE
+====================================================== */
+      .marquee-strip {
+        background: var(--red);
+        padding: 1.2rem 0;
+        overflow: hidden;
+      }
+      .mq-track {
+        display: flex;
+        width: max-content;
+        animation: mq 22s linear infinite;
+      }
+      .mq-item {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        letter-spacing: 0.18em;
+        color: rgba(255, 255, 255, 0.65);
+        padding: 0 2.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 2rem;
+        white-space: nowrap;
+      }
+      .mq-dot {
+        width: 5px;
+        height: 5px;
+        background: #fff;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+      }
+      @keyframes mq {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ======================================================
+   NEWS CATEGORIES SECTION
+====================================================== */
+      .news-section {
+        padding: 8rem 3rem;
+        background: var(--white);
+      }
+      .ns-wrap {
+        max-width: 1340px;
+        margin: 0 auto;
+      }
+      .sec-eyebrow {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--red);
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 1.6rem;
+      }
+      .sec-eyebrow::before {
+        content: "";
+        width: 20px;
+        height: 1.5px;
+        background: var(--red);
+      }
+      .sec-h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 5.5rem;
+        font-weight: 900;
+        letter-spacing: 0.03em;
+        line-height: 0.95;
+        margin-bottom: 1.2rem;
+      }
+      .sec-sub {
+        font-size: 1.6rem;
+        color: var(--muted);
+        max-width: 540px;
+        margin-bottom: 5rem;
+        line-height: 1.55;
+      }
+
+      /* 4-card grid */
+      .cat-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+      }
+
+      /* Each card */
+      .cat-card {
+        border-radius: 16px;
+        overflow: hidden;
+        background: var(--paper2);
+        border: 1px solid var(--border);
+        position: relative;
+        transition: all 0.5s var(--ease);
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+      }
+      .cat-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 24px 64px rgba(15, 15, 16, 0.14);
+        border-color: rgba(209, 0, 23, 0.18);
+      }
+      /* Large icon zone */
+      .cat-icon-zone {
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        background: var(--ink);
+      }
+      /* Each card has its own background color scheme */
+      .cat-card:nth-child(1) .cat-icon-zone {
+        background: linear-gradient(135deg, #0f0f10 0%, #1a0810 100%);
+      }
+      .cat-card:nth-child(2) .cat-icon-zone {
+        background: linear-gradient(135deg, #0a0f1a 0%, #0a1a2e 100%);
+      }
+      .cat-card:nth-child(3) .cat-icon-zone {
+        background: linear-gradient(135deg, #0f0f10 0%, #1a0a05 100%);
+      }
+      .cat-card:nth-child(4) .cat-icon-zone {
+        background: linear-gradient(135deg, #060a10 0%, #0d1520 100%);
+      }
+
+      /* Grid pattern overlay in icon zone */
+      .cat-icon-zone::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(209, 0, 23, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(209, 0, 23, 0.06) 1px, transparent 1px);
+        background-size: 30px 30px;
+        mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          black 20%,
+          transparent 100%
+        );
+      }
+      .cat-icon-wrap {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: rgba(209, 0, 23, 0.15);
+        border: 2px solid rgba(209, 0, 23, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        transition: all 0.4s var(--spring);
+      }
+      .cat-card:hover .cat-icon-wrap {
+        background: var(--red);
+        border-color: var(--red);
+        transform: scale(1.12);
+        box-shadow: 0 0 40px var(--red-glow);
+      }
+      .cat-icon-wrap i {
+        font-size: 3.2rem;
+        color: var(--red);
+        transition:
+          color 0.3s,
+          transform 0.3s;
+      }
+      .cat-card:hover .cat-icon-wrap i {
+        color: #fff;
+        transform: scale(1.1);
+      }
+
+      /* Pulsing ring on hover */
+      .cat-icon-wrap::after {
+        content: "";
+        position: absolute;
+        inset: -8px;
+        border-radius: 50%;
+        border: 2px solid var(--red);
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.4s var(--ease);
+      }
+      .cat-card:hover .cat-icon-wrap::after {
+        opacity: 0.3;
+        transform: scale(1);
+      }
+
+      /* Card body */
+      .cat-body {
+        padding: 2.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      /* Red top bar on hover */
+      .cat-body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 2.5rem;
+        right: 2.5rem;
+        height: 2px;
+        background: var(--red);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s var(--ease);
+      }
+      .cat-card:hover .cat-body::before {
+        transform: scaleX(1);
+      }
+
+      .cat-num {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .cat-num::before {
+        content: "";
+        width: 12px;
+        height: 1.5px;
+        background: var(--red);
+      }
+      .cat-h {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        color: var(--ink);
+        margin-bottom: 1.2rem;
+        line-height: 1.1;
+        transition: color 0.2s;
+      }
+      .cat-card:hover .cat-h {
+        color: var(--red);
+      }
+      .cat-desc {
+        font-size: 1.4rem;
+        color: var(--muted);
+        line-height: 1.65;
+        flex: 1;
+      }
+      .cat-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-top: 2rem;
+        border-bottom: 1.5px solid transparent;
+        transition: all 0.25s;
+        padding-bottom: 0.2rem;
+      }
+      .cat-card:hover .cat-cta {
+        border-bottom-color: var(--red);
+      }
+      .cat-cta i {
+        font-size: 1.2rem;
+        transition: transform 0.25s;
+      }
+      .cat-card:hover .cat-cta i {
+        transform: translateX(5px);
+      }
+
+      /* Count badge */
+      .cat-badge {
+        position: absolute;
+        top: 1.4rem;
+        right: 1.4rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: var(--red);
+        color: #fff;
+        padding: 0.35rem 1rem;
+        border-radius: 4px;
+        opacity: 0;
+        transform: translateY(-5px);
+        transition: all 0.3s;
+      }
+      .cat-card:hover .cat-badge {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ======================================================
+   LATEST NEWS STRIP (dark)
+====================================================== */
+      .latest-strip {
+        background: var(--ink);
+        padding: 7rem 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .latest-strip::before {
+        content: "TIN TỨC";
+        position: absolute;
+        right: -3rem;
+        bottom: -3rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 18rem;
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.025);
+        letter-spacing: 0.04em;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+      .ls-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .ls-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 4.5rem;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+      .ls-head .sec-eyebrow {
+        color: var(--red);
+      }
+      .ls-head .sec-h2 {
+        color: #fff;
+        margin-bottom: 0;
+      }
+      .ls-all {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        border-bottom: 1.5px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 0.3rem;
+        transition: all 0.25s;
+      }
+      .ls-all:hover {
+        color: #fff;
+        border-bottom-color: #fff;
+      }
+      .ls-all i {
+        font-size: 1.2rem;
+        transition: transform 0.25s;
+      }
+      .ls-all:hover i {
+        transform: translateX(4px);
+      }
+
+      /* Quick-access rows */
+      .ls-rows {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.6rem;
+      }
+      .ls-row {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 2.2rem 2.5rem;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        transition: all 0.35s;
+        text-decoration: none;
+      }
+      .ls-row:hover {
+        background: rgba(209, 0, 23, 0.1);
+        border-color: rgba(209, 0, 23, 0.28);
+        transform: translateX(6px);
+      }
+      .ls-row-icon {
+        width: 52px;
+        height: 52px;
+        background: var(--red);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.1rem;
+        color: #fff;
+        flex-shrink: 0;
+        transition: transform 0.3s var(--spring);
+      }
+      .ls-row:hover .ls-row-icon {
+        transform: scale(1.12);
+      }
+      .ls-row-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.35);
+        margin-bottom: 0.3rem;
+      }
+      .ls-row-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+        color: #fff;
+        line-height: 1.1;
+        transition: color 0.2s;
+      }
+      .ls-row:hover .ls-row-title {
+        color: var(--red);
+      }
+      .ls-row-arrow {
+        margin-left: auto;
+        font-size: 1.6rem;
+        color: rgba(255, 255, 255, 0.2);
+        transition: all 0.25s;
+      }
+      .ls-row:hover .ls-row-arrow {
+        color: var(--red);
+        transform: translateX(4px);
+      }
+
+      /* ======================================================
+   CTA BANNER
+====================================================== */
+      .cta-banner {
+        background: var(--red);
+        padding: 6rem 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-banner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+        background-size: 40px 40px;
+      }
+      .cta-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3rem;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+      .cta-text h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 4.8rem;
+        font-weight: 900;
+        letter-spacing: 0.03em;
+        color: #fff;
+        line-height: 0.95;
+        margin-bottom: 1rem;
+      }
+      .cta-text p {
+        font-size: 1.6rem;
+        color: rgba(255, 255, 255, 0.65);
+        max-width: 440px;
+        line-height: 1.6;
+      }
+      .cta-btns {
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        flex-shrink: 0;
+      }
+      .cta-btn-w {
+        background: #fff;
+        color: var(--red);
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.4rem 3rem;
+        border-radius: 5px;
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s;
+      }
+      .cta-btn-w:hover {
+        background: var(--paper2);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+      }
+      .cta-btn-t {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.4rem 3rem;
+        border-radius: 5px;
+        border: 1.5px solid rgba(255, 255, 255, 0.35);
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s;
+      }
+      .cta-btn-t:hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      /* ======================================================
+   FOOTER
+====================================================== */
+      footer {
+        background: #050505;
+        padding: 6.5rem 3rem 3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .ft-grid {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 5rem;
+        margin-bottom: 5rem;
+        padding-bottom: 5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .ft-logo-img {
+        height: 38px;
+        width: auto;
+        opacity: 0.8;
+        margin-bottom: 1.5rem;
+      }
+      .ft-brand-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 0.8rem;
+      }
+      .ft-brand-sub {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.2);
+        margin-bottom: 2.5rem;
+      }
+      .ft-socs {
+        display: flex;
+        gap: 1rem;
+      }
+      .ft-soc {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 1.3rem;
+        transition: all 0.25s;
+        text-decoration: none;
+      }
+      .ft-soc:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+      .ft-col h5 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.2);
+        margin-bottom: 1.8rem;
+      }
+      .ft-col li {
+        margin-bottom: 1.1rem;
+      }
+      .ft-col a {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        transition: color 0.2s;
+      }
+      .ft-col a:hover {
+        color: #fff;
+      }
+      .ft-contact li {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        margin-bottom: 1.2rem;
+      }
+      .ft-contact i {
+        color: var(--red);
+        font-size: 1.2rem;
+        margin-top: 0.2rem;
+        flex-shrink: 0;
+      }
+      .ft-btm {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .ft-btm p {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.18);
+      }
+      .ft-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.18);
+      }
+      .ft-badge i {
+        color: var(--red);
+      }
+
+      /* ======================================================
+   MOBILE NAV
+====================================================== */
+      .mob-nav {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(248, 246, 243, 0.97);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid var(--border);
+        z-index: 400;
+        padding: 0.8rem 0;
+      }
+      .mnb {
+        display: flex;
+        justify-content: space-around;
+      }
+      .mnb-a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.35rem;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        transition: color 0.2s;
+      }
+      .mnb-a.on,
+      .mnb-a:hover {
+        color: var(--red);
+      }
+      .mnb-a i {
+        font-size: 2rem;
+      }
+      .mnb-a span {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* ======================================================
+   FLOATS
+====================================================== */
+      .messenger-float {
+        position: fixed;
+        bottom: 9rem;
+        right: 2.5rem;
+        width: 50px;
+        height: 50px;
+        background: #0084ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.1rem;
+        color: #fff;
+        text-decoration: none;
+        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.3);
+        z-index: 300;
+        animation: mpulse 2.5s infinite;
+        transition: transform 0.3s;
+      }
+      .messenger-float:hover {
+        transform: scale(1.1);
+      }
+      @keyframes mpulse {
+        0%,
+        100% {
+          box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
+        }
+        50% {
+          box-shadow: 0 4px 36px rgba(0, 132, 255, 0.55);
+        }
+      }
+      .back-top {
+        position: fixed;
+        bottom: 2.5rem;
+        right: 2.5rem;
+        width: 44px;
+        height: 44px;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        color: #fff;
+        text-decoration: none;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+        z-index: 300;
+      }
+      .back-top.on {
+        opacity: 1;
+        visibility: visible;
+      }
+      .back-top:hover {
+        background: var(--red-mid);
+        transform: translateY(-3px);
+      }
+
+      /* ======================================================
+   REVEAL
+====================================================== */
+      .rv {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
+      .rv-l {
+        opacity: 0;
+        transform: translateX(-24px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv-l.in {
+        opacity: 1;
+        transform: none;
+      }
+      .rv-r {
+        opacity: 0;
+        transform: translateX(24px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv-r.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ======================================================
+   RESPONSIVE
+====================================================== */
+      @media (max-width: 1200px) {
+        .cat-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .ft-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+        }
+        .ls-rows {
+          grid-template-columns: 1fr;
+        }
+      }
       @media (max-width: 768px) {
-        .section-title {
-          font-size: 2rem;
+        .main-nav,
+        .hdr-cta {
+          display: none;
         }
-
-        .section-subtitle {
-          font-size: 1rem;
+        .ham {
+          display: flex;
         }
-
-        .footer-bottom {
+        .hdr {
+          padding: 0 2rem;
+        }
+        .logo-sub {
+          display: none;
+        }
+        .page-hero {
+          padding: 5rem 2rem 4.5rem;
+        }
+        .ph-h1 {
+          font-size: clamp(5rem, 18vw, 8rem);
+        }
+        .news-section,
+        .latest-strip,
+        .cta-banner {
+          padding: 6rem 2rem;
+        }
+        .cat-grid {
+          grid-template-columns: 1fr;
+        }
+        .sec-h2 {
+          font-size: 4.5rem;
+        }
+        .cta-inner {
+          flex-direction: column;
+        }
+        .cta-btns {
+          flex-direction: column;
+        }
+        .ft-grid {
+          grid-template-columns: 1fr;
+          gap: 3.5rem;
+        }
+        footer {
+          padding: 5rem 2rem 3rem;
+        }
+        .ft-btm {
           flex-direction: column;
           text-align: center;
-          gap: 10px;
         }
-
-        .legal-links {
-          justify-content: center;
+        .mob-nav {
+          display: block;
+        }
+        footer {
+          padding-bottom: 8rem;
+        }
+        .messenger-float {
+          bottom: 8.5rem;
+          right: 1.8rem;
+        }
+        .back-top {
+          bottom: 8.5rem;
+          right: 1.8rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .cat-grid {
+          grid-template-columns: 1fr;
+        }
+        .ph-cats {
+          display: none;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Preloader -->
-    <div class="preloader">
-      <div class="loader">
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
+    <!-- ============================================================ PRELOADER -->
+    <div class="preloader" id="preloader">
+      <div class="pre-text">TIN <em>TỨC</em></div>
+      <div class="pre-dots">
+        <div class="pre-dot"></div>
+        <div class="pre-dot"></div>
+        <div class="pre-dot"></div>
       </div>
     </div>
 
-    <!-- Header -->
-    <header class="main-header">
-      <div class="container">
-        <a href="/Trangchu/" class="logo">
+    <!-- ============================================================ HEADER -->
+    <header class="site-header" id="siteHeader">
+      <div class="hdr">
+        <a href="/Trangchu/" class="logo-wrap">
           <img
             src="/sanphamxemay/image/banner/Logo_HEAD.png"
-            alt="Honda Logo"
+            alt="HEAD Logo"
+            class="logo-img"
           />
+          <div class="logo-text-block">
+            <span class="logo-name">HỆ THỐNG HEAD TRUNG HÙNG</span>
+            <span class="logo-sub"
+              >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
+            >
+          </div>
         </a>
-
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-
         <nav class="main-nav">
-          <ul>
-            <li><a href="/Trangchu/">Trang chủ</a></li>
-            <li><a href="/gioithieu/">Giới thiệu</a></li>
-            <li><a href="/sanphamxemay/">Sản phẩm</a></li>
-            <li><a href="/dichvu/">Dịch Vụ</a></li>
-            <li><a href="/tintuc/" class="active">Tin tức</a></li>
-            <li><a href="/cuahang/">Hệ thống đại lý</a></li>
-            <li><a href="/lienhe/">Liên hệ</a></li>
-          </ul>
+          <a href="/Trangchu/">Trang chủ</a>
+          <a href="/gioithieu/">Giới thiệu</a>
+          <a href="/sanphamxemay/">Sản phẩm</a>
+          <a href="/dichvu/">Dịch vụ</a>
+          <a href="/tintuc/" class="active">Tin tức</a>
+          <a href="/cuahang/">Đại lý</a>
+          <a href="/lienhe/">Liên hệ</a>
         </nav>
+        <a href="tel:1900636712" class="hdr-cta"
+          ><i class="fas fa-phone-alt"></i> Gọi ngay</a
+        >
+        <div class="ham" id="ham"><span></span><span></span><span></span></div>
       </div>
     </header>
 
-    <!-- Hero Banner 
-    <section class="hero-banner">
-      <div class="hero-overlay"></div>
-      <div class="container">
-        <div class="hero-content">
-          <h1>Hệ Thống HEAD Trung Hùng</h1>
-          <p>Hành trình cùng bạn trên mọi nẻo đường</p>
-          <div class="hero-buttons">
-            <a href="sanphamxemay.html" class="btn btn-primary"
-              >Khám phá sản phẩm</a
-            >
-            <a href="#" class="btn btn-outline">Ưu đãi hấp dẫn</a>
-          </div>
-        </div>
+    <!-- Drawer -->
+    <div class="dov" id="dov"></div>
+    <div class="sdraw" id="sdraw">
+      <button class="sdx" id="sdx"><i class="fas fa-times"></i></button>
+      <nav class="dnav">
+        <a href="/Trangchu/">Trang chủ</a>
+        <a href="/gioithieu/">Giới thiệu</a>
+        <a href="/sanphamxemay/">Sản phẩm</a>
+        <a href="/dichvu/">Dịch vụ</a>
+        <a href="/tintuc/" class="active">Tin tức</a>
+        <a href="/cuahang/">Đại lý</a>
+        <a href="/lienhe/">Liên hệ</a>
+      </nav>
+      <a href="tel:1900636712" class="dcta"
+        ><i class="fas fa-phone-alt"></i> 1900 636 712</a
+      >
+    </div>
+
+    <!-- ============================================================ HERO -->
+    <section class="page-hero">
+      <div class="ph-grid"></div>
+      <div class="ph-rings">
+        <div class="ph-ring"></div>
+        <div class="ph-ring"></div>
+        <div class="ph-ring"></div>
       </div>
-    </section>--->
-
-    <!-- Service Section -->
-    <section class="service-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Tin Tức</h2>
-          <p class="section-subtitle">
-            Cập nhật những tin tức, sản phẩm mới, sự kiện của Honda và HEAD
-          </p>
-          <div class="divider"></div>
+      <div class="ph-inner">
+        <div class="ph-crumb">
+          <a href="/Trangchu/">Trang chủ</a>
+          <span class="sep">/</span>
+          <span style="color: rgba(255, 255, 255, 0.7)">Tin tức</span>
         </div>
-
-        <div class="service-grid">
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fa-solid fa-camera"></i>
-            </div>
-            <h3>Tin tức</h3>
-            <p>Cập nhật tin tức mới nhất của HEAD Trung Hùng</p>
-            <a href="/tintuc/tintucsukien/" class="btn btn-outline"
-              >Tìm hiểu ngay</a
-            >
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fa-solid fa-motorcycle"></i>
-            </div>
-            <h3>Sản phẩm mới</h3>
-            <p>Cập nhật các thông tin sản phẩm mới ra mắt</p>
-            <a href="/tintuc/tintucxemay/" class="btn btn-outline"
-              >Tìm hiểu thêm</a
-            >
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fa-solid fa-motorcycle"></i>
-            </div>
-            <h3>Khuyến Mãi</h3>
-            <p>Cập nhật các chương trình khuyến mãi mới</p>
-            <a href="/tintuc/tintuckhuyenmai/" class="btn btn-outline"
-              >Tìm hiểu thêm</a
-            >
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fa-solid fa-calendar"></i>
-            </div>
-            <h3>Hoạt động LXAT</h3>
-            <p>Cập nhật hoạt động về Lái Xe An Toàn của HEAD</p>
-            <a href="/tintuc/tintuclxat/" class="btn btn-outline"
-              >Tìm hiểu thêm</a
-            >
-          </div>
+        <div class="ph-kicker">HEAD Trung Hùng · Cập nhật mới nhất</div>
+        <h1 class="ph-h1">TIN TỨC<br /><em>& SỰ KIỆN</em></h1>
+        <p class="ph-sub">
+          Cập nhật những tin tức mới nhất về sản phẩm Honda, chương trình khuyến
+          mãi, sự kiện và hoạt động của HEAD Trung Hùng.
+        </p>
+        <div class="ph-cats">
+          <a href="/tintuc/tintucsukien/" class="ph-cat"
+            ><i class="fas fa-camera"></i> Tin tức</a
+          >
+          <a href="/tintuc/tintucxemay/" class="ph-cat"
+            ><i class="fas fa-motorcycle"></i> Sản phẩm mới</a
+          >
+          <a href="/tintuc/tintuckhuyenmai/" class="ph-cat"
+            ><i class="fas fa-gift"></i> Khuyến mãi</a
+          >
+          <a href="/tintuc/tintuclxat/" class="ph-cat"
+            ><i class="fas fa-shield-alt"></i> Lái xe an toàn</a
+          >
         </div>
       </div>
     </section>
 
-    <!-- Store Locator
-    <section class="store-section">
-      <div class="container">
-        <div class="store-content">
-          <h2>Tìm Đại Lý Gần Nhất</h2>
-          <p>Hệ thống hơn 1000 đại lý chính thức trên toàn quốc</p>
-          <form class="store-search">
-            <input type="text" placeholder="Nhập tỉnh/thành phố" />
-            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-          </form>
-          <a href="stores.html" class="store-link"
-            >Xem tất cả đại lý <i class="fas fa-arrow-right"></i
-          ></a>
+    <!-- ============================================================ MARQUEE -->
+    <div class="marquee-strip">
+      <div class="mq-track">
+        <div class="mq-item">TIN TỨC MỚI NHẤT <span class="mq-dot"></span></div>
+        <div class="mq-item">
+          KHUYẾN MÃI HẤP DẪN <span class="mq-dot"></span>
+        </div>
+        <div class="mq-item">
+          SẢN PHẨM MỚI RA MẮT <span class="mq-dot"></span>
+        </div>
+        <div class="mq-item">SỰ KIỆN HEAD <span class="mq-dot"></span></div>
+        <div class="mq-item">LÁI XE AN TOÀN <span class="mq-dot"></span></div>
+        <div class="mq-item">+84 HONDA BIKER <span class="mq-dot"></span></div>
+        <div class="mq-item">TIN TỨC MỚI NHẤT <span class="mq-dot"></span></div>
+        <div class="mq-item">
+          KHUYẾN MÃI HẤP DẪN <span class="mq-dot"></span>
+        </div>
+        <div class="mq-item">
+          SẢN PHẨM MỚI RA MẮT <span class="mq-dot"></span>
+        </div>
+        <div class="mq-item">SỰ KIỆN HEAD <span class="mq-dot"></span></div>
+        <div class="mq-item">LÁI XE AN TOÀN <span class="mq-dot"></span></div>
+        <div class="mq-item">+84 HONDA BIKER <span class="mq-dot"></span></div>
+      </div>
+    </div>
+
+    <!-- ============================================================ NEWS CATEGORIES -->
+    <section class="news-section">
+      <div class="ns-wrap">
+        <div class="sec-eyebrow rv">Danh mục tin tức</div>
+        <h2 class="sec-h2 rv">CHỌN CHỦ ĐỀ<br />BẠN QUAN TÂM</h2>
+        <p class="sec-sub rv">
+          Khám phá các tin tức, sự kiện và cập nhật mới nhất từ hệ thống HEAD
+          Trung Hùng và Honda Việt Nam.
+        </p>
+
+        <div class="cat-grid">
+          <!-- Card 1: Tin tức sự kiện -->
+          <a href="/tintuc/tintucsukien/" class="cat-card rv">
+            <div class="cat-icon-zone">
+              <div class="cat-icon-wrap">
+                <i class="fas fa-newspaper"></i>
+              </div>
+            </div>
+            <div class="cat-body">
+              <div class="cat-badge">Mới nhất</div>
+              <div class="cat-num">01</div>
+              <div class="cat-h">Tin Tức & Sự Kiện</div>
+              <p class="cat-desc">
+                Cập nhật những tin tức mới nhất về các hoạt động, sự kiện nổi
+                bật của HEAD Trung Hùng và Honda Việt Nam.
+              </p>
+              <div class="cat-cta">
+                Đọc ngay <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 2: Sản phẩm mới -->
+          <a href="/tintuc/tintucxemay/" class="cat-card rv">
+            <div class="cat-icon-zone">
+              <div class="cat-icon-wrap">
+                <i class="fas fa-motorcycle"></i>
+              </div>
+            </div>
+            <div class="cat-body">
+              <div class="cat-badge">Cập nhật</div>
+              <div class="cat-num">02</div>
+              <div class="cat-h">Sản Phẩm Mới</div>
+              <p class="cat-desc">
+                Thông tin về các dòng xe Honda mới ra mắt — công nghệ tiên tiến,
+                thiết kế hiện đại, tính năng vượt trội.
+              </p>
+              <div class="cat-cta">
+                Khám phá <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 3: Khuyến mãi -->
+          <a href="/tintuc/tintuckhuyenmai/" class="cat-card rv">
+            <div class="cat-icon-zone">
+              <div class="cat-icon-wrap">
+                <i class="fas fa-tag"></i>
+              </div>
+            </div>
+            <div class="cat-body">
+              <div class="cat-badge">Hot</div>
+              <div class="cat-num">03</div>
+              <div class="cat-h">Khuyến Mãi</div>
+              <p class="cat-desc">
+                Các chương trình ưu đãi, giảm giá và khuyến mãi đặc biệt dành
+                riêng cho khách hàng HEAD Trung Hùng.
+              </p>
+              <div class="cat-cta">
+                Xem ưu đãi <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 4: Lái xe an toàn -->
+          <a href="/tintuc/tintuclxat/" class="cat-card rv">
+            <div class="cat-icon-zone">
+              <div class="cat-icon-wrap">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+            </div>
+            <div class="cat-body">
+              <div class="cat-badge">Mới nhất</div>
+              <div class="cat-num">04</div>
+              <div class="cat-h">Hoạt Động LXAT</div>
+              <p class="cat-desc">
+                Cập nhật các hoạt động về Lái Xe An Toàn — chương trình đào tạo,
+                sự kiện cộng đồng do HEAD tổ chức.
+              </p>
+              <div class="cat-cta">
+                Tìm hiểu thêm <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
-    </section>-->
+    </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <img
-              src="/sanphamxemay/image/banner/Logo_HEAD.png"
-              alt="Honda Logo"
-              class="footer-logo"
-            />
-            <p>Công Ty TNHH Thương Mại Và Dịch Vụ Hùng Mạnh</p>
-            <div class="social-links">
-              <a href="https://www.facebook.com/hethongheadtrunghung"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="https://www.youtube.com/@HethongHEADTrungHung"
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a href="https://www.instagram.com/hethongheadtrunghung"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="https://www.tiktok.com/@hethongheadtrunghung"
-                ><i class="fab fa-tiktok"></i
-              ></a>
+    <!-- ============================================================ LATEST QUICK ACCESS -->
+    <section class="latest-strip">
+      <div class="ls-inner">
+        <div class="ls-head">
+          <div>
+            <div class="sec-eyebrow">Truy cập nhanh</div>
+            <h2 class="sec-h2">BÀI VIẾT<br />NỔI BẬT</h2>
+          </div>
+          <a href="/tintuc/tintucsukien/" class="ls-all"
+            >Xem tất cả <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="ls-rows">
+          <a href="/tintuc/tintuckhuyenmai/" class="ls-row rv">
+            <div class="ls-row-icon"><i class="fas fa-gift"></i></div>
+            <div>
+              <div class="ls-row-label">Khuyến mãi</div>
+              <div class="ls-row-title">Chương trình ưu đãi tháng mới nhất</div>
             </div>
-          </div>
+            <i class="fas fa-arrow-right ls-row-arrow"></i>
+          </a>
+          <a href="/tintuc/tintucxemay/" class="ls-row rv">
+            <div class="ls-row-icon"><i class="fas fa-motorcycle"></i></div>
+            <div>
+              <div class="ls-row-label">Sản phẩm</div>
+              <div class="ls-row-title">Các dòng xe Honda mới ra mắt</div>
+            </div>
+            <i class="fas fa-arrow-right ls-row-arrow"></i>
+          </a>
+          <a href="/tintuc/tintucsukien/" class="ls-row rv">
+            <div class="ls-row-icon"><i class="fas fa-calendar-alt"></i></div>
+            <div>
+              <div class="ls-row-label">Sự kiện</div>
+              <div class="ls-row-title">Các sự kiện Honda sắp diễn ra</div>
+            </div>
+            <i class="fas fa-arrow-right ls-row-arrow"></i>
+          </a>
+          <a href="/tintuc/tintuclxat/" class="ls-row rv">
+            <div class="ls-row-icon"><i class="fas fa-shield-alt"></i></div>
+            <div>
+              <div class="ls-row-label">Lái xe an toàn</div>
+              <div class="ls-row-title">Hoạt động +84HondaBiker mới nhất</div>
+            </div>
+            <i class="fas fa-arrow-right ls-row-arrow"></i>
+          </a>
+        </div>
+      </div>
+    </section>
 
-          <div class="footer-col">
-            <h3>Sản Phẩm</h3>
-            <ul>
-              <li><a href="/sanphamxemay/">Xe Ga</a></li>
-              <li><a href="/sanphamxemay/">Xe Số</a></li>
-              <li><a href="/sanphamxemay/">Xe Côn Tay</a></li>
-              <li><a href="/sanphamxemay/">Phân Khối Lớn</a></li>
-              <li><a href="/sanphamxemay/">Xe Điện</a></li>
-            </ul>
-          </div>
+    <!-- ============================================================ CTA BANNER -->
+    <section class="cta-banner">
+      <div class="cta-inner">
+        <div class="cta-text">
+          <h2>ĐĂNG KÝ<br />NHẬN TIN MỚI</h2>
+          <p>
+            Theo dõi HEAD Trung Hùng để không bỏ lỡ bất kỳ ưu đãi, tin tức hay
+            sự kiện Honda nào.
+          </p>
+        </div>
+        <div class="cta-btns">
+          <a
+            href="https://www.facebook.com/hethongheadtrunghung"
+            target="_blank"
+            class="cta-btn-w"
+          >
+            <i class="fab fa-facebook-f"></i> Theo dõi Facebook
+          </a>
+          <a href="/lienhe/" class="cta-btn-t">
+            <i class="fas fa-envelope"></i> Liên hệ chúng tôi
+          </a>
+        </div>
+      </div>
+    </section>
 
-          <div class="footer-col">
-            <h3>Dịch Vụ</h3>
-            <ul>
-              <li><a href="/dichvu/baoduong/">Bảo dưỡng Và Sửa Chữa</a></li>
-              <li><a href="/dichvu/sanphamphutung/">Phụ tùng Chính Hãng</a></li>
-              <li><a href="/dichvu/baohanh/">Chính sách bảo hành</a></li>
-            </ul>
+    <!-- ============================================================ FOOTER -->
+    <footer>
+      <div class="ft-grid">
+        <div>
+          <img
+            src="/sanphamxemay/image/banner/Logo_HEAD.png"
+            alt="HEAD Logo"
+            class="ft-logo-img"
+          />
+          <div class="ft-brand-name">HỆ THỐNG HEAD TRUNG HÙNG</div>
+          <div class="ft-brand-sub">
+            Cửa Hàng Bán Xe & Dịch Vụ Do Honda Ủy Nhiệm
           </div>
-
-          <div class="footer-col">
-            <h3>Hỗ Trợ</h3>
-            <ul>
-              <li><a href="/lienhe/">Liên hệ</a></li>
-              <li><a href="/question/">Câu hỏi thường gặp</a></li>
-              <li><a href="/huongdanmuahang/">Hướng dẫn mua hàng</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h3>Liên Hệ</h3>
-            <ul class="contact-info">
-              <li></li>
-              <li><i class="fas fa-phone-alt"></i> 1900 636 712</li>
-              <li><i class="fas fa-envelope"></i> cr@hungmanh.com.vn</li>
-              <li><i class="fas fa-envelope"></i> cr_mt@hungmanh.com.vn</li>
-              <li><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</li>
-            </ul>
+          <div class="ft-socs">
+            <a
+              href="https://www.facebook.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@HethongHEADTrungHung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.tiktok.com/@hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-tiktok"></i
+            ></a>
           </div>
         </div>
-
-        <div class="footer-bottom">
-          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
-          <!----<div class="legal-links">
-            <a href="#">Chính sách bảo mật</a>
-            <a href="#">Điều khoản sử dụng</a>
-          </div>--->
+        <div class="ft-col">
+          <h5>Sản phẩm</h5>
+          <ul>
+            <li><a href="/sanphamxemay/?category=xe-ga">Xe Ga</a></li>
+            <li><a href="/sanphamxemay/?category=xe-so">Xe Số</a></li>
+            <li><a href="/sanphamxemay/?category=xe-con-tay">Xe Côn Tay</a></li>
+            <li><a href="/sanphamxemay/?category=pkl">Phân Khối Lớn</a></li>
+            <li><a href="/sanphamxemay/?category=xe-dien">Xe Điện</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Dịch vụ</h5>
+          <ul>
+            <li><a href="/dichvu/baoduong/">Bảo Dưỡng & Sửa Chữa</a></li>
+            <li><a href="/dichvu/sanphamphutung/">Phụ Tùng Chính Hãng</a></li>
+            <li><a href="/dichvu/baohanh/">Chính Sách Bảo Hành</a></li>
+            <li><a href="/cuahang/">Hệ Thống Đại Lý</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Liên hệ</h5>
+          <ul class="ft-contact">
+            <li>
+              <i class="fas fa-phone-alt"></i
+              ><a href="tel:1900636712">1900 636 712</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i
+              ><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i
+              ><a href="mailto:cr_mt@hungmanh.com.vn">cr_mt@hungmanh.com.vn</a>
+            </li>
+            <li><i class="fas fa-clock"></i>7:30 – 17:30 (T2 – CN)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-btm">
+        <p>© 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        <div class="ft-badge">
+          <i class="fas fa-certificate"></i> Honda Authorised Dealer
         </div>
       </div>
     </footer>
 
-    <!-- Back to Top -->
-    <a href="#" class="back-to-top" id="backToTop">
-      <i class="fas fa-arrow-up"></i>
-    </a>
+    <!-- MOBILE NAV -->
+    <nav class="mob-nav">
+      <div class="mnb">
+        <a href="/Trangchu/" class="mnb-a"
+          ><i class="fas fa-home"></i><span>Trang chủ</span></a
+        >
+        <a href="/sanphamxemay/" class="mnb-a"
+          ><i class="fas fa-motorcycle"></i><span>Sản phẩm</span></a
+        >
+        <a href="/tintuc/tintuckhuyenmai/" class="mnb-a on"
+          ><i class="fas fa-gift"></i><span>Khuyến mãi</span></a
+        >
+        <a href="/cuahang/" class="mnb-a"
+          ><i class="fas fa-map-marker-alt"></i><span>Đại lý</span></a
+        >
+        <a href="/lienhe/" class="mnb-a"
+          ><i class="fas fa-phone-alt"></i><span>Liên hệ</span></a
+        >
+      </div>
+    </nav>
 
+    <a
+      href="https://m.me/hethongheadtrunghung"
+      class="messenger-float"
+      target="_blank"
+      ><i class="fab fa-facebook-messenger"></i
+    ></a>
+    <a href="#" class="back-top" id="backTop"
+      ><i class="fas fa-arrow-up"></i
+    ></a>
+
+    <!-- ============================================================ SCRIPTS -->
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Preloader
-        const preloader = document.querySelector(".preloader");
+      (function () {
+        /* PRELOADER */
+        window.addEventListener("load", () =>
+          setTimeout(
+            () => document.getElementById("preloader").classList.add("out"),
+            700,
+          ),
+        );
 
-        window.addEventListener("load", function () {
-          preloader.classList.add("fade-out");
-          setTimeout(() => {
-            preloader.style.display = "none";
-          }, 500);
-        });
+        /* HEADER */
+        const hdr = document.getElementById("siteHeader");
+        window.addEventListener(
+          "scroll",
+          () => {
+            hdr.classList.toggle("lifted", scrollY > 50);
+            document
+              .getElementById("backTop")
+              .classList.toggle("on", scrollY > 400);
+          },
+          { passive: true },
+        );
 
-        // Mobile Menu Toggle - Updated Version
-        const menuToggle = document.querySelector(".menu-toggle");
-        const mainNav = document.querySelector(".main-nav");
-        const body = document.body;
+        /* DRAWER */
+        const ham = document.getElementById("ham"),
+          dov = document.getElementById("dov"),
+          sdraw = document.getElementById("sdraw"),
+          sdx = document.getElementById("sdx");
+        const openD = () => {
+          ham.classList.add("open");
+          dov.classList.add("on");
+          sdraw.classList.add("on");
+          document.body.style.overflow = "hidden";
+        };
+        const closeD = () => {
+          ham.classList.remove("open");
+          dov.classList.remove("on");
+          sdraw.classList.remove("on");
+          document.body.style.overflow = "";
+        };
+        ham.addEventListener("click", openD);
+        dov.addEventListener("click", closeD);
+        sdx.addEventListener("click", closeD);
+        sdraw
+          .querySelectorAll("a")
+          .forEach((a) => a.addEventListener("click", closeD));
 
-        menuToggle.addEventListener("click", function () {
-          this.classList.toggle("active");
-          mainNav.classList.toggle("active");
-          // Toggle body overflow when menu is open
-          if (mainNav.classList.contains("active")) {
-            body.style.overflow = "hidden";
-          } else {
-            body.style.overflow = "";
-          }
-        });
-
-        // Close mobile menu when clicking on a link or outside
-        document.addEventListener("click", function (e) {
-          const isClickInsideNav =
-            mainNav.contains(e.target) || menuToggle.contains(e.target);
-
-          if (!isClickInsideNav && mainNav.classList.contains("active")) {
-            menuToggle.classList.remove("active");
-            mainNav.classList.remove("active");
-            body.style.overflow = "";
-          }
-        });
-        // Close menu when window is resized above breakpoint
-        window.addEventListener("resize", function () {
-          if (window.innerWidth > 992) {
-            menuToggle.classList.remove("active");
-            mainNav.classList.remove("active");
-            body.style.overflow = "";
-          }
-        });
-
-        // Header scroll effect
-        const header = document.querySelector(".main-header");
-        window.addEventListener("scroll", function () {
-          if (window.scrollY > 100) {
-            header.classList.add("scrolled");
-          } else {
-            header.classList.remove("scrolled");
-          }
-        });
-
-        // Back to Top Button
-        const backToTop = document.querySelector("#backToTop");
-        window.addEventListener("scroll", function () {
-          if (window.scrollY > 300) {
-            backToTop.classList.add("active");
-          } else {
-            backToTop.classList.remove("active");
-          }
-        });
-
-        backToTop.addEventListener("click", function (e) {
-          e.preventDefault();
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-        });
-
-        // Smooth scrolling for all links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            if (this.getAttribute("href") !== "#") {
+        /* SMOOTH SCROLL */
+        document.querySelectorAll('a[href^="#"]').forEach((a) => {
+          a.addEventListener("click", (e) => {
+            const t = a.getAttribute("href");
+            if (t === "#") return;
+            const el = document.querySelector(t);
+            if (el) {
               e.preventDefault();
-
-              const targetId = this.getAttribute("href");
-              const targetElement = document.querySelector(targetId);
-
-              if (targetElement) {
-                window.scrollTo({
-                  top: targetElement.offsetTop - 80,
-                  behavior: "smooth",
-                });
-              }
+              window.scrollTo({
+                top:
+                  el.getBoundingClientRect().top + scrollY - hdr.offsetHeight,
+                behavior: "smooth",
+              });
             }
           });
         });
 
-        // Animation on scroll
-        function animateOnScroll() {
-          const elements = document.querySelectorAll(
-            ".featured-section, .service-section, .news-section"
-          );
-
-          elements.forEach((element) => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-
-            if (elementPosition < windowHeight - 100) {
-              element.style.opacity = "1";
-              element.style.transform = "translateY(0)";
-            }
-          });
-        }
-
-        // Set initial state for animated elements
+        /* SCROLL REVEAL */
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e, i) => {
+              if (e.isIntersecting)
+                setTimeout(() => e.target.classList.add("in"), i * 65);
+            });
+          },
+          { threshold: 0.1 },
+        );
         document
-          .querySelectorAll(
-            ".featured-section, .service-section, .news-section"
-          )
-          .forEach((element) => {
-            element.style.opacity = "0";
-            element.style.transform = "translateY(30px)";
-            element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-          });
+          .querySelectorAll(".rv,.rv-l,.rv-r")
+          .forEach((el) => obs.observe(el));
 
-        window.addEventListener("scroll", animateOnScroll);
-        animateOnScroll(); // Run once on page load
-      });
+        /* CARD TILT EFFECT on category cards */
+        document.querySelectorAll(".cat-card").forEach((card) => {
+          card.addEventListener("mousemove", (e) => {
+            const r = card.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - 0.5;
+            const y = (e.clientY - r.top) / r.height - 0.5;
+            card.style.transform = `translateY(-10px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg)`;
+          });
+          card.addEventListener("mouseleave", () => {
+            card.style.transform = "";
+            card.style.transition = "all .5s var(--ease)";
+            setTimeout(() => (card.style.transition = ""), 500);
+          });
+        });
+      })();
     </script>
   </body>
 </html>
