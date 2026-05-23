@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hướng Dẫn Mua Hàng</title>
+    <title>Hướng Dẫn Mua Hàng – HEAD Trung Hùng Honda</title>
     <link
       rel="icon"
       href="/sanphamxemay/image/banner/Logo_HEAD.png"
@@ -14,846 +14,1567 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Barlow:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* Reset & Base Styles */
+      /* ======================================================
+   TOKENS
+====================================================== */
+      :root {
+        --red: #d10017;
+        --red-mid: #a5000e;
+        --red-soft: rgba(209, 0, 23, 0.09);
+        --red-glow: rgba(209, 0, 23, 0.22);
+        --ink: #0f0f10;
+        --ink2: #222225;
+        --paper: #f8f6f3;
+        --paper2: #efecea;
+        --white: #ffffff;
+        --border: rgba(15, 15, 16, 0.09);
+        --muted: #7a7570;
+        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
-      :root {
-        --primary-color: #e40521;
-        --secondary-color: #333;
-        --light-color: #f8f9fa;
-        --dark-color: #212529;
-        --gray-color: #6c757d;
-        --light-gray: #e9ecef;
-        --transition: all 0.3s ease;
+      html {
+        font-size: 62.5%;
+        scroll-behavior: smooth;
       }
-
       body {
-        font-family: "Montserrat", sans-serif;
-        line-height: 1.6;
-        color: var(--secondary-color);
+        font-family: "Barlow", sans-serif;
+        background: var(--paper);
+        color: var(--ink);
         overflow-x: hidden;
-        background-color: #f5f5f5;
+        line-height: 1.6;
       }
-
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 15px;
-      }
-
       img {
         max-width: 100%;
-        height: auto;
-        object-fit: cover;
+        display: block;
       }
-
       a {
         text-decoration: none;
         color: inherit;
-        transition: var(--transition);
       }
-
       ul,
       ol {
-        list-style-position: inside;
-      }
-
-      .btn {
-        display: inline-block;
-        padding: 10px 25px;
-        border-radius: 25px;
-        font-weight: 500;
-        text-align: center;
-        transition: var(--transition);
-        cursor: pointer;
-        border: 2px solid transparent;
-      }
-
-      .btn-primary {
-        background-color: var(--primary-color);
-        color: white;
-        border-color: var(--primary-color);
-      }
-
-      .btn-primary:hover {
-        background-color: #c0041d;
-        border-color: #c0041d;
-      }
-
-      .btn-outline {
-        background-color: transparent;
-        color: var(--primary-color);
-        border-color: var(--primary-color);
-      }
-
-      .btn-outline:hover {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 50px;
-      }
-
-      .section-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: var(--dark-color);
-      }
-
-      .section-subtitle {
-        font-size: 1.1rem;
-        color: var(--gray-color);
-        margin-bottom: 20px;
-      }
-
-      .divider {
-        width: 80px;
-        height: 3px;
-        background-color: var(--primary-color);
-        margin: 0 auto;
-      }
-
-      /* Header */
-      .main-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 20px 0;
-        background-color: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        transition: var(--transition);
-      }
-
-      .main-header.scrolled {
-        padding: 15px 0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      }
-
-      .main-header .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .logo img {
-        height: 40px;
-      }
-
-      /* Mobile Menu Toggle */
-      .menu-toggle {
-        display: none;
-        width: 30px;
-        height: 24px;
-        position: relative;
-        cursor: pointer;
-        z-index: 1001;
-      }
-
-      .menu-toggle .bar {
-        position: absolute;
-        width: 100%;
-        height: 3px;
-        background-color: var(--dark-color);
-        transition: all 0.3s ease;
-        left: 0;
-      }
-
-      .menu-toggle .bar:nth-child(1) {
-        top: 0;
-      }
-
-      .menu-toggle .bar:nth-child(2) {
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      .menu-toggle .bar:nth-child(3) {
-        bottom: 0;
-      }
-
-      .menu-toggle.active .bar:nth-child(1) {
-        top: 50%;
-        transform: translateY(-50%) rotate(45deg);
-        background-color: var(--primary-color);
-      }
-
-      .menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-      }
-
-      .menu-toggle.active .bar:nth-child(3) {
-        bottom: 50%;
-        transform: translateY(50%) rotate(-45deg);
-        background-color: var(--primary-color);
-      }
-
-      .main-nav ul {
         list-style: none;
-        display: flex;
+      }
+      button {
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-family: inherit;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--red);
       }
 
-      .main-nav li {
-        margin-left: 30px;
+      /* ======================================================
+   HEADER
+====================================================== */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 500;
+        background: rgba(248, 246, 243, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition: box-shadow 0.35s;
       }
-
-      .main-nav a {
-        font-weight: 500;
-        color: var(--dark-color);
-        position: relative;
+      .site-header.lifted {
+        box-shadow: 0 2px 24px rgba(15, 15, 16, 0.07);
       }
-
-      .main-nav a:after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: var(--primary-color);
-        transition: var(--transition);
-      }
-
-      .main-nav a:hover:after,
-      .main-nav a.active:after {
-        width: 100%;
-      }
-
-      .main-nav a.active {
-        color: var(--primary-color);
-        font-weight: 600;
-      }
-
-      /* Hero Banner */
-      .guide-hero {
-        height: 50vh;
-        min-height: 300px;
-        background: rgb(214, 25, 25);
-        display: flex;
-        align-items: center;
-        margin-top: 80px;
-        color: white;
-        text-align: center;
-      }
-
-      .hero-content {
-        width: 100%;
-      }
-
-      .hero-content h1 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-      }
-
-      /* Guide Steps */
-      .guide-section {
-        padding: 60px 0;
-        background-color: white;
-      }
-
-      .guide-steps {
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-        max-width: 800px;
+      .hdr {
+        max-width: 1340px;
         margin: 0 auto;
-      }
-
-      .step-card {
+        padding: 0 3rem;
         display: flex;
-        gap: 30px;
-        padding: 30px;
-        border-radius: 10px;
-        background-color: var(--light-color);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        transition: var(--transition);
-      }
-
-      .step-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      }
-
-      .step-number {
-        width: 60px;
-        height: 60px;
-        background-color: var(--primary-color);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
         align-items: center;
-        font-size: 1.5rem;
-        font-weight: 700;
+        justify-content: space-between;
+        height: 72px;
+        gap: 2rem;
+      }
+      .logo-wrap {
+        display: flex;
+        align-items: center;
+        gap: 1.3rem;
         flex-shrink: 0;
       }
-
-      .step-content h3 {
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-        color: var(--dark-color);
+      .logo-img {
+        height: 44px;
+        width: auto;
+        transition: opacity 0.25s;
       }
-
-      .step-content p {
-        color: var(--gray-color);
-        margin-bottom: 15px;
+      .logo-wrap:hover .logo-img {
+        opacity: 0.85;
       }
-
-      .step-content ul {
-        margin-left: 20px;
-        margin-bottom: 15px;
-      }
-
-      .step-content li {
-        margin-bottom: 8px;
-        color: var(--gray-color);
-      }
-
-      /* FAQ Section */
-      .faq-section {
-        padding: 60px 0;
-        background-color: var(--light-color);
-      }
-
-      .faq-container {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-      .faq-item {
-        margin-bottom: 15px;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-      }
-
-      .faq-question {
-        padding: 20px;
-        background-color: white;
-        cursor: pointer;
+      .logo-text-block {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        line-height: 1;
+      }
+      .logo-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.95rem;
+        font-weight: 800;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      .logo-sub {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+        margin-top: 0.2rem;
+      }
+      .main-nav {
+        display: flex;
         align-items: center;
+        gap: 0;
+      }
+      .main-nav a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
         font-weight: 600;
-        transition: var(--transition);
-      }
-
-      .faq-question:hover {
-        color: var(--primary-color);
-      }
-
-      .faq-question i {
-        transition: var(--transition);
-      }
-
-      .faq-answer {
-        padding: 0 20px;
-        max-height: 0;
-        overflow: hidden;
-        background-color: white;
-        transition: max-height 0.3s ease, padding 0.3s ease;
-      }
-
-      .faq-item.active .faq-question i {
-        transform: rotate(180deg);
-      }
-
-      .faq-item.active .faq-answer {
-        padding: 20px;
-        max-height: 500px;
-        border-top: 1px solid var(--light-gray);
-      }
-
-      /* Contact CTA */
-      .contact-cta {
-        padding: 80px 0;
-        text-align: center;
-        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-          url("image/GIOITHIEU/image/CR.jpg") no-repeat center center/cover;
-        color: white;
-      }
-
-      .contact-cta h2 {
-        font-size: 2rem;
-        margin-bottom: 20px;
-      }
-
-      .contact-cta p {
-        max-width: 600px;
-        margin: 0 auto 30px;
-        font-size: 1.1rem;
-        opacity: 0.9;
-      }
-
-      /* Footer */
-      .main-footer {
-        background-color: var(--dark-color);
-        color: white;
-        padding: 60px 0 20px;
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 30px;
-        margin-bottom: 40px;
-      }
-
-      .footer-col h3 {
-        font-size: 1.2rem;
-        margin-bottom: 20px;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        padding: 0.7rem 1.4rem;
         position: relative;
-        padding-bottom: 10px;
+        transition: color 0.2s;
       }
-
-      .footer-col h3:after {
+      .main-nav a::after {
         content: "";
         position: absolute;
         bottom: 0;
-        left: 0;
-        width: 40px;
+        left: 1.4rem;
+        right: 1.4rem;
         height: 2px;
-        background-color: var(--primary-color);
+        background: var(--red);
+        transform: scaleX(0);
+        transition: transform 0.3s var(--ease);
       }
-
-      .footer-logo {
-        margin-bottom: 20px;
-        display: block;
-        max-width: 150px;
+      .main-nav a:hover,
+      .main-nav a.active {
+        color: var(--red);
       }
-
-      .social-links {
-        display: flex;
-        gap: 15px;
+      .main-nav a:hover::after,
+      .main-nav a.active::after {
+        transform: scaleX(1);
       }
-
-      .social-links a {
-        width: 35px;
-        height: 35px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: var(--transition);
+      .hdr-cta {
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.85rem 2.2rem;
+        border-radius: 4px;
+        flex-shrink: 0;
+        transition: all 0.3s;
       }
-
-      .social-links a:hover {
-        background-color: var(--primary-color);
-        transform: translateY(-3px);
+      .hdr-cta:hover {
+        background: var(--red-mid);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px var(--red-glow);
       }
-
-      .footer-col ul li {
-        list-style: none;
-        margin-bottom: 10px;
+      .ham {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 4px;
       }
-
-      .footer-col ul a {
-        color: #adb5bd;
-        transition: var(--transition);
+      .ham span {
+        width: 22px;
+        height: 2px;
+        background: var(--ink);
+        transition: all 0.3s;
+        border-radius: 1px;
       }
-
-      .footer-col ul a:hover {
-        color: var(--primary-color);
-        padding-left: 5px;
+      .ham.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
       }
-
-      .contact-info li {
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
+      .ham.open span:nth-child(2) {
+        opacity: 0;
       }
-
-      .contact-info i {
-        margin-right: 10px;
-        color: var(--primary-color);
-        width: 20px;
-        text-align: center;
+      .ham.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
       }
-
-      .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 20px 0;
-        text-align: center;
-        color: #adb5bd;
-        font-size: 0.9rem;
-      }
-
-      /* Back to Top */
-      .back-to-top {
+      .dov {
         position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background-color: var(--primary-color);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 1.2rem;
+        inset: 0;
+        background: rgba(15, 15, 16, 0.55);
+        z-index: 498;
         opacity: 0;
         visibility: hidden;
-        transition: var(--transition);
-        z-index: 999;
+        transition: all 0.3s;
       }
-
-      .back-to-top.active {
+      .dov.on {
         opacity: 1;
         visibility: visible;
       }
-
-      .back-to-top:hover {
-        background-color: #c0041d;
-        transform: translateY(-5px);
+      .sdraw {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: min(330px, 90vw);
+        height: 100%;
+        background: var(--white);
+        z-index: 499;
+        padding: 6rem 2.8rem 3rem;
+        transition: right 0.38s var(--ease);
+        border-left: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+      }
+      .sdraw.on {
+        right: 0;
+      }
+      .sdx {
+        position: absolute;
+        top: 1.6rem;
+        right: 1.6rem;
+        width: 36px;
+        height: 36px;
+        background: var(--paper2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--muted);
+        transition: all 0.2s;
+      }
+      .sdx:hover {
+        background: var(--red);
+        color: #fff;
+      }
+      .dnav {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .dnav a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        padding: 1.4rem 0;
+        border-bottom: 1px solid var(--border);
+        transition: color 0.2s;
+      }
+      .dnav a:hover,
+      .dnav a.active {
+        color: var(--red);
+      }
+      .dcta {
+        background: var(--red);
+        color: #fff;
+        text-align: center;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.3rem;
+        border-radius: 4px;
+        margin-top: auto;
+        transition: background 0.3s;
+      }
+      .dcta:hover {
+        background: var(--red-mid);
       }
 
-      /* Responsive */
-      @media (max-width: 992px) {
-        .section-title {
-          font-size: 2rem;
-        }
-
-        .hero-content h1 {
-          font-size: 2rem;
-        }
+      /* ======================================================
+   PAGE HERO
+====================================================== */
+      .page-hero {
+        background: var(--red);
+        position: relative;
+        overflow: hidden;
+        padding: 7rem 3rem 6rem;
+      }
+      .ph-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+        background-size: 48px 48px;
+        mask-image: radial-gradient(
+          ellipse 80% 90% at 30% 50%,
+          black 20%,
+          transparent 100%
+        );
+      }
+      .ph-glow {
+        position: absolute;
+        right: -200px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 700px;
+        height: 700px;
+        border-radius: 50%;
+        background: radial-gradient(
+          ellipse,
+          rgba(255, 255, 255, 0.12) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .ph-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .ph-crumb {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.3rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 2.5rem;
+      }
+      .ph-crumb a {
+        color: rgba(255, 255, 255, 0.65);
+        transition: color 0.2s;
+      }
+      .ph-crumb a:hover {
+        color: #fff;
+      }
+      .ph-crumb .sep {
+        color: rgba(255, 255, 255, 0.3);
+      }
+      .ph-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.65);
+        margin-bottom: 1.8rem;
+      }
+      .ph-kicker::before {
+        content: "";
+        width: 20px;
+        height: 1.5px;
+        background: rgba(255, 255, 255, 0.65);
+      }
+      .ph-h1 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(6rem, 10vw, 11rem);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        line-height: 0.88;
+        color: #fff;
+        margin-bottom: 2rem;
+      }
+      .ph-sub {
+        font-size: 1.7rem;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 520px;
+        line-height: 1.65;
+        font-weight: 300;
+      }
+      /* Step count badge */
+      .ph-steps-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 50px;
+        padding: 0.8rem 2rem;
+        margin-top: 3.5rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #fff;
       }
 
+      /* ======================================================
+   GUIDE STEPS SECTION
+====================================================== */
+      .guide-section {
+        padding: 8rem 3rem;
+        background: var(--white);
+      }
+      .gs-wrap {
+        max-width: 1340px;
+        margin: 0 auto;
+      }
+      .sec-eyebrow {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--red);
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 1.6rem;
+      }
+      .sec-eyebrow::before {
+        content: "";
+        width: 20px;
+        height: 1.5px;
+        background: var(--red);
+      }
+      .sec-h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 5.2rem;
+        font-weight: 900;
+        letter-spacing: 0.03em;
+        line-height: 0.95;
+        margin-bottom: 5rem;
+      }
+
+      /* Steps layout: alternating left/right */
+      .steps-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .step-item {
+        display: grid;
+        grid-template-columns: 1fr 120px 1fr;
+        align-items: start;
+        position: relative;
+        padding-bottom: 3rem;
+      }
+      .step-item:last-child {
+        padding-bottom: 0;
+      }
+
+      /* Central column: number + line */
+      .step-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        position: relative;
+      }
+      .step-num {
+        width: 72px;
+        height: 72px;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.8rem;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        color: #fff;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 1;
+        transition:
+          transform 0.3s var(--spring),
+          box-shadow 0.3s;
+      }
+      .step-item:hover .step-num {
+        transform: scale(1.1);
+        box-shadow: 0 8px 28px var(--red-glow);
+      }
+      .step-line {
+        width: 2px;
+        flex: 1;
+        min-height: 3rem;
+        background: linear-gradient(
+          to bottom,
+          rgba(209, 0, 23, 0.4),
+          rgba(209, 0, 23, 0.05)
+        );
+        margin: 0 auto;
+      }
+      .step-item:last-child .step-line {
+        display: none;
+      }
+
+      /* Card */
+      .step-card {
+        background: var(--paper);
+        border-radius: 14px;
+        padding: 3rem;
+        border: 1px solid var(--border);
+        transition: all 0.4s var(--ease);
+        position: relative;
+        overflow: hidden;
+        margin-top: 0;
+      }
+      .step-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--red);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s var(--ease);
+      }
+      .step-item:hover .step-card {
+        border-color: rgba(209, 0, 23, 0.2);
+        box-shadow: 0 16px 50px rgba(15, 15, 16, 0.09);
+        background: var(--white);
+      }
+      .step-item:hover .step-card::before {
+        transform: scaleX(1);
+      }
+
+      /* Left items: card goes left col, empty right */
+      .step-item.left .step-card {
+        grid-column: 1;
+      }
+      .step-item.left .step-center {
+        grid-column: 2;
+      }
+      .step-item.left .step-empty {
+        grid-column: 3;
+      }
+      /* Right items: empty left, card right */
+      .step-item.right .step-empty {
+        grid-column: 1;
+      }
+      .step-item.right .step-center {
+        grid-column: 2;
+      }
+      .step-item.right .step-card {
+        grid-column: 3;
+      }
+
+      .step-tag {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .step-tag::before {
+        content: "";
+        width: 12px;
+        height: 1.5px;
+        background: var(--red);
+      }
+      .step-h {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        color: var(--ink);
+        margin-bottom: 1.4rem;
+        line-height: 1.1;
+        transition: color 0.2s;
+      }
+      .step-item:hover .step-h {
+        color: var(--red);
+      }
+      .step-desc {
+        font-size: 1.45rem;
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 1.6rem;
+      }
+      .step-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .step-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        font-size: 1.35rem;
+        color: var(--ink2);
+        line-height: 1.5;
+      }
+      .step-list li::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--red);
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin-top: 0.6rem;
+      }
+
+      /* Mobile step layout (single column) */
       @media (max-width: 768px) {
-        .menu-toggle {
+        .step-item {
+          grid-template-columns: 60px 1fr;
+          gap: 0 1.5rem;
+        }
+        .step-item.left .step-card,
+        .step-item.right .step-card {
+          grid-column: 2;
+        }
+        .step-item.left .step-center,
+        .step-item.right .step-center {
+          grid-column: 1;
+          grid-row: 1;
+        }
+        .step-item.left .step-empty,
+        .step-item.right .step-empty {
+          display: none;
+        }
+        .step-num {
+          width: 52px;
+          height: 52px;
+          font-size: 2.2rem;
+        }
+        .step-card {
+          margin-top: 0;
+        }
+      }
+
+      /* ======================================================
+   FAQ SECTION
+====================================================== */
+      .faq-section {
+        padding: 8rem 3rem;
+        background: var(--paper);
+      }
+      .faq-wrap {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        margin-top: 4rem;
+      }
+      .faq-item {
+        background: var(--white);
+        border-radius: 12px;
+        border: 1.5px solid var(--border);
+        overflow: hidden;
+        transition: border-color 0.25s;
+      }
+      .faq-item.open {
+        border-color: rgba(209, 0, 23, 0.22);
+      }
+      .faq-q {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2.2rem 2.5rem;
+        cursor: pointer;
+        gap: 2rem;
+        text-align: left;
+        transition: background 0.2s;
+      }
+      .faq-q:hover {
+        background: var(--paper);
+      }
+      .faq-q-text {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        color: var(--ink);
+        transition: color 0.2s;
+        line-height: 1.2;
+      }
+      .faq-item.open .faq-q-text {
+        color: var(--red);
+      }
+      .faq-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: var(--paper2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 1.3rem;
+        color: var(--muted);
+        transition: all 0.3s;
+      }
+      .faq-item.open .faq-icon {
+        background: var(--red);
+        color: #fff;
+        transform: rotate(45deg);
+      }
+      .faq-a {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s var(--ease),
+          padding 0.3s;
+        padding: 0 2.5rem;
+      }
+      .faq-item.open .faq-a {
+        max-height: 600px;
+        padding: 0 2.5rem 2.2rem;
+      }
+      .faq-a p {
+        font-size: 1.45rem;
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 1.2rem;
+      }
+      .faq-a ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .faq-a ul li {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        font-size: 1.4rem;
+        color: var(--ink2);
+        line-height: 1.5;
+      }
+      .faq-a ul li::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--red);
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin-top: 0.65rem;
+      }
+      .faq-a ul ul {
+        margin-left: 2rem;
+        margin-top: 0.6rem;
+      }
+
+      /* ======================================================
+   CTA SECTION
+====================================================== */
+      .cta-section {
+        background: var(--ink);
+        padding: 8rem 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-section::before {
+        content: "HONDA";
+        position: absolute;
+        right: -3rem;
+        bottom: -4rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 22rem;
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.025);
+        letter-spacing: 0.04em;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+      .cta-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4rem;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+      .cta-text h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 5rem;
+        font-weight: 900;
+        letter-spacing: 0.03em;
+        color: #fff;
+        line-height: 0.95;
+        margin-bottom: 1.5rem;
+      }
+      .cta-text p {
+        font-size: 1.65rem;
+        color: rgba(255, 255, 255, 0.4);
+        max-width: 480px;
+        line-height: 1.65;
+      }
+      .cta-btns {
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        flex-shrink: 0;
+      }
+      .cta-btn-pri {
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.4rem 3rem;
+        border-radius: 5px;
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s;
+      }
+      .cta-btn-pri:hover {
+        background: var(--red-mid);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px var(--red-glow);
+      }
+      .cta-btn-sec {
+        background: rgba(255, 255, 255, 0.07);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.4rem 3rem;
+        border-radius: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s;
+      }
+      .cta-btn-sec:hover {
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      /* ======================================================
+   FOOTER
+====================================================== */
+      footer {
+        background: #050505;
+        padding: 6.5rem 3rem 3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .ft-grid {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 5rem;
+        margin-bottom: 5rem;
+        padding-bottom: 5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .ft-logo-img {
+        height: 38px;
+        width: auto;
+        opacity: 0.8;
+        margin-bottom: 1.5rem;
+      }
+      .ft-brand-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 0.8rem;
+      }
+      .ft-brand-sub {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.2);
+        margin-bottom: 2.5rem;
+      }
+      .ft-socs {
+        display: flex;
+        gap: 1rem;
+      }
+      .ft-soc {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 1.3rem;
+        transition: all 0.25s;
+        text-decoration: none;
+      }
+      .ft-soc:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+      .ft-col h5 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.2);
+        margin-bottom: 1.8rem;
+      }
+      .ft-col li {
+        margin-bottom: 1.1rem;
+      }
+      .ft-col a {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        transition: color 0.2s;
+      }
+      .ft-col a:hover {
+        color: #fff;
+      }
+      .ft-contact li {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        margin-bottom: 1.2rem;
+      }
+      .ft-contact i {
+        color: var(--red);
+        font-size: 1.2rem;
+        margin-top: 0.2rem;
+        flex-shrink: 0;
+      }
+      .ft-btm {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .ft-btm p {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.18);
+      }
+      .ft-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.18);
+      }
+      .ft-badge i {
+        color: var(--red);
+      }
+
+      /* ======================================================
+   MOBILE NAV
+====================================================== */
+      .mob-nav {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(248, 246, 243, 0.97);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid var(--border);
+        z-index: 400;
+        padding: 0.8rem 0;
+      }
+      .mnb {
+        display: flex;
+        justify-content: space-around;
+      }
+      .mnb-a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.35rem;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        transition: color 0.2s;
+      }
+      .mnb-a.on,
+      .mnb-a:hover {
+        color: var(--red);
+      }
+      .mnb-a i {
+        font-size: 2rem;
+      }
+      .mnb-a span {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* ======================================================
+   FLOATS
+====================================================== */
+      .messenger-float {
+        position: fixed;
+        bottom: 9rem;
+        right: 2.5rem;
+        width: 50px;
+        height: 50px;
+        background: #0084ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.1rem;
+        color: #fff;
+        text-decoration: none;
+        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.3);
+        z-index: 300;
+        animation: mpulse 2.5s infinite;
+        transition: transform 0.3s;
+      }
+      .messenger-float:hover {
+        transform: scale(1.1);
+      }
+      @keyframes mpulse {
+        0%,
+        100% {
+          box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
+        }
+        50% {
+          box-shadow: 0 4px 36px rgba(0, 132, 255, 0.55);
+        }
+      }
+      .back-top {
+        position: fixed;
+        bottom: 2.5rem;
+        right: 2.5rem;
+        width: 44px;
+        height: 44px;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        color: #fff;
+        text-decoration: none;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+        z-index: 300;
+      }
+      .back-top.on {
+        opacity: 1;
+        visibility: visible;
+      }
+      .back-top:hover {
+        background: var(--red-mid);
+        transform: translateY(-3px);
+      }
+
+      /* ======================================================
+   REVEAL
+====================================================== */
+      .rv {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
+      .rv-l {
+        opacity: 0;
+        transform: translateX(-22px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv-l.in {
+        opacity: 1;
+        transform: none;
+      }
+      .rv-r {
+        opacity: 0;
+        transform: translateX(22px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv-r.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ======================================================
+   RESPONSIVE
+====================================================== */
+      @media (max-width: 1100px) {
+        .ft-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+        }
+        .cta-inner {
+          flex-direction: column;
+        }
+      }
+      @media (max-width: 768px) {
+        .main-nav,
+        .hdr-cta {
+          display: none;
+        }
+        .ham {
+          display: flex;
+        }
+        .hdr {
+          padding: 0 2rem;
+        }
+        .logo-sub {
+          display: none;
+        }
+        .page-hero {
+          padding: 5rem 2rem 4.5rem;
+        }
+        .ph-h1 {
+          font-size: clamp(5rem, 18vw, 8rem);
+        }
+        .guide-section,
+        .faq-section,
+        .cta-section {
+          padding: 6rem 2rem;
+        }
+        .sec-h2 {
+          font-size: 4rem;
+        }
+        .ft-grid {
+          grid-template-columns: 1fr;
+          gap: 3.5rem;
+        }
+        footer {
+          padding: 5rem 2rem 3rem;
+        }
+        .ft-btm {
+          flex-direction: column;
+          text-align: center;
+        }
+        .mob-nav {
           display: block;
         }
-
-        .main-nav {
-          position: fixed;
-          top: 0;
-          right: -100%;
-          width: 80%;
-          max-width: 300px;
-          height: 100vh;
-          background-color: white;
-          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-          transition: var(--transition);
-          padding: 80px 20px 20px;
-          overflow-y: auto;
+        footer {
+          padding-bottom: 8rem;
         }
-
-        .main-nav.active {
-          right: 0;
+        .messenger-float {
+          bottom: 8.5rem;
+          right: 1.8rem;
         }
-
-        .main-nav ul {
+        .back-top {
+          bottom: 8.5rem;
+          right: 1.8rem;
+        }
+        .cta-btns {
           flex-direction: column;
-        }
-
-        .main-nav li {
-          margin: 15px 0;
-        }
-
-        .main-nav a {
-          font-size: 1.1rem;
-        }
-
-        .step-card {
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .step-number {
-          width: 50px;
-          height: 50px;
-          font-size: 1.2rem;
         }
       }
-
-      @media (max-width: 576px) {
-        .guide-hero {
-          min-height: 250px;
-        }
-
-        .hero-content h1 {
-          font-size: 1.8rem;
-        }
-
-        .section-title {
-          font-size: 1.8rem;
-        }
-
+      @media (max-width: 480px) {
         .step-card {
-          padding: 20px;
-        }
-
-        .contact-cta h2 {
-          font-size: 1.6rem;
+          padding: 2rem;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Header -->
-    <header class="main-header">
-      <div class="container">
-        <a href="/Trangchu/" class="logo">
-          <img src="image/Logo_HEAD.png" alt="Honda Logo" />
+    <!-- ============================================================ HEADER -->
+    <header class="site-header" id="siteHeader">
+      <div class="hdr">
+        <a href="/Trangchu/" class="logo-wrap">
+          <img
+            src="/sanphamxemay/image/banner/Logo_HEAD.png"
+            alt="HEAD Logo"
+            class="logo-img"
+          />
+          <div class="logo-text-block">
+            <span class="logo-name">HỆ THỐNG HEAD TRUNG HÙNG</span>
+            <span class="logo-sub"
+              >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
+            >
+          </div>
         </a>
-
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-
         <nav class="main-nav">
-          <ul>
-            <li><a href="/Trangchu/">Trang chủ</a></li>
-            <li><a href="/sanphamxemay/">Sản phẩm</a></li>
-            <li><a href="/dichvu/">Dịch vụ</a></li>
-            <li><a href="/khuyenmai/">Khuyến mãi</a></li>
-            <li><a href="/huongdanmuahang/" class="active">Hướng dẫn</a></li>
-            <li><a href="/lienhe/">Liên hệ</a></li>
-          </ul>
+          <a href="/Trangchu/">Trang chủ</a>
+          <a href="/sanphamxemay/">Sản phẩm</a>
+          <a href="/dichvu/">Dịch vụ</a>
+          <a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a>
+          <a href="/huongdanmuahang/" class="active">Hướng dẫn</a>
+          <a href="/lienhe/">Liên hệ</a>
         </nav>
+        <a href="tel:1900636712" class="hdr-cta"
+          ><i class="fas fa-phone-alt"></i> Gọi ngay</a
+        >
+        <div class="ham" id="ham"><span></span><span></span><span></span></div>
       </div>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="guide-hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1>Hướng Dẫn Mua Hàng</h1>
-          <p>Các bước đơn giản để sở hữu xe máy Honda chính hãng</p>
+    <!-- Drawer -->
+    <div class="dov" id="dov"></div>
+    <div class="sdraw" id="sdraw">
+      <button class="sdx" id="sdx"><i class="fas fa-times"></i></button>
+      <nav class="dnav">
+        <a href="/Trangchu/">Trang chủ</a>
+        <a href="/sanphamxemay/">Sản phẩm</a>
+        <a href="/dichvu/">Dịch vụ</a>
+        <a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a>
+        <a href="/huongdanmuahang/" class="active">Hướng dẫn</a>
+        <a href="/lienhe/">Liên hệ</a>
+      </nav>
+      <a href="tel:1900636712" class="dcta"
+        ><i class="fas fa-phone-alt"></i> 1900 636 712</a
+      >
+    </div>
+
+    <!-- ============================================================ PAGE HERO -->
+    <section class="page-hero">
+      <div class="ph-grid"></div>
+      <div class="ph-glow"></div>
+      <div class="ph-inner">
+        <div class="ph-crumb">
+          <a href="/Trangchu/">Trang chủ</a>
+          <span class="sep">/</span>
+          <span style="color: rgba(255, 255, 255, 0.8)"
+            >Hướng dẫn mua hàng</span
+          >
+        </div>
+        <div class="ph-kicker">Honda Authorised Dealer</div>
+        <h1 class="ph-h1">HƯỚNG DẪN<br />MUA HÀNG</h1>
+        <p class="ph-sub">
+          Các bước đơn giản và rõ ràng để bạn sở hữu chiếc xe máy Honda chính
+          hãng một cách dễ dàng, nhanh chóng.
+        </p>
+        <div class="ph-steps-badge">
+          <i class="fas fa-list-ol"></i> 6 bước đơn giản · Hỗ trợ tận tâm
         </div>
       </div>
     </section>
 
-    <!-- Guide Steps -->
-    <section class="guide-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Quy Trình Mua Xe</h2>
-          <p class="section-subtitle">6 bước đơn giản để sở hữu xe Honda mới</p>
-          <div class="divider"></div>
-        </div>
+    <!-- ============================================================ GUIDE STEPS -->
+    <section class="guide-section" id="guide">
+      <div class="gs-wrap">
+        <div class="sec-eyebrow rv">Quy trình mua xe</div>
+        <h2 class="sec-h2 rv">6 BƯỚC SỞ HỮU<br />XE HONDA MỚI</h2>
 
-        <div class="guide-steps">
-          <!-- Step 1 -->
-          <div class="step-card">
-            <div class="step-number">1</div>
-            <div class="step-content">
-              <h3>Tìm hiểu sản phẩm</h3>
-              <p>Chọn mẫu xe phù hợp với nhu cầu và ngân sách của bạn:</p>
-              <ul>
-                <li>
-                  Xem thông tin chi tiết các dòng xe trên website Hệ Thống HEAD
-                  Trung Hùng
-                </li>
-                <li>Tham khảo đánh giá từ khách hàng</li>
-                <li>So sánh các mẫu xe với nhau</li>
-                <li>Xem các chương trình khuyến mãi hiện có</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Step 2 -->
-          <div class="step-card">
-            <div class="step-number">2</div>
-            <div class="step-content">
-              <h3>Đến đại lý gần nhất</h3>
-              <p>
-                Trải nghiệm trực tiếp sản phẩm tại đại lý ủy quyền của Honda:
+        <div class="steps-list">
+          <!-- STEP 1 -->
+          <div class="step-item left">
+            <div class="step-card rv-l">
+              <div class="step-tag"><i class="fas fa-search"></i> Bước 1</div>
+              <div class="step-h">Tìm hiểu sản phẩm</div>
+              <p class="step-desc">
+                Chọn mẫu xe phù hợp với nhu cầu và ngân sách của bạn trước khi
+                đến cửa hàng.
               </p>
-              <ul>
-                <li>Tìm đại lý gần bạn nhất qua hệ thống tìm kiếm</li>
+              <ul class="step-list">
+                <li>
+                  Xem thông tin chi tiết các dòng xe trên website HEAD Trung
+                  Hùng
+                </li>
+                <li>Tham khảo đánh giá và so sánh các mẫu xe</li>
+                <li>Xem các chương trình khuyến mãi đang có</li>
+                <li>Liên hệ tư vấn trực tuyến qua hotline hoặc Messenger</li>
+              </ul>
+            </div>
+            <div class="step-center">
+              <div class="step-num">01</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-empty"></div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="step-item right">
+            <div class="step-empty"></div>
+            <div class="step-center">
+              <div class="step-num">02</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-card rv-r">
+              <div class="step-tag"><i class="fas fa-store"></i> Bước 2</div>
+              <div class="step-h">Đến đại lý gần nhất</div>
+              <p class="step-desc">
+                Trải nghiệm trực tiếp sản phẩm tại cửa hàng Honda ủy quyền HEAD
+                Trung Hùng.
+              </p>
+              <ul class="step-list">
+                <li>Tìm cửa hàng gần bạn nhất qua hệ thống bản đồ</li>
                 <li>Xem xe trực tiếp, ngồi thử và cảm nhận</li>
-                <li>Nhận tư vấn từ nhân viên bán hàng</li>
-                <li>Yêu cầu báo giá trực tiếp tại cửa hàng</li>
+                <li>Nhận tư vấn miễn phí từ nhân viên chuyên nghiệp</li>
+                <li>Yêu cầu báo giá và các chính sách ưu đãi</li>
               </ul>
             </div>
           </div>
 
-          <!-- Step 3 -->
-          <div class="step-card">
-            <div class="step-number">3</div>
-            <div class="step-content">
-              <h3>Đặt cọc và đăng ký</h3>
-              <p>Hoàn tất thủ tục đặt cọc và đăng ký mua xe:</p>
-              <ul>
+          <!-- STEP 3 -->
+          <div class="step-item left">
+            <div class="step-card rv-l">
+              <div class="step-tag">
+                <i class="fas fa-file-signature"></i> Bước 3
+              </div>
+              <div class="step-h">Đặt cọc và đăng ký</div>
+              <p class="step-desc">
+                Hoàn tất thủ tục đặt cọc để giữ xe và ký hợp đồng mua bán chính
+                thức.
+              </p>
+              <ul class="step-list">
                 <li>Chọn màu sắc và phiên bản mong muốn</li>
                 <li>Đặt cọc theo quy định của đại lý</li>
-                <li>Ký hợp đồng mua bán</li>
-                <li>Chuẩn bị giấy tờ cá nhân (CCCD và VNEID mức độ 2 )</li>
+                <li>Ký hợp đồng mua bán chính thức</li>
+                <li>Chuẩn bị CCCD và VNEID mức độ 2 (còn hiệu lực)</li>
+              </ul>
+            </div>
+            <div class="step-center">
+              <div class="step-num">03</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-empty"></div>
+          </div>
+
+          <!-- STEP 4 -->
+          <div class="step-item right">
+            <div class="step-empty"></div>
+            <div class="step-center">
+              <div class="step-num">04</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-card rv-r">
+              <div class="step-tag">
+                <i class="fas fa-credit-card"></i> Bước 4
+              </div>
+              <div class="step-h">Thanh toán</div>
+              <p class="step-desc">
+                Lựa chọn phương thức thanh toán linh hoạt phù hợp với tài chính
+                của bạn.
+              </p>
+              <ul class="step-list">
+                <li>Thanh toán toàn bộ bằng tiền mặt hoặc chuyển khoản</li>
+                <li>Hỗ trợ trả góp qua ngân hàng lãi suất ưu đãi</li>
+                <li>Nhận biên lai và chứng từ thanh toán đầy đủ</li>
               </ul>
             </div>
           </div>
 
-          <!-- Step 4 -->
-          <div class="step-card">
-            <div class="step-number">4</div>
-            <div class="step-content">
-              <h3>Thanh toán</h3>
-              <p>Lựa chọn phương thức thanh toán phù hợp:</p>
-              <ul>
-                <li>Thanh toán toàn bộ (tiền mặt/chuyển khoản)</li>
-                <li>Trả góp qua ngân hàng tại HEAD (nếu có nhu cầu)</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Step 5 -->
-          <div class="step-card">
-            <div class="step-number">5</div>
-            <div class="step-content">
-              <h3>Nhận xe và kiểm tra</h3>
-              <p>Nhận xe và kiểm tra kỹ lưỡng trước khi đi về:</p>
-              <ul>
-                <li>Kiểm tra ngoại hình xe không trầy xước</li>
-                <li>Xác nhận số khung, số máy</li>
+          <!-- STEP 5 -->
+          <div class="step-item left">
+            <div class="step-card rv-l">
+              <div class="step-tag">
+                <i class="fas fa-motorcycle"></i> Bước 5
+              </div>
+              <div class="step-h">Nhận xe và kiểm tra</div>
+              <p class="step-desc">
+                Nhận xe và kiểm tra kỹ lưỡng từng chi tiết trước khi chính thức
+                lái về.
+              </p>
+              <ul class="step-list">
+                <li>Kiểm tra ngoại hình xe không trầy xước, móp méo</li>
+                <li>Xác nhận số khung và số máy khớp với giấy tờ</li>
                 <li>
-                  Nhận đầy đủ giấy tờ (Biên nhận, Chính sách quyền riêng tư,
-                  sách hướng dẫn)
+                  Nhận đầy đủ: Biên nhận, sách hướng dẫn, Chính sách bảo mật
                 </li>
-                <li>Nhận hướng dẫn sử dụng cơ bản từ nhân viên</li>
+                <li>Được nhân viên hướng dẫn sử dụng cơ bản</li>
               </ul>
             </div>
+            <div class="step-center">
+              <div class="step-num">05</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-empty"></div>
           </div>
 
-          <!-- Step 6 -->
-          <div class="step-card">
-            <div class="step-number">6</div>
-            <div class="step-content">
-              <h3>Bảo dưỡng định kỳ</h3>
-              <p>Chăm sóc xe đúng cách để duy trì hiệu suất:</p>
-              <ul>
-                <li>Bảo dưỡng định kỳ theo khuyến cáo của Honda</li>
-                <li>Sử dụng phụ tùng chính hãng</li>
-                <li>Liên hệ đại lý khi cần hỗ trợ kỹ thuật</li>
-                <li>Tham gia các chương trình chăm sóc khách hàng</li>
+          <!-- STEP 6 -->
+          <div class="step-item right">
+            <div class="step-empty"></div>
+            <div class="step-center">
+              <div class="step-num">06</div>
+              <!-- No line on last item -->
+            </div>
+            <div class="step-card rv-r">
+              <div class="step-tag"><i class="fas fa-tools"></i> Bước 6</div>
+              <div class="step-h">Bảo dưỡng định kỳ</div>
+              <p class="step-desc">
+                Chăm sóc xe đúng cách theo khuyến cáo của Honda để duy trì hiệu
+                suất và tuổi thọ tối ưu.
+              </p>
+              <ul class="step-list">
+                <li>Bảo dưỡng định kỳ theo lịch khuyến cáo của Honda</li>
+                <li>Sử dụng phụ tùng chính hãng 100% tại HEAD Trung Hùng</li>
+                <li>Liên hệ đại lý ngay khi có dấu hiệu bất thường</li>
+                <li>
+                  Tham gia các chương trình chăm sóc khách hàng thân thiết
+                </li>
               </ul>
             </div>
           </div>
         </div>
+        <!-- /steps-list -->
       </div>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- ============================================================ FAQ -->
     <section class="faq-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Câu Hỏi Thường Gặp</h2>
-          <p class="section-subtitle">
-            Giải đáp những thắc mắc về quy trình mua xe
-          </p>
-          <div class="divider"></div>
-        </div>
-
-        <div class="faq-container">
-          <!-- FAQ 1 -->
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>Tôi cần chuẩn bị những giấy tờ gì khi mua xe?</span>
-              <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-              <p>Khi mua xe máy mới, bạn cần chuẩn bị:</p>
+      <div class="faq-wrap">
+        <div class="sec-eyebrow rv">Giải đáp thắc mắc</div>
+        <h2 class="sec-h2 rv">CÂU HỎI<br />THƯỜNG GẶP</h2>
+        <div class="faq-list">
+          <div class="faq-item rv">
+            <button class="faq-q">
+              <span class="faq-q-text"
+                >Tôi cần chuẩn bị những giấy tờ gì khi mua xe?</span
+              >
+              <div class="faq-icon"><i class="fas fa-plus"></i></div>
+            </button>
+            <div class="faq-a">
+              <p>Khi mua xe máy mới tại HEAD Trung Hùng, bạn cần chuẩn bị:</p>
               <ul>
                 <li>Bản gốc CCCD và VNEID mức độ 2 (còn hiệu lực)</li>
-                <li>Trên 18 tuổi (nếu trả góp)</li>
+                <li>Phải đủ 18 tuổi trở lên nếu có nhu cầu mua trả góp</li>
               </ul>
             </div>
           </div>
 
-          <!-- FAQ 2 -->
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>Thời gian chờ nhận xe là bao lâu?</span>
-              <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-              <p>Thời gian chờ nhận xe tùy thuộc vào:</p>
+          <div class="faq-item rv">
+            <button class="faq-q">
+              <span class="faq-q-text">Thời gian chờ nhận xe là bao lâu?</span>
+              <div class="faq-icon"><i class="fas fa-plus"></i></div>
+            </button>
+            <div class="faq-a">
+              <p>Thời gian chờ nhận xe tùy thuộc vào một số yếu tố:</p>
               <ul>
-                <li>Mẫu xe và phiên bản bạn chọn (phổ thông thường có sẵn)</li>
                 <li>
-                  Màu sắc yêu cầu (một số màu đặc biệt có thể phải đặt trước)
+                  Mẫu xe và phiên bản chọn — dòng phổ thông thường có sẵn tại
+                  kho
                 </li>
                 <li>
-                  Thời gian hoàn tất thủ tục (đặc biệt với trường hợp trả góp)
+                  Màu sắc đặc biệt có thể cần đặt trước từ 3–7 ngày làm việc
                 </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- FAQ 3 -->
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>Tôi có thể đổi trả xe nếu không hài lòng?</span>
-              <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-              <p>Theo chính sách của Honda Việt Nam:</p>
-              <ul>
-                <li>Xe chỉ được đổi trả nếu có lỗi kỹ thuật từ nhà sản xuất</li>
-                <li>Không áp dụng đổi trả do không hài lòng cá nhân</li>
                 <li>
-                  Mọi khiếu nại sẽ được giải quyết theo chính sách bảo hành
+                  Trường hợp trả góp có thể mất thêm thời gian phê duyệt hồ sơ
                 </li>
               </ul>
             </div>
           </div>
 
-          <!-- FAQ 4 -->
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>Chế độ bảo hành như thế nào?</span>
-              <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-              <p>Chế độ bảo hành chính hãng Honda:</p>
+          <div class="faq-item rv">
+            <button class="faq-q">
+              <span class="faq-q-text"
+                >Tôi có thể đổi trả xe nếu không hài lòng?</span
+              >
+              <div class="faq-icon"><i class="fas fa-plus"></i></div>
+            </button>
+            <div class="faq-a">
+              <p>Theo chính sách của Honda Việt Nam và HEAD Trung Hùng:</p>
               <ul>
                 <li>
-                  Bảo hành 3 năm hoặc 30.000km (tùy điều kiện nào đến trước)
+                  Xe chỉ được đổi trả nếu phát sinh lỗi kỹ thuật từ nhà sản xuất
                 </li>
-                <li>Áp dụng cho tất cả các dòng xe máy Honda</li>
-                <li>Bảo hành động cơ, khung xe và các hệ thống chính</li>
-                <li>Không bao gồm các hư hỏng do va chạm, tự ý sửa chữa</li>
-                <li>Phải bảo dưỡng định kỳ tại đại lý ủy quyền Honda</li>
+                <li>Không áp dụng đổi trả do thay đổi nhu cầu cá nhân</li>
+                <li>
+                  Mọi khiếu nại được giải quyết theo chính sách bảo hành chính
+                  thức
+                </li>
               </ul>
             </div>
           </div>
 
-          <!-- FAQ 5 -->
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>Tôi có thể mua xe online không?</span>
-              <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-              <p>Hiện Hệ Thống HEAD Trung Hùng hỗ trợ:</p>
+          <div class="faq-item rv">
+            <button class="faq-q">
+              <span class="faq-q-text">Chế độ bảo hành như thế nào?</span>
+              <div class="faq-icon"><i class="fas fa-plus"></i></div>
+            </button>
+            <div class="faq-a">
+              <p>Bảo hành chính hãng Honda đầy đủ và toàn diện:</p>
               <ul>
-                <li>Tư vấn trực tuyến qua hotline và chat</li>
-                <li>Xem xe ảo 360 độ trên website</li>
                 <li>
-                  Tuy nhiên, để hoàn tất mua xe bạn vẫn cần đến đại lý để:
-                  <ul>
-                    <li>Ký hợp đồng</li>
-                    <li>Thanh toán</li>
-                    <li>Nhận xe và kiểm tra</li>
-                    <li>Làm thủ tục đăng ký</li>
-                  </ul>
+                  Bảo hành <strong>3 năm</strong> hoặc 30.000km (tùy điều kiện
+                  nào đến trước)
                 </li>
+                <li>Áp dụng cho tất cả dòng xe máy Honda chính hãng</li>
+                <li>Bao gồm: động cơ, khung xe và các hệ thống chính</li>
+                <li>Không áp dụng cho hư hỏng do va chạm hoặc tự ý sửa chữa</li>
+                <li>Bắt buộc bảo dưỡng định kỳ tại đại lý ủy quyền Honda</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-item rv">
+            <button class="faq-q">
+              <span class="faq-q-text"
+                >Tôi có thể tư vấn và đặt xe online không?</span
+              >
+              <div class="faq-icon"><i class="fas fa-plus"></i></div>
+            </button>
+            <div class="faq-a">
+              <p>HEAD Trung Hùng hỗ trợ đa dạng kênh tư vấn trực tuyến:</p>
+              <ul>
+                <li>
+                  Tư vấn qua hotline: 1900 636 712 (7:30 – 17:30 mỗi ngày)
+                </li>
+                <li>Nhắn tin qua Facebook Messenger và Zalo</li>
+                <li>Xem xe và so sánh trực tuyến trên website</li>
+                <li>
+                  Tuy nhiên để hoàn tất mua xe, bạn vẫn cần đến đại lý để ký hợp
+                  đồng, thanh toán và nhận xe
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-item rv">
+            <button class="faq-q">
+              <span class="faq-q-text">Hỗ trợ trả góp như thế nào?</span>
+              <div class="faq-icon"><i class="fas fa-plus"></i></div>
+            </button>
+            <div class="faq-a">
+              <p>
+                HEAD Trung Hùng liên kết với nhiều ngân hàng và công ty tài
+                chính:
+              </p>
+              <ul>
+                <li>Hỗ trợ vay vốn với lãi suất ưu đãi, thủ tục nhanh chóng</li>
+                <li>Trả góp từ 12 đến 36 tháng tùy gói vay</li>
+                <li>Yêu cầu: CCCD, VNEID mức độ 2, đủ 18 tuổi</li>
+                <li>Tư vấn miễn phí trực tiếp tại cửa hàng</li>
               </ul>
             </div>
           </div>
@@ -861,177 +1582,227 @@
       </div>
     </section>
 
-    <!-- Contact CTA -->
-    <section class="contact-cta">
-      <div class="container">
-        <h2>Bạn cần tư vấn thêm?</h2>
-        <p>
-          Hệ Thống HEAD Trung Hùng luôn sẵn sàng hỗ trợ bạn với mọi thắc mắc về
-          sản phẩm và dịch vụ.
-        </p>
-        <a href="/lienhe/" class="btn btn-primary">Liên hệ ngay</a>
+    <!-- ============================================================ CTA -->
+    <section class="cta-section">
+      <div class="cta-inner">
+        <div class="cta-text">
+          <h2>BẠN CẦN<br />TƯ VẤN THÊM?</h2>
+          <p>
+            HEAD Trung Hùng luôn sẵn sàng hỗ trợ bạn với mọi thắc mắc về sản
+            phẩm và dịch vụ — tận tâm mỗi ngày.
+          </p>
+        </div>
+        <div class="cta-btns">
+          <a href="/lienhe/" class="cta-btn-pri"
+            ><i class="fas fa-envelope"></i> Liên hệ ngay</a
+          >
+          <a href="tel:1900636712" class="cta-btn-sec"
+            ><i class="fas fa-phone-alt"></i> 1900 636 712</a
+          >
+        </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <img
-              src="image/Logo_HEAD.png"
-              alt="Honda Logo"
-              class="footer-logo"
-            />
-            <p>Công Ty TNHH TM&DV Hùng Mạnh</p>
-            <div class="social-links">
-              <a href="https://www.facebook.com/hethongheadtrunghung"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="https://www.youtube.com/@HethongHEADTrungHung"
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a href="https://www.instagram.com/hethongheadtrunghung"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="https://www.tiktok.com/@hethongheadtrunghung"
-                ><i class="fab fa-tiktok"></i
-              ></a>
-            </div>
+    <!-- ============================================================ FOOTER -->
+    <footer>
+      <div class="ft-grid">
+        <div>
+          <img
+            src="/sanphamxemay/image/banner/Logo_HEAD.png"
+            alt="HEAD Logo"
+            class="ft-logo-img"
+          />
+          <div class="ft-brand-name">HỆ THỐNG HEAD TRUNG HÙNG</div>
+          <div class="ft-brand-sub">
+            Cửa Hàng Bán Xe & Dịch Vụ Do Honda Ủy Nhiệm
           </div>
-          <div class="footer-col">
-            <h3>Dòng xe</h3>
-            <ul>
-              <li><a href="/sanphamxemay/">Xe tay ga</a></li>
-              <li><a href="/sanphamxemay/">Xe số</a></li>
-              <li><a href="/sanphamxemay/">Xe côn tay</a></li>
-              <li><a href="/sanphamxemay/">Xe phân khối lớn</a></li>
-              <li><a href="/sanphamxemay/">Xe điện</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h3>Hỗ trợ</h3>
-            <ul>
-              <li><a href="/dichvu/baohanh/">Bảo hành</a></li>
-              <li><a href="/dichvu/baoduong/">Bảo dưỡng Và Sửa Chữa</a></li>
-              <li><a href="/sanphamxemay/">Sản phẩm Xe Máy</a></li>
-              <li><a href="/dichvu/sanphamphutung/">Sản phẩm Phụ tùng</a></li>
-              <li><a href="/question/">Câu hỏi thường gặp</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h3>Liên hệ</h3>
-            <ul class="contact-info">
-              <li>
-                <i class="fas fa-phone-alt"></i>
-                <span>1900 636 712</span>
-              </li>
-              <li>
-                <i class="fas fa-envelope"></i>
-                <span>cr@hungmanh.com.vn</span>
-              </li>
-              <li>
-                <i class="fas fa-envelope"></i>
-                <span>cr_mt@hungmanh.com.vn</span>
-              </li>
-              <li>
-                <i class="fas fa-clock"></i>
-                <span>7:30 - 17:30 (Thứ 2 - CN)</span>
-              </li>
-            </ul>
+          <div class="ft-socs">
+            <a
+              href="https://www.facebook.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@HethongHEADTrungHung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.tiktok.com/@hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-tiktok"></i
+            ></a>
           </div>
         </div>
-        <div class="footer-bottom">
-          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        <div class="ft-col">
+          <h5>Dòng xe</h5>
+          <ul>
+            <li><a href="/sanphamxemay/?category=xe-ga">Xe tay ga</a></li>
+            <li><a href="/sanphamxemay/?category=xe-so">Xe số</a></li>
+            <li><a href="/sanphamxemay/?category=xe-con-tay">Xe côn tay</a></li>
+            <li><a href="/sanphamxemay/?category=pkl">Phân khối lớn</a></li>
+            <li><a href="/sanphamxemay/?category=xe-dien">Xe điện</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Hỗ trợ</h5>
+          <ul>
+            <li><a href="/dichvu/baohanh/">Bảo hành</a></li>
+            <li><a href="/dichvu/baoduong/">Bảo dưỡng & Sửa chữa</a></li>
+            <li><a href="/dichvu/sanphamphutung/">Phụ tùng chính hãng</a></li>
+            <li><a href="/question/">Câu hỏi thường gặp</a></li>
+            <li><a href="/cuahang/">Tìm đại lý gần nhất</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Liên hệ</h5>
+          <ul class="ft-contact">
+            <li>
+              <i class="fas fa-phone-alt"></i
+              ><a href="tel:1900636712">1900 636 712</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i
+              ><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i
+              ><a href="mailto:cr_mt@hungmanh.com.vn">cr_mt@hungmanh.com.vn</a>
+            </li>
+            <li><i class="fas fa-clock"></i>7:30 – 17:30 (T2 – CN)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-btm">
+        <p>© 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        <div class="ft-badge">
+          <i class="fas fa-certificate"></i> Honda Authorised Dealer
         </div>
       </div>
     </footer>
 
-    <!-- Back to Top -->
-    <a href="#" class="back-to-top">
-      <i class="fas fa-arrow-up"></i>
-    </a>
+    <!-- MOBILE NAV -->
+    <nav class="mob-nav">
+      <div class="mnb">
+        <a href="/Trangchu/" class="mnb-a"
+          ><i class="fas fa-home"></i><span>Trang chủ</span></a
+        >
+        <a href="/sanphamxemay/" class="mnb-a"
+          ><i class="fas fa-motorcycle"></i><span>Sản phẩm</span></a
+        >
+        <a href="/tintuc/tintuckhuyenmai/" class="mnb-a"
+          ><i class="fas fa-gift"></i><span>Khuyến mãi</span></a
+        >
+        <a href="/cuahang/" class="mnb-a"
+          ><i class="fas fa-map-marker-alt"></i><span>Đại lý</span></a
+        >
+        <a href="/lienhe/" class="mnb-a"
+          ><i class="fas fa-phone-alt"></i><span>Liên hệ</span></a
+        >
+      </div>
+    </nav>
 
-    <!-- JavaScript -->
+    <a
+      href="https://m.me/hethongheadtrunghung"
+      class="messenger-float"
+      target="_blank"
+      ><i class="fab fa-facebook-messenger"></i
+    ></a>
+    <a href="#" class="back-top" id="backTop"
+      ><i class="fas fa-arrow-up"></i
+    ></a>
+
+    <!-- ============================================================ SCRIPTS -->
     <script>
-      // Mobile Menu Toggle
-      const menuToggle = document.getElementById("mobile-menu");
-      const mainNav = document.querySelector(".main-nav");
+      (function () {
+        /* HEADER */
+        const hdr = document.getElementById("siteHeader");
+        window.addEventListener(
+          "scroll",
+          () => {
+            hdr.classList.toggle("lifted", scrollY > 50);
+            document
+              .getElementById("backTop")
+              .classList.toggle("on", scrollY > 400);
+          },
+          { passive: true },
+        );
 
-      menuToggle.addEventListener("click", function () {
-        this.classList.toggle("active");
-        mainNav.classList.toggle("active");
-      });
+        /* DRAWER */
+        const ham = document.getElementById("ham"),
+          dov = document.getElementById("dov"),
+          sdraw = document.getElementById("sdraw"),
+          sdx = document.getElementById("sdx");
+        const openD = () => {
+          ham.classList.add("open");
+          dov.classList.add("on");
+          sdraw.classList.add("on");
+          document.body.style.overflow = "hidden";
+        };
+        const closeD = () => {
+          ham.classList.remove("open");
+          dov.classList.remove("on");
+          sdraw.classList.remove("on");
+          document.body.style.overflow = "";
+        };
+        ham.addEventListener("click", openD);
+        dov.addEventListener("click", closeD);
+        sdx.addEventListener("click", closeD);
+        sdraw
+          .querySelectorAll("a")
+          .forEach((a) => a.addEventListener("click", closeD));
 
-      // Close mobile menu when clicking on a link
-      const navLinks = document.querySelectorAll(".main-nav a");
-      navLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          menuToggle.classList.remove("active");
-          mainNav.classList.remove("active");
+        /* FAQ ACCORDION */
+        document.querySelectorAll(".faq-item").forEach((item) => {
+          item.querySelector(".faq-q").addEventListener("click", () => {
+            const isOpen = item.classList.contains("open");
+            document
+              .querySelectorAll(".faq-item")
+              .forEach((i) => i.classList.remove("open"));
+            if (!isOpen) item.classList.add("open");
+          });
         });
-      });
 
-      // Header scroll effect
-      const header = document.querySelector(".main-header");
-      window.addEventListener("scroll", function () {
-        if (window.scrollY > 100) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
-        }
-      });
-
-      // Back to Top button - SMOOTH SCROLL
-      const backToTop = document.querySelector(".back-to-top");
-      backToTop.addEventListener("click", function (e) {
-        e.preventDefault();
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      });
-
-      window.addEventListener("scroll", function () {
-        if (window.scrollY > 300) {
-          backToTop.classList.add("active");
-        } else {
-          backToTop.classList.remove("active");
-        }
-      });
-
-      // FAQ Accordion
-      const faqItems = document.querySelectorAll(".faq-item");
-      faqItems.forEach((item) => {
-        const question = item.querySelector(".faq-question");
-        question.addEventListener("click", () => {
-          // Close all other items
-          faqItems.forEach((otherItem) => {
-            if (otherItem !== item) {
-              otherItem.classList.remove("active");
+        /* SMOOTH SCROLL */
+        document.querySelectorAll('a[href^="#"]').forEach((a) => {
+          a.addEventListener("click", (e) => {
+            const t = a.getAttribute("href");
+            if (t === "#") return;
+            const el = document.querySelector(t);
+            if (el) {
+              e.preventDefault();
+              window.scrollTo({
+                top:
+                  el.getBoundingClientRect().top + scrollY - hdr.offsetHeight,
+                behavior: "smooth",
+              });
             }
           });
-          // Toggle current item
-          item.classList.toggle("active");
         });
-      });
 
-      // Smooth scroll for all links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const targetId = this.getAttribute("href");
-          if (targetId === "#") return;
-
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            window.scrollTo({
-              top: targetElement.offsetTop - 100,
-              behavior: "smooth",
+        /* SCROLL REVEAL */
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e, i) => {
+              if (e.isIntersecting)
+                setTimeout(() => e.target.classList.add("in"), i * 65);
             });
-          }
-        });
-      });
+          },
+          { threshold: 0.1 },
+        );
+        document
+          .querySelectorAll(".rv,.rv-l,.rv-r")
+          .forEach((el) => obs.observe(el));
+      })();
     </script>
   </body>
 </html>
