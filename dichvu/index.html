@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dịch Vụ</title>
+    <title>Dịch Vụ Sau Bán Hàng – HEAD Trung Hùng Honda</title>
     <link
       rel="icon"
       href="/sanphamxemay/image/banner/Logo_HEAD.png"
@@ -14,1468 +14,2031 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Barlow:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* Reset & Base Styles */
+      /* ======================================================
+   TOKENS
+====================================================== */
+      :root {
+        --red: #d10017;
+        --red-mid: #a5000e;
+        --red-soft: rgba(209, 0, 23, 0.09);
+        --red-glow: rgba(209, 0, 23, 0.22);
+        --ink: #0f0f10;
+        --ink2: #222225;
+        --paper: #f8f6f3;
+        --paper2: #efecea;
+        --white: #ffffff;
+        --border: rgba(15, 15, 16, 0.09);
+        --muted: #7a7570;
+        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
-      :root {
-        --primary-color: #e40521;
-        --secondary-color: #333;
-        --light-color: #f8f9fa;
-        --dark-color: #212529;
-        --gray-color: #6c757d;
-        --light-gray: #e9ecef;
-        --transition: all 0.3s ease;
-      }
-
       html {
+        font-size: 62.5%;
         scroll-behavior: smooth;
       }
-
       body {
-        font-family: "Montserrat", sans-serif;
-        line-height: 1.6;
-        color: var(--secondary-color);
+        font-family: "Barlow", sans-serif;
+        background: var(--paper);
+        color: var(--ink);
         overflow-x: hidden;
+        line-height: 1.6;
       }
-
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 15px;
-      }
-
       img {
         max-width: 100%;
-        height: auto;
+        display: block;
       }
-
       a {
         text-decoration: none;
         color: inherit;
-        transition: var(--transition);
       }
-
       ul {
         list-style: none;
       }
-
-      .btn {
-        display: inline-block;
-        padding: 10px 25px;
-        border-radius: 25px;
-        font-weight: 500;
-        text-align: center;
-        transition: var(--transition);
+      button {
+        border: none;
+        background: none;
         cursor: pointer;
-        border: 2px solid transparent;
+        font-family: inherit;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--red);
       }
 
-      .btn-primary {
-        background-color: var(--primary-color);
-        color: white;
-        border-color: var(--primary-color);
-      }
-
-      .btn-primary:hover {
-        background-color: #c0041d;
-        border-color: #c0041d;
-      }
-
-      .btn-outline {
-        background-color: transparent;
-        color: var(--primary-color);
-        border-color: var(--primary-color);
-      }
-
-      .btn-outline:hover {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 50px;
-      }
-
-      .section-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: var(--dark-color);
-      }
-
-      .section-subtitle {
-        font-size: 1.1rem;
-        color: var(--gray-color);
-        margin-bottom: 20px;
-      }
-
-      .divider {
-        width: 80px;
-        height: 3px;
-        background-color: var(--primary-color);
-        margin: 0 auto;
-      }
-
-      .text-center {
-        text-align: center;
-      }
-
-      /* Preloader */
+      /* ── PRELOADER ── */
       .preloader {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: white;
+        inset: 0;
+        background: var(--ink);
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
         z-index: 9999;
-        transition: opacity 0.5s ease;
+        transition: opacity 0.6s ease;
       }
-
-      .preloader.fade-out {
+      .preloader.out {
         opacity: 0;
+        pointer-events: none;
       }
-
-      .loader {
+      .pre-text {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 4.5rem;
+        font-weight: 900;
+        letter-spacing: 0.3em;
+        color: #fff;
+        animation: preIn 0.7s ease both;
+      }
+      .pre-text em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .pre-dots {
         display: flex;
-        gap: 10px;
+        gap: 1rem;
+        margin-top: 2.5rem;
       }
-
-      .loader-square {
-        width: 20px;
-        height: 20px;
-        background-color: var(--primary-color);
-        animation: loaderAnimation 1.2s infinite ease-in-out;
+      .pre-dot {
+        width: 10px;
+        height: 10px;
+        background: var(--red);
+        border-radius: 50%;
+        animation: dotP 1.4s ease infinite;
       }
-
-      .loader-square:nth-child(1) {
-        animation-delay: 0s;
-      }
-
-      .loader-square:nth-child(2) {
+      .pre-dot:nth-child(2) {
         animation-delay: 0.2s;
       }
-
-      .loader-square:nth-child(3) {
+      .pre-dot:nth-child(3) {
         animation-delay: 0.4s;
       }
-
-      .loader-square:nth-child(4) {
-        animation-delay: 0.6s;
-      }
-
-      @keyframes loaderAnimation {
-        0%,
-        40%,
-        100% {
-          transform: scaleY(0.6);
-        }
-        20% {
-          transform: scaleY(1);
-        }
-      }
-
-      /* Header */
-      .main-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 15px 0;
-        background-color: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        transition: var(--transition);
-      }
-
-      .main-header.scrolled {
-        padding: 15px 0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      }
-
-      .main-header .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .logo img {
-        height: 35px;
-      }
-
-      .main-nav ul {
-        display: flex;
-      }
-
-      .main-nav li {
-        margin-left: 30px;
-      }
-
-      .main-nav a {
-        font-weight: 500;
-        color: var(--dark-color);
-        position: relative;
-      }
-
-      .main-nav a:after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: var(--primary-color);
-        transition: var(--transition);
-      }
-
-      .main-nav a:hover:after,
-      .main-nav a.active:after {
-        width: 100%;
-      }
-
-      .main-nav a.active {
-        color: var(--primary-color);
-        font-weight: 600;
-      }
-
-      /* Mobile Menu Toggle Styles */
-      .menu-toggle {
-        display: none;
-        width: 30px;
-        height: 24px;
-        position: relative;
-        cursor: pointer;
-        z-index: 1001;
-      }
-
-      .menu-toggle .bar {
-        position: absolute;
-        width: 100%;
-        height: 3px;
-        background-color: var(--dark-color);
-        transition: all 0.3s ease;
-        left: 0;
-      }
-      .menu-toggle .bar:nth-child(1) {
-        top: 0;
-      }
-
-      .menu-toggle .bar:nth-child(2) {
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      .menu-toggle .bar:nth-child(3) {
-        bottom: 0;
-      }
-      /* When menu is active */
-      .menu-toggle.active .bar:nth-child(1) {
-        top: 50%;
-        transform: translateY(-50%) rotate(45deg);
-        background-color: var(--primary-color);
-      }
-
-      .menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-      }
-
-      .menu-toggle.active .bar:nth-child(3) {
-        bottom: 50%;
-        transform: translateY(50%) rotate(-45deg);
-        background-color: var(--primary-color);
-      }
-
-      /* Mobile Menu */
-      @media (max-width: 992px) {
-        .menu-toggle {
-          display: block;
-        }
-
-        .menu-toggle.active .bar:nth-child(1) {
-          transform: translateY(8px) rotate(45deg);
-        }
-
-        .menu-toggle.active .bar:nth-child(2) {
+      @keyframes preIn {
+        from {
           opacity: 0;
+          letter-spacing: 0.6em;
         }
-
-        .menu-toggle.active .bar:nth-child(3) {
-          transform: translateY(-8px) rotate(-45deg);
+        to {
+          opacity: 1;
+          letter-spacing: 0.3em;
         }
-
-        .main-nav {
-          position: fixed;
-          top: 0;
-          right: -100%;
-          width: 80%;
-          max-width: 400px;
-          height: 100vh;
-          background-color: white;
-          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-          transition: all 0.4s ease;
-          padding: 100px 30px 30px;
-          overflow-y: auto;
-          z-index: 1000;
+      }
+      @keyframes dotP {
+        0%,
+        60%,
+        100% {
+          transform: scale(0.6);
+          opacity: 0.4;
         }
-
-        .main-nav.active {
-          right: 0;
-        }
-
-        .main-nav ul {
-          flex-direction: column;
-        }
-
-        .main-nav li {
-          margin: 15px 0;
-        }
-
-        .main-nav a {
-          font-size: 1.1rem;
-          padding: 8px 0;
-          display: block;
-        }
-        .quick-links .container {
-          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        30% {
+          transform: scale(1.2);
+          opacity: 1;
         }
       }
 
-      /* Hero Banner */
-      .hero-banner {
-        position: relative;
-        height: 100vh;
-        min-height: 600px;
-        background: url("image/BANNERBIKE/SH350.jpg") no-repeat center
-          center/cover;
+      /* ── HEADER ── */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 500;
+        background: rgba(248, 246, 243, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition: box-shadow 0.35s;
+      }
+      .site-header.lifted {
+        box-shadow: 0 2px 24px rgba(15, 15, 16, 0.07);
+      }
+      .hdr {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+        gap: 2rem;
+      }
+      .logo-wrap {
+        display: flex;
+        align-items: center;
+        gap: 1.3rem;
+        flex-shrink: 0;
+      }
+      .logo-img {
+        height: 44px;
+        width: auto;
+        transition: opacity 0.25s;
+      }
+      .logo-wrap:hover .logo-img {
+        opacity: 0.85;
+      }
+      .logo-text-block {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        color: white;
-      }
-
-      .hero-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-      }
-
-      .hero-content {
-        position: relative;
-        z-index: 1;
-        color: white;
-        max-width: 600px;
-      }
-
-      .hero-content h1 {
-        font-size: 2.2rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-        line-height: 1.2;
-      }
-
-      .hero-content p {
-        font-size: 1.2rem;
-        margin-bottom: 30px;
-      }
-
-      .hero-buttons {
-        display: flex;
-        gap: 15px;
-      }
-
-      @media (max-width: 768px) {
-        .hero-content h1 {
-          font-size: 2.5rem;
-        }
-
-        .hero-buttons {
-          flex-direction: column;
-        }
-        .quick-links .container {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-
-      /* Quick Links */
-      .quick-links {
-        padding: 60px 0;
-        background-color: #f8f9fa;
-      }
-
-      .quick-links .container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 15px;
-      }
-
-      .quick-link-card {
-        position: relative;
-        border-radius: 25px;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        aspect-ratio: 1/1; /* Giữ tỉ lệ vuông */
-      }
-
-      .quick-link-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      }
-
-      .quick-link-card a {
-        pointer-events: auto !important; /* Đảm bảo thẻ a có thể click */
-        position: relative;
-        z-index: 2; /* Đặt cao hơn các layer khác */
-      }
-      .quick-link-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-      .quick-link-card:hover img {
-        transform: scale(1.05);
-      }
-
-      .quick-link-card span {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 15px;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-        color: white;
-        font-weight: 600;
-        font-size: 1.1rem;
-        text-align: center;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-      }
-      /* Hiệu ứng overlay */
-      .quick-link-card::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(5, 146, 228, 0.3);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      .quick-link-card:hover::after {
-        opacity: 1;
-      }
-      /* Featured Section */
-      .featured-section {
-        padding: 80px 0;
-      }
-
-      .featured-products {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-      }
-
-      .product-card {
-        position: relative;
-        width: 260px; /* hoặc % tuỳ theo responsive */
-        border: 1px solid #eee;
-        border-radius: 12px;
-        overflow: hidden;
-        background: #fff;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        display: flex;
-        flex-direction: column;
-        transition: transform 0.3s ease;
-      }
-
-      .product-card:hover {
-        transform: translateY(-5px);
-      }
-
-      .product-badge {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background-color: var(--primary-color);
-        color: white;
-        padding: 5px 10px;
-        border-radius: 25px;
-        font-size: 0.8rem;
-        font-weight: 500;
-        z-index: 1;
-      }
-
-      .product-image {
-        width: 100%;
-        aspect-ratio: 4 / 3; /* Giữ tỷ lệ khung hình */
-        overflow: hidden;
-        position: relative;
-      }
-
-      .product-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Đảm bảo ảnh không bị méo và không mất góc */
-        object-position: center;
-        transition: var(--transition);
-      }
-
-      .product-card:hover .product-image img {
-        transform: scale(1.05);
-      }
-
-      .product-info {
-        padding: 20px;
-      }
-
-      .product-info h3 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-        color: var(--dark-color);
-      }
-
-      .product-price {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--primary-color);
-        margin-bottom: 15px;
-      }
-
-      /* Promo Banner */
-      .promo-banner {
-        padding: 80px 0;
-        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-          url("../images/promo-banner.jpg") no-repeat center center/cover;
-        color: white;
-        text-align: center;
-      }
-
-      .promo-content h2 {
-        font-size: 2.5rem;
-        margin-bottom: 15px;
-      }
-
-      .promo-content p {
-        font-size: 1.2rem;
-        margin-bottom: 30px;
-      }
-
-      /* News Section */
-      .news-section {
-        padding: 80px 0;
-        background-color: var(--light-color);
-      }
-
-      .news-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 30px;
-        margin-bottom: 40px;
-      }
-
-      .news-card {
-        background-color: white;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        transition: var(--transition);
-      }
-
-      .news-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      }
-
-      .news-image {
-        position: relative;
-        height: 200px;
-        overflow: hidden;
-      }
-
-      .news-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: var(--transition);
-      }
-
-      .news-card:hover .news-image img {
-        transform: scale(1.05);
-      }
-
-      .news-date {
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        background-color: var(--primary-color);
-        color: white;
-        text-align: center;
-        padding: 10px;
-        border-radius: 4px;
         line-height: 1;
       }
-
-      .news-date span:first-child {
-        font-size: 1.5rem;
-        font-weight: 700;
-        display: block;
-      }
-
-      .news-date span:last-child {
-        font-size: 0.9rem;
+      .logo-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.95rem;
+        font-weight: 800;
+        letter-spacing: 0.09em;
         text-transform: uppercase;
+        color: var(--ink);
+        white-space: nowrap;
       }
-
-      .news-content {
-        padding: 20px;
-      }
-
-      .news-content h3 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-      }
-
-      .news-content h3 a:hover {
-        color: var(--primary-color);
-      }
-
-      .news-content p {
-        color: var(--gray-color);
-        margin-bottom: 15px;
-        font-size: 0.95rem;
-      }
-
-      .read-more {
-        color: var(--primary-color);
-        font-weight: 500;
-        font-size: 0.9rem;
-      }
-
-      .read-more i {
-        margin-left: 5px;
-        font-size: 0.8rem;
-      }
-
-      /* Service Section */
-      .service-section {
-        padding: 80px 0;
-      }
-
-      .service-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 30px;
-      }
-
-      .service-card {
-        background-color: white;
-        border-radius: 8px;
-        padding: 30px;
-        text-align: center;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        transition: var(--transition);
-      }
-
-      .service-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-      }
-
-      .service-icon {
-        width: 80px;
-        height: 80px;
-        background-color: var(--light-color);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto 20px;
-        font-size: 2rem;
-        color: var(--primary-color);
-      }
-
-      .service-card h3 {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-        color: var(--dark-color);
-      }
-
-      .service-card p {
-        color: var(--gray-color);
-        margin-bottom: 20px;
-      }
-
-      /* Store Section */
-      .store-section {
-        padding: 80px 0;
-        background: url("../images/store-banner.jpg") no-repeat center
-          center/cover;
-        color: white;
-        text-align: center;
-        position: relative;
-      }
-
-      .store-section:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-      }
-
-      .store-content {
-        position: relative;
-        z-index: 1;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      .store-content h2 {
-        font-size: 2.5rem;
-        margin-bottom: 15px;
-      }
-
-      .store-content p {
-        font-size: 1.1rem;
-        margin-bottom: 30px;
-      }
-
-      .store-search {
-        display: flex;
-        margin-bottom: 20px;
-      }
-
-      .store-search input {
-        flex: 1;
-        padding: 12px 15px;
-        border: none;
-        border-radius: 4px 0 0 4px;
+      .logo-sub {
+        font-family: "Barlow Condensed", sans-serif;
         font-size: 1rem;
-      }
-
-      .store-search button {
-        border-radius: 0 4px 4px 0;
-        border: none;
-      }
-
-      .store-link {
-        color: white;
         font-weight: 500;
-        display: inline-flex;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+        margin-top: 0.2rem;
+      }
+      .main-nav {
+        display: flex;
         align-items: center;
       }
-
-      .store-link:hover {
-        color: var(--primary-color);
-      }
-
-      .store-link i {
-        margin-left: 5px;
-      }
-
-      /* Footer */
-      .main-footer {
-        background-color: var(--dark-color);
-        color: white;
-        padding: 60px 0 0;
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 30px;
-        margin-bottom: 40px;
-      }
-
-      .footer-col h3 {
-        font-size: 1rem;
-        margin-bottom: 20px;
+      .main-nav a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        padding: 0.7rem 1.4rem;
         position: relative;
-        padding-bottom: 10px;
+        transition: color 0.2s;
       }
-
-      .footer-col h3:after {
+      .main-nav a::after {
         content: "";
         position: absolute;
         bottom: 0;
-        left: 0;
-        width: 40px;
+        left: 1.4rem;
+        right: 1.4rem;
         height: 2px;
-        background-color: var(--primary-color);
+        background: var(--red);
+        transform: scaleX(0);
+        transition: transform 0.3s var(--ease);
       }
-
-      .footer-logo {
-        margin-bottom: 20px;
-        display: block;
-        max-width: 100px;
+      .main-nav a:hover,
+      .main-nav a.active {
+        color: var(--red);
       }
-
-      .footer-col p {
-        color: #adb5bd;
-        margin-bottom: 20px;
+      .main-nav a:hover::after,
+      .main-nav a.active::after {
+        transform: scaleX(1);
       }
-
-      .social-links {
-        display: flex;
-        gap: 15px;
+      .hdr-cta {
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.85rem 2.2rem;
+        border-radius: 4px;
+        flex-shrink: 0;
+        transition: all 0.3s;
       }
-
-      .social-links a {
-        width: 35px;
-        height: 35px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: var(--transition);
+      .hdr-cta:hover {
+        background: var(--red-mid);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px var(--red-glow);
       }
-
-      .social-links a:hover {
-        background-color: var(--primary-color);
-        transform: translateY(-3px);
+      .ham {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 4px;
       }
-
-      .footer-col ul li {
-        margin-bottom: 10px;
+      .ham span {
+        width: 22px;
+        height: 2px;
+        background: var(--ink);
+        transition: all 0.3s;
+        border-radius: 1px;
       }
-
-      .footer-col ul a {
-        color: #adb5bd;
-        transition: var(--transition);
+      .ham.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
       }
-
-      .footer-col ul a:hover {
-        color: var(--primary-color);
-        padding-left: 5px;
+      .ham.open span:nth-child(2) {
+        opacity: 0;
       }
-
-      .contact-info li {
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
+      .ham.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
       }
-
-      .contact-info i {
-        margin-right: 10px;
-        color: var(--primary-color);
-        width: 20px;
-        text-align: center;
-      }
-
-      .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 20px 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: #adb5bd;
-        font-size: 0.9rem;
-      }
-
-      .legal-links {
-        display: flex;
-        gap: 20px;
-      }
-
-      .legal-links a {
-        color: #adb5bd;
-        transition: var(--transition);
-      }
-
-      .legal-links a:hover {
-        color: var(--primary-color);
-      }
-
-      /* Back to Top */
-      .back-to-top {
+      .dov {
         position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background-color: var(--primary-color);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 1.2rem;
+        inset: 0;
+        background: rgba(15, 15, 16, 0.55);
+        z-index: 498;
         opacity: 0;
         visibility: hidden;
-        transition: var(--transition);
-        z-index: 999;
-        box-shadow: 0 4px 15px rgba(228, 5, 33, 0.3);
+        transition: all 0.3s;
       }
-
-      .back-to-top.active {
+      .dov.on {
         opacity: 1;
         visibility: visible;
       }
-
-      .back-to-top:hover {
-        background-color: #c0041d;
-        transform: translateY(-5px);
-        box-shadow: 0 6px 20px rgba(228, 5, 33, 0.4);
-      }
-
-      /* Messenger Chat Button */
-      .messenger-chat {
+      .sdraw {
         position: fixed;
-        bottom: 100px;
-        right: 25px;
-        width: 60px;
-        height: 60px;
-        background-color: #0084ff;
-        color: white;
+        top: 0;
+        right: -100%;
+        width: min(330px, 90vw);
+        height: 100%;
+        background: var(--white);
+        z-index: 499;
+        padding: 6rem 2.8rem 3rem;
+        transition: right 0.38s var(--ease);
+        border-left: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+      }
+      .sdraw.on {
+        right: 0;
+      }
+      .sdx {
+        position: absolute;
+        top: 1.6rem;
+        right: 1.6rem;
+        width: 36px;
+        height: 36px;
+        background: var(--paper2);
         border-radius: 50%;
         display: flex;
-        justify-content: center;
         align-items: center;
-        font-size: 28px;
-        box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
-        z-index: 999;
-        transition: all 0.3s ease;
-        animation: pulse 2s infinite;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--muted);
+        transition: all 0.2s;
+      }
+      .sdx:hover {
+        background: var(--red);
+        color: #fff;
+      }
+      .dnav {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .dnav a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        padding: 1.4rem 0;
+        border-bottom: 1px solid var(--border);
+        transition: color 0.2s;
+      }
+      .dnav a:hover,
+      .dnav a.active {
+        color: var(--red);
+      }
+      .dcta {
+        background: var(--red);
+        color: #fff;
+        text-align: center;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.3rem;
+        border-radius: 4px;
+        margin-top: auto;
+        transition: background 0.3s;
+      }
+      .dcta:hover {
+        background: var(--red-mid);
       }
 
-      .messenger-chat:hover {
-        background-color: #0066cc;
+      /* ── HERO ── */
+      .page-hero {
+        background: var(--ink);
+        position: relative;
+        overflow: hidden;
+        padding: 7rem 3rem 6rem;
+      }
+      .ph-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(209, 0, 23, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(209, 0, 23, 0.06) 1px, transparent 1px);
+        background-size: 50px 50px;
+        mask-image: radial-gradient(
+          ellipse 80% 90% at 25% 50%,
+          black 20%,
+          transparent 100%
+        );
+      }
+      .ph-rings {
+        position: absolute;
+        right: -180px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .ph-ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(209, 0, 23, 0.15);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: rSpin 22s linear infinite;
+      }
+      .ph-ring:nth-child(1) {
+        width: 520px;
+        height: 520px;
+      }
+      .ph-ring:nth-child(2) {
+        width: 350px;
+        height: 350px;
+        animation-direction: reverse;
+        animation-duration: 15s;
+      }
+      .ph-ring:nth-child(3) {
+        width: 190px;
+        height: 190px;
+        border-color: rgba(209, 0, 23, 0.35);
+      }
+      @keyframes rSpin {
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+      .ph-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+      .ph-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 2rem;
+      }
+      .ph-kicker::before {
+        content: "";
+        width: 20px;
+        height: 1.5px;
+        background: var(--red);
+      }
+      .ph-h1 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(5.5rem, 9vw, 10.5rem);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        line-height: 0.88;
+        color: #fff;
+        margin-bottom: 2rem;
+      }
+      .ph-h1 em {
+        color: var(--red);
+        font-style: normal;
+        display: block;
+      }
+      .ph-sub {
+        font-size: 1.65rem;
+        color: rgba(255, 255, 255, 0.4);
+        line-height: 1.65;
+        max-width: 440px;
+        font-weight: 300;
+        margin-bottom: 3.5rem;
+      }
+      .ph-btns {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+      .btn-ph {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.9rem;
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.3rem 3rem;
+        border-radius: 4px;
+        transition: all 0.3s;
+      }
+      .btn-ph:hover {
+        background: var(--red-mid);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px var(--red-glow);
+      }
+      .btn-ph-g {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+        border-bottom: 1.5px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 0.3rem;
+        transition: all 0.25s;
+      }
+      .btn-ph-g:hover {
+        color: #fff;
+        border-bottom-color: #fff;
+      }
+      /* Right: commitment cards */
+      .ph-commits {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      .ph-commit {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 2.2rem;
+        transition: all 0.35s;
+      }
+      .ph-commit:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(209, 0, 23, 0.3);
+      }
+      .ph-commit i {
+        font-size: 2.4rem;
+        color: var(--red);
+        margin-bottom: 1.2rem;
+        display: block;
+      }
+      .ph-commit-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+        color: #fff;
+        margin-bottom: 0.5rem;
+        line-height: 1.1;
+      }
+      .ph-commit-sub {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.35);
+        line-height: 1.5;
+      }
+
+      /* ── MARQUEE ── */
+      .marquee-strip {
+        background: var(--red);
+        padding: 1.2rem 0;
+        overflow: hidden;
+      }
+      .mq-track {
+        display: flex;
+        width: max-content;
+        animation: mq 22s linear infinite;
+      }
+      .mq-item {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.8rem;
+        letter-spacing: 0.18em;
+        color: rgba(255, 255, 255, 0.7);
+        padding: 0 2.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 2rem;
+        white-space: nowrap;
+      }
+      .mq-dot {
+        width: 5px;
+        height: 5px;
+        background: #fff;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+      }
+      @keyframes mq {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ── SERVICES SECTION ── */
+      .services-section {
+        padding: 9rem 3rem;
+        background: var(--white);
+      }
+      .sv-wrap {
+        max-width: 1340px;
+        margin: 0 auto;
+      }
+      .sec-eyebrow {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--red);
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 1.6rem;
+      }
+      .sec-eyebrow::before {
+        content: "";
+        width: 20px;
+        height: 1.5px;
+        background: var(--red);
+      }
+      .sec-h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 5.5rem;
+        font-weight: 900;
+        letter-spacing: 0.03em;
+        line-height: 0.95;
+        margin-bottom: 1.2rem;
+      }
+      .sec-sub {
+        font-size: 1.6rem;
+        color: var(--muted);
+        max-width: 540px;
+        margin-bottom: 6rem;
+        line-height: 1.55;
+      }
+
+      /* 3 main service cards */
+      .srv-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.4rem;
+        margin-bottom: 6rem;
+      }
+      .srv-card {
+        background: var(--paper);
+        border-radius: 20px;
+        border: 1.5px solid var(--border);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.45s var(--ease);
+        position: relative;
+      }
+      .srv-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, var(--red) 0%, var(--red-mid) 100%);
+        opacity: 0;
+        transition: opacity 0.45s;
+        border-radius: 19px;
+      }
+      .srv-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 24px 64px rgba(15, 15, 16, 0.14);
+        border-color: transparent;
+      }
+      .srv-card:hover::before {
+        opacity: 1;
+      }
+
+      /* Icon zone */
+      .srv-icon-zone {
+        padding: 4rem 3.5rem 3rem;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: flex-start;
+        gap: 2.5rem;
+      }
+      .srv-icon-wrap {
+        width: 76px;
+        height: 76px;
+        background: var(--red-soft);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.4s var(--spring);
+      }
+      .srv-card:hover .srv-icon-wrap {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .srv-icon-wrap i {
+        font-size: 2.8rem;
+        color: var(--red);
+        transition: color 0.3s;
+      }
+      .srv-card:hover .srv-icon-wrap i {
+        color: #fff;
+      }
+      .srv-num {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 7rem;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        color: rgba(15, 15, 16, 0.06);
+        line-height: 1;
+        position: absolute;
+        top: 1.5rem;
+        right: 2rem;
+        transition: color 0.3s;
+      }
+      .srv-card:hover .srv-num {
+        color: rgba(255, 255, 255, 0.1);
+      }
+
+      /* Card body */
+      .srv-body {
+        padding: 0 3.5rem 3.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        z-index: 1;
+      }
+      .srv-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.8rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        color: var(--ink);
+        margin-bottom: 1.4rem;
+        line-height: 1.1;
+        transition: color 0.3s;
+      }
+      .srv-card:hover .srv-title {
+        color: #fff;
+      }
+      .srv-desc {
+        font-size: 1.45rem;
+        color: var(--muted);
+        line-height: 1.7;
+        flex: 1;
+        margin-bottom: 2.5rem;
+        transition: color 0.3s;
+      }
+      .srv-card:hover .srv-desc {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .srv-features {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+        margin-bottom: 2.8rem;
+      }
+      .srv-feat {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1.35rem;
+        color: var(--ink2);
+        transition: color 0.3s;
+      }
+      .srv-feat::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--red);
+        border-radius: 50%;
+        flex-shrink: 0;
+        transition: background 0.3s;
+      }
+      .srv-card:hover .srv-feat {
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .srv-card:hover .srv-feat::before {
+        background: rgba(255, 255, 255, 0.6);
+      }
+      .srv-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--red);
+        border: 1.5px solid var(--red);
+        padding: 1rem 2.2rem;
+        border-radius: 5px;
+        transition: all 0.3s;
+        align-self: flex-start;
+      }
+      .srv-btn i {
+        transition: transform 0.25s;
+      }
+      .srv-btn:hover,
+      .srv-card:hover .srv-btn {
+        transform: none;
+      }
+      .srv-card:hover .srv-btn {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.4);
+        color: #fff;
+      }
+      .srv-card:hover .srv-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      /* ── WHY CHOOSE US (dark strip) ── */
+      .why-section {
+        background: var(--ink);
+        padding: 8rem 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .why-section::before {
+        content: "HONDA";
+        position: absolute;
+        right: -3rem;
+        bottom: -4rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 22rem;
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.025);
+        letter-spacing: 0.04em;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+      .why-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        margin-top: 5rem;
+      }
+      .why-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 3rem 2.5rem;
+        transition: all 0.35s;
+        text-align: center;
+      }
+      .why-card:hover {
+        background: rgba(209, 0, 23, 0.1);
+        border-color: rgba(209, 0, 23, 0.28);
+        transform: translateY(-6px);
+      }
+      .why-icon {
+        width: 64px;
+        height: 64px;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 2rem;
+        font-size: 2.2rem;
+        color: #fff;
+        transition: transform 0.4s var(--spring);
+      }
+      .why-card:hover .why-icon {
+        transform: scale(1.12) rotate(-8deg);
+      }
+      .why-num {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 4rem;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 0.4rem;
+      }
+      .why-num em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .why-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 0.8rem;
+      }
+      .why-desc {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.3);
+        line-height: 1.6;
+      }
+
+      /* ── PROCESS SECTION ── */
+      .process-section {
+        padding: 9rem 3rem;
+        background: var(--paper);
+      }
+      .proc-wrap {
+        max-width: 1340px;
+        margin: 0 auto;
+      }
+      .proc-steps {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0;
+        margin-top: 5rem;
+        position: relative;
+      }
+      /* Connecting line */
+      .proc-steps::before {
+        content: "";
+        position: absolute;
+        top: 40px;
+        left: calc(10% + 20px);
+        right: calc(10% + 20px);
+        height: 2px;
+        background: linear-gradient(
+          to right,
+          var(--red),
+          rgba(209, 0, 23, 0.3)
+        );
+        z-index: 0;
+      }
+      .proc-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        padding: 0 1rem;
+      }
+      .proc-circle {
+        width: 80px;
+        height: 80px;
+        background: var(--white);
+        border: 2px solid var(--border);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+        transition: all 0.4s var(--spring);
+        position: relative;
+      }
+      .proc-circle::after {
+        content: attr(data-step);
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        width: 24px;
+        height: 24px;
+        background: var(--red);
+        color: #fff;
+        border-radius: 50%;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .proc-step:hover .proc-circle {
+        border-color: var(--red);
+        box-shadow: 0 0 0 6px var(--red-soft);
         transform: scale(1.1);
-        box-shadow: 0 6px 20px rgba(0, 132, 255, 0.4);
+      }
+      .proc-circle i {
+        font-size: 2.2rem;
+        color: var(--red);
+      }
+      .proc-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.7rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        color: var(--ink);
+        margin-bottom: 0.6rem;
+        line-height: 1.2;
+      }
+      .proc-desc {
+        font-size: 1.25rem;
+        color: var(--muted);
+        line-height: 1.5;
       }
 
-      /* Hiệu ứng lan tỏa */
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7);
-        }
-        70% {
-          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
-        }
+      /* ── CTA SECTION ── */
+      .cta-section {
+        background: var(--red);
+        padding: 6.5rem 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+        background-size: 40px 40px;
+      }
+      .cta-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3rem;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+      .cta-text h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 5rem;
+        font-weight: 900;
+        letter-spacing: 0.03em;
+        color: #fff;
+        line-height: 0.92;
+        margin-bottom: 1rem;
+      }
+      .cta-text p {
+        font-size: 1.65rem;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 440px;
+        line-height: 1.6;
+      }
+      .cta-btns {
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        flex-shrink: 0;
+      }
+      .cta-w {
+        background: #fff;
+        color: var(--red);
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.4rem 3rem;
+        border-radius: 5px;
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s;
+      }
+      .cta-w:hover {
+        background: var(--paper2);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+      }
+      .cta-t {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.4rem 3rem;
+        border-radius: 5px;
+        border: 1.5px solid rgba(255, 255, 255, 0.35);
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s;
+      }
+      .cta-t:hover {
+        background: rgba(255, 255, 255, 0.25);
       }
 
-      /* Điều chỉnh vị trí khi có cả 2 nút */
-      .back-to-top.active ~ .messenger-chat {
-        bottom: 100px;
+      /* ── FOOTER ── */
+      footer {
+        background: #050505;
+        padding: 6.5rem 3rem 3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .ft-grid {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 5rem;
+        margin-bottom: 5rem;
+        padding-bottom: 5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .ft-logo-img {
+        height: 38px;
+        width: auto;
+        opacity: 0.8;
+        margin-bottom: 1.5rem;
+      }
+      .ft-brand-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 0.8rem;
+      }
+      .ft-brand-sub {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.2);
+        margin-bottom: 2.5rem;
+      }
+      .ft-socs {
+        display: flex;
+        gap: 1rem;
+      }
+      .ft-soc {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 1.3rem;
+        transition: all 0.25s;
+        text-decoration: none;
+      }
+      .ft-soc:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+      .ft-col h5 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.2);
+        margin-bottom: 1.8rem;
+      }
+      .ft-col li {
+        margin-bottom: 1.1rem;
+      }
+      .ft-col a {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        transition: color 0.2s;
+      }
+      .ft-col a:hover {
+        color: #fff;
+      }
+      .ft-contact li {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        margin-bottom: 1.2rem;
+      }
+      .ft-contact i {
+        color: var(--red);
+        font-size: 1.2rem;
+        margin-top: 0.2rem;
+        flex-shrink: 0;
+      }
+      .ft-btm {
+        max-width: 1340px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .ft-btm p {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.18);
+      }
+      .ft-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.18);
+      }
+      .ft-badge i {
+        color: var(--red);
       }
 
-      /* Mobile Bottom Navigation Bar */
-      .mobile-bottom-nav {
+      /* ── MOBILE NAV ── */
+      .mob-nav {
         display: none;
         position: fixed;
         bottom: 0;
         left: 0;
-        width: 100%;
-        background-color: white;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 998;
-        padding: 10px 0;
+        right: 0;
+        background: rgba(248, 246, 243, 0.97);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid var(--border);
+        z-index: 400;
+        padding: 0.8rem 0;
       }
-
-      .mobile-bottom-nav .container {
+      .mnb {
         display: flex;
         justify-content: space-around;
-        align-items: center;
       }
-
-      .mobile-nav-item {
+      .mnb-a {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 0.35rem;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        transition: color 0.2s;
+      }
+      .mnb-a.on,
+      .mnb-a:hover {
+        color: var(--red);
+      }
+      .mnb-a i {
+        font-size: 2rem;
+      }
+      .mnb-a span {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* ── FLOATS ── */
+      .messenger-float {
+        position: fixed;
+        bottom: 9rem;
+        right: 2.5rem;
+        width: 50px;
+        height: 50px;
+        background: #0084ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
         justify-content: center;
-        flex: 1;
-        padding: 5px 0;
-        transition: var(--transition);
+        font-size: 2.1rem;
+        color: #fff;
+        text-decoration: none;
+        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.3);
+        z-index: 300;
+        animation: mpulse 2.5s infinite;
+        transition: transform 0.3s;
+      }
+      .messenger-float:hover {
+        transform: scale(1.1);
+      }
+      @keyframes mpulse {
+        0%,
+        100% {
+          box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
+        }
+        50% {
+          box-shadow: 0 4px 36px rgba(0, 132, 255, 0.55);
+        }
+      }
+      .back-top {
+        position: fixed;
+        bottom: 2.5rem;
+        right: 2.5rem;
+        width: 44px;
+        height: 44px;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        color: #fff;
+        text-decoration: none;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+        z-index: 300;
+      }
+      .back-top.on {
+        opacity: 1;
+        visibility: visible;
+      }
+      .back-top:hover {
+        background: var(--red-mid);
+        transform: translateY(-3px);
       }
 
-      .mobile-nav-item.active {
-        color: var(--primary-color);
+      /* ── REVEAL ── */
+      .rv {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
+      .rv-l {
+        opacity: 0;
+        transform: translateX(-24px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv-l.in {
+        opacity: 1;
+        transform: none;
+      }
+      .rv-r {
+        opacity: 0;
+        transform: translateX(24px);
+        transition:
+          opacity 0.65s var(--ease),
+          transform 0.65s var(--ease);
+      }
+      .rv-r.in {
+        opacity: 1;
+        transform: none;
       }
 
-      .mobile-nav-icon {
-        font-size: 1.2rem;
-        margin-bottom: 4px;
+      /* ── RESPONSIVE ── */
+      @media (max-width: 1200px) {
+        .why-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .ph-inner {
+          grid-template-columns: 1fr;
+        }
+        .ph-commits {
+          display: none;
+        }
+        .ft-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+        }
       }
-
-      .mobile-nav-label {
-        font-size: 0.7rem;
-        font-weight: 500;
+      @media (max-width: 960px) {
+        .srv-grid {
+          grid-template-columns: 1fr;
+        }
+        .proc-steps {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+        .proc-steps::before {
+          display: none;
+        }
       }
-
-      /* Responsive Adjustments */
       @media (max-width: 768px) {
-        .section-title {
-          font-size: 2rem;
+        .main-nav,
+        .hdr-cta {
+          display: none;
         }
-
-        .section-subtitle {
-          font-size: 1rem;
+        .ham {
+          display: flex;
         }
-
-        .footer-bottom {
+        .hdr {
+          padding: 0 2rem;
+        }
+        .logo-sub {
+          display: none;
+        }
+        .page-hero {
+          padding: 5rem 2rem 4.5rem;
+        }
+        .ph-h1 {
+          font-size: clamp(5rem, 18vw, 8rem);
+        }
+        .services-section,
+        .why-section,
+        .process-section,
+        .cta-section {
+          padding: 6rem 2rem;
+        }
+        .why-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cta-inner {
+          flex-direction: column;
+        }
+        .cta-btns {
+          flex-direction: column;
+        }
+        .ft-grid {
+          grid-template-columns: 1fr;
+          gap: 3.5rem;
+        }
+        footer {
+          padding: 5rem 2rem 3rem;
+        }
+        .ft-btm {
           flex-direction: column;
           text-align: center;
-          gap: 10px;
         }
-
-        .legal-links {
-          justify-content: center;
-        }
-        .back-to-top {
-          width: 45px;
-          height: 45px;
-          font-size: 1rem;
-          right: 20px;
-          bottom: 180px;
-        }
-
-        .messenger-chat {
-          width: 50px;
-          height: 50px;
-          font-size: 24px;
-          right: 18px;
-          bottom: 110px;
-        }
-
-        .back-to-top.active ~ .messenger-chat {
-          bottom: 80px;
-        }
-        /* Hiển thị thanh menu mobile ở chân trang */
-        .mobile-bottom-nav {
+        .mob-nav {
           display: block;
         }
-
-        /* Điều chỉnh padding cho footer để tránh bị che bởi menu mobile */
-        .main-footer {
-          padding-bottom: 70px;
+        footer {
+          padding-bottom: 8rem;
         }
-        .menu-toggle {
-          display: block;
+        .messenger-float {
+          bottom: 8.5rem;
+          right: 1.8rem;
         }
-
-        .menu-toggle.active .bar:nth-child(1) {
-          transform: translateY(8px) rotate(45deg);
+        .back-top {
+          bottom: 8.5rem;
+          right: 1.8rem;
         }
-
-        .menu-toggle.active .bar:nth-child(2) {
-          opacity: 0;
-        }
-
-        .menu-toggle.active .bar:nth-child(3) {
-          transform: translateY(-8px) rotate(-45deg);
+      }
+      @media (max-width: 480px) {
+        .why-grid {
+          grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Preloader -->
-    <div class="preloader">
-      <div class="loader">
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
-        <div class="loader-square"></div>
+    <!-- ══════ PRELOADER ══════ -->
+    <div class="preloader" id="preloader">
+      <div class="pre-text">DỊCH <em>VỤ</em></div>
+      <div class="pre-dots">
+        <div class="pre-dot"></div>
+        <div class="pre-dot"></div>
+        <div class="pre-dot"></div>
       </div>
     </div>
 
-    <!-- Header -->
-    <header class="main-header">
-      <div class="container">
-        <a href="/Trangchu/" class="logo">
+    <!-- ══════ HEADER ══════ -->
+    <header class="site-header" id="siteHeader">
+      <div class="hdr">
+        <a href="/Trangchu/" class="logo-wrap">
           <img
             src="/sanphamxemay/image/banner/Logo_HEAD.png"
-            alt="Honda Logo"
+            alt="HEAD Logo"
+            class="logo-img"
           />
+          <div class="logo-text-block">
+            <span class="logo-name">HỆ THỐNG HEAD TRUNG HÙNG</span>
+            <span class="logo-sub"
+              >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
+            >
+          </div>
         </a>
-        <h3>HEAD TRUNG HÙNG</h3>
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-
         <nav class="main-nav">
-          <ul>
-            <li><a href="/Trangchu/">Trang chủ</a></li>
-            <li><a href="/gioithieu/">Giới thiệu</a></li>
-            <li><a href="/dichvu/sanphamphutung/">Sản phẩm</a></li>
-            <li><a href="/dichvu/" class="active">Dịch Vụ</a></li>
-            <li><a href="/tintuc/">Tin tức</a></li>
-            <li><a href="/cuahang/">Hệ thống đại lý</a></li>
-            <li><a href="/lienhe/">Liên hệ</a></li>
-          </ul>
+          <a href="/Trangchu/">Trang chủ</a>
+          <a href="/gioithieu/">Giới thiệu</a>
+          <a href="/sanphamxemay/">Sản phẩm</a>
+          <a href="/dichvu/" class="active">Dịch vụ</a>
+          <a href="/tintuc/">Tin tức</a>
+          <a href="/cuahang/">Đại lý</a>
+          <a href="/lienhe/">Liên hệ</a>
         </nav>
+        <a href="tel:1900636712" class="hdr-cta"
+          ><i class="fas fa-phone-alt"></i> Gọi ngay</a
+        >
+        <div class="ham" id="ham"><span></span><span></span><span></span></div>
       </div>
     </header>
+    <div class="dov" id="dov"></div>
+    <div class="sdraw" id="sdraw">
+      <button class="sdx" id="sdx"><i class="fas fa-times"></i></button>
+      <nav class="dnav">
+        <a href="/Trangchu/">Trang chủ</a>
+        <a href="/gioithieu/">Giới thiệu</a>
+        <a href="/sanphamxemay/">Sản phẩm</a>
+        <a href="/dichvu/" class="active">Dịch vụ</a>
+        <a href="/tintuc/">Tin tức</a>
+        <a href="/cuahang/">Đại lý</a>
+        <a href="/lienhe/">Liên hệ</a>
+      </nav>
+      <a href="tel:1900636712" class="dcta"
+        ><i class="fas fa-phone-alt"></i> 1900 636 712</a
+      >
+    </div>
 
-    <!-- Hero Banner 
-    <section class="hero-banner">
-      <div class="hero-overlay"></div>
-      <div class="container">
-        <div class="hero-content">
-          <h1>Hệ Thống HEAD Trung Hùng</h1>
-          <p>Hành trình cùng bạn trên mọi nẻo đường</p>
-          <div class="hero-buttons">
-            <a href="sanphamxemay.html" class="btn btn-primary"
-              >Khám phá sản phẩm</a
-            >
-            <a href="#" class="btn btn-outline">Ưu đãi hấp dẫn</a>
-          </div>
-        </div>
+    <!-- ══════ HERO ══════ -->
+    <section class="page-hero">
+      <div class="ph-grid"></div>
+      <div class="ph-rings">
+        <div class="ph-ring"></div>
+        <div class="ph-ring"></div>
+        <div class="ph-ring"></div>
       </div>
-    </section>--->
-
-    <!-- Service Section -->
-    <section class="service-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Dịch Vụ Sau Bán Hàng</h2>
-          <p class="section-subtitle">
-            Chăm sóc toàn diện cho chiếc xe của bạn
+      <div class="ph-inner">
+        <div>
+          <div class="ph-kicker">Honda Authorised Service</div>
+          <h1 class="ph-h1">DỊCH VỤ<br />SAU<br /><em>BÁN HÀNG</em></h1>
+          <p class="ph-sub">
+            Chăm sóc toàn diện cho chiếc xe của bạn — phụ tùng chính hãng, kỹ
+            thuật viên chuyên nghiệp, bảo hành minh bạch.
           </p>
-          <div class="divider"></div>
+          <div class="ph-btns">
+            <a href="#services" class="btn-ph"
+              ><i class="fas fa-tools"></i> Xem dịch vụ</a
+            >
+            <a href="/lienhe/" class="btn-ph-g"
+              >Đặt lịch ngay <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
         </div>
-
-        <div class="service-grid">
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fa-solid fa-gear"></i>
+        <div class="ph-commits">
+          <div class="ph-commit">
+            <i class="fas fa-certificate"></i>
+            <div class="ph-commit-title">100% Chính Hãng</div>
+            <div class="ph-commit-sub">
+              Phụ tùng & linh kiện Honda chính hãng
             </div>
-            <h3>Phụ Tùng Chính Hãng</h3>
-            <p>
-              Chúng tôi cam kết cung cấp 100% phụ tùng Honda chính hãng, đảm bảo
-              chất lượng, độ bền và an toàn cho xe của bạn.
-            </p>
-            <a href="/dichvu/sanphamphutung/" class="btn btn-outline"
-              >Tìm hiểu ngay</a
-            >
           </div>
-
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-tools"></i>
-            </div>
-            <h3>Bảo Dưỡng Và Sửa Chữa</h3>
-            <p>
-              Dịch vụ bảo dưỡng và sửa chữa chuẩn Honda, thực hiện bởi đội ngũ
-              kỹ thuật viên tay nghề cao, giúp xe bạn vận hành ổn định và bền bỉ
-              theo thời gian.
-            </p>
-            <a href="/dichvu/baoduong/" class="btn btn-outline"
-              >Tìm hiểu thêm</a
-            >
+          <div class="ph-commit">
+            <i class="fas fa-user-shield"></i>
+            <div class="ph-commit-title">KTV Chuyên Nghiệp</div>
+            <div class="ph-commit-sub">Đào tạo tiêu chuẩn Honda Việt Nam</div>
           </div>
-
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-shield-alt"></i>
-            </div>
-            <h3>Bảo Hành Xe Máy</h3>
-            <p>
-              Chính sách bảo hành rõ ràng, minh bạch theo tiêu chuẩn Honda, giúp
-              bạn yên tâm sử dụng và được hỗ trợ kịp thời khi cần thiết.
-            </p>
-            <a href="/dichvu/baohanh/" class="btn btn-outline">Tìm hiểu thêm</a>
+          <div class="ph-commit">
+            <i class="fas fa-clock"></i>
+            <div class="ph-commit-title">Phục Vụ Mỗi Ngày</div>
+            <div class="ph-commit-sub">7:30 – 17:30 · Thứ 2 đến Chủ Nhật</div>
+          </div>
+          <div class="ph-commit">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="ph-commit-title">12 Cửa Hàng</div>
+            <div class="ph-commit-sub">Gia Lai · Hà Nội · Sơn La</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Store Locator
-    <section class="store-section">
-      <div class="container">
-        <div class="store-content">
-          <h2>Tìm Đại Lý Gần Nhất</h2>
-          <p>Hệ thống hơn 1000 đại lý chính thức trên toàn quốc</p>
-          <form class="store-search">
-            <input type="text" placeholder="Nhập tỉnh/thành phố" />
-            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-          </form>
-          <a href="stores.html" class="store-link"
-            >Xem tất cả đại lý <i class="fas fa-arrow-right"></i
-          ></a>
+    <!-- ══════ MARQUEE ══════ -->
+    <div class="marquee-strip">
+      <div class="mq-track">
+        <div class="mq-item">
+          PHỤ TÙNG CHÍNH HÃNG <span class="mq-dot"></span>
+        </div>
+        <div class="mq-item">
+          BẢO DƯỠNG CHUẨN HONDA <span class="mq-dot"></span>
+        </div>
+        <div class="mq-item">BẢO HÀNH 3 NĂM <span class="mq-dot"></span></div>
+        <div class="mq-item">
+          KỸ THUẬT VIÊN TẬN TÂM <span class="mq-dot"></span>
+        </div>
+        <div class="mq-item">
+          7:30 – 17:30 MỖI NGÀY <span class="mq-dot"></span>
+        </div>
+        <div class="mq-item">
+          PHỤ TÙNG CHÍNH HÃNG <span class="mq-dot"></span>
+        </div>
+        <div class="mq-item">
+          BẢO DƯỠNG CHUẨN HONDA <span class="mq-dot"></span>
+        </div>
+        <div class="mq-item">BẢO HÀNH 3 NĂM <span class="mq-dot"></span></div>
+        <div class="mq-item">
+          KỸ THUẬT VIÊN TẬN TÂM <span class="mq-dot"></span>
+        </div>
+        <div class="mq-item">
+          7:30 – 17:30 MỖI NGÀY <span class="mq-dot"></span>
         </div>
       </div>
-    </section>-->
+    </div>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <img
-              src="/sanphamxemay/image/banner/Logo_HEAD.png"
-              alt="Honda Logo"
-              class="footer-logo"
-            />
-            <p>Công Ty TNHH Thương Mại Và Dịch Vụ Hùng Mạnh</p>
-            <div class="social-links">
-              <a href="https://www.facebook.com/hethongheadtrunghung"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="https://www.youtube.com/@HethongHEADTrungHung"
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a href="https://www.instagram.com/hethongheadtrunghung"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="https://www.tiktok.com/@hethongheadtrunghung"
-                ><i class="fab fa-tiktok"></i
+    <!-- ══════ SERVICES ══════ -->
+    <section class="services-section" id="services">
+      <div class="sv-wrap">
+        <div class="sec-eyebrow rv">Dịch vụ sau bán hàng</div>
+        <h2 class="sec-h2 rv">CHĂM SÓC TOÀN DIỆN<br />CHO XE CỦA BẠN</h2>
+        <p class="sec-sub rv">
+          Ba trụ cột dịch vụ chính — đảm bảo xe Honda của bạn luôn vận hành tốt
+          nhất, bền bỉ và an toàn.
+        </p>
+
+        <div class="srv-grid">
+          <!-- Phụ tùng -->
+          <div class="srv-card rv">
+            <div class="srv-icon-zone">
+              <div class="srv-icon-wrap"><i class="fas fa-cog"></i></div>
+              <div class="srv-num">01</div>
+            </div>
+            <div class="srv-body">
+              <div class="srv-title">Phụ Tùng Chính Hãng</div>
+              <p class="srv-desc">
+                Cam kết cung cấp 100% phụ tùng Honda chính hãng, đảm bảo chất
+                lượng, độ bền và an toàn tuyệt đối cho xe của bạn.
+              </p>
+              <div class="srv-features">
+                <div class="srv-feat">
+                  100% phụ tùng có xuất xứ Honda Việt Nam
+                </div>
+                <div class="srv-feat">Đa dạng mẫu mã, phù hợp mọi dòng xe</div>
+                <div class="srv-feat">Giá cả minh bạch, niêm yết rõ ràng</div>
+                <div class="srv-feat">Bảo hành theo tiêu chuẩn Honda</div>
+              </div>
+              <a href="/dichvu/sanphamphutung/" class="srv-btn"
+                >Xem phụ tùng <i class="fas fa-arrow-right"></i
               ></a>
             </div>
           </div>
 
-          <div class="footer-col">
-            <h3>Sản Phẩm</h3>
-            <ul>
-              <li><a href="/sanphamxemay/">Xe Ga</a></li>
-              <li><a href="/sanphamxemay/">Xe Số</a></li>
-              <li><a href="/sanphamxemay/">Xe Côn Tay</a></li>
-              <li><a href="/sanphamxemay/">Phân Khối Lớn</a></li>
-              <li><a href="/sanphamxemay/">Xe Điện</a></li>
-            </ul>
+          <!-- Bảo dưỡng -->
+          <div class="srv-card rv">
+            <div class="srv-icon-zone">
+              <div class="srv-icon-wrap"><i class="fas fa-tools"></i></div>
+              <div class="srv-num">02</div>
+            </div>
+            <div class="srv-body">
+              <div class="srv-title">Bảo Dưỡng & Sửa Chữa</div>
+              <p class="srv-desc">
+                Dịch vụ bảo dưỡng và sửa chữa chuẩn Honda, thực hiện bởi đội ngũ
+                kỹ thuật viên tay nghề cao, giúp xe bền bỉ theo thời gian.
+              </p>
+              <div class="srv-features">
+                <div class="srv-feat">
+                  KTV được đào tạo bài bản theo tiêu chuẩn Honda
+                </div>
+                <div class="srv-feat">Trang thiết bị hiện đại, chính xác</div>
+                <div class="srv-feat">
+                  Quy trình kiểm tra minh bạch, chuẩn xác
+                </div>
+                <div class="srv-feat">Báo giá trước khi thực hiện dịch vụ</div>
+              </div>
+              <a href="/dichvu/baoduong/" class="srv-btn"
+                >Đặt lịch bảo dưỡng <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
           </div>
 
-          <div class="footer-col">
-            <h3>Dịch Vụ</h3>
-            <ul>
-              <li><a href="/dichvu/baoduong/">Bảo dưỡng Và Sửa Chữa</a></li>
-              <li><a href="/dichvu/sanphamphutung/">Phụ tùng Chính Hãng</a></li>
-              <li><a href="/dichvu/baohanh/">Chính sách bảo hành</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h3>Hỗ Trợ</h3>
-            <ul>
-              <li><a href="/lienhe/">Liên hệ</a></li>
-              <li><a href="/question/">Câu hỏi thường gặp</a></li>
-              <li><a href="/huongdanmuahang/">Hướng dẫn mua hàng</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h3>Liên Hệ</h3>
-            <ul class="contact-info">
-              <li></li>
-              <li><i class="fas fa-phone-alt"></i> 1900 636 712</li>
-              <li><i class="fas fa-envelope"></i> cr@hungmanh.com.vn</li>
-              <li><i class="fas fa-envelope"></i> cr_mt@hungmanh.com.vn</li>
-              <li><i class="fas fa-clock"></i> 7:30 - 17:30 (Thứ 2 - CN)</li>
-            </ul>
+          <!-- Bảo hành -->
+          <div class="srv-card rv">
+            <div class="srv-icon-zone">
+              <div class="srv-icon-wrap"><i class="fas fa-shield-alt"></i></div>
+              <div class="srv-num">03</div>
+            </div>
+            <div class="srv-body">
+              <div class="srv-title">Bảo Hành Xe Máy</div>
+              <p class="srv-desc">
+                Chính sách bảo hành rõ ràng, minh bạch theo tiêu chuẩn Honda,
+                giúp bạn yên tâm sử dụng và được hỗ trợ kịp thời.
+              </p>
+              <div class="srv-features">
+                <div class="srv-feat">Bảo hành 3 năm hoặc 30.000km</div>
+                <div class="srv-feat">
+                  Bao gồm động cơ, khung xe, hệ thống chính
+                </div>
+                <div class="srv-feat">Hỗ trợ nhanh chóng tại 12 cửa hàng</div>
+                <div class="srv-feat">
+                  Không tính phí nhân công trong thời hạn bảo hành
+                </div>
+              </div>
+              <a href="/dichvu/baohanh/" class="srv-btn"
+                >Xem chính sách <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="footer-bottom">
-          <p>&copy; 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
-          <!----<div class="legal-links">
-            <a href="#">Chính sách bảo mật</a>
-            <a href="#">Điều khoản sử dụng</a>
-          </div>--->
+    <!-- ══════ WHY CHOOSE US ══════ -->
+    <section class="why-section">
+      <div class="why-inner">
+        <div class="sec-eyebrow rv" style="color: var(--red)">
+          Tại sao chọn chúng tôi
+        </div>
+        <h2 class="sec-h2 rv" style="color: #fff">
+          CON SỐ<br />NÓI LÊN TẤT CẢ
+        </h2>
+        <div class="why-grid">
+          <div class="why-card rv">
+            <div class="why-icon"><i class="fas fa-store"></i></div>
+            <div class="why-num">12<em>+</em></div>
+            <div class="why-label">Cửa hàng</div>
+            <div class="why-desc">
+              Phủ sóng 3 tỉnh thành, sẵn sàng phục vụ mọi lúc
+            </div>
+          </div>
+          <div class="why-card rv">
+            <div class="why-icon"><i class="fas fa-user-tie"></i></div>
+            <div class="why-num">50<em>+</em></div>
+            <div class="why-label">Kỹ thuật viên</div>
+            <div class="why-desc">
+              Đội ngũ KTV được chứng nhận chuẩn Honda Việt Nam
+            </div>
+          </div>
+          <div class="why-card rv">
+            <div class="why-icon"><i class="fas fa-calendar-check"></i></div>
+            <div class="why-num">20<em>+</em></div>
+            <div class="why-label">Năm kinh nghiệm</div>
+            <div class="why-desc">
+              Hơn 20 năm phục vụ khách hàng tận tâm và chuyên nghiệp
+            </div>
+          </div>
+          <div class="why-card rv">
+            <div class="why-icon"><i class="fas fa-star"></i></div>
+            <div class="why-num">TOP<em>45</em></div>
+            <div class="why-label">Honda Việt Nam</div>
+            <div class="why-desc">
+              Nhiều năm liên tiếp trong TOP 45 đại lý xuất sắc toàn quốc
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ PROCESS ══════ -->
+    <section class="process-section">
+      <div class="proc-wrap">
+        <div class="sec-eyebrow rv">Quy trình phục vụ</div>
+        <h2 class="sec-h2 rv">5 BƯỚC DỊCH VỤ<br />CHUẨN HONDA</h2>
+        <div class="proc-steps">
+          <div class="proc-step rv">
+            <div class="proc-circle" data-step="1">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="proc-title">Đặt Lịch</div>
+            <p class="proc-desc">
+              Gọi điện hoặc đến trực tiếp đặt lịch bảo dưỡng
+            </p>
+          </div>
+          <div class="proc-step rv">
+            <div class="proc-circle" data-step="2">
+              <i class="fas fa-search"></i>
+            </div>
+            <div class="proc-title">Tiếp Nhận & Kiểm Tra</div>
+            <p class="proc-desc">KTV kiểm tra toàn diện tình trạng xe</p>
+          </div>
+          <div class="proc-step rv">
+            <div class="proc-circle" data-step="3">
+              <i class="fas fa-file-invoice-dollar"></i>
+            </div>
+            <div class="proc-title">Báo Giá</div>
+            <p class="proc-desc">
+              Thông báo chi phí rõ ràng trước khi thực hiện
+            </p>
+          </div>
+          <div class="proc-step rv">
+            <div class="proc-circle" data-step="4">
+              <i class="fas fa-tools"></i>
+            </div>
+            <div class="proc-title">Thực Hiện DV</div>
+            <p class="proc-desc">KTV bảo dưỡng/sửa chữa theo quy trình chuẩn</p>
+          </div>
+          <div class="proc-step rv">
+            <div class="proc-circle" data-step="5">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="proc-title">Bàn Giao Xe</div>
+            <p class="proc-desc">
+              Kiểm tra lần cuối và bàn giao xe với hóa đơn đầy đủ
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ CTA ══════ -->
+    <section class="cta-section">
+      <div class="cta-inner">
+        <div class="cta-text">
+          <h2>ĐẶT LỊCH<br />NGAY HÔM NAY</h2>
+          <p>
+            Đội ngũ kỹ thuật viên của chúng tôi luôn sẵn sàng — gọi ngay để được
+            tư vấn và hẹn lịch bảo dưỡng nhanh nhất.
+          </p>
+        </div>
+        <div class="cta-btns">
+          <a href="tel:1900636712" class="cta-w"
+            ><i class="fas fa-phone-alt"></i> 1900 636 712</a
+          >
+          <a href="/cuahang/" class="cta-t"
+            ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ FOOTER ══════ -->
+    <footer>
+      <div class="ft-grid">
+        <div>
+          <img
+            src="/sanphamxemay/image/banner/Logo_HEAD.png"
+            alt="HEAD Logo"
+            class="ft-logo-img"
+          />
+          <div class="ft-brand-name">HỆ THỐNG HEAD TRUNG HÙNG</div>
+          <div class="ft-brand-sub">
+            Cửa Hàng Bán Xe & Dịch Vụ Do Honda Ủy Nhiệm
+          </div>
+          <div class="ft-socs">
+            <a
+              href="https://www.facebook.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@HethongHEADTrungHung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.tiktok.com/@hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              ><i class="fab fa-tiktok"></i
+            ></a>
+          </div>
+        </div>
+        <div class="ft-col">
+          <h5>Sản phẩm</h5>
+          <ul>
+            <li><a href="/sanphamxemay/?category=xe-ga">Xe Ga</a></li>
+            <li><a href="/sanphamxemay/?category=xe-so">Xe Số</a></li>
+            <li><a href="/sanphamxemay/?category=xe-con-tay">Xe Côn Tay</a></li>
+            <li><a href="/sanphamxemay/?category=pkl">Phân Khối Lớn</a></li>
+            <li><a href="/sanphamxemay/?category=xe-dien">Xe Điện</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Dịch vụ</h5>
+          <ul>
+            <li><a href="/dichvu/baoduong/">Bảo Dưỡng & Sửa Chữa</a></li>
+            <li><a href="/dichvu/sanphamphutung/">Phụ Tùng Chính Hãng</a></li>
+            <li><a href="/dichvu/baohanh/">Chính Sách Bảo Hành</a></li>
+            <li><a href="/lienhe/">Đặt Lịch Dịch Vụ</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Liên hệ</h5>
+          <ul class="ft-contact">
+            <li>
+              <i class="fas fa-phone-alt"></i
+              ><a href="tel:1900636712">1900 636 712</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i
+              ><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i
+              ><a href="mailto:cr_mt@hungmanh.com.vn">cr_mt@hungmanh.com.vn</a>
+            </li>
+            <li><i class="fas fa-clock"></i>7:30 – 17:30 (T2 – CN)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-btm">
+        <p>© 2025 HEAD Trung Hùng. Bảo lưu mọi quyền.</p>
+        <div class="ft-badge">
+          <i class="fas fa-certificate"></i> Honda Authorised Dealer
         </div>
       </div>
     </footer>
-    <!-- Mobile Bottom Navigation -->
-    <nav class="mobile-bottom-nav">
-      <div class="container">
-        <a href="index.html" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-home"></i>
-          </div>
-          <div class="mobile-nav-label">Trang chủ</div>
-        </a>
-        <a href="/sanphamxemay/" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-motorcycle"></i>
-          </div>
-          <div class="mobile-nav-label">Sản phẩm</div>
-        </a>
-        <a href="/tintuc/tintuckhuyenmai/" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fa-solid fa-gift"></i>
-          </div>
-          <div class="mobile-nav-label">Khuyến mãi</div>
-        </a>
-        <a href="/cuahang/" class="mobile-nav-item active">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
-          <div class="mobile-nav-label">Đại lý</div>
-        </a>
-        <a href="/lienhe/" class="mobile-nav-item">
-          <div class="mobile-nav-icon">
-            <i class="fas fa-phone-alt"></i>
-          </div>
-          <div class="mobile-nav-label">Liên hệ</div>
-        </a>
+
+    <!-- MOBILE NAV -->
+    <nav class="mob-nav">
+      <div class="mnb">
+        <a href="/Trangchu/" class="mnb-a"
+          ><i class="fas fa-home"></i><span>Trang chủ</span></a
+        >
+        <a href="/sanphamxemay/" class="mnb-a"
+          ><i class="fas fa-motorcycle"></i><span>Sản phẩm</span></a
+        >
+        <a href="/tintuc/tintuckhuyenmai/" class="mnb-a"
+          ><i class="fas fa-gift"></i><span>Khuyến mãi</span></a
+        >
+        <a href="/cuahang/" class="mnb-a on"
+          ><i class="fas fa-map-marker-alt"></i><span>Đại lý</span></a
+        >
+        <a href="/lienhe/" class="mnb-a"
+          ><i class="fas fa-phone-alt"></i><span>Liên hệ</span></a
+        >
       </div>
     </nav>
 
-    <!-------Messenger Chat Button----------->
     <a
       href="https://m.me/hethongheadtrunghung"
-      class="messenger-chat"
+      class="messenger-float"
       target="_blank"
-    >
-      <i class="fab fa-facebook-messenger"></i>
-    </a>
-
-    <!-- Back to Top -->
-    <a href="#" class="back-to-top" id="backToTop">
-      <i class="fas fa-arrow-up"></i>
-    </a>
+      ><i class="fab fa-facebook-messenger"></i
+    ></a>
+    <a href="#" class="back-top" id="backTop"
+      ><i class="fas fa-arrow-up"></i
+    ></a>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Preloader
-        const preloader = document.querySelector(".preloader");
+      (function () {
+        /* PRELOADER */
+        window.addEventListener("load", () =>
+          setTimeout(
+            () => document.getElementById("preloader").classList.add("out"),
+            700,
+          ),
+        );
 
-        window.addEventListener("load", function () {
-          preloader.classList.add("fade-out");
-          setTimeout(() => {
-            preloader.style.display = "none";
-          }, 500);
-        });
+        /* HEADER */
+        const hdr = document.getElementById("siteHeader");
+        window.addEventListener(
+          "scroll",
+          () => {
+            hdr.classList.toggle("lifted", scrollY > 50);
+            document
+              .getElementById("backTop")
+              .classList.toggle("on", scrollY > 400);
+          },
+          { passive: true },
+        );
 
-        // Mobile Menu Toggle - Updated Version
-        const menuToggle = document.querySelector(".menu-toggle");
-        const mainNav = document.querySelector(".main-nav");
-        const body = document.body;
+        /* DRAWER */
+        const ham = document.getElementById("ham"),
+          dov = document.getElementById("dov"),
+          sdraw = document.getElementById("sdraw"),
+          sdx = document.getElementById("sdx");
+        const openD = () => {
+          ham.classList.add("open");
+          dov.classList.add("on");
+          sdraw.classList.add("on");
+          document.body.style.overflow = "hidden";
+        };
+        const closeD = () => {
+          ham.classList.remove("open");
+          dov.classList.remove("on");
+          sdraw.classList.remove("on");
+          document.body.style.overflow = "";
+        };
+        ham.addEventListener("click", openD);
+        dov.addEventListener("click", closeD);
+        sdx.addEventListener("click", closeD);
+        sdraw
+          .querySelectorAll("a")
+          .forEach((a) => a.addEventListener("click", closeD));
 
-        menuToggle.addEventListener("click", function () {
-          this.classList.toggle("active");
-          mainNav.classList.toggle("active");
-          // Toggle body overflow when menu is open
-          if (mainNav.classList.contains("active")) {
-            body.style.overflow = "hidden";
-          } else {
-            body.style.overflow = "";
-          }
-        });
-
-        // Close mobile menu when clicking on a link or outside
-        document.addEventListener("click", function (e) {
-          const isClickInsideNav =
-            mainNav.contains(e.target) || menuToggle.contains(e.target);
-
-          if (!isClickInsideNav && mainNav.classList.contains("active")) {
-            menuToggle.classList.remove("active");
-            mainNav.classList.remove("active");
-            body.style.overflow = "";
-          }
-        });
-        // Close menu when window is resized above breakpoint
-        window.addEventListener("resize", function () {
-          if (window.innerWidth > 992) {
-            menuToggle.classList.remove("active");
-            mainNav.classList.remove("active");
-            body.style.overflow = "";
-          }
-        });
-
-        // Header scroll effect
-        const header = document.querySelector(".main-header");
-        window.addEventListener("scroll", function () {
-          if (window.scrollY > 100) {
-            header.classList.add("scrolled");
-          } else {
-            header.classList.remove("scrolled");
-          }
-        });
-
-        // Back to Top Button
-        const backToTop = document.querySelector("#backToTop");
-        window.addEventListener("scroll", function () {
-          if (window.scrollY > 300) {
-            backToTop.classList.add("active");
-          } else {
-            backToTop.classList.remove("active");
-          }
-        });
-
-        backToTop.addEventListener("click", function (e) {
-          e.preventDefault();
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-        });
-
-        // Smooth scrolling for all links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            if (this.getAttribute("href") !== "#") {
+        /* SMOOTH SCROLL */
+        document.querySelectorAll('a[href^="#"]').forEach((a) => {
+          a.addEventListener("click", (e) => {
+            const t = a.getAttribute("href");
+            if (t === "#") return;
+            const el = document.querySelector(t);
+            if (el) {
               e.preventDefault();
-
-              const targetId = this.getAttribute("href");
-              const targetElement = document.querySelector(targetId);
-
-              if (targetElement) {
-                window.scrollTo({
-                  top: targetElement.offsetTop - 80,
-                  behavior: "smooth",
-                });
-              }
+              window.scrollTo({
+                top:
+                  el.getBoundingClientRect().top + scrollY - hdr.offsetHeight,
+                behavior: "smooth",
+              });
             }
           });
         });
 
-        // Animation on scroll
-        function animateOnScroll() {
-          const elements = document.querySelectorAll(
-            ".featured-section, .service-section, .news-section"
-          );
-
-          elements.forEach((element) => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-
-            if (elementPosition < windowHeight - 100) {
-              element.style.opacity = "1";
-              element.style.transform = "translateY(0)";
-            }
-          });
-        }
-
-        // Set initial state for animated elements
+        /* SCROLL REVEAL */
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e, i) => {
+              if (e.isIntersecting)
+                setTimeout(() => e.target.classList.add("in"), i * 65);
+            });
+          },
+          { threshold: 0.1 },
+        );
         document
-          .querySelectorAll(
-            ".featured-section, .service-section, .news-section"
-          )
-          .forEach((element) => {
-            element.style.opacity = "0";
-            element.style.transform = "translateY(30px)";
-            element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-          });
+          .querySelectorAll(".rv,.rv-l,.rv-r")
+          .forEach((el) => obs.observe(el));
 
-        window.addEventListener("scroll", animateOnScroll);
-        animateOnScroll(); // Run once on page load
-      });
+        /* SERVICE CARD 3D TILT */
+        document.querySelectorAll(".srv-card").forEach((card) => {
+          card.addEventListener("mousemove", (e) => {
+            const r = card.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - 0.5;
+            const y = (e.clientY - r.top) / r.height - 0.5;
+            card.style.transform = `translateY(-10px) rotateX(${-y * 3}deg) rotateY(${x * 3}deg)`;
+          });
+          card.addEventListener("mouseleave", () => {
+            card.style.transform = "";
+            card.style.transition = "all .5s var(--ease)";
+            setTimeout(() => (card.style.transition = ""), 500);
+          });
+        });
+
+        /* COUNTER ANIMATION */
+        function animateCount(el, target, suffix = "") {
+          const dur = 1800;
+          const step = dur / 60;
+          let cur = 0;
+          const inc = target / 60;
+          const timer = setInterval(() => {
+            cur = Math.min(cur + inc, target);
+            el.querySelector(".why-num").innerHTML =
+              Math.round(cur) + "<em>" + suffix + "</em>";
+            if (cur >= target) clearInterval(timer);
+          }, step);
+        }
+        const cntObs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting && !e.target.dataset.counted) {
+                e.target.dataset.counted = 1;
+                const n = e.target.querySelector(".why-num");
+                const txt = n.textContent;
+                const match = txt.match(/^(\d+)/);
+                if (match) {
+                  const target = parseInt(match[1]);
+                  const suffix = n.querySelector("em")?.textContent || "";
+                  animateCount(e.target, target, suffix);
+                }
+              }
+            });
+          },
+          { threshold: 0.5 },
+        );
+        document
+          .querySelectorAll(".why-card")
+          .forEach((c) => cntObs.observe(c));
+      })();
     </script>
   </body>
 </html>
