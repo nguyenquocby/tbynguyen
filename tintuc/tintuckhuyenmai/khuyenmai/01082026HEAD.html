@@ -1,0 +1,1210 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đón Xe Mới - Nhận Quà Hay</title>
+    <link
+      rel="icon"
+      href="/sanphamxemay/image/banner/Logo_HEAD.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --red: #cc0000;
+        --ink: #0a0a0b;
+        --paper: #f5f3f0;
+        --paper2: #eceae6;
+        --white: #ffffff;
+        --border: rgba(10, 10, 11, 0.08);
+        --muted: #7a7672;
+        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 62.5%;
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Barlow", sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      ul {
+        list-style: none;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--red);
+        border-radius: 2px;
+      }
+
+      /* ── HEADER ── */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 500;
+        background: rgba(245, 243, 240, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition: box-shadow 0.3s;
+      }
+      .site-header.lifted {
+        box-shadow: 0 2px 20px rgba(10, 10, 11, 0.08);
+      }
+      .hdr {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+      }
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+      }
+      .logo-img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+      }
+      .logo-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+      .logo-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 1.85rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink);
+      }
+      .logo-name span {
+        color: var(--red);
+      }
+      .logo-sub {
+        font-size: 0.88rem;
+        font-weight: 500;
+        letter-spacing: 0.07em;
+        color: var(--muted);
+        margin-top: 0.25rem;
+        text-transform: uppercase;
+      }
+      .nav-cta {
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.45rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.85rem 2.2rem;
+        border-radius: 7px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        transition: opacity 0.2s;
+      }
+      .nav-cta:hover {
+        opacity: 0.88;
+      }
+
+      /* ── BREADCRUMB ── */
+      .breadcrumb {
+        background: var(--paper2);
+        border-bottom: 1px solid var(--border);
+        padding: 1.3rem 0;
+      }
+      .bc-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-size: 1.3rem;
+        color: var(--muted);
+        flex-wrap: wrap;
+      }
+      .bc-inner a {
+        color: var(--red);
+        transition: opacity 0.2s;
+      }
+      .bc-inner a:hover {
+        opacity: 0.75;
+      }
+      .bc-inner i {
+        font-size: 0.85rem;
+      }
+      .bc-inner span {
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      /* ── ARTICLE LAYOUT ── */
+      .article-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 5rem 3rem 8rem;
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 4rem;
+        align-items: start;
+      }
+
+      /* ── ARTICLE MAIN ── */
+      article {
+        background: var(--white);
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+      }
+
+      /* Hero image */
+      .art-hero {
+        width: 100%;
+        aspect-ratio: 16/7;
+        overflow: hidden;
+        background: var(--paper2);
+      }
+      .art-hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .art-body {
+        padding: 4rem;
+      }
+
+      /* Category badge */
+      .art-cat {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 0.5rem 1.4rem;
+        border-radius: 20px;
+        margin-bottom: 2rem;
+      }
+
+      /* Title */
+      .art-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(3rem, 5vw, 4.8rem);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        line-height: 1.05;
+        color: var(--ink);
+        margin-bottom: 2rem;
+      }
+
+      /* Meta */
+      .art-meta {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        font-size: 1.3rem;
+        color: var(--muted);
+        padding-bottom: 2.5rem;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 3.5rem;
+        flex-wrap: wrap;
+      }
+      .art-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .art-meta i {
+        color: var(--red);
+        font-size: 1.1rem;
+      }
+
+      /* Content – điền bài viết vào đây */
+      .art-content {
+        font-size: 1.6rem;
+        line-height: 1.85;
+        color: #2c2c2e;
+      }
+      .art-content p {
+        margin-bottom: 2rem;
+      }
+      .art-content h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.8rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin: 3.5rem 0 1.5rem;
+        padding-left: 1.6rem;
+        border-left: 4px solid var(--red);
+      }
+      .art-content h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.2rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin: 2.5rem 0 1.2rem;
+      }
+      .art-content ul,
+      .art-content ol {
+        padding-left: 2.5rem;
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .art-content ul li {
+        list-style: disc;
+        color: var(--muted);
+      }
+      .art-content ol li {
+        list-style: decimal;
+        color: var(--muted);
+      }
+      .art-content strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .art-content em {
+        color: var(--red);
+        font-style: normal;
+        font-weight: 600;
+      }
+      .art-content a {
+        color: var(--red);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .art-content blockquote {
+        background: var(--paper);
+        border-left: 4px solid var(--red);
+        border-radius: 0 10px 10px 0;
+        padding: 2rem 2.5rem;
+        margin: 2.5rem 0;
+        font-style: italic;
+        color: var(--muted);
+        font-size: 1.55rem;
+      }
+      .art-content .highlight-box {
+        background: var(--red);
+        border-radius: 14px;
+        padding: 2.5rem 3rem;
+        margin: 3rem 0;
+      }
+      .art-content .highlight-box p {
+        color: rgba(255, 255, 255, 0.88);
+        margin-bottom: 0;
+      }
+      .art-content .highlight-box strong {
+        color: #fff;
+      }
+      .art-content figure {
+        margin: 3rem 0;
+      }
+      .art-content figure img {
+        width: 100%;
+        border-radius: 12px;
+      }
+      .art-content figcaption {
+        font-size: 1.3rem;
+        color: var(--muted);
+        text-align: center;
+        margin-top: 1rem;
+        font-style: italic;
+      }
+      .art-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2.5rem 0;
+        font-size: 1.45rem;
+      }
+      .art-content table th {
+        background: var(--ink);
+        color: #fff;
+        padding: 1.4rem 1.8rem;
+        text-align: left;
+        font-family: "Barlow Condensed", sans-serif;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 1.3rem;
+      }
+      .art-content table td {
+        padding: 1.3rem 1.8rem;
+        border-bottom: 1px solid var(--border);
+        color: #2c2c2e;
+      }
+      .art-content table tr:nth-child(even) td {
+        background: var(--paper);
+      }
+
+      /* Share bar */
+      .art-share {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        padding-top: 3rem;
+        border-top: 1px solid var(--border);
+        margin-top: 4rem;
+        flex-wrap: wrap;
+      }
+      .art-share-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .share-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.85rem 2rem;
+        border-radius: 8px;
+        border: 1.5px solid var(--border);
+        background: var(--white);
+        color: var(--ink2, #1a1a1c);
+        cursor: pointer;
+        transition: all 0.22s;
+      }
+      .share-btn:hover {
+        border-color: var(--red);
+        color: var(--red);
+      }
+      .share-btn.fb i {
+        color: #1877f2;
+      }
+      .share-btn.copy i {
+        color: var(--red);
+      }
+
+      /* ── SIDEBAR ── */
+      .sidebar {
+        position: sticky;
+        top: 84px;
+        display: flex;
+        flex-direction: column;
+        gap: 2.4rem;
+      }
+      .sw {
+        background: var(--white);
+        border-radius: 16px;
+        padding: 2.5rem;
+        border: 1px solid var(--border);
+      }
+      .sw-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 1.8rem;
+        padding-bottom: 1.2rem;
+        border-bottom: 2px solid var(--border);
+        position: relative;
+      }
+      .sw-title::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 36px;
+        height: 2px;
+        background: var(--red);
+      }
+
+      /* Related posts */
+      .rp-item {
+        display: flex;
+        gap: 1.3rem;
+        padding: 1.4rem 0;
+        border-bottom: 1px solid var(--border);
+        transition: opacity 0.2s;
+      }
+      .rp-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .rp-item:hover {
+        opacity: 0.72;
+      }
+      .rp-thumb {
+        width: 68px;
+        height: 68px;
+        border-radius: 9px;
+        overflow: hidden;
+        flex-shrink: 0;
+        background: var(--paper2);
+      }
+      .rp-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .rp-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      .rp-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        line-height: 1.2;
+        color: var(--ink);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .rp-date {
+        font-size: 1.2rem;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .rp-date i {
+        color: var(--red);
+        font-size: 1rem;
+      }
+
+      /* Category list */
+      .cat-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1rem;
+        border-radius: 9px;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: var(--ink);
+        border: 1px solid transparent;
+        transition: all 0.2s;
+      }
+      .cat-item:hover {
+        background: rgba(204, 0, 0, 0.06);
+        border-color: rgba(204, 0, 0, 0.14);
+        color: var(--red);
+        padding-left: 1.4rem;
+      }
+      .cat-item span:first-child {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .cat-item i {
+        color: var(--red);
+        font-size: 1.2rem;
+      }
+      .cat-badge {
+        font-size: 1.1rem;
+        color: var(--muted);
+        background: var(--paper2);
+        padding: 0.2rem 0.9rem;
+        border-radius: 14px;
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      /* CTA box */
+      .cta-box {
+        background: var(--ink);
+        border-radius: 16px;
+        padding: 2.8rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-box::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--red);
+      }
+      .cta-box h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2.6rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 0.8rem;
+        position: relative;
+        z-index: 1;
+      }
+      .cta-box h3 em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .cta-box p {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 1;
+        line-height: 1.6;
+      }
+      .cta-box a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        background: var(--red);
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.2rem;
+        border-radius: 9px;
+        transition: opacity 0.2s;
+        position: relative;
+        z-index: 1;
+      }
+      .cta-box a:hover {
+        opacity: 0.88;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: #060606;
+        padding: 6rem 3rem 3rem;
+        border-top: 3px solid var(--red);
+      }
+      .ft-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 4rem;
+        padding-bottom: 4rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        margin-bottom: 3rem;
+      }
+      .ft-logo-row {
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
+        margin-bottom: 1rem;
+      }
+      .ft-logo-img {
+        width: 38px;
+        height: 38px;
+        object-fit: contain;
+      }
+      .ft-brand {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        color: #fff;
+        text-transform: uppercase;
+      }
+      .ft-brand span {
+        color: var(--red);
+      }
+      .ft-desc {
+        font-size: 1.35rem;
+        color: rgba(255, 255, 255, 0.22);
+        margin-bottom: 2.5rem;
+        line-height: 1.7;
+        max-width: 270px;
+      }
+      .ft-socs {
+        display: flex;
+        gap: 0.9rem;
+      }
+      .ft-soc {
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 1.3rem;
+        transition: all 0.25s;
+      }
+      .ft-soc:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+      .ft-col h5 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        color: rgba(255, 255, 255, 0.22);
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+      }
+      .ft-col ul li {
+        margin-bottom: 1.2rem;
+      }
+      .ft-col a {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.38);
+        transition: color 0.2s;
+      }
+      .ft-col a:hover {
+        color: #fff;
+      }
+      .ft-btm {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .ft-btm p {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.16);
+      }
+      .ft-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.16);
+      }
+      .ft-badge i {
+        color: var(--red);
+      }
+
+      /* Floats */
+      .messenger-float {
+        position: fixed;
+        bottom: 9rem;
+        right: 2.5rem;
+        width: 50px;
+        height: 50px;
+        background: #0084ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.1rem;
+        color: #fff;
+        z-index: 300;
+        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.32);
+        animation: mpulse 2.5s ease-in-out infinite;
+        transition: transform 0.3s;
+      }
+      .messenger-float:hover {
+        transform: scale(1.1);
+      }
+      @keyframes mpulse {
+        0%,
+        100% {
+          box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
+        }
+        50% {
+          box-shadow: 0 4px 36px rgba(0, 132, 255, 0.55);
+        }
+      }
+      .back-top {
+        position: fixed;
+        bottom: 2.5rem;
+        right: 2.5rem;
+        width: 44px;
+        height: 44px;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        color: #fff;
+        z-index: 300;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+      }
+      .back-top.on {
+        opacity: 1;
+        visibility: visible;
+      }
+      .back-top:hover {
+        opacity: 0.82;
+        transform: translateY(-3px);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        .article-wrap {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: static;
+        }
+      }
+      @media (max-width: 640px) {
+        .hdr {
+          padding: 0 2rem;
+        }
+        .art-body {
+          padding: 2.5rem 2rem;
+        }
+        .bc-inner {
+          padding: 0 2rem;
+        }
+        .article-wrap {
+          padding: 3rem 2rem 6rem;
+        }
+        .ft-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 3rem;
+        }
+        footer {
+          padding: 5rem 2rem 3rem;
+        }
+        .ft-btm {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+      @media (max-width: 480px) {
+        .art-title {
+          font-size: 3rem;
+        }
+        .ft-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="site-header" id="siteHeader">
+      <div class="hdr">
+        <a href="/Trangchu/" class="logo-area">
+          <img
+            src="/sanphamxemay/image/banner/Logo_HEAD.png"
+            alt="HEAD"
+            class="logo-img"
+          />
+          <div class="logo-text">
+            <span class="logo-name">HỆ THỐNG HEAD <span>TRUNG HÙNG</span></span>
+            <span class="logo-sub"
+              >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
+            >
+          </div>
+        </a>
+        <a href="tel:1900636712" class="nav-cta"
+          ><i class="fas fa-phone-alt"></i> 1900 636 712</a
+        >
+      </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      <div class="bc-inner">
+        <a href="/Trangchu/">Trang chủ</a>
+        <i class="fas fa-chevron-right"></i>
+        <!-- ✏️ Thay "Khuyến mãi" bằng danh mục phù hợp -->
+        <a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a>
+        <i class="fas fa-chevron-right"></i>
+        <!-- ✏️ Thay bằng tiêu đề rút gọn của bài -->
+        <span>Đón Xe Mới, Nhận Quà Hay</span>
+      </div>
+    </div>
+
+    <!-- ARTICLE + SIDEBAR -->
+    <div class="article-wrap">
+      <!-- ===== ARTICLE ===== -->
+      <article>
+        <!-- ✏️ Ảnh bìa bài viết -->
+        <div class="art-hero">
+          <img
+            src="/khuyenmai/image/MXNQ082026.jpg"
+            alt="Ảnh bìa bài viết"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="art-body">
+          <!-- ✏️ Badge danh mục -->
+          <span class="art-cat"><i class="fas fa-gift"></i> Khuyến mãi</span>
+
+          <!-- ✏️ TIÊU ĐỀ BÀI VIẾT -->
+          <h1 class="art-title">Đón Xe Mới, Nhận Quà Hay</h1>
+
+          <!-- ✏️ Meta thông tin -->
+          <div class="art-meta">
+            <span><i class="far fa-calendar"></i> 01/08/2026</span>
+            <span><i class="far fa-clock"></i> 01/08 – 30/09/2026</span>
+            <span><i class="far fa-eye"></i> 353 lượt xem</span>
+          </div>
+
+          <!-- ================================================
+           ✏️ NỘI DUNG BÀI VIẾT — ĐIỀN VÀO ĐÂY
+           ================================================ -->
+          <div class="art-content">
+            <!-- Đoạn mở đầu -->
+            <p>
+              Nhằm mang đến thêm nhiều niềm vui và quyền lợi hấp dẫn cho khách
+              hàng trong mùa hè 2026, Hệ thống HEAD Trung Hùng triển khai chương
+              trình ưu đãi đặc biệt <b>“Đón Xe Mới, Nhận Quà Hay”</b> dành cho
+              khách hàng mua xe Honda tại hệ thống cửa hàng.
+            </p>
+            <p>
+              Chương trình diễn ra từ <b>01/08/2026 đến hết 30/09/2026</b> với
+              những phần quà thiết thực, đồng hành cùng khách hàng trên mọi hành
+              trình di chuyển hằng ngày.
+            </p>
+            <p><b>Quà tặng hấp dẫn khi mua xe</b></p>
+            <p>
+              🎁 Mũ bảo hiểm Honda<br />
+              Thiết kế thời trang, an toàn và tiện dụng, giúp khách hàng yên tâm
+              trên mọi cung đường.
+            </p>
+            <p>
+              🎁 Áo mưa HEAD Trung Hùng<br />
+              Phụ kiện cần thiết trong mùa mưa, thuận tiện cho việc di chuyển
+              hàng ngày.
+            </p>
+            <!-- Hình ảnh trong bài -->
+            <figure>
+              <img
+                src="/khuyenmai/image/MXNQ082026.jpg"
+                alt="Mô tả hình ảnh"
+                loading="lazy"
+              />
+            </figure>
+            <p>
+              Không chỉ mang đến những dòng xe Honda chất lượng, tiết kiệm nhiên
+              liệu và vận hành bền bỉ, HEAD Trung Hùng còn mong muốn gia tăng
+              trải nghiệm và sự hài lòng cho khách hàng thông qua các chương
+              trình chăm sóc và ưu đãi hấp dẫn.
+            </p>
+            <p><b>Đồng hành cùng khách hàng trên mọi hành trình</b></p>
+            <p>
+              Với nhiều mẫu xe nổi bật, kiểu dáng hiện đại cùng chính sách hỗ
+              trợ tận tình, chương trình lần này là cơ hội để khách hàng dễ dàng
+              sở hữu chiếc xe Honda yêu thích và nhận thêm nhiều quà tặng giá
+              trị.
+            </p>
+            <p>📌 <i>Quà tặng không có giá trị quy đổi thành tiền mặt.</i></p>
+
+            <!-- Hộp nổi bật 
+            <div class="highlight-box">
+              <p>
+                <strong>Lưu ý quan trọng:</strong> Chương trình áp dụng tại tất
+                cả 12 cửa hàng trong hệ thống HEAD Trung Hùng tại Gia Lai, Hà
+                Nội và Sơn La. Liên hệ <strong>1900 636 712</strong> để được tư
+                vấn chi tiết.
+              </p>
+            </div>-->
+          </div>
+          <!-- /art-content -->
+
+          <!-- Share bar -->
+          <div class="art-share">
+            <span class="art-share-label">Chia sẻ:</span>
+            <button
+              class="share-btn fb"
+              onclick="
+                window.open(
+                  'https://www.facebook.com/sharer/sharer.php?u=' +
+                    encodeURIComponent(location.href),
+                  '_blank',
+                )
+              "
+            >
+              <i class="fab fa-facebook-f"></i> Facebook
+            </button>
+            <button class="share-btn copy" id="copyBtn">
+              <i class="fas fa-link"></i> Sao chép link
+            </button>
+          </div>
+        </div>
+        <!-- /art-body -->
+      </article>
+
+      <!-- ===== SIDEBAR ===== -->
+      <aside class="sidebar">
+        <!-- CTA box -->
+        <div class="cta-box">
+          <h3>ƯU ĐÃI<br /><em>ĐẾN 5TR</em></h3>
+          <p>
+            Mua xe Honda ngay hôm nay để nhận ưu đãi độc quyền tại cửa hàng gần
+            nhất.
+          </p>
+          <a href="/cuahang/"
+            ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a
+          >
+        </div>
+
+        <!-- Categories -->
+        <div class="sw">
+          <div class="sw-title">Danh mục tin tức</div>
+          <a href="/tintuc/tintucxemay/" class="cat-item"
+            ><span><i class="fas fa-motorcycle"></i>Sản phẩm mới</span
+            ><span class="cat-badge">Chi tiết</span></a
+          >
+          <a href="/tintuc/tintuckhuyenmai/" class="cat-item"
+            ><span><i class="fas fa-gift"></i>Khuyến mãi</span
+            ><span class="cat-badge">Chi tiết</span></a
+          >
+          <a href="/tintuc/tintucsukien/" class="cat-item"
+            ><span><i class="fas fa-calendar-alt"></i>Sự kiện</span
+            ><span class="cat-badge">Chi tiết</span></a
+          >
+          <a href="/tintuc/tintuclxat/" class="cat-item"
+            ><span><i class="fas fa-shield-alt"></i>Hoạt động LXAT</span
+            ><span class="cat-badge">Chi tiết</span></a
+          >
+        </div>
+
+        <!-- ✏️ Bài viết liên quan — thêm/xoá tuỳ ý -->
+        <div class="sw">
+          <div class="sw-title">Bài viết liên quan</div>
+
+          <a
+            href="/tintuc/tintuckhuyenmai/khuyenmai/15052026HVN.html"
+            class="rp-item"
+          >
+            <div class="rp-thumb">
+              <img
+                src="/khuyenmai/image/HVN15052026.jpg"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="rp-info">
+              <span class="rp-name">Lướt Honda ICON e, Giá Hời Như Ý</span>
+              <span class="rp-date"
+                ><i class="far fa-calendar"></i>15/05/2025</span
+              >
+            </div>
+          </a>
+
+          <a
+            href="/tintuc/tintuckhuyenmai/khuyenmai/01042026HVN.html"
+            class="rp-item"
+          >
+            <div class="rp-thumb">
+              <img
+                src="/khuyenmai/image/HVN01042026.jpg"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="rp-info">
+              <span class="rp-name">Tham Gia Khảo Sát - Rinh Quà Liền Tay</span>
+              <span class="rp-date"
+                ><i class="far fa-calendar"></i>01/04/2026</span
+              >
+            </div>
+          </a>
+
+          <a
+            href="/tintuc/tintucxemay/tintucxe/trang1/ABSHLEAD04112025.html"
+            class="rp-item"
+          >
+            <div class="rp-thumb">
+              <img
+                src="/sanphamxemay/SH160/SH160/picture/3.jpg"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="rp-info">
+              <span class="rp-name"
+                >Honda ra mắt SH160/125, Air Blade, LEAD 2026</span
+              >
+              <span class="rp-date"
+                ><i class="far fa-calendar"></i>04/11/2025</span
+              >
+            </div>
+          </a>
+        </div>
+      </aside>
+    </div>
+    <!-- /article-wrap -->
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="ft-grid">
+        <div>
+          <div class="ft-logo-row">
+            <img
+              src="/sanphamxemay/image/banner/Logo_HEAD.png"
+              alt="HEAD"
+              class="ft-logo-img"
+            />
+            <span class="ft-brand">HỆ THỐNG HEAD <span>TRUNG HÙNG</span></span>
+          </div>
+          <p class="ft-desc">
+            Công Ty TNHH Thương Mại Và Dịch Vụ Hùng Mạnh — đại lý Honda chính
+            hãng tại Gia Lai, Hà Nội và Sơn La.
+          </p>
+          <div class="ft-socs">
+            <a
+              href="https://www.facebook.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@HethongHEADTrungHung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.tiktok.com/@hethongheadtrunghung"
+              class="ft-soc"
+              target="_blank"
+              rel="noopener"
+              ><i class="fab fa-tiktok"></i
+            ></a>
+          </div>
+        </div>
+        <div class="ft-col">
+          <h5>Sản Phẩm</h5>
+          <ul>
+            <li><a href="/sanphamxemay/?category=xe-ga">Xe Ga</a></li>
+            <li><a href="/sanphamxemay/?category=xe-so">Xe Số</a></li>
+            <li><a href="/sanphamxemay/?category=xe-con-tay">Xe Côn Tay</a></li>
+            <li><a href="/sanphamxemay/?category=pkl">Phân Khối Lớn</a></li>
+            <li><a href="/sanphamxemay/?category=xe-dien">Xe Điện</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Dịch Vụ</h5>
+          <ul>
+            <li><a href="/dichvu/baoduong/">Bảo Dưỡng</a></li>
+            <li><a href="/dichvu/baohanh/">Bảo Hành</a></li>
+            <li><a href="/dichvu/sanphamphutung/">Phụ Tùng</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Liên Hệ</h5>
+          <ul>
+            <li><a href="tel:1900636712">1900 636 712</a></li>
+            <li><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a></li>
+            <li><a href="/cuahang/">Hệ thống cửa hàng</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-btm">
+        <p>© 2025 HỆ THỐNG HEAD TRUNG HÙNG. Bảo lưu mọi quyền.</p>
+        <div class="ft-badge">
+          <i class="fas fa-certificate"></i> Honda Authorised Dealer
+        </div>
+      </div>
+    </footer>
+
+    <a
+      href="https://m.me/hethongheadtrunghung"
+      class="messenger-float"
+      target="_blank"
+      rel="noopener"
+      aria-label="Messenger"
+      ><i class="fab fa-facebook-messenger"></i
+    ></a>
+    <a href="#" class="back-top" id="backTop" aria-label="Lên đầu"
+      ><i class="fas fa-arrow-up"></i
+    ></a>
+
+    <script>
+      /* Header lift */
+      const hdr = document.getElementById("siteHeader");
+      window.addEventListener(
+        "scroll",
+        () => {
+          hdr.classList.toggle("lifted", window.scrollY > 40);
+          document
+            .getElementById("backTop")
+            .classList.toggle("on", window.scrollY > 400);
+        },
+        { passive: true },
+      );
+
+      /* Copy link */
+      document.getElementById("copyBtn").addEventListener("click", function () {
+        navigator.clipboard.writeText(location.href).then(() => {
+          this.innerHTML = '<i class="fas fa-check"></i> Đã sao chép!';
+          setTimeout(() => {
+            this.innerHTML = '<i class="fas fa-link"></i> Sao chép link';
+          }, 2000);
+        });
+      });
+    </script>
+  </body>
+</html>
