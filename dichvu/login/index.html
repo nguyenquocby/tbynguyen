@@ -1,0 +1,1190 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hệ Thống Cấp Số Thứ Tự – Honda</title>
+    <link
+      rel="icon"
+      href="/sanphamxemay/image/banner/Logo_HEAD.png"
+      type="image/x-icon"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap");
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        /* Honda palette */
+        --honda-red: #cc0000;
+        --honda-dark: #990000;
+        --honda-light: #ff2222;
+        --honda-silver: #c8c8c8;
+        --honda-black: #1a1a1a;
+
+        --ink: #1a1a1a;
+        --surface: #fdf5f5;
+        --card: #ffffff;
+        --border: #f0d8d8;
+        --muted: #8a6a6a;
+        --err: #b91c1c;
+        --success: #15803d;
+        --r: 14px;
+      }
+
+      body {
+        font-family: "Be Vietnam Pro", sans-serif;
+        background: var(--surface);
+        color: var(--ink);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ════════ HONDA STRIPE ANIMATION ════════ */
+      @keyframes stripeScroll {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 60px 0;
+        }
+      }
+      .honda-stripe {
+        height: 5px;
+        background: repeating-linear-gradient(
+          90deg,
+          var(--honda-red) 0px,
+          var(--honda-red) 30px,
+          var(--honda-black) 30px,
+          var(--honda-black) 60px
+        );
+        animation: stripeScroll 1.2s linear infinite;
+      }
+
+      /* ════════ LOGIN OVERLAY ════════ */
+      #loginOverlay {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(
+          160deg,
+          #1a0000 0%,
+          #cc0000 55%,
+          #8b0000 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        transition: opacity 0.4s;
+        overflow: hidden;
+      }
+      /* Decorative Honda "H" watermark */
+      #loginOverlay::before {
+        content: "H";
+        position: absolute;
+        font-size: 60vw;
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.04);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        user-select: none;
+        font-family: "Be Vietnam Pro", sans-serif;
+      }
+      #loginOverlay.hide {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .login-box {
+        background: #fff;
+        border-radius: 20px;
+        padding: 2.5rem 2.25rem;
+        width: 100%;
+        max-width: 380px;
+        box-shadow: 0 32px 80px rgba(0, 0, 0, 0.35);
+        animation: loginPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+      }
+      .login-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(
+          90deg,
+          var(--honda-dark),
+          var(--honda-red),
+          var(--honda-light),
+          var(--honda-red),
+          var(--honda-dark)
+        );
+      }
+      @keyframes loginPop {
+        from {
+          opacity: 0;
+          transform: scale(0.88) translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      .login-logo {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(
+          145deg,
+          var(--honda-dark),
+          var(--honda-red)
+        );
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 900;
+        font-size: 1.6rem;
+        margin: 1rem auto 1.25rem;
+        box-shadow: 0 8px 24px rgba(204, 0, 0, 0.35);
+      }
+      .login-box h2 {
+        text-align: center;
+        font-size: 1.25rem;
+        font-weight: 800;
+        margin-bottom: 0.3rem;
+      }
+      .login-box .sub {
+        text-align: center;
+        font-size: 0.82rem;
+        color: var(--muted);
+        margin-bottom: 1.75rem;
+      }
+
+      .login-label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 0.4rem;
+      }
+      .login-input-wrap {
+        position: relative;
+        margin-bottom: 1rem;
+      }
+      .login-input-wrap input {
+        width: 100%;
+        border: 1.5px solid var(--border);
+        border-radius: 10px;
+        padding: 0.72rem 2.6rem 0.72rem 1rem;
+        font-family: inherit;
+        font-size: 0.95rem;
+        color: var(--ink);
+        background: var(--surface);
+        outline: none;
+        transition: border-color 0.15s;
+      }
+      .login-input-wrap input:focus {
+        border-color: var(--honda-red);
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.12);
+      }
+      .eye-btn {
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        color: var(--muted);
+        padding: 0;
+      }
+      .login-err {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+        border-radius: 8px;
+        padding: 0.6rem 0.9rem;
+        font-size: 0.8rem;
+        color: var(--err);
+        margin-bottom: 1rem;
+        display: none;
+      }
+      .login-err.show {
+        display: block;
+      }
+      .btn-login {
+        width: 100%;
+        background: linear-gradient(
+          135deg,
+          var(--honda-dark),
+          var(--honda-red)
+        );
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 0.88rem;
+        font-size: 1rem;
+        font-weight: 700;
+        font-family: inherit;
+        cursor: pointer;
+        transition:
+          opacity 0.15s,
+          transform 0.1s,
+          box-shadow 0.15s;
+        box-shadow: 0 6px 20px rgba(204, 0, 0, 0.3);
+      }
+      .btn-login:hover {
+        opacity: 0.92;
+        box-shadow: 0 8px 28px rgba(204, 0, 0, 0.4);
+      }
+      .btn-login:active {
+        transform: scale(0.98);
+      }
+      .login-hint {
+        text-align: center;
+        font-size: 0.72rem;
+        color: var(--muted);
+        margin-top: 1rem;
+      }
+
+      /* ════════ APP ════════ */
+      #app {
+        display: none;
+        flex-direction: column;
+        flex: 1;
+      }
+      #app.show {
+        display: flex;
+      }
+
+      /* Header */
+      header {
+        background: var(--honda-black);
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        height: 62px;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+      }
+      .logo-h {
+        width: 38px;
+        height: 38px;
+        background: linear-gradient(
+          145deg,
+          var(--honda-dark),
+          var(--honda-red)
+        );
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 900;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 12px rgba(204, 0, 0, 0.4);
+        flex-shrink: 0;
+      }
+      header h1 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      header h1 span {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.45);
+        margin-left: 0.3rem;
+        font-weight: 400;
+      }
+      .header-right {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+      .counter-pill {
+        background: rgba(204, 0, 0, 0.2);
+        color: #ff8888;
+        border: 1px solid rgba(204, 0, 0, 0.35);
+        border-radius: 999px;
+        padding: 0.3rem 0.9rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+      .btn-sm {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        padding: 0.35rem 0.8rem;
+        font-size: 0.78rem;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.15s;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .btn-sm:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+      }
+      .btn-sm.danger {
+        color: #ff8888;
+        border-color: rgba(204, 0, 0, 0.35);
+        background: rgba(204, 0, 0, 0.1);
+      }
+      .btn-sm.danger:hover {
+        background: rgba(204, 0, 0, 0.25);
+        color: #ffaaaa;
+      }
+
+      /* Red accent bar below header */
+      .accent-bar {
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--honda-dark),
+          var(--honda-red),
+          var(--honda-light),
+          var(--honda-red),
+          var(--honda-dark)
+        );
+        background-size: 200% 100%;
+        animation: shimmer 3s ease-in-out infinite;
+      }
+      @keyframes shimmer {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+
+      /* Main layout */
+      main {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 420px 1fr;
+        gap: 0;
+        max-width: 1100px;
+        width: 100%;
+        margin: 2.5rem auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Form panel */
+      .form-panel {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        padding: 2rem;
+        position: sticky;
+        top: 82px;
+        height: fit-content;
+        box-shadow: 0 4px 24px rgba(204, 0, 0, 0.06);
+        overflow: hidden;
+      }
+      .form-panel::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--honda-dark), var(--honda-red));
+      }
+      .form-panel h2 {
+        font-size: 1.1rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      label {
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 0.4rem;
+      }
+      input[type="text"] {
+        width: 100%;
+        border: 1.5px solid var(--border);
+        border-radius: 10px;
+        padding: 0.7rem 1rem;
+        font-family: inherit;
+        font-size: 0.95rem;
+        color: var(--ink);
+        background: #fdf5f5;
+        transition:
+          border-color 0.15s,
+          box-shadow 0.15s;
+        outline: none;
+        margin-bottom: 1rem;
+      }
+      input[type="text"]:focus {
+        border-color: var(--honda-red);
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
+      }
+      input.error {
+        border-color: var(--err) !important;
+      }
+
+      /* Textarea for address */
+      textarea#address {
+        width: 100%;
+        border: 1.5px solid var(--border);
+        border-radius: 10px;
+        padding: 0.7rem 1rem;
+        font-family: inherit;
+        font-size: 0.95rem;
+        color: var(--ink);
+        background: #fdf5f5;
+        transition:
+          border-color 0.15s,
+          box-shadow 0.15s;
+        outline: none;
+        margin-bottom: 1rem;
+        resize: vertical;
+        min-height: 72px;
+        line-height: 1.5;
+      }
+      textarea#address:focus {
+        border-color: var(--honda-red);
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
+      }
+      textarea.error {
+        border-color: var(--err) !important;
+      }
+
+      /* Select */
+      select {
+        width: 100%;
+        border: 1.5px solid var(--border);
+        border-radius: 10px;
+        padding: 0.7rem 2.5rem 0.7rem 1rem;
+        font-family: inherit;
+        font-size: 0.95rem;
+        color: var(--ink);
+        background: #fdf5f5
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a6a6a' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")
+          no-repeat right 1rem center;
+        -webkit-appearance: none;
+        appearance: none;
+        transition:
+          border-color 0.15s,
+          box-shadow 0.15s;
+        outline: none;
+        margin-bottom: 1rem;
+        cursor: pointer;
+      }
+      select:focus {
+        border-color: var(--honda-red);
+        background-color: #fff;
+        box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
+      }
+      select.error {
+        border-color: var(--err) !important;
+      }
+
+      .err-msg {
+        font-size: 0.76rem;
+        color: var(--err);
+        margin-top: -0.7rem;
+        margin-bottom: 0.9rem;
+      }
+
+      .btn-submit {
+        width: 100%;
+        background: linear-gradient(
+          135deg,
+          var(--honda-dark) 0%,
+          var(--honda-red) 60%,
+          var(--honda-light) 100%
+        );
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 0.88rem;
+        font-size: 1rem;
+        font-weight: 800;
+        font-family: inherit;
+        cursor: pointer;
+        transition:
+          opacity 0.15s,
+          transform 0.1s,
+          box-shadow 0.15s;
+        box-shadow: 0 6px 20px rgba(204, 0, 0, 0.35);
+        margin-top: 0.4rem;
+        letter-spacing: 0.02em;
+      }
+      .btn-submit:hover {
+        opacity: 0.9;
+        box-shadow: 0 8px 28px rgba(204, 0, 0, 0.45);
+      }
+      .btn-submit:active {
+        transform: scale(0.98);
+      }
+
+      /* Result card */
+      .result-card {
+        display: none;
+        margin-top: 1.5rem;
+        background: linear-gradient(135deg, #fff5f5, #fff0f0);
+        border: 1.5px solid rgba(204, 0, 0, 0.25);
+        border-radius: var(--r);
+        padding: 1.4rem 1.5rem;
+        text-align: center;
+        animation: pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .result-card.show {
+        display: block;
+      }
+      @keyframes pop {
+        from {
+          opacity: 0;
+          transform: scale(0.92) translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+      .result-label {
+        font-size: 0.72rem;
+        color: var(--honda-red);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .result-name {
+        font-size: 1rem;
+        font-weight: 700;
+        margin: 0.3rem 0 0.1rem;
+      }
+      .result-addr {
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+      }
+      .result-number {
+        font-size: 4rem;
+        font-weight: 900;
+        line-height: 1.05;
+        background: linear-gradient(
+          135deg,
+          var(--honda-dark),
+          var(--honda-red)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .result-vehicle {
+        font-size: 0.82rem;
+        color: var(--honda-dark);
+        margin-top: 0.25rem;
+        font-weight: 700;
+      }
+      .result-sub {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-top: 0.35rem;
+      }
+
+      /* Dup alert */
+      .dup-alert {
+        display: none;
+        margin-top: 1rem;
+        background: #fffbeb;
+        border: 1.5px solid #fcd34d;
+        border-radius: 10px;
+        padding: 1rem 1.2rem;
+        font-size: 0.85rem;
+        color: #92400e;
+      }
+      .dup-alert.show {
+        display: flex;
+        gap: 0.6rem;
+        align-items: flex-start;
+      }
+      .dup-alert strong {
+        display: block;
+        margin-bottom: 0.15rem;
+      }
+
+      /* List panel */
+      .list-panel {
+        padding-left: 1.5rem;
+      }
+      .list-panel h2 {
+        font-size: 1rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .badge {
+        background: var(--honda-red);
+        color: #fff;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 0.15rem 0.55rem;
+      }
+      .search-box {
+        position: relative;
+        margin-bottom: 1rem;
+      }
+      .search-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--muted);
+        font-size: 0.9rem;
+        pointer-events: none;
+      }
+      .search-box input {
+        width: 100%;
+        border: 1.5px solid var(--border);
+        border-radius: 10px;
+        padding: 0.65rem 1rem 0.65rem 2.4rem;
+        font-family: inherit;
+        font-size: 0.9rem;
+        color: var(--ink);
+        background: #fdf5f5;
+        outline: none;
+        transition: border-color 0.15s;
+      }
+      .search-box input:focus {
+        border-color: var(--honda-red);
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
+      }
+
+      .list-empty {
+        background: var(--card);
+        border: 1px dashed var(--border);
+        border-radius: var(--r);
+        padding: 3rem;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .list-empty .icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.75rem;
+      }
+      .entry-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+
+      .entry {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 0.85rem 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        animation: slideIn 0.25s ease;
+        transition: box-shadow 0.15s;
+      }
+      .entry:hover {
+        box-shadow: 0 2px 12px rgba(204, 0, 0, 0.1);
+      }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .entry.latest {
+        border-color: rgba(204, 0, 0, 0.3);
+        box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
+      }
+      .entry-num {
+        min-width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: linear-gradient(
+          145deg,
+          var(--honda-dark),
+          var(--honda-red)
+        );
+        color: #fff;
+        font-weight: 900;
+        font-size: 1.15rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        box-shadow: 0 4px 12px rgba(204, 0, 0, 0.3);
+      }
+      .entry-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .entry-name {
+        font-weight: 700;
+        font-size: 0.95rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .entry-sub {
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-top: 0.15rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .entry-time {
+        font-size: 0.72rem;
+        color: var(--muted);
+        flex-shrink: 0;
+        text-align: right;
+      }
+      .new-tag {
+        background: #dcfce7;
+        color: var(--success);
+        border-radius: 999px;
+        font-size: 0.65rem;
+        font-weight: 700;
+        padding: 0.15rem 0.5rem;
+        text-transform: uppercase;
+      }
+
+      .list-scroll {
+        max-height: 72vh;
+        overflow-y: auto;
+        padding-right: 4px;
+      }
+      .list-scroll::-webkit-scrollbar {
+        width: 4px;
+      }
+      .list-scroll::-webkit-scrollbar-thumb {
+        background: rgba(204, 0, 0, 0.2);
+        border-radius: 99px;
+      }
+
+      @media (max-width: 720px) {
+        main {
+          grid-template-columns: 1fr;
+        }
+        .list-panel {
+          padding-left: 0;
+          margin-top: 2rem;
+        }
+        .form-panel {
+          position: static;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ════ LOGIN ════ -->
+    <div id="loginOverlay">
+      <div class="login-box">
+        <div class="login-logo">H</div>
+        <h2>Hệ thống cấp số thứ tự</h2>
+        <p class="sub">Đăng nhập để truy cập hệ thống</p>
+
+        <label class="login-label" for="lu">Tên đăng nhập</label>
+        <div class="login-input-wrap">
+          <input
+            type="text"
+            id="lu"
+            placeholder="admin"
+            autocomplete="username"
+          />
+        </div>
+
+        <label class="login-label" for="lp">Mật khẩu</label>
+        <div class="login-input-wrap">
+          <input
+            type="password"
+            id="lp"
+            placeholder="••••••••"
+            autocomplete="current-password"
+          />
+          <button
+            class="eye-btn"
+            type="button"
+            onclick="togglePwd()"
+            id="eyeBtn"
+          >
+            👁
+          </button>
+        </div>
+
+        <div class="login-err" id="loginErr">
+          Tên đăng nhập hoặc mật khẩu không đúng.
+        </div>
+        <button class="btn-login" onclick="doLogin()">Đăng nhập →</button>
+      </div>
+    </div>
+
+    <!-- ════ APP ════ -->
+    <div id="app">
+      <header>
+        <div class="logo-h">H</div>
+        <div>
+          <h1>Hệ Thống Cấp Số Thứ Tự <span>Honda</span></h1>
+        </div>
+        <div class="header-right">
+          <div class="counter-pill" id="pillCount">Đã cấp: 0 số</div>
+          <button class="btn-sm danger" onclick="confirmReset()">
+            🗑 Đặt lại
+          </button>
+          <button class="btn-sm" onclick="doLogout()">⎋ Đăng xuất</button>
+        </div>
+      </header>
+      <div class="accent-bar"></div>
+
+      <main>
+        <!-- Form -->
+        <div class="form-panel">
+          <h2>🏍 Đăng ký nhận số</h2>
+
+          <label for="name">Họ và tên</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Nguyễn Văn A"
+            autocomplete="off"
+          />
+          <div class="err-msg" id="nameErr"></div>
+
+          <label for="address">Địa chỉ</label>
+          <textarea
+            id="address"
+            placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố…"
+          ></textarea>
+          <div class="err-msg" id="addressErr"></div>
+
+          <label for="vehicle">Loại xe</label>
+          <select id="vehicle">
+            <option value="">-- Chọn loại xe --</option>
+            <option value="Xe ga">🛵 Xe ga</option>
+            <option value="Xe số">🏍 Xe số</option>
+            <option value="Xe côn tay">⚙️ Xe côn tay</option>
+            <option value="Xe điện">⚡ Xe điện</option>
+          </select>
+          <div class="err-msg" id="vehicleErr"></div>
+
+          <button class="btn-submit" onclick="register()">
+            Lấy số thứ tự →
+          </button>
+
+          <div class="dup-alert" id="dupAlert">
+            <span>⚠️</span>
+            <div>
+              <strong>Địa chỉ đã được đăng ký!</strong>
+              <span id="dupMsg"></span>
+            </div>
+          </div>
+
+          <div class="result-card" id="resultCard">
+            <div class="result-label">Số thứ tự của bạn</div>
+            <div class="result-name" id="rName"></div>
+            <div class="result-addr" id="rAddr"></div>
+            <div class="result-number" id="rNum"></div>
+            <div class="result-vehicle" id="rVehicle"></div>
+            <div class="result-sub" id="rSub"></div>
+          </div>
+        </div>
+
+        <!-- List -->
+        <div class="list-panel">
+          <h2>
+            📋 Danh sách đã đăng ký <span class="badge" id="listCount">0</span>
+          </h2>
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input
+              type="text"
+              id="searchBox"
+              placeholder="Tìm theo tên hoặc địa chỉ…"
+              oninput="renderList()"
+            />
+          </div>
+          <div class="list-scroll">
+            <div class="list-empty" id="emptyState">
+              <div class="icon">🎟️</div>
+              Chưa có khách hàng nào đăng ký.<br />Hãy điền thông tin bên trái
+              để nhận số!
+            </div>
+            <div class="entry-list" id="entryList"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      /* ══ LOGIN ══ */
+      const CREDS = { u: "admin", p: "686868" };
+      const SES = "stt_auth";
+
+      function togglePwd() {
+        const i = document.getElementById("lp"),
+          b = document.getElementById("eyeBtn");
+        i.type =
+          i.type === "password"
+            ? ((b.textContent = "🙈"), "text")
+            : ((b.textContent = "👁"), "password");
+      }
+
+      function doLogin() {
+        const u = document.getElementById("lu").value.trim();
+        const p = document.getElementById("lp").value;
+        const err = document.getElementById("loginErr");
+        err.classList.remove("show");
+        if (u === CREDS.u && p === CREDS.p) {
+          sessionStorage.setItem(SES, "1");
+          document.getElementById("loginOverlay").classList.add("hide");
+          document.getElementById("app").classList.add("show");
+        } else {
+          err.classList.add("show");
+          document.getElementById("lp").value = "";
+          document.getElementById("lp").focus();
+        }
+      }
+
+      function doLogout() {
+        if (!confirm("Bạn có muốn đăng xuất?")) return;
+        sessionStorage.removeItem(SES);
+        document.getElementById("loginOverlay").classList.remove("hide");
+        document.getElementById("app").classList.remove("show");
+        document.getElementById("lu").value = "";
+        document.getElementById("lp").value = "";
+        document.getElementById("loginErr").classList.remove("show");
+      }
+
+      if (sessionStorage.getItem(SES)) {
+        document.getElementById("loginOverlay").classList.add("hide");
+        document.getElementById("app").classList.add("show");
+      }
+
+      ["lu", "lp"].forEach((id) =>
+        document.getElementById(id).addEventListener("keydown", (e) => {
+          if (e.key === "Enter") doLogin();
+        }),
+      );
+
+      /* ══ DATA ══ */
+      const STORE = "stt_data_v2";
+      const load = () => {
+        try {
+          return (
+            JSON.parse(localStorage.getItem(STORE)) || { next: 1, entries: [] }
+          );
+        } catch {
+          return { next: 1, entries: [] };
+        }
+      };
+      const save = (d) => localStorage.setItem(STORE, JSON.stringify(d));
+
+      let db = load(),
+        lastId = null;
+
+      function validate() {
+        let ok = true;
+        const name = document.getElementById("name").value.trim();
+        const address = document.getElementById("address").value.trim();
+        const vehicle = document.getElementById("vehicle").value;
+
+        ["nameErr", "addressErr", "vehicleErr"].forEach(
+          (id) => (document.getElementById(id).textContent = ""),
+        );
+        ["name", "address", "vehicle"].forEach((id) =>
+          document.getElementById(id).classList.remove("error"),
+        );
+
+        if (!name) {
+          document.getElementById("nameErr").textContent =
+            "Vui lòng nhập họ tên.";
+          document.getElementById("name").classList.add("error");
+          ok = false;
+        }
+        if (!address) {
+          document.getElementById("addressErr").textContent =
+            "Vui lòng nhập địa chỉ.";
+          document.getElementById("address").classList.add("error");
+          ok = false;
+        }
+        if (!vehicle) {
+          document.getElementById("vehicleErr").textContent =
+            "Vui lòng chọn loại xe.";
+          document.getElementById("vehicle").classList.add("error");
+          ok = false;
+        }
+        return ok ? { name, address, vehicle } : null;
+      }
+
+      function register() {
+        document.getElementById("dupAlert").classList.remove("show");
+        document.getElementById("resultCard").classList.remove("show");
+
+        const data = validate();
+        if (!data) return;
+
+        // Duplicate check by name + address combo
+        const dup = db.entries.find(
+          (e) =>
+            e.name.toLowerCase() === data.name.toLowerCase() &&
+            e.address.toLowerCase() === data.address.toLowerCase(),
+        );
+        if (dup) {
+          document.getElementById("dupMsg").textContent =
+            ` "${dup.name}" tại địa chỉ này đã được cấp số #${dup.num}.`;
+          document.getElementById("dupAlert").classList.add("show");
+          showResult(dup.name, dup.address, dup.num, dup.vehicle, true);
+          return;
+        }
+
+        if (db.next > 100) {
+          alert("⚠️ Hệ thống đã cấp đủ 100 số! Vui lòng liên hệ nhân viên.");
+          return;
+        }
+
+        const num = db.next++;
+        const entry = {
+          id: Date.now(),
+          name: data.name,
+          address: data.address,
+          vehicle: data.vehicle,
+          num,
+          time: new Date().toLocaleTimeString("vi-VN", {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+        };
+        db.entries.unshift(entry);
+        save(db);
+        lastId = entry.id;
+
+        showResult(data.name, data.address, num, data.vehicle, false);
+        renderList();
+        updatePill();
+
+        document.getElementById("name").value = "";
+        document.getElementById("address").value = "";
+        document.getElementById("vehicle").value = "";
+      }
+
+      function showResult(name, address, num, vehicle, isOld) {
+        document.getElementById("rName").textContent = name;
+        document.getElementById("rAddr").textContent = "📍 " + address;
+        document.getElementById("rNum").textContent =
+          `#${String(num).padStart(2, "0")}`;
+        document.getElementById("rVehicle").textContent = vehicle
+          ? `🏍 ${vehicle}`
+          : "";
+        document.getElementById("rSub").textContent = isOld
+          ? `Số đã được cấp trước đó`
+          : `Cấp lúc ${new Date().toLocaleTimeString("vi-VN")}`;
+        document.getElementById("resultCard").classList.add("show");
+      }
+
+      function renderList() {
+        const q = document
+          .getElementById("searchBox")
+          .value.trim()
+          .toLowerCase();
+        const filtered = db.entries.filter(
+          (e) =>
+            e.name.toLowerCase().includes(q) ||
+            e.address.toLowerCase().includes(q),
+        );
+        document.getElementById("listCount").textContent = db.entries.length;
+        document.getElementById("emptyState").style.display =
+          db.entries.length === 0 ? "block" : "none";
+        document.getElementById("entryList").innerHTML = filtered
+          .map(
+            (e) => `
+      <div class="entry ${e.id === lastId ? "latest" : ""}">
+        <div class="entry-num">${String(e.num).padStart(2, "0")}</div>
+        <div class="entry-info">
+          <div class="entry-name">${esc(e.name)} ${e.id === lastId ? '<span class="new-tag">Mới</span>' : ""}</div>
+          <div class="entry-sub">📍 ${esc(e.address)} ${e.vehicle ? `· <span style="color:var(--honda-dark);font-weight:600">${esc(e.vehicle)}</span>` : ""}</div>
+        </div>
+        <div class="entry-time">${e.time}</div>
+      </div>
+    `,
+          )
+          .join("");
+      }
+
+      function updatePill() {
+        document.getElementById("pillCount").textContent =
+          `Đã cấp: ${db.entries.length}/100 số`;
+      }
+
+      function confirmReset() {
+        if (
+          confirm("⚠️ Xác nhận đặt lại toàn bộ danh sách và bắt đầu từ số 1?")
+        ) {
+          db = { next: 1, entries: [] };
+          save(db);
+          lastId = null;
+          document.getElementById("resultCard").classList.remove("show");
+          document.getElementById("dupAlert").classList.remove("show");
+          renderList();
+          updatePill();
+        }
+      }
+
+      function esc(s) {
+        return s
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (
+          e.key === "Enter" &&
+          e.target.tagName !== "TEXTAREA" &&
+          document.getElementById("app").classList.contains("show")
+        )
+          register();
+      });
+
+      renderList();
+      updatePill();
+    </script>
+  </body>
+</html>
