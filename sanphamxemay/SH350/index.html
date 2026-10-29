@@ -308,7 +308,7 @@
       .hero-bg {
         position: absolute;
         inset: 0;
-        background: url("/sanphamxemay/SH350/SH350/picture/4.jpg") center/cover
+        background: url("/sanphamxemay/SH350/SH350/picture/2.jpg") center/cover
           no-repeat;
         filter: brightness(0.5) saturate(1.1);
         transform: scale(1.1);
@@ -438,7 +438,6 @@
       .rm .clip {
         display: -webkit-box;
         -webkit-box-orient: vertical;
-
         overflow: hidden;
       }
       .rm.open .clip {
@@ -1449,7 +1448,7 @@
         display: grid;
         place-items: center;
         pointer-events: none;
-        transform: translateZ(-110px) translateY(-36%);
+        transform: translateZ(-110px) translateY(-46%);
       }
       .lg img {
         width: min(64%, 500px);
@@ -1675,6 +1674,132 @@
           padding: 0.85rem 1.4rem;
         }
       }
+
+      /* ===== LISTBOX PHIÊN BẢN ===== */
+      .sc-info {
+        position: relative;
+        z-index: 5;
+      }
+      .lbx {
+        position: relative;
+        z-index: 30;
+        margin-bottom: 1.6rem;
+        max-width: 480px;
+      }
+      .lbx-label {
+        display: block;
+        font-size: 0.88rem;
+        color: var(--muted);
+        margin-bottom: 0.5rem;
+      }
+      .lbx-btn {
+        width: 100%;
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        padding: 0.9rem 1.2rem;
+        background: var(--s1);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        font-weight: 600;
+        font-size: 1.02rem;
+        text-align: left;
+        transition:
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .lbx-btn:hover,
+      .lbx.open .lbx-btn {
+        border-color: var(--red);
+      }
+      .lbx.open .lbx-btn {
+        box-shadow: 0 0 0 3px rgba(232, 0, 26, 0.22);
+      }
+      .lbx-btn > span {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .lbx .dot {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+      }
+      .lbx .car {
+        color: var(--red);
+        transition: transform 0.3s var(--ease);
+      }
+      .lbx.open .car {
+        transform: rotate(180deg);
+      }
+      .lbx-list {
+        position: absolute;
+        z-index: 60;
+        left: 0;
+        right: 0;
+        top: calc(100% + 0.5rem);
+        max-height: min(60vh, 320px);
+        overflow-y: auto;
+        background: #17171a;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 0.4rem;
+        box-shadow: 0 22px 50px rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition:
+          opacity 0.2s,
+          transform 0.25s var(--ease),
+          visibility 0.2s;
+      }
+      .lbx.open .lbx-list {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+      }
+      .lbx-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        min-height: 48px;
+        padding: 0.8rem 1rem;
+        border-radius: 10px;
+        cursor: pointer;
+        color: var(--muted);
+        font-weight: 500;
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .lbx-list li span {
+        flex: 1;
+      }
+      .lbx-list li:hover,
+      .lbx-list li.hi {
+        background: rgba(255, 255, 255, 0.07);
+        color: var(--text);
+      }
+      .lbx-list li .ck {
+        color: var(--red);
+        opacity: 0;
+      }
+      .lbx-list li.sel {
+        color: var(--text);
+      }
+      .lbx-list li.sel .ck {
+        opacity: 1;
+      }
+      @media (min-width: 1025px) {
+        .sc-info {
+          position: sticky;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1800,10 +1925,25 @@
             <h2>Chọn phong cách của bạn</h2>
             <p>Vuốt hoặc kéo ảnh để xem Honda SH350i từ mọi góc nhìn.</p>
           </div>
-          <div class="vname rv">Đang chọn: <b id="vName"></b></div>
-          <div class="chips swipe rv" id="chips" role="tablist"></div>
-          <div class="hint">
-            <i class="fas fa-hand-pointer"></i> Vuốt ngang để chọn màu
+          <div class="lbx rv" id="lbx">
+            <span class="lbx-label" id="lbxLabel">Chọn phiên bản</span>
+            <button
+              class="lbx-btn"
+              id="lbxBtn"
+              type="button"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-labelledby="lbxLabel lbxCur"
+            >
+              <i class="dot"></i><span id="lbxCur"></span
+              ><i class="fas fa-chevron-down car"></i>
+            </button>
+            <ul
+              class="lbx-list"
+              id="lbxList"
+              role="listbox"
+              aria-labelledby="lbxLabel"
+            ></ul>
           </div>
           <div class="sc-btns rv">
             <a href="/cuahang/" class="btn btn-red"
@@ -2068,8 +2208,10 @@
       <div class="fgrid">
         <div class="fb">
           <b>HEAD TRUNG HÙNG</b>
-          <p>Honda SH350i – khẳng định đẳng cấp thời thượng</p>
-          <p>Đại lý Honda chính hãng tại Gia Lai, Hà Nội và Sơn La.</p>
+          <p>
+            Honda SH350i – khẳng định đẳng cấp thời thượng. Đại lý Honda chính
+            hãng tại Gia Lai, Hà Nội và Sơn La.
+          </p>
           <div class="soc">
             <a
               href="https://www.facebook.com/hethongheadtrunghung"
@@ -2183,25 +2325,25 @@
         const VARIANTS = [
           {
             id: "xam-den-tt",
-            name: "Xám Đen – Thể Thao",
+            name: "Xám Đen – Phiên Bản Thể Thao",
             color: "#5a5a5a",
             dir: "SH350/Phiên bản Thể Thao - XÁM ĐEN",
           },
           {
             id: "xanh-den-tt",
-            name: "Xanh Đen – Thể Thao",
+            name: "Xanh Đen – Phiên Bản Thể Thao",
             color: "#008628",
             dir: "SH350/Phiên bản Thể Thao - XANH ĐEN",
           },
           {
             id: "xam-den-db",
-            name: "Xám Đen – Đặc Biệt",
+            name: "Xám Đen – Phiên Bản Đặc Biệt",
             color: "#313131",
             dir: "SH350/Phiên bản Đặc Biệt - XÁM ĐEN",
           },
           {
             id: "trang-den-cc",
-            name: "Trắng Đen – Cao Cấp",
+            name: "Trắng Đen – Phiên Bản Cao Cấp",
             color: "#ffffff",
             dir: "SH350/Phiên bản Cao Cấp - TRẮNG ĐEN",
           },
@@ -2391,30 +2533,95 @@
           set(0);
           return wrap;
         }
-        const chips = $("#chips"),
-          box = $("#variants");
+        /* Chọn phiên bản: listbox dùng chung cho mọi thiết bị */
+        const box = $("#variants"),
+          lbx = $("#lbx"),
+          lbBtn = $("#lbxBtn"),
+          lbList = $("#lbxList"),
+          lbCur = $("#lbxCur");
+        const wraps = [],
+          opts = [];
+        let cur = 0,
+          hi = 0;
         VARIANTS.forEach((v, i) => {
-          const b = document.createElement("button");
-          b.className = "chip" + (i ? "" : " on");
-          b.role = "tab";
-          b.dataset.v = v.id;
-          b.innerHTML = `<i style="background:${v.color}"></i>${v.name}`;
-          chips.appendChild(b);
           const w = buildSlider(v);
           if (!i) w.classList.add("on");
           box.appendChild(w);
-          b.onclick = () => {
-            $("#vName").textContent = v.name;
-            $$(".chip", chips).forEach((c) =>
-              c.classList.toggle("on", c === b),
-            );
-            $$(".vwrap", box).forEach((x) => x.classList.toggle("on", x === w));
-            w.dispatchEvent(new Event("show"));
-            centerIn(b);
-          };
+          wraps.push(w);
+          const li = document.createElement("li");
+          li.setAttribute("role", "option");
+          li.id = "opt-" + v.id;
+          li.innerHTML = `<i class="dot" style="background:${v.color}"></i><span>${v.name}</span><i class="fas fa-check ck"></i>`;
+          li.addEventListener("click", () => {
+            pick(i);
+            closeLbx(true);
+          });
+          lbList.appendChild(li);
+          opts.push(li);
         });
-
-        $("#vName").textContent = VARIANTS[0].name;
+        function pick(i) {
+          cur = i;
+          const v = VARIANTS[i];
+          wraps.forEach((x, k) => x.classList.toggle("on", k === i));
+          wraps[i].dispatchEvent(new Event("show"));
+          opts.forEach((o, k) => {
+            o.classList.toggle("sel", k === i);
+            o.setAttribute("aria-selected", k === i);
+          });
+          lbCur.textContent = v.name;
+          $(".dot", lbBtn).style.background = v.color;
+        }
+        function setHi(i) {
+          hi = (i + opts.length) % opts.length;
+          opts.forEach((o, k) => o.classList.toggle("hi", k === hi));
+          lbBtn.setAttribute("aria-activedescendant", opts[hi].id);
+          const o = opts[hi];
+          if (o.offsetTop < lbList.scrollTop) lbList.scrollTop = o.offsetTop;
+          else if (
+            o.offsetTop + o.offsetHeight >
+            lbList.scrollTop + lbList.clientHeight
+          )
+            lbList.scrollTop =
+              o.offsetTop + o.offsetHeight - lbList.clientHeight;
+        }
+        function openLbx() {
+          lbx.classList.add("open");
+          lbBtn.setAttribute("aria-expanded", "true");
+          setHi(cur);
+        }
+        function closeLbx(f) {
+          lbx.classList.remove("open");
+          lbBtn.setAttribute("aria-expanded", "false");
+          lbBtn.removeAttribute("aria-activedescendant");
+          if (f) lbBtn.focus();
+        }
+        lbBtn.addEventListener("click", () =>
+          lbx.classList.contains("open") ? closeLbx() : openLbx(),
+        );
+        lbBtn.addEventListener("keydown", (e) => {
+          const o = lbx.classList.contains("open");
+          if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+            e.preventDefault();
+            if (!o) openLbx();
+            else setHi(hi + (e.key === "ArrowDown" ? 1 : -1));
+          } else if ((e.key === "Enter" || e.key === " ") && o) {
+            e.preventDefault();
+            pick(hi);
+            closeLbx();
+          } else if (e.key === "Escape" && o) {
+            closeLbx();
+          } else if (o && e.key === "Home") {
+            e.preventDefault();
+            setHi(0);
+          } else if (o && e.key === "End") {
+            e.preventDefault();
+            setHi(opts.length - 1);
+          }
+        });
+        document.addEventListener("pointerdown", (e) => {
+          if (!lbx.contains(e.target)) closeLbx();
+        });
+        pick(0);
 
         /* Tabs */
         $$(".tab").forEach(
@@ -2523,28 +2730,6 @@
             { passive: true },
           );
         });
-
-        /* Gợi ý vuốt: nhích dãy nút màu một lần khi cuộn tới (thiết bị cảm ứng) */
-        if (matchMedia("(hover:none)").matches) {
-          const ch = $("#chips"),
-            o = new IntersectionObserver(
-              (es) => {
-                if (es[0].isIntersecting) {
-                  o.disconnect();
-                  if (ch.scrollWidth > ch.clientWidth + 10)
-                    setTimeout(() => {
-                      ch.scrollTo({ left: 90, behavior: "smooth" });
-                      setTimeout(
-                        () => ch.scrollTo({ left: 0, behavior: "smooth" }),
-                        650,
-                      );
-                    }, 500);
-                }
-              },
-              { threshold: 0.6 },
-            );
-          o.observe(ch);
-        }
 
         /* Thư viện ảnh + lightbox (vuốt trái/phải) */
         const gal = $("#gal");
