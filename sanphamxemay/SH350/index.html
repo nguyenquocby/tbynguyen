@@ -102,22 +102,28 @@
         opacity: 0;
         visibility: hidden;
       }
-      .pre b {
+      .pre-in {
+        text-align: center;
+      }
+      .pre-name {
+        display: block;
+        color: var(--text);
         font: 700 clamp(2.4rem, 9vw, 4.4rem)/1 "Barlow Condensed";
         letter-spacing: 0.2em;
+        padding-left: 0.2em;
       }
-      .pre b i {
+      .pre-name i {
         color: var(--red);
         font-style: normal;
       }
-      .pre div {
+      .pre-bar {
         width: 180px;
         height: 2px;
         margin: 1.6rem auto 0;
         background: var(--line);
         overflow: hidden;
       }
-      .pre div span {
+      .pre-bar span {
         display: block;
         height: 100%;
         width: 0;
@@ -308,8 +314,9 @@
       .hero-bg {
         position: absolute;
         inset: 0;
-        background: url("/sanphamxemay/SH350/SH350/picture/2.jpg") center/cover
-          no-repeat;
+        --hero-land: url("/sanphamxemay/SH350/SH350/picture/2.jpg");
+        --hero-port: url("/sanphamxemay/image/phone/SH350.jpg");
+        background: var(--hero-land) center/cover no-repeat;
         filter: brightness(0.5) saturate(1.1);
         transform: scale(1.1);
         transition: transform 12s ease;
@@ -438,9 +445,11 @@
       .rm .clip {
         display: -webkit-box;
         -webkit-box-orient: vertical;
+        -webkit-line-clamp: var(--n, 3);
         overflow: hidden;
       }
       .rm.open .clip {
+        -webkit-line-clamp: unset;
         display: block;
       }
       .rm-btn {
@@ -1141,7 +1150,7 @@
       }
       .fab {
         position: fixed;
-        right: 1.4rem;
+        right: calc(1.4rem + env(safe-area-inset-right, 0px));
         z-index: 100;
         width: 52px;
         height: 52px;
@@ -1153,12 +1162,12 @@
         transition: 0.3s;
       }
       .fab.m {
-        bottom: 5.2rem;
+        bottom: calc(var(--mbar, 0px) + 5.2rem);
         background: #0084ff;
         animation: pulse 2.6s infinite;
       }
       .fab.t {
-        bottom: 1.4rem;
+        bottom: calc(var(--mbar, 0px) + 1.4rem);
         background: var(--red);
         opacity: 0;
         visibility: hidden;
@@ -1451,7 +1460,7 @@
         transform: translateZ(-110px) translateY(-46%);
       }
       .lg img {
-        width: min(64%, 500px);
+        width: min(68%, 500px);
         height: auto;
         object-fit: contain;
         filter: brightness(0) invert(1);
@@ -1800,13 +1809,86 @@
           position: sticky;
         }
       }
+      /* ===== MẠNG XÃ HỘI: giữ màu logo ===== */
+      footer .soc a {
+        --c: #fff;
+        background: rgba(255, 255, 255, 0.04);
+      }
+      footer .soc a[aria-label="Facebook"] {
+        --c: #1877f2;
+      }
+      footer .soc a[aria-label="YouTube"] {
+        --c: #ff2d2d;
+      }
+      footer .soc a i {
+        color: var(--c);
+        font-size: 1.15rem;
+        transition: color 0.25s;
+      }
+      footer .soc a[aria-label="Instagram"] i {
+        background: linear-gradient(
+          45deg,
+          #feda75,
+          #fa7e1e,
+          #d62976,
+          #962fbf,
+          #4f5bd5
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+      footer .soc a[aria-label="TikTok"] i {
+        text-shadow:
+          1.5px 1.5px 0 #fe2c55,
+          -1.5px -1.5px 0 #25f4ee;
+      }
+      footer .soc a:hover {
+        background: var(--c);
+        border-color: var(--c);
+      }
+      footer .soc a[aria-label="Instagram"]:hover {
+        background: linear-gradient(
+          45deg,
+          #feda75,
+          #fa7e1e,
+          #d62976,
+          #962fbf,
+          #4f5bd5
+        );
+        border-color: transparent;
+      }
+      footer .soc a[aria-label="TikTok"]:hover {
+        background: #000;
+        border-color: #fff;
+      }
+      footer .soc a:hover i {
+        color: #fff;
+        background: none;
+        -webkit-text-fill-color: #fff;
+      }
+
+      /* ===== NỀN VIDEO: mờ ~80% ===== */
+      #vpop {
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+      }
+      /* ===== HERO: ảnh ngang (máy tính, máy tính bảng) / ảnh đứng (điện thoại) ===== */
+      @media (max-width: 767px) {
+        .hero-bg:not(.no-portrait) {
+          background-image: var(--hero-port);
+          background-position: center;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="pre" id="pre">
-      <div style="text-align: center">
-        <b>HONDA <i>SH</i> 350</b>
-        <div><span></span></div>
+      <div class="pre-in">
+        <b class="pre-name">HONDA <i>SH</i> 350</b>
+        <div class="pre-bar"><span></span></div>
       </div>
     </div>
 
@@ -2208,10 +2290,8 @@
       <div class="fgrid">
         <div class="fb">
           <b>HEAD TRUNG HÙNG</b>
-          <p>
-            Honda SH350i – khẳng định đẳng cấp thời thượng. Đại lý Honda chính
-            hãng tại Gia Lai, Hà Nội và Sơn La.
-          </p>
+          <p>Honda SH350i – khẳng định đẳng cấp thời thượng.</p>
+          <p>Đại lý Honda chính hãng tại Gia Lai, Hà Nội và Sơn La.</p>
           <div class="soc">
             <a
               href="https://www.facebook.com/hethongheadtrunghung"
@@ -2266,6 +2346,7 @@
         <div>
           <h4>Xe Honda</h4>
           <ul>
+            <li><a href="/sanphamxemay/SH160/">SH160</a></li>
             <li><a href="/sanphamxemay/SH125/">SH125</a></li>
             <li><a href="/sanphamxemay/Shmode/">SH Mode</a></li>
             <li><a href="/sanphamxemay/Vario160/">Vario 160</a></li>
@@ -2279,7 +2360,9 @@
             <li><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a></li>
             <li><a href="/cuahang/">Hệ thống cửa hàng</a></li>
             <li>
-              <a href="https://m.me/hethongheadtrunghung">Facebook Messenger</a>
+              <a href="https://www.facebook.com/hethongheadtrunghung"
+                >Facebook Messenger</a
+              >
             </li>
           </ul>
         </div>
@@ -2304,7 +2387,7 @@
       </div>
     </nav>
     <a
-      href="https://m.me/hethongheadtrunghung"
+      href="https://www.facebook.com/hethongheadtrunghung"
       class="fab m"
       target="_blank"
       rel="noopener"
@@ -2325,25 +2408,25 @@
         const VARIANTS = [
           {
             id: "xam-den-tt",
-            name: "Xám Đen – Phiên Bản Thể Thao",
+            name: "Xám Đen – Thể Thao",
             color: "#5a5a5a",
             dir: "SH350/Phiên bản Thể Thao - XÁM ĐEN",
           },
           {
             id: "xanh-den-tt",
-            name: "Xanh Đen – Phiên Bản Thể Thao",
+            name: "Xanh Đen – Thể Thao",
             color: "#008628",
             dir: "SH350/Phiên bản Thể Thao - XANH ĐEN",
           },
           {
             id: "xam-den-db",
-            name: "Xám Đen – Phiên Bản Đặc Biệt",
+            name: "Xám Đen – Đặc Biệt",
             color: "#313131",
             dir: "SH350/Phiên bản Đặc Biệt - XÁM ĐEN",
           },
           {
             id: "trang-den-cc",
-            name: "Trắng Đen – Phiên Bản Cao Cấp",
+            name: "Trắng Đen – Cao Cấp",
             color: "#ffffff",
             dir: "SH350/Phiên bản Cao Cấp - TRẮNG ĐEN",
           },
@@ -2362,6 +2445,18 @@
           setTimeout(() => $("#pre").classList.add("out"), 900),
         );
         setTimeout(() => $("#heroBg").classList.add("in"), 100);
+        /* Điện thoại: nếu ảnh đứng chưa có/lỗi thì tự dùng lại ảnh ngang */
+        (function () {
+          const hb = $("#heroBg");
+          if (!matchMedia("(max-width:767px)").matches) return;
+          const m = getComputedStyle(hb)
+            .getPropertyValue("--hero-port")
+            .match(/url\(["']?(.*?)["']?\)/);
+          if (!m) return;
+          const im = new Image();
+          im.onerror = () => hb.classList.add("no-portrait");
+          im.src = m[1];
+        })();
         const hdr = $("#hdr"),
           top = $("#top");
         const onScroll = () => {
@@ -2370,6 +2465,19 @@
         };
         addEventListener("scroll", onScroll, { passive: true });
         onScroll();
+
+        /* Chiều cao thanh điều hướng dưới (để nút nổi không bị che) */
+        const mbar = $(".mbar"),
+          setMb = () =>
+            document.documentElement.style.setProperty(
+              "--mbar",
+              (mbar && getComputedStyle(mbar).display !== "none"
+                ? mbar.offsetHeight
+                : 0) + "px",
+            );
+        setMb();
+        addEventListener("resize", setMb);
+        addEventListener("load", setMb);
 
         /* Drawer */
         const dr = $("#drawer"),
