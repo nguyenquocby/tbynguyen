@@ -6,8 +6,8 @@
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
-    <title>Honda Shmode – HEAD Trung Hùng</title>
-    <meta name="description" content="Honda" />
+    <title>Honda Shmode 125 – HEAD Trung Hùng</title>
+    <meta name="description" content="Honda Shmode" />
     <link rel="icon" href="/sanphamxemay/image/banner/Logo_HEAD.png" />
     <link
       rel="stylesheet"
@@ -99,22 +99,28 @@
         opacity: 0;
         visibility: hidden;
       }
-      .pre b {
+      .pre-in {
+        text-align: center;
+      }
+      .pre-name {
+        display: block;
+        color: var(--text);
         font: 700 clamp(2.4rem, 9vw, 4.4rem)/1 "Barlow Condensed";
         letter-spacing: 0.2em;
+        padding-left: 0.2em;
       }
-      .pre b i {
+      .pre-name i {
         color: var(--red);
         font-style: normal;
       }
-      .pre div {
+      .pre-bar {
         width: 180px;
         height: 2px;
         margin: 1.6rem auto 0;
         background: var(--line);
         overflow: hidden;
       }
-      .pre div span {
+      .pre-bar span {
         display: block;
         height: 100%;
         width: 0;
@@ -305,8 +311,9 @@
       .hero-bg {
         position: absolute;
         inset: 0;
-        background: url("/sanphamxemay/Shmode/Shmode/picture/3.jpg")
-          center/cover no-repeat;
+        --hero-land: url("/sanphamxemay/Shmode/Shmode/picture/3.jpg");
+        --hero-port: url("/sanphamxemay/image/phone/SHMODE.jpg");
+        background: var(--hero-land) center/cover no-repeat;
         filter: brightness(0.5) saturate(1.1);
         transform: scale(1.1);
         transition: transform 12s ease;
@@ -435,9 +442,11 @@
       .rm .clip {
         display: -webkit-box;
         -webkit-box-orient: vertical;
+        -webkit-line-clamp: var(--n, 3);
         overflow: hidden;
       }
       .rm.open .clip {
+        -webkit-line-clamp: unset;
         display: block;
       }
       .rm-btn {
@@ -970,7 +979,7 @@
         overflow: hidden;
       }
       .band::before {
-        content: "SHMODE";
+        content: "AB160";
         position: absolute;
         right: -1rem;
         top: 50%;
@@ -1138,7 +1147,7 @@
       }
       .fab {
         position: fixed;
-        right: 1.4rem;
+        right: calc(1.4rem + env(safe-area-inset-right, 0px));
         z-index: 100;
         width: 52px;
         height: 52px;
@@ -1150,12 +1159,12 @@
         transition: 0.3s;
       }
       .fab.m {
-        bottom: 5.2rem;
+        bottom: calc(var(--mbar, 0px) + 5.2rem);
         background: #0084ff;
         animation: pulse 2.6s infinite;
       }
       .fab.t {
-        bottom: 1.4rem;
+        bottom: calc(var(--mbar, 0px) + 1.4rem);
         background: var(--red);
         opacity: 0;
         visibility: hidden;
@@ -1448,7 +1457,7 @@
         transform: translateZ(-110px) translateY(-46%);
       }
       .lg img {
-        width: min(64%, 500px);
+        width: min(68%, 500px);
         height: auto;
         object-fit: contain;
         filter: brightness(0) invert(1);
@@ -1797,13 +1806,86 @@
           position: sticky;
         }
       }
+      /* ===== MẠNG XÃ HỘI: giữ màu logo ===== */
+      footer .soc a {
+        --c: #fff;
+        background: rgba(255, 255, 255, 0.04);
+      }
+      footer .soc a[aria-label="Facebook"] {
+        --c: #1877f2;
+      }
+      footer .soc a[aria-label="YouTube"] {
+        --c: #ff2d2d;
+      }
+      footer .soc a i {
+        color: var(--c);
+        font-size: 1.15rem;
+        transition: color 0.25s;
+      }
+      footer .soc a[aria-label="Instagram"] i {
+        background: linear-gradient(
+          45deg,
+          #feda75,
+          #fa7e1e,
+          #d62976,
+          #962fbf,
+          #4f5bd5
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+      footer .soc a[aria-label="TikTok"] i {
+        text-shadow:
+          1.5px 1.5px 0 #fe2c55,
+          -1.5px -1.5px 0 #25f4ee;
+      }
+      footer .soc a:hover {
+        background: var(--c);
+        border-color: var(--c);
+      }
+      footer .soc a[aria-label="Instagram"]:hover {
+        background: linear-gradient(
+          45deg,
+          #feda75,
+          #fa7e1e,
+          #d62976,
+          #962fbf,
+          #4f5bd5
+        );
+        border-color: transparent;
+      }
+      footer .soc a[aria-label="TikTok"]:hover {
+        background: #000;
+        border-color: #fff;
+      }
+      footer .soc a:hover i {
+        color: #fff;
+        background: none;
+        -webkit-text-fill-color: #fff;
+      }
+
+      /* ===== NỀN VIDEO: mờ ~80% ===== */
+      #vpop {
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+      }
+      /* ===== HERO: ảnh ngang (máy tính, máy tính bảng) / ảnh đứng (điện thoại) ===== */
+      @media (max-width: 767px) {
+        .hero-bg:not(.no-portrait) {
+          background-image: var(--hero-port);
+          background-position: center;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="pre" id="pre">
-      <div style="text-align: center">
-        <b>HONDA <i>SH</i> 350</b>
-        <div><span></span></div>
+      <div class="pre-in">
+        <b class="pre-name">Honda <i>Shmode</i> 125</b>
+        <div class="pre-bar"><span></span></div>
       </div>
     </div>
 
@@ -1849,16 +1931,14 @@
       <div class="hero-in">
         <div class="hero-txt">
           <div class="badge"><i class="fas fa-star"></i>Mới hoàn toàn</div>
-          <h1><small>HONDA</small>SHMODE</h1>
+          <h1><small>Honda</small>Sh mode</h1>
           <div class="rm" style="--n: 4">
             <p class="clip" style="color: var(--muted); font-size: 1.05rem">
-              Sh mode sử dụng cụm động cơ 125cc, eSP+ 4 van vận hành mượt mà,
-              bền bỉ và tiết kiệm nhiên liệu. Đặc biệt, Sh mode hoàn toàn mới
-              được trang bị động cơ đạt tiêu chuẩn khí thải EURO 4, không chỉ
-              tối ưu hiệu suất vận hành và khả năng tiết kiệm nhiên liệu mà còn
-              giảm lên đến 40% lượng khí thải ra môi trường so với phiên bản
-              trước, thể hiện cam kết của Honda Việt Nam trong việc mang đến
-              những sản phẩm thân thiện hơn với môi trường.
+              Thuộc phân khúc xe ga cao cấp và thừa hưởng thiết kế sang trọng
+              nổi tiếng của dòng xe SH, Sh mode luôn được đánh giá cao nhờ kiểu
+              dáng sang trọng, tinh tế tới từng đường nét, động cơ tiên tiến và
+              các tiện nghi cao cấp xứng tầm phong cách sống thời thượng, đẳng
+              cấp.
             </p>
             <button class="rm-btn" type="button">
               <span>Xem thêm</span> <i class="fas fa-chevron-down"></i>
@@ -1879,18 +1959,18 @@
             ><span>Dung tích</span>
           </div>
           <div>
-            <b>8.2<em>kW</em></b
+            <b>8,2<em>kW</em></b
             ><span>Công suất</span>
           </div>
           <div>
-            <b>2.16<em>L</em></b
+            <b>2,16<em>L</em></b
             ><span>Tiêu hao / 100 km</span>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="lb" id="vpop" role="dialog" aria-label="Video SHMODE">
+    <div class="lb" id="vpop" role="dialog" aria-label="Video Honda">
       <button class="x" id="vClose" aria-label="Đóng">
         <i class="fas fa-times"></i>
       </button>
@@ -1985,7 +2065,7 @@
           <div class="ic"><i class="fas fa-cogs"></i></div>
           <h3>Hệ thống truyền động</h3>
           <ul>
-            <li>Loại truyền động<strong>Tự Động, Vô cấp</strong></li>
+            <li>Loại truyền động<strong>Tự động, vô cấp</strong></li>
             <li>Hệ thống khởi động<strong>Bộ khởi động điện</strong></li>
           </ul>
         </article>
@@ -1993,10 +2073,10 @@
           <div class="ic"><i class="fas fa-ruler-combined"></i></div>
           <h3>Kích thước &amp; trọng lượng</h3>
           <ul>
-            <li>Dài × Rộng × Cao<strong>1.950 × 681 × 1.112 mm</strong></li>
+            <li>Dài × Rộng × Cao<strong>1.950 × 668 × 1.110 mm</strong></li>
             <li>Độ cao yên<strong>765 mm</strong></li>
             <li>Khoảng sáng gầm xe<strong>151 mm</strong></li>
-            <li>Khối lượng bản thân<strong>115 kg</strong></li>
+            <li>Khối lượng bản thân<strong>116 kg</strong></li>
           </ul>
         </article>
         <article class="card rv">
@@ -2015,7 +2095,7 @@
             <li>Phuộc sau<strong>Phuộc đơn</strong></li>
             <li>
               Chống bó cứng phanh (ABS)<strong
-                >Có (Phiên bản Thể Thao, Đặc Biệt, Cao Cấp)</strong
+                >Có (phiên bản thể thao, đặc biệt, cao cấp)</strong
               >
             </li>
           </ul>
@@ -2025,7 +2105,7 @@
           <h3>Tiện nghi</h3>
           <ul>
             <li>Chiếu sáng<strong>LED</strong></li>
-            <li>Đồng hồ<strong>TFT hoàn toàn mới</strong></li>
+            <li>Đồng hồ<strong>TFT 4,2 inch</strong></li>
             <li>Chống trộm<strong>Smart Key</strong></li>
             <li>Hộc đựng đồ<strong>Có</strong></li>
           </ul>
@@ -2061,20 +2141,6 @@
             <div>
               <div class="ic"><i class="fas fa-paint-brush"></i></div>
               <div class="rm" style="--n: 2">
-                <strong>Màu sắc đa dạng</strong>
-                <p class="clip">
-                  Phối màu trẻ trung và sang trọng với màu chủ đạo xám xi măng
-                  mới mẻ, xu hướng tương tự phiên bản thể thao trên các mẫu xe
-                  cao cấp khác như SH350i và SH160i.
-                </p>
-                <button class="rm-btn" type="button">
-                  <span>Xem thêm</span> <i class="fas fa-chevron-down"></i>
-                </button>
-              </div>
-            </div>
-            <div>
-              <div class="ic"><i class="fas fa-palette"></i></div>
-              <div class="rm" style="--n: 2">
                 <strong>Thiết kế phía trước mới tinh tế</strong>
                 <p class="clip">
                   Thiết kế phía trước hoàn toàn mới mang ngôn ngữ tối giản đầy
@@ -2091,8 +2157,10 @@
                 </button>
               </div>
             </div>
+          </div>
+          <div class="fh">
             <div>
-              <div class="ic"><i class="fas fa-palette"></i></div>
+              <div class="ic"><i class="fas fa-paint-brush"></i></div>
               <div class="rm" style="--n: 2">
                 <strong>4 phiên bản với màu sắc đa dạng</strong>
                 <p class="clip">
@@ -2104,11 +2172,11 @@
                   - Phiên bản Đặc biệt nổi bật với màu Xanh Đen hoàn toàn mới,
                   kết hợp cùng logo Sh mode vàng kim tinh tế, tôn lên vẻ đẹp
                   thanh lịch và đẳng cấp. Bên cạnh đó, màu Đen và Bạc Đen với
-                  lớp phủ sơn mờ tôn lên vẻ đẹp tinh tế và đầy cuốn hút. - Phiên
-                  bản Cao cấp nổi bật với sắc Đỏ Đen mang đậm hình ảnh sang
-                  trọng, thanh lịch.<br />
-                  - Phiên bản Tiêu chuẩn với 2 màu Đỏ Đen và Trắng Đen mới cuốn
-                  hút, kết hợp cùng các chi tiết phối màu mới thời thượng.
+                  lớp phủ sơn mờ tôn lên vẻ đẹp tinh tế và đầy cuốn hút.<br />
+                  - Phiên bản Cao cấp nổi bật với sắc Đỏ Đen mang đậm hình ảnh
+                  sang trọng, thanh lịch. - Phiên bản Tiêu chuẩn với 2 màu Đỏ
+                  Đen và Trắng Đen mới cuốn hút, kết hợp cùng các chi tiết phối
+                  màu mới thời thượng.
                 </p>
                 <button class="rm-btn" type="button">
                   <span>Xem thêm</span> <i class="fas fa-chevron-down"></i>
@@ -2156,7 +2224,7 @@
               khi được trang bị màn hình TFT 4,2 inch cùng thiết kế tinh tế,
               thời thượng mang đến khả năng hiển thị sắc nét, màu sắc phong phú.
               Đồng thời hiển thị đa dạng thông số, nâng cao trải nghiệm và sự
-              tiện lợi cho chủ sở hữu. >
+              tiện lợi cho chủ sở hữu.
             </p>
             <button class="rm-btn" type="button">
               <span>Xem thêm</span> <i class="fas fa-chevron-down"></i>
@@ -2180,7 +2248,7 @@
               hợp phanh gấp ở tốc độ cao hoặc trên đường trơn ướt, mang lại cảm
               giác an tâm khi vận hành.<br />
               (*) Áp dụng trên Phiên bản thể thao, Phiên bản đặc biệt và Phiên
-              bản cao cấp
+              bản cao cấp.
             </p>
             <button class="rm-btn" type="button">
               <span>Xem thêm</span> <i class="fas fa-chevron-down"></i>
@@ -2198,7 +2266,7 @@
       <div class="sec-head rv">
         <span class="tag">Thư viện ảnh</span>
         <h2>Nhìn đã mắt từ mọi góc</h2>
-        <p>Bộ sưu tập hình ảnh Honda Shmode.</p>
+        <p>Bộ sưu tập hình ảnh Honda Shmode</p>
       </div>
       <div class="gal rv" id="gal"></div>
     </section>
@@ -2230,7 +2298,7 @@
       <div class="fgrid">
         <div class="fb">
           <b>HEAD TRUNG HÙNG</b>
-          <p>Honda Shmode – Biểu Tượng Chuẩn Sang</p>
+          <p>Honda Shmode - Biểu Tượng Chuẩn Sang</p>
           <p>Đại lý Honda chính hãng tại Gia Lai, Hà Nội và Sơn La.</p>
           <div class="soc">
             <a
@@ -2286,9 +2354,10 @@
         <div>
           <h4>Xe Honda</h4>
           <ul>
-            <li><a href="/sanphamxemay/SH350/">SH350</a></li>
+            <li><a href="/sanphamxemay/SH160/">SH160</a></li>
             <li><a href="/sanphamxemay/SH125/">SH125</a></li>
-            <li><a href="/sanphamxemay/Vario160/">Vario 160</a></li>
+            <li><a href="/sanphamxemay/AB125/">Air Blade 125</a></li>
+            <li><a href="/sanphamxemay/Vario125/">Vario 125</a></li>
             <li><a href="/sanphamxemay/WaveRSX/">Wave RSX</a></li>
           </ul>
         </div>
@@ -2299,7 +2368,9 @@
             <li><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a></li>
             <li><a href="/cuahang/">Hệ thống cửa hàng</a></li>
             <li>
-              <a href="https://m.me/hethongheadtrunghung">Facebook Messenger</a>
+              <a href="https://www.facebook.com/hethongheadtrunghung"
+                >Facebook Messenger</a
+              >
             </li>
           </ul>
         </div>
@@ -2324,7 +2395,7 @@
       </div>
     </nav>
     <a
-      href="https://m.me/hethongheadtrunghung"
+      href="https://www.facebook.com/hethongheadtrunghung"
       class="fab m"
       target="_blank"
       rel="noopener"
@@ -2345,54 +2416,54 @@
         const VARIANTS = [
           {
             id: "trang-den-tt",
-            name: "Trắng Đen – Phiên Bản Thể Thao",
+            name: "Trắng Đen – Phiên bản Thể Thao (ABS)",
             color: "#ffffff",
             dir: "Shmode/Phiên bản thể thao - TRẮNG ĐEN",
           },
           {
             id: "xam-den-tt",
-            name: "Xám Đen – Phiên bản thể thao",
-            color: "#8f8f8f",
+            name: "Xám Đen - Phiên bản Thể Thao (ABS)",
+            color: "#a6a6a6",
             dir: "Shmode/Phiên bản thể thao - XÁM ĐEN",
           },
           {
             id: "xanh-den-db",
-            name: "Xanh Đen – Phiên bản đặc biệt",
-            color: "#00590c",
+            name: "Xanh Đen - Phiên bản Đặc Biệt (ABS)",
+            color: "#006117",
             dir: "Shmode/Phiên bản đặc biệt - XANH ĐEN",
           },
           {
             id: "bac-den-db",
-            name: "Bạc Đen – Phiên bản đặc biệt",
-            color: "#575757",
+            name: "Bạc Đen - Phiên bản Đặc Biệt (ABS)",
+            color: "#696969",
             dir: "Shmode/Phiên bản đặc biệt - BẠC ĐEN",
           },
           {
             id: "den-db",
-            name: "Đen – Phiên Bản đặc biệt",
+            name: "Đen - Phiên bản Đặc Biệt (ABS)",
             color: "#000000",
             dir: "Shmode/Phiên bản đặc biệt - ĐEN",
           },
           {
             id: "do-den-cc",
-            name: "Đỏ Đen – Phiên Bản Cao Cấp",
-            color: "#ab0000",
+            name: "Đỏ Đen - Phiên bản Cao Cấp (ABS)",
+            color: "#c70000",
             dir: "Shmode/Phiên bản cao cấp - ĐỎ ĐEN",
           },
           {
             id: "do-tc",
-            name: "Đỏ Đen – Phiên Bản Tiêu Chuẩn",
-            color: "#ab0000",
+            name: "Đỏ - Phiên bản Tiêu Chuẩn (CBS)",
+            color: "#c70000",
             dir: "Shmode/Phiên bản tiêu chuẩn - ĐỎ",
           },
           {
             id: "trang-den-tc",
-            name: "Trắng Đen – Phiên Bản Tiêu Chuẩn",
+            name: "Trắng Đen - Phiên bản Tiêu Chuẩn (CBS)",
             color: "#ffffff",
             dir: "Shmode/Phiên bản tiêu chuẩn - TRẮNG ĐEN",
           },
         ];
-        const PHOTOS = [1, 2, 3, 4, 5, 6].map((n) => `Shmode/picture/${n}.jpg`);
+        const PHOTOS = [1, 2, 3, 4].map((n) => `Shmode/picture/${n}.jpg`);
         const src = (d, n) => encodeURI(`${d}/${n}.png`);
         /* Logo xe máy làm nền phía sau xe: thay đường dẫn bằng file logo PNG/SVG nền trong suốt */
         const LOGO = "/sanphamxemay/image/logobike/SHMODE.png";
@@ -2406,6 +2477,18 @@
           setTimeout(() => $("#pre").classList.add("out"), 900),
         );
         setTimeout(() => $("#heroBg").classList.add("in"), 100);
+        /* Điện thoại: nếu ảnh đứng chưa có/lỗi thì tự dùng lại ảnh ngang */
+        (function () {
+          const hb = $("#heroBg");
+          if (!matchMedia("(max-width:767px)").matches) return;
+          const m = getComputedStyle(hb)
+            .getPropertyValue("--hero-port")
+            .match(/url\(["']?(.*?)["']?\)/);
+          if (!m) return;
+          const im = new Image();
+          im.onerror = () => hb.classList.add("no-portrait");
+          im.src = m[1];
+        })();
         const hdr = $("#hdr"),
           top = $("#top");
         const onScroll = () => {
@@ -2414,6 +2497,19 @@
         };
         addEventListener("scroll", onScroll, { passive: true });
         onScroll();
+
+        /* Chiều cao thanh điều hướng dưới (để nút nổi không bị che) */
+        const mbar = $(".mbar"),
+          setMb = () =>
+            document.documentElement.style.setProperty(
+              "--mbar",
+              (mbar && getComputedStyle(mbar).display !== "none"
+                ? mbar.offsetHeight
+                : 0) + "px",
+            );
+        setMb();
+        addEventListener("resize", setMb);
+        addEventListener("load", setMb);
 
         /* Drawer */
         const dr = $("#drawer"),
