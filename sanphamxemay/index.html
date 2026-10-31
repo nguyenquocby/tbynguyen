@@ -2,59 +2,64 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sản Phẩm Xe Máy Honda – HỆ THỐNG HEAD TRUNG HÙNG</title>
-    <link
-      rel="icon"
-      href="/sanphamxemay/image/banner/Logo_HEAD.png"
-      type="image/x-icon"
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
+    <title>Sản Phẩm Xe Máy Honda – Hệ thống HEAD Trung Hùng</title>
+    <meta
+      name="description"
+      content="Toàn bộ dòng xe máy Honda chính hãng: xe ga, xe số, xe côn tay, phân khối lớn, xe điện tại Hệ thống HEAD Trung Hùng."
+    />
+    <link rel="icon" href="/sanphamxemay/image/banner/Logo_HEAD.png" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-
     <style>
-      /* ============================================================ TOKENS */
       :root {
         --red: #cc0000;
-        --red-dark: #990000;
-        --red-glow: rgba(204, 0, 0, 0.28);
-        --red-soft: rgba(204, 0, 0, 0.07);
+        --red-d: #990000;
+        --glow: rgba(204, 0, 0, 0.28);
+        --soft: rgba(204, 0, 0, 0.08);
         --ink: #0a0a0b;
         --ink2: #1a1a1c;
         --paper: #f5f3f0;
-        --paper2: #eceae6;
-        --white: #ffffff;
-        --border: rgba(10, 10, 11, 0.08);
-        --border2: rgba(10, 10, 11, 0.14);
-        --muted: #7a7672;
+        --paper2: #ece9e4;
+        --white: #fff;
+        --line: rgba(10, 10, 11, 0.09);
+        --line2: rgba(10, 10, 11, 0.16);
+        --muted: #6f6b67;
         --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
         --snap: cubic-bezier(0.16, 1, 0.3, 1);
-        --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --hh: 72px;
+        --pad: clamp(1.4rem, 4vw, 4rem);
+        --max: 1340px;
       }
-
       *,
       *::before,
       *::after {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
       }
       html {
-        font-size: 62.5%;
         scroll-behavior: smooth;
+        scroll-padding-top: calc(var(--hh) + 1rem);
       }
       body {
-        font-family: "Barlow", sans-serif;
+        font-family: "Barlow", system-ui, sans-serif;
         background: var(--paper);
         color: var(--ink);
-        overflow-x: hidden;
         line-height: 1.6;
+        overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
       }
       img {
@@ -62,306 +67,294 @@
         display: block;
       }
       a {
-        text-decoration: none;
         color: inherit;
+        text-decoration: none;
       }
       ul {
         list-style: none;
       }
+      button,
+      input,
+      select {
+        font: inherit;
+        color: inherit;
+      }
       button {
-        border: none;
+        border: 0;
         background: none;
         cursor: pointer;
-        font-family: inherit;
       }
-      input {
-        font-family: inherit;
+      :focus-visible {
+        outline: 2px solid var(--red);
+        outline-offset: 3px;
       }
-      ::-webkit-scrollbar {
-        width: 3px;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: var(--red);
-        border-radius: 2px;
-      }
-
-      /* ============================================================ TOP BAR */
-      .top-bar {
-        background: var(--ink);
-        padding: 0.9rem 0;
-        position: relative;
-        z-index: 600;
-        transition: transform 0.35s var(--ease);
-      }
-      .top-bar.hidden {
-        transform: translateY(-100%);
-      }
-      .tb-inner {
-        max-width: 1340px;
+      .wrap {
+        max-width: var(--max);
         margin: 0 auto;
-        padding: 0 4rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 0.8rem;
+        padding: 0 var(--pad);
       }
-      .tb-links {
-        display: flex;
-        gap: 2.4rem;
-      }
-      .tb-links a {
-        font-size: 1.2rem;
-        font-weight: 500;
-        letter-spacing: 0.06em;
-        color: rgba(255, 255, 255, 0.4);
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        transition: color 0.2s;
-      }
-      .tb-links a:hover {
-        color: rgba(255, 255, 255, 0.85);
-      }
-      .tb-links a i {
-        font-size: 0.95rem;
-        color: var(--red);
-      }
-      .tb-contact {
-        display: flex;
-        gap: 2rem;
-        align-items: center;
-      }
-      .tb-contact a {
-        font-size: 1.2rem;
-        color: rgba(255, 255, 255, 0.4);
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        transition: color 0.2s;
-      }
-      .tb-contact a:hover {
-        color: #fff;
-      }
-      .tb-contact i {
-        color: var(--red);
-        font-size: 0.95rem;
-      }
-      .tb-divider {
-        width: 1px;
-        height: 12px;
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      /* ============================================================ HEADER */
-      .site-header {
-        position: sticky;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 500;
-        background: rgba(245, 243, 240, 0.96);
-        backdrop-filter: blur(24px) saturate(180%);
-        -webkit-backdrop-filter: blur(24px) saturate(180%);
-        border-bottom: 1px solid var(--border);
-        transition: all 0.4s var(--ease);
-      }
-      .site-header.lifted {
-        background: rgba(255, 255, 255, 0.98);
-        box-shadow:
-          0 1px 0 var(--border),
-          0 4px 24px rgba(10, 10, 11, 0.07);
-      }
-      .hdr-inner {
-        max-width: 1340px;
-        margin: 0 auto;
-        padding: 0 4rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 72px;
-        gap: 2rem;
-      }
-
-      /* Logo */
-      .logo-area {
-        display: flex;
-        align-items: center;
-        gap: 1.4rem;
-        flex-shrink: 0;
-      }
-      .logo-img-wrap {
-        width: 44px;
-        height: 44px;
-        flex-shrink: 0;
-        transition: transform 0.4s var(--spring);
-      }
-      .logo-img-wrap:hover {
-        transform: rotate(-5deg) scale(1.08);
-      }
-      .logo-img-wrap img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-      .logo-text-wrap {
-        display: flex;
-        flex-direction: column;
-        line-height: 1;
-      }
-      .logo-main {
+      .cond {
         font-family: "Barlow Condensed", sans-serif;
-        font-weight: 800;
-        font-size: 2rem;
-        letter-spacing: 0.1em;
-        color: var(--ink);
-        text-transform: uppercase;
-        line-height: 1;
       }
-      .logo-main span {
-        color: var(--red);
+      [hidden] {
+        display: none !important;
       }
-      .logo-sub {
-        font-family: "Barlow", sans-serif;
-        font-size: 0.92rem;
-        font-weight: 500;
-        letter-spacing: 0.07em;
-        color: var(--muted);
-        margin-top: 0.3rem;
-        text-transform: uppercase;
+      .skip {
+        position: fixed;
+        left: 1rem;
+        top: -4rem;
+        z-index: 900;
+        background: var(--red);
+        color: #fff;
+        padding: 0.7rem 1.2rem;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: top 0.2s;
+      }
+      .skip:focus {
+        top: 1rem;
       }
 
-      /* Desktop Nav */
-      .main-nav {
-        display: flex;
-        align-items: center;
-        gap: 0;
+      /* TOP BAR */
+      .topbar {
+        background: var(--ink);
+        padding: 0.55rem 0;
+        font-size: 0.82rem;
       }
-      .main-nav > li {
-        position: relative;
-      }
-      .main-nav > li > a {
+      .topbar .wrap {
         display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .topbar div {
+        display: flex;
+        gap: 1.6rem;
+        flex-wrap: wrap;
+      }
+      .topbar a {
+        color: rgba(255, 255, 255, 0.55);
+        display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.55rem;
-        font-weight: 600;
-        letter-spacing: 0.08em;
+        transition: color 0.2s;
+      }
+      .topbar a:hover {
+        color: #fff;
+      }
+      .topbar i {
+        color: var(--red);
+        font-size: 0.8rem;
+      }
+
+      /* HEADER */
+      .hdr {
+        position: sticky;
+        top: 0;
+        z-index: 500;
+        background: rgba(245, 243, 240, 0.94);
+        backdrop-filter: blur(20px) saturate(170%);
+        -webkit-backdrop-filter: blur(20px) saturate(170%);
+        border-bottom: 1px solid var(--line);
+        transition:
+          background 0.3s,
+          box-shadow 0.3s;
+      }
+      .hdr.lift {
+        background: rgba(255, 255, 255, 0.97);
+        box-shadow: 0 6px 28px rgba(10, 10, 11, 0.08);
+      }
+      .hdr-in {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.2rem;
+        min-height: var(--hh);
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        min-width: 0;
+        flex-shrink: 1;
+      }
+      .logo img {
+        height: 44px;
+        width: auto;
+        flex-shrink: 0;
+        transition: transform 0.4s var(--snap);
+      }
+      .logo:hover img {
+        transform: rotate(-5deg) scale(1.07);
+      }
+      .logo-t {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.05;
+        min-width: 0;
+      }
+      .logo-t b {
+        font: 800 clamp(0.95rem, 2.2vw, 1.35rem)/1.15 "Barlow Condensed";
+        letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: var(--ink2);
-        padding: 0 1.6rem;
-        height: 72px;
-        transition: color 0.22s;
+      }
+      .logo-t b i {
+        color: var(--red);
+        font-style: normal;
+      }
+      .logo-t small {
+        font-size: 0.62rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 0.25rem;
+        line-height: 1.3;
+        max-width: 300px;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+      }
+      .nav > li {
         position: relative;
       }
-      .main-nav > li > a::after {
+      .nav > li > a {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        height: var(--hh);
+        padding: 0 1.05rem;
+        font: 600 1.02rem/1 "Barlow Condensed";
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        position: relative;
+        transition: color 0.2s;
+        white-space: nowrap;
+      }
+      .nav > li > a::after {
         content: "";
         position: absolute;
+        left: 1.05rem;
+        right: 1.05rem;
         bottom: 0;
-        left: 1.6rem;
-        right: 1.6rem;
-        height: 2px;
+        height: 3px;
         background: var(--red);
         transform: scaleX(0);
         transform-origin: left;
         transition: transform 0.3s var(--ease);
       }
-      .main-nav > li > a:hover,
-      .main-nav > li > a.active {
+      .nav > li > a:hover,
+      .nav > li > a.active {
         color: var(--red);
       }
-      .main-nav > li > a:hover::after,
-      .main-nav > li > a.active::after {
+      .nav > li > a:hover::after,
+      .nav > li > a.active::after {
         transform: scaleX(1);
       }
-      .main-nav > li > a i {
-        font-size: 0.9rem;
-        opacity: 0.4;
+      .nav .fa-chevron-down {
+        font-size: 0.65rem;
+        opacity: 0.5;
         transition: transform 0.25s;
       }
-      .main-nav > li:hover > a i {
+      .dd:hover .fa-chevron-down,
+      .dd.open .fa-chevron-down {
         transform: rotate(180deg);
       }
-      .dropdown-panel {
+      .dd-panel {
         position: absolute;
-        top: calc(100% + 2px);
+        top: 100%;
         left: 0;
         min-width: 250px;
-        background: var(--white);
-        border: 1px solid var(--border2);
+        background: #fff;
+        border: 1px solid var(--line2);
         border-radius: 14px;
-        padding: 0.8rem 0;
+        padding: 0.6rem 0;
         opacity: 0;
         visibility: hidden;
-        transform: translateY(12px) scale(0.98);
-        transition: all 0.28s var(--ease);
-        z-index: 100;
-        box-shadow:
-          0 16px 48px rgba(10, 10, 11, 0.14),
-          0 4px 12px rgba(10, 10, 11, 0.06);
+        transform: translateY(10px);
+        transition: all 0.25s var(--ease);
+        box-shadow: 0 18px 48px rgba(10, 10, 11, 0.15);
       }
-      .main-nav > li:hover .dropdown-panel {
+      .dd:hover .dd-panel,
+      .dd:focus-within .dd-panel,
+      .dd.open .dd-panel {
         opacity: 1;
         visibility: visible;
-        transform: translateY(0) scale(1);
+        transform: none;
       }
-      .dropdown-panel li a {
+      .dd-panel a {
         display: flex;
         align-items: center;
-        gap: 1.1rem;
-        padding: 1.1rem 2rem;
-        font-family: "Barlow", sans-serif;
-        font-size: 1.35rem;
+        gap: 0.9rem;
+        padding: 0.8rem 1.4rem;
+        font-size: 0.95rem;
         font-weight: 500;
-        color: var(--ink2);
-        border-left: 2.5px solid transparent;
+        border-left: 3px solid transparent;
         transition: all 0.2s;
       }
-      .dropdown-panel li a:hover {
+      .dd-panel a:hover {
         background: var(--paper);
         color: var(--red);
         border-left-color: var(--red);
-        padding-left: 2.6rem;
+        padding-left: 1.8rem;
       }
-      .dropdown-panel li a i {
-        width: 17px;
+      .dd-panel i {
+        width: 18px;
         text-align: center;
         color: var(--red);
-        font-size: 1.15rem;
       }
-
-      .hdr-cta {
-        background: var(--red);
-        color: #fff;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.5rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        padding: 0.9rem 2.4rem;
-        border-radius: 7px;
-        margin-left: 1.6rem;
+      .btn {
         display: inline-flex;
         align-items: center;
-        gap: 0.8rem;
-        transition: all 0.3s;
-        flex-shrink: 0;
+        justify-content: center;
+        gap: 0.7rem;
+        font: 700 1.05rem/1 "Barlow Condensed";
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        padding: 0.95rem 2rem;
+        border-radius: 8px;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s,
+          background 0.3s,
+          border-color 0.3s,
+          color 0.3s;
       }
-      .hdr-cta:hover {
-        background: var(--red-dark);
-        box-shadow: 0 6px 24px var(--red-glow);
+      .btn-red {
+        background: var(--red);
+        color: #fff;
+      }
+      .btn-red:hover {
+        background: var(--red-d);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px var(--glow);
+      }
+      .btn-ghost {
+        color: rgba(255, 255, 255, 0.8);
+        border: 1.5px solid rgba(255, 255, 255, 0.25);
+      }
+      .btn-ghost:hover {
+        border-color: #fff;
+        color: #fff;
         transform: translateY(-2px);
       }
-
+      .hdr .btn {
+        padding: 0.8rem 1.5rem;
+        flex-shrink: 0;
+      }
       .ham {
         display: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
         gap: 5px;
-        padding: 6px;
-        border-radius: 6px;
+        flex-shrink: 0;
         transition: background 0.2s;
-        cursor: pointer;
       }
       .ham:hover {
         background: var(--paper2);
@@ -370,113 +363,103 @@
         width: 22px;
         height: 2px;
         background: var(--ink);
-        transition: all 0.32s var(--ease);
-        border-radius: 1px;
-        display: block;
+        border-radius: 2px;
+        transition:
+          transform 0.3s var(--ease),
+          opacity 0.2s;
       }
       .ham.open span:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
       }
       .ham.open span:nth-child(2) {
         opacity: 0;
-        transform: scaleX(0);
       }
       .ham.open span:nth-child(3) {
         transform: translateY(-7px) rotate(-45deg);
       }
 
-      /* Drawer */
-      .draw-ov {
+      /* DRAWER */
+      .ov {
         position: fixed;
         inset: 0;
+        z-index: 590;
         background: rgba(10, 10, 11, 0.6);
-        z-index: 498;
+        backdrop-filter: blur(4px);
         opacity: 0;
         visibility: hidden;
-        transition: all 0.32s;
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
+        transition: 0.3s;
       }
-      .draw-ov.on {
+      .ov.on {
         opacity: 1;
         visibility: visible;
       }
-      .site-draw {
+      .draw {
         position: fixed;
         top: 0;
-        right: -100%;
-        width: min(360px, 92vw);
-        height: 100%;
-        background: var(--white);
-        z-index: 499;
-        padding: 7.5rem 3rem 3rem;
-        transition: right 0.38s var(--snap);
-        border-left: 1px solid var(--border);
-        overflow-y: auto;
-      }
-      .site-draw.on {
         right: 0;
+        bottom: 0;
+        z-index: 600;
+        width: min(360px, 90vw);
+        background: #fff;
+        padding: 5.5rem 1.8rem calc(2rem + env(safe-area-inset-bottom));
+        transform: translateX(100%);
+        transition: transform 0.38s var(--snap);
+        overflow-y: auto;
+        visibility: hidden;
       }
-
-      /* ✅ FIX: draw-x uses button element properly, pointer-events:all guaranteed */
+      .draw.on {
+        transform: none;
+        visibility: visible;
+      }
       .draw-x {
         position: absolute;
-        top: 2rem;
-        right: 2rem;
-        width: 40px;
-        height: 40px;
-        background: var(--paper2);
+        top: 1rem;
+        right: 1rem;
+        width: 44px;
+        height: 44px;
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        color: var(--muted);
-        transition: all 0.2s;
-        cursor: pointer;
-        border: none;
-        outline: none;
-        z-index: 10; /* ensure above any content */
+        background: var(--paper2);
+        display: grid;
+        place-items: center;
+        transition: 0.2s;
       }
       .draw-x:hover {
         background: var(--red);
         color: #fff;
         transform: rotate(90deg);
       }
-
-      .draw-nav {
-        display: flex;
-        flex-direction: column;
-      }
       .draw-nav > li {
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid var(--line);
       }
-      .draw-nav > li > a {
+      .draw-nav > li > a,
+      .draw-nav > li > button {
         display: flex;
+        width: 100%;
         align-items: center;
         justify-content: space-between;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.8rem;
-        font-weight: 700;
+        padding: 1.1rem 0;
+        font: 700 1.35rem/1 "Barlow Condensed";
         letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: var(--ink);
-        padding: 1.6rem 0;
+        text-align: left;
         transition: color 0.2s;
       }
       .draw-nav > li > a:hover,
-      .draw-nav > li > a.active {
+      .draw-nav > li > a.active,
+      .draw-nav > li > button:hover {
         color: var(--red);
       }
-      .draw-nav > li > a i {
-        font-size: 1rem;
-        opacity: 0.4;
+      .draw-nav button i {
+        font-size: 0.8rem;
+        opacity: 0.5;
         transition: transform 0.25s;
       }
+      .draw-nav button[aria-expanded="true"] i {
+        transform: rotate(180deg);
+      }
       .draw-sub {
-        padding-left: 1.2rem;
         display: none;
-        padding-bottom: 0.6rem;
+        padding: 0 0 0.6rem 1rem;
       }
       .draw-sub.open {
         display: block;
@@ -484,1129 +467,1057 @@
       .draw-sub a {
         display: flex;
         align-items: center;
-        gap: 1rem;
-        font-size: 1.45rem;
+        gap: 0.8rem;
+        padding: 0.75rem 0.3rem;
         color: var(--muted);
-        padding: 0.9rem 0.5rem;
-        transition: color 0.2s;
-        border-radius: 6px;
+        font-size: 1rem;
       }
       .draw-sub a:hover {
         color: var(--red);
       }
-      .draw-sub a i {
+      .draw-sub i {
         color: var(--red);
-        font-size: 1.1rem;
-        width: 16px;
+        width: 18px;
         text-align: center;
       }
-      .draw-cta {
-        background: var(--red);
-        color: #fff;
-        text-align: center;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.6rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        padding: 1.5rem 2rem;
-        border-radius: 10px;
-        margin-top: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        transition: background 0.3s;
-      }
-      .draw-cta:hover {
-        background: var(--red-dark);
+      .draw .btn {
+        width: 100%;
+        margin-top: 1.8rem;
       }
 
-      /* ============================================================ PAGE HERO */
-      .page-hero {
+      /* HERO */
+      .hero {
         background: var(--ink);
+        color: #fff;
         position: relative;
         overflow: hidden;
-        padding: 7.5rem 4rem 7rem;
+        padding: clamp(3.5rem, 8vw, 6.5rem) 0 0;
       }
-      /* Grid lines */
-      .ph-grid {
+      .hero::before {
+        content: "";
         position: absolute;
         inset: 0;
         background-image:
-          linear-gradient(rgba(204, 0, 0, 0.06) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(204, 0, 0, 0.06) 1px, transparent 1px);
+          linear-gradient(rgba(204, 0, 0, 0.07) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(204, 0, 0, 0.07) 1px, transparent 1px);
         background-size: 52px 52px;
-        mask-image: radial-gradient(
+        -webkit-mask-image: radial-gradient(
           ellipse 80% 90% at 30% 50%,
-          black 20%,
+          #000 20%,
           transparent 100%
         );
-        pointer-events: none;
-      }
-      /* Glow & rings */
-      .ph-glow-r {
-        position: absolute;
-        right: -200px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 700px;
-        height: 700px;
-        border-radius: 50%;
-        background: radial-gradient(
-          ellipse,
-          rgba(204, 0, 0, 0.16) 0%,
-          transparent 65%
+        mask-image: radial-gradient(
+          ellipse 80% 90% at 30% 50%,
+          #000 20%,
+          transparent 100%
         );
-        pointer-events: none;
       }
-      .ph-rings {
-        position: absolute;
-        right: -150px;
-        top: 50%;
-        transform: translateY(-50%);
-        pointer-events: none;
-      }
-      .ph-ring {
-        position: absolute;
-        border-radius: 50%;
-        border: 1px solid rgba(204, 0, 0, 0.18);
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        animation: ring-spin 22s linear infinite;
-      }
-      .ph-ring:nth-child(1) {
-        width: 500px;
-        height: 500px;
-      }
-      .ph-ring:nth-child(2) {
-        width: 340px;
-        height: 340px;
-        animation-direction: reverse;
-        animation-duration: 15s;
-      }
-      .ph-ring:nth-child(3) {
-        width: 190px;
-        height: 190px;
-        border-color: rgba(204, 0, 0, 0.38);
-      }
-      .ph-ring:nth-child(4) {
-        width: 80px;
-        height: 80px;
-        background: rgba(204, 0, 0, 0.06);
-      }
-      @keyframes ring-spin {
-        to {
-          transform: translate(-50%, -50%) rotate(360deg);
-        }
-      }
-      /* Red left line */
-      .page-hero::after {
+      .hero::after {
         content: "";
         position: absolute;
-        top: 0;
         left: 0;
+        top: 0;
         bottom: 0;
         width: 5px;
-        background: linear-gradient(
-          to bottom,
-          transparent,
-          var(--red),
-          transparent
-        );
+        background: linear-gradient(transparent, var(--red), transparent);
         opacity: 0.7;
       }
-
-      .ph-inner {
-        max-width: 1340px;
-        margin: 0 auto;
+      .hero-in {
         position: relative;
         z-index: 1;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 6rem;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: clamp(1.5rem, 4vw, 4rem);
         align-items: center;
       }
-      .ph-kicker {
+      .kick {
         display: inline-flex;
         align-items: center;
-        gap: 1.2rem;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.2rem;
-        font-weight: 700;
-        letter-spacing: 0.3em;
+        gap: 0.9rem;
+        font: 700 0.95rem/1 "Barlow Condensed";
+        letter-spacing: 0.28em;
         text-transform: uppercase;
-        color: var(--red);
-        margin-bottom: 2rem;
+        color: #ff4a4a;
+        margin-bottom: 1.4rem;
       }
-      .ph-kicker::before {
+      .kick::before {
         content: "";
         width: 28px;
         height: 2px;
-        background: var(--red);
+        background: currentColor;
       }
-      .ph-h1 {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(6rem, 10vw, 13rem);
-        font-weight: 900;
+      .hero h1 {
+        font: 900 clamp(3.8rem, 10vw, 9.5rem)/1.03 "Barlow Condensed";
         letter-spacing: 0.02em;
-        line-height: 0.87;
-        color: #fff;
-        margin-bottom: 2.5rem;
+        margin-bottom: 1.6rem;
       }
-      .ph-h1 em {
+      .hero h1 em {
+        display: block;
         color: var(--red);
         font-style: normal;
-        display: block;
       }
-      .ph-sub {
-        font-size: 1.65rem;
-        color: rgba(255, 255, 255, 0.42);
-        line-height: 1.68;
-        margin-bottom: 4rem;
-        max-width: 440px;
-        font-weight: 400;
+      .hero p {
+        font-size: clamp(1rem, 1.5vw, 1.15rem);
+        color: rgba(255, 255, 255, 0.55);
+        max-width: 460px;
+        margin-bottom: 2.2rem;
       }
-      .ph-btns {
+      .hero-btns {
         display: flex;
-        align-items: center;
-        gap: 2rem;
         flex-wrap: wrap;
+        gap: 0.9rem 1.4rem;
+        align-items: center;
       }
-      .btn-ph-pri {
-        display: inline-flex;
+      .finder {
+        position: relative;
+        width: 100%;
+        max-width: 470px;
+        justify-self: end;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 1.6rem;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+        animation: up 0.8s 0.5s var(--snap) backwards;
+      }
+      .finder::before {
+        content: "";
+        position: absolute;
+        left: 1.6rem;
+        right: 1.6rem;
+        top: 0;
+        height: 3px;
+        border-radius: 0 0 4px 4px;
+        background: var(--red);
+      }
+      .finder h2 {
+        font: 800 1.5rem/1.25 "Barlow Condensed";
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 0.3rem;
+      }
+      .hero .finder > p {
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.5);
+        margin: 0 0 1.1rem;
+        max-width: none;
+      }
+      .finder a {
+        display: flex;
         align-items: center;
         gap: 1rem;
-        background: var(--red);
-        color: #fff;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.5rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        padding: 1.3rem 3.2rem;
-        border-radius: 7px;
-        transition: all 0.3s;
+        padding: 0.85rem 0.9rem;
+        border-radius: 12px;
+        border: 1px solid transparent;
+        transition:
+          background 0.25s,
+          border-color 0.25s,
+          transform 0.25s;
       }
-      .btn-ph-pri:hover {
-        background: var(--red-dark);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 28px var(--red-glow);
+      .finder a + a {
+        margin-top: 0.25rem;
       }
-      .btn-ph-ghost {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.4rem;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.52);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.8rem;
-        border-bottom: 1.5px solid rgba(255, 255, 255, 0.2);
-        padding-bottom: 0.3rem;
-        transition: all 0.25s;
+      .finder a:hover {
+        background: rgba(204, 0, 0, 0.14);
+        border-color: rgba(204, 0, 0, 0.45);
+        transform: translateX(4px);
       }
-      .btn-ph-ghost:hover {
-        color: #fff;
-        border-bottom-color: #fff;
-        gap: 1.2rem;
-      }
-
-      /* Stats grid */
-      .ph-stats {
+      .finder .ic {
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+        border-radius: 11px;
+        background: rgba(204, 0, 0, 0.2);
+        color: #ff6161;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
+        place-items: center;
+        font-size: 1.05rem;
       }
-      .ph-stat {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 14px;
-        padding: 2.8rem;
-        transition: all 0.35s;
+      .finder b {
+        flex: 1;
+        font: 700 1.15rem/1.15 "Barlow Condensed";
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
       }
-      .ph-stat:hover {
-        background: rgba(255, 255, 255, 0.09);
-        border-color: rgba(204, 0, 0, 0.28);
+      .finder small {
+        color: rgba(255, 255, 255, 0.45);
+        font-size: 0.85rem;
+        white-space: nowrap;
       }
-      .ps-val {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 5.2rem;
-        font-weight: 900;
-        letter-spacing: 0.02em;
+      .finder .go {
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 0.8rem;
+        transition:
+          transform 0.25s,
+          color 0.25s;
+      }
+      .finder a:hover .go {
+        transform: translateX(4px);
         color: #fff;
-        line-height: 1;
-        margin-bottom: 0.5rem;
       }
-      .ps-val em {
+      /* chữ đầu trang xuất hiện lần lượt */
+      .hero-in > div:first-child > * {
+        animation: up 0.8s var(--snap) backwards;
+      }
+      .hero-in > div:first-child > .kick {
+        animation-delay: 0.1s;
+      }
+      .hero-in > div:first-child > h1 {
+        animation-delay: 0.22s;
+      }
+      .hero-in > div:first-child > p {
+        animation-delay: 0.36s;
+      }
+      .hero-in > div:first-child > .hero-btns {
+        animation-delay: 0.5s;
+      }
+      @keyframes up {
+        from {
+          opacity: 0;
+          transform: translateY(26px);
+        }
+      }
+      .stats {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: clamp(2.5rem, 5vw, 4rem);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .stats div {
+        padding: 1.5rem 1rem 1.6rem;
+        border-left: 1px solid rgba(255, 255, 255, 0.08);
+        transition: background 0.3s;
+      }
+      .stats div:first-child {
+        border-left: 0;
+        padding-left: 0;
+      }
+      .stats div:hover {
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .stats b {
+        display: block;
+        font: 900 clamp(2rem, 4.4vw, 3.2rem)/1 "Barlow Condensed";
+      }
+      .stats b em {
         color: var(--red);
         font-style: normal;
       }
-      .ps-label {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.15rem;
-        font-weight: 700;
+      .stats span {
+        font: 700 0.78rem/1 "Barlow Condensed";
         letter-spacing: 0.16em;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.28);
+        color: rgba(255, 255, 255, 0.4);
       }
 
-      /* ============================================================ MARQUEE */
-      .marquee-strip {
+      /* MARQUEE */
+      .mq {
         background: var(--red);
-        padding: 1.3rem 0;
+        padding: 1rem 0;
         overflow: hidden;
       }
-      .mq-track {
+      .mq-t {
         display: flex;
         width: max-content;
-        animation: mq 24s linear infinite;
+        animation: mq 32s linear infinite;
       }
-      .mq-item {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.8rem;
+      .mq:hover .mq-t {
+        animation-play-state: paused;
+      }
+      .mq-t span {
+        font: 600 1.3rem/1 "Barlow Condensed";
         letter-spacing: 0.2em;
-        color: rgba(255, 255, 255, 0.7);
-        padding: 0 2.8rem;
+        color: rgba(255, 255, 255, 0.8);
+        padding: 0 1.6rem;
         display: inline-flex;
         align-items: center;
-        gap: 2.2rem;
+        gap: 2rem;
         white-space: nowrap;
       }
-      .mq-dot {
+      .mq-t span::after {
+        content: "";
         width: 5px;
         height: 5px;
-        background: rgba(255, 255, 255, 0.5);
         border-radius: 50%;
-        display: inline-block;
-        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.55);
       }
       @keyframes mq {
-        from {
-          transform: translateX(0);
-        }
         to {
           transform: translateX(-50%);
         }
       }
 
-      /* ============================================================ PRODUCTS SECTION */
-      .products-section {
-        padding: 8rem 4rem;
+      /* PRODUCTS */
+      .prod {
+        padding: clamp(3.5rem, 8vw, 7rem) 0 clamp(3rem, 6vw, 5rem);
       }
-      .ps-wrap {
-        max-width: 1340px;
-        margin: 0 auto;
-      }
-      .sec-eyebrow {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.15rem;
-        font-weight: 700;
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
-        color: var(--red);
+      .eyebrow {
         display: inline-flex;
         align-items: center;
-        gap: 1rem;
-        margin-bottom: 1.4rem;
+        gap: 0.9rem;
+        font: 700 0.95rem/1 "Barlow Condensed";
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 1rem;
       }
-      .sec-eyebrow::before {
+      .eyebrow::before {
         content: "";
         width: 24px;
         height: 2px;
         background: var(--red);
       }
-      .sec-h2 {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 5.8rem;
-        font-weight: 900;
+      .h2 {
+        font: 900 clamp(2.8rem, 6vw, 5rem)/1.07 "Barlow Condensed";
         letter-spacing: 0.03em;
-        line-height: 0.92;
-        margin-bottom: 1.4rem;
+        margin-bottom: 1rem;
       }
-      .sec-sub {
-        font-size: 1.6rem;
+      .sub {
         color: var(--muted);
-        max-width: 480px;
-        margin-bottom: 5rem;
-        line-height: 1.6;
+        max-width: 520px;
+        font-size: 1.08rem;
+        margin-bottom: 2.2rem;
       }
-
-      /* Action row */
-      .action-row {
+      .pills {
         display: flex;
-        align-items: center;
-        gap: 1.2rem;
-        margin-bottom: 3rem;
         flex-wrap: wrap;
+        gap: 0.7rem;
+        margin-bottom: 2rem;
       }
-      .action-pill {
+      .pill {
         display: inline-flex;
         align-items: center;
-        gap: 0.9rem;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.4rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
+        gap: 0.7rem;
+        padding: 0.8rem 1.4rem;
+        border: 1.5px solid var(--line2);
+        border-radius: 10px;
+        background: #fff;
+        font: 700 1.05rem/1 "Barlow Condensed";
+        letter-spacing: 0.07em;
         text-transform: uppercase;
-        color: var(--ink2);
-        padding: 1rem 2.2rem;
-        border: 1.5px solid var(--border2);
-        border-radius: 8px;
-        background: var(--white);
         transition: all 0.25s;
       }
-      .action-pill i {
-        font-size: 1.3rem;
+      .pill i {
         color: var(--red);
       }
-      .action-pill:hover {
+      .pill:hover {
         border-color: var(--red);
         color: var(--red);
-        box-shadow: 0 4px 16px var(--red-glow);
         transform: translateY(-2px);
+        box-shadow: 0 8px 20px var(--glow);
       }
 
-      /* Search */
-      .search-wrap {
-        position: relative;
-        max-width: 440px;
-        margin-bottom: 3rem;
+      .toolbar {
+        background: rgba(245, 243, 240, 0.95);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        padding: 0.9rem 0;
+        margin-bottom: 1.2rem;
+        z-index: 60;
       }
-      .search-input {
-        width: 100%;
-        padding: 1.4rem 5.5rem 1.4rem 2rem;
-        border: 1.5px solid var(--border2);
-        border-radius: 12px;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.55rem;
-        font-weight: 500;
-        letter-spacing: 0.04em;
-        color: var(--ink);
-        background: var(--white);
-        outline: none;
-        transition: all 0.25s;
+      @media (min-width: 768px) {
+        .toolbar {
+          position: sticky;
+          top: var(--hh);
+        }
       }
-      .search-input::placeholder {
-        color: var(--muted);
-      }
-      .search-input:focus {
-        border-color: var(--red);
-        box-shadow: 0 0 0 4px var(--red-soft);
-      }
-      .search-icon {
-        position: absolute;
-        right: 2rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--muted);
-        font-size: 1.4rem;
-        pointer-events: none;
-      }
-      .search-clear {
-        position: absolute;
-        right: 4.6rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--muted);
-        font-size: 1.3rem;
-        display: none;
-        cursor: pointer;
-        transition: color 0.2s;
-        background: none;
-        border: none;
-        padding: 0.3rem;
-      }
-      .search-clear:hover {
-        color: var(--red);
-      }
-      .search-clear.visible {
-        display: block;
-      }
-
-      /* Filter tabs */
-      .filter-tabs {
+      .tb-row {
         display: flex;
         gap: 0.8rem;
-        flex-wrap: wrap;
-        margin-bottom: 2.4rem;
+        margin-bottom: 0.8rem;
       }
-      .ftab {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.4rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        padding: 0.9rem 2.2rem;
-        border-radius: 8px;
-        border: 1.5px solid var(--border2);
+      .search {
+        position: relative;
+        flex: 1;
+        max-width: 460px;
+      }
+      .search input {
+        width: 100%;
+        height: 52px;
+        padding: 0 5rem 0 3.2rem;
+        border: 1.5px solid var(--line2);
+        border-radius: 12px;
+        background: #fff;
+        font-size: 1.02rem;
+        outline: 0;
+        transition:
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .search input:focus {
+        border-color: var(--red);
+        box-shadow: 0 0 0 4px var(--soft);
+      }
+      .search .fa-search {
+        position: absolute;
+        left: 1.1rem;
+        top: 50%;
+        translate: 0 -50%;
         color: var(--muted);
-        background: var(--white);
+        pointer-events: none;
+      }
+      .search button {
+        position: absolute;
+        right: 0.4rem;
+        top: 50%;
+        translate: 0 -50%;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        color: var(--muted);
+      }
+      .search button:hover {
+        color: var(--red);
+      }
+      .sort {
+        position: relative;
+      }
+      .sort select {
+        appearance: none;
+        -webkit-appearance: none;
+        height: 52px;
+        padding: 0 2.6rem 0 1.1rem;
+        border: 1.5px solid var(--line2);
+        border-radius: 12px;
+        background: #fff;
+        font-weight: 500;
+        cursor: pointer;
+        outline: 0;
+        transition: border-color 0.25s;
+      }
+      .sort select:focus {
+        border-color: var(--red);
+      }
+      .sort::after {
+        content: "\f078";
+        font: 900 0.7rem "Font Awesome 6 Free";
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        translate: 0 -50%;
+        color: var(--muted);
+        pointer-events: none;
+      }
+      .tabs {
+        display: flex;
+        gap: 0.6rem;
+        overflow-x: auto;
+        scrollbar-width: none;
+        padding: 0.2rem 0;
+      }
+      .tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .tab {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.7rem 1.3rem;
+        border-radius: 999px;
+        border: 1.5px solid var(--line2);
+        background: #fff;
+        font: 700 1.02rem/1 "Barlow Condensed";
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--muted);
         transition: all 0.25s;
+      }
+      .tab small {
+        font: 600 0.75rem/1 "Barlow";
+        background: var(--paper2);
+        padding: 0.25rem 0.5rem;
+        border-radius: 99px;
+        color: var(--muted);
+        transition: 0.25s;
+      }
+      .tab:hover {
+        border-color: var(--red);
+        color: var(--red);
+      }
+      .tab.on {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+        box-shadow: 0 8px 20px var(--glow);
+      }
+      .tab.on small {
+        background: rgba(255, 255, 255, 0.22);
+        color: #fff;
+      }
+      .count {
+        font: 600 1.1rem/1 "Barlow Condensed";
+        letter-spacing: 0.05em;
+        color: var(--muted);
+        margin: 0.4rem 0 1.4rem;
+      }
+      .count b {
+        color: var(--red);
+        font-size: 1.5rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+        gap: 1.5rem;
+      }
+      .pc {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+        transition:
+          transform 0.4s var(--ease),
+          box-shadow 0.4s var(--ease),
+          border-color 0.3s;
+        animation: pop 0.5s var(--ease) backwards;
+        animation-delay: var(--d, 0ms);
+      }
+      @keyframes pop {
+        from {
+          opacity: 0;
+          transform: translateY(16px) scale(0.97);
+        }
+      }
+      .pc:hover {
+        transform: perspective(900px) translateY(-8px) rotateX(var(--rx, 0deg))
+          rotateY(var(--ry, 0deg));
+        box-shadow: 0 24px 56px rgba(10, 10, 11, 0.12);
+        border-color: rgba(204, 0, 0, 0.25);
+      }
+      .pc-link {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        border-radius: 18px;
+      }
+      .pc-badge {
+        align-self: flex-start;
+        margin-bottom: 0.8rem;
+        font: 700 0.8rem/1 "Barlow Condensed";
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.45rem 0.9rem;
+        border-radius: 99px;
+      }
+      .b-xe-ga {
+        background: rgba(234, 118, 10, 0.13);
+        color: #b95200;
+      }
+      .b-xe-so {
+        background: rgba(26, 95, 204, 0.11);
+        color: #1255b3;
+      }
+      .b-xe-con-tay {
+        background: rgba(150, 80, 10, 0.12);
+        color: #7d4407;
+      }
+      .b-pkl {
+        background: rgba(80, 40, 160, 0.11);
+        color: #4a2494;
+      }
+      .b-xe-dien {
+        background: rgba(20, 140, 60, 0.12);
+        color: #0b7434;
+      }
+      .pc-img {
         position: relative;
         overflow: hidden;
-        cursor: pointer;
+        aspect-ratio: 4/3;
+        padding: 1.5rem;
+        background: radial-gradient(ellipse at 50% 60%, #fff, var(--paper2));
+        display: grid;
+        place-items: center;
       }
-      .ftab::before {
+      .pc-img::after {
         content: "";
         position: absolute;
         inset: 0;
-        background: var(--red);
-        transform: scaleY(0);
-        transform-origin: bottom;
-        transition: transform 0.3s var(--ease);
-        z-index: 0;
-        border-radius: 7px;
-      }
-      .ftab span {
-        position: relative;
-        z-index: 1;
-      }
-      .ftab:hover,
-      .ftab.active {
-        color: #fff;
-        border-color: var(--red);
-      }
-      .ftab:hover::before,
-      .ftab.active::before {
-        transform: scaleY(1);
-      }
-
-      /* Counter */
-      .products-counter {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.5rem;
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        color: var(--muted);
-        margin-bottom: 3rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      .products-counter strong {
-        color: var(--red);
-        font-size: 2rem;
-      }
-
-      /* Products grid */
-      .products-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-        gap: 2.4rem;
-      }
-
-      /* Product card */
-      .product-card {
-        background: var(--white);
-        border-radius: 18px;
-        border: 1px solid var(--border);
-        overflow: hidden;
-        transition: all 0.4s var(--ease);
-        display: flex;
-        flex-direction: column;
-        position: relative;
-      }
-      .product-card.hidden {
-        display: none;
-      }
-      .product-card.out {
-        opacity: 0;
-        transform: scale(0.94) translateY(10px);
+        background: linear-gradient(
+          105deg,
+          transparent 40%,
+          rgba(255, 255, 255, 0.7) 50%,
+          transparent 60%
+        );
+        transform: translateX(-130%);
         pointer-events: none;
       }
-      .product-card.in {
-        opacity: 1;
-        transform: none;
-        animation: cardIn 0.5s var(--spring) both;
+      .pc:hover .pc-img::after {
+        transition: transform 0.9s var(--ease);
+        transform: translateX(130%);
       }
-      @keyframes cardIn {
-        from {
-          opacity: 0;
-          transform: scale(0.92) translateY(14px);
-        }
-        to {
-          opacity: 1;
-          transform: none;
-        }
-      }
-      .product-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 22px 56px rgba(10, 10, 11, 0.11);
-        border-color: rgba(204, 0, 0, 0.2);
-      }
-
-      /* Badge */
-      .card-badge {
-        position: absolute;
-        top: 1.4rem;
-        left: 1.4rem;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.05rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        padding: 0.4rem 1.2rem;
-        border-radius: 20px;
-        z-index: 2;
-      }
-      .badge-xe-ga {
-        background: rgba(234, 118, 10, 0.12);
-        color: #c45c00;
-      }
-      .badge-xe-so {
-        background: rgba(26, 95, 204, 0.1);
-        color: #1460c4;
-      }
-      .badge-xe-con-tay {
-        background: rgba(150, 80, 10, 0.1);
-        color: #8a4e08;
-      }
-      .badge-pkl {
-        background: rgba(80, 40, 160, 0.1);
-        color: #5028a0;
-      }
-      .badge-xe-dien {
-        background: rgba(20, 140, 60, 0.1);
-        color: #0d8038;
-      }
-
-      /* Card image */
-      .card-image {
-        height: 210px;
-        overflow: hidden;
-        background: var(--paper2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-      }
-      .card-image img {
+      .pc-img img {
         width: 100%;
         height: 100%;
         object-fit: contain;
-        padding: 1.5rem;
-        transition: transform 0.55s var(--ease);
+        transition: transform 0.6s var(--ease);
       }
-      .product-card:hover .card-image img {
-        transform: scale(1.09);
+      .pc:hover .pc-img img {
+        transform: translateY(-4px);
       }
-
-      /* Card body */
-      .card-body {
-        padding: 2rem 2.2rem;
-        flex: 1;
+      .pc-img.noimg::before {
+        content: "\f21c";
+        font: 900 3.4rem "Font Awesome 6 Free";
+        color: var(--line2);
+      }
+      .pc-body {
+        padding: 1.4rem 1.5rem 1.5rem;
         display: flex;
         flex-direction: column;
+        flex: 1;
       }
-      .card-name {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 2.1rem;
-        font-weight: 800;
+      .pc h3 {
+        font: 800 1.65rem/1.18 "Barlow Condensed";
         letter-spacing: 0.03em;
         text-transform: uppercase;
-        color: var(--ink);
-        margin-bottom: 1rem;
-        line-height: 1.15;
+        margin-bottom: 0.8rem;
         transition: color 0.2s;
       }
-      .product-card:hover .card-name {
+      .pc:hover h3 {
         color: var(--red);
       }
-      .card-specs {
+      .pc-specs {
         display: flex;
-        gap: 1.6rem;
         flex-wrap: wrap;
-        margin-bottom: 1.4rem;
-      }
-      .card-spec {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        font-size: 1.3rem;
+        gap: 0.4rem 1.2rem;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
         color: var(--muted);
       }
-      .card-spec i {
+      .pc-specs i {
         color: var(--red);
-        font-size: 1.1rem;
+        margin-right: 0.45rem;
+        font-size: 0.85rem;
       }
-      .card-price {
-        font-size: 1.3rem;
+      .pc-price {
+        margin-top: auto;
+        padding-top: 0.9rem;
+        border-top: 1px solid var(--line);
+        font-size: 0.92rem;
         font-style: italic;
         color: var(--muted);
-        margin-top: auto;
-        padding-top: 1.2rem;
-        border-top: 1px solid var(--border);
-        margin-bottom: 1.6rem;
+        margin-bottom: 1rem;
       }
-      .card-link {
+      .pc-more {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.45rem;
-        font-weight: 700;
+        font: 700 1.08rem/1 "Barlow Condensed";
         letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--red);
-        padding-top: 1rem;
-        border-top: 1px solid var(--border);
-        transition: opacity 0.2s;
       }
-      .card-link:hover {
-        opacity: 0.72;
-      }
-      .card-link i {
+      .pc-more i {
         transition: transform 0.25s;
       }
-      .card-link:hover i {
-        transform: translateX(5px);
+      .pc:hover .pc-more i {
+        transform: translateX(6px);
       }
-
-      /* Empty state */
-      .empty-state {
+      .empty {
         grid-column: 1/-1;
         text-align: center;
-        padding: 8rem 2rem;
-        display: none;
+        padding: 4.5rem 1rem;
       }
-      .empty-state.show {
-        display: block;
-      }
-      .empty-state i {
-        font-size: 5rem;
-        color: var(--paper2);
-        display: block;
-        margin-bottom: 2rem;
-      }
-      .empty-state h3 {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 2.8rem;
-        font-weight: 800;
-        color: var(--muted);
+      .empty i {
+        font-size: 3.2rem;
+        color: var(--line2);
         margin-bottom: 1rem;
       }
-      .empty-state p {
-        font-size: 1.5rem;
+      .empty h3 {
+        font: 800 1.9rem/1.2 "Barlow Condensed";
         color: var(--muted);
+        margin-bottom: 0.4rem;
+      }
+      .empty p {
+        color: var(--muted);
+        margin-bottom: 1.4rem;
       }
 
-      /* ============================================================ CTA BANNER */
-      .cta-banner {
+      /* CTA */
+      .cta {
         background: var(--ink);
-        border-radius: 20px;
-        padding: 5.5rem;
-        margin: 0 4rem 8rem;
-        max-width: 1340px;
+        color: #fff;
+        border-radius: 22px;
+        padding: clamp(2rem, 5vw, 4.2rem);
+        margin-bottom: clamp(3rem, 6vw, 6rem);
         position: relative;
         overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 3rem;
+        gap: 2rem;
+        flex-wrap: wrap;
       }
-      .cta-banner::before {
+      .cta::before {
         content: "HONDA";
         position: absolute;
-        right: -2rem;
-        bottom: -3rem;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 20rem;
-        font-weight: 900;
-        color: rgba(255, 255, 255, 0.025);
-        letter-spacing: 0.04em;
-        line-height: 1;
+        right: -1rem;
+        bottom: -2.5rem;
+        font: 900 clamp(8rem, 20vw, 16rem)/1 "Barlow Condensed";
+        color: rgba(255, 255, 255, 0.03);
         pointer-events: none;
-        white-space: nowrap;
       }
-      .cta-banner::after {
+      .cta::after {
         content: "";
         position: absolute;
-        top: 0;
         left: 0;
         right: 0;
+        top: 0;
         height: 3px;
         background: var(--red);
       }
-      .cta-text h2 {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 5rem;
-        font-weight: 900;
+      .cta > * {
+        position: relative;
+        z-index: 1;
+      }
+      .cta h2 {
+        font: 900 clamp(2.4rem, 5vw, 4rem)/1.07 "Barlow Condensed";
         letter-spacing: 0.03em;
-        color: #fff;
-        line-height: 0.92;
-        margin-bottom: 1rem;
+        margin-bottom: 0.7rem;
       }
-      .cta-text p {
-        font-size: 1.6rem;
-        color: rgba(255, 255, 255, 0.42);
-        line-height: 1.6;
+      .cta p {
+        color: rgba(255, 255, 255, 0.5);
       }
-      .cta-btns {
-        display: flex;
-        gap: 1.4rem;
-        flex-wrap: wrap;
-        flex-shrink: 0;
-      }
-      .cta-btn-pri {
-        background: var(--red);
-        color: #fff;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.5rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        padding: 1.4rem 3.2rem;
-        border-radius: 7px;
-        display: inline-flex;
-        align-items: center;
-        gap: 1rem;
-        transition: all 0.3s;
-      }
-      .cta-btn-pri:hover {
-        background: var(--red-dark);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 28px var(--red-glow);
-      }
-      .cta-btn-sec {
-        background: rgba(255, 255, 255, 0.07);
-        color: #fff;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.5rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        padding: 1.4rem 3.2rem;
-        border-radius: 7px;
-        display: inline-flex;
-        align-items: center;
-        gap: 1rem;
-        transition: all 0.3s;
-      }
-      .cta-btn-sec:hover {
-        background: rgba(255, 255, 255, 0.14);
-      }
-
-      /* ============================================================ FOOTER */
-      footer {
-        background: #060606;
-        padding: 7rem 4rem 3rem;
-        border-top: 3px solid var(--red);
-      }
-      .ft-top {
-        max-width: 1340px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 2.2fr 1fr 1fr 1fr;
-        gap: 5rem;
-        margin-bottom: 5rem;
-        padding-bottom: 5rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      }
-      .ft-logo-row {
-        display: flex;
-        align-items: center;
-        gap: 1.2rem;
-        margin-bottom: 1rem;
-      }
-      .ft-logo-img {
-        width: 40px;
-        height: 40px;
-        object-fit: contain;
-        opacity: 0.9;
-      }
-      .ft-brand-name {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 2.2rem;
-        letter-spacing: 0.1em;
-        color: #fff;
-        font-weight: 800;
-        text-transform: uppercase;
-      }
-      .ft-brand-name span {
-        color: var(--red);
-      }
-      .ft-brand-tag {
-        font-size: 1.35rem;
-        color: rgba(255, 255, 255, 0.22);
-        margin-bottom: 2.8rem;
-        line-height: 1.75;
-        max-width: 290px;
-      }
-      .ft-socials {
+      .cta div:last-child {
         display: flex;
         gap: 0.9rem;
+        flex-wrap: wrap;
       }
-      .ft-soc {
-        width: 40px;
-        height: 40px;
-        border-radius: 9px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+
+      /* FOOTER */
+      footer {
+        background: #060606;
+        color: #fff;
+        border-top: 3px solid var(--red);
+        padding: clamp(3.5rem, 7vw, 5.5rem) 0 2rem;
+      }
+      .ft {
+        display: grid;
+        grid-template-columns: 2.2fr 1fr 1fr 1fr;
+        gap: clamp(2rem, 4vw, 4rem);
+        padding-bottom: 3rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        margin-bottom: 1.6rem;
+      }
+      .ft-brand {
         display: flex;
         align-items: center;
-        justify-content: center;
-        color: rgba(255, 255, 255, 0.38);
-        font-size: 1.4rem;
-        transition: all 0.26s;
+        gap: 0.9rem;
+        margin-bottom: 1rem;
       }
-      .ft-soc:hover {
-        background: var(--red);
-        border-color: var(--red);
+      .ft-brand img {
+        height: 40px;
+        width: auto;
+      }
+      .ft-brand b {
+        font: 800 1.5rem/1 "Barlow Condensed";
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .ft-brand b i {
+        color: var(--red);
+        font-style: normal;
+      }
+      .ft p {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.95rem;
+        max-width: 320px;
+        margin-bottom: 1.6rem;
+      }
+      .soc {
+        display: flex;
+        gap: 0.7rem;
+      }
+      .soc a {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
+        display: grid;
+        place-items: center;
+        font-size: 1.05rem;
+        color: var(--c, #fff);
+        transition: all 0.25s;
+      }
+      .soc a:hover {
+        background: var(--c, #fff);
+        border-color: var(--c, #fff);
         color: #fff;
         transform: translateY(-3px);
       }
-      .ft-col h5 {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.15rem;
-        font-weight: 700;
-        letter-spacing: 0.22em;
-        color: rgba(255, 255, 255, 0.22);
-        text-transform: uppercase;
-        margin-bottom: 2.2rem;
+      .soc a[aria-label="Facebook"] {
+        --c: #1877f2;
       }
-      .ft-col ul li {
+      .soc a[aria-label="YouTube"] {
+        --c: #ff2d2d;
+      }
+      .soc a[aria-label="Instagram"] {
+        --c: #e1306c;
+      }
+      .soc a[aria-label="TikTok"] {
+        --c: #25f4ee;
+      }
+      .soc a[aria-label="TikTok"]:hover {
+        color: #000;
+      }
+      .ft h5 {
+        font: 700 0.85rem/1 "Barlow Condensed";
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.35);
         margin-bottom: 1.3rem;
       }
-      .ft-col a {
-        font-size: 1.4rem;
-        color: rgba(255, 255, 255, 0.38);
+      .ft li {
+        margin-bottom: 0.8rem;
+      }
+      .ft li a {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.98rem;
         transition: color 0.2s;
       }
-      .ft-col a:hover {
+      .ft li a:hover {
         color: #fff;
       }
-      .ft-btm {
-        max-width: 1340px;
-        margin: 0 auto;
+      .ft-b {
         display: flex;
-        align-items: center;
         justify-content: space-between;
+        gap: 1rem;
         flex-wrap: wrap;
-        gap: 1.5rem;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.3);
       }
-      .ft-btm p {
-        font-size: 1.3rem;
-        color: rgba(255, 255, 255, 0.16);
-      }
-      .ft-badge {
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-        font-size: 1.2rem;
-        color: rgba(255, 255, 255, 0.16);
-      }
-      .ft-badge i {
+      .ft-b i {
         color: var(--red);
+        margin-right: 0.4rem;
       }
 
-      /* Mobile nav */
-      .mob-nav {
+      /* MOBILE NAV + FLOATS */
+      .mnav {
         display: none;
         position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(245, 243, 240, 0.97);
-        backdrop-filter: blur(16px);
-        border-top: 1px solid var(--border);
+        inset: auto 0 0;
         z-index: 400;
-        padding: 0.6rem 0;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-top: 1px solid var(--line);
+        padding: 0.35rem 0.3rem calc(0.35rem + env(safe-area-inset-bottom));
       }
-      .mnb {
+      .mnav div {
         display: flex;
         justify-content: space-around;
       }
-      .mnb-a {
+      .mnav a {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.4rem;
+        gap: 0.2rem;
+        min-width: 60px;
+        padding: 0.4rem 0.6rem;
         color: var(--muted);
-        text-decoration: none;
-        padding: 0.5rem 1rem;
+        font-size: 0.68rem;
+        font-weight: 600;
         transition: color 0.2s;
       }
-      .mnb-a.on,
-      .mnb-a:hover {
+      .mnav a i {
+        font-size: 1.2rem;
+      }
+      .mnav a.on,
+      .mnav a:hover {
         color: var(--red);
       }
-      .mnb-a i {
-        font-size: 1.9rem;
-      }
-      .mnb-a span {
-        font-size: 0.92rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-      }
-
-      .messenger-float {
+      .fab {
         position: fixed;
-        bottom: 9.5rem;
-        right: 2.5rem;
+        right: calc(1.2rem + env(safe-area-inset-right, 0px));
+        z-index: 300;
         width: 52px;
         height: 52px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 1.4rem;
+        transition:
+          transform 0.3s,
+          opacity 0.3s,
+          visibility 0.3s;
+      }
+      .fab:hover {
+        transform: scale(1.1);
+      }
+      .fab.m {
+        bottom: calc(var(--mbar, 0px) + 5rem);
         background: #0084ff;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.2rem;
-        color: #fff;
-        z-index: 300;
-        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.32);
-        animation: mpulse 2.5s ease-in-out infinite;
-        transition: transform 0.3s;
+        animation: pulse 2.6s infinite;
       }
-      .messenger-float:hover {
-        transform: scale(1.12);
-      }
-      @keyframes mpulse {
-        0%,
-        100% {
-          box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
-        }
-        50% {
-          box-shadow: 0 4px 38px rgba(0, 132, 255, 0.58);
-        }
-      }
-      .back-top {
-        position: fixed;
-        bottom: 2.5rem;
-        right: 2.5rem;
-        width: 46px;
-        height: 46px;
+      .fab.t {
+        bottom: calc(var(--mbar, 0px) + 1.2rem);
         background: var(--red);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.6rem;
-        color: #fff;
-        z-index: 300;
+        font-size: 1.1rem;
         opacity: 0;
         visibility: hidden;
-        transition: all 0.3s;
       }
-      .back-top.on {
+      .fab.t.on {
         opacity: 1;
         visibility: visible;
       }
-      .back-top:hover {
-        background: var(--red-dark);
-        transform: translateY(-3px);
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.45);
+        }
+        70%,
+        100% {
+          box-shadow: 0 0 0 14px rgba(0, 132, 255, 0);
+        }
       }
 
-      /* Reveal */
       .rv {
         opacity: 0;
         transform: translateY(22px);
         transition:
-          opacity 0.65s var(--ease),
-          transform 0.65s var(--ease);
+          opacity 0.7s var(--ease),
+          transform 0.7s var(--ease);
       }
       .rv.in {
         opacity: 1;
         transform: none;
       }
 
-      /* ============================================================ RESPONSIVE */
-      @media (max-width: 1200px) {
-        .ph-inner {
-          grid-template-columns: 1fr;
+      /* RESPONSIVE */
+      @media (max-width: 1100px) {
+        :root {
+          --hh: 64px;
         }
-        .ph-stats {
-          display: none;
-        }
-        .cta-banner {
-          margin: 0 0 6rem;
-        }
-        .ft-top {
-          grid-template-columns: 1fr 1fr;
-          gap: 4rem;
-        }
-      }
-      @media (max-width: 992px) {
-        .main-nav,
-        .hdr-cta {
+        .nav,
+        .hdr .btn {
           display: none;
         }
         .ham {
           display: flex;
         }
-        .hdr-inner {
-          padding: 0 2.5rem;
+        .ft {
+          grid-template-columns: 1fr 1fr;
         }
-        .tb-inner {
-          padding: 0 2.5rem;
+      }
+      @media (max-width: 992px) {
+        .hero-in {
+          grid-template-columns: 1fr;
+          gap: 2.4rem;
+        }
+        .finder {
+          max-width: none;
+          justify-self: stretch;
+        }
+        .hero p {
+          max-width: 560px;
         }
       }
       @media (max-width: 768px) {
-        .top-bar {
+        .topbar {
           display: none;
         }
-        .page-hero {
-          padding: 5rem 2.5rem 4.5rem;
+        .mnav {
+          display: block;
         }
-        .ph-h1 {
-          font-size: clamp(5rem, 18vw, 8.5rem);
+        body {
+          padding-bottom: 0;
         }
-        .products-section {
-          padding: 6rem 2.5rem;
+        footer {
+          padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
         }
-        .cta-banner {
-          flex-direction: column;
-          padding: 3rem 2.5rem;
-          margin: 0 0 6rem;
+        .stats {
+          grid-template-columns: 1fr 1fr;
         }
-        .cta-btns {
-          flex-direction: column;
+        .stats div:nth-child(3) {
+          border-left: 0;
+          padding-left: 0;
         }
-        .cta-btn-pri,
-        .cta-btn-sec {
-          justify-content: center;
+        .stats div:nth-child(n + 3) {
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .ft-top {
+        .ft {
           grid-template-columns: 1fr;
-          gap: 3.5rem;
         }
-        .ft-btm {
+        .ft-b {
           flex-direction: column;
           text-align: center;
         }
-        footer {
-          padding: 5rem 2.5rem 3rem;
-          padding-bottom: 8rem;
+        .cta {
+          text-align: center;
+          justify-content: center;
         }
-        .mob-nav {
-          display: block;
+        .cta div:last-child {
+          justify-content: center;
+          width: 100%;
         }
-        .sec-h2 {
-          font-size: 4.2rem;
+        .cta .btn {
+          flex: 1;
         }
       }
-      @media (max-width: 480px) {
-        .filter-tabs {
-          gap: 0.6rem;
+      @media (max-width: 560px) {
+        .logo img {
+          height: 38px;
         }
-        .ftab {
-          font-size: 1.25rem;
-          padding: 0.75rem 1.5rem;
+        .logo-t small {
+          display: none;
         }
-        .products-grid {
+        .grid {
           grid-template-columns: 1fr;
+        }
+        .tb-row {
+          flex-direction: column;
+        }
+        .search {
+          max-width: none;
+        }
+        .sort select {
+          width: 100%;
+        }
+        .sort {
+          width: 100%;
+        }
+        .hero-btns .btn {
+          flex: 1;
+        }
+      }
+      @media (hover: none) {
+        .pc:hover {
+          transform: none;
+          box-shadow: none;
+        }
+        .pc:hover .pc-img img {
+          transform: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+        .rv {
+          opacity: 1;
+          transform: none;
         }
       }
     </style>
   </head>
   <body>
-    <!-- TOP BAR -->
-    <div class="top-bar" id="topBar">
-      <div class="tb-inner">
-        <div class="tb-links">
+    <a href="#products" class="skip">Bỏ qua, tới danh sách xe</a>
+
+    <div class="topbar">
+      <div class="wrap">
+        <div>
           <a href="/question/"
             ><i class="fas fa-question-circle"></i>Câu hỏi thường gặp</a
           >
@@ -1614,11 +1525,10 @@
             ><i class="fas fa-location-dot"></i>Hệ thống đại lý</a
           >
         </div>
-        <div class="tb-contact">
+        <div>
           <a href="tel:1900636712"
             ><i class="fas fa-phone-alt"></i>1900 636 712</a
           >
-          <div class="tb-divider"></div>
           <a href="mailto:cr_mt@hungmanh.com.vn"
             ><i class="fas fa-envelope"></i>cr_mt@hungmanh.com.vn</a
           >
@@ -1626,67 +1536,77 @@
       </div>
     </div>
 
-    <!-- HEADER -->
-    <header class="site-header" id="siteHeader">
-      <div class="hdr-inner">
-        <a href="/Trangchu/" class="logo-area">
-          <div class="logo-img-wrap">
-            <img
-              src="/sanphamxemay/image/banner/Logo_HEAD.png"
-              alt="HEAD Trung Hùng"
-            />
-          </div>
-          <div class="logo-text-wrap">
-            <span class="logo-main">HỆ THỐNG HEAD <span>TRUNG HÙNG</span></span>
-            <span class="logo-sub"
-              >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
-            >
-          </div>
+    <header class="hdr" id="hdr">
+      <div class="wrap hdr-in">
+        <a href="/Trangchu/" class="logo">
+          <img
+            src="/sanphamxemay/image/banner/Logo_HEAD.png"
+            alt="HEAD Trung Hùng"
+          />
+          <span class="logo-t"
+            ><b>Hệ thống HEAD <i>Trung Hùng</i></b
+            ><small>Cửa hàng bán xe và dịch vụ do Honda ủy nhiệm</small></span
+          >
         </a>
-        <ul class="main-nav">
-          <li><a href="/Trangchu/">Trang chủ</a></li>
-          <li><a href="/gioithieu/">Giới thiệu</a></li>
-          <li><a href="/sanphamxemay/" class="active">Sản phẩm</a></li>
-          <li class="dropdown">
-            <a href="/dichvu/">Dịch Vụ <i class="fas fa-chevron-down"></i></a>
-            <ul class="dropdown-panel">
-              <li>
-                <a href="/dichvu/sanphamphutung/"
-                  ><i class="fas fa-gear"></i>Phụ Tùng Chính Hãng</a
-                >
-              </li>
-              <li>
-                <a href="/dichvu/baoduong/"
-                  ><i class="fas fa-tools"></i>Bảo Dưỡng & Sửa Chữa</a
-                >
-              </li>
-              <li>
-                <a href="/dichvu/baohanh/"
-                  ><i class="fas fa-shield-alt"></i>Bảo Hành Xe Máy</a
-                >
-              </li>
-              <li>
-                <a href="/dichvu/kiemtradinhky/"
-                  ><i class="fas fa-calendar-alt"></i>Tra Cứu Lịch KTĐK</a
-                >
-              </li>
-            </ul>
-          </li>
-          <li><a href="banggia.html">Bảng Giá</a></li>
-          <li><a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a></li>
-          <li><a href="/lienhe/">Liên hệ</a></li>
-        </ul>
-        <a href="/cuahang/" class="hdr-cta"
+        <nav aria-label="Menu chính">
+          <ul class="nav">
+            <li><a href="/Trangchu/">Trang chủ</a></li>
+            <li><a href="/gioithieu/">Giới thiệu</a></li>
+            <li>
+              <a href="/sanphamxemay/" class="active" aria-current="page"
+                >Sản phẩm</a
+              >
+            </li>
+            <li class="dd">
+              <a href="/dichvu/" id="ddBtn" aria-haspopup="true"
+                >Dịch vụ <i class="fas fa-chevron-down"></i
+              ></a>
+              <ul class="dd-panel">
+                <li>
+                  <a href="/dichvu/sanphamphutung/"
+                    ><i class="fas fa-gear"></i>Phụ tùng chính hãng</a
+                  >
+                </li>
+                <li>
+                  <a href="/dichvu/baoduong/"
+                    ><i class="fas fa-tools"></i>Bảo dưỡng &amp; sửa chữa</a
+                  >
+                </li>
+                <li>
+                  <a href="/dichvu/baohanh/"
+                    ><i class="fas fa-shield-alt"></i>Bảo hành xe máy</a
+                  >
+                </li>
+                <li>
+                  <a href="/dichvu/kiemtradinhky/"
+                    ><i class="fas fa-calendar-alt"></i>Tra cứu lịch KTĐK</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li><a href="banggia.html">Bảng giá</a></li>
+            <li><a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a></li>
+            <li><a href="/lienhe/">Liên hệ</a></li>
+          </ul>
+        </nav>
+        <a href="/cuahang/" class="btn btn-red"
           ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a
         >
-        <div class="ham" id="ham"><span></span><span></span><span></span></div>
+        <button
+          class="ham"
+          id="ham"
+          type="button"
+          aria-label="Mở menu"
+          aria-expanded="false"
+          aria-controls="draw"
+        >
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </header>
 
-    <!-- Drawer -->
-    <div class="draw-ov" id="drawOv"></div>
-    <div class="site-draw" id="siteDraw">
-      <!-- ✅ FIX: button element với id riêng, không dùng thẻ button lồng trong div -->
+    <div class="ov" id="ov"></div>
+    <aside class="draw" id="draw" aria-label="Menu">
       <button class="draw-x" id="drawX" type="button" aria-label="Đóng menu">
         <i class="fas fa-times"></i>
       </button>
@@ -1695,1117 +1615,834 @@
         <li><a href="/gioithieu/">Giới thiệu</a></li>
         <li><a href="/sanphamxemay/" class="active">Sản phẩm</a></li>
         <li>
-          <a href="/dichvu/" class="draw-toggle" data-target="draw-dv"
-            >Dịch Vụ <i class="fas fa-chevron-down"></i
-          ></a>
-          <div class="draw-sub" id="draw-dv">
+          <button
+            type="button"
+            id="dvBtn"
+            aria-expanded="false"
+            aria-controls="dvSub"
+          >
+            Dịch vụ <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="draw-sub" id="dvSub">
             <a href="/dichvu/sanphamphutung/"
-              ><i class="fas fa-gear"></i>Phụ Tùng Chính Hãng</a
+              ><i class="fas fa-gear"></i>Phụ tùng chính hãng</a
             >
             <a href="/dichvu/baoduong/"
-              ><i class="fas fa-tools"></i>Bảo Dưỡng & Sửa Chữa</a
+              ><i class="fas fa-tools"></i>Bảo dưỡng &amp; sửa chữa</a
             >
             <a href="/dichvu/baohanh/"
-              ><i class="fas fa-shield-alt"></i>Bảo Hành</a
+              ><i class="fas fa-shield-alt"></i>Bảo hành</a
+            >
+            <a href="/dichvu/kiemtradinhky/"
+              ><i class="fas fa-calendar-alt"></i>Tra cứu lịch KTĐK</a
             >
           </div>
         </li>
-        <li><a href="banggia.html">Bảng Giá</a></li>
+        <li><a href="banggia.html">Bảng giá</a></li>
         <li><a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a></li>
         <li><a href="/lienhe/">Liên hệ</a></li>
       </ul>
-      <a href="/cuahang/" class="draw-cta"
+      <a href="/cuahang/" class="btn btn-red"
         ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng gần nhất</a
       >
-    </div>
+    </aside>
 
-    <!-- PAGE HERO -->
-    <section class="page-hero" id="home">
-      <div class="ph-grid"></div>
-      <div class="ph-glow-r"></div>
-      <div class="ph-rings">
-        <div class="ph-ring"></div>
-        <div class="ph-ring"></div>
-        <div class="ph-ring"></div>
-        <div class="ph-ring"></div>
-      </div>
-      <div class="ph-inner">
-        <div class="ph-left">
-          <div class="ph-kicker">Honda Chính Hãng 2026</div>
-          <h1 class="ph-h1">DÒNG XE<br />HONDA<br /><em>2026</em></h1>
-          <p class="ph-sub">
-            Khám phá toàn bộ dòng xe máy Honda chính hãng — chọn chiếc xe phù
-            hợp với phong cách của bạn.
+    <main>
+      <section class="hero" id="home">
+        <div class="wrap">
+          <div class="hero-in">
+            <div>
+              <div class="kick">Honda chính hãng 2026</div>
+              <h1>Dòng xe<br />Honda<em>2026</em></h1>
+              <p>
+                Khám phá toàn bộ dòng xe máy Honda chính hãng – chọn chiếc xe
+                phù hợp với phong cách của bạn.
+              </p>
+              <div class="hero-btns">
+                <a href="#products" class="btn btn-red"
+                  ><i class="fas fa-motorcycle"></i> Xem tất cả xe</a
+                >
+                <a href="/cuahang/" class="btn btn-ghost"
+                  >Tìm cửa hàng <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+            <div class="finder" id="finder">
+              <h2>Chọn nhanh theo loại xe</h2>
+              <p>Bấm vào loại xe để xem ngay danh sách phù hợp.</p>
+            </div>
+          </div>
+          <div class="stats">
+            <div>
+              <b><span id="nModels" style="all: unset">20</span><em>+</em></b
+              ><span>Dòng xe</span>
+            </div>
+            <div>
+              <b><span data-n="3" style="all: unset">3</span></b
+              ><span>Tỉnh thành</span>
+            </div>
+            <div>
+              <b><span data-n="50" style="all: unset">50</span>K<em>+</em></b
+              ><span>Khách hàng</span>
+            </div>
+            <div>
+              <b><span data-n="100" style="all: unset">100</span><em>%</em></b
+              ><span>Chính hãng</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="mq" aria-hidden="true"><div class="mq-t" id="mq"></div></div>
+
+      <section class="prod" id="products">
+        <div class="wrap">
+          <div class="eyebrow rv">Danh mục sản phẩm</div>
+          <h2 class="h2 rv">Toàn bộ<br />dòng xe</h2>
+          <p class="sub rv">
+            Lọc theo loại xe hoặc tìm nhanh theo tên để chọn chiếc xe phù hợp
+            nhất.
           </p>
-          <div class="ph-btns">
-            <a href="#products" class="btn-ph-pri"
-              ><i class="fas fa-motorcycle"></i> Xem tất cả xe</a
+
+          <div class="pills rv">
+            <a href="banggia.html" class="pill"
+              ><i class="fas fa-file-invoice-dollar"></i> Bảng giá</a
             >
-            <a href="/cuahang/" class="btn-ph-ghost"
-              >Tìm cửa hàng <i class="fas fa-arrow-right"></i
-            ></a>
+            <a href="tragop.html" class="pill"
+              ><i class="fas fa-hand-holding-usd"></i> Hỗ trợ trả góp</a
+            >
+            <a href="/cuahang/" class="pill"
+              ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a
+            >
           </div>
+
+          <div class="toolbar">
+            <div class="tb-row">
+              <div class="search">
+                <i class="fas fa-search"></i>
+                <input
+                  type="search"
+                  id="q"
+                  placeholder="Tìm xe: SH, Wave, Vario…"
+                  autocomplete="off"
+                  aria-label="Tìm kiếm sản phẩm"
+                />
+                <button
+                  type="button"
+                  id="qClear"
+                  aria-label="Xóa tìm kiếm"
+                  hidden
+                >
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+              <label class="sort"
+                ><span hidden>Sắp xếp</span>
+                <select id="sort" aria-label="Sắp xếp">
+                  <option value="def">Sắp xếp: Mặc định</option>
+                  <option value="name">Tên A → Z</option>
+                  <option value="asc">Dung tích thấp → cao</option>
+                  <option value="desc">Dung tích cao → thấp</option>
+                </select>
+              </label>
+            </div>
+            <div
+              class="tabs"
+              id="tabs"
+              role="group"
+              aria-label="Lọc theo loại xe"
+            ></div>
+          </div>
+
+          <div class="count" aria-live="polite">
+            Hiển thị <b id="vis">0</b> / <b id="tot">0</b> sản phẩm
+          </div>
+          <div class="grid" id="grid"></div>
+          <noscript
+            ><p class="sub">
+              Vui lòng bật JavaScript để xem danh sách xe, hoặc xem
+              <a href="banggia.html" style="color: var(--red); font-weight: 600"
+                >bảng giá</a
+              >.
+            </p></noscript
+          >
         </div>
-        <div class="ph-stats">
-          <div class="ph-stat">
-            <div class="ps-val">20<em>+</em></div>
-            <div class="ps-label">Dòng xe</div>
+      </section>
+
+      <div class="wrap">
+        <div class="cta rv">
+          <div>
+            <h2>Đến gặp chúng tôi<br />hôm nay</h2>
+            <p>Lái thử miễn phí · Tư vấn tận tâm · Bảo hành chính hãng</p>
           </div>
-          <div class="ph-stat">
-            <div class="ps-val">3</div>
-            <div class="ps-label">Tỉnh thành</div>
-          </div>
-          <div class="ph-stat">
-            <div class="ps-val">50K<em>+</em></div>
-            <div class="ps-label">Khách hàng</div>
-          </div>
-          <div class="ph-stat">
-            <div class="ps-val">100<em>%</em></div>
-            <div class="ps-label">Chính hãng</div>
+          <div>
+            <a href="/cuahang/" class="btn btn-red"
+              ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a
+            >
+            <a href="tel:1900636712" class="btn btn-ghost"
+              ><i class="fas fa-phone-alt"></i> 1900 636 712</a
+            >
           </div>
         </div>
       </div>
-    </section>
+    </main>
 
-    <!-- MARQUEE -->
-    <div class="marquee-strip">
-      <div class="mq-track">
-        <div class="mq-item">XE GA <span class="mq-dot"></span></div>
-        <div class="mq-item">XE SỐ <span class="mq-dot"></span></div>
-        <div class="mq-item">XE CÔN TAY <span class="mq-dot"></span></div>
-        <div class="mq-item">PHÂN KHỐI LỚN <span class="mq-dot"></span></div>
-        <div class="mq-item">XE ĐIỆN <span class="mq-dot"></span></div>
-        <div class="mq-item">HONDA CHÍNH HÃNG <span class="mq-dot"></span></div>
-        <div class="mq-item">
-          BẢO HÀNH CHÍNH THỨC <span class="mq-dot"></span>
-        </div>
-        <div class="mq-item">XE GA <span class="mq-dot"></span></div>
-        <div class="mq-item">XE SỐ <span class="mq-dot"></span></div>
-        <div class="mq-item">XE CÔN TAY <span class="mq-dot"></span></div>
-        <div class="mq-item">PHÂN KHỐI LỚN <span class="mq-dot"></span></div>
-        <div class="mq-item">XE ĐIỆN <span class="mq-dot"></span></div>
-        <div class="mq-item">HONDA CHÍNH HÃNG <span class="mq-dot"></span></div>
-        <div class="mq-item">
-          BẢO HÀNH CHÍNH THỨC <span class="mq-dot"></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- PRODUCTS -->
-    <section id="products" class="products-section">
-      <div class="ps-wrap">
-        <div class="sec-eyebrow rv">Danh mục sản phẩm</div>
-        <h2 class="sec-h2 rv">TOÀN BỘ<br />DÒNG XE</h2>
-        <p class="sec-sub rv">
-          Khám phá toàn bộ dòng xe máy Honda chính hãng — chọn chiếc xe phù hợp
-          với phong cách của bạn.
-        </p>
-
-        <div class="action-row rv">
-          <a href="banggia.html" class="action-pill"
-            ><i class="fas fa-file-invoice-dollar"></i> Bảng Giá</a
-          >
-          <a href="tragop.html" class="action-pill"
-            ><i class="fas fa-hand-holding-usd"></i> Hỗ Trợ Trả Góp</a
-          >
-          <a href="/cuahang/" class="action-pill"
-            ><i class="fas fa-map-marker-alt"></i> Tìm Cửa Hàng</a
-          >
-        </div>
-
-        <div class="search-wrap rv">
-          <input
-            type="text"
-            class="search-input"
-            id="productSearch"
-            placeholder="Tìm kiếm sản phẩm..."
-          />
-          <button class="search-clear" id="searchClear" type="button">
-            <i class="fas fa-times"></i>
-          </button>
-          <div class="search-icon"><i class="fas fa-search"></i></div>
-        </div>
-
-        <div class="filter-tabs rv" id="filterTabs">
-          <button class="ftab active" data-cat="all" type="button">
-            <span>Tất cả</span>
-          </button>
-          <button class="ftab" data-cat="xe-ga" type="button">
-            <span>Xe Ga</span>
-          </button>
-          <button class="ftab" data-cat="xe-so" type="button">
-            <span>Xe Số</span>
-          </button>
-          <button class="ftab" data-cat="xe-con-tay" type="button">
-            <span>Xe Côn Tay</span>
-          </button>
-          <button class="ftab" data-cat="pkl" type="button">
-            <span>Phân Khối Lớn</span>
-          </button>
-          <button class="ftab" data-cat="xe-dien" type="button">
-            <span>Xe Điện</span>
-          </button>
-        </div>
-
-        <div class="products-counter rv">
-          Hiển thị <strong id="visibleCount">0</strong> /
-          <strong id="totalCount">0</strong> sản phẩm
-        </div>
-
-        <div class="products-grid" id="productsGrid">
-          <!-- XE GA -->
-          <div class="product-card" data-cat="xe-ga" data-name="honda sh350i">
-            <div class="card-badge badge-xe-ga">Xe Ga</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/SH350/SH350/Phiên bản Thể Thao - XANH ĐEN/6.png"
-                alt="Honda SH350i"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda SH350i</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>330cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>3.52L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/SH350/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div class="product-card" data-cat="xe-ga" data-name="honda sh160">
-            <div class="card-badge badge-xe-ga">Xe Ga</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/SH160/SH160/Phiên bản thể thao - ĐEN AURA BLACK/6.png"
-                alt="Honda SH160"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda SH160</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>160cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>2.34L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/SH160/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div class="product-card" data-cat="xe-ga" data-name="honda sh125">
-            <div class="card-badge badge-xe-ga">Xe Ga</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/SH125/SH125/Phiên bản đặc biệt - XÁM ĐEN/6.png"
-                alt="Honda SH125"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda SH125</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>125cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>2.33L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/SH125/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div class="product-card" data-cat="xe-ga" data-name="honda shmode">
-            <div class="card-badge badge-xe-ga">Xe Ga</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/Shmode/Shmode/Phiên bản đặc biệt - BẠC ĐEN/6.png"
-                alt="Honda SHmode"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda SHmode</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>125cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>2.52L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/Shmode/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div
-            class="product-card"
-            data-cat="xe-ga"
-            data-name="honda air blade 160"
-          >
-            <div class="card-badge badge-xe-ga">Xe Ga</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/AB160/AB160/AB160 - phiên bản thể thao - TRẮNG ĐỎ ĐEN/6.png"
-                alt="Honda Air Blade 160"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda Air Blade 160</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>160cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>2.23L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/AB160/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div
-            class="product-card"
-            data-cat="xe-ga"
-            data-name="honda air blade 125 marvel spider-man"
-          >
-            <div class="card-badge badge-xe-ga">Xe Ga</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/AB125/AB125/AB125 - phiên bản Marvel Spider-Man/6.png"
-                alt="Honda Air Blade 125"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda Air Blade 125</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>125cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>2.12L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/AB125/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div
-            class="product-card"
-            data-cat="xe-ga"
-            data-name="honda vario 160"
-          >
-            <div class="card-badge badge-xe-ga">Xe Ga</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/Vario160/VARIO160/Phiên bản cao cấp - XANH ĐEN BẠC/6.png"
-                alt="Honda Vario 160"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda Vario 160</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>160cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>2.20L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/Vario160/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div
-            class="product-card"
-            data-cat="xe-ga"
-            data-name="honda vario 125"
-          >
-            <div class="card-badge badge-xe-ga">Xe Ga</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/Vario125/VARIO125/Street Vành Cam/6.png"
-                alt="Honda Vario 125"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda Vario 125</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>125cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>2.16L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/Vario125/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div
-            class="product-card"
-            data-cat="xe-ga"
-            data-name="honda vision 2026"
-          >
-            <div class="card-badge badge-xe-ga">Xe Ga</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/Vision2026/Vision2026/Phiên bản thể thao - BẠC ĐEN/6.png"
-                alt="Honda Vision 2026"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda Vision 2026</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>110cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>1.85L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/Vision2026/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div class="product-card" data-cat="xe-ga" data-name="honda lead abs">
-            <div class="card-badge badge-xe-ga">Xe Ga</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/LEAD/LEAD/Phiên bản Đặc Biệt - BẠC ĐEN/6.png"
-                alt="Honda LEAD ABS"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda LEAD ABS</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>125cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>2.1L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/LEAD/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <!-- XE SỐ -->
-          <div
-            class="product-card"
-            data-cat="xe-so"
-            data-name="honda super cub c125"
-          >
-            <div class="card-badge badge-xe-so">Xe Số</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/CUB/Super Cub/Phiên bản tiêu chuẩn - BẠC TRẮNG/1.png"
-                alt="Honda Super Cub C125"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda Super Cub C125</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>125cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>1.52L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/CUB/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div class="product-card" data-cat="xe-so" data-name="honda wave rsx">
-            <div class="card-badge badge-xe-so">Xe Số</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/WaveRSX/Wave RSX/Phiên bản thể thao - ĐỎ ĐEN/6.png"
-                alt="Honda Wave RSX"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda Wave RSX</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>110cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>1.56L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/WaveRSX/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div
-            class="product-card"
-            data-cat="xe-so"
-            data-name="honda wave alpha"
-          >
-            <div class="card-badge badge-xe-so">Xe Số</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/WaveAlpha/Wave Alpha/Phiên bản tiêu chuẩn - TRẮNG/6.png"
-                alt="Honda Wave Alpha"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda Wave Alpha</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>110cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>1.72L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/WaveAlpha/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div
-            class="product-card"
-            data-cat="xe-so"
-            data-name="honda wave alpha cổ điển retro"
-          >
-            <div class="card-badge badge-xe-so">Xe Số</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/WaveAlpha Retro/Wave Alpha - retro/Phiên bản cổ điển - XÁM TRẮNG/6.png"
-                alt="Honda Wave Alpha Cổ Điển"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda Wave Alpha Cổ Điển</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>110cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>1.72L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/WaveAlpha Retro/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div class="product-card" data-cat="xe-so" data-name="honda future">
-            <div class="card-badge badge-xe-so">Xe Số</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/Future/Future/Phiên bản đặc biệt - BẠC ĐEN XÁM/6.png"
-                alt="Honda Future"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda Future 125</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>125cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>1.47L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/Future/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div class="product-card" data-cat="xe-so" data-name="honda blade">
-            <div class="card-badge badge-xe-so">Xe Số</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/BLADE/Blade/Phiên bản thể thao - ĐEN ĐỎ/6.png"
-                alt="Honda BLADE"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda BLADE</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>110cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>1.85L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/BLADE/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <!-- XE CÔN TAY -->
-          <div
-            class="product-card"
-            data-cat="xe-con-tay"
-            data-name="honda winner r"
-          >
-            <div class="card-badge badge-xe-con-tay">Xe Côn Tay</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/WinnerR/Winner R/Phiên bản Đặc Biệt - Xanh Đen/6.png"
-                alt="Honda Winner R"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda Winner R</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>150cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>2.59L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/WinnerR/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div
-            class="product-card"
-            data-cat="xe-con-tay"
-            data-name="honda cbr150r cb150r"
-          >
-            <div class="card-badge badge-xe-con-tay">Xe Côn Tay</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/CBR150R/CBR150R/6.png"
-                alt="Honda CBR150R"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda CBR150R</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>150cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>2.91L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/CBR150R/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <!-- PKL -->
-          <div
-            class="product-card"
-            data-cat="pkl"
-            data-name="honda GB350S phân khối lớn"
-          >
-            <div class="card-badge badge-pkl">Phân Khối Lớn</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/GB350S/GB350S/BẠC ĐEN/6.png"
-                alt="Honda CB350 H'ness"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda GB350S</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>350cc
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-gas-pump"></i>2.54L/100km
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/GB350S/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <!-- XE ĐIỆN -->
-          <div
-            class="product-card"
-            data-cat="xe-dien"
-            data-name="honda icon e điện xanh"
-          >
-            <div class="card-badge badge-xe-dien">Xe Điện</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/ICONe/ICONe/Phiên bản cao cấp - ĐỎ XÁM/6.png"
-                alt="Honda ICON e"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda ICON e:</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-battery-full"></i>Pin Lithium
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-road"></i>71km/lần sạc
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/ICONe/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div
-            class="product-card"
-            data-cat="xe-dien"
-            data-name="honda cuv e điện xe máy"
-          >
-            <div class="card-badge badge-xe-dien">Xe Điện</div>
-            <div class="card-image">
-              <img
-                src="/sanphamxemay/CUVe/CUV e/Trắng ngọc trai/6.png"
-                alt="Honda CUV e"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-name">Honda CUV e:</div>
-              <div class="card-specs">
-                <div class="card-spec">
-                  <i class="fas fa-battery-full"></i>Pin Lithium
-                </div>
-                <div class="card-spec">
-                  <i class="fas fa-tachometer-alt"></i>Tối đa 80km/h
-                </div>
-              </div>
-              <div class="card-price">Giá bán: liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/CUVe/" class="card-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <!-- Empty State -->
-          <div class="empty-state" id="emptyState">
-            <i class="fas fa-search"></i>
-            <h3>Không tìm thấy sản phẩm</h3>
-            <p>Thử tìm kiếm với từ khóa khác hoặc chọn danh mục khác.</p>
-          </div>
-        </div>
-        <!-- /products-grid -->
-      </div>
-    </section>
-
-    <!-- CTA BANNER -->
-    <div class="cta-banner rv" style="margin-left: auto; margin-right: auto">
-      <div class="cta-text">
-        <h2>ĐẾN GẶP CHÚNG TÔI<br />HÔM NAY</h2>
-        <p>Lái thử miễn phí · Tư vấn tận tâm · Bảo hành chính hãng</p>
-      </div>
-      <div class="cta-btns">
-        <a href="/cuahang/" class="cta-btn-pri"
-          ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a
-        >
-        <a href="tel:1900636712" class="cta-btn-sec"
-          ><i class="fas fa-phone-alt"></i> 1900 636 712</a
-        >
-      </div>
-    </div>
-
-    <!-- FOOTER -->
     <footer>
-      <div class="ft-top">
-        <div>
-          <div class="ft-logo-row">
-            <img
-              src="/sanphamxemay/image/banner/Logo_HEAD.png"
-              alt="HEAD"
-              class="ft-logo-img"
-            />
-            <div class="ft-brand-name">
-              HỆ THỐNG HEAD <span>TRUNG HÙNG</span>
+      <div class="wrap">
+        <div class="ft">
+          <div>
+            <div class="ft-brand">
+              <img
+                src="/sanphamxemay/image/banner/Logo_HEAD.png"
+                alt="HEAD"
+              /><b>Hệ thống HEAD <i>Trung Hùng</i></b>
+            </div>
+            <p>
+              Công ty TNHH Thương mại và Dịch vụ Hùng Mạnh – đại lý Honda chính
+              hãng tại Gia Lai, Hà Nội và Sơn La.
+            </p>
+            <div class="soc">
+              <a
+                href="https://www.facebook.com/hethongheadtrunghung"
+                target="_blank"
+                rel="noopener"
+                aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="https://www.youtube.com/@HethongHEADTrungHung"
+                target="_blank"
+                rel="noopener"
+                aria-label="YouTube"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/hethongheadtrunghung"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.tiktok.com/@hethongheadtrunghung"
+                target="_blank"
+                rel="noopener"
+                aria-label="TikTok"
+                ><i class="fab fa-tiktok"></i
+              ></a>
             </div>
           </div>
-          <p class="ft-brand-tag">
-            Công Ty TNHH Thương Mại Và Dịch Vụ Hùng Mạnh — đại lý Honda chính
-            hãng tại Gia Lai, Hà Nội và Sơn La.
-          </p>
-          <div class="ft-socials">
-            <a
-              href="https://www.facebook.com/hethongheadtrunghung"
-              class="ft-soc"
-              target="_blank"
-              rel="noopener"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
-            <a
-              href="https://www.youtube.com/@HethongHEADTrungHung"
-              class="ft-soc"
-              target="_blank"
-              rel="noopener"
-              ><i class="fab fa-youtube"></i
-            ></a>
-            <a
-              href="https://www.instagram.com/hethongheadtrunghung"
-              class="ft-soc"
-              target="_blank"
-              rel="noopener"
-              ><i class="fab fa-instagram"></i
-            ></a>
-            <a
-              href="https://www.tiktok.com/@hethongheadtrunghung"
-              class="ft-soc"
-              target="_blank"
-              rel="noopener"
-              ><i class="fab fa-tiktok"></i
-            ></a>
+          <div>
+            <h5>Điều hướng</h5>
+            <ul>
+              <li><a href="/Trangchu/">Trang chủ</a></li>
+              <li><a href="/sanphamxemay/">Sản phẩm</a></li>
+              <li><a href="banggia.html">Bảng giá</a></li>
+              <li><a href="tragop.html">Trả góp</a></li>
+              <li><a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a></li>
+              <li><a href="/lienhe/">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Dòng xe</h5>
+            <ul>
+              <li><a href="?category=xe-ga#products">Xe ga</a></li>
+              <li><a href="?category=xe-so#products">Xe số</a></li>
+              <li><a href="?category=xe-con-tay#products">Xe côn tay</a></li>
+              <li><a href="?category=pkl#products">Phân khối lớn</a></li>
+              <li><a href="?category=xe-dien#products">Xe điện</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Liên hệ</h5>
+            <ul>
+              <li><a href="tel:1900636712">1900 636 712</a></li>
+              <li>
+                <a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a>
+              </li>
+              <li><a href="/cuahang/">Hệ thống cửa hàng</a></li>
+              <li>
+                <a
+                  href="https://m.me/hethongheadtrunghung"
+                  target="_blank"
+                  rel="noopener"
+                  >Facebook Messenger</a
+                >
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="ft-col">
-          <h5>Điều hướng</h5>
-          <ul>
-            <li><a href="/Trangchu/">Trang chủ</a></li>
-            <li><a href="/sanphamxemay/">Sản phẩm</a></li>
-            <li><a href="/banggia/">Bảng giá</a></li>
-            <li><a href="/tragop/">Trả góp</a></li>
-            <li><a href="/tintuc/tintuckhuyenmai/">Khuyến mãi</a></li>
-            <li><a href="/lienhe/">Liên hệ</a></li>
-          </ul>
-        </div>
-        <div class="ft-col">
-          <h5>Dòng xe</h5>
-          <ul>
-            <li><a href="/sanphamxemay/?category=xe-ga">Xe Ga</a></li>
-            <li><a href="/sanphamxemay/?category=xe-so">Xe Số</a></li>
-            <li><a href="/sanphamxemay/?category=xe-con-tay">Xe Côn Tay</a></li>
-            <li><a href="/sanphamxemay/?category=pkl">Phân Khối Lớn</a></li>
-            <li><a href="/sanphamxemay/?category=xe-dien">Xe Điện</a></li>
-          </ul>
-        </div>
-        <div class="ft-col">
-          <h5>Liên hệ</h5>
-          <ul>
-            <li><a href="tel:1900636712">1900 636 712</a></li>
-            <li><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a></li>
-            <li><a href="/cuahang/">Hệ thống cửa hàng</a></li>
-            <li>
-              <a href="https://m.me/hethongheadtrunghung">Facebook Messenger</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="ft-btm">
-        <p>© 2025 HỆ THỐNG HEAD TRUNG HÙNG. All Rights Reserved.</p>
-        <div class="ft-badge">
-          <i class="fas fa-certificate"></i> Honda Authorised Dealer
+        <div class="ft-b">
+          <span>© 2025 Hệ thống HEAD Trung Hùng. All Rights Reserved.</span
+          ><span
+            ><i class="fas fa-certificate"></i>Honda Authorised Dealer</span
+          >
         </div>
       </div>
     </footer>
 
-    <!-- Mobile Nav -->
-    <nav class="mob-nav">
-      <div class="mnb">
-        <a href="/Trangchu/" class="mnb-a"
-          ><i class="fas fa-home"></i><span>Trang chủ</span></a
+    <nav class="mnav" id="mnav" aria-label="Điều hướng nhanh">
+      <div>
+        <a href="/Trangchu/"><i class="fas fa-home"></i>Trang chủ</a>
+        <a href="/sanphamxemay/" class="on"
+          ><i class="fas fa-motorcycle"></i>Sản phẩm</a
         >
-        <a href="/sanphamxemay/" class="mnb-a on"
-          ><i class="fas fa-motorcycle"></i><span>Sản phẩm</span></a
+        <a href="/tintuc/tintuckhuyenmai/"
+          ><i class="fas fa-gift"></i>Khuyến mãi</a
         >
-        <a href="/tintuc/tintuckhuyenmai/" class="mnb-a"
-          ><i class="fas fa-gift"></i><span>Khuyến mãi</span></a
-        >
-        <a href="/cuahang/" class="mnb-a"
-          ><i class="fas fa-map-marker-alt"></i><span>Đại lý</span></a
-        >
-        <a href="/lienhe/" class="mnb-a"
-          ><i class="fas fa-phone-alt"></i><span>Liên hệ</span></a
-        >
+        <a href="/cuahang/"><i class="fas fa-map-marker-alt"></i>Đại lý</a>
+        <a href="/lienhe/"><i class="fas fa-phone-alt"></i>Liên hệ</a>
       </div>
     </nav>
-
     <a
       href="https://m.me/hethongheadtrunghung"
-      class="messenger-float"
+      class="fab m"
       target="_blank"
       rel="noopener"
       aria-label="Messenger"
       ><i class="fab fa-facebook-messenger"></i
     ></a>
-    <a href="#" class="back-top" id="backTop" aria-label="Lên đầu"
+    <a href="#home" class="fab t" id="top" aria-label="Lên đầu trang"
       ><i class="fas fa-arrow-up"></i
     ></a>
 
     <script>
       (function () {
         "use strict";
+        const $ = (s, c = document) => c.querySelector(s),
+          $$ = (s, c = document) => [...c.querySelectorAll(s)];
 
-        /* ── HEADER + TOP BAR ── */
-        const tb = document.getElementById("topBar");
-        const hdr = document.getElementById("siteHeader");
-        window.addEventListener(
-          "scroll",
-          () => {
-            const y = window.scrollY;
-            if (tb) tb.classList.toggle("hidden", y > 80);
-            hdr.classList.toggle("lifted", y > 60);
-            document.getElementById("backTop").classList.toggle("on", y > 400);
-          },
-          { passive: true },
-        );
+        /* ===== DỮ LIỆU SẢN PHẨM: thêm/sửa xe tại đây =====
+   [tên, loại, dung tích cc (0 = xe điện), tiêu hao, ảnh (sau /sanphamxemay/), thư mục trang chi tiết, từ khóa, thông số xe điện] */
+        const BASE = "/sanphamxemay/";
+        const CATS = {
+          "xe-ga": "Xe Ga",
+          "xe-so": "Xe Số",
+          "xe-con-tay": "Xe Côn Tay",
+          pkl: "Phân Khối Lớn",
+          "xe-dien": "Xe Điện",
+        };
+        const P = [
+          [
+            "Honda SH350i",
+            "xe-ga",
+            330,
+            "3.52L/100km",
+            "SH350/SH350/Phiên bản Thể Thao - XANH ĐEN/6.png",
+            "SH350",
+            "sh 350",
+          ],
+          [
+            "Honda SH160",
+            "xe-ga",
+            160,
+            "2.34L/100km",
+            "SH160/SH160/Phiên bản thể thao - ĐEN AURA BLACK/6.png",
+            "SH160",
+            "sh 160",
+          ],
+          [
+            "Honda SH125",
+            "xe-ga",
+            125,
+            "2.33L/100km",
+            "SH125/SH125/Phiên bản đặc biệt - XÁM ĐEN/6.png",
+            "SH125",
+            "sh 125",
+          ],
+          [
+            "Honda SHmode",
+            "xe-ga",
+            125,
+            "2.52L/100km",
+            "Shmode/Shmode/Phiên bản đặc biệt - BẠC ĐEN/6.png",
+            "Shmode",
+            "sh mode",
+          ],
+          [
+            "Honda Air Blade 160",
+            "xe-ga",
+            160,
+            "2.23L/100km",
+            "AB160/AB160/AB160 - phiên bản thể thao - TRẮNG ĐỎ ĐEN/6.png",
+            "AB160",
+            "ab airblade",
+          ],
+          [
+            "Honda Air Blade 125",
+            "xe-ga",
+            125,
+            "2.12L/100km",
+            "AB125/AB125/AB125 - phiên bản Marvel Spider-Man/6.png",
+            "AB125",
+            "ab airblade marvel spider-man",
+          ],
+          [
+            "Honda Vario 160",
+            "xe-ga",
+            160,
+            "2.20L/100km",
+            "Vario160/VARIO160/Phiên bản cao cấp - XANH ĐEN BẠC/6.png",
+            "Vario160",
+            "",
+          ],
+          [
+            "Honda Vario 125",
+            "xe-ga",
+            125,
+            "2.16L/100km",
+            "Vario125/VARIO125/Street Vành Cam/6.png",
+            "Vario125",
+            "",
+          ],
+          [
+            "Honda Vision 2026",
+            "xe-ga",
+            110,
+            "1.85L/100km",
+            "Vision2026/Vision2026/Phiên bản thể thao - BẠC ĐEN/6.png",
+            "Vision2026",
+            "",
+          ],
+          [
+            "Honda LEAD ABS",
+            "xe-ga",
+            125,
+            "2.1L/100km",
+            "LEAD/LEAD/Phiên bản Đặc Biệt - BẠC ĐEN/6.png",
+            "LEAD",
+            "",
+          ],
+          [
+            "Honda Super Cub C125",
+            "xe-so",
+            125,
+            "1.52L/100km",
+            "CUB/Super Cub/Phiên bản tiêu chuẩn - BẠC TRẮNG/1.png",
+            "CUB",
+            "cub",
+          ],
+          [
+            "Honda Wave RSX",
+            "xe-so",
+            110,
+            "1.56L/100km",
+            "WaveRSX/Wave RSX/Phiên bản thể thao - ĐỎ ĐEN/6.png",
+            "WaveRSX",
+            "",
+          ],
+          [
+            "Honda Wave Alpha",
+            "xe-so",
+            110,
+            "1.72L/100km",
+            "WaveAlpha/Wave Alpha/Phiên bản tiêu chuẩn - TRẮNG/6.png",
+            "WaveAlpha",
+            "",
+          ],
+          [
+            "Honda Wave Alpha Cổ Điển",
+            "xe-so",
+            110,
+            "1.72L/100km",
+            "WaveAlpha Retro/Wave Alpha - retro/Phiên bản cổ điển - XÁM TRẮNG/6.png",
+            "WaveAlpha Retro",
+            "retro",
+          ],
+          [
+            "Honda Future 125",
+            "xe-so",
+            125,
+            "1.47L/100km",
+            "Future/Future/Phiên bản đặc biệt - BẠC ĐEN XÁM/6.png",
+            "Future",
+            "",
+          ],
+          [
+            "Honda BLADE",
+            "xe-so",
+            110,
+            "1.85L/100km",
+            "BLADE/Blade/Phiên bản thể thao - ĐEN ĐỎ/6.png",
+            "BLADE",
+            "",
+          ],
+          [
+            "Honda Winner R",
+            "xe-con-tay",
+            150,
+            "2.59L/100km",
+            "WinnerR/Winner R/Phiên bản Đặc Biệt - Xanh Đen/6.png",
+            "WinnerR",
+            "",
+          ],
+          [
+            "Honda CBR150R",
+            "xe-con-tay",
+            150,
+            "2.91L/100km",
+            "CBR150R/CBR150R/6.png",
+            "CBR150R",
+            "cb150r",
+          ],
+          [
+            "Honda GB350S",
+            "pkl",
+            350,
+            "2.54L/100km",
+            "GB350S/GB350S/BẠC ĐEN/6.png",
+            "GB350S",
+            "phân khối lớn",
+          ],
+          [
+            "Honda ICON e:",
+            "xe-dien",
+            0,
+            "",
+            "ICONe/ICONe/Phiên bản cao cấp - ĐỎ XÁM/6.png",
+            "ICONe",
+            "điện",
+            ["Pin Lithium", "71km/lần sạc"],
+          ],
+          [
+            "Honda CUV e:",
+            "xe-dien",
+            0,
+            "",
+            "CUVe/CUV e/Trắng ngọc trai/6.png",
+            "CUVe",
+            "điện",
+            ["Pin Lithium", "Tối đa 80km/h"],
+          ],
+        ];
+        const norm = (s) =>
+          s
+            .toLowerCase()
+            .replace(/đ/g, "d")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
 
-        /* ── DRAWER ── 
-     ✅ FIX: getElementById on the button itself, not querySelector on a nested element
-     Root cause of original bug: sdx was found but its parent's overflow:hidden may clip events,
-     or the button type was missing. Here we use correct IDs and type="button" to prevent any form submission.
-  */
-        const ham = document.getElementById("ham");
-        const drawOv = document.getElementById("drawOv");
-        const draw = document.getElementById("siteDraw");
-        const drawX = document.getElementById("drawX"); // ← grabs the <button> directly
-
-        function openDraw() {
-          ham.classList.add("open");
-          drawOv.classList.add("on");
-          draw.classList.add("on");
-          document.body.style.overflow = "hidden";
+        /* ===== Hero + marquee ===== */
+        {
+          const e = $("#nModels");
+          e.dataset.n = P.length;
+          e.textContent = P.length;
         }
-        function closeDraw() {
-          ham.classList.remove("open");
-          drawOv.classList.remove("on");
-          draw.classList.remove("on");
-          document.body.style.overflow = "";
-        }
+        const mqItems = [
+          "XE GA",
+          "XE SỐ",
+          "XE CÔN TAY",
+          "PHÂN KHỐI LỚN",
+          "XE ĐIỆN",
+          "HONDA CHÍNH HÃNG",
+          "BẢO HÀNH CHÍNH THỨC",
+        ];
+        $("#mq").innerHTML = [...mqItems, ...mqItems, ...mqItems, ...mqItems]
+          .map((t) => `<span>${t}</span>`)
+          .join("");
 
-        ham.addEventListener("click", openDraw);
-        drawOv.addEventListener("click", closeDraw);
-        drawX.addEventListener("click", closeDraw); // ← direct click on <button id="drawX">
+        const still = matchMedia("(prefers-reduced-motion:reduce)").matches;
 
-        /* Drawer sub-menus */
-        document.querySelectorAll(".draw-toggle").forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            const t = document.getElementById(btn.dataset.target);
-            if (!t) return;
-            const isOpen = t.classList.contains("open");
-            document
-              .querySelectorAll(".draw-sub")
-              .forEach((s) => s.classList.remove("open"));
-            document
-              .querySelectorAll(".draw-toggle i")
-              .forEach((i) => (i.style.transform = ""));
-            if (!isOpen) {
-              t.classList.add("open");
-              btn.querySelector("i").style.transform = "rotate(180deg)";
+        /* ===== Thẻ sản phẩm ===== */
+        const grid = $("#grid");
+        const items = P.map((p, i) => {
+          const [n, c, cc, fuel, img, slug, kw, ev] = p;
+          const specs = cc
+            ? `<li><i class="fas fa-tachometer-alt"></i>${cc}cc</li><li><i class="fas fa-gas-pump"></i>${fuel}</li>`
+            : `<li><i class="fas fa-battery-full"></i>${ev[0]}</li><li><i class="fas fa-bolt"></i>${ev[1]}</li>`;
+          const el = document.createElement("article");
+          el.className = "pc";
+          el.innerHTML = `<a class="pc-link" href="${encodeURI(BASE + slug + "/")}" aria-label="Xem chi tiết ${n}"></a>
+    <div class="pc-img"><img src="${encodeURI(BASE + img)}" alt="${n}" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('noimg');this.remove()" /></div>
+    <div class="pc-body"><span class="pc-badge b-${c}">${CATS[c]}</span><h3>${n}</h3><ul class="pc-specs">${specs}</ul>
+    <p class="pc-price">Giá bán: liên hệ trực tiếp</p>
+    <span class="pc-more">Xem chi tiết <i class="fas fa-arrow-right"></i></span></div>`;
+          return {
+            el,
+            i,
+            n,
+            c,
+            cc,
+            key: norm(n + " " + (kw || "") + " " + CATS[c]),
+          };
+        });
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.hidden = true;
+        empty.innerHTML =
+          '<i class="fas fa-search"></i><h3>Không tìm thấy sản phẩm</h3><p>Thử từ khóa khác hoặc chọn loại xe khác.</p><button type="button" class="btn btn-red" id="reset">Xem tất cả xe</button>';
+        grid.append(...items.map((x) => x.el), empty);
+        $("#tot").textContent = items.length;
+
+        /* ===== Tab loại xe (kèm số lượng) ===== */
+        const tabs = $("#tabs");
+        [["all", "Tất cả"], ...Object.entries(CATS)].forEach(([k, l]) => {
+          const n =
+            k === "all" ? items.length : items.filter((x) => x.c === k).length;
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "tab";
+          b.dataset.cat = k;
+          b.setAttribute("aria-pressed", "false");
+          b.innerHTML = `${l}<small>${n}</small>`;
+          tabs.appendChild(b);
+        });
+
+        /* ===== Lọc / tìm / sắp xếp ===== */
+        const q = $("#q"),
+          qc = $("#qClear"),
+          sortEl = $("#sort");
+        let cat = "all",
+          term = "",
+          sort = "def",
+          t;
+        function apply(push) {
+          const list = items.filter(
+            (x) =>
+              (cat === "all" || x.c === cat) && (!term || x.key.includes(term)),
+          );
+          const order = [...items];
+          if (sort === "name")
+            order.sort((a, b) => a.n.localeCompare(b.n, "vi"));
+          else if (sort === "asc")
+            order.sort((a, b) => (a.cc || 9999) - (b.cc || 9999));
+          else if (sort === "desc")
+            order.sort((a, b) => (b.cc || -1) - (a.cc || -1));
+          order.forEach((x) => grid.insertBefore(x.el, empty));
+          let k = 0;
+          order.forEach((x) => {
+            const show = list.includes(x);
+            if (show && x.el.hidden) {
+              x.el.style.setProperty("--d", Math.min(k, 8) * 40 + "ms");
+              x.el.style.animation = "none";
+              x.el.offsetHeight;
+              x.el.style.animation = "";
             }
+            x.el.hidden = !show;
+            if (show) k++;
           });
-        });
-
-        /* Close drawer when any nav link is clicked */
-        draw
-          .querySelectorAll("a")
-          .forEach((a) => a.addEventListener("click", closeDraw));
-
-        /* ── FILTER + SEARCH ── */
-        const cards = [...document.querySelectorAll(".product-card[data-cat]")];
-        const totalEl = document.getElementById("totalCount");
-        const visEl = document.getElementById("visibleCount");
-        const emptyEl = document.getElementById("emptyState");
-        const ftabs = [...document.querySelectorAll(".ftab")];
-        const searchInput = document.getElementById("productSearch");
-        const searchClear = document.getElementById("searchClear");
-
-        totalEl.textContent = cards.length;
-        let activeCat = "all",
-          searchTerm = "";
-
-        function applyFilters() {
-          let count = 0;
-          cards.forEach((c, i) => {
-            const cat = c.dataset.cat || "";
-            const name = (c.dataset.name || "").toLowerCase();
-            const catOk = activeCat === "all" || cat === activeCat;
-            const searchOk = searchTerm === "" || name.includes(searchTerm);
-            if (catOk && searchOk) {
-              count++;
-              c.classList.remove("hidden", "out");
-              c.style.animationDelay = `${(i % 12) * 35}ms`;
-              c.classList.add("in");
-            } else {
-              c.classList.remove("in");
-              c.classList.add("out");
-              setTimeout(() => {
-                if (!c.classList.contains("in")) c.classList.add("hidden");
-              }, 350);
-            }
+          $("#vis").textContent = list.length;
+          empty.hidden = list.length > 0;
+          $$(".tab", tabs).forEach((b) => {
+            const on = b.dataset.cat === cat;
+            b.classList.toggle("on", on);
+            b.setAttribute("aria-pressed", on);
           });
-          visEl.textContent = count;
-          emptyEl.classList.toggle("show", count === 0);
-        }
-
-        ftabs.forEach((btn) => {
-          btn.addEventListener("click", function () {
-            ftabs.forEach((b) => b.classList.remove("active"));
-            this.classList.add("active");
-            activeCat = this.dataset.cat;
-            applyFilters();
-          });
-        });
-
-        let sTimer = null;
-        searchInput.addEventListener("input", function () {
-          searchTerm = this.value.toLowerCase().trim();
-          searchClear.classList.toggle("visible", this.value.length > 0);
-          clearTimeout(sTimer);
-          sTimer = setTimeout(applyFilters, 250);
-        });
-        searchClear.addEventListener("click", () => {
-          searchInput.value = "";
-          searchTerm = "";
-          searchClear.classList.remove("visible");
-          applyFilters();
-          searchInput.focus();
-        });
-
-        /* URL params */
-        const params = new URLSearchParams(location.search);
-        const catParam = params.get("category") || "all";
-        const srchParam = params.get("search") || "";
-        if (srchParam) {
-          searchInput.value = srchParam;
-          searchTerm = srchParam;
-          searchClear.classList.add("visible");
-        }
-        if (catParam !== "all") {
-          const m = ftabs.find((b) => b.dataset.cat === catParam);
-          if (m) {
-            ftabs.forEach((b) => b.classList.remove("active"));
-            m.classList.add("active");
-            activeCat = catParam;
+          qc.hidden = !q.value;
+          if (push) {
+            try {
+              const u = new URLSearchParams();
+              if (cat !== "all") u.set("category", cat);
+              if (term) u.set("search", q.value.trim());
+              history.replaceState(
+                null,
+                "",
+                location.pathname +
+                  (u.toString() ? "?" + u : "") +
+                  location.hash,
+              );
+            } catch (_) {}
           }
         }
-        applyFilters();
-
-        /* ── SCROLL REVEAL ── */
-        const obs = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((e, i) => {
-              if (e.isIntersecting)
-                setTimeout(() => e.target.classList.add("in"), i * 65);
-            });
-          },
-          { threshold: 0.1 },
-        );
-        document.querySelectorAll(".rv").forEach((el) => obs.observe(el));
-
-        /* ── SMOOTH SCROLL for anchor links ── */
-        document.querySelectorAll('a[href^="#"]').forEach((a) => {
-          a.addEventListener("click", (e) => {
-            const t = a.getAttribute("href");
-            if (t === "#") return;
-            const el = document.querySelector(t);
-            if (el) {
-              e.preventDefault();
-              window.scrollTo({
-                top:
-                  el.getBoundingClientRect().top +
-                  window.scrollY -
-                  hdr.offsetHeight,
-                behavior: "smooth",
-              });
-            }
+        tabs.addEventListener("click", (e) => {
+          const b = e.target.closest(".tab");
+          if (!b) return;
+          cat = b.dataset.cat;
+          apply(true);
+          b.scrollIntoView({
+            inline: "center",
+            block: "nearest",
+            behavior: "smooth",
           });
         });
-      })();
-
-      /* Footer filter helper — global scope */
-      function filterBycat(cat) {
-        if (event) event.preventDefault();
-        const tab = document.querySelector(`.ftab[data-cat="${cat}"]`);
-        if (tab) {
-          tab.click();
-          const sec = document.getElementById("products");
-          if (sec)
-            window.scrollTo({
-              top:
-                sec.getBoundingClientRect().top +
-                window.scrollY -
-                document.getElementById("siteHeader").offsetHeight -
-                10,
-              behavior: "smooth",
-            });
+        q.addEventListener("input", () => {
+          qc.hidden = !q.value;
+          clearTimeout(t);
+          t = setTimeout(() => {
+            term = norm(q.value.trim());
+            apply(true);
+          }, 200);
+        });
+        qc.addEventListener("click", () => {
+          q.value = "";
+          term = "";
+          apply(true);
+          q.focus();
+        });
+        sortEl.addEventListener("change", () => {
+          sort = sortEl.value;
+          apply(false);
+        });
+        grid.addEventListener("click", (e) => {
+          if (e.target.closest("#reset")) {
+            q.value = "";
+            term = "";
+            cat = "all";
+            apply(true);
+          }
+        });
+        const up = new URLSearchParams(location.search);
+        if (CATS[up.get("category")]) cat = up.get("category");
+        if (up.get("search")) {
+          q.value = up.get("search");
+          term = norm(q.value.trim());
         }
-      }
+        apply(false);
+
+        /* ===== Chọn nhanh theo loại xe (đầu trang) ===== */
+        const fl = $("#finder"),
+          ICON = {
+            "xe-ga": "fa-motorcycle",
+            "xe-so": "fa-gears",
+            "xe-con-tay": "fa-flag-checkered",
+            pkl: "fa-gauge-high",
+            "xe-dien": "fa-bolt",
+          };
+        Object.entries(CATS).forEach(([k, l]) => {
+          const a = document.createElement("a");
+          a.href = "?category=" + k + "#products";
+          a.innerHTML = `<span class="ic"><i class="fas ${ICON[k]}"></i></span><b>${l}</b><small>${items.filter((x) => x.c === k).length} mẫu</small><i class="fas fa-arrow-right go"></i>`;
+          a.addEventListener("click", (e) => {
+            e.preventDefault();
+            cat = k;
+            apply(true);
+            $("#products").scrollIntoView({ behavior: "smooth" });
+          });
+          fl.appendChild(a);
+        });
+
+        /* ===== Header, menu, drawer ===== */
+        const hdr = $("#hdr"),
+          top = $("#top");
+        const onScroll = () => {
+          hdr.classList.toggle("lift", scrollY > 40);
+          top.classList.toggle("on", scrollY > 450);
+        };
+        addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        const ham = $("#ham"),
+          draw = $("#draw"),
+          ov = $("#ov");
+        function setDraw(o) {
+          ham.classList.toggle("open", o);
+          ham.setAttribute("aria-expanded", o);
+          draw.classList.toggle("on", o);
+          ov.classList.toggle("on", o);
+          document.body.style.overflow = o ? "hidden" : "";
+          if (o) $("#drawX").focus();
+          else if (
+            document.activeElement &&
+            draw.contains(document.activeElement)
+          )
+            ham.focus();
+        }
+        ham.addEventListener("click", () =>
+          setDraw(!draw.classList.contains("on")),
+        );
+        ov.addEventListener("click", () => setDraw(false));
+        $("#drawX").addEventListener("click", () => setDraw(false));
+        $$("a", draw).forEach((a) =>
+          a.addEventListener("click", () => setDraw(false)),
+        );
+        $("#dvBtn").addEventListener("click", function () {
+          const o = this.getAttribute("aria-expanded") !== "true";
+          this.setAttribute("aria-expanded", o);
+          $("#dvSub").classList.toggle("open", o);
+        });
+        addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            setDraw(false);
+            $(".dd").classList.remove("open");
+          }
+        });
+        addEventListener("resize", () => {
+          if (innerWidth > 1100) setDraw(false);
+        });
+        /* Menu Dịch vụ trên máy cảm ứng (iPad): chạm lần 1 mở, lần 2 đi tới trang */
+        $("#ddBtn").addEventListener("click", function (e) {
+          const dd = this.parentNode;
+          if (
+            matchMedia("(hover:none)").matches &&
+            !dd.classList.contains("open")
+          ) {
+            e.preventDefault();
+            dd.classList.add("open");
+          }
+        });
+        document.addEventListener("pointerdown", (e) => {
+          const dd = $(".dd");
+          if (!dd.contains(e.target)) dd.classList.remove("open");
+        });
+
+        /* ===== Nút nổi không bị thanh điều hướng dưới che ===== */
+        const mnav = $("#mnav"),
+          setMb = () =>
+            document.documentElement.style.setProperty(
+              "--mbar",
+              (getComputedStyle(mnav).display !== "none"
+                ? mnav.offsetHeight
+                : 0) + "px",
+            );
+        setMb();
+        addEventListener("resize", setMb);
+        addEventListener("load", setMb);
+
+        /* ===== Thẻ xe nghiêng nhẹ theo chuột (máy tính) ===== */
+        if (matchMedia("(hover:hover)").matches) {
+          grid.addEventListener("pointermove", (e) => {
+            const c = e.target.closest(".pc");
+            if (!c || e.pointerType !== "mouse") return;
+            const r = c.getBoundingClientRect(),
+              x = (e.clientX - r.left) / r.width - 0.5,
+              y = (e.clientY - r.top) / r.height - 0.5;
+            c.style.setProperty("--ry", (x * 8).toFixed(2) + "deg");
+            c.style.setProperty("--rx", (-y * 8).toFixed(2) + "deg");
+          });
+          grid.addEventListener("pointerout", (e) => {
+            const c = e.target.closest(".pc");
+            if (c && !c.contains(e.relatedTarget)) {
+              c.style.setProperty("--rx", "0deg");
+              c.style.setProperty("--ry", "0deg");
+            }
+          });
+        }
+        /* ===== Chỉ số đếm số khi cuộn tới ===== */
+        const cio = new IntersectionObserver(
+          (es) =>
+            es.forEach((e) => {
+              if (!e.isIntersecting) return;
+              cio.unobserve(e.target);
+              const el = e.target,
+                n = +el.dataset.n;
+              if (still) {
+                el.textContent = n;
+                return;
+              }
+              const t0 = performance.now();
+              (function f(t) {
+                const k = Math.min(1, (t - t0) / 1200);
+                el.textContent = Math.round(n * (1 - Math.pow(1 - k, 3)));
+                if (k < 1) requestAnimationFrame(f);
+              })(t0);
+            }),
+          { threshold: 0.5 },
+        );
+        $$("[data-n]").forEach((el) => cio.observe(el));
+
+        /* ===== Hiệu ứng xuất hiện ===== */
+        const io = new IntersectionObserver(
+          (es) =>
+            es.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            }),
+          { threshold: 0.12 },
+        );
+        $$(".rv").forEach((el) => io.observe(el));
+      })();
     </script>
   </body>
 </html>
