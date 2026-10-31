@@ -2,22 +2,27 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HỆ THỐNG HEAD TRUNG HÙNG – Honda Chính Hãng</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Hệ thống HEAD Trung Hùng – đại lý Honda chính hãng: xe ga, xe số, côn tay, phân khối lớn, xe điện, bảo dưỡng và phụ tùng chính hãng."
+    />
+    <meta name="theme-color" content="#cc0000" />
+    <title>Hệ thống HEAD Trung Hùng – Honda chính hãng</title>
+    <link rel="icon" href="/sanphamxemay/image/banner/Logo_HEAD.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="icon"
-      href="/sanphamxemay/image/banner/Logo_HEAD.png"
-      type="image/x-icon"
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Google Analytics -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-G4PSCX8Q0Q"
@@ -31,30 +36,23 @@
       gtag("config", "G-G4PSCX8Q0Q");
     </script>
     <style>
-      /* ============================================================
-       DESIGN TOKENS
-    ============================================================ */
       :root {
-        --red: #cc0000;
-        --red-dark: #990000;
-        --red-glow: rgba(204, 0, 0, 0.3);
-        --red-soft: rgba(204, 0, 0, 0.08);
-        --ink: #0a0a0b;
-        --ink2: #1a1a1c;
-        --paper: #f5f3f0;
-        --paper2: #eceae6;
-        --white: #ffffff;
-        --border: rgba(10, 10, 11, 0.08);
-        --border2: rgba(10, 10, 11, 0.14);
-        --muted: #7a7672;
+        --red: #c8102e;
+        --red-d: #9b0a22;
+        --ink: #111214;
+        --ink2: #1d1f23;
+        --paper: #f4f2ef;
+        --white: #fff;
+        --muted: #6f6b67;
+        --line: rgba(17, 18, 20, 0.1);
+        --hh: 68px;
+        --pad: clamp(1.25rem, 4vw, 3rem);
+        --fd: "Barlow Condensed", "Arial Narrow", sans-serif;
+        --fb:
+          "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+          sans-serif;
         --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-        --snap: cubic-bezier(0.16, 1, 0.3, 1);
       }
-
-      /* ============================================================
-       RESET
-    ============================================================ */
       *,
       *::before,
       *::after {
@@ -63,2070 +61,1651 @@
         box-sizing: border-box;
       }
       html {
-        font-size: 62.5%;
         scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+        scroll-padding-top: var(--hh);
       }
       body {
-        font-family: "Barlow", sans-serif;
-        background: var(--white);
-        color: var(--ink);
-        overflow-x: hidden;
+        font-family: var(--fb);
+        font-size: 1rem;
         line-height: 1.6;
+        color: var(--ink);
+        background: var(--white);
+        overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
       }
       img {
         max-width: 100%;
         display: block;
       }
       a {
-        text-decoration: none;
         color: inherit;
+        text-decoration: none;
       }
       ul {
         list-style: none;
       }
       button {
-        border: none;
+        border: 0;
         background: none;
+        font: inherit;
         cursor: pointer;
-        font-family: inherit;
+        color: inherit;
       }
-
-      ::-webkit-scrollbar {
-        width: 3px;
+      :focus-visible {
+        outline: 3px solid var(--red);
+        outline-offset: 3px;
       }
-      ::-webkit-scrollbar-track {
-        background: var(--paper2);
-      }
-      ::-webkit-scrollbar-thumb {
-        background: var(--red);
-        border-radius: 2px;
-      }
-
-      /* ============================================================
-       TOP BAR
-    ============================================================ */
-      .top-bar {
-        background: var(--ink);
-        padding: 0.9rem 0;
-        position: relative;
-        z-index: 600;
-        transition:
-          transform 0.35s var(--ease),
-          opacity 0.35s;
-      }
-      .top-bar.hidden {
-        transform: translateY(-100%);
-      }
-      .tb-inner {
-        max-width: 1340px;
+      .wrap {
+        max-width: 1280px;
         margin: 0 auto;
-        padding: 0 4rem;
+        padding-inline: var(--pad);
+      }
+      section {
+        padding-block: clamp(3.5rem, 8vw, 6.5rem);
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: var(--fd);
+        text-transform: uppercase;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        font-weight: 800;
+      }
+      .h2 {
+        font-size: clamp(2.2rem, 5vw, 3.8rem);
+      }
+      .sec-head {
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         justify-content: space-between;
+        gap: 1rem;
         flex-wrap: wrap;
-        gap: 0.8rem;
+        margin-bottom: clamp(1.8rem, 4vw, 3rem);
       }
-      .tb-links {
-        display: flex;
-        gap: 2.4rem;
+      .sec-head p {
+        color: var(--muted);
+        margin-top: 0.6rem;
+        max-width: 46ch;
       }
-      .tb-links a {
-        font-size: 1.2rem;
-        font-weight: 500;
-        letter-spacing: 0.06em;
-        color: rgba(255, 255, 255, 0.42);
-        display: flex;
+      .more {
+        font-family: var(--fd);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--red);
+        border-bottom: 2px solid var(--red);
+        padding-bottom: 2px;
+        display: inline-flex;
+        gap: 0.5rem;
         align-items: center;
-        gap: 0.6rem;
-        transition: color 0.2s;
+        white-space: nowrap;
       }
-      .tb-links a:hover {
-        color: rgba(255, 255, 255, 0.85);
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        font-family: var(--fd);
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.85rem 1.8rem;
+        border-radius: 6px;
+        background: var(--red);
+        color: #fff;
+        transition:
+          background 0.25s,
+          transform 0.25s;
+        min-height: 48px;
       }
-      .tb-links a i {
-        font-size: 0.95rem;
+      .btn:hover {
+        background: var(--red-d);
+        transform: translateY(-2px);
+      }
+      .btn.light {
+        background: #fff;
         color: var(--red);
       }
-      .tb-contact {
-        display: flex;
-        gap: 2rem;
-        align-items: center;
-      }
-      .tb-contact a {
-        font-size: 1.2rem;
-        color: rgba(255, 255, 255, 0.42);
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        transition: color 0.2s;
-      }
-      .tb-contact a:hover {
+      .btn.light:hover {
+        background: var(--ink);
         color: #fff;
       }
-      .tb-contact i {
-        color: var(--red);
-        font-size: 0.95rem;
-      }
-      .tb-divider {
-        width: 1px;
-        height: 12px;
-        background: rgba(255, 255, 255, 0.1);
+      .btn.ghost {
+        background: rgba(255, 255, 255, 0.12);
+        border: 1.5px solid rgba(255, 255, 255, 0.4);
+        color: #fff;
       }
 
-      /* ============================================================
-       HEADER
-    ============================================================ */
-      .site-header {
+      /* top bar */
+      .topbar {
+        background: var(--ink);
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .topbar .wrap {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        padding-block: 0.5rem;
+      }
+      .topbar div {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .topbar a:hover {
+        color: #fff;
+      }
+      .topbar i {
+        color: var(--red);
+        margin-right: 0.4rem;
+      }
+
+      /* header */
+      .hdr {
         position: sticky;
         top: 0;
-        left: 0;
-        right: 0;
         z-index: 500;
-        background: rgba(245, 243, 240, 0.96);
-        backdrop-filter: blur(24px) saturate(180%);
-        -webkit-backdrop-filter: blur(24px) saturate(180%);
-        border-bottom: 1px solid var(--border);
-        transition: all 0.4s var(--ease);
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--line);
+        transition: box-shadow 0.3s;
       }
-      .site-header.lifted {
-        background: rgba(255, 255, 255, 0.98);
-        box-shadow:
-          0 1px 0 var(--border),
-          0 4px 24px rgba(10, 10, 11, 0.07);
+      .hdr.lift {
+        box-shadow: 0 4px 20px rgba(17, 18, 20, 0.08);
       }
-      .hdr-inner {
-        max-width: 1340px;
-        margin: 0 auto;
-        padding: 0 4rem;
+      .hdr .wrap {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 72px;
+        height: var(--hh);
+        gap: 1rem;
       }
-
-      /* Logo */
-      .logo-area {
+      .logo {
         display: flex;
         align-items: center;
-        gap: 1.4rem;
-        text-decoration: none;
+        gap: 0.8rem;
+        min-width: 0;
       }
-      .logo-img-wrap {
-        width: 44px;
-        height: 44px;
-        flex-shrink: 0;
-        transition: transform 0.4s var(--spring);
-      }
-      .logo-img-wrap:hover {
-        transform: rotate(-5deg) scale(1.08);
-      }
-      .logo-img-wrap img {
-        width: 100%;
-        height: 100%;
+      .logo img {
+        width: 42px;
+        height: 42px;
         object-fit: contain;
+        flex-shrink: 0;
       }
-
-      .logo-text-wrap {
-        display: flex;
-        flex-direction: column;
-        line-height: 1;
-      }
-      .logo-main {
-        font-family: "Barlow Condensed", sans-serif;
+      .logo b {
+        display: block;
+        white-space: nowrap;
+        font-family: var(--fd);
+        font-size: clamp(1.05rem, 2.4vw, 1.45rem);
         font-weight: 800;
-        font-size: 2rem;
-        letter-spacing: 0.1em;
-        color: var(--ink);
+        letter-spacing: 0.06em;
         text-transform: uppercase;
         line-height: 1;
       }
-      .logo-main span {
+      .logo b span {
         color: var(--red);
       }
-      .logo-sub {
-        font-family: "Barlow", sans-serif;
-        font-size: 0.95rem;
-        font-weight: 500;
-        letter-spacing: 0.08em;
+      .logo small {
+        display: block;
+        font-size: 0.66rem;
         color: var(--muted);
-        margin-top: 0.3rem;
-        line-height: 1.2;
         text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-top: 0.25rem;
       }
-
-      /* Desktop Nav */
-      .main-nav {
+      .nav {
         display: flex;
         align-items: center;
-        gap: 0;
+        height: 100%;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
       }
-      .main-nav > li {
+      .nav > li {
         position: relative;
-      }
-      .main-nav > li > a {
+        height: 100%;
         display: flex;
         align-items: center;
-        gap: 0.5rem;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.55rem;
+      }
+      .nav > li > a {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        height: 100%;
+        white-space: nowrap;
+        padding: 0 0.9rem;
+        font-family: var(--fd);
         font-weight: 600;
-        letter-spacing: 0.08em;
+        font-size: 1.1rem;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: var(--ink2);
-        padding: 0 1.6rem;
-        height: 72px;
-        transition: color 0.22s;
-        position: relative;
+        transition: color 0.2s;
       }
-      .main-nav > li > a::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 1.6rem;
-        right: 1.6rem;
-        height: 2px;
-        background: var(--red);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.3s var(--ease);
-      }
-      .main-nav > li > a:hover,
-      .main-nav > li > a.active {
+      .nav > li > a:hover,
+      .nav > li > a.on {
         color: var(--red);
       }
-      .main-nav > li > a:hover::after,
-      .main-nav > li > a.active::after {
-        transform: scaleX(1);
+      .nav i {
+        font-size: 0.65rem;
+        opacity: 0.5;
       }
-      .main-nav > li > a i {
-        font-size: 0.9rem;
-        opacity: 0.45;
-        transition:
-          transform 0.25s var(--ease),
-          opacity 0.25s;
-      }
-      .main-nav > li:hover > a i {
-        transform: rotate(180deg);
-        opacity: 0.8;
-      }
-
-      /* Dropdown */
-      .dropdown-panel {
+      .dd {
         position: absolute;
-        top: calc(100% + 2px);
+        top: 100%;
         left: 0;
-        min-width: 250px;
-        background: var(--white);
-        border: 1px solid var(--border2);
-        border-radius: 14px;
-        padding: 0.8rem 0;
+        min-width: 240px;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 0.5rem 0;
+        box-shadow: 0 16px 40px rgba(17, 18, 20, 0.14);
         opacity: 0;
         visibility: hidden;
-        transform: translateY(12px) scale(0.98);
-        transition: all 0.28s var(--ease);
-        z-index: 100;
-        box-shadow:
-          0 16px 48px rgba(10, 10, 11, 0.14),
-          0 4px 12px rgba(10, 10, 11, 0.06);
+        transform: translateY(8px);
+        transition: 0.25s var(--ease);
       }
-      .main-nav > li:hover .dropdown-panel {
+      .nav > li:hover .dd,
+      .nav > li:focus-within .dd {
         opacity: 1;
         visibility: visible;
-        transform: translateY(0) scale(1);
+        transform: none;
       }
-      .dropdown-panel li a {
+      .dd a {
         display: flex;
+        gap: 0.8rem;
         align-items: center;
-        gap: 1.1rem;
-        padding: 1.1rem 2rem;
-        font-family: "Barlow", sans-serif;
-        font-size: 1.35rem;
-        font-weight: 500;
-        color: var(--ink2);
-        border-left: 2.5px solid transparent;
-        transition: all 0.2s;
-        position: relative;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.95rem;
+        border-left: 3px solid transparent;
       }
-      .dropdown-panel li a:hover {
+      .dd a:hover {
         background: var(--paper);
         color: var(--red);
         border-left-color: var(--red);
-        padding-left: 2.6rem;
       }
-      .dropdown-panel li a i {
-        width: 17px;
-        text-align: center;
+      .dd i {
         color: var(--red);
-        font-size: 1.15rem;
-        flex-shrink: 0;
+        width: 1.1rem;
+        text-align: center;
+        opacity: 1;
+        font-size: 0.9rem;
       }
-
-      /* CTA */
-      .hdr-cta {
+      .call {
+        display: inline-flex;
+        gap: 0.5rem;
+        align-items: center;
         background: var(--red);
         color: #fff;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.5rem;
+        font-family: var(--fd);
         font-weight: 700;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        padding: 0.9rem 2.4rem;
-        border-radius: 7px;
-        margin-left: 1.6rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.8rem;
-        transition: all 0.3s;
+        padding: 0.6rem 1.3rem;
+        border-radius: 6px;
+        white-space: nowrap;
       }
-      .hdr-cta:hover {
-        background: var(--red-dark);
-        box-shadow: 0 6px 24px var(--red-glow);
-        transform: translateY(-2px);
+      .call:hover {
+        background: var(--red-d);
       }
-
-      /* Hamburger */
       .ham {
         display: none;
+        width: 44px;
+        height: 44px;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
         gap: 5px;
-        padding: 6px;
-        border-radius: 6px;
-        transition: background 0.2s;
-      }
-      .ham:hover {
-        background: var(--paper2);
+        border-radius: 8px;
       }
       .ham span {
         width: 22px;
         height: 2px;
         background: var(--ink);
-        transition: all 0.32s var(--ease);
+        transition: 0.3s;
         border-radius: 1px;
-        display: block;
       }
       .ham.open span:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
       }
       .ham.open span:nth-child(2) {
         opacity: 0;
-        transform: scaleX(0);
       }
       .ham.open span:nth-child(3) {
         transform: translateY(-7px) rotate(-45deg);
       }
 
-      /* Drawer */
-      .draw-ov {
+      /* drawer */
+      .ov {
         position: fixed;
         inset: 0;
-        background: rgba(10, 10, 11, 0.6);
-        z-index: 498;
+        background: rgba(17, 18, 20, 0.6);
+        z-index: 600;
         opacity: 0;
         visibility: hidden;
-        transition: all 0.32s;
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
+        transition: 0.3s;
       }
-      .draw-ov.on {
+      .ov.on {
         opacity: 1;
         visibility: visible;
       }
-      .site-draw {
+      .drawer {
         position: fixed;
         top: 0;
-        right: -100%;
-        width: min(360px, 92vw);
-        height: 100%;
-        background: var(--white);
-        z-index: 499;
-        padding: 7.5rem 3rem 3rem;
-        transition: right 0.38s var(--snap);
-        border-left: 1px solid var(--border);
-        overflow-y: auto;
-      }
-      .site-draw.on {
         right: 0;
+        bottom: 0;
+        width: min(360px, 90vw);
+        background: #fff;
+        z-index: 700;
+        padding: 5rem 1.6rem calc(2rem + env(safe-area-inset-bottom));
+        transform: translateX(100%);
+        transition: transform 0.35s var(--ease);
+        overflow-y: auto;
+        overscroll-behavior: contain;
       }
-      .draw-x {
+      .drawer.on {
+        transform: none;
+      }
+      .dx {
         position: absolute;
-        top: 2rem;
-        right: 2rem;
-        width: 38px;
-        height: 38px;
-        background: var(--paper2);
+        top: 1rem;
+        right: 1rem;
+        width: 44px;
+        height: 44px;
         border-radius: 50%;
+        background: var(--paper);
+      }
+      .drawer > ul > li {
+        border-bottom: 1px solid var(--line);
+      }
+      .drawer > ul > li > a,
+      .drawer .tg {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.4rem;
-        color: var(--muted);
-        transition: all 0.2s;
-      }
-      .draw-x:hover {
-        background: var(--red);
-        color: #fff;
-        transform: rotate(90deg);
-      }
-      .draw-nav {
-        display: flex;
-        flex-direction: column;
-      }
-      .draw-nav > li {
-        border-bottom: 1px solid var(--border);
-      }
-      .draw-nav > li > a {
-        display: flex;
-        align-items: center;
+        width: 100%;
         justify-content: space-between;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.8rem;
+        align-items: center;
+        padding: 1rem 0;
+        font-family: var(--fd);
         font-weight: 700;
-        letter-spacing: 0.06em;
+        font-size: 1.3rem;
+        letter-spacing: 0.05em;
         text-transform: uppercase;
-        color: var(--ink);
-        padding: 1.6rem 0;
-        transition: color 0.2s;
+        text-align: left;
       }
-      .draw-nav > li > a:hover {
-        color: var(--red);
-      }
-      .draw-nav > li > a i {
-        font-size: 1rem;
-        opacity: 0.45;
-        transition: transform 0.25s;
-      }
-      .draw-sub {
-        padding-left: 1.2rem;
+      .sub {
         display: none;
-        padding-bottom: 0.6rem;
+        padding: 0 0 0.6rem 0.8rem;
       }
-      .draw-sub.open {
+      .sub.open {
         display: block;
       }
-      .draw-sub a {
+      .sub a {
         display: flex;
+        gap: 0.8rem;
         align-items: center;
-        gap: 1rem;
-        font-size: 1.45rem;
+        padding: 0.65rem 0;
         color: var(--muted);
-        padding: 0.9rem 0.5rem;
-        transition: color 0.2s;
-        border-radius: 6px;
       }
-      .draw-sub a:hover {
+      .sub i {
         color: var(--red);
-      }
-      .draw-sub a i {
-        color: var(--red);
-        font-size: 1.1rem;
-        width: 16px;
+        width: 1.1rem;
         text-align: center;
       }
-      .draw-cta {
-        background: var(--red);
-        color: #fff;
-        text-align: center;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.6rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        padding: 1.5rem 2rem;
-        border-radius: 10px;
-        margin-top: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        transition:
-          background 0.3s,
-          transform 0.2s;
-      }
-      .draw-cta:hover {
-        background: var(--red-dark);
-        transform: translateY(-2px);
+      .drawer .btn {
+        width: 100%;
+        margin-top: 1.6rem;
       }
 
-      /* ============================================================
-       HERO SLIDER
-    ============================================================ */
+      /* hero */
       .hero {
         position: relative;
-        height: calc(100vh - 36px);
-        min-height: 640px;
+        height: clamp(520px, 86svh, 820px);
+        padding: 0;
         overflow: hidden;
-      }
-      .slides {
-        position: relative;
-        width: 100%;
-        height: 100%;
+        background: var(--ink);
       }
       .slide {
         position: absolute;
         inset: 0;
         opacity: 0;
-        transition: opacity 1.1s var(--ease);
-        display: flex;
-        align-items: flex-end;
+        visibility: hidden;
+        transition:
+          opacity 1s var(--ease),
+          visibility 1s;
         background-size: cover;
         background-position: center;
+        display: flex;
+        align-items: flex-end;
       }
       .slide.on {
         opacity: 1;
+        visibility: visible;
         z-index: 1;
       }
-      .slide-ov {
+      .slide::before {
+        content: "";
         position: absolute;
         inset: 0;
         background:
           linear-gradient(
-            105deg,
-            rgba(10, 10, 11, 0.82) 0%,
-            rgba(10, 10, 11, 0.38) 50%,
-            transparent 100%
+            100deg,
+            rgba(17, 18, 20, 0.85) 0%,
+            rgba(17, 18, 20, 0.4) 55%,
+            rgba(17, 18, 20, 0.1) 100%
           ),
-          linear-gradient(to top, rgba(10, 10, 11, 0.7) 0%, transparent 50%);
+          linear-gradient(to top, rgba(17, 18, 20, 0.7), transparent 55%);
       }
-      /* Diagonal red accent */
-      .slide-ov::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, var(--red) 0%, transparent 35%);
-        opacity: 0.06;
-      }
-      .slide-body {
+      .sbody {
         position: relative;
         z-index: 2;
-        padding: 0 6.5rem 8rem;
-        transform: translateY(36px);
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 var(--pad) clamp(6rem, 12vh, 8rem);
+        color: #fff;
+        transform: translateY(24px);
         opacity: 0;
         transition:
-          transform 0.9s var(--snap) 0.2s,
-          opacity 0.9s ease 0.2s;
-        max-width: 680px;
+          transform 0.9s var(--ease) 0.2s,
+          opacity 0.9s 0.2s;
       }
-      .slide.on .slide-body {
+      .slide.on .sbody {
         transform: none;
         opacity: 1;
       }
-      .s-kicker {
-        display: inline-flex;
-        align-items: center;
-        gap: 1rem;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.2rem;
-        font-weight: 700;
-        letter-spacing: 0.3em;
-        text-transform: uppercase;
-        color: var(--red);
-        margin-bottom: 1.6rem;
-      }
-      .s-kicker::before {
-        content: "";
-        width: 28px;
-        height: 2px;
-        background: var(--red);
-      }
-      .s-title {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(6.5rem, 11vw, 14rem);
-        line-height: 0.86;
-        letter-spacing: 0.01em;
-        color: #fff;
-        font-weight: 800;
-        margin-bottom: 2rem;
-        text-transform: uppercase;
-      }
-      .s-title em {
-        font-style: normal;
-        color: var(--red);
+      .kick {
         display: inline-block;
-      }
-      .s-sub {
-        font-size: 1.65rem;
-        color: rgba(255, 255, 255, 0.52);
-        line-height: 1.65;
-        max-width: 400px;
-        margin-bottom: 3.5rem;
-        font-weight: 400;
-      }
-      .s-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 1.2rem;
-        background: var(--red);
-        color: #fff;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.5rem;
+        font-family: var(--fd);
         font-weight: 700;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.2em;
         text-transform: uppercase;
-        padding: 1.4rem 3.2rem;
-        border-radius: 6px;
-        transition: all 0.3s;
+        font-size: 0.95rem;
+        color: #fff;
+        background: var(--red);
+        padding: 0.25rem 0.8rem;
+        border-radius: 3px;
+        margin-bottom: 1rem;
       }
-      .s-btn:hover {
-        background: var(--red-dark);
-        transform: translateY(-3px);
-        box-shadow: 0 10px 32px var(--red-glow);
+      .stitle {
+        font-size: clamp(3.2rem, 10vw, 8.5rem);
+        line-height: 0.88;
+        margin-bottom: 1rem;
+        max-width: 12ch;
       }
-      .s-btn i {
-        transition: transform 0.3s;
-      }
-      .s-btn:hover i {
-        transform: translateX(5px);
-      }
-
-      /* Side counter */
-      .slide-counter {
-        position: absolute;
-        right: 5.5rem;
-        bottom: 8rem;
-        z-index: 2;
-        text-align: right;
-      }
-      .sc-n {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 8rem;
-        line-height: 1;
-        color: rgba(255, 255, 255, 0.9);
-        letter-spacing: 0.02em;
-        font-weight: 800;
-      }
-      .sc-n em {
-        color: var(--red);
+      .stitle em {
         font-style: normal;
-        margin: 0 0.2rem;
+        color: var(--red);
+        -webkit-text-stroke: 0;
       }
-      .sc-tot {
-        font-size: 1.2rem;
-        color: rgba(255, 255, 255, 0.25);
-        letter-spacing: 0.22em;
-        font-family: "Barlow", sans-serif;
-      }
-
-      /* Controls */
-      .hero-ctrl {
-        position: absolute;
-        bottom: 3.8rem;
-        left: 6.5rem;
-        z-index: 2;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
+      .ssub {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 44ch;
+        margin-bottom: 1.8rem;
       }
       .ctrl {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        border: 1.5px solid rgba(255, 255, 255, 0.22);
-        color: rgba(255, 255, 255, 0.65);
-        font-size: 1.3rem;
+        position: absolute;
+        z-index: 3;
+        bottom: 1.6rem;
+        left: 0;
+        right: 0;
+      }
+      .ctrl .wrap {
         display: flex;
         align-items: center;
-        justify-content: center;
-        backdrop-filter: blur(6px);
-        background: rgba(255, 255, 255, 0.06);
-        transition: all 0.25s;
+        gap: 0.7rem;
       }
-      .ctrl:hover {
+      .arrow {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255, 255, 255, 0.35);
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        transition: 0.25s;
+      }
+      .arrow:hover {
         background: var(--red);
         border-color: var(--red);
-        color: #fff;
-        transform: scale(1.08);
       }
-      .dots-row {
+      .dots {
         display: flex;
-        gap: 0.8rem;
-        margin-left: 1rem;
-        align-items: center;
+        gap: 0.6rem;
+        margin-left: 0.6rem;
       }
-      .hdot {
-        width: 7px;
-        height: 7px;
+      .dot {
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.25);
-        cursor: pointer;
-        transition: all 0.32s var(--spring);
+        background: rgba(255, 255, 255, 0.35);
+        padding: 0;
+        transition: 0.3s;
       }
-      .hdot.on {
+      .dot.on {
         background: var(--red);
-        transform: scale(1.5);
+        transform: scale(1.4);
       }
-
-      /* Progress */
-      .hero-prog {
+      .prog {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
         height: 3px;
-        background: rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.1);
         z-index: 3;
       }
-      .hero-prog-fill {
+      .prog i {
+        display: block;
         height: 100%;
+        width: 0;
         background: var(--red);
-        width: 0%;
-        transition: width 5s linear;
       }
 
-      /* ============================================================
-       MARQUEE
-    ============================================================ */
-      .marquee {
+      /* marquee */
+      .mq {
         background: var(--ink2);
-        padding: 1.3rem 0;
+        padding: 1rem 0;
         overflow: hidden;
-        border-top: 1px solid rgba(255, 255, 255, 0.04);
       }
-      .mq-track {
+      .mq div {
         display: flex;
         width: max-content;
-        animation: mq 28s linear infinite;
+        animation: mq 30s linear infinite;
       }
-      .mq-track:hover {
-        animation-play-state: paused;
-      }
-      .mq-item {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.7rem;
-        letter-spacing: 0.2em;
-        color: rgba(255, 255, 255, 0.32);
+      .mq span {
+        font-family: var(--fd);
         font-weight: 600;
-        padding: 0 2.8rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 2.2rem;
-        white-space: nowrap;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        padding: 0 1.6rem;
+        white-space: nowrap;
       }
-      .mq-dot {
+      .mq span::after {
+        content: "";
+        display: inline-block;
         width: 5px;
         height: 5px;
-        background: var(--red);
         border-radius: 50%;
-        display: inline-block;
-        flex-shrink: 0;
+        background: var(--red);
+        margin-left: 3.2rem;
+        vertical-align: middle;
       }
       @keyframes mq {
-        from {
-          transform: translateX(0);
-        }
         to {
           transform: translateX(-50%);
         }
       }
 
-      /* ============================================================
-       SECTION UTILITIES
-    ============================================================ */
-      .sec-inner {
-        max-width: 1340px;
-        margin: 0 auto;
-      }
-      .eyebrow {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.15rem;
-        font-weight: 700;
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
-        color: var(--red);
-        display: inline-flex;
-        align-items: center;
-        gap: 1.2rem;
-        margin-bottom: 1.2rem;
-      }
-      .eyebrow::before {
-        content: "";
-        width: 28px;
-        height: 2px;
-        background: var(--red);
-      }
-      .sec-h2 {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 5.6rem;
-        letter-spacing: 0.04em;
-        line-height: 0.92;
-        font-weight: 800;
-        text-transform: uppercase;
-      }
-      .sec-head {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        margin-bottom: 4.8rem;
-        flex-wrap: wrap;
-        gap: 2rem;
-      }
-      .btn-all {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.9rem;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.4rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--red);
-        padding-bottom: 0.3rem;
-        border-bottom: 2px solid var(--red);
-        transition:
-          gap 0.25s,
-          opacity 0.25s;
-      }
-      .btn-all:hover {
-        gap: 1.4rem;
-      }
-
-      /* ============================================================
-       QUICK LINKS
-    ============================================================ */
-      .quick-links {
-        padding: 8rem 4rem;
-        max-width: 1340px;
-        margin: 0 auto;
-      }
-      .ql-grid {
+      /* categories */
+      .cats {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        gap: 1.6rem;
+        gap: 1rem;
       }
-      .ql-card {
-        border-radius: 14px;
-        overflow: hidden;
-        aspect-ratio: 3/4;
+      .cat {
         position: relative;
-        cursor: pointer;
-        transition:
-          transform 0.4s var(--ease),
-          box-shadow 0.4s;
+        aspect-ratio: 3/4;
+        border-radius: 18px;
+        overflow: hidden;
+        background: var(--ink);
+        isolation: isolate;
+        display: block;
+        transition: box-shadow 0.4s;
       }
-      .ql-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 20px 48px rgba(10, 10, 11, 0.16);
-      }
-      .ql-card img {
+      .cat img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.65s var(--ease);
+        transition:
+          transform 0.9s var(--ease),
+          filter 0.5s;
       }
-      .ql-card:hover img {
-        transform: scale(1.1);
-      }
-      .ql-card-ov {
+      .cat::before {
+        content: "";
         position: absolute;
         inset: 0;
+        z-index: 1;
         background: linear-gradient(
           to top,
-          rgba(10, 10, 11, 0.86) 0%,
-          rgba(10, 10, 11, 0.05) 55%
+          rgba(17, 18, 20, 0.88) 0%,
+          rgba(17, 18, 20, 0.05) 60%
         );
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding: 2rem;
-        transition: background 0.4s;
+        transition: background 0.5s;
       }
-      .ql-card:hover .ql-card-ov {
-        background: linear-gradient(
-          to top,
-          rgba(204, 0, 0, 0.82) 0%,
-          rgba(10, 10, 11, 0.05) 60%
-        );
-      }
-      .ql-card-name {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 2.2rem;
-        letter-spacing: 0.08em;
-        font-weight: 700;
-        color: #fff;
-        line-height: 1;
-        margin-bottom: 0.5rem;
-        text-transform: uppercase;
-      }
-      .ql-card-arr {
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 1.4rem;
-        transform: translateX(-4px);
-        transition:
-          transform 0.3s,
-          color 0.3s;
-      }
-      .ql-card:hover .ql-card-arr {
-        color: #fff;
-        transform: translateX(2px);
-      }
-
-      /* ============================================================
-       FEATURED PRODUCTS
-    ============================================================ */
-      .featured {
-        padding: 8rem 4rem;
-        background: var(--paper);
-      }
-      .feat-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 2rem;
-      }
-      .feat-card {
-        background: var(--white);
-        border-radius: 18px;
-        border: 1px solid var(--border);
-        overflow: hidden;
-        transition: all 0.4s var(--ease);
-        display: flex;
-        flex-direction: column;
-      }
-      .feat-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 24px 56px rgba(10, 10, 11, 0.12);
-        border-color: rgba(204, 0, 0, 0.2);
-      }
-      .feat-img {
-        position: relative;
-        height: 220px;
-        overflow: hidden;
-        background: var(--paper2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .feat-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        padding: 1.5rem;
-        transition: transform 0.55s var(--ease);
-      }
-      .feat-card:hover .feat-img img {
-        transform: scale(1.09);
-      }
-      .feat-badge {
+      .cat::after {
+        content: "";
         position: absolute;
-        top: 1.4rem;
-        left: 1.4rem;
-        background: var(--red);
-        color: #fff;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.1rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        padding: 0.4rem 1.4rem;
-        border-radius: 20px;
+        z-index: 2;
+        top: -20%;
+        left: -70%;
+        width: 45%;
+        height: 140%;
+        background: linear-gradient(
+          105deg,
+          transparent,
+          rgba(255, 255, 255, 0.35),
+          transparent
+        );
+        transform: skewX(-18deg);
+        pointer-events: none;
       }
-      .feat-body {
-        padding: 2.2rem;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
-      .feat-name {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.9rem;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        margin-bottom: 0.8rem;
-        line-height: 1.2;
-      }
-      .feat-price {
-        font-size: 1.3rem;
-        color: var(--muted);
-        font-style: italic;
-        margin-top: auto;
-        padding-top: 1.2rem;
-        border-top: 1px solid var(--border);
-        margin-bottom: 1.6rem;
-      }
-      .feat-link {
+      .cat span {
+        position: absolute;
+        z-index: 3;
+        inset: auto 0 0;
+        padding: 1.2rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.4rem;
+        gap: 0.6rem;
+        color: #fff;
+      }
+      .cat b {
+        font-family: var(--fd);
         font-weight: 700;
-        letter-spacing: 0.1em;
+        font-size: 1.4rem;
+        letter-spacing: 0.04em;
         text-transform: uppercase;
+        line-height: 1.05;
+        transform: translateY(10px);
+        transition: transform 0.45s var(--ease);
+      }
+      .cat b::before {
+        content: "";
+        display: block;
+        width: 28px;
+        height: 3px;
+        background: var(--red);
+        margin-bottom: 0.5rem;
+        transition:
+          width 0.45s var(--ease),
+          background 0.3s;
+      }
+      .cat i {
+        flex-shrink: 0;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: #fff;
         color: var(--red);
-        padding-top: 1rem;
-        border-top: 1px solid var(--border);
-        transition: opacity 0.22s;
+        display: grid;
+        place-items: center;
+        font-size: 0.9rem;
+        opacity: 0;
+        transform: translateX(-14px) scale(0.7);
+        transition: 0.45s var(--ease);
       }
-      .feat-link:hover {
-        opacity: 0.72;
+      @media (hover: hover) {
+        .cat:hover {
+          box-shadow: 0 26px 54px rgba(200, 16, 46, 0.3);
+        }
+        .cat:hover img {
+          transform: scale(1.14);
+          filter: saturate(1.15);
+        }
+        .cat:hover::before {
+          background: linear-gradient(
+            to top,
+            rgba(200, 16, 46, 0.92) 0%,
+            rgba(17, 18, 20, 0.15) 70%
+          );
+        }
+        .cat:hover::after {
+          left: 130%;
+          transition: left 0.9s var(--ease);
+        }
+        .cat:hover b {
+          transform: none;
+        }
+        .cat:hover b::before {
+          width: 56px;
+          background: #fff;
+        }
+        .cat:hover i {
+          opacity: 1;
+          transform: none;
+        }
       }
-      .feat-link i {
-        transition: transform 0.25s;
+      @media (hover: none) {
+        .cat b {
+          transform: none;
+        }
+        .cat i {
+          opacity: 1;
+          transform: none;
+        }
       }
-      .feat-link:hover i {
-        transform: translateX(6px);
+      .cat.rv.in {
+        transform: perspective(900px) rotateX(var(--rx, 0deg))
+          rotateY(var(--ry, 0deg));
+      }
+      .cat.rv {
+        transition:
+          opacity 0.6s var(--ease),
+          transform 0.25s var(--ease),
+          box-shadow 0.4s;
       }
 
-      /* ============================================================
-       STATS STRIP
-    ============================================================ */
-      .stats-strip {
-        background: var(--ink);
-        padding: 5rem 4rem;
-        overflow: hidden;
-        position: relative;
+      /* featured */
+      .feat {
+        background: var(--paper);
       }
-      .stats-strip::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-          ellipse 60% 100% at 80% 50%,
-          rgba(204, 0, 0, 0.12),
-          transparent
-        );
-        pointer-events: none;
-      }
-      .stats-inner {
-        max-width: 1340px;
-        margin: 0 auto;
+      .fgrid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 3rem;
+        gap: 1.4rem;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.35s var(--ease),
+          box-shadow 0.35s;
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 44px rgba(17, 18, 20, 0.12);
+      }
+      .cimg {
         position: relative;
-        z-index: 1;
+        aspect-ratio: 4/3;
+        background: var(--paper);
+        display: grid;
+        place-items: center;
       }
-      .stat-item {
-        text-align: center;
+      .cimg img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 1rem;
       }
-      .stat-num {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 6rem;
-        font-weight: 800;
-        letter-spacing: 0.04em;
-        line-height: 1;
+      .badge {
+        position: absolute;
+        top: 0.9rem;
+        left: 0.9rem;
+        background: var(--red);
         color: #fff;
-        display: block;
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 0.2rem 0.8rem;
+        border-radius: 20px;
       }
-      .stat-num em {
-        color: var(--red);
-        font-style: normal;
+      .cbody {
+        padding: 1.3rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
       }
-      .stat-label {
-        font-size: 1.3rem;
-        color: rgba(255, 255, 255, 0.38);
-        letter-spacing: 0.16em;
+      .cbody h3 {
+        font-size: 1.45rem;
+        margin-bottom: 0.4rem;
+      }
+      .cbody p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        flex: 1;
+      }
+      .cbody a {
+        font-family: var(--fd);
+        font-weight: 700;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        font-family: "Barlow", sans-serif;
-        font-weight: 500;
-        margin-top: 0.6rem;
-        display: block;
+        color: var(--red);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid var(--line);
+        padding-top: 0.8rem;
       }
 
-      /* ============================================================
-       PROMO BANNER
-    ============================================================ */
+      /* stats */
+      .stats {
+        background: var(--ink);
+        color: #fff;
+        padding-block: clamp(2.5rem, 6vw, 4rem);
+      }
+      .sgrid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        text-align: center;
+      }
+      .sgrid b {
+        display: block;
+        font-family: var(--fd);
+        font-weight: 800;
+        font-size: clamp(2.6rem, 6vw, 4.4rem);
+        line-height: 1;
+      }
+      .sgrid b em {
+        font-style: normal;
+        color: var(--red);
+      }
+      .sgrid span {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      /* promo */
       .promo {
         background: var(--red);
+        color: #fff;
         position: relative;
         overflow: hidden;
-        padding: 7rem 4rem;
       }
       .promo::before {
         content: "HONDA";
         position: absolute;
-        right: -2rem;
+        right: -1rem;
         top: 50%;
         transform: translateY(-50%);
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 24rem;
-        color: rgba(255, 255, 255, 0.05);
-        letter-spacing: 0.04em;
+        font-family: var(--fd);
+        font-weight: 800;
+        font-size: clamp(8rem, 22vw, 20rem);
+        color: rgba(255, 255, 255, 0.06);
         line-height: 1;
         pointer-events: none;
-        white-space: nowrap;
-        font-weight: 800;
       }
-      .promo::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 4px;
-        background: rgba(255, 255, 255, 0.3);
-      }
-      .promo-inner {
-        max-width: 1340px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 3rem;
-        flex-wrap: wrap;
+      .promo .wrap {
         position: relative;
-        z-index: 1;
-      }
-      .promo-left h2 {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 6rem;
-        letter-spacing: 0.04em;
-        font-weight: 800;
-        color: #fff;
-        line-height: 0.9;
-        margin-bottom: 1.2rem;
-        text-transform: uppercase;
-      }
-      .promo-left p {
-        font-size: 1.7rem;
-        color: rgba(255, 255, 255, 0.7);
-        max-width: 480px;
-        line-height: 1.65;
-      }
-      .promo-left strong {
-        color: #fff;
-        font-weight: 700;
-      }
-      .promo-btns {
         display: flex;
-        gap: 1.4rem;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
         flex-wrap: wrap;
       }
-      .promo-pri {
-        background: #fff;
-        color: var(--red);
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.5rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        padding: 1.4rem 3.2rem;
-        border-radius: 7px;
-        display: inline-flex;
-        align-items: center;
+      .promo h2 {
+        font-size: clamp(2.4rem, 6vw, 4.6rem);
+        margin-bottom: 0.8rem;
+      }
+      .promo p {
+        color: rgba(255, 255, 255, 0.85);
+        max-width: 46ch;
+      }
+      .pbtn {
+        display: flex;
         gap: 1rem;
-        transition: all 0.3s;
-      }
-      .promo-pri:hover {
-        background: var(--ink);
-        color: #fff;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 28px rgba(10, 10, 11, 0.25);
-      }
-      .promo-sec {
-        background: rgba(255, 255, 255, 0.12);
-        color: #fff;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.5rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        padding: 1.4rem 3.2rem;
-        border-radius: 7px;
-        border: 1.5px solid rgba(255, 255, 255, 0.3);
-        display: inline-flex;
-        align-items: center;
-        gap: 1rem;
-        transition: all 0.3s;
-      }
-      .promo-sec:hover {
-        background: rgba(255, 255, 255, 0.22);
+        flex-wrap: wrap;
       }
 
-      /* ============================================================
-       NEWS
-    ============================================================ */
-      .news {
-        padding: 8rem 4rem;
-        background: var(--white);
-      }
-      .news-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2.4rem;
-      }
-      .news-card {
-        border-radius: 18px;
+      /* news */
+      .ncard {
+        border: 1px solid var(--line);
+        border-radius: 16px;
         overflow: hidden;
-        border: 1px solid var(--border);
-        background: var(--white);
-        transition: all 0.4s var(--ease);
         display: flex;
         flex-direction: column;
+        background: #fff;
+        transition:
+          transform 0.35s var(--ease),
+          box-shadow 0.35s;
       }
-      .news-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 50px rgba(10, 10, 11, 0.1);
-        border-color: rgba(204, 0, 0, 0.18);
+      .ncard:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 40px rgba(17, 18, 20, 0.1);
       }
-      .nc-img {
+      .nimg {
         position: relative;
-        height: 240px;
+        aspect-ratio: 16/9;
         overflow: hidden;
-        background: var(--paper2);
+        background: var(--paper);
       }
-      .nc-img img {
+      .nimg img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.65s var(--ease);
+        transition: transform 0.6s var(--ease);
       }
-      .news-card:hover .nc-img img {
-        transform: scale(1.07);
+      .ncard:hover .nimg img {
+        transform: scale(1.06);
       }
-      .nc-date {
+      .date {
         position: absolute;
-        top: 1.6rem;
-        left: 1.6rem;
+        top: 0.9rem;
+        left: 0.9rem;
         background: var(--red);
         color: #fff;
         border-radius: 10px;
-        padding: 1rem 1.3rem;
+        padding: 0.5rem 0.8rem;
         text-align: center;
         line-height: 1;
-        box-shadow: 0 4px 16px var(--red-glow);
-        min-width: 54px;
+        font-family: var(--fd);
       }
-      .nc-date .day {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 3rem;
-        letter-spacing: 0.04em;
-        font-weight: 800;
+      .date b {
         display: block;
+        font-size: 1.8rem;
       }
-      .nc-date .month {
-        font-size: 1.05rem;
-        font-weight: 600;
+      .date small {
+        font-size: 0.75rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        font-family: "Barlow", sans-serif;
       }
-      .nc-body {
-        padding: 2.4rem;
-        flex: 1;
+      .nbody {
+        padding: 1.1rem 1.2rem;
         display: flex;
         flex-direction: column;
-      }
-      .nc-title {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.9rem;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        line-height: 1.25;
-        margin-bottom: 1.2rem;
-        color: var(--ink);
-        display: -webkit-box;
-        /*-webkit-line-clamp: 2;*/
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        transition: color 0.2s;
-      }
-      .news-card:hover .nc-title {
-        color: var(--red);
-      }
-      .nc-excerpt {
-        font-size: 1.35rem;
-        color: var(--muted);
-        line-height: 1.7;
-        display: -webkit-box;
-        /*-webkit-line-clamp: 3;*/
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        margin-bottom: 2rem;
         flex: 1;
       }
-      .nc-read {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.8rem;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.4rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--red);
-        padding-top: 1.6rem;
-        border-top: 1px solid var(--border);
-        transition: gap 0.25s;
-      }
-      .nc-read:hover {
-        gap: 1.3rem;
-      }
-
-      /* ============================================================
-       SERVICES
-    ============================================================ */
-      .services {
-        padding: 8rem 4rem;
-        background: var(--paper);
-      }
-      .svc-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2.2rem;
-      }
-      .svc-card {
-        background: var(--white);
-        border-radius: 18px;
-        padding: 3.8rem 3.2rem;
-        border: 1px solid var(--border);
-        transition: all 0.4s var(--ease);
-        position: relative;
+      .nbody h3 {
+        font-size: 1.2rem;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
         overflow: hidden;
       }
-      .svc-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: var(--red);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.4s var(--ease);
-      }
-      .svc-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 22px 56px rgba(10, 10, 11, 0.1);
-      }
-      .svc-card:hover::before {
-        transform: scaleX(1);
-      }
-      .svc-num {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.1rem;
-        font-weight: 700;
-        letter-spacing: 0.22em;
-        color: rgba(204, 0, 0, 0.35);
-        margin-bottom: 2rem;
-        display: block;
-      }
-      .svc-icon {
-        width: 64px;
-        height: 64px;
-        background: var(--red-soft);
-        border-radius: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.4rem;
-        color: var(--red);
-        margin-bottom: 2.5rem;
-        transition: all 0.4s var(--ease);
-      }
-      .svc-card:hover .svc-icon {
-        background: var(--red);
-        color: #fff;
-        transform: rotate(-6deg) scale(1.05);
-      }
-      .svc-card h3 {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 2.6rem;
-        letter-spacing: 0.05em;
-        font-weight: 700;
-        text-transform: uppercase;
-        margin-bottom: 1.4rem;
-        line-height: 1.1;
-      }
-      .svc-card p {
-        font-size: 1.4rem;
+      .nbody p {
         color: var(--muted);
-        line-height: 1.75;
-        margin-bottom: 2.8rem;
-        font-weight: 400;
+        font-size: 0.92rem;
+        flex: 1;
+        margin-bottom: 1rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
-      .svc-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.8rem;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.4rem;
+      .nbody a {
+        font-family: var(--fd);
         font-weight: 700;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--red);
-        border-bottom: 2px solid transparent;
-        padding-bottom: 0.2rem;
-        transition: all 0.25s;
-      }
-      .svc-link:hover {
-        border-bottom-color: var(--red);
-        gap: 1.3rem;
+        border-top: 1px solid var(--line);
+        padding-top: 0.8rem;
       }
 
-      /* ============================================================
-       FOOTER
-    ============================================================ */
-      footer {
-        background: #060606;
-        padding: 7rem 4rem 3rem;
-        border-top: 3px solid var(--red);
-      }
-      .ft-top {
-        max-width: 1340px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 2.2fr 1fr 1fr 1fr 1.5fr;
-        gap: 5rem;
-        margin-bottom: 5rem;
-        padding-bottom: 5rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      }
-      .ft-logo-row {
+      /* news carousel */
+      .ngrid {
         display: flex;
-        align-items: center;
         gap: 1.2rem;
-        margin-bottom: 1rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0.4rem 0.2rem 1.2rem;
+        cursor: grab;
+        overscroll-behavior-x: contain;
+        touch-action: pan-x pan-y;
       }
-      .ft-logo-img {
-        width: 40px;
-        height: 40px;
-        object-fit: contain;
-        opacity: 0.9;
+      .ngrid::-webkit-scrollbar {
+        display: none;
       }
-      .ft-brand-name {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 2.2rem;
-        letter-spacing: 0.1em;
-        color: #fff;
-        font-weight: 800;
-        text-transform: uppercase;
+      .ngrid.drag {
+        cursor: grabbing;
+        scroll-snap-type: none;
+        user-select: none;
       }
-      .ft-brand-name span {
-        color: var(--red);
+      .ncard {
+        flex: 0 0 min(420px, 80vw);
+        scroll-snap-align: start;
       }
-      .ft-brand-tag {
-        font-size: 1.35rem;
-        color: rgba(255, 255, 255, 0.22);
-        margin-bottom: 2.8rem;
-        line-height: 1.75;
-        max-width: 290px;
-        font-weight: 400;
-      }
-      .ft-socials {
-        display: flex;
-        gap: 0.9rem;
-      }
-      .ft-soc {
-        width: 40px;
-        height: 40px;
-        border-radius: 9px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+      .ncontrols {
         display: flex;
         align-items: center;
-        justify-content: center;
-        color: rgba(255, 255, 255, 0.38);
-        font-size: 1.4rem;
-        transition: all 0.26s;
-        text-decoration: none;
+        gap: 0.6rem;
       }
-      .ft-soc:hover {
+      .ncontrols .more {
+        margin-left: 0.8rem;
+      }
+      .arrow.narrow {
+        border-color: var(--line);
+        background: #fff;
+        color: var(--ink);
+      }
+      .arrow.narrow:hover {
         background: var(--red);
         border-color: var(--red);
         color: #fff;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 16px var(--red-glow);
       }
-      .ft-col h5 {
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: 1.15rem;
-        font-weight: 700;
-        letter-spacing: 0.22em;
-        color: rgba(255, 255, 255, 0.22);
-        text-transform: uppercase;
-        margin-bottom: 2.2rem;
+      @media (max-width: 960px) {
+        .ncard {
+          flex-basis: min(340px, 46vw);
+        }
       }
-      .ft-col ul li {
-        margin-bottom: 1.3rem;
+      @media (max-width: 768px) {
+        .ncard {
+          flex-basis: 78vw;
+        }
+        .ncontrols .arrow {
+          display: none;
+        }
+        .ncontrols .more {
+          margin: 0;
+        }
       }
-      .ft-col a {
-        font-size: 1.4rem;
-        color: rgba(255, 255, 255, 0.38);
-        transition: color 0.2s;
-        font-weight: 400;
+
+      /* services */
+      .svc {
+        background: var(--paper);
       }
-      .ft-col a:hover {
-        color: #fff;
+      .vgrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.6rem;
       }
-      .ft-contact li {
-        display: flex;
-        align-items: flex-start;
-        gap: 1.1rem;
-        font-size: 1.4rem;
-        color: rgba(255, 255, 255, 0.38);
-        margin-bottom: 1.5rem;
+      .vcard {
+        background: #fff;
+        border-radius: 16px;
+        padding: 2.2rem;
+        border: 1px solid var(--line);
+        border-top: 3px solid var(--red);
+        transition:
+          transform 0.35s var(--ease),
+          box-shadow 0.35s;
       }
-      .ft-contact i {
+      .vcard:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 40px rgba(17, 18, 20, 0.1);
+      }
+      .vico {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        background: rgba(200, 16, 46, 0.09);
         color: var(--red);
-        font-size: 1.2rem;
-        margin-top: 0.2rem;
-        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        font-size: 1.5rem;
+        margin-bottom: 1.4rem;
       }
-      .ft-contact a {
-        color: rgba(255, 255, 255, 0.38);
-        transition: color 0.2s;
+      .vcard h3 {
+        font-size: 1.7rem;
+        margin-bottom: 0.7rem;
       }
-      .ft-contact a:hover {
+      .vcard p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin-bottom: 1.4rem;
+      }
+
+      /* footer */
+      footer {
+        background: #08090a;
+        color: rgba(255, 255, 255, 0.55);
+        border-top: 3px solid var(--red);
+        padding: clamp(3rem, 7vw, 5rem) 0
+          calc(2rem + env(safe-area-inset-bottom));
+      }
+      .ftop {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+        gap: 2.5rem;
+        padding-bottom: 3rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        margin-bottom: 1.6rem;
+      }
+      .fbrand {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+        color: #fff;
+        font-family: var(--fd);
+        font-weight: 800;
+        font-size: 1.4rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .fbrand img {
+        width: 38px;
+        height: 38px;
+        object-fit: contain;
+      }
+      .fbrand span {
+        color: var(--red);
+      }
+      .ftop p {
+        font-size: 0.9rem;
+        max-width: 34ch;
+        margin-bottom: 1.4rem;
+      }
+
+      /* social icons (đã sửa: không còn xung đột với class .fab của Font Awesome) */
+      .soc {
+        display: flex;
+        gap: 0.6rem;
+      }
+      .soc a {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-size: 1.1rem;
+        transition:
+          transform 0.25s,
+          filter 0.25s,
+          box-shadow 0.25s;
+      }
+      .soc a i {
+        color: inherit;
+        line-height: 1;
+      }
+      .soc a[aria-label="Facebook"] {
+        background: #1877f2;
+        border-color: #1877f2;
+      }
+      .soc a[aria-label="YouTube"] {
+        background: #ff0000;
+        border-color: #ff0000;
+      }
+      .soc a[aria-label="Instagram"] {
+        background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+        border-color: transparent;
+      }
+      .soc a[aria-label="TikTok"] {
+        background: #000;
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+      .soc a:hover {
+        color: #fff;
+        filter: brightness(1.15);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+      }
+
+      .fcol h4 {
+        color: #fff;
+        font-family: var(--fd);
+        font-size: 1.1rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+      .fcol li {
+        margin-bottom: 0.7rem;
+        font-size: 0.92rem;
+      }
+      .fcol a:hover {
         color: #fff;
       }
-      .ft-btm {
-        max-width: 1340px;
-        margin: 0 auto;
+      .fcol i {
+        color: var(--red);
+        margin-right: 0.6rem;
+        width: 1rem;
+      }
+      .fbtm {
         display: flex;
-        align-items: center;
         justify-content: space-between;
+        gap: 1rem;
         flex-wrap: wrap;
-        gap: 1.5rem;
+        font-size: 0.82rem;
       }
-      .ft-btm p {
-        font-size: 1.3rem;
-        color: rgba(255, 255, 255, 0.16);
-      }
-      .ft-badge {
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-        font-size: 1.2rem;
-        color: rgba(255, 255, 255, 0.16);
-      }
-      .ft-badge i {
+      .fbtm i {
         color: var(--red);
       }
 
-      /* ============================================================
-       MOBILE NAV BAR
-    ============================================================ */
-      .mob-nav {
+      /* mobile nav + floats */
+      .mnav {
         display: none;
         position: fixed;
-        bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(245, 243, 240, 0.97);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-top: 1px solid var(--border);
+        bottom: 0;
         z-index: 400;
-        padding: 0.6rem 0;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-top: 1px solid var(--line);
+        padding-bottom: env(safe-area-inset-bottom);
       }
-      .mnb {
+      .mnav div {
         display: flex;
         justify-content: space-around;
       }
-      .mnb-a {
+      .mnav a {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.4rem;
+        gap: 0.15rem;
+        padding: 0.5rem 0.6rem;
+        min-width: 56px;
+        min-height: 52px;
         color: var(--muted);
-        text-decoration: none;
-        padding: 0.5rem 1rem;
-        transition: color 0.2s;
-        position: relative;
+        font-size: 0.68rem;
+        font-weight: 600;
       }
-      .mnb-a.on,
-      .mnb-a:hover {
+      .mnav a.on,
+      .mnav a:hover {
         color: var(--red);
       }
-      .mnb-a i {
-        font-size: 1.9rem;
-      }
-      .mnb-a span {
-        font-size: 0.92rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
+      .mnav i {
+        font-size: 1.2rem;
       }
 
-      /* ============================================================
-       FLOAT BUTTONS
-    ============================================================ */
-      .messenger-float {
+      /* nút nổi (đổi tên từ .fab → .float-btn để không đè lên class .fab của Font Awesome) */
+      .float-btn {
         position: fixed;
-        bottom: 9.5rem;
-        right: 2.5rem;
-        width: 52px;
-        height: 52px;
-        background: #0084ff;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.2rem;
-        color: #fff;
-        text-decoration: none;
-        box-shadow: 0 4px 18px rgba(0, 132, 255, 0.32);
+        right: max(1rem, env(safe-area-inset-right));
         z-index: 300;
-        animation: mpulse 2.5s ease-in-out infinite;
-        transition: transform 0.3s;
-      }
-      .messenger-float:hover {
-        transform: scale(1.12);
-      }
-      @keyframes mpulse {
-        0%,
-        100% {
-          box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
-        }
-        50% {
-          box-shadow: 0 4px 38px rgba(0, 132, 255, 0.58);
-        }
-      }
-      .back-top {
-        position: fixed;
-        bottom: 2.5rem;
-        right: 2.5rem;
-        width: 46px;
-        height: 46px;
-        background: var(--red);
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.6rem;
+        display: grid;
+        place-items: center;
         color: #fff;
-        text-decoration: none;
+        font-size: 1.4rem;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      }
+      .float-btn.ms {
+        bottom: 5.2rem;
+        background: #0084ff;
+      }
+      .float-btn.up {
+        bottom: 1.4rem;
+        background: var(--red);
         opacity: 0;
         visibility: hidden;
-        transition: all 0.3s;
-        z-index: 300;
+        transition: 0.3s;
+        font-size: 1.1rem;
       }
-      .back-top.on {
+      .float-btn.up.on {
         opacity: 1;
         visibility: visible;
       }
-      .back-top:hover {
-        background: var(--red-dark);
-        transform: translateY(-3px);
-      }
 
-      /* ============================================================
-       SCROLL REVEAL
-    ============================================================ */
+      /* reveal */
       .rv {
         opacity: 0;
-        transform: translateY(26px);
+        transform: translateY(20px);
         transition:
-          opacity 0.7s var(--ease),
-          transform 0.7s var(--ease);
+          opacity 0.6s var(--ease),
+          transform 0.6s var(--ease);
       }
-      .rv-l {
-        opacity: 0;
-        transform: translateX(-26px);
-        transition:
-          opacity 0.7s var(--ease),
-          transform 0.7s var(--ease);
-      }
-      .rv-r {
-        opacity: 0;
-        transform: translateX(26px);
-        transition:
-          opacity 0.7s var(--ease),
-          transform 0.7s var(--ease);
-      }
-      .rv.in,
-      .rv-l.in,
-      .rv-r.in {
+      .rv.in {
         opacity: 1;
         transform: none;
       }
 
-      /* ============================================================
-       RESPONSIVE
-    ============================================================ */
-      @media (max-width: 1240px) {
-        .feat-grid {
-          grid-template-columns: repeat(2, 1fr);
+      /* responsive */
+      @media (max-width: 1280px) {
+        .call,
+        .logo small {
+          display: none;
         }
-        .ql-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        .ft-top {
-          grid-template-columns: 1fr 1fr;
-          gap: 4rem;
-        }
-        .stats-inner {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 2.5rem;
+        .nav > li > a {
+          padding: 0 0.7rem;
         }
       }
-      @media (max-width: 992px) {
-        .main-nav,
-        .hdr-cta {
+      @media (max-width: 1100px) {
+        .fgrid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .cats {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .ftop {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+        .ftop > div:first-child,
+        .ftop > div:last-child {
+          grid-column: 1/-1;
+        }
+        .nav > li > a {
+          padding: 0 0.5rem;
+          font-size: 1rem;
+          letter-spacing: 0.04em;
+        }
+        .logo b {
+          font-size: 1.1rem;
+        }
+      }
+      @media (max-width: 960px) {
+        .nav,
+        .call {
           display: none;
         }
         .ham {
           display: flex;
         }
-        .hdr-inner {
-          padding: 0 2.5rem;
-        }
-        .hero {
-          height: 90vh;
-        }
-        .slide-body {
-          padding: 0 3.5rem 10rem;
-        }
-        .s-title {
-          font-size: clamp(5rem, 16vw, 10rem);
-        }
-        .hero-ctrl {
-          left: 3.5rem;
-        }
-        .slide-counter {
-          right: 3.5rem;
-        }
-        .ql-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        .quick-links,
-        .featured,
-        .promo,
-        .news,
-        .services,
-        .stats-strip {
-          padding: 5rem 2.5rem;
-        }
-        .news-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-        .svc-grid {
+        .vgrid {
           grid-template-columns: 1fr;
         }
-        .promo-inner {
-          flex-direction: column;
-        }
-        footer {
-          padding: 5rem 2.5rem 3rem;
-        }
-        .ft-top {
-          grid-template-columns: 1fr 1fr;
-          gap: 3.5rem;
+        .sgrid {
+          grid-template-columns: repeat(2, 1fr);
+          row-gap: 2rem;
         }
       }
       @media (max-width: 768px) {
-        .top-bar {
+        .topbar {
           display: none;
         }
-        .hero {
-          height: 95vh;
+        :root {
+          --hh: 60px;
         }
-        .s-title {
-          font-size: clamp(4.5rem, 18vw, 8rem);
-        }
-        .slide-counter {
+        .logo small {
           display: none;
         }
-        .hero-ctrl {
-          left: 2.5rem;
-          bottom: 3rem;
-        }
-        .ql-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .feat-grid {
-          grid-template-columns: 1fr;
-        }
-        .news-grid {
-          grid-template-columns: 1fr;
-        }
-        .sec-h2,
-        .promo-left h2 {
-          font-size: 4.2rem;
-        }
-        .ft-top {
-          grid-template-columns: 1fr;
-          gap: 3rem;
-        }
-        .ft-btm {
-          flex-direction: column;
-          text-align: center;
-        }
-        .mob-nav {
+        .mnav {
           display: block;
         }
-        footer {
-          padding-bottom: 8rem;
+        body {
+          padding-bottom: calc(58px + env(safe-area-inset-bottom));
         }
-        .messenger-float,
-        .back-top {
-          right: 1.8rem;
+        .float-btn.up {
+          bottom: 5.2rem;
+          right: 1rem;
         }
-        .messenger-float {
-          bottom: 9rem;
+        .float-btn.ms {
+          bottom: 9.2rem;
         }
-        .back-top {
-          bottom: 9rem;
-        }
-        .promo-btns {
-          flex-direction: column;
-        }
-        .stats-inner {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-      @media (max-width: 480px) {
-        .ql-grid {
+        .cats {
           grid-template-columns: repeat(2, 1fr);
         }
-        .ctrl {
+        .ftop {
+          grid-template-columns: 1fr 1fr;
+        }
+        .promo .wrap {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .fbtm {
+          flex-direction: column;
+          text-align: center;
+          align-items: center;
+        }
+        .arrow {
           width: 42px;
           height: 42px;
-          font-size: 1.2rem;
         }
-        .hero-ctrl {
-          gap: 0.8rem;
+      }
+      @media (max-width: 520px) {
+        .fgrid {
+          grid-template-columns: 1fr;
+        }
+        .cimg {
+          aspect-ratio: 16/10;
+        }
+        .ftop {
+          grid-template-columns: 1fr;
+        }
+        .pbtn,
+        .pbtn .btn {
+          width: 100%;
+        }
+        .hero {
+          height: clamp(500px, 82svh, 700px);
+        }
+      }
+      @media (hover: none) {
+        .card:hover,
+        .ncard:hover,
+        .vcard:hover {
+          transform: none;
+          box-shadow: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+        .rv {
+          opacity: 1;
+          transform: none;
         }
       }
     </style>
   </head>
   <body>
-    <!-- ===== TOP BAR ===== -->
-    <div class="top-bar" id="topBar">
-      <div class="tb-inner">
-        <div class="tb-links">
+    <div class="topbar">
+      <div class="wrap">
+        <div>
           <a href="/question/"
-            ><i class="fas fa-question-circle"></i>Câu hỏi thường gặp</a
-          >
-          <a href="/cuahang/"
+            ><i class="fas fa-circle-question"></i>Câu hỏi thường gặp</a
+          ><a href="/cuahang/"
             ><i class="fas fa-location-dot"></i>Hệ thống đại lý</a
           >
         </div>
-        <div class="tb-contact">
-          <a href="tel:1900636712"
-            ><i class="fas fa-phone-alt"></i>1900 636 712</a
-          >
-          <div class="tb-divider"></div>
-          <a href="mailto:cr_mt@hungmanh.com.vn"
+        <div>
+          <a href="tel:1900636712"><i class="fas fa-phone"></i>1900 636 712</a
+          ><a href="mailto:cr_mt@hungmanh.com.vn"
             ><i class="fas fa-envelope"></i>cr_mt@hungmanh.com.vn</a
           >
         </div>
       </div>
     </div>
 
-    <!-- ===== HEADER ===== -->
-    <header class="site-header" id="siteHeader">
-      <div class="hdr-inner">
-        <a href="/" class="logo-area">
-          <div class="logo-img-wrap">
-            <img
-              src="/sanphamxemay/image/banner/Logo_HEAD.png"
-              alt="HEAD Trung Hùng Logo"
-            />
-          </div>
-          <div class="logo-text-wrap">
-            <span class="logo-main">HỆ THỐNG HEAD <span>TRUNG HÙNG</span></span>
-            <span class="logo-sub"
-              >Cửa Hàng Bán Xe Và Dịch Vụ Do Honda Ủy Nhiệm</span
-            >
+    <header class="hdr" id="hdr">
+      <div class="wrap">
+        <a href="/" class="logo" aria-label="HEAD Trung Hùng – Trang chủ">
+          <img
+            src="/sanphamxemay/image/banner/Logo_HEAD.png"
+            alt="Logo HEAD Trung Hùng"
+          />
+          <div>
+            <b>Hệ thống HEAD <span>Trung Hùng</span></b
+            ><small>Cửa hàng bán xe và dịch vụ do Honda ủy nhiệm</small>
           </div>
         </a>
-
-        <ul class="main-nav">
-          <li><a href="/Trangchu/" class="active">Trang chủ</a></li>
+        <ul class="nav">
+          <li><a href="/" class="on">Trang chủ</a></li>
           <li><a href="/gioithieu/">Giới thiệu</a></li>
-          <li class="dropdown">
+          <li>
             <a href="/sanphamxemay/"
               >Sản phẩm <i class="fas fa-chevron-down"></i
             ></a>
-            <ul class="dropdown-panel">
+            <ul class="dd">
               <li>
                 <a href="/sanphamxemay/?category=xe-ga"
-                  ><i class="fas fa-motorcycle"></i>Xe Ga</a
+                  ><i class="fas fa-motorcycle"></i>Xe ga</a
                 >
               </li>
               <li>
                 <a href="/sanphamxemay/?category=xe-so"
-                  ><i class="fas fa-bicycle"></i>Xe Số</a
+                  ><i class="fas fa-bicycle"></i>Xe số</a
                 >
               </li>
               <li>
                 <a href="/sanphamxemay/?category=xe-con-tay"
-                  ><i class="fas fa-cog"></i>Xe Côn Tay</a
+                  ><i class="fas fa-gear"></i>Xe côn tay</a
                 >
               </li>
               <li>
                 <a href="/sanphamxemay/?category=pkl"
-                  ><i class="fas fa-tachometer-alt"></i>Phân Khối Lớn</a
+                  ><i class="fas fa-gauge-high"></i>Phân khối lớn</a
                 >
               </li>
               <li>
                 <a href="/sanphamxemay/?category=xe-dien"
-                  ><i class="fas fa-bolt"></i>Xe Điện</a
+                  ><i class="fas fa-bolt"></i>Xe điện</a
                 >
               </li>
               <li>
                 <a href="/sanphamxemay/?category=all"
-                  ><i class="fas fa-list"></i>Tất Cả</a
+                  ><i class="fas fa-list"></i>Tất cả</a
                 >
               </li>
             </ul>
           </li>
-          <li class="dropdown">
-            <a href="">Dịch Vụ <i class="fas fa-chevron-down"></i></a>
-            <ul class="dropdown-panel">
+          <li>
+            <a href="/dichvu/">Dịch vụ <i class="fas fa-chevron-down"></i></a>
+            <ul class="dd">
               <li>
                 <a href="/dichvu/sanphamphutung/"
-                  ><i class="fas fa-gear"></i>Phụ Tùng Chính Hãng</a
+                  ><i class="fas fa-gear"></i>Phụ tùng chính hãng</a
                 >
               </li>
               <li>
                 <a href="/dichvu/baoduong/"
-                  ><i class="fas fa-tools"></i>Bảo Dưỡng & Sửa Chữa</a
+                  ><i class="fas fa-screwdriver-wrench"></i>Bảo dưỡng &amp; sửa
+                  chữa</a
                 >
               </li>
               <li>
                 <a href="/dichvu/baohanh/"
-                  ><i class="fas fa-shield-alt"></i>Bảo Hành Xe Máy</a
+                  ><i class="fas fa-shield-halved"></i>Bảo hành xe máy</a
                 >
               </li>
               <li>
                 <a href="/dichvu/kiemtradinhky/"
-                  ><i class="fas fa-calendar-alt"></i>Tra cứu lịch KTĐK</a
+                  ><i class="fas fa-calendar-check"></i>Tra cứu lịch KTĐK</a
                 >
               </li>
               <li>
                 <a href="/dichvu/login/"
-                  ><i class="fa-solid fa-right-to-bracket"></i>Đăng nhập</a
+                  ><i class="fas fa-right-to-bracket"></i>Đăng nhập</a
                 >
               </li>
             </ul>
           </li>
-          <li class="dropdown">
-            <a href="">Tin tức <i class="fas fa-chevron-down"></i></a>
-            <ul class="dropdown-panel">
+          <li>
+            <a href="/tintuc/">Tin tức <i class="fas fa-chevron-down"></i></a>
+            <ul class="dd">
               <li>
                 <a href="/tintuc/tintucxemay/"
-                  ><i class="fas fa-newspaper"></i>Tin Tức Xe Máy</a
+                  ><i class="fas fa-newspaper"></i>Tin tức xe máy</a
                 >
               </li>
               <li>
                 <a href="/tintuc/tintucsukien/"
-                  ><i class="fas fa-calendar-alt"></i>Sự Kiện</a
+                  ><i class="fas fa-calendar-days"></i>Sự kiện</a
                 >
               </li>
               <li>
                 <a href="/tintuc/tintuckhuyenmai/"
-                  ><i class="fas fa-gift"></i>Khuyến Mãi</a
+                  ><i class="fas fa-gift"></i>Khuyến mãi</a
                 >
               </li>
               <li>
                 <a href="/tintuc/tintuclxat/"
-                  ><i class="fas fa-calendar-alt"></i>Hoạt động LXAT</a
+                  ><i class="fas fa-road"></i>Hoạt động LXAT</a
                 >
               </li>
             </ul>
           </li>
-          <li><a href="/cuahang/">Hệ thống đại lý</a></li>
+
           <li><a href="/lienhe/">Liên hệ</a></li>
         </ul>
-
-        <a href="tel:1900636712" class="hdr-cta"
-          ><i class="fas fa-phone-alt"></i> Gọi ngay</a
+        <a href="tel:1900636712" class="call"
+          ><i class="fas fa-phone"></i>Gọi ngay</a
         >
-        <div class="ham" id="ham"><span></span><span></span><span></span></div>
+        <button class="ham" id="ham" aria-label="Mở menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </header>
 
-    <!-- Drawer Overlay -->
-    <div class="draw-ov" id="drawOv"></div>
-    <div class="site-draw" id="siteDraw">
-      <button class="draw-x" id="drawX"><i class="fas fa-times"></i></button>
-      <ul class="draw-nav">
+    <div class="ov" id="ov"></div>
+    <aside class="drawer" id="drawer" aria-label="Menu">
+      <button class="dx" id="dx" aria-label="Đóng menu">
+        <i class="fas fa-xmark"></i>
+      </button>
+      <ul>
         <li><a href="/">Trang chủ</a></li>
         <li><a href="/gioithieu/">Giới thiệu</a></li>
         <li>
-          <a href="/sanphamxemay/" class="draw-toggle" data-target="draw-sp"
-            >Sản phẩm <i class="fas fa-chevron-down"></i
-          ></a>
-          <div class="draw-sub" id="draw-sp">
+          <button class="tg" data-t="d1" aria-expanded="false">
+            Sản phẩm <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="sub" id="d1">
             <a href="/sanphamxemay/?category=xe-ga"
-              ><i class="fas fa-motorcycle"></i>Xe Ga</a
+              ><i class="fas fa-motorcycle"></i>Xe ga</a
             >
             <a href="/sanphamxemay/?category=xe-so"
-              ><i class="fas fa-bicycle"></i>Xe Số</a
+              ><i class="fas fa-bicycle"></i>Xe số</a
             >
             <a href="/sanphamxemay/?category=xe-con-tay"
-              ><i class="fas fa-cog"></i>Xe Côn Tay</a
+              ><i class="fas fa-gear"></i>Xe côn tay</a
             >
             <a href="/sanphamxemay/?category=pkl"
-              ><i class="fas fa-tachometer-alt"></i>Phân Khối Lớn</a
+              ><i class="fas fa-gauge-high"></i>Phân khối lớn</a
             >
             <a href="/sanphamxemay/?category=xe-dien"
-              ><i class="fas fa-bolt"></i>Xe Điện</a
+              ><i class="fas fa-bolt"></i>Xe điện</a
             >
           </div>
         </li>
         <li>
-          <a href="/dichvu/" class="draw-toggle" data-target="draw-dv"
-            >Dịch Vụ <i class="fas fa-chevron-down"></i
-          ></a>
-          <div class="draw-sub" id="draw-dv">
+          <button class="tg" data-t="d2" aria-expanded="false">
+            Dịch vụ <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="sub" id="d2">
             <a href="/dichvu/sanphamphutung/"
-              ><i class="fas fa-gear"></i>Phụ Tùng Chính Hãng</a
+              ><i class="fas fa-gear"></i>Phụ tùng chính hãng</a
             >
             <a href="/dichvu/baoduong/"
-              ><i class="fas fa-tools"></i>Bảo Dưỡng & Sửa Chữa</a
+              ><i class="fas fa-screwdriver-wrench"></i>Bảo dưỡng &amp; sửa
+              chữa</a
             >
             <a href="/dichvu/baohanh/"
-              ><i class="fas fa-shield-alt"></i>Bảo Hành</a
+              ><i class="fas fa-shield-halved"></i>Bảo hành</a
             >
             <a href="/dichvu/kiemtradinhky/"
-              ><i class="fas fa-calendar-alt"></i>Tra Cứu Lịch KTĐK</a
+              ><i class="fas fa-calendar-check"></i>Tra cứu lịch KTĐK</a
             >
             <a href="/dichvu/login/"
-              ><i class="fa-solid fa-right-to-bracket"></i>Đăng nhập</a
+              ><i class="fas fa-right-to-bracket"></i>Đăng nhập</a
             >
           </div>
         </li>
         <li>
-          <a href="/tintuc/" class="draw-toggle" data-target="draw-tn"
-            >Tin tức <i class="fas fa-chevron-down"></i
-          ></a>
-          <div class="draw-sub" id="draw-tn">
+          <button class="tg" data-t="d3" aria-expanded="false">
+            Tin tức <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="sub" id="d3">
             <a href="/tintuc/tintucxemay/"
-              ><i class="fas fa-newspaper"></i>Tin Tức Xe Máy</a
+              ><i class="fas fa-newspaper"></i>Tin tức xe máy</a
             >
             <a href="/tintuc/tintucsukien/"
-              ><i class="fas fa-calendar-alt"></i>Sự Kiện</a
+              ><i class="fas fa-calendar-days"></i>Sự kiện</a
             >
             <a href="/tintuc/tintuckhuyenmai/"
-              ><i class="fas fa-gift"></i>Khuyến Mãi</a
+              ><i class="fas fa-gift"></i>Khuyến mãi</a
+            >
+            <a href="/tintuc/tintuclxat/"
+              ><i class="fas fa-road"></i>Hoạt động LXAT</a
             >
           </div>
         </li>
         <li><a href="/cuahang/">Hệ thống đại lý</a></li>
         <li><a href="/lienhe/">Liên hệ</a></li>
       </ul>
-      <a href="tel:1900636712" class="draw-cta"
-        ><i class="fas fa-phone-alt"></i> Gọi ngay: 1900 636 712</a
+      <a href="tel:1900636712" class="btn"
+        ><i class="fas fa-phone"></i>Gọi ngay: 1900 636 712</a
       >
-    </div>
+    </aside>
 
-    <!-- ===== HERO SLIDER ===== -->
-    <section class="hero" id="heroSlider">
-      <div class="slides" id="slides">
+    <main>
+      <section class="hero" id="hero" aria-label="Sản phẩm nổi bật">
         <div
           class="slide on"
           style="
             background-image: url(&quot;/sanphamxemay/SH160/SH160/picture/3.jpg&quot;);
           "
         >
-          <div class="slide-ov"></div>
-          <div class="slide-body">
-            <div class="s-kicker">Xe Ga Cao Cấp 2027</div>
-            <div class="s-title">SH<br /><em>160/125</em></div>
-            <div class="s-sub">
-              Sắc Đen Độc Bản - AURA BLACK - Khẳng Định Khí Chất
-            </div>
-            <a href="/sanphamxemay/SH160/" class="s-btn"
+          <div class="sbody">
+            <span class="kick">Xe ga cao cấp 2027</span>
+            <h1 class="stitle">SH <em>160/125</em></h1>
+            <p class="ssub">
+              Sắc đen độc bản Aura Black – khẳng định khí chất.
+            </p>
+            <a href="/sanphamxemay/SH160/" class="btn"
               >Khám phá <i class="fas fa-arrow-right"></i
             ></a>
           </div>
@@ -2137,12 +1716,11 @@
             background-image: url(&quot;/sanphamxemay/Shmode/Shmode/picture/1.jpg&quot;);
           "
         >
-          <div class="slide-ov"></div>
-          <div class="slide-body">
-            <div class="s-kicker">Xe Ga Thời Thượng</div>
-            <div class="s-title">HONDA<br /><em>Shmode</em></div>
-            <div class="s-sub">Biểu Tượng Chuẩn Sang</div>
-            <a href="/sanphamxemay/Shmode/" class="s-btn"
+          <div class="sbody">
+            <span class="kick">Xe ga thời thượng</span>
+            <h2 class="stitle">Honda <em>SH Mode</em></h2>
+            <p class="ssub">Biểu tượng chuẩn sang.</p>
+            <a href="/sanphamxemay/Shmode/" class="btn"
               >Tìm hiểu thêm <i class="fas fa-arrow-right"></i
             ></a>
           </div>
@@ -2153,33 +1731,30 @@
             background-image: url(&quot;/sanphamxemay/Vario125/VARIO125/picture/2.jpg&quot;);
           "
         >
-          <div class="slide-ov"></div>
-          <div class="slide-body">
-            <div class="s-kicker">Honda Chính Hãng 2027</div>
-            <div class="s-title">VARIO125<br /><em>SỐNG SÀNH</em></div>
-            <div class="s-sub">
-              Vario 125 phiên bản 2027 mang đến diện mạo thể thao hoàn toàn mới.
-            </div>
-            <a href="/sanphamxemay/Vario125/" class="s-btn"
+          <div class="sbody">
+            <span class="kick">Honda chính hãng 2027</span>
+            <h2 class="stitle">Vario 125 <em>sống sành</em></h2>
+            <p class="ssub">
+              Phiên bản 2027 mang diện mạo thể thao hoàn toàn mới.
+            </p>
+            <a href="/sanphamxemay/Vario125/" class="btn"
               >Khám phá ngay <i class="fas fa-arrow-right"></i
             ></a>
           </div>
         </div>
-
         <div
           class="slide"
           style="
             background-image: url(&quot;/sanphamxemay/ICONe/ICONe/picture/1.jpg&quot;);
           "
         >
-          <div class="slide-ov"></div>
-          <div class="slide-body">
-            <div class="s-kicker">Xe Điện Honda</div>
-            <div class="s-title">ICON<em>e</em><br />Xanh</div>
-            <div class="s-sub">
-              Biểu tượng mới của di chuyển xanh — pin Lithium, hành trình 71km.
-            </div>
-            <a href="/sanphamxemay/ICONe/" class="s-btn"
+          <div class="sbody">
+            <span class="kick">Xe điện Honda</span>
+            <h2 class="stitle">ICON e <em>xanh</em></h2>
+            <p class="ssub">
+              Biểu tượng mới của di chuyển xanh – pin Lithium, hành trình 71 km.
+            </p>
+            <a href="/sanphamxemay/ICONe/" class="btn"
               >Khám phá <i class="fas fa-arrow-right"></i
             ></a>
           </div>
@@ -2190,724 +1765,751 @@
             background-image: url(&quot;/sanphamxemay/WinnerR/Winner R/picture/3.jpg&quot;);
           "
         >
-          <div class="slide-ov"></div>
-          <div class="slide-body">
-            <div class="s-kicker">Xe Côn Tay 150cc</div>
-            <div class="s-title">WINNER<br /><em>R</em></div>
-            <div class="s-sub">
+          <div class="sbody">
+            <span class="kick">Xe côn tay 150cc</span>
+            <h2 class="stitle">Winner <em>R</em></h2>
+            <p class="ssub">
               Bứt tốc đỉnh cao, khẳng định khí chất chiến binh trên mọi cung
               đường.
-            </div>
-            <a href="/sanphamxemay/WinnerR/" class="s-btn"
+            </p>
+            <a href="/sanphamxemay/WinnerR/" class="btn"
               >Tìm hiểu thêm <i class="fas fa-arrow-right"></i
             ></a>
           </div>
         </div>
-      </div>
-
-      <div class="slide-counter">
-        <div class="sc-n" id="scN">01<em>/</em></div>
-        <div class="sc-tot">05</div>
-      </div>
-      <div class="hero-ctrl">
-        <button class="ctrl" id="hPrev">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="ctrl" id="hNext">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-        <div class="dots-row" id="dots"></div>
-      </div>
-      <div class="hero-prog"><div class="hero-prog-fill" id="hPF"></div></div>
-    </section>
-
-    <!-- ===== MARQUEE ===== -->
-    <div class="marquee">
-      <div class="mq-track">
-        <div class="mq-item">XE GA <span class="mq-dot"></span></div>
-        <div class="mq-item">XE SỐ <span class="mq-dot"></span></div>
-        <div class="mq-item">PHÂN KHỐI LỚN <span class="mq-dot"></span></div>
-        <div class="mq-item">XE CÔN TAY <span class="mq-dot"></span></div>
-        <div class="mq-item">XE ĐIỆN <span class="mq-dot"></span></div>
-        <div class="mq-item">HONDA CHÍNH HÃNG <span class="mq-dot"></span></div>
-        <div class="mq-item">
-          BẢO HÀNH CHÍNH THỨC <span class="mq-dot"></span>
+        <div class="ctrl">
+          <div class="wrap">
+            <button class="arrow" id="prev" aria-label="Slide trước">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="arrow" id="next" aria-label="Slide sau">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="dots" id="dots"></div>
+          </div>
         </div>
-        <div class="mq-item">HEAD TRUNG HÙNG <span class="mq-dot"></span></div>
-        <div class="mq-item">XE GA <span class="mq-dot"></span></div>
-        <div class="mq-item">XE SỐ <span class="mq-dot"></span></div>
-        <div class="mq-item">PHÂN KHỐI LỚN <span class="mq-dot"></span></div>
-        <div class="mq-item">XE CÔN TAY <span class="mq-dot"></span></div>
-        <div class="mq-item">XE ĐIỆN <span class="mq-dot"></span></div>
-        <div class="mq-item">HONDA CHÍNH HÃNG <span class="mq-dot"></span></div>
-        <div class="mq-item">
-          BẢO HÀNH CHÍNH THỨC <span class="mq-dot"></span>
-        </div>
-        <div class="mq-item">HEAD TRUNG HÙNG <span class="mq-dot"></span></div>
-      </div>
-    </div>
+        <div class="prog"><i id="pf"></i></div>
+      </section>
 
-    <!-- ===== QUICK LINKS ===== -->
-    <section id="products" class="quick-links">
-      <div class="eyebrow rv">Danh mục sản phẩm</div>
-      <h2 class="sec-h2 rv" style="margin-bottom: 4rem">CHỌN<br />DÒNG XE</h2>
-      <div class="ql-grid">
-        <a href="/sanphamxemay/?category=xe-ga" class="ql-card rv">
-          <img
-            src="/sanphamxemay/Shmode/Shmode/picture/3.jpg"
-            alt="Xe Ga"
-            loading="lazy"
-          />
-          <div class="ql-card-ov">
-            <div class="ql-card-name">Xe Ga</div>
-            <div class="ql-card-arr"><i class="fas fa-arrow-right"></i></div>
-          </div>
-        </a>
-        <a href="/sanphamxemay/?category=xe-so" class="ql-card rv">
-          <img
-            src="/sanphamxemay/WaveRSX/Wave RSX/picture/2.jpg"
-            alt="Xe Số"
-            loading="lazy"
-          />
-          <div class="ql-card-ov">
-            <div class="ql-card-name">Xe Số</div>
-            <div class="ql-card-arr"><i class="fas fa-arrow-right"></i></div>
-          </div>
-        </a>
-        <a href="/sanphamxemay/?category=xe-con-tay" class="ql-card rv">
-          <img
-            src="/sanphamxemay/WinnerR/Winner R/picture/3.jpg"
-            alt="Xe Côn Tay"
-            loading="lazy"
-          />
-          <div class="ql-card-ov">
-            <div class="ql-card-name">Xe Côn Tay</div>
-            <div class="ql-card-arr"><i class="fas fa-arrow-right"></i></div>
-          </div>
-        </a>
-        <a href="/sanphamxemay/?category=pkl" class="ql-card rv">
-          <img
-            src="/sanphamxemay/GB350S/GB350S/picture/1.png"
-            alt="Phân Khối Lớn"
-            loading="lazy"
-          />
-          <div class="ql-card-ov">
-            <div class="ql-card-name">Phân Khối Lớn</div>
-            <div class="ql-card-arr"><i class="fas fa-arrow-right"></i></div>
-          </div>
-        </a>
-        <a href="/sanphamxemay/?category=xe-dien" class="ql-card rv">
-          <img
-            src="/sanphamxemay/ICONe/ICONe/picture/3.jpg"
-            alt="Xe Điện"
-            loading="lazy"
-          />
-          <div class="ql-card-ov">
-            <div class="ql-card-name">Xe Điện</div>
-            <div class="ql-card-arr"><i class="fas fa-arrow-right"></i></div>
-          </div>
-        </a>
-        <a href="/sanphamxemay/?category=all" class="ql-card rv">
-          <img
-            src="/sanphamxemay/image/banner/VMS.png"
-            alt="Tất Cả"
-            loading="lazy"
-          />
-          <div class="ql-card-ov">
-            <div class="ql-card-name">Tất Cả</div>
-            <div class="ql-card-arr"><i class="fas fa-arrow-right"></i></div>
-          </div>
-        </a>
-      </div>
-    </section>
+      <div class="mq" aria-hidden="true"><div id="mq"></div></div>
 
-    <!-- ===== FEATURED ===== -->
-    <section class="featured">
-      <div class="sec-inner">
-        <div class="sec-head rv">
-          <div class="sec-left">
-            <div class="eyebrow">Sản phẩm nổi bật</div>
-            <h2 class="sec-h2">XE BÁN CHẠY<br />NHẤT</h2>
-          </div>
-          <a href="/sanphamxemay/" class="btn-all"
-            >Xem tất cả <i class="fas fa-arrow-right"></i
-          ></a>
-        </div>
-        <div class="feat-grid">
-          <div class="feat-card rv">
-            <div class="feat-img">
-              <div class="feat-badge">Mới</div>
-              <img
-                src="/sanphamxemay/SH160/SH160/Phiên bản thể thao - ĐEN AURA BLACK/6.png"
-                alt="SH160"
-                loading="lazy"
-              />
+      <section id="products">
+        <div class="wrap">
+          <div class="sec-head rv">
+            <div>
+              <h2 class="h2">Chọn dòng xe</h2>
+              <p>
+                Xe ga, xe số, côn tay, phân khối lớn và xe điện chính hãng
+                Honda.
+              </p>
             </div>
-            <div class="feat-body">
-              <div class="feat-name">HONDA SH160</div>
-              <div class="feat-price">Liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/SH160/" class="feat-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
+          </div>
+          <div class="cats">
+            <a href="/sanphamxemay/?category=xe-ga" class="cat rv"
+              ><img
+                src="/sanphamxemay/Shmode/Shmode/picture/3.jpg"
+                alt="Xe ga"
+                loading="lazy" /><span
+                ><b>Xe ga</b><i class="fas fa-arrow-right"></i></span
+            ></a>
+            <a href="/sanphamxemay/?category=xe-so" class="cat rv"
+              ><img
+                src="/sanphamxemay/WaveRSX/Wave RSX/picture/2.jpg"
+                alt="Xe số"
+                loading="lazy" /><span
+                ><b>Xe số</b><i class="fas fa-arrow-right"></i></span
+            ></a>
+            <a href="/sanphamxemay/?category=xe-con-tay" class="cat rv"
+              ><img
+                src="/sanphamxemay/WinnerR/Winner R/picture/3.jpg"
+                alt="Xe côn tay"
+                loading="lazy" /><span
+                ><b>Xe côn tay</b><i class="fas fa-arrow-right"></i></span
+            ></a>
+            <a href="/sanphamxemay/?category=pkl" class="cat rv"
+              ><img
+                src="/sanphamxemay/GB350S/GB350S/picture/1.png"
+                alt="Phân khối lớn"
+                loading="lazy" /><span
+                ><b>Phân khối lớn</b><i class="fas fa-arrow-right"></i></span
+            ></a>
+            <a href="/sanphamxemay/?category=xe-dien" class="cat rv"
+              ><img
+                src="/sanphamxemay/ICONe/ICONe/picture/3.jpg"
+                alt="Xe điện"
+                loading="lazy" /><span
+                ><b>Xe điện</b><i class="fas fa-arrow-right"></i></span
+            ></a>
+            <a href="/sanphamxemay/?category=all" class="cat rv"
+              ><img
+                src="/sanphamxemay/image/banner/VMS.png"
+                alt="Tất cả xe"
+                loading="lazy" /><span
+                ><b>Tất cả</b><i class="fas fa-arrow-right"></i></span
+            ></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="feat">
+        <div class="wrap">
+          <div class="sec-head rv">
+            <h2 class="h2">Xe bán chạy nhất</h2>
+            <a href="/sanphamxemay/" class="more"
+              >Xem tất cả <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="fgrid">
+            <article class="card rv">
+              <div class="cimg">
+                <span class="badge">Mới</span
+                ><img
+                  src="/sanphamxemay/SH160/SH160/Phiên bản thể thao - ĐEN AURA BLACK/6.png"
+                  alt="Honda SH160"
+                  loading="lazy"
+                />
+              </div>
+              <div class="cbody">
+                <h3>Honda SH160</h3>
+                <p>Giá: liên hệ trực tiếp</p>
+                <a href="/sanphamxemay/SH160/"
+                  >Xem chi tiết <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </article>
+            <article class="card rv">
+              <div class="cimg">
+                <span class="badge">Mới</span
+                ><img
+                  src="/sanphamxemay/Shmode/Shmode/Phiên bản đặc biệt - XANH ĐEN/6.png"
+                  alt="Honda SH Mode"
+                  loading="lazy"
+                />
+              </div>
+              <div class="cbody">
+                <h3>Honda SH Mode 2026</h3>
+                <p>Giá: liên hệ trực tiếp</p>
+                <a href="/sanphamxemay/Shmode/"
+                  >Xem chi tiết <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </article>
+            <article class="card rv">
+              <div class="cimg">
+                <span class="badge">Xe điện</span
+                ><img
+                  src="/sanphamxemay/ICONe/ICONe/Phiên bản thể thao - XANH/6.png"
+                  alt="Honda ICON e"
+                  loading="lazy"
+                />
+              </div>
+              <div class="cbody">
+                <h3>Honda ICON e</h3>
+                <p>Giá: liên hệ trực tiếp</p>
+                <a href="/sanphamxemay/ICONe/"
+                  >Xem chi tiết <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </article>
+            <article class="card rv">
+              <div class="cimg">
+                <span class="badge">Mới</span
+                ><img
+                  src="/sanphamxemay/GB350S/GB350S/BẠC ĐEN/6.png"
+                  alt="Honda GB350S"
+                  loading="lazy"
+                />
+              </div>
+              <div class="cbody">
+                <h3>Honda GB350S</h3>
+                <p>Giá: liên hệ trực tiếp</p>
+                <a href="/sanphamxemay/GB350S/"
+                  >Xem chi tiết <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats">
+        <div class="wrap">
+          <div class="sgrid">
+            <div class="rv">
+              <b>20<em>+</em></b
+              ><span>Năm kinh nghiệm</span>
+            </div>
+            <div class="rv"><b>15</b><span>Chi nhánh</span></div>
+            <div class="rv">
+              <b>50K<em>+</em></b
+              ><span>Khách hàng hài lòng</span>
+            </div>
+            <div class="rv">
+              <b>100<em>%</em></b
+              ><span>Chính hãng Honda</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="promo">
+        <div class="wrap">
+          <div class="rv">
+            <h2>Khuyến mãi đặc biệt</h2>
+            <p>
+              Nhiều ưu đãi hấp dẫn khi mua xe tại hệ thống HEAD Trung Hùng. Liên
+              hệ ngay để không bỏ lỡ.
+            </p>
+          </div>
+          <div class="pbtn rv">
+            <a href="/tintuc/tintuckhuyenmai/" class="btn light"
+              ><i class="fas fa-gift"></i>Xem khuyến mãi</a
+            ><a href="/cuahang/" class="btn ghost"
+              ><i class="fas fa-location-dot"></i>Tìm cửa hàng</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <div class="sec-head rv">
+            <h2 class="h2">Tin tức &amp; sự kiện</h2>
+            <div class="ncontrols">
+              <button class="arrow narrow" id="np" aria-label="Bài trước">
+                <i class="fas fa-chevron-left"></i></button
+              ><button class="arrow narrow" id="nn" aria-label="Bài sau">
+                <i class="fas fa-chevron-right"></i></button
+              ><a href="/tintuc/" class="more"
+                >Xem tất cả <i class="fas fa-arrow-right"></i
               ></a>
             </div>
           </div>
-          <div class="feat-card rv">
-            <div class="feat-img">
-              <div class="feat-badge">Mới</div>
-              <img
-                src="/sanphamxemay/Shmode/Shmode/Phiên bản đặc biệt - XANH ĐEN/6.png"
-                alt="Honda SHMode"
-                loading="lazy"
-              />
-            </div>
-            <div class="feat-body">
-              <div class="feat-name">Honda Shmode 2026</div>
-              <div class="feat-price">Liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/Shmode/" class="feat-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-          <div class="feat-card rv">
-            <div class="feat-img">
-              <div class="feat-badge">Xe máy điện</div>
-              <img
-                src="/sanphamxemay/ICONe/ICONe/Phiên bản thể thao - XANH/6.png"
-                alt="Honda SH160"
-                loading="lazy"
-              />
-            </div>
-            <div class="feat-body">
-              <div class="feat-name">Honda ICON e</div>
-              <div class="feat-price">Liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/ICONe/" class="feat-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-          <div class="feat-card rv">
-            <div class="feat-img">
-              <div class="feat-badge">Mới</div>
-              <img
-                src="/sanphamxemay/GB350S/GB350S/BẠC ĐEN/6.png"
-                alt="Honda GB350S"
-                loading="lazy"
-              />
-            </div>
-            <div class="feat-body">
-              <div class="feat-name">Honda GB350S</div>
-              <div class="feat-price">Liên hệ trực tiếp</div>
-              <a href="/sanphamxemay/GB350S/" class="feat-link"
-                >Xem chi tiết <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== STATS STRIP ===== -->
-    <section class="stats-strip">
-      <div class="stats-inner">
-        <div class="stat-item rv">
-          <span class="stat-num">20<em>+</em></span>
-          <span class="stat-label">Năm kinh nghiệm</span>
-        </div>
-        <div class="stat-item rv">
-          <span class="stat-num">15</span>
-          <span class="stat-label">Chi nhánh toàn quốc</span>
-        </div>
-        <div class="stat-item rv">
-          <span class="stat-num">50K<em>+</em></span>
-          <span class="stat-label">Khách hàng hài lòng</span>
-        </div>
-        <div class="stat-item rv">
-          <span class="stat-num">100<em>%</em></span>
-          <span class="stat-label">Chính hãng Honda</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== PROMO ===== -->
-    <section class="promo">
-      <div class="promo-inner">
-        <div class="promo-left rv-l">
-          <h2>KHUYẾN MÃI<br />ĐẶC BIỆT</h2>
-          <p>
-            Ưu đãi lên đến khi mua xe tại hệ thống HEAD Trung Hùng. Liên hệ ngay
-            để không bỏ lỡ!
-          </p>
-        </div>
-        <div class="promo-btns rv-r">
-          <a href="/tintuc/tintuckhuyenmai/" class="promo-pri"
-            ><i class="fas fa-gift"></i> Xem khuyến mãi</a
+          <div
+            class="ngrid"
+            id="ngrid"
+            tabindex="0"
+            aria-label="Danh sách tin tức, vuốt ngang để xem thêm"
           >
-          <a href="/cuahang/" class="promo-sec"
-            ><i class="fas fa-map-marker-alt"></i> Tìm cửa hàng</a
-          >
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== NEWS ===== -->
-    <section class="news">
-      <div class="sec-inner">
-        <div class="sec-head rv">
-          <div class="sec-left">
-            <div class="eyebrow">Cập nhật mới nhất</div>
-            <h2 class="sec-h2">TIN TỨC<br />& SỰ KIỆN</h2>
+            <article class="ncard rv">
+              <div class="nimg">
+                <img
+                  src="/khuyenmai/image/HVN01102026.png"
+                  alt="Bảo dưỡng định kỳ miễn phí"
+                  loading="lazy"
+                />
+                <div class="date"><b>01</b><small>Th10</small></div>
+              </div>
+              <div class="nbody">
+                <h3>
+                  Bảo dưỡng định kỳ miễn phí đúng lịch – nhận quà 50.000 VNĐ
+                </h3>
+                <p>
+                  Hệ thống HEAD Trung Hùng mang đến chương trình khuyến mãi hấp
+                  dẫn cho khách hàng bảo dưỡng định kỳ đúng lịch trình với nhiều
+                  phần quà giá trị.
+                </p>
+                <a href="/tintuc/tintuckhuyenmai/khuyenmai/01102026HVN.html"
+                  >Đọc tiếp <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </article>
+            <article class="ncard rv">
+              <div class="nimg">
+                <img
+                  src="/khuyenmai/image/01092026HVN.jpg"
+                  alt="Cùng lên ga - Quà bao la"
+                  loading="lazy"
+                />
+                <div class="date"><b>01</b><small>Th09</small></div>
+              </div>
+              <div class="nbody">
+                <h3>Cùng lên ga – Quà bao la</h3>
+                <p>
+                  Hòa cùng không khí mùa tựu trường, Honda Việt Nam mang đến
+                  loạt ưu đãi ấn tượng dành cho những khách hàng trẻ.
+                </p>
+                <a href="/tintuc/tintuckhuyenmai/khuyenmai/01092026HVN.html"
+                  >Đọc tiếp <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </article>
+            <article class="ncard rv">
+              <div class="nimg">
+                <img
+                  src="/khuyenmai/image/MXNQ082026.jpg"
+                  alt="Đón xe mới - Nhận quà hay"
+                  loading="lazy"
+                />
+                <div class="date"><b>01</b><small>Th08</small></div>
+              </div>
+              <div class="nbody">
+                <h3>Đón xe mới – Nhận quà hay</h3>
+                <p>
+                  Nhằm mang thêm niềm vui và quyền lợi cho khách hàng mùa hè
+                  2026, hệ thống HEAD Trung Hùng triển khai chương trình ưu đãi
+                  mới.
+                </p>
+                <a href="/tintuc/tintuckhuyenmai/khuyenmai/01082026HEAD.html"
+                  >Đọc tiếp <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </article>
           </div>
-          <a href="/tintuc/" class="btn-all"
-            >Xem tất cả <i class="fas fa-arrow-right"></i
-          ></a>
         </div>
-        <div class="news-grid">
-          <div class="news-card rv">
-            <div class="nc-img">
-              <img
-                src="/khuyenmai/image/HVN01102026.png"
-                alt=""
-                loading="lazy"
-              />
-              <div class="nc-date">
-                <span class="day">01</span><span class="month">Th10</span>
-              </div>
+      </section>
+
+      <section class="svc">
+        <div class="wrap">
+          <div class="sec-head rv"><h2 class="h2">Chăm sóc toàn diện</h2></div>
+          <div class="vgrid">
+            <div class="vcard rv">
+              <div class="vico"><i class="fas fa-gear"></i></div>
+              <h3>Phụ tùng chính hãng</h3>
+              <p>
+                100% phụ tùng Honda chính hãng, đảm bảo chất lượng, độ bền và an
+                toàn cho xe của bạn.
+              </p>
+              <a href="/dichvu/sanphamphutung/" class="more"
+                >Tìm hiểu ngay <i class="fas fa-arrow-right"></i
+              ></a>
             </div>
-            <div class="nc-body">
-              <div class="nc-title">
-                Bảo dưỡng định kỳ miễn phí tại HEAD đúng lịch trình nhận ngay
-                quà tặng 50,000 VNĐ
-              </div>
-              <div class="nc-excerpt">
-                Mùa hè này, Hệ thống HEAD Trung Hùng mang đến chương trình
-                khuyến mãi hấp dẫn dành cho tất cả khách hàng mua xe Honda với
-                cơ hội sở hữu nhiều phần quà giá trị...
-              </div>
-              <a
-                href="/tintuc/tintuckhuyenmai/khuyenmai/01102026HVN.html"
-                class="nc-read"
-                >Đọc tiếp <i class="fas fa-arrow-right"></i
+            <div class="vcard rv">
+              <div class="vico"><i class="fas fa-screwdriver-wrench"></i></div>
+              <h3>Bảo dưỡng &amp; sửa chữa</h3>
+              <p>
+                Dịch vụ chuẩn Honda bởi kỹ thuật viên tay nghề cao, giúp xe vận
+                hành ổn định và bền bỉ.
+              </p>
+              <a href="/dichvu/baoduong/" class="more"
+                >Tìm hiểu thêm <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+            <div class="vcard rv">
+              <div class="vico"><i class="fas fa-shield-halved"></i></div>
+              <h3>Bảo hành xe máy</h3>
+              <p>
+                Chính sách bảo hành rõ ràng, minh bạch theo tiêu chuẩn Honda, hỗ
+                trợ kịp thời.
+              </p>
+              <a href="/dichvu/baohanh/" class="more"
+                >Tìm hiểu thêm <i class="fas fa-arrow-right"></i
               ></a>
             </div>
           </div>
-          <div class="news-card rv">
-            <div class="nc-img">
-              <img
-                src="/khuyenmai/image/01092026HVN.jpg"
-                alt=""
-                loading="lazy"
-              />
-              <div class="nc-date">
-                <span class="day">01</span><span class="month">Th09</span>
-              </div>
-            </div>
-            <div class="nc-body">
-              <div class="nc-title">CÙNG LÊN GA - QUÀ BAO LA</div>
-              <div class="nc-excerpt">
-                Hòa cùng không khí rộn ràng mùa tựu trường, Công ty Honda Việt
-                Nam (HVN) mang đến với loạt ưu đãi ấn tượng, đặc biệt dành cho
-                những khách hàng trẻ đang...
-              </div>
-              <a
-                href="/tintuc/tintuckhuyenmai/khuyenmai/01092026HVN.html"
-                class="nc-read"
-                >Đọc tiếp <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-          <div class="news-card rv">
-            <div class="nc-img">
-              <img
-                src="/khuyenmai/image/MXNQ082026.jpg"
-                alt=""
-                loading="lazy"
-              />
-              <div class="nc-date">
-                <span class="day">01</span><span class="month">Th08</span>
-              </div>
-            </div>
-            <div class="nc-body">
-              <div class="nc-title">ĐÓN XE MỚI - NHẬN QUÀ HAY</div>
-              <div class="nc-excerpt">
-                Nhằm mang đến thêm nhiều niềm vui và quyền lợi hấp dẫn cho khách
-                hàng trong mùa hè 2026, Hệ thống HEAD Trung Hùng triển khai
-                chương trình...
-              </div>
-              <a
-                href="/tintuc/tintuckhuyenmai/khuyenmai/01082026HEAD.html"
-                class="nc-read"
-                >Đọc tiếp <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <!-- ===== SERVICES ===== -->
-    <section class="services">
-      <div class="sec-inner">
-        <div class="sec-head rv">
-          <div class="sec-left">
-            <div class="eyebrow">Dịch vụ sau bán hàng</div>
-            <h2 class="sec-h2">CHĂM SÓC<br />TOÀN DIỆN</h2>
-          </div>
-        </div>
-        <div class="svc-grid">
-          <div class="svc-card rv">
-            <span class="svc-num">01</span>
-            <div class="svc-icon"><i class="fas fa-gear"></i></div>
-            <h3>Phụ Tùng Chính Hãng</h3>
-            <p>
-              Cam kết cung cấp 100% phụ tùng Honda chính hãng, đảm bảo chất
-              lượng, độ bền và an toàn tuyệt đối cho xe của bạn.
-            </p>
-            <a href="/dichvu/sanphamphutung/" class="svc-link"
-              >Tìm hiểu ngay <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-          <div class="svc-card rv">
-            <span class="svc-num">02</span>
-            <div class="svc-icon"><i class="fas fa-tools"></i></div>
-            <h3>Bảo Dưỡng & Sửa Chữa</h3>
-            <p>
-              Dịch vụ bảo dưỡng và sửa chữa chuẩn Honda bởi đội ngũ kỹ thuật
-              viên tay nghề cao, giúp xe vận hành ổn định và bền bỉ.
-            </p>
-            <a href="/dichvu/baoduong/" class="svc-link"
-              >Tìm hiểu thêm <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-          <div class="svc-card rv">
-            <span class="svc-num">03</span>
-            <div class="svc-icon"><i class="fas fa-shield-alt"></i></div>
-            <h3>Bảo Hành Xe Máy</h3>
-            <p>
-              Chính sách bảo hành rõ ràng, minh bạch theo tiêu chuẩn Honda, giúp
-              bạn yên tâm sử dụng và được hỗ trợ kịp thời.
-            </p>
-            <a href="/dichvu/baohanh/" class="svc-link"
-              >Tìm hiểu thêm <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
     <footer>
-      <div class="ft-top">
-        <div>
-          <div class="ft-logo-row">
-            <img
-              src="/sanphamxemay/image/banner/Logo_HEAD.png"
-              alt="HEAD"
-              class="ft-logo-img"
-            />
-            <div class="ft-brand-name">
-              HỆ THỐNG HEAD <span>TRUNG HÙNG</span>
+      <div class="wrap">
+        <div class="ftop">
+          <div>
+            <div class="fbrand">
+              <img src="/sanphamxemay/image/banner/Logo_HEAD.png" alt="HEAD" />
+              <div>Hệ thống HEAD <span>Trung Hùng</span></div>
+            </div>
+            <p>
+              Công ty TNHH Thương mại và Dịch vụ Hùng Mạnh – đại lý Honda chính
+              hãng tại Gia Lai, Hà Nội và Sơn La.
+            </p>
+            <div class="soc">
+              <a
+                href="https://www.facebook.com/hethongheadtrunghung"
+                target="_blank"
+                rel="noopener"
+                aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="https://www.youtube.com/@HethongHEADTrungHung"
+                target="_blank"
+                rel="noopener"
+                aria-label="YouTube"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/hethongheadtrunghung"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.tiktok.com/@hethongheadtrunghung"
+                target="_blank"
+                rel="noopener"
+                aria-label="TikTok"
+                ><i class="fab fa-tiktok"></i
+              ></a>
             </div>
           </div>
-          <p class="ft-brand-tag">
-            Công Ty TNHH Thương Mại Và Dịch Vụ Hùng Mạnh — đại lý Honda chính
-            hãng tại Gia Lai, Hà Nội và Sơn La.
-          </p>
-          <div class="ft-socials">
-            <a
-              href="https://www.facebook.com/hethongheadtrunghung"
-              class="ft-soc"
-              target="_blank"
-              rel="noopener"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
-            <a
-              href="https://www.youtube.com/@HethongHEADTrungHung"
-              class="ft-soc"
-              target="_blank"
-              rel="noopener"
-              ><i class="fab fa-youtube"></i
-            ></a>
-            <a
-              href="https://www.instagram.com/hethongheadtrunghung"
-              class="ft-soc"
-              target="_blank"
-              rel="noopener"
-              ><i class="fab fa-instagram"></i
-            ></a>
-            <a
-              href="https://www.tiktok.com/@hethongheadtrunghung"
-              class="ft-soc"
-              target="_blank"
-              rel="noopener"
-              ><i class="fab fa-tiktok"></i
-            ></a>
+          <div class="fcol">
+            <h4>Sản phẩm</h4>
+            <ul>
+              <li><a href="/sanphamxemay/?category=xe-ga">Xe ga</a></li>
+              <li><a href="/sanphamxemay/?category=xe-so">Xe số</a></li>
+              <li>
+                <a href="/sanphamxemay/?category=xe-con-tay">Xe côn tay</a>
+              </li>
+              <li><a href="/sanphamxemay/?category=pkl">Phân khối lớn</a></li>
+              <li><a href="/sanphamxemay/?category=xe-dien">Xe điện</a></li>
+            </ul>
+          </div>
+          <div class="fcol">
+            <h4>Dịch vụ</h4>
+            <ul>
+              <li><a href="/dichvu/baoduong/">Bảo dưỡng &amp; sửa chữa</a></li>
+              <li><a href="/dichvu/baohanh/">Bảo hành xe máy</a></li>
+              <li><a href="/dichvu/sanphamphutung/">Phụ tùng chính hãng</a></li>
+            </ul>
+          </div>
+          <div class="fcol">
+            <h4>Hỗ trợ</h4>
+            <ul>
+              <li><a href="/lienhe/">Liên hệ</a></li>
+              <li><a href="/question/">Câu hỏi thường gặp</a></li>
+              <li><a href="/huongdanmuahang/">Hướng dẫn mua hàng</a></li>
+              <li><a href="/dichvu/baohanh/">Chính sách bảo hành</a></li>
+            </ul>
+          </div>
+          <div class="fcol">
+            <h4>Liên hệ</h4>
+            <ul>
+              <li>
+                <i class="fas fa-phone"></i
+                ><a href="tel:1900636712">1900 636 712</a>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i
+                ><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i
+                ><a href="mailto:cr_mt@hungmanh.com.vn"
+                  >cr_mt@hungmanh.com.vn</a
+                >
+              </li>
+              <li><i class="fas fa-clock"></i>7:30 – 17:00 (T2 – CN)</li>
+            </ul>
           </div>
         </div>
-        <div class="ft-col">
-          <h5>Sản Phẩm</h5>
-          <ul>
-            <li><a href="/sanphamxemay/?category=xe-ga">Xe Ga</a></li>
-            <li><a href="/sanphamxemay/?category=xe-so">Xe Số</a></li>
-            <li><a href="/sanphamxemay/?category=xe-con-tay">Xe Côn Tay</a></li>
-            <li><a href="/sanphamxemay/?category=pkl">Phân Khối Lớn</a></li>
-            <li><a href="/sanphamxemay/?category=xe-dien">Xe Điện</a></li>
-          </ul>
-        </div>
-        <div class="ft-col">
-          <h5>Dịch Vụ</h5>
-          <ul>
-            <li><a href="/dichvu/baoduong/">Bảo Dưỡng & Sửa Chữa</a></li>
-            <li><a href="/dichvu/baohanh/">Bảo Hành Xe Máy</a></li>
-            <li><a href="/dichvu/sanphamphutung/">Phụ Tùng Chính Hãng</a></li>
-          </ul>
-        </div>
-        <div class="ft-col">
-          <h5>Hỗ Trợ</h5>
-          <ul>
-            <li><a href="/lienhe/">Liên hệ</a></li>
-            <li><a href="/question/">Câu hỏi thường gặp</a></li>
-            <li><a href="/huongdanmuahang/">Hướng dẫn mua hàng</a></li>
-            <li><a href="/dichvu/baohanh/">Chính sách bảo hành</a></li>
-          </ul>
-        </div>
-        <div class="ft-col">
-          <h5>Liên Hệ</h5>
-          <ul class="ft-contact">
-            <li>
-              <i class="fas fa-phone-alt"></i
-              ><a href="tel:1900636712">1900 636 712</a>
-            </li>
-            <li>
-              <i class="fas fa-envelope"></i
-              ><a href="mailto:cr@hungmanh.com.vn">cr@hungmanh.com.vn</a>
-            </li>
-            <li>
-              <i class="fas fa-envelope"></i
-              ><a href="mailto:cr_mt@hungmanh.com.vn">cr_mt@hungmanh.com.vn</a>
-            </li>
-            <li><i class="fas fa-clock"></i>7:30 – 17:00 (T2 – CN)</li>
-          </ul>
-        </div>
-      </div>
-      <div class="ft-btm">
-        <p>© 2025 HỆ THỐNG HEAD TRUNG HÙNG. Bảo lưu mọi quyền.</p>
-        <div class="ft-badge">
-          <i class="fas fa-certificate"></i> Honda Authorised Dealer
+        <div class="fbtm">
+          <p>
+            © <span id="yr">2026</span> Hệ thống HEAD Trung Hùng. Bảo lưu mọi
+            quyền.
+          </p>
+          <p><i class="fas fa-certificate"></i> Honda Authorised Dealer</p>
         </div>
       </div>
     </footer>
 
-    <!-- ===== MOBILE NAV ===== -->
-    <nav class="mob-nav">
-      <div class="mnb">
-        <a href="/" class="mnb-a on"
-          ><i class="fas fa-home"></i><span>Trang chủ</span></a
+    <nav class="mnav" aria-label="Điều hướng nhanh">
+      <div>
+        <a href="/" class="on"><i class="fas fa-house"></i>Trang chủ</a>
+        <a href="/sanphamxemay/"><i class="fas fa-motorcycle"></i>Sản phẩm</a>
+        <a href="/tintuc/tintuckhuyenmai/"
+          ><i class="fas fa-gift"></i>Khuyến mãi</a
         >
-        <a href="/sanphamxemay/" class="mnb-a"
-          ><i class="fas fa-motorcycle"></i><span>Sản phẩm</span></a
-        >
-        <a href="/tintuc/tintuckhuyenmai/" class="mnb-a"
-          ><i class="fas fa-gift"></i><span>Khuyến mãi</span></a
-        >
-        <a href="/cuahang/" class="mnb-a"
-          ><i class="fas fa-map-marker-alt"></i><span>Đại lý</span></a
-        >
-        <a href="/lienhe/" class="mnb-a"
-          ><i class="fas fa-phone-alt"></i><span>Liên hệ</span></a
-        >
+        <a href="/cuahang/"><i class="fas fa-location-dot"></i>Đại lý</a>
+        <a href="/lienhe/"><i class="fas fa-phone"></i>Liên hệ</a>
       </div>
     </nav>
-
     <a
       href="https://m.me/hethongheadtrunghung"
-      class="messenger-float"
+      class="float-btn ms"
       target="_blank"
       rel="noopener"
       aria-label="Nhắn tin Messenger"
       ><i class="fab fa-facebook-messenger"></i
     ></a>
-    <a href="#" class="back-top" id="backTop" aria-label="Lên đầu trang"
+    <a href="#" class="float-btn up" id="up" aria-label="Lên đầu trang"
       ><i class="fas fa-arrow-up"></i
     ></a>
 
-    <!-- ===== SCRIPTS ===== -->
     <script>
       (function () {
         "use strict";
+        var $ = function (i) {
+          return document.getElementById(i);
+        };
+        $("yr").textContent = new Date().getFullYear();
 
-        /* ── TOP BAR + HEADER ── */
-        const tb = document.getElementById("topBar");
-        const hdr = document.getElementById("siteHeader");
+        /* marquee */
+        var items = [
+          "Xe ga",
+          "Xe số",
+          "Phân khối lớn",
+          "Xe côn tay",
+          "Xe điện",
+          "Honda chính hãng",
+          "Bảo hành chính thức",
+          "HEAD Trung Hùng",
+        ];
+        var h = "";
+        for (var k = 0; k < 2; k++)
+          items.forEach(function (t) {
+            h += "<span>" + t + "</span>";
+          });
+        $("mq").innerHTML = h + h;
 
-        window.addEventListener(
+        /* header + back to top */
+        var hdr = $("hdr"),
+          up = $("up"),
+          tick = false;
+        addEventListener(
           "scroll",
-          () => {
-            const y = window.scrollY;
-            tb.classList.toggle("hidden", y > 80);
-            hdr.classList.toggle("lifted", y > 40);
-            document.getElementById("backTop").classList.toggle("on", y > 400);
-          },
-          { passive: true },
-        );
-
-        /* ── HAMBURGER / DRAWER ── */
-        const ham = document.getElementById("ham");
-        const drawOv = document.getElementById("drawOv");
-        const siteDraw = document.getElementById("siteDraw");
-        const drawX = document.getElementById("drawX");
-
-        function openDraw() {
-          ham.classList.add("open");
-          drawOv.classList.add("on");
-          siteDraw.classList.add("on");
-          document.body.style.overflow = "hidden";
-        }
-        function closeDraw() {
-          ham.classList.remove("open");
-          drawOv.classList.remove("on");
-          siteDraw.classList.remove("on");
-          document.body.style.overflow = "";
-        }
-        ham.addEventListener("click", openDraw);
-        drawOv.addEventListener("click", closeDraw);
-        drawX.addEventListener("click", closeDraw);
-
-        /* Drawer sub-menus */
-        document.querySelectorAll(".draw-toggle").forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            const t = document.getElementById(btn.dataset.target);
-            if (!t) return;
-            const isOpen = t.classList.contains("open");
-            // close all
-            document
-              .querySelectorAll(".draw-sub")
-              .forEach((s) => s.classList.remove("open"));
-            document
-              .querySelectorAll(".draw-toggle i")
-              .forEach((i) => (i.style.transform = ""));
-            if (!isOpen) {
-              t.classList.add("open");
-              btn.querySelector("i").style.transform = "rotate(180deg)";
-            }
-          });
-        });
-
-        /* ── HERO SLIDER ── */
-        const allSlides = document.querySelectorAll(".slide");
-        const total = allSlides.length;
-        let cur = 0;
-        let sliderTimer;
-        const DUR = 5000;
-        const pf = document.getElementById("hPF");
-        const scN = document.getElementById("scN");
-
-        // build dots
-        const dotsWrap = document.getElementById("dots");
-        allSlides.forEach((_, i) => {
-          const d = document.createElement("div");
-          d.className = "hdot" + (i === 0 ? " on" : "");
-          d.addEventListener("click", () => {
-            goSlide(i);
-            startSlider();
-          });
-          dotsWrap.appendChild(d);
-        });
-
-        function goSlide(n) {
-          allSlides[cur].classList.remove("on");
-          dotsWrap.children[cur].classList.remove("on");
-          cur = ((n % total) + total) % total;
-          allSlides[cur].classList.add("on");
-          dotsWrap.children[cur].classList.add("on");
-          scN.innerHTML = String(cur + 1).padStart(2, "0") + "<em>/</em>";
-          // reset progress bar
-          pf.style.transition = "none";
-          pf.style.width = "0%";
-          requestAnimationFrame(() =>
-            requestAnimationFrame(() => {
-              pf.style.transition = `width ${DUR}ms linear`;
-              pf.style.width = "100%";
-            }),
-          );
-        }
-
-        function startSlider() {
-          clearInterval(sliderTimer);
-          sliderTimer = setInterval(() => goSlide(cur + 1), DUR);
-        }
-
-        document.getElementById("hPrev").addEventListener("click", () => {
-          goSlide(cur - 1);
-          startSlider();
-        });
-        document.getElementById("hNext").addEventListener("click", () => {
-          goSlide(cur + 1);
-          startSlider();
-        });
-
-        const heroEl = document.getElementById("heroSlider");
-        heroEl.addEventListener("mouseenter", () => clearInterval(sliderTimer));
-        heroEl.addEventListener("mouseleave", startSlider);
-
-        // Touch swipe
-        let touchStartX = 0;
-        heroEl.addEventListener(
-          "touchstart",
-          (e) => {
-            touchStartX = e.touches[0].clientX;
-          },
-          { passive: true },
-        );
-        heroEl.addEventListener(
-          "touchend",
-          (e) => {
-            const dx = touchStartX - e.changedTouches[0].clientX;
-            if (Math.abs(dx) > 45) {
-              goSlide(cur + (dx > 0 ? 1 : -1));
-              startSlider();
-            }
-          },
-          { passive: true },
-        );
-
-        goSlide(0);
-        startSlider();
-
-        /* ── SMOOTH SCROLL for anchor links ── */
-        document.querySelectorAll('a[href^="#"]').forEach((a) => {
-          a.addEventListener("click", (e) => {
-            const href = a.getAttribute("href");
-            if (href === "#") return;
-            const el = document.querySelector(href);
-            if (el) {
-              e.preventDefault();
-              window.scrollTo({
-                top:
-                  el.getBoundingClientRect().top +
-                  window.scrollY -
-                  hdr.offsetHeight,
-                behavior: "smooth",
-              });
-            }
-          });
-        });
-
-        /* ── SCROLL REVEAL ── */
-        const obs = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry, i) => {
-              if (entry.isIntersecting) {
-                setTimeout(() => entry.target.classList.add("in"), i * 65);
-              }
+          function () {
+            if (tick) return;
+            tick = true;
+            requestAnimationFrame(function () {
+              var y = scrollY;
+              hdr.classList.toggle("lift", y > 20);
+              up.classList.toggle("on", y > 500);
+              tick = false;
             });
           },
-          { threshold: 0.12 },
+          { passive: true },
         );
+        up.addEventListener("click", function (e) {
+          e.preventDefault();
+          scrollTo({ top: 0, behavior: "smooth" });
+        });
 
-        document
-          .querySelectorAll(".rv, .rv-l, .rv-r")
-          .forEach((el) => obs.observe(el));
+        /* drawer */
+        var ham = $("ham"),
+          ov = $("ov"),
+          dr = $("drawer");
+        function setDrawer(o) {
+          ham.classList.toggle("open", o);
+          ov.classList.toggle("on", o);
+          dr.classList.toggle("on", o);
+          ham.setAttribute("aria-expanded", o);
+          document.body.style.overflow = o ? "hidden" : "";
+        }
+        ham.addEventListener("click", function () {
+          setDrawer(!dr.classList.contains("on"));
+        });
+        ov.addEventListener("click", function () {
+          setDrawer(false);
+        });
+        $("dx").addEventListener("click", function () {
+          setDrawer(false);
+        });
+        addEventListener("keydown", function (e) {
+          if (e.key === "Escape") setDrawer(false);
+        });
+        addEventListener("resize", function () {
+          if (innerWidth > 960) setDrawer(false);
+        });
+        document.querySelectorAll(".tg").forEach(function (b) {
+          b.addEventListener("click", function () {
+            var t = $(b.dataset.t),
+              open = t.classList.contains("open");
+            document.querySelectorAll(".sub").forEach(function (s) {
+              s.classList.remove("open");
+            });
+            document.querySelectorAll(".tg").forEach(function (x) {
+              x.setAttribute("aria-expanded", "false");
+              x.querySelector("i").style.transform = "";
+            });
+            if (!open) {
+              t.classList.add("open");
+              b.setAttribute("aria-expanded", "true");
+              b.querySelector("i").style.transform = "rotate(180deg)";
+            }
+          });
+        });
+
+        /* hero slider */
+        var slides = document.querySelectorAll(".slide"),
+          n = slides.length,
+          cur = 0,
+          timer,
+          DUR = 5500,
+          pf = $("pf"),
+          dots = $("dots");
+        slides.forEach(function (_, i) {
+          var d = document.createElement("button");
+          d.className = "dot" + (i ? "" : " on");
+          d.setAttribute("aria-label", "Slide " + (i + 1));
+          d.addEventListener("click", function () {
+            go(i);
+            start();
+          });
+          dots.appendChild(d);
+        });
+        function go(i) {
+          slides[cur].classList.remove("on");
+          dots.children[cur].classList.remove("on");
+          cur = (i + n) % n;
+          slides[cur].classList.add("on");
+          dots.children[cur].classList.add("on");
+          pf.style.transition = "none";
+          pf.style.width = "0";
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              pf.style.transition = "width " + DUR + "ms linear";
+              pf.style.width = "100%";
+            });
+          });
+        }
+        function start() {
+          clearInterval(timer);
+          if (matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+          timer = setInterval(function () {
+            go(cur + 1);
+          }, DUR);
+        }
+        $("prev").addEventListener("click", function () {
+          go(cur - 1);
+          start();
+        });
+        $("next").addEventListener("click", function () {
+          go(cur + 1);
+          start();
+        });
+        var hero = $("hero");
+        hero.addEventListener("mouseenter", function () {
+          clearInterval(timer);
+        });
+        hero.addEventListener("mouseleave", start);
+        var x0 = 0;
+        hero.addEventListener(
+          "touchstart",
+          function (e) {
+            x0 = e.touches[0].clientX;
+          },
+          { passive: true },
+        );
+        hero.addEventListener(
+          "touchend",
+          function (e) {
+            var dx = x0 - e.changedTouches[0].clientX;
+            if (Math.abs(dx) > 45) {
+              go(cur + (dx > 0 ? 1 : -1));
+              start();
+            }
+          },
+          { passive: true },
+        );
+        document.addEventListener("visibilitychange", function () {
+          document.hidden ? clearInterval(timer) : start();
+        });
+        go(0);
+        start();
+
+        /* news carousel */
+        var ng = $("ngrid"),
+          np = $("np"),
+          nn = $("nn");
+        function step(d) {
+          var c = ng.querySelector(".ncard");
+          ng.scrollBy({ left: d * (c.offsetWidth + 19), behavior: "smooth" });
+        }
+        function chk() {
+          var m = ng.scrollWidth - ng.clientWidth;
+          np.disabled = ng.scrollLeft < 4;
+          nn.disabled = ng.scrollLeft > m - 4;
+          np.style.opacity = np.disabled ? 0.35 : 1;
+          nn.style.opacity = nn.disabled ? 0.35 : 1;
+        }
+        np.addEventListener("click", function () {
+          step(-1);
+        });
+        nn.addEventListener("click", function () {
+          step(1);
+        });
+        ng.addEventListener("scroll", chk, { passive: true });
+        addEventListener("resize", chk);
+        chk();
+        ng.addEventListener("keydown", function (e) {
+          if (e.key === "ArrowRight") {
+            step(1);
+          } else if (e.key === "ArrowLeft") {
+            step(-1);
+          }
+        });
+        var dn = false,
+          mv = false,
+          sx = 0,
+          sl = 0;
+        ng.addEventListener("mousedown", function (e) {
+          dn = true;
+          mv = false;
+          sx = e.pageX;
+          sl = ng.scrollLeft;
+        });
+        addEventListener("mousemove", function (e) {
+          if (!dn) return;
+          var d = e.pageX - sx;
+          if (Math.abs(d) > 5) {
+            mv = true;
+            ng.classList.add("drag");
+          }
+          if (mv) ng.scrollLeft = sl - d;
+        });
+        addEventListener("mouseup", function () {
+          if (!dn) return;
+          dn = false;
+          ng.classList.remove("drag");
+        });
+        ng.addEventListener(
+          "click",
+          function (e) {
+            if (mv) {
+              e.preventDefault();
+              mv = false;
+            }
+          },
+          true,
+        );
+        ng.addEventListener("dragstart", function (e) {
+          e.preventDefault();
+        });
+
+        /* category tilt */
+        if (
+          matchMedia("(hover:hover)").matches &&
+          !matchMedia("(prefers-reduced-motion:reduce)").matches
+        )
+          document.querySelectorAll(".cat").forEach(function (c) {
+            c.addEventListener("mousemove", function (e) {
+              var r = c.getBoundingClientRect(),
+                x = (e.clientX - r.left) / r.width - 0.5,
+                y = (e.clientY - r.top) / r.height - 0.5;
+              c.style.setProperty("--rx", -y * 8 + "deg");
+              c.style.setProperty("--ry", x * 8 + "deg");
+            });
+            c.addEventListener("mouseleave", function () {
+              c.style.setProperty("--rx", "0deg");
+              c.style.setProperty("--ry", "0deg");
+            });
+          });
+
+        /* reveal */
+        var els = document.querySelectorAll(".rv");
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (e, i) {
+                if (e.isIntersecting) {
+                  setTimeout(function () {
+                    e.target.classList.add("in");
+                  }, i * 60);
+                  io.unobserve(e.target);
+                }
+              });
+            },
+            { threshold: 0.1 },
+          );
+          els.forEach(function (e) {
+            io.observe(e);
+          });
+        } else
+          els.forEach(function (e) {
+            e.classList.add("in");
+          });
       })();
     </script>
   </body>
